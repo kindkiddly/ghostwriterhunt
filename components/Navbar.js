@@ -42,14 +42,15 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full border-b border-[#E8D5A3] transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-[9999] w-full border-b border-[#E8D5A3] transition-all duration-300 ease-in-out ${
         scrolled || mobileOpen
           ? "bg-[#FFFFFF] shadow-[0_4px_24px_rgba(201,168,76,0.12)]"
-          : "bg-transparent shadow-none"
+          : "bg-[#FFFFFF]/90 backdrop-blur-sm shadow-none"
       }`}
+      style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999 }}
     >
       <nav
-        className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6 lg:px-8"
+        className="relative mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6 lg:px-8"
         aria-label="Primary"
       >
         {/* ——— Logo (left) ——— */}
