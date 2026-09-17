@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import LogoTicker from "@/components/LogoTicker";
 import StatsCounter from "@/components/StatsCounter";
 import HowItWorks from "@/components/HowItWorks";
+import ServicesGrid from "@/components/ServicesGrid";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <LogoTicker />
       <StatsCounter />
       <HowItWorks />
+      <ServicesGrid />
     </main>
   );
 }
