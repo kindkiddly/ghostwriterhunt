@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 /**
  * GhostWriterHunt — Writer Profiles
- * Superside-style rich talent cards + Reedsy warm literary profiles.
- * Portrait photos from Unsplash (swappable for local assets later).
+ * Mixed magazine grid: one large vertical feature card +
+ * horizontal editorial cards. wp- scroll reveals.
  */
 
 const WRITERS = [
@@ -89,178 +89,212 @@ const WRITERS = [
   },
 ];
 
-function WriterCard({ writer, index }) {
+const CARD_DELAYS = [0, 100, 200, 100, 200, 100, 200];
+
+/** Large vertical feature card (Sarah Mitchell) */
+function VerticalCard({ writer, delay }) {
   return (
     <article
-      className="gwh-wp-card group flex h-full flex-col justify-between rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] p-7 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
-      style={{ animationDelay: `${0.15 + index * 0.1}s` }}
+      data-delay={delay}
+      className="wp-reveal group flex flex-col overflow-hidden rounded-2xl border border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] lg:row-span-2"
     >
-      {/* Top content block — grows so the button stays pinned to the bottom */}
-      <div className="flex flex-1 flex-col items-center">
-        {/* Replace with real writer photo later */}
-        {/* Real photo: /images/writers/writer-{writer.id}.jpg */}
-        <div className="mx-auto mb-5 flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-border)]">
-          <Image
-            src={writer.photo}
-            alt={writer.name}
-            width={100}
-            height={100}
-            className="h-full w-full rounded-full object-cover object-top"
-          />
-        </div>
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden lg:h-[320px]">
+        <Image
+          src={writer.photo}
+          alt={writer.name}
+          fill
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          className="object-cover object-top"
+        />
+      </div>
 
-        <h3 className="mb-1 font-playfair text-[20px] font-bold text-[var(--color-text)]">
+      <div className="flex flex-1 flex-col p-7">
+        <h3 className="font-playfair text-[22px] font-bold text-[#1C1C1C]">
           {writer.name}
         </h3>
-
-        <p className="mb-4 font-inter text-[13px] font-medium text-[var(--color-accent-gold)]">
+        <p className="mt-1 font-inter text-[13px] font-medium text-[#C9A84C]">
           {writer.title}
         </p>
-
-        <p className="mb-4 font-inter text-[14px] font-normal leading-[1.7] text-[#666666]">
+        <p className="my-3 font-inter text-[14px] font-normal leading-[1.7] text-[#666666]">
           {writer.bio}
         </p>
 
-        {/* Specialty chips */}
-        <ul className="mb-4 flex flex-wrap items-center justify-center gap-2">
+        <ul className="mb-4 flex flex-wrap gap-2">
           {writer.chips.map((chip) => (
             <li key={chip}>
-              <span className="inline-block rounded-[20px] border border-[var(--color-border)] bg-[#FDF6E3] px-3.5 py-1.5 font-inter text-[12px] font-medium text-[var(--color-accent-olive)]">
+              <span className="inline-block rounded-[20px] border border-[#E8D5A3] bg-[#FDF6E3] px-3.5 py-1.5 font-inter text-[12px] font-medium text-[#6B7C3A]">
                 {chip}
               </span>
             </li>
           ))}
         </ul>
 
-        {/* Personality quote */}
-        <blockquote className="mt-4 w-full border-l-[3px] border-[var(--color-accent-gold)] pl-3 text-left font-playfair text-[14px] italic leading-relaxed text-[#999999]">
+        <blockquote className="mb-5 border-l-[3px] border-[#C9A84C] pl-3 font-playfair text-[14px] italic leading-relaxed text-[#999999]">
           “{writer.quote}”
         </blockquote>
+
+        <a
+          href="#start"
+          className="mt-auto block w-full rounded-[6px] border border-[#C9A84C] bg-transparent px-5 py-2.5 text-center font-inter text-[13px] font-medium text-[#C9A84C] transition-all duration-300 hover:bg-[#C9A84C] hover:text-white"
+        >
+          Request a Quote
+        </a>
+      </div>
+    </article>
+  );
+}
+
+/** Compact horizontal editorial card */
+function HorizontalCard({ writer, delay }) {
+  return (
+    <article
+      data-delay={delay}
+      className="wp-reveal group flex flex-col overflow-hidden rounded-2xl border border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] sm:flex-row"
+    >
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden sm:h-auto sm:min-h-[180px] sm:w-[140px]">
+        <Image
+          src={writer.photo}
+          alt={writer.name}
+          fill
+          sizes="140px"
+          className="object-cover object-top"
+        />
       </div>
 
-      {/* Always aligned at the bottom of every card */}
-      <a
-        href="#start"
-        className="mt-5 block w-full rounded-[6px] border border-[var(--color-accent-gold)] bg-transparent px-5 py-2.5 text-center font-inter text-[13px] font-medium text-[var(--color-accent-gold)] transition-all duration-300 ease-in-out hover:bg-[var(--color-accent-gold)] hover:text-white"
-      >
-        Request a Quote
-      </a>
+      <div className="flex flex-1 flex-col justify-between p-6">
+        <div>
+          <h3 className="font-playfair text-[18px] font-bold text-[#1C1C1C]">
+            {writer.name}
+          </h3>
+          <p className="mt-1 font-inter text-[12px] font-medium text-[#C9A84C]">
+            {writer.title}
+          </p>
+          <p className="my-2 line-clamp-3 font-inter text-[13px] font-normal leading-[1.6] text-[#666666]">
+            {writer.bio}
+          </p>
+          <ul className="mb-3 flex flex-wrap gap-1.5">
+            {writer.chips.map((chip) => (
+              <li key={chip}>
+                <span className="inline-block rounded-[20px] border border-[#E8D5A3] bg-[#FDF6E3] px-2.5 py-1 font-inter text-[11px] font-medium text-[#6B7C3A]">
+                  {chip}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <a
+          href="#writers"
+          className="mt-auto inline-block font-inter text-[13px] font-medium text-[#C9A84C] no-underline transition-all duration-200 hover:underline"
+        >
+          View Profile →
+        </a>
+      </div>
     </article>
   );
 }
 
 export default function WriterProfiles() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  const rowOne = WRITERS.slice(0, 4);
-  const rowTwo = WRITERS.slice(4);
-
+  // Staggered scroll reveal via data-delay on each card
   useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
+    const elements = document.querySelectorAll(".wp-reveal");
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
+            setTimeout(() => {
+              entry.target.classList.add("wp-visible");
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
     );
 
-    observer.observe(node);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("wp-visible");
+        observer.observe(el);
+      });
+    });
+
     return () => observer.disconnect();
   }, []);
 
+  const [
+    sarah,
+    james,
+    amanda,
+    marcus,
+    isabella,
+    robert,
+    priya,
+  ] = WRITERS;
+
   return (
     <section
-      ref={sectionRef}
       id="writers"
-      className="w-full bg-[var(--color-card)] py-[80px]"
+      className="w-full bg-[#FAFAF7] py-[80px]"
       aria-label="Writer profiles"
     >
       <style>{`
-        @keyframes gwh-wp-fade {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes gwh-wp-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .gwh-wp-label,
-        .gwh-wp-headline,
-        .gwh-wp-sub,
-        .gwh-wp-card,
-        .gwh-wp-cta {
+        .wp-reveal {
           opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease-out,
+                      transform 0.6s ease-out;
         }
-
-        .gwh-wp-visible .gwh-wp-label {
-          animation: gwh-wp-fade 0.6s ease-out forwards;
-        }
-
-        .gwh-wp-visible .gwh-wp-headline {
-          animation: gwh-wp-up 0.6s ease-out 0.05s forwards;
-        }
-
-        .gwh-wp-visible .gwh-wp-sub {
-          animation: gwh-wp-up 0.6s ease-out 0.1s forwards;
-        }
-
-        .gwh-wp-visible .gwh-wp-card {
-          animation: gwh-wp-up 0.6s ease-out forwards;
-        }
-
-        .gwh-wp-visible .gwh-wp-cta {
-          animation: gwh-wp-fade 0.6s ease-out 0.95s forwards;
+        .wp-reveal.wp-visible {
+          opacity: 1;
+          transform: translateY(0);
         }
       `}</style>
 
-      <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-wp-visible" : ""}`}
-      >
-        <p className="gwh-wp-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
+      <div className="mx-auto max-w-[1200px] px-6">
+        <p className="mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Our Writers
         </p>
 
-        <h2 className="gwh-wp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
+        <h2 className="mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Meet the writers behind</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             your story.
           </span>
         </h2>
 
-        <p className="gwh-wp-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
+        <p className="mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           Handpicked professionals with decades of publishing experience —
           each one dedicated to telling your story perfectly.
         </p>
 
-        {/* Row 1 — 4 writers */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {rowOne.map((writer, index) => (
-            <WriterCard key={writer.id} writer={writer} index={index} />
-          ))}
+        {/* Row 1 — large vertical (left) + 2 horizontals stacked (right) */}
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[2fr_3fr]">
+          <VerticalCard writer={sarah} delay={CARD_DELAYS[0]} />
+          <div className="grid grid-cols-1 gap-5">
+            <HorizontalCard writer={james} delay={CARD_DELAYS[1]} />
+            <HorizontalCard writer={amanda} delay={CARD_DELAYS[2]} />
+          </div>
         </div>
 
-        {/* Row 2 — 3 writers, centered on desktop */}
-        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-[900px] lg:grid-cols-3">
-          {rowTwo.map((writer, index) => (
-            <WriterCard key={writer.id} writer={writer} index={index + 4} />
-          ))}
+        {/* Row 2 — 60% / 40% horizontals */}
+        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[3fr_2fr]">
+          <HorizontalCard writer={marcus} delay={CARD_DELAYS[3]} />
+          <HorizontalCard writer={isabella} delay={CARD_DELAYS[4]} />
         </div>
 
-        <div className="gwh-wp-cta mt-12 text-center">
+        {/* Row 3 — equal 50% / 50% horizontals */}
+        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <HorizontalCard writer={robert} delay={CARD_DELAYS[5]} />
+          <HorizontalCard writer={priya} delay={CARD_DELAYS[6]} />
+        </div>
+
+        <div className="mt-12 text-center">
           <a
             href="#writers"
             className="inline-block rounded-[6px] bg-[var(--color-accent-gold)] px-10 py-4 font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
