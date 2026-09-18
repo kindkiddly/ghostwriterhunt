@@ -56,6 +56,11 @@ export default function Navbar() {
         border: "none",
         borderBottom: "none",
         outline: "none",
+        // At top: no shadow / no line; scrolled: soft shadow only
+        boxShadow:
+          scrolled || mobileOpen
+            ? "0 1px 20px rgba(0,0,0,0.06)"
+            : "none",
         // At top: cream fades fully transparent — no line at bottom
         // After scroll: near-solid cream + soft shadow only (still no border)
         background:
@@ -81,8 +86,9 @@ export default function Navbar() {
             src="/images/GhostWriterHunt-LOGO-Transparent.webp"
             alt="GhostWriterHunt"
             style={{
-              height: "52px",
+              height: "56px",
               width: "auto",
+              maxWidth: "220px",
               objectFit: "contain",
               display: "block",
             }}
