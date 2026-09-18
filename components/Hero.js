@@ -230,7 +230,7 @@ export default function Hero() {
             book needs, under one roof.
           </p>
 
-          <div style={{ transform: "translateY(48px)" }}>
+          <div style={{ transform: "translateY(24px)" }}>
             <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
                 href="#start"
