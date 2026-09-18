@@ -12,7 +12,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Toggle solid background + warm shadow after a short scroll
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 12);
@@ -23,7 +22,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll while the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -50,25 +48,25 @@ export default function Navbar() {
       style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999 }}
     >
       <nav
-        className="relative mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6 lg:px-8"
+        className="relative mx-auto flex h-[70px] max-w-[1200px] items-center justify-between px-6 lg:px-8"
         aria-label="Primary"
       >
-        {/* ——— Logo (left) ——— */}
+        {/* Logo (left) */}
         <a
           href="/"
-          className="font-playfair text-[22px] font-bold leading-none text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+          className="flex h-[70px] items-center font-playfair text-[22px] font-bold leading-none text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
           onClick={closeMobile}
         >
           GhostWriterHunt
         </a>
 
-        {/* ——— Desktop nav links (center) ——— */}
-        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 md:flex">
+        {/* Desktop nav links — equal spacing, matched padding */}
+        <ul className="absolute left-1/2 hidden h-[70px] -translate-x-1/2 items-center md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                className="inline-flex h-[70px] items-center px-4 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
               >
                 {link.label}
               </a>
@@ -76,23 +74,23 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* ——— Desktop CTAs (right) ——— */}
-        <div className="hidden items-center gap-6 md:flex">
+        {/* Desktop CTAs — matched 40px height */}
+        <div className="hidden h-[70px] items-center gap-3 md:flex">
           <a
             href="#sign-in"
-            className="font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+            className="inline-flex h-10 items-center justify-center px-4 font-inter text-[14px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
           >
             Sign In
           </a>
           <a
             href="#start"
-            className="rounded-[6px] bg-[#C9A84C] px-6 py-3 font-inter text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
+            className="inline-flex h-10 items-center justify-center rounded-[6px] bg-[#C9A84C] px-5 font-inter text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
           >
             Start Your Book
           </a>
         </div>
 
-        {/* ——— Mobile hamburger ——— */}
+        {/* Mobile hamburger */}
         <button
           type="button"
           className="relative z-10 flex h-10 w-10 items-center justify-center md:hidden"
@@ -121,7 +119,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* ——— Mobile dropdown panel ——— */}
+      {/* Mobile dropdown */}
       <div
         className={`overflow-hidden border-t border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out md:hidden ${
           mobileOpen
@@ -135,7 +133,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 onClick={closeMobile}
-                className="block py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                className="block px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
               >
                 {link.label}
               </a>
@@ -143,18 +141,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex flex-col gap-3 border-t border-[#E8D5A3] px-6 py-5">
+        <div className="flex flex-col items-center gap-3 border-t border-[#E8D5A3] px-6 py-5">
           <a
             href="#sign-in"
             onClick={closeMobile}
-            className="py-2 text-center font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+            className="inline-flex h-10 items-center justify-center px-4 font-inter text-[14px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
           >
             Sign In
           </a>
           <a
             href="#start"
             onClick={closeMobile}
-            className="rounded-[6px] bg-[#C9A84C] px-6 py-3 text-center font-inter text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
+            className="inline-flex h-10 w-full items-center justify-center rounded-[6px] bg-[#C9A84C] px-5 font-inter text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
           >
             Start Your Book
           </a>
