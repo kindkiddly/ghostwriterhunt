@@ -1,0 +1,207 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+/**
+ * GhostWriterHunt — Narrative Block 1
+ * Superside-style two-column story section:
+ * bold copy + feature bullets left, editorial image + floating card right.
+ * Scroll-reveal animations fire once via Intersection Observer.
+ */
+
+const FEATURES = [
+  {
+    title: "Handpicked Professional Writers",
+    description:
+      "Every writer on our platform is vetted, experienced and proven — selected from the top 1% of applicants.",
+  },
+  {
+    title: "Your Voice, Perfectly Captured",
+    description:
+      "We study how you speak and write before a single word is drafted — your book sounds like you.",
+  },
+  {
+    title: "Every Genre Covered",
+    description:
+      "From literary fiction to business books, memoir to children's stories — we have specialists for every genre and format.",
+  },
+  {
+    title: "100% Confidential Always",
+    description:
+      "Full NDA protection on every project. Your story, your ideas and your identity are completely safe.",
+  },
+];
+
+function GoldCheckIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="mt-0.5 shrink-0"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="10" fill="#C9A84C" />
+      <path
+        d="M6 10.2l2.4 2.4L14 7"
+        stroke="#FFFFFF"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function GoldStarIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="#C9A84C"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.47L12 17.27l-5.8 3.05 1.11-6.47-4.7-4.58 6.49-.94L12 2.5z" />
+    </svg>
+  );
+}
+
+export default function NarrativeBlock1() {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  // Reveal once when the section enters the viewport
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full overflow-hidden bg-[#FFFFFF] py-[120px]"
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse at 0% 50%, rgba(201,168,76,0.05) 0%, transparent 60%)",
+      }}
+      aria-label="Why GhostWriterHunt"
+    >
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-20 lg:px-8">
+        {/* ——— Left: label, headline, body, bullets, CTA ——— */}
+        <div
+          className={`w-full lg:w-1/2 transition-all duration-700 ease-out ${
+            visible
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-10 opacity-0"
+          }`}
+        >
+          <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#6B7C3A]">
+            WHY GHOSTWRITERHUNT
+          </p>
+
+          <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.2] text-[#1C1C1C] lg:text-[44px]">
+            <span className="block font-normal">Your story deserves</span>
+            <span className="block italic text-[#C9A84C]">
+              professional hands.
+            </span>
+          </h2>
+
+          <p className="mb-9 max-w-[480px] font-inter text-[17px] font-normal leading-[1.8] text-[#666666]">
+            Every great book is the result of a partnership between a visionary
+            author and a skilled professional writer. At GhostWriterHunt, we
+            match you with the perfect ghostwriter for your genre, your voice,
+            and your vision — then guide you every step of the way from first
+            idea to published masterpiece.
+          </p>
+
+          <ul className="mb-2 flex flex-col">
+            {FEATURES.map((feature) => (
+              <li key={feature.title} className="mb-5 flex items-start gap-3">
+                <GoldCheckIcon />
+                <div>
+                  <p className="font-inter text-[15px] font-semibold text-[#1C1C1C]">
+                    {feature.title}
+                  </p>
+                  <p className="mt-1 font-inter text-[14px] font-normal leading-[1.6] text-[#666666]">
+                    {feature.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#writers"
+            className="mt-2 inline-block font-inter text-[15px] font-semibold text-[#C9A84C] transition-colors duration-200 hover:text-[#B8960C] hover:underline"
+          >
+            Meet our writers →
+          </a>
+        </div>
+
+        {/* ——— Right: image + floating stats card ——— */}
+        <div
+          className={`relative w-full lg:w-1/2 transition-all duration-700 ease-out ${
+            visible
+              ? "translate-x-0 opacity-100 delay-150"
+              : "translate-x-10 opacity-0"
+          }`}
+          style={{ transitionDelay: visible ? "0.15s" : "0s" }}
+        >
+          {/* Mobile: image on top — flex-col order handles this via DOM order on stack */}
+          <div className="relative w-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop"
+              alt="Author writing at a desk with manuscript pages"
+              className="h-[560px] w-full rounded-[20px] object-cover"
+              style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}
+            />
+
+            {/* Floating card — overlaps bottom-left of image */}
+            <div
+              className={`absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4 transition-all duration-500 ease-out ${
+                visible
+                  ? "scale-100 opacity-100"
+                  : "scale-[0.8] opacity-0"
+              }`}
+              style={{
+                boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                transitionDelay: visible ? "0.4s" : "0s",
+              }}
+            >
+              <div className="flex items-start gap-2">
+                <GoldStarIcon />
+                <div>
+                  <p className="font-playfair text-[18px] font-bold leading-tight text-[#1C1C1C]">
+                    5,000+ Books Written
+                  </p>
+                  <p className="mt-1 font-inter text-[13px] font-normal text-[#666666]">
+                    by professional ghostwriters
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
