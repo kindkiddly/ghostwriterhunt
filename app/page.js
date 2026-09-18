@@ -5,6 +5,7 @@ import NarrativeBlock1 from "@/components/NarrativeBlock1";
 import HowItWorks from "@/components/HowItWorks";
 import NarrativeBlock2 from "@/components/NarrativeBlock2";
 import ServicesGrid from "@/components/ServicesGrid";
+import TrustBlock from "@/components/TrustBlock";
 import WriterProfiles from "@/components/WriterProfiles";
 import BookCoversGallery from "@/components/BookCoversGallery";
 import Testimonials from "@/components/Testimonials";
@@ -21,6 +22,7 @@ export default function Home() {
       <HowItWorks />
       <NarrativeBlock2 />
       <ServicesGrid />
+      <TrustBlock />
       <WriterProfiles />
       <BookCoversGallery />
       <Testimonials />

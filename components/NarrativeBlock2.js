@@ -79,7 +79,7 @@ export default function NarrativeBlock2() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FAFAF7] py-[120px]"
+      className="relative w-full overflow-hidden bg-[#FAFAF7] py-[80px]"
       aria-label="Our Approach"
     >
       <style>{`

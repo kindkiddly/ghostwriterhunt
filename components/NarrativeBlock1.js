@@ -108,7 +108,7 @@ export default function NarrativeBlock1() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FFFFFF] py-[120px]"
+      className="relative w-full overflow-hidden bg-[#FFFFFF] py-[80px]"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 0% 50%, rgba(201,168,76,0.05) 0%, transparent 60%)",
