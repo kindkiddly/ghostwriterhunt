@@ -41,10 +41,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] w-full transition-all duration-[400ms] ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-[1000] w-full border-0 border-none outline-none transition-all duration-[400ms] ease-in-out ${
         scrolled || mobileOpen
-          ? "border-b border-[#E8D5A3] shadow-[0_2px_20px_rgba(0,0,0,0.06)] backdrop-blur-[12px]"
-          : "border-b border-transparent shadow-none backdrop-blur-none"
+          ? "shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-[12px]"
+          : "shadow-none backdrop-blur-none"
       }`}
       style={{
         position: "fixed",
@@ -53,13 +53,16 @@ export default function Navbar() {
         right: 0,
         zIndex: 1000,
         width: "100%",
-        // At top: cream fades to transparent so hero books show through
-        // After scroll: near-solid cream for readability
+        border: "none",
+        borderBottom: "none",
+        outline: "none",
+        // At top: cream fades fully transparent — no line at bottom
+        // After scroll: near-solid cream + soft shadow only (still no border)
         background:
           scrolled || mobileOpen
             ? "rgba(250,250,247,0.98)"
-            : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.7) 50%, rgba(250,250,247,0) 100%)",
-        transition: "background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
+            : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
+        transition: "background 0.4s ease, box-shadow 0.4s ease",
       }}
     >
       <nav

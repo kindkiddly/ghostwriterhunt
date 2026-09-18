@@ -217,35 +217,35 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 pt-20 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10 lg:pt-0">
-        {/* ——— Left column: existing text content ——— */}
-        <div className="flex w-full flex-col items-center text-center lg:w-[55%] lg:items-start lg:pt-20 lg:text-left">
-          <h1 className="gwh-hero-animate gwh-hero-delay-0 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
+        {/* ——— Left column: tighter spacing, clear of navbar ——— */}
+        <div className="flex w-full flex-col items-center justify-center pb-[60px] pt-[100px] text-center lg:w-[55%] lg:items-start lg:text-left">
+          <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-4 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>
           </h1>
 
-          <p className="gwh-hero-animate gwh-hero-delay-1 mt-6 max-w-[600px] font-inter text-[18px] font-normal leading-[1.8] text-[#666666] lg:text-[20px]">
+          <p className="gwh-hero-animate gwh-hero-delay-1 mb-6 max-w-[520px] font-inter text-[18px] font-normal leading-[1.8] text-[#666666]">
             Professional ghostwriters, designers and editors — everything your
             book needs, under one roof.
           </p>
 
-          <div className="gwh-hero-animate gwh-hero-delay-2 mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+          <div className="gwh-hero-animate gwh-hero-delay-2 mb-5 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <a
               href="#start"
-              className="inline-flex h-[52px] items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-8 font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
+              className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
             >
               Start Your Book
             </a>
             <a
               href="#how-it-works"
-              className="inline-flex h-[52px] items-center justify-center rounded-[6px] border-2 border-[var(--color-accent-gold)] bg-transparent px-8 font-inter text-base font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
+              className="inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
             >
               See How It Works
             </a>
           </div>
 
-          <p className="gwh-hero-animate gwh-hero-delay-3 mt-6 flex items-center justify-center gap-3 font-inter text-[14px] font-normal text-[#999999] lg:justify-start">
+          <p className="gwh-hero-animate gwh-hero-delay-3 mb-5 flex items-center justify-center gap-3 font-inter text-[13px] font-normal text-[#999999] lg:justify-start">
             <span
               className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
               aria-hidden="true"
@@ -257,10 +257,11 @@ export default function Hero() {
             />
           </p>
 
-          <ul className="gwh-hero-animate gwh-hero-delay-4 mt-6 flex max-w-[720px] flex-wrap items-center justify-center gap-3 lg:justify-start">
+          {/* Genre pills — single row on desktop, wrap on small screens */}
+          <ul className="gwh-hero-animate gwh-hero-delay-4 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
             {genres.map((genre) => (
               <li key={genre}>
-                <span className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-5 font-inter text-[13px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
+                <span className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-4 font-inter text-[12px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
                   {genre}
                 </span>
               </li>
