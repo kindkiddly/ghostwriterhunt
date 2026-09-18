@@ -4,6 +4,7 @@ import StatsCounter from "@/components/StatsCounter";
 import HowItWorks from "@/components/HowItWorks";
 import ServicesGrid from "@/components/ServicesGrid";
 import WriterProfiles from "@/components/WriterProfiles";
+import BookCoversGallery from "@/components/BookCoversGallery";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HowItWorks />
       <ServicesGrid />
       <WriterProfiles />
+      <BookCoversGallery />
     </main>
   );
 }
