@@ -14,6 +14,7 @@ import Pricing from "@/components/Pricing";
 import NarrativeBlock3 from "@/components/NarrativeBlock3";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <NarrativeBlock3 />
       <FAQ />
       <CTABanner />
+      <Footer />
     </main>
   );
 }
