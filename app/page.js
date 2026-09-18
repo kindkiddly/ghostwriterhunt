@@ -6,6 +6,7 @@ import ServicesGrid from "@/components/ServicesGrid";
 import WriterProfiles from "@/components/WriterProfiles";
 import BookCoversGallery from "@/components/BookCoversGallery";
 import Testimonials from "@/components/Testimonials";
+import Comparison from "@/components/Comparison";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <WriterProfiles />
       <BookCoversGallery />
       <Testimonials />
+      <Comparison />
     </main>
   );
 }
