@@ -69,13 +69,24 @@ export default function Navbar() {
         className="relative mx-auto flex h-[70px] max-w-[1200px] items-center justify-between px-6 lg:px-8"
         aria-label="Primary"
       >
-        {/* Logo (left) */}
+        {/* Logo (left) — WebP brand mark */}
         <a
           href="/"
-          className="flex h-[70px] items-center font-playfair text-[22px] font-bold leading-none text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+          style={{ display: "block" }}
+          className="flex h-[70px] items-center"
           onClick={closeMobile}
         >
-          GhostWriterHunt
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/GhostWriterHunt-LOGO-Transparent.webp"
+            alt="GhostWriterHunt"
+            style={{
+              height: "52px",
+              width: "auto",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
         </a>
 
         {/* Desktop nav links — equal spacing, matched padding */}
