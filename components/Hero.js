@@ -1,15 +1,10 @@
-"use client";
-
-import Image from "next/image";
-import { useCallback, useRef } from "react";
-
 /**
  * GhostWriterHunt — Hero section
- * Reedsy two-column hero: text left, floating book covers right.
- * Drag/swipe to scroll covers; float animations continue.
+ * Reedsy two-column hero: text left, continuous upward
+ * book-cover ticker columns on the right (like a conveyor).
  */
 
-const BOOK_IMAGES = [
+const COLUMN_1 = [
   "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=160&h=240&fit=crop",
@@ -17,6 +12,10 @@ const BOOK_IMAGES = [
   "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?w=160&h=240&fit=crop",
+  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=160&h=240&fit=crop",
+];
+
+const COLUMN_2 = [
   "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=160&h=240&fit=crop",
@@ -24,105 +23,85 @@ const BOOK_IMAGES = [
   "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=160&h=240&fit=crop",
+  "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=160&h=240&fit=crop",
+];
+
+const COLUMN_3 = [
   "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1535398089889-dd807df1dfaa?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=160&h=240&fit=crop",
   "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=160&h=240&fit=crop",
 ];
 
-// Interleaved columns so adjacent covers never share the same source set
-const COLUMN_1 = [0, 3, 6, 9, 12, 15, 18, 21].map((i) => BOOK_IMAGES[i]);
-const COLUMN_2 = [1, 4, 7, 10, 13, 16, 19, 22].map((i) => BOOK_IMAGES[i]);
-const COLUMN_3 = [2, 5, 8, 11, 14, 17, 20, 23].map((i) => BOOK_IMAGES[i]);
-
-function BookCover({ src, index }) {
+function BookCover({ src, alt }) {
   return (
-    <div className="group relative z-0 shrink-0 transition-all duration-300 ease-in-out hover:z-10 hover:scale-105">
-      <Image
-        src={src}
-        alt={`Featured book cover ${index + 1}`}
-        width={140}
-        height={200}
-        className="pointer-events-none h-[200px] w-[140px] rounded-lg object-cover shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-shadow duration-300 group-hover:shadow-[0_12px_32px_rgba(0,0,0,0.25)]"
-        draggable={false}
-      />
+    // Regular img — faster / simpler for continuous CSS ticker motion
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      style={{
+        width: "100%",
+        height: "200px",
+        objectFit: "cover",
+        borderRadius: "8px",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+        flexShrink: 0,
+        display: "block",
+      }}
+    />
+  );
+}
+
+/**
+ * One vertical ticker column.
+ * Images are rendered twice so translateY(-50%) loops seamlessly.
+ */
+function ScrollColumn({ images, className, label }) {
+  const loop = [...images, ...images];
+
+  return (
+    <div
+      className={`flex w-[calc(33.333%-8px)] shrink-0 flex-col gap-3 ${className}`}
+      aria-label={label}
+    >
+      {loop.map((src, i) => (
+        <BookCover
+          key={`${label}-${i}`}
+          src={src}
+          alt={`Book cover ${(i % images.length) + 1}`}
+        />
+      ))}
     </div>
   );
 }
 
-function FloatingBooks({ mobile = false }) {
-  const scrollRef = useRef(null);
-  const dragState = useRef({ active: false, startY: 0, startScroll: 0 });
-
-  // Mouse / touch drag-to-scroll while float animations keep running
-  const onPointerDown = useCallback((e) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    dragState.current = {
-      active: true,
-      startY: e.clientY,
-      startScroll: el.scrollTop,
-    };
-    el.setPointerCapture?.(e.pointerId);
-    el.style.cursor = "grabbing";
-  }, []);
-
-  const onPointerMove = useCallback((e) => {
-    const el = scrollRef.current;
-    if (!el || !dragState.current.active) return;
-    const delta = e.clientY - dragState.current.startY;
-    el.scrollTop = dragState.current.startScroll - delta;
-  }, []);
-
-  const onPointerUp = useCallback((e) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    dragState.current.active = false;
-    el.releasePointerCapture?.(e.pointerId);
-    el.style.cursor = "grab";
-  }, []);
-
-  const col1 = mobile ? COLUMN_1.slice(0, 4) : COLUMN_1;
-  const col2 = mobile ? COLUMN_2.slice(0, 4) : COLUMN_2;
-  const col3 = mobile ? COLUMN_3.slice(0, 4) : COLUMN_3;
-
+function BookTicker() {
   return (
     <div
-      ref={scrollRef}
-      className={`gwh-books-scroll relative w-full cursor-grab overflow-y-auto overflow-x-hidden active:cursor-grabbing ${
-        mobile ? "h-[280px]" : "h-[520px]"
-      }`}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      aria-label="Browse book covers"
+      className="gwh-books-ticker relative h-[300px] w-full overflow-hidden lg:h-[520px]"
+      aria-label="Featured book covers"
     >
-      {/* No edge fade — covers stay fully visible while scrolling */}
-      <div className="flex min-h-full items-start justify-center gap-3 py-2">
-        <div className="gwh-float-up flex flex-col gap-3">
-          {col1.map((src, i) => (
-            <BookCover key={`c1-${i}`} src={src} index={i} />
-          ))}
-        </div>
-
-        <div className="gwh-float-down mt-10 flex flex-col gap-3">
-          {col2.map((src, i) => (
-            <BookCover key={`c2-${i}`} src={src} index={i + 8} />
-          ))}
-        </div>
-
-        <div className="gwh-float-mid mt-5 flex flex-col gap-3">
-          {col3.map((src, i) => (
-            <BookCover key={`c3-${i}`} src={src} index={i + 16} />
-          ))}
-        </div>
+      <div className="flex h-full flex-row gap-3">
+        <ScrollColumn
+          images={COLUMN_1}
+          className="gwh-scroll-col-1"
+          label="Book column 1"
+        />
+        <ScrollColumn
+          images={COLUMN_2}
+          className="gwh-scroll-col-2"
+          label="Book column 2"
+        />
+        <ScrollColumn
+          images={COLUMN_3}
+          className="gwh-scroll-col-3"
+          label="Book column 3"
+        />
       </div>
     </div>
   );
@@ -168,22 +147,10 @@ export default function Hero() {
           }
         }
 
-        @keyframes floatUp {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-          100% { transform: translateY(0px); }
-        }
-
-        @keyframes floatDown {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(20px); }
-          100% { transform: translateY(0px); }
-        }
-
-        @keyframes floatMid {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-12px); }
-          100% { transform: translateY(0px); }
+        /* Continuous upward conveyor — -50% because content is duplicated */
+        @keyframes scrollUp {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
         }
 
         .gwh-hero-animate {
@@ -201,29 +168,25 @@ export default function Hero() {
           animation: gwh-bounce 1.6s ease-in-out infinite;
         }
 
-        .gwh-float-up {
-          animation: floatUp 6s ease-in-out infinite;
+        .gwh-scroll-col-1 {
+          animation: scrollUp 25s linear infinite;
         }
 
-        .gwh-float-down {
-          animation: floatDown 8s ease-in-out infinite;
+        .gwh-scroll-col-2 {
+          animation: scrollUp 35s linear infinite;
+          animation-delay: -10s;
         }
 
-        .gwh-float-mid {
-          animation: floatMid 7s ease-in-out infinite;
+        .gwh-scroll-col-3 {
+          animation: scrollUp 30s linear infinite;
+          animation-delay: -5s;
         }
 
-        /* Hide scrollbar but keep scroll / drag */
-        .gwh-books-scroll {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          touch-action: pan-y;
-          -webkit-overflow-scrolling: touch;
-          user-select: none;
-        }
-
-        .gwh-books-scroll::-webkit-scrollbar {
-          display: none;
+        /* Pause all columns when hovering the ticker */
+        .gwh-books-ticker:hover .gwh-scroll-col-1,
+        .gwh-books-ticker:hover .gwh-scroll-col-2,
+        .gwh-books-ticker:hover .gwh-scroll-col-3 {
+          animation-play-state: paused;
         }
       `}</style>
 
@@ -240,7 +203,6 @@ export default function Hero() {
             book needs, under one roof.
           </p>
 
-          {/* CTA row — matched 52px height buttons */}
           <div className="gwh-hero-animate gwh-hero-delay-2 mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <a
               href="#start"
@@ -268,7 +230,6 @@ export default function Hero() {
             />
           </p>
 
-          {/* Genre pills — matched 36px height */}
           <ul className="gwh-hero-animate gwh-hero-delay-4 mt-6 flex max-w-[720px] flex-wrap items-center justify-center gap-3 lg:justify-start">
             {genres.map((genre) => (
               <li key={genre}>
@@ -280,13 +241,9 @@ export default function Hero() {
           </ul>
         </div>
 
-        {/* ——— Right column: floating + scrollable book covers ——— */}
-        <div className="hidden w-full lg:block lg:w-[45%]">
-          <FloatingBooks />
-        </div>
-
-        <div className="w-full lg:hidden">
-          <FloatingBooks mobile />
+        {/* ——— Right column: continuous upward book ticker ——— */}
+        <div className="w-full lg:w-[45%]">
+          <BookTicker />
         </div>
       </div>
 
