@@ -219,7 +219,7 @@ export default function Hero() {
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
         {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
-        <div className="flex min-h-screen w-full flex-col items-center justify-center pb-20 pt-[120px] text-center lg:w-[55%] lg:items-start lg:text-left">
+        <div className="flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:items-start lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>
