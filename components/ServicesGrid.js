@@ -276,7 +276,7 @@ export default function ServicesGrid() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative w-full overflow-hidden border-0 bg-[#1C1C1C] pt-[80px] pb-[80px]"
+      className="relative w-full overflow-hidden border-0 bg-[#1C1C1C] py-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 100% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),

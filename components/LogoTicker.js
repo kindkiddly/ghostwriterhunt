@@ -21,7 +21,7 @@ export default function LogoTicker() {
 
   return (
     <section
-      className="overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-card)] py-8"
+      className="overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-card)] py-6"
       aria-label="Trusted publishing platforms"
     >
       {/* Scoped marquee keyframes */}

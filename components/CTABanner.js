@@ -49,7 +49,7 @@ export default function CTABanner() {
   return (
     <section
       id="start"
-      className="relative flex min-h-[500px] w-full items-center justify-center overflow-hidden"
+      className="relative flex min-h-[500px] w-full items-center justify-center overflow-hidden py-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 60%),
@@ -75,7 +75,7 @@ export default function CTABanner() {
       `}</style>
 
       {/* Gold glow sits above the photo via background stack; content centered */}
-      <div className="relative z-10 mx-auto w-full max-w-[800px] px-10 py-[80px] text-center">
+      <div className="relative z-10 mx-auto w-full max-w-[800px] px-10 text-center">
         <p
           data-delay="0"
           className="cta-reveal mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]"

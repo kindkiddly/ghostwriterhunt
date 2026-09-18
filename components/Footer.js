@@ -233,7 +233,7 @@ export default function Footer() {
         <div className="my-10 h-px w-full bg-[#2A2A2A]" aria-hidden="true" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
           <p className="font-inter text-[13px] font-normal text-[#666666]">
             © 2026 GhostWriterHunt. All rights reserved.
           </p>
