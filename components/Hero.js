@@ -1,57 +1,59 @@
 /**
  * GhostWriterHunt — Hero section
- * Reedsy two-column hero: text left, continuous upward
- * book-cover ticker columns on the right (like a conveyor).
+ * Full-viewport (100vh) behind transparent navbar.
+ * Right side: 3 continuous book-cover ticker columns
+ * with seamless -50% loop (images duplicated once).
  */
 
 const COLUMN_1 = [
-  "https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1621600411688-4be93c2c1e3f?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1603284569248-821525309698?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1618365908648-e71bd5716ccd?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1604882741050-31e4a9f50e51?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1594666757003-3ee20de41568?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1590953571791-8c547c185428?w=160&h=240&fit=crop",
+  "https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1603284569248-821525309698?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1604882741050-31e4a9f50e51?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1594666757003-3ee20de41568?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1590953571791-8c547c185428?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1569982175971-d92b01cf8694?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?w=180&h=220&fit=crop",
 ];
 
 const COLUMN_2 = [
-  "https://images.unsplash.com/photo-1569982175971-d92b01cf8694?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1612969308146-066d55f37ccb?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1589998059171-988d887df646?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1623521145952-1f3c5e0b3b3b?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?w=160&h=240&fit=crop",
+  "https://images.unsplash.com/photo-1612969308146-066d55f37ccb?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1589998059171-988d887df646?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?w=180&h=220&fit=crop",
 ];
 
 const COLUMN_3 = [
-  "https://images.unsplash.com/photo-1606185540834-d6d8f4f7b7c6?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=160&h=240&fit=crop",
-  "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=160&h=240&fit=crop",
+  "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1606185540834-d6d8f4f7b7c6?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1621600411688-4be93c2c1e3f?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1618365908648-e71bd5716ccd?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=180&h=220&fit=crop",
 ];
 
 function BookCover({ src, alt }) {
   return (
-    // Regular img — faster / simpler for continuous CSS ticker motion
+    // Regular img — fixed 220px height + 12px margin for exact -50% loop math
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt={alt}
       style={{
         width: "100%",
-        height: "200px",
+        height: "220px",
         objectFit: "cover",
-        borderRadius: "8px",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
-        flexShrink: 0,
+        borderRadius: "10px",
+        marginBottom: "12px",
         display: "block",
+        flexShrink: 0,
+        boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
       }}
     />
   );
@@ -59,23 +61,34 @@ function BookCover({ src, alt }) {
 
 /**
  * One vertical ticker column.
- * Images are rendered twice so translateY(-50%) loops seamlessly.
+ * Structure: wrapper (overflow hidden) → scroll-track (animated, images × 2).
+ * translateY(-50%) moves exactly one image set → seamless loop.
  */
-function ScrollColumn({ images, className, label }) {
-  const loop = [...images, ...images];
-
+function ScrollColumn({ images, animationClass, animationDelay, label }) {
   return (
     <div
-      className={`flex w-[calc(33.333%-8px)] shrink-0 flex-col gap-3 ${className}`}
+      className="h-full w-[calc(33.333%-8px)] shrink-0 overflow-hidden"
       aria-label={label}
     >
-      {loop.map((src, i) => (
-        <BookCover
-          key={`${label}-${i}`}
-          src={src}
-          alt={`Book cover ${(i % images.length) + 1}`}
-        />
-      ))}
+      <div
+        className={`scroll-track flex flex-col ${animationClass}`}
+        style={animationDelay ? { animationDelay } : undefined}
+      >
+        {images.map((src, i) => (
+          <BookCover
+            key={`${label}-a-${i}`}
+            src={src}
+            alt={`Book cover ${i + 1}`}
+          />
+        ))}
+        {images.map((src, i) => (
+          <BookCover
+            key={`${label}-b-${i}`}
+            src={src}
+            alt={`Book cover ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -83,26 +96,26 @@ function ScrollColumn({ images, className, label }) {
 function BookTicker() {
   return (
     <div
-      className="gwh-books-ticker relative h-[300px] w-full overflow-hidden lg:h-[520px]"
+      className="gwh-books-ticker relative flex h-[50vh] w-full flex-row items-start gap-3 overflow-hidden lg:h-screen"
       aria-label="Featured book covers"
     >
-      <div className="flex h-full flex-row gap-3">
-        <ScrollColumn
-          images={COLUMN_1}
-          className="gwh-scroll-col-1"
-          label="Book column 1"
-        />
-        <ScrollColumn
-          images={COLUMN_2}
-          className="gwh-scroll-col-2"
-          label="Book column 2"
-        />
-        <ScrollColumn
-          images={COLUMN_3}
-          className="gwh-scroll-col-3"
-          label="Book column 3"
-        />
-      </div>
+      <ScrollColumn
+        images={COLUMN_1}
+        animationClass="gwh-scroll-col-1"
+        label="Book column 1"
+      />
+      <ScrollColumn
+        images={COLUMN_2}
+        animationClass="gwh-scroll-col-2"
+        animationDelay="-12s"
+        label="Book column 2"
+      />
+      <ScrollColumn
+        images={COLUMN_3}
+        animationClass="gwh-scroll-col-3"
+        animationDelay="-6s"
+        label="Book column 3"
+      />
     </div>
   );
 }
@@ -119,7 +132,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-20 pt-[140px]"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-10 pt-20"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)",
@@ -147,15 +160,15 @@ export default function Hero() {
           }
         }
 
-        /* Continuous conveyor — duplicate content → translate ±50% loops seamlessly */
+        /* Seamless loop: track is images×2, so -50% = exactly one set */
         @keyframes scrollUp {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
+          from { transform: translateY(0); }
+          to { transform: translateY(-50%); }
         }
 
         @keyframes scrollDown {
-          0% { transform: translateY(-50%); }
-          100% { transform: translateY(0); }
+          from { transform: translateY(-50%); }
+          to { transform: translateY(0); }
         }
 
         .gwh-hero-animate {
@@ -174,18 +187,17 @@ export default function Hero() {
         }
 
         .gwh-scroll-col-1 {
-          animation: scrollUp 18s linear infinite;
+          animation: scrollUp 20s linear infinite;
         }
 
         .gwh-scroll-col-2 {
-          animation: scrollDown 22s linear infinite;
+          animation: scrollDown 25s linear infinite;
         }
 
         .gwh-scroll-col-3 {
-          animation: scrollUp 15s linear infinite;
+          animation: scrollUp 18s linear infinite;
         }
 
-        /* Pause all columns when hovering the ticker */
         .gwh-books-ticker:hover .gwh-scroll-col-1,
         .gwh-books-ticker:hover .gwh-scroll-col-2,
         .gwh-books-ticker:hover .gwh-scroll-col-3 {
@@ -193,7 +205,7 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-10">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-[calc(100vh-80px)] lg:flex-row lg:items-center lg:gap-10">
         {/* ——— Left column: existing text content ——— */}
         <div className="flex w-full flex-col items-center text-center lg:w-[55%] lg:items-start lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
@@ -244,8 +256,8 @@ export default function Hero() {
           </ul>
         </div>
 
-        {/* ——— Right column: continuous upward book ticker ——— */}
-        <div className="w-full lg:w-[45%]">
+        {/* ——— Right column: seamless continuous book ticker ——— */}
+        <div className="w-full lg:w-[45%] lg:self-stretch">
           <BookTicker />
         </div>
       </div>

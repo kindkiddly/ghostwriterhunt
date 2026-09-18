@@ -14,7 +14,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 12);
+      // Solid white navbar only after scrolling past the hero / nav zone
+      setScrolled(window.scrollY > 80);
     };
 
     onScroll();
@@ -40,10 +41,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[9999] w-full border-b border-[#E8D5A3] transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-[9999] w-full transition-all duration-300 ease-in-out ${
         scrolled || mobileOpen
-          ? "bg-[#FFFFFF] shadow-[0_4px_24px_rgba(201,168,76,0.12)]"
-          : "bg-[#FFFFFF]/90 backdrop-blur-sm shadow-none"
+          ? "border-b border-[#E8D5A3] bg-[#FFFFFF] shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
+          : "border-b border-transparent bg-transparent shadow-none"
       }`}
       style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999 }}
     >
