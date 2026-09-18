@@ -276,7 +276,13 @@ export default function ServicesGrid() {
     <section
       ref={sectionRef}
       id="services"
-      className="w-full bg-[var(--color-background)] pt-[120px] pb-[60px]"
+      className="relative w-full overflow-hidden bg-[#1C1C1C] pt-[120px] pb-[60px]"
+      style={{
+        backgroundImage: `
+          radial-gradient(ellipse at 100% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 0% 100%, rgba(201,168,76,0.06) 0%, transparent 60%)
+        `,
+      }}
       aria-label="Services"
     >
       <style>{`
@@ -334,20 +340,20 @@ export default function ServicesGrid() {
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-svc-visible" : ""}`}
       >
         {/* Section label */}
-        <p className="gwh-svc-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+        <p className="gwh-svc-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#C9A84C]">
           What We Do
         </p>
 
         {/* Headline */}
-        <h2 className="gwh-svc-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[var(--color-text)] lg:text-[48px]">
+        <h2 className="gwh-svc-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[#FFFFFF] lg:text-[48px]">
           <span className="block font-normal">Every service your book</span>
-          <span className="block italic text-[var(--color-accent-gold)]">
+          <span className="block italic text-[#C9A84C]">
             will ever need.
           </span>
         </h2>
 
         {/* Subtext */}
-        <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#999999]">
           From the first word to the final published page — our professionals
           handle every detail.
         </p>
@@ -357,30 +363,30 @@ export default function ServicesGrid() {
           {SERVICES.map((service) => (
             <li
               key={service.id}
-              className="gwh-svc-card group relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-8 py-9 shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_36px_rgba(201,168,76,0.16)]"
+              className="gwh-svc-card group relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-8 py-9 shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[rgba(201,168,76,0.6)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
             >
               {/* Top gold accent */}
               <div
-                className="absolute inset-x-0 top-0 h-[3px] bg-[var(--color-accent-gold)]"
+                className="absolute inset-x-0 top-0 h-[3px] bg-[#C9A84C]"
                 aria-hidden="true"
               />
 
               {/* Icon circle */}
-              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#FDF6E3] text-[var(--color-accent-gold)]">
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[rgba(201,168,76,0.1)] text-[#C9A84C]">
                 <ServiceIcon type={service.icon} />
               </div>
 
-              <h3 className="mb-3 font-playfair text-[20px] font-bold text-[var(--color-text)]">
+              <h3 className="mb-3 font-playfair text-[20px] font-bold text-[#FFFFFF]">
                 {service.title}
               </h3>
 
-              <p className="font-inter text-[14px] font-normal leading-[1.8] text-[#666666]">
+              <p className="font-inter text-[14px] font-normal leading-[1.8] text-[#999999]">
                 {service.description}
               </p>
 
               <a
                 href={`#${service.id}`}
-                className="mt-4 inline-block font-inter text-[14px] font-medium text-[var(--color-accent-gold)] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline"
+                className="mt-4 inline-block font-inter text-[14px] font-medium text-[#C9A84C] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline"
               >
                 Learn more →
               </a>
@@ -389,14 +395,14 @@ export default function ServicesGrid() {
         </ul>
 
         {/* Genre chips — centered wrap inside a soft bordered panel */}
-        <div className="gwh-svc-genres mx-auto mt-12 flex max-w-[900px] flex-wrap items-center justify-center gap-2.5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-8">
+        <div className="gwh-svc-genres mx-auto mt-12 flex max-w-[900px] flex-wrap items-center justify-center gap-2.5 rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-6 py-8">
           <p className="mb-4 w-full text-center font-inter text-[14px] font-medium text-[#999999]">
             Genres we cover:
           </p>
           {GENRES.map((genre) => (
             <span
               key={genre}
-              className="inline-block shrink-0 cursor-default whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-[18px] py-2 font-inter text-[13px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]"
+              className="inline-block shrink-0 cursor-default whitespace-nowrap rounded-[20px] border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.1)] px-[18px] py-2 font-inter text-[13px] font-medium text-[#C9A84C] transition-colors duration-300 hover:border-[rgba(201,168,76,0.6)]"
             >
               {genre}
             </span>
