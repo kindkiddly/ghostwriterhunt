@@ -1,40 +1,46 @@
+"use client";
+
 /**
  * GhostWriterHunt — Hero section
  * Full-viewport (100vh) behind transparent navbar.
  * Right side: 3 continuous book-cover ticker columns
  * with seamless -50% loop (images duplicated once).
+ * Uses verified Unsplash URLs (gallery-confirmed + extras).
  */
 
+const FALLBACK_COVER =
+  "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=180&h=220&fit=crop";
+
 const COLUMN_1 = [
-  "https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1603284569248-821525309698?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1604882741050-31e4a9f50e51?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1594666757003-3ee20de41568?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1590953571791-8c547c185428?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1569982175971-d92b01cf8694?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=180&h=220&fit=crop",
 ];
 
 const COLUMN_2 = [
-  "https://images.unsplash.com/photo-1612969308146-066d55f37ccb?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1589998059171-988d887df646?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=180&h=220&fit=crop",
 ];
 
 const COLUMN_3 = [
-  "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1606185540834-d6d8f4f7b7c6?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1621600411688-4be93c2c1e3f?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1618365908648-e71bd5716ccd?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1535398089889-dd807df1dfaa?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=180&h=220&fit=crop",
   "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=180&h=220&fit=crop",
   "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=180&h=220&fit=crop",
+  "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=180&h=220&fit=crop",
   "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=180&h=220&fit=crop",
 ];
 
@@ -45,6 +51,12 @@ function BookCover({ src, alt }) {
     <img
       src={src}
       alt={alt}
+      onError={(e) => {
+        // Swap to a verified gallery cover if Unsplash fails
+        if (e.currentTarget.src !== FALLBACK_COVER) {
+          e.currentTarget.src = FALLBACK_COVER;
+        }
+      }}
       style={{
         width: "100%",
         height: "220px",
