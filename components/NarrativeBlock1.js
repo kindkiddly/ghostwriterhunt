@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 /**
  * GhostWriterHunt — Narrative Block 1
  * Superside-style two-column story section:
  * bold copy + feature bullets left, editorial image + floating card right.
- * Scroll-reveal animations fire once via Intersection Observer.
+ * Scroll-reveal via Intersection Observer + .is-visible CSS classes.
  */
 
 const FEATURES = [
@@ -72,31 +72,31 @@ function GoldStarIcon() {
 }
 
 export default function NarrativeBlock1() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  // Reveal once when the section enters the viewport
+  // Observe reveal targets once; add .is-visible when they enter the viewport
   useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 }
+    const elements = document.querySelectorAll(
+      ".reveal-left, .reveal-right, .reveal-card"
     );
 
-    observer.observe(node);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="relative w-full overflow-hidden bg-[#FFFFFF] py-[120px]"
       style={{
         backgroundImage:
@@ -104,15 +104,39 @@ export default function NarrativeBlock1() {
       }}
       aria-label="Why GhostWriterHunt"
     >
+      {/* Scroll-reveal keyframes / states — scoped to this section */}
+      <style>{`
+        .reveal-left {
+          opacity: 0;
+          transform: translateX(-40px);
+          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .reveal-right {
+          opacity: 0;
+          transform: translateX(40px);
+          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          transition-delay: 0.15s;
+        }
+
+        .reveal-card {
+          opacity: 0;
+          transform: scale(0.8);
+          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+          transition-delay: 0.4s;
+        }
+
+        .reveal-left.is-visible,
+        .reveal-right.is-visible,
+        .reveal-card.is-visible {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      `}</style>
+
       <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-20 lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}
-        <div
-          className={`w-full lg:w-1/2 transition-all duration-700 ease-out ${
-            visible
-              ? "translate-x-0 opacity-100"
-              : "-translate-x-10 opacity-0"
-          }`}
-        >
+        <div className="reveal-left w-full lg:w-1/2">
           <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#6B7C3A]">
             WHY GHOSTWRITERHUNT
           </p>
@@ -157,15 +181,8 @@ export default function NarrativeBlock1() {
         </div>
 
         {/* ——— Right: image + floating stats card ——— */}
-        <div
-          className={`relative w-full lg:w-1/2 transition-all duration-700 ease-out ${
-            visible
-              ? "translate-x-0 opacity-100 delay-150"
-              : "translate-x-10 opacity-0"
-          }`}
-          style={{ transitionDelay: visible ? "0.15s" : "0s" }}
-        >
-          {/* Mobile: image on top — flex-col order handles this via DOM order on stack */}
+        <div className="reveal-right relative w-full lg:w-1/2">
+          {/* Mobile: image on top — flex-col-reverse handles stack order */}
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -177,15 +194,8 @@ export default function NarrativeBlock1() {
 
             {/* Floating card — overlaps bottom-left of image */}
             <div
-              className={`absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4 transition-all duration-500 ease-out ${
-                visible
-                  ? "scale-100 opacity-100"
-                  : "scale-[0.8] opacity-0"
-              }`}
-              style={{
-                boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
-                transitionDelay: visible ? "0.4s" : "0s",
-              }}
+              className="reveal-card absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
               <div className="flex items-start gap-2">
                 <GoldStarIcon />
