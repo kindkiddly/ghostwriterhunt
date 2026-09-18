@@ -11,6 +11,7 @@ import BookCoversGallery from "@/components/BookCoversGallery";
 import Testimonials from "@/components/Testimonials";
 import Comparison from "@/components/Comparison";
 import Pricing from "@/components/Pricing";
+import NarrativeBlock3 from "@/components/NarrativeBlock3";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       <Testimonials />
       <Comparison />
       <Pricing />
+      <NarrativeBlock3 />
     </main>
   );
 }
