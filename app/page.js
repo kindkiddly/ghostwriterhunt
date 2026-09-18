@@ -7,6 +7,7 @@ import WriterProfiles from "@/components/WriterProfiles";
 import BookCoversGallery from "@/components/BookCoversGallery";
 import Testimonials from "@/components/Testimonials";
 import Comparison from "@/components/Comparison";
+import Pricing from "@/components/Pricing";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <BookCoversGallery />
       <Testimonials />
       <Comparison />
+      <Pricing />
     </main>
   );
 }
