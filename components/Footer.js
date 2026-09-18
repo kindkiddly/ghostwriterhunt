@@ -208,7 +208,7 @@ export default function Footer() {
           </div>
 
           {/* Column 5 — Contact */}
-          <div>
+          <div id="contact">
             <FooterHeading>Get In Touch</FooterHeading>
             <p className="mb-1 font-inter text-[12px] font-normal text-[#666666]">
               Email us at
