@@ -12,6 +12,7 @@ import Testimonials from "@/components/Testimonials";
 import Comparison from "@/components/Comparison";
 import Pricing from "@/components/Pricing";
 import NarrativeBlock3 from "@/components/NarrativeBlock3";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <Comparison />
       <Pricing />
       <NarrativeBlock3 />
+      <FAQ />
     </main>
   );
 }
