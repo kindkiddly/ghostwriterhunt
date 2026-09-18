@@ -220,12 +220,12 @@ export default function Hero() {
       <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
         {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
         <div className="flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:items-start lg:text-left">
-          <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
+          <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.0] tracking-[-0.03em] text-[var(--color-text)] sm:text-[48px] lg:text-[80px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>
           </h1>
 
-          <p className="gwh-hero-animate gwh-hero-delay-1 mb-7 max-w-[520px] font-inter text-[18px] font-normal leading-[1.8] text-[#666666]">
+          <p className="gwh-hero-animate gwh-hero-delay-1 mb-7 max-w-[520px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Professional ghostwriters, designers and editors — everything your
             book needs, under one roof.
           </p>

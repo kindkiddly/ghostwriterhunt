@@ -84,17 +84,17 @@ export default function StatsCounter() {
     <>
       <section
         ref={sectionRef}
-        className="w-full bg-[var(--color-background)] py-[100px]"
+        className="w-full bg-[var(--color-background)] py-[80px]"
         aria-label="Impact statistics"
       >
         <div className="mx-auto max-w-[1100px] px-6">
           {/* Section label */}
-          <p className="mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+          <p className="mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
             Our Impact in Numbers
           </p>
 
           {/* Headline — second line italic gold */}
-          <h2 className="mb-16 text-center font-playfair text-[32px] font-bold leading-tight text-[var(--color-text)] lg:text-[42px]">
+          <h2 className="mb-16 text-center font-playfair text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
             <span className="block">Trusted by authors</span>
             <span className="block italic text-[var(--color-accent-gold)]">
               around the world.

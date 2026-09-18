@@ -171,7 +171,7 @@ export default function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="w-full bg-[var(--color-card)] py-[120px]"
+      className="w-full bg-[var(--color-card)] py-[80px]"
       aria-label="How it works"
     >
       {/* Scoped reveal animations */}
@@ -233,12 +233,12 @@ export default function HowItWorks() {
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-hiw-visible" : ""}`}
       >
         {/* Section label */}
-        <p className="gwh-hiw-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+        <p className="gwh-hiw-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           The Process
         </p>
 
         {/* Headline — line 2 italic gold */}
-        <h2 className="gwh-hiw-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[var(--color-text)] lg:text-[48px]">
+        <h2 className="gwh-hiw-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Your book begins</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             with a single conversation.
@@ -246,7 +246,7 @@ export default function HowItWorks() {
         </h2>
 
         {/* Subtext */}
-        <p className="gwh-hiw-sub mx-auto mb-20 max-w-[580px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-hiw-sub mx-auto mb-20 max-w-[580px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           From first idea to published masterpiece — we guide every step of the
           journey.
         </p>

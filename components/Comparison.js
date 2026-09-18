@@ -179,7 +179,7 @@ export default function Comparison() {
     <section
       ref={sectionRef}
       id="why-choose-us"
-      className="w-full bg-[var(--color-background)] py-[120px]"
+      className="w-full bg-[var(--color-background)] py-[80px]"
       aria-label="Comparison"
     >
       <style>{`
@@ -240,18 +240,18 @@ export default function Comparison() {
       <div
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-cmp-visible" : ""}`}
       >
-        <p className="gwh-cmp-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+        <p className="gwh-cmp-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Why Choose Us
         </p>
 
-        <h2 className="gwh-cmp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[var(--color-text)] lg:text-[48px]">
+        <h2 className="gwh-cmp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Writing it yourself or hiring</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             freelancers? Neither.
           </span>
         </h2>
 
-        <p className="gwh-cmp-sub mx-auto mb-[60px] max-w-[600px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-cmp-sub mx-auto mb-[60px] max-w-[600px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           See how GhostWriterHunt compares to the alternatives — and why
           thousands of authors choose us to bring their book to life.
         </p>

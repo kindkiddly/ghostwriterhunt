@@ -59,7 +59,7 @@ export default function TrustBlock() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#1C1C1C] py-[100px]"
+      className="relative w-full overflow-hidden border-0 bg-[#1C1C1C] py-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 100% 0%, rgba(201,168,76,0.08) 0%, transparent 60%),
@@ -101,16 +101,16 @@ export default function TrustBlock() {
       <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-8">
         {/* ——— Part 1: centered statement ——— */}
         <div className="nb3-reveal-up flex flex-col items-center text-center">
-          <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#C9A84C]">
+          <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
             OUR STANDARD
           </p>
 
-          <h2 className="mb-5 font-playfair text-[36px] font-bold leading-[1.15] lg:text-[52px]">
+          <h2 className="mb-5 font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] lg:text-[56px]">
             <span className="block text-[#FFFFFF]">Only the best writers</span>
             <span className="block italic text-[#C9A84C]">make our team.</span>
           </h2>
 
-          <p className="mb-[60px] max-w-[600px] font-inter text-[18px] font-normal leading-[1.7] text-[#999999]">
+          <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
             Every ghostwriter on our platform goes through a rigorous vetting
             process. We accept only the top 1% of applicants — ensuring every
             author receives nothing short of exceptional.

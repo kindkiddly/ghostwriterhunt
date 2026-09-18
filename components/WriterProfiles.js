@@ -92,14 +92,14 @@ const WRITERS = [
 function WriterCard({ writer, index }) {
   return (
     <article
-      className="gwh-wp-card group flex h-full flex-col justify-between rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-7 py-9 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
+      className="gwh-wp-card group flex h-full flex-col justify-between rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] p-7 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
       style={{ animationDelay: `${0.15 + index * 0.1}s` }}
     >
       {/* Top content block — grows so the button stays pinned to the bottom */}
       <div className="flex flex-1 flex-col items-center">
         {/* Replace with real writer photo later */}
         {/* Real photo: /images/writers/writer-{writer.id}.jpg */}
-        <div className="mx-auto mb-5 flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-border)]">
+        <div className="mx-auto mb-5 flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-border)]">
           <Image
             src={writer.photo}
             alt={writer.name}
@@ -178,7 +178,7 @@ export default function WriterProfiles() {
     <section
       ref={sectionRef}
       id="writers"
-      className="w-full bg-[var(--color-card)] py-[120px]"
+      className="w-full bg-[var(--color-card)] py-[80px]"
       aria-label="Writer profiles"
     >
       <style>{`
@@ -230,31 +230,31 @@ export default function WriterProfiles() {
       <div
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-wp-visible" : ""}`}
       >
-        <p className="gwh-wp-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+        <p className="gwh-wp-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Our Writers
         </p>
 
-        <h2 className="gwh-wp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[var(--color-text)] lg:text-[48px]">
+        <h2 className="gwh-wp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Meet the writers behind</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             your story.
           </span>
         </h2>
 
-        <p className="gwh-wp-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-wp-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           Handpicked professionals with decades of publishing experience —
           each one dedicated to telling your story perfectly.
         </p>
 
         {/* Row 1 — 4 writers */}
-        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {rowOne.map((writer, index) => (
             <WriterCard key={writer.id} writer={writer} index={index} />
           ))}
         </div>
 
         {/* Row 2 — 3 writers, centered on desktop */}
-        <div className="mt-7 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:mx-auto lg:max-w-[900px] lg:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-[900px] lg:grid-cols-3">
           {rowTwo.map((writer, index) => (
             <WriterCard key={writer.id} writer={writer} index={index + 4} />
           ))}

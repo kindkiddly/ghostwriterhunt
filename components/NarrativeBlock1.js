@@ -145,21 +145,21 @@ export default function NarrativeBlock1() {
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-20 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}
         <div className="nb1-reveal-left w-full lg:w-1/2">
-          <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#6B7C3A]">
+          <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
             WHY GHOSTWRITERHUNT
           </p>
 
-          <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.2] text-[#1C1C1C] lg:text-[44px]">
+          <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1C1C1C] lg:text-[56px]">
             <span className="block font-normal">Your story deserves</span>
             <span className="block italic text-[#C9A84C]">
               professional hands.
             </span>
           </h2>
 
-          <p className="mb-9 max-w-[480px] font-inter text-[17px] font-normal leading-[1.8] text-[#666666]">
+          <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Every great book is the result of a partnership between a visionary
             author and a skilled professional writer. At GhostWriterHunt, we
             match you with the perfect ghostwriter for your genre, your voice,
@@ -199,8 +199,8 @@ export default function NarrativeBlock1() {
             <img
               src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop"
               alt="Author writing at a desk with manuscript pages"
-              className="h-[560px] w-full rounded-[20px] object-cover"
-              style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}
+              className="h-[600px] w-full rounded-[12px] object-cover"
+              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
             />
 
             {/* Floating card — overlaps bottom-left of image */}

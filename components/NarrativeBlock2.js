@@ -112,7 +112,7 @@ export default function NarrativeBlock2() {
       `}</style>
 
       {/* Image first in DOM → on top for mobile; left on desktop */}
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-20 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: image + floating quote card ——— */}
         <div className="nb2-reveal-left relative w-full lg:w-1/2">
           <div className="relative w-full">
@@ -120,8 +120,8 @@ export default function NarrativeBlock2() {
             <img
               src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&h=700&fit=crop"
               alt="Open book and reading atmosphere"
-              className="h-[540px] w-full rounded-[20px] object-cover"
-              style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}
+              className="h-[600px] w-full rounded-[12px] object-cover"
+              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
             />
 
             {/* Floating card — overlaps bottom-right of image */}
@@ -146,16 +146,16 @@ export default function NarrativeBlock2() {
 
         {/* ——— Right: label, headline, body, process steps, CTA ——— */}
         <div className="nb2-reveal-right w-full lg:w-1/2">
-          <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#6B7C3A]">
+          <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
             OUR APPROACH
           </p>
 
-          <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.2] text-[#1C1C1C] lg:text-[44px]">
+          <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1C1C1C] lg:text-[56px]">
             <span className="block font-normal">We write in</span>
             <span className="block italic text-[#C9A84C]">your voice.</span>
           </h2>
 
-          <p className="mb-9 max-w-[480px] font-inter text-[17px] font-normal leading-[1.8] text-[#666666]">
+          <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Your book should sound like you — only better. Before writing a
             single word, your dedicated ghostwriter studies your communication
             style, your personality and your vision. We capture the rhythm of

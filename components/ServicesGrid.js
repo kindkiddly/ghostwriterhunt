@@ -276,7 +276,7 @@ export default function ServicesGrid() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative w-full overflow-hidden bg-[#1C1C1C] pt-[120px] pb-[60px]"
+      className="relative w-full overflow-hidden border-0 bg-[#1C1C1C] pt-[80px] pb-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 100% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
@@ -340,12 +340,12 @@ export default function ServicesGrid() {
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-svc-visible" : ""}`}
       >
         {/* Section label */}
-        <p className="gwh-svc-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#C9A84C]">
+        <p className="gwh-svc-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
           What We Do
         </p>
 
         {/* Headline */}
-        <h2 className="gwh-svc-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[#FFFFFF] lg:text-[48px]">
+        <h2 className="gwh-svc-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[#FFFFFF] lg:text-[56px]">
           <span className="block font-normal">Every service your book</span>
           <span className="block italic text-[#C9A84C]">
             will ever need.
@@ -353,17 +353,17 @@ export default function ServicesGrid() {
         </h2>
 
         {/* Subtext */}
-        <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#999999]">
+        <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
           From the first word to the final published page — our professionals
           handle every detail.
         </p>
 
         {/* Services grid: 1 → 2 → 4 columns */}
-        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((service) => (
             <li
               key={service.id}
-              className="gwh-svc-card group relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-8 py-9 shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[rgba(201,168,76,0.6)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+              className="gwh-svc-card group relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] p-7 shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[rgba(201,168,76,0.6)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
             >
               {/* Top gold accent */}
               <div

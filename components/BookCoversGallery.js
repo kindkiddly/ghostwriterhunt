@@ -153,7 +153,7 @@ export default function BookCoversGallery() {
     <section
       ref={sectionRef}
       id="our-work"
-      className="w-full bg-[var(--color-background)] py-[120px]"
+      className="w-full bg-[var(--color-background)] py-[80px]"
       aria-label="Book covers gallery"
     >
       <style>{`
@@ -221,18 +221,18 @@ export default function BookCoversGallery() {
       <div
         className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-bcg-visible" : ""}`}
       >
-        <p className="gwh-bcg-label mb-4 text-center font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-olive)]">
+        <p className="gwh-bcg-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Our Work
         </p>
 
-        <h2 className="gwh-bcg-headline mb-4 text-center font-playfair text-[36px] font-bold leading-tight text-[var(--color-text)] lg:text-[48px]">
+        <h2 className="gwh-bcg-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Books we have</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             brought to life.
           </span>
         </h2>
 
-        <p className="gwh-bcg-sub mx-auto mb-12 max-w-[560px] text-center font-inter text-[18px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-bcg-sub mx-auto mb-12 max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           A selection of books written, designed and published by our
           professional team — across every genre and format.
         </p>
