@@ -9,41 +9,41 @@ import { useEffect } from "react";
  */
 
 export default function CTABanner() {
-  // Delay observer bind so DOM + layout are ready; stagger via data-delay
+  // Observe after next paint so scroll triggers fire when the section enters view
   useEffect(() => {
-    let observer = null;
+    const elements = document.querySelectorAll(".cta-reveal");
 
-    const timer = setTimeout(() => {
-      const elements = document.querySelectorAll(".cta-reveal");
+    // Reset all to hidden first
+    elements.forEach((el) => {
+      el.classList.remove("cta-visible");
+    });
 
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const delay = entry.target.dataset.delay || 0;
-              setTimeout(() => {
-                entry.target.classList.add("cta-visible");
-              }, delay);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -80px 0px",
-        }
-      );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
+            setTimeout(() => {
+              entry.target.classList.add("cta-visible");
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
 
+    // Small delay only for observing — not for the animation trigger
+    requestAnimationFrame(() => {
       elements.forEach((el) => {
-        el.classList.remove("cta-visible");
         observer.observe(el);
       });
-    }, 500);
+    });
 
-    return () => {
-      clearTimeout(timer);
-      if (observer) observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
