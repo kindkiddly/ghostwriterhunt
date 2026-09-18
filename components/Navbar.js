@@ -77,8 +77,12 @@ export default function Navbar() {
         {/* Logo (left) — WebP brand mark */}
         <a
           href="/"
-          style={{ display: "block" }}
-          className="flex h-[70px] items-center"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            height: "70px",
+          }}
           onClick={closeMobile}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -86,9 +90,9 @@ export default function Navbar() {
             src="/images/GhostWriterHunt-LOGO-Transparent.webp"
             alt="GhostWriterHunt"
             style={{
-              height: "56px",
+              height: "64px",
               width: "auto",
-              maxWidth: "220px",
+              maxWidth: "240px",
               objectFit: "contain",
               display: "block",
             }}
