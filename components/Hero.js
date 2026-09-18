@@ -144,7 +144,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-10 pt-20"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-10 pt-0"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)",
@@ -217,9 +217,9 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-[calc(100vh-80px)] lg:flex-row lg:items-center lg:gap-10">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 pt-20 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10 lg:pt-0">
         {/* ——— Left column: existing text content ——— */}
-        <div className="flex w-full flex-col items-center text-center lg:w-[55%] lg:items-start lg:text-left">
+        <div className="flex w-full flex-col items-center text-center lg:w-[55%] lg:items-start lg:pt-20 lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 font-playfair text-[36px] leading-[1.15] text-[var(--color-text)] sm:text-[48px] lg:text-[72px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>
