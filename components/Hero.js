@@ -230,43 +230,45 @@ export default function Hero() {
             book needs, under one roof.
           </p>
 
-          <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-            <a
-              href="#start"
-              className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
-            >
-              Start Your Book
-            </a>
-            <a
-              href="#how-it-works"
-              className="inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
-            >
-              See How It Works
-            </a>
+          <div style={{ transform: "translateY(96px)" }}>
+            <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <a
+                href="#start"
+                className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
+              >
+                Start Your Book
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
+              >
+                See How It Works
+              </a>
+            </div>
+
+            <p className="gwh-hero-animate gwh-hero-delay-3 mb-6 flex items-center justify-center gap-3 font-inter text-[13px] font-normal text-[#999999] lg:justify-start">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
+                aria-hidden="true"
+              />
+              Trusted by 500+ authors worldwide
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
+                aria-hidden="true"
+              />
+            </p>
+
+            {/* Genre pills — single row on desktop, wrap on small screens */}
+            <ul className="gwh-hero-animate gwh-hero-delay-4 mb-0 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+              {genres.map((genre) => (
+                <li key={genre}>
+                  <span className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-4 font-inter text-[12px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
+                    {genre}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <p className="gwh-hero-animate gwh-hero-delay-3 mb-6 flex items-center justify-center gap-3 font-inter text-[13px] font-normal text-[#999999] lg:justify-start">
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
-              aria-hidden="true"
-            />
-            Trusted by 500+ authors worldwide
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
-              aria-hidden="true"
-            />
-          </p>
-
-          {/* Genre pills — single row on desktop, wrap on small screens */}
-          <ul className="gwh-hero-animate gwh-hero-delay-4 mb-0 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-            {genres.map((genre) => (
-              <li key={genre}>
-                <span className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-4 font-inter text-[12px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
-                  {genre}
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* ——— Right column: seamless continuous book ticker ——— */}
