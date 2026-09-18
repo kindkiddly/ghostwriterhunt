@@ -46,7 +46,7 @@ function GoldQuoteIcon() {
 }
 
 export default function NarrativeBlock2() {
-  // Trigger reveal only when elements scroll 100px into the viewport
+  // Scroll-reveal: fire once when targets enter the viewport (with bottom inset)
   useEffect(() => {
     const elements = document.querySelectorAll(
       ".nb2-reveal-left, .nb2-reveal-right, .nb2-reveal-card"
@@ -82,28 +82,27 @@ export default function NarrativeBlock2() {
       className="relative w-full overflow-hidden bg-[#FAFAF7] py-[120px]"
       aria-label="Our Approach"
     >
-      {/* Scroll-reveal states — nb2- prefix avoids clashes with Block 1 */}
       <style>{`
         .nb2-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
-          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          transition: opacity 0.7s ease-out,
+                      transform 0.7s ease-out;
         }
-
         .nb2-reveal-right {
           opacity: 0;
           transform: translateX(40px);
-          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          transition: opacity 0.7s ease-out,
+                      transform 0.7s ease-out;
           transition-delay: 0.15s;
         }
-
         .nb2-reveal-card {
           opacity: 0;
           transform: scale(0.8);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+          transition: opacity 0.5s ease-out,
+                      transform 0.5s ease-out;
           transition-delay: 0.4s;
         }
-
         .nb2-reveal-left.nb2-is-visible,
         .nb2-reveal-right.nb2-is-visible,
         .nb2-reveal-card.nb2-is-visible {
