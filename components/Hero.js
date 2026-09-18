@@ -215,11 +215,36 @@ export default function Hero() {
         .gwh-books-ticker:hover .gwh-scroll-col-3 {
           animation-play-state: paused;
         }
+
+        /* ——— Mobile only ——— */
+        @media (max-width: 768px) {
+          .gwh-hero-cta-shift {
+            transform: translateY(8px) !important;
+          }
+          .gwh-books-ticker {
+            height: 280px !important;
+            max-height: 280px;
+          }
+          .gwh-hero-left {
+            min-height: auto !important;
+            padding-top: 100px !important;
+            padding-bottom: 24px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .gwh-hero-cta-shift a {
+            width: 100%;
+          }
+          .gwh-hero-cta-shift .gwh-hero-delay-2 {
+            width: 100%;
+          }
+        }
       `}</style>
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
         {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
-        <div className="flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:items-start lg:text-left">
+        <div className="gwh-hero-left flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:items-start lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.0] tracking-[-0.03em] text-[var(--color-text)] sm:text-[48px] lg:text-[80px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>
@@ -230,8 +255,8 @@ export default function Hero() {
             book needs, under one roof.
           </p>
 
-          <div style={{ transform: "translateY(24px)" }}>
-            <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+          <div className="gwh-hero-cta-shift" style={{ transform: "translateY(24px)" }}>
+            <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
                 href="#start"
                 className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"

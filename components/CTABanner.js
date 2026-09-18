@@ -49,7 +49,7 @@ export default function CTABanner() {
   return (
     <section
       id="start"
-      className="relative flex min-h-[500px] w-full items-center justify-center overflow-hidden py-[80px]"
+      className="cta-banner-section relative flex min-h-[500px] w-full items-center justify-center overflow-hidden py-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 60%),
@@ -72,10 +72,30 @@ export default function CTABanner() {
           opacity: 1;
           transform: translateY(0);
         }
+
+        @media (max-width: 768px) {
+          .cta-reveal { transform: translateY(20px); }
+          .cta-reveal.cta-visible { transform: translateY(0); }
+          .cta-banner-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+          .cta-buttons-row {
+            flex-direction: column !important;
+            width: 100%;
+          }
+          .cta-buttons-row a {
+            width: 100%;
+            max-width: 100%;
+          }
+          .cta-banner-section {
+            min-height: auto !important;
+          }
+        }
       `}</style>
 
       {/* Gold glow sits above the photo via background stack; content centered */}
-      <div className="relative z-10 mx-auto w-full max-w-[800px] px-10 text-center">
+      <div className="cta-banner-inner relative z-10 mx-auto w-full max-w-[800px] px-10 text-center">
         <p
           data-delay="0"
           className="cta-reveal mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]"
@@ -95,7 +115,7 @@ export default function CTABanner() {
 
         <p
           data-delay="200"
-          className="cta-reveal mx-auto mb-12 max-w-[560px] font-inter text-[18px] font-normal leading-[1.7]"
+          className="cta-reveal mx-auto mb-12 max-w-[560px] font-inter text-[18px] font-normal leading-[1.7] break-words"
           style={{ color: "rgba(255,255,255,0.75)" }}
         >
           Join 5,000+ authors who trusted GhostWriterHunt to bring their book
@@ -105,7 +125,7 @@ export default function CTABanner() {
 
         <div
           data-delay="300"
-          className="cta-reveal flex flex-wrap items-center justify-center gap-4"
+          className="cta-reveal cta-buttons-row flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="#start"

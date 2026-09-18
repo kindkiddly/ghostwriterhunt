@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <main className="m-0 max-w-full overflow-x-hidden p-0">
       <Hero />
       <LogoTicker />
       <StatsCounter />

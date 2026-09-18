@@ -87,7 +87,7 @@ export default function StatsCounter() {
         className="w-full bg-[var(--color-background)] py-[80px]"
         aria-label="Impact statistics"
       >
-        <div className="mx-auto max-w-[1100px] px-6">
+        <div className="mx-auto max-w-[1100px] px-5 sm:px-6">
           {/* Section label */}
           <p className="mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
             Our Impact in Numbers

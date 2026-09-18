@@ -143,9 +143,29 @@ export default function NarrativeBlock1() {
           opacity: 1;
           transform: translateX(0) scale(1);
         }
+
+        @media (max-width: 768px) {
+          .nb1-reveal-left { transform: translateX(-20px); }
+          .nb1-reveal-right { transform: translateX(20px); }
+          .nb1-reveal-left.nb1-is-visible,
+          .nb1-reveal-right.nb1-is-visible {
+            transform: translateX(0) scale(1);
+          }
+          .nb1-section-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            gap: 32px !important;
+          }
+          .nb1-section-img {
+            height: 280px !important;
+          }
+          .nb1-reveal-card {
+            display: none !important;
+          }
+        }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
+      <div className="nb1-section-inner mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}
         <div className="nb1-reveal-left w-full lg:w-1/2">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
@@ -159,7 +179,7 @@ export default function NarrativeBlock1() {
             </span>
           </h2>
 
-          <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
+          <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666] break-words">
             Every great book is the result of a partnership between a visionary
             author and a skilled professional writer. At GhostWriterHunt, we
             match you with the perfect ghostwriter for your genre, your voice,
@@ -192,14 +212,14 @@ export default function NarrativeBlock1() {
         </div>
 
         {/* ——— Right: image + floating stats card ——— */}
-        <div className="nb1-reveal-right relative w-full lg:w-1/2">
+        <div className="nb1-reveal-right relative w-full max-w-full lg:w-1/2">
           {/* Mobile: image on top — flex-col-reverse handles stack order */}
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop"
               alt="Author writing at a desk with manuscript pages"
-              className="h-[600px] w-full rounded-[12px] object-cover"
+              className="nb1-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
             />
 

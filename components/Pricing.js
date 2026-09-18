@@ -311,7 +311,7 @@ export default function Pricing() {
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-price-visible" : ""}`}
+        className={`mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-price-visible" : ""}`}
       >
         <p className="gwh-price-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Pricing Plans
@@ -381,7 +381,7 @@ export default function Pricing() {
             Every plan includes:
           </h3>
 
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-4">
+          <ul className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-4">
             {INCLUSIONS.map((item) => (
               <li
                 key={item}
@@ -401,7 +401,7 @@ export default function Pricing() {
           </p>
           <a
             href="#start"
-            className="inline-block rounded-lg border-2 border-[var(--color-accent-gold)] bg-transparent px-9 py-3.5 font-inter text-[15px] font-semibold text-[var(--color-accent-gold)] transition-all duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
+            className="mt-2 inline-block w-full max-w-full rounded-lg border-2 border-[var(--color-accent-gold)] bg-transparent px-9 py-3.5 text-center font-inter text-[15px] font-semibold text-[var(--color-accent-gold)] transition-all duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white sm:w-auto"
           >
             Book a Free Consultation
           </a>

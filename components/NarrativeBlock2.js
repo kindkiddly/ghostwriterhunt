@@ -109,18 +109,38 @@ export default function NarrativeBlock2() {
           opacity: 1;
           transform: translateX(0) scale(1);
         }
+
+        @media (max-width: 768px) {
+          .nb2-reveal-left { transform: translateX(-20px); }
+          .nb2-reveal-right { transform: translateX(20px); }
+          .nb2-reveal-left.nb2-is-visible,
+          .nb2-reveal-right.nb2-is-visible {
+            transform: translateX(0) scale(1);
+          }
+          .nb2-section-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            gap: 32px !important;
+          }
+          .nb2-section-img {
+            height: 280px !important;
+          }
+          .nb2-reveal-card {
+            display: none !important;
+          }
+        }
       `}</style>
 
       {/* Image first in DOM → on top for mobile; left on desktop */}
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
+      <div className="nb2-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: image + floating quote card ——— */}
-        <div className="nb2-reveal-left relative w-full lg:w-1/2">
+        <div className="nb2-reveal-left relative w-full max-w-full lg:w-1/2">
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&h=700&fit=crop"
               alt="Open book and reading atmosphere"
-              className="h-[600px] w-full rounded-[12px] object-cover"
+              className="nb2-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
             />
 

@@ -148,9 +148,26 @@ export default function FAQ() {
           opacity: 1;
           transform: translateY(0);
         }
+
+        @media (max-width: 768px) {
+          .faq-reveal { transform: translateY(20px); }
+          .faq-reveal.faq-visible { transform: translateY(0); }
+          .faq-section-inner {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .faq-item-btn {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .faq-q-text {
+            word-break: break-word;
+            font-size: 16px !important;
+          }
+        }
       `}</style>
 
-      <div className="mx-auto w-full max-w-[900px] px-6">
+      <div className="faq-section-inner mx-auto w-full max-w-[900px] px-6">
         {/* Section header */}
         <div className="faq-reveal mb-[60px] flex flex-col items-center text-center">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
@@ -182,7 +199,7 @@ export default function FAQ() {
                   type="button"
                   onClick={() => toggleItem(index)}
                   aria-expanded={isOpen}
-                  className={`w-full cursor-pointer rounded-xl border bg-[#FFFFFF] px-7 py-6 text-left transition-colors duration-300 ${
+                  className={`faq-item-btn w-full cursor-pointer rounded-xl border bg-[#FFFFFF] px-7 py-6 text-left transition-colors duration-300 ${
                     isOpen
                       ? "border-[#C9A84C] border-l-[3px] border-l-[#C9A84C]"
                       : "border-[#E8D5A3] hover:border-[#C9A84C]"
@@ -190,7 +207,7 @@ export default function FAQ() {
                 >
                   {/* Question row */}
                   <div className="flex items-center justify-between gap-4">
-                    <span className="flex-1 font-playfair text-[18px] font-bold text-[#1C1C1C]">
+                    <span className="faq-q-text flex-1 font-playfair text-[18px] font-bold text-[#1C1C1C]">
                       {item.question}
                     </span>
                     <PlusMinusIcon open={isOpen} />

@@ -97,10 +97,52 @@ function FooterLink({ href, children }) {
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#1C1C1C] pb-10 pt-[80px]" aria-label="Site footer">
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-8">
+    <footer className="w-full overflow-x-hidden bg-[#1C1C1C] pb-10 pt-[80px]" aria-label="Site footer">
+      <style>{`
+        @media (max-width: 768px) {
+          .gwh-footer-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+          .gwh-footer-newsletter {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            text-align: center;
+            align-items: center !important;
+          }
+          .gwh-footer-form {
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .gwh-footer-form input {
+            width: 100% !important;
+            border-radius: 6px !important;
+            border-right-width: 1px !important;
+          }
+          .gwh-footer-form button {
+            width: 100%;
+            border-radius: 6px !important;
+            margin-top: 8px;
+          }
+          .gwh-footer-brand {
+            text-align: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+          }
+          .gwh-footer-social {
+            justify-content: center;
+          }
+          .gwh-footer-bottom {
+            text-align: center;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
+      <div className="gwh-footer-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
         {/* Newsletter strip */}
-        <div className="mb-[60px] flex flex-col items-start justify-between gap-6 rounded-2xl bg-[#2A2A2A] px-10 py-8 lg:flex-row lg:items-center">
+        <div className="gwh-footer-newsletter mb-[60px] flex flex-col items-start justify-between gap-6 rounded-2xl bg-[#2A2A2A] px-10 py-8 lg:flex-row lg:items-center">
           <div>
             <p className="mb-2 font-playfair text-[22px] font-bold text-[#FFFFFF]">
               Stay updated with publishing tips
@@ -111,7 +153,7 @@ export default function Footer() {
           </div>
 
           <form
-            className="flex w-full max-w-[420px] shrink-0"
+            className="gwh-footer-form flex w-full max-w-[420px] shrink-0"
             onSubmit={(e) => e.preventDefault()}
             aria-label="Newsletter signup"
           >
@@ -134,7 +176,7 @@ export default function Footer() {
         {/* 5-column link grid */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-10">
           {/* Column 1 — Brand */}
-          <div>
+          <div className="gwh-footer-brand">
             <a href="/" className="mb-5 inline-block">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -152,7 +194,7 @@ export default function Footer() {
               Professional ghostwriting services for authors worldwide. Your
               story. Your voice. Perfectly told.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="gwh-footer-social flex items-center gap-4">
               {[
                 { type: "facebook", label: "Facebook", href: "#facebook" },
                 { type: "twitter", label: "Twitter", href: "#twitter" },
@@ -233,7 +275,7 @@ export default function Footer() {
         <div className="my-10 h-px w-full bg-[#2A2A2A]" aria-hidden="true" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
+        <div className="gwh-footer-bottom flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
           <p className="font-inter text-[13px] font-normal text-[#666666]">
             © 2026 GhostWriterHunt. All rights reserved.
           </p>

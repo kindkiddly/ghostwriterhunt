@@ -219,7 +219,7 @@ export default function BookCoversGallery() {
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-bcg-visible" : ""}`}
+        className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-bcg-visible" : ""}`}
       >
         <p className="gwh-bcg-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Our Work

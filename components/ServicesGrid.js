@@ -334,10 +334,17 @@ export default function ServicesGrid() {
         .gwh-svc-visible .gwh-svc-genres {
           animation: gwh-svc-fade 0.5s ease-out 1s forwards;
         }
+
+        @media (max-width: 768px) {
+          .gwh-svc-inner {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+        }
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-svc-visible" : ""}`}
+        className={`gwh-svc-inner mx-auto max-w-[1200px] px-6 ${visible ? "gwh-svc-visible" : ""}`}
       >
         {/* Section label */}
         <p className="gwh-svc-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">

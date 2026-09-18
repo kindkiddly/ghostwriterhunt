@@ -116,12 +116,36 @@ export default function NarrativeBlock3() {
           opacity: 1;
           transform: translateX(0) scale(1);
         }
+
+        @media (max-width: 768px) {
+          .nb4-reveal-left { transform: translateX(-20px); }
+          .nb4-reveal-right { transform: translateX(20px); }
+          .nb4-reveal-left.nb4-is-visible,
+          .nb4-reveal-right.nb4-is-visible {
+            transform: translateX(0) scale(1);
+          }
+          .nb4-section-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            gap: 32px !important;
+          }
+          .nb4-section-img {
+            height: 280px !important;
+          }
+          .nb4-reveal-card {
+            display: none !important;
+          }
+          .nb4-float-card-pos {
+            right: 12px !important;
+            top: 12px !important;
+          }
+        }
       `}</style>
 
       {/* Text first → on top for mobile; left on desktop */}
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
+      <div className="nb4-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left (55%): publishing copy, platforms, stats, CTA ——— */}
-        <div className="nb4-reveal-left w-full lg:w-[55%]">
+        <div className="nb4-reveal-left w-full max-w-full lg:w-[55%]">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
             GLOBAL PUBLISHING
           </p>
@@ -186,7 +210,7 @@ export default function NarrativeBlock3() {
             <img
               src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=700&fit=crop"
               alt="Stack of books ready for global publishing"
-              className="h-[600px] w-full rounded-[12px] object-cover"
+              className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               style={{
                 boxShadow:
                   "0 0 0 1px rgba(201,168,76,0.2), 0 20px 60px rgba(0,0,0,0.4)",
@@ -195,7 +219,7 @@ export default function NarrativeBlock3() {
 
             {/* Floating gold card — top-right overlap */}
             <div
-              className="nb4-reveal-card absolute right-[-20px] top-[30px] rounded-xl bg-[#C9A84C] px-5 py-4"
+              className="nb4-reveal-card nb4-float-card-pos absolute right-[-20px] top-[30px] rounded-xl bg-[#C9A84C] px-5 py-4"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.3)" }}
             >
               <div className="flex items-start gap-2.5">

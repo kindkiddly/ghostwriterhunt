@@ -96,9 +96,35 @@ export default function TrustBlock() {
         .nb3-reveal-chips.nb3-is-visible {
           opacity: 1;
         }
+
+        @media (max-width: 768px) {
+          .nb3-reveal-up { transform: translateY(20px); }
+          .nb3-reveal-up.nb3-is-visible { transform: translateY(0); }
+          .nb3-stats-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+          }
+          .nb3-stats-row > div {
+            width: 100%;
+            justify-content: center;
+          }
+          .nb3-reveal-stats {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+          }
+          .nb3-reveal-stats p:first-child {
+            font-size: 40px !important;
+          }
+          .nb3-section-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+        }
       `}</style>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-8">
+      <div className="nb3-section-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
         {/* ——— Part 1: centered statement ——— */}
         <div className="nb3-reveal-up flex flex-col items-center text-center">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
@@ -110,7 +136,7 @@ export default function TrustBlock() {
             <span className="block italic text-[#C9A84C]">make our team.</span>
           </h2>
 
-          <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
+          <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999] break-words">
             Every ghostwriter on our platform goes through a rigorous vetting
             process. We accept only the top 1% of applicants — ensuring every
             author receives nothing short of exceptional.
@@ -118,7 +144,7 @@ export default function TrustBlock() {
         </div>
 
         {/* ——— Part 2: stats row with gold dividers ——— */}
-        <div className="flex flex-col items-center justify-center sm:flex-row sm:flex-wrap lg:flex-nowrap">
+        <div className="nb3-stats-row flex flex-col items-center justify-center sm:flex-row sm:flex-wrap lg:flex-nowrap">
           {STATS.map((stat, index) => (
             <div key={stat.label} className="flex items-center">
               {index > 0 && (

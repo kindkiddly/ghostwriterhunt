@@ -149,9 +149,9 @@ function HorizontalCard({ writer, delay }) {
   return (
     <article
       data-delay={delay}
-      className="wp-reveal group flex flex-col overflow-hidden rounded-2xl border border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] sm:flex-row"
+      className="wp-reveal group flex flex-col overflow-hidden rounded-2xl border border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] lg:flex-row"
     >
-      <div className="relative h-[200px] w-full shrink-0 overflow-hidden sm:h-auto sm:min-h-[180px] sm:w-[140px]">
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden lg:h-auto lg:min-h-[180px] lg:w-[140px]">
         <Image
           src={writer.photo}
           alt={writer.name}
@@ -254,9 +254,18 @@ export default function WriterProfiles() {
           opacity: 1;
           transform: translateY(0);
         }
+
+        @media (max-width: 768px) {
+          .wp-reveal { transform: translateY(20px); }
+          .wp-reveal.wp-visible { transform: translateY(0); }
+          .wp-section-inner {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+        }
       `}</style>
 
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="wp-section-inner mx-auto max-w-[1200px] px-6">
         <p className="mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Our Writers
         </p>

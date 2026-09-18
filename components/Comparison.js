@@ -238,7 +238,7 @@ export default function Comparison() {
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-cmp-visible" : ""}`}
+        className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-cmp-visible" : ""}`}
       >
         <p className="gwh-cmp-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
           Why Choose Us
@@ -258,7 +258,7 @@ export default function Comparison() {
 
         {/* Comparison tabs */}
         <div
-          className="gwh-cmp-tabs mb-[60px] flex flex-wrap items-center justify-center gap-3"
+          className="gwh-cmp-tabs mb-[60px] flex flex-wrap items-center justify-center gap-3 overflow-x-auto"
           role="tablist"
           aria-label="Compare alternatives"
         >
@@ -271,7 +271,7 @@ export default function Comparison() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => handleTabChange(tab)}
-                className={`rounded-lg px-7 py-3 font-inter text-[14px] font-semibold transition-all duration-200 ${
+                className={`shrink-0 rounded-lg px-5 py-3 font-inter text-[14px] font-semibold transition-all duration-200 sm:px-7 ${
                   isActive
                     ? "bg-[var(--color-text)] text-white"
                     : "border border-[var(--color-border)] bg-[var(--color-card)] text-[#666666] hover:border-[var(--color-accent-gold)]"
@@ -340,10 +340,10 @@ export default function Comparison() {
         </div>
 
         {/* CTA + trust line */}
-        <div className="gwh-cmp-cta mt-12 text-center">
+        <div className="gwh-cmp-cta mt-12 px-1 text-center">
           <a
             href="#start"
-            className="inline-block rounded-[6px] bg-[var(--color-accent-gold)] px-10 py-4 font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
+            className="inline-block w-full max-w-full rounded-[6px] bg-[var(--color-accent-gold)] px-10 py-4 text-center font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] sm:w-auto"
           >
             Start with a free consultation
           </a>

@@ -230,7 +230,7 @@ export default function HowItWorks() {
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-6 ${visible ? "gwh-hiw-visible" : ""}`}
+        className={`mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-hiw-visible" : ""}`}
       >
         {/* Section label */}
         <p className="gwh-hiw-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
@@ -292,7 +292,7 @@ export default function HowItWorks() {
         </div>
 
         {/* What's included checklist */}
-        <ul className="gwh-hiw-checklist mt-[60px] grid grid-cols-1 gap-6 rounded-xl bg-[var(--color-background)] px-8 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-4 lg:gap-8">
+        <ul className="gwh-hiw-checklist mt-[60px] grid grid-cols-2 gap-6 rounded-xl bg-[var(--color-background)] px-5 py-8 sm:px-12 lg:grid-cols-4 lg:gap-8">
           {CHECKLIST.map((item) => (
             <li
               key={item}

@@ -114,6 +114,7 @@ export default function Navbar() {
               objectFit: "contain",
               display: "block",
             }}
+            className="max-h-[48px] max-w-[180px] md:max-h-[64px] md:max-w-[240px]"
           />
         </a>
 
