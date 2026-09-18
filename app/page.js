@@ -3,6 +3,7 @@ import LogoTicker from "@/components/LogoTicker";
 import StatsCounter from "@/components/StatsCounter";
 import NarrativeBlock1 from "@/components/NarrativeBlock1";
 import HowItWorks from "@/components/HowItWorks";
+import NarrativeBlock2 from "@/components/NarrativeBlock2";
 import ServicesGrid from "@/components/ServicesGrid";
 import WriterProfiles from "@/components/WriterProfiles";
 import BookCoversGallery from "@/components/BookCoversGallery";
@@ -18,6 +19,7 @@ export default function Home() {
       <StatsCounter />
       <NarrativeBlock1 />
       <HowItWorks />
+      <NarrativeBlock2 />
       <ServicesGrid />
       <WriterProfiles />
       <BookCoversGallery />
