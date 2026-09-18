@@ -9,33 +9,41 @@ import { useEffect } from "react";
  */
 
 export default function CTABanner() {
-  // Reveal stacked content once when the banner scrolls into view
+  // Delay observer bind so DOM + layout are ready; stagger via data-delay
   useEffect(() => {
-    const elements = document.querySelectorAll(".cta-reveal");
+    let observer = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add("cta-visible");
-            }, 100);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -80px 0px",
-      }
-    );
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll(".cta-reveal");
 
-    elements.forEach((el) => {
-      el.classList.remove("cta-visible");
-      observer.observe(el);
-    });
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = entry.target.dataset.delay || 0;
+              setTimeout(() => {
+                entry.target.classList.add("cta-visible");
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -80px 0px",
+        }
+      );
 
-    return () => observer.disconnect();
+      elements.forEach((el) => {
+        el.classList.remove("cta-visible");
+        observer.observe(el);
+      });
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   return (
@@ -57,9 +65,9 @@ export default function CTABanner() {
         .cta-reveal {
           opacity: 0;
           transform: translateY(40px);
-          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+          transition: opacity 0.8s ease-out,
+                      transform 0.8s ease-out;
         }
-
         .cta-reveal.cta-visible {
           opacity: 1;
           transform: translateY(0);
@@ -69,14 +77,15 @@ export default function CTABanner() {
       {/* Gold glow sits above the photo via background stack; content centered */}
       <div className="relative z-10 mx-auto w-full max-w-[800px] px-10 py-[80px] text-center">
         <p
+          data-delay="0"
           className="cta-reveal mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]"
         >
           GET STARTED TODAY
         </p>
 
         <h2
+          data-delay="100"
           className="cta-reveal mb-6 font-playfair text-[40px] font-bold leading-[1.1] tracking-[-0.02em] lg:text-[64px]"
-          style={{ transitionDelay: "0.1s" }}
         >
           <span className="block font-normal text-[#FFFFFF]">
             Your story deserves
@@ -85,11 +94,9 @@ export default function CTABanner() {
         </h2>
 
         <p
+          data-delay="200"
           className="cta-reveal mx-auto mb-12 max-w-[560px] font-inter text-[18px] font-normal leading-[1.7]"
-          style={{
-            color: "rgba(255,255,255,0.75)",
-            transitionDelay: "0.2s",
-          }}
+          style={{ color: "rgba(255,255,255,0.75)" }}
         >
           Join 5,000+ authors who trusted GhostWriterHunt to bring their book
           to life. From first word to global publication — we handle everything
@@ -97,8 +104,8 @@ export default function CTABanner() {
         </p>
 
         <div
+          data-delay="300"
           className="cta-reveal flex flex-wrap items-center justify-center gap-4"
-          style={{ transitionDelay: "0.3s" }}
         >
           <a
             href="#start"
@@ -115,11 +122,9 @@ export default function CTABanner() {
         </div>
 
         <p
+          data-delay="400"
           className="cta-reveal mt-6 font-inter text-[13px] font-normal"
-          style={{
-            color: "rgba(255,255,255,0.5)",
-            transitionDelay: "0.4s",
-          }}
+          style={{ color: "rgba(255,255,255,0.5)" }}
         >
           No commitment required
           <span className="mx-1.5 text-[#C9A84C]" aria-hidden="true">
