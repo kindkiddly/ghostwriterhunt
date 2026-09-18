@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
  * GhostWriterHunt — Writer Profiles
  * Superside-style rich talent cards + Reedsy warm literary profiles.
- * Photo placeholders ready for /images/writers/writer-N.jpg swaps.
+ * Portrait photos from Unsplash (swappable for local assets later).
  */
 
 const WRITERS = [
@@ -17,6 +18,8 @@ const WRITERS = [
     chips: ["Fiction", "Memoir", "Biography"],
     quote: "Every story deserves to be told with honesty and grace.",
     gender: "female",
+    photo:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 5,
@@ -26,6 +29,8 @@ const WRITERS = [
     chips: ["Mystery", "Thriller", "Fiction"],
     quote: "Every great thriller starts with one question the reader must answer.",
     gender: "male",
+    photo:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 2,
@@ -35,6 +40,8 @@ const WRITERS = [
     chips: ["Non-Fiction", "Business", "Self-Help"],
     quote: "A great non-fiction book changes how people think about the world.",
     gender: "female",
+    photo:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 6,
@@ -44,6 +51,8 @@ const WRITERS = [
     chips: ["Technical", "Academic", "Non-Fiction"],
     quote: "Clarity is the highest form of expertise.",
     gender: "male",
+    photo:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 3,
@@ -53,6 +62,8 @@ const WRITERS = [
     chips: ["Romance", "Fantasy", "Fiction"],
     quote: "I write the stories readers lose themselves in completely.",
     gender: "female",
+    photo:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 7,
@@ -62,6 +73,8 @@ const WRITERS = [
     chips: ["Biography", "History", "Memoir"],
     quote: "Every life lived is a story worth telling beautifully.",
     gender: "male",
+    photo:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
   },
   {
     id: 4,
@@ -71,37 +84,10 @@ const WRITERS = [
     chips: ["Children's", "Poetry", "Fiction"],
     quote: "The right story at the right age can change a child's life forever.",
     gender: "female",
+    photo:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
   },
 ];
-
-/** Simple person silhouette for photo placeholders */
-function PersonIcon() {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="text-[var(--color-accent-gold)]"
-    >
-      <circle
-        cx="20"
-        cy="14"
-        r="7"
-        stroke="currentColor"
-        strokeWidth="1.75"
-      />
-      <path
-        d="M8 34c2.5-7 7-10.5 12-10.5S29.5 27 32 34"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 
 function WriterCard({ writer, index }) {
   return (
@@ -109,19 +95,15 @@ function WriterCard({ writer, index }) {
       className="gwh-wp-card group flex h-full flex-col items-center rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-7 py-9 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
       style={{ animationDelay: `${0.15 + index * 0.1}s` }}
     >
-      {/*
-        Writer photo goes here
-        Replace with: /images/writers/writer-{writer.id}.jpg
-        Recommended size: 200x200px
-        Example:
-        <Image src={`/images/writers/writer-${writer.id}.jpg`} alt={writer.name} width={100} height={100} className="h-[100px] w-[100px] rounded-full object-cover border-[3px] border-[var(--color-border)]" />
-      */}
-      <div
-        className="mb-5 flex h-[100px] w-[100px] items-center justify-center rounded-full border-[3px] border-[var(--color-border)] bg-[#FDF6E3]"
-        aria-hidden="true"
-      >
-        <PersonIcon />
-      </div>
+      {/* Replace with real writer photo later */}
+      {/* Real photo: /images/writers/writer-{writer.id}.jpg */}
+      <Image
+        src={writer.photo}
+        alt={writer.name}
+        width={100}
+        height={100}
+        className="mb-5 h-[100px] w-[100px] rounded-full border-[3px] border-[var(--color-border)] object-cover object-top"
+      />
 
       <h3 className="mb-1 font-playfair text-[20px] font-bold text-[var(--color-text)]">
         {writer.name}

@@ -5,6 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import ServicesGrid from "@/components/ServicesGrid";
 import WriterProfiles from "@/components/WriterProfiles";
 import BookCoversGallery from "@/components/BookCoversGallery";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ServicesGrid />
       <WriterProfiles />
       <BookCoversGallery />
+      <Testimonials />
     </main>
   );
 }
