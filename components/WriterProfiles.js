@@ -92,47 +92,53 @@ const WRITERS = [
 function WriterCard({ writer, index }) {
   return (
     <article
-      className="gwh-wp-card group flex h-full flex-col items-center rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-7 py-9 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
+      className="gwh-wp-card group flex h-full flex-col justify-between rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-7 py-9 text-center shadow-[0_4px_24px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[var(--color-accent-gold)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
       style={{ animationDelay: `${0.15 + index * 0.1}s` }}
     >
-      {/* Replace with real writer photo later */}
-      {/* Real photo: /images/writers/writer-{writer.id}.jpg */}
-      <Image
-        src={writer.photo}
-        alt={writer.name}
-        width={100}
-        height={100}
-        className="mb-5 h-[100px] w-[100px] rounded-full border-[3px] border-[var(--color-border)] object-cover object-top"
-      />
+      {/* Top content block — grows so the button stays pinned to the bottom */}
+      <div className="flex flex-1 flex-col items-center">
+        {/* Replace with real writer photo later */}
+        {/* Real photo: /images/writers/writer-{writer.id}.jpg */}
+        <div className="mx-auto mb-5 flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full border-[3px] border-[var(--color-border)]">
+          <Image
+            src={writer.photo}
+            alt={writer.name}
+            width={100}
+            height={100}
+            className="h-full w-full rounded-full object-cover object-top"
+          />
+        </div>
 
-      <h3 className="mb-1 font-playfair text-[20px] font-bold text-[var(--color-text)]">
-        {writer.name}
-      </h3>
+        <h3 className="mb-1 font-playfair text-[20px] font-bold text-[var(--color-text)]">
+          {writer.name}
+        </h3>
 
-      <p className="mb-4 font-inter text-[13px] font-medium text-[var(--color-accent-gold)]">
-        {writer.title}
-      </p>
+        <p className="mb-4 font-inter text-[13px] font-medium text-[var(--color-accent-gold)]">
+          {writer.title}
+        </p>
 
-      <p className="mb-4 font-inter text-[14px] font-normal leading-[1.7] text-[#666666]">
-        {writer.bio}
-      </p>
+        <p className="mb-4 font-inter text-[14px] font-normal leading-[1.7] text-[#666666]">
+          {writer.bio}
+        </p>
 
-      {/* Specialty chips */}
-      <ul className="mb-4 flex flex-wrap items-center justify-center gap-2">
-        {writer.chips.map((chip) => (
-          <li key={chip}>
-            <span className="inline-block rounded-[20px] border border-[var(--color-border)] bg-[#FDF6E3] px-3.5 py-1.5 font-inter text-[12px] font-medium text-[var(--color-accent-olive)]">
-              {chip}
-            </span>
-          </li>
-        ))}
-      </ul>
+        {/* Specialty chips */}
+        <ul className="mb-4 flex flex-wrap items-center justify-center gap-2">
+          {writer.chips.map((chip) => (
+            <li key={chip}>
+              <span className="inline-block rounded-[20px] border border-[var(--color-border)] bg-[#FDF6E3] px-3.5 py-1.5 font-inter text-[12px] font-medium text-[var(--color-accent-olive)]">
+                {chip}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      {/* Personality quote */}
-      <blockquote className="mt-4 w-full border-l-[3px] border-[var(--color-accent-gold)] pl-3 text-left font-playfair text-[14px] italic leading-relaxed text-[#999999]">
-        “{writer.quote}”
-      </blockquote>
+        {/* Personality quote */}
+        <blockquote className="mt-4 w-full border-l-[3px] border-[var(--color-accent-gold)] pl-3 text-left font-playfair text-[14px] italic leading-relaxed text-[#999999]">
+          “{writer.quote}”
+        </blockquote>
+      </div>
 
+      {/* Always aligned at the bottom of every card */}
       <a
         href="#start"
         className="mt-5 block w-full rounded-[6px] border border-[var(--color-accent-gold)] bg-transparent px-5 py-2.5 text-center font-inter text-[13px] font-medium text-[var(--color-accent-gold)] transition-all duration-300 ease-in-out hover:bg-[var(--color-accent-gold)] hover:text-white"

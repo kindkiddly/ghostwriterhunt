@@ -276,7 +276,7 @@ export default function ServicesGrid() {
     <section
       ref={sectionRef}
       id="services"
-      className="w-full bg-[var(--color-background)] py-[120px]"
+      className="w-full bg-[var(--color-background)] pt-[120px] pb-[60px]"
       aria-label="Services"
     >
       <style>{`
@@ -388,20 +388,19 @@ export default function ServicesGrid() {
           ))}
         </ul>
 
-        {/* Genre chips */}
-        <div className="gwh-svc-genres mt-12 text-center">
-          <p className="mb-5 font-inter text-[14px] font-medium text-[#999999]">
+        {/* Genre chips — centered wrap inside a soft bordered panel */}
+        <div className="gwh-svc-genres mx-auto mt-12 flex max-w-[900px] flex-wrap items-center justify-center gap-2.5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-8">
+          <p className="mb-4 w-full text-center font-inter text-[14px] font-medium text-[#999999]">
             Genres we cover:
           </p>
-          <ul className="flex flex-wrap items-center justify-center gap-3">
-            {GENRES.map((genre) => (
-              <li key={genre}>
-                <span className="inline-block cursor-default rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-[18px] py-2 font-inter text-[13px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
-                  {genre}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {GENRES.map((genre) => (
+            <span
+              key={genre}
+              className="inline-block shrink-0 cursor-default whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-[18px] py-2 font-inter text-[13px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]"
+            >
+              {genre}
+            </span>
+          ))}
         </div>
       </div>
     </section>
