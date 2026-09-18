@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * GhostWriterHunt — Narrative Block 1
  * Superside-style two-column story section:
  * bold copy + feature bullets left, editorial image + floating card right.
- * Scroll-reveal via Intersection Observer + .is-visible CSS classes.
+ * Scroll-reveal via Intersection Observer + .nb1-is-visible CSS classes.
  */
 
 const FEATURES = [
@@ -72,25 +72,36 @@ function GoldStarIcon() {
 }
 
 export default function NarrativeBlock1() {
-  // Observe reveal targets once; add .is-visible when they enter the viewport
+  // Trigger reveal only when elements scroll 100px into the viewport
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".reveal-left, .reveal-right, .reveal-card"
+      ".nb1-reveal-left, .nb1-reveal-right, .nb1-reveal-card"
     );
 
+    // rootMargin shrinks the bottom of the root so we don't fire at the edge
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            // Small delay so the reveal follows a real scroll into view
+            setTimeout(() => {
+              entry.target.classList.add("nb1-is-visible");
+            }, 100);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.25,
+        rootMargin: "0px 0px -100px 0px",
+      }
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => {
+      // Reset to hidden first
+      el.classList.remove("nb1-is-visible");
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -104,31 +115,31 @@ export default function NarrativeBlock1() {
       }}
       aria-label="Why GhostWriterHunt"
     >
-      {/* Scroll-reveal keyframes / states — scoped to this section */}
+      {/* Scroll-reveal states — nb1- prefix avoids clashes with other sections */}
       <style>{`
-        .reveal-left {
+        .nb1-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
 
-        .reveal-right {
+        .nb1-reveal-right {
           opacity: 0;
           transform: translateX(40px);
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
           transition-delay: 0.15s;
         }
 
-        .reveal-card {
+        .nb1-reveal-card {
           opacity: 0;
           transform: scale(0.8);
           transition: opacity 0.5s ease-out, transform 0.5s ease-out;
           transition-delay: 0.4s;
         }
 
-        .reveal-left.is-visible,
-        .reveal-right.is-visible,
-        .reveal-card.is-visible {
+        .nb1-reveal-left.nb1-is-visible,
+        .nb1-reveal-right.nb1-is-visible,
+        .nb1-reveal-card.nb1-is-visible {
           opacity: 1;
           transform: translateX(0) scale(1);
         }
@@ -136,7 +147,7 @@ export default function NarrativeBlock1() {
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-20 lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}
-        <div className="reveal-left w-full lg:w-1/2">
+        <div className="nb1-reveal-left w-full lg:w-1/2">
           <p className="mb-5 font-inter text-[12px] font-medium uppercase tracking-[0.15em] text-[#6B7C3A]">
             WHY GHOSTWRITERHUNT
           </p>
@@ -181,7 +192,7 @@ export default function NarrativeBlock1() {
         </div>
 
         {/* ——— Right: image + floating stats card ——— */}
-        <div className="reveal-right relative w-full lg:w-1/2">
+        <div className="nb1-reveal-right relative w-full lg:w-1/2">
           {/* Mobile: image on top — flex-col-reverse handles stack order */}
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -194,7 +205,7 @@ export default function NarrativeBlock1() {
 
             {/* Floating card — overlaps bottom-left of image */}
             <div
-              className="reveal-card absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              className="nb1-reveal-card absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
               <div className="flex items-start gap-2">
