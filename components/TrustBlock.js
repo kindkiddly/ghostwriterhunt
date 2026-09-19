@@ -269,27 +269,27 @@ export default function TrustBlock() {
           margin-right: 20px;
           padding: 10px 28px;
           border-radius: 100px;
-          background: transparent;
+          background: #C9A84C;
           border: 1px solid #C9A84C;
           cursor: grab;
           transition: all 0.25s ease;
         }
 
         .tb-ticker-chip:hover {
-          background: #C9A84C;
+          background: transparent;
           border: 1px solid #C9A84C;
           transform: translateY(-2px);
         }
 
         .tb-ticker-chip:hover .tb-ticker-chip-text {
-          color: #1C1C1C;
+          color: #C9A84C;
         }
 
         .tb-ticker-chip-text {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 600;
           font-size: 13px;
-          color: #FFFFFF;
+          color: #1C1C1C;
           letter-spacing: 0.05em;
           transition: color 0.25s ease;
         }
