@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * GhostWriterHunt — Trust Block
  * Superside-style full-width dark confidence band:
- * bold statement, gold-divided stats, genre trust chips.
+ * bold statement, gold-divided stats, iOS glassy specialty ticker.
  * Scroll-reveal via tb- prefixed CSS classes.
  */
 
@@ -25,7 +25,12 @@ const CHIPS = [
   "Children's Book Writers",
 ];
 
+// Duplicated for seamless CSS loop (translateX -50%)
+const TICKER_CHIPS = [...CHIPS, ...CHIPS];
+
 export default function TrustBlock() {
+  const trackRef = useRef(null);
+
   // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(
@@ -60,6 +65,106 @@ export default function TrustBlock() {
     return () => observer.disconnect();
   }, []);
 
+  // Touch / mouse drag — pause CSS ticker and scrub via transform
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0; // stores translateX at drag start
+
+    const readTranslateX = () => {
+      const { transform } = window.getComputedStyle(track);
+      if (!transform || transform === "none") return 0;
+      try {
+        return new DOMMatrixReadOnly(transform).m41;
+      } catch {
+        return 0;
+      }
+    };
+
+    const freezeAtCurrent = () => {
+      const x = readTranslateX();
+      track.style.animation = "none";
+      track.style.transform = `translateX(${x}px)`;
+      return x;
+    };
+
+    const resumeAnimation = () => {
+      track.style.removeProperty("animation");
+      track.style.removeProperty("transform");
+      track.style.animationPlayState = "running";
+      track.style.cursor = "grab";
+    };
+
+    const onMouseDown = (e) => {
+      isDown = true;
+      track.style.animationPlayState = "paused";
+      track.style.cursor = "grabbing";
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = freezeAtCurrent();
+    };
+
+    const onMouseLeave = () => {
+      if (!isDown) return;
+      isDown = false;
+      resumeAnimation();
+    };
+
+    const onMouseUp = () => {
+      if (!isDown) return;
+      isDown = false;
+      resumeAnimation();
+    };
+
+    const onMouseMove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 2;
+      track.style.transform = `translateX(${scrollLeft + walk}px)`;
+    };
+
+    const onTouchStart = (e) => {
+      isDown = true;
+      track.style.animationPlayState = "paused";
+      startX = e.touches[0].pageX - track.offsetLeft;
+      scrollLeft = freezeAtCurrent();
+    };
+
+    const onTouchEnd = () => {
+      if (!isDown) return;
+      isDown = false;
+      resumeAnimation();
+    };
+
+    const onTouchMove = (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - track.offsetLeft;
+      const walk = (x - startX) * 2;
+      track.style.transform = `translateX(${scrollLeft + walk}px)`;
+    };
+
+    track.addEventListener("mousedown", onMouseDown);
+    track.addEventListener("mouseleave", onMouseLeave);
+    track.addEventListener("mouseup", onMouseUp);
+    track.addEventListener("mousemove", onMouseMove);
+    track.addEventListener("touchstart", onTouchStart, { passive: true });
+    track.addEventListener("touchend", onTouchEnd);
+    track.addEventListener("touchmove", onTouchMove, { passive: true });
+
+    return () => {
+      track.removeEventListener("mousedown", onMouseDown);
+      track.removeEventListener("mouseleave", onMouseLeave);
+      track.removeEventListener("mouseup", onMouseUp);
+      track.removeEventListener("mousemove", onMouseMove);
+      track.removeEventListener("touchstart", onTouchStart);
+      track.removeEventListener("touchend", onTouchEnd);
+      track.removeEventListener("touchmove", onTouchMove);
+    };
+  }, []);
+
   return (
     <section
       className="relative w-full overflow-hidden border-0 bg-[#1C1C1C] py-[80px]"
@@ -72,7 +177,7 @@ export default function TrustBlock() {
       aria-label="Our Standard"
     >
       <style>{`
-         .tb-reveal {
+        .tb-reveal {
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
@@ -90,7 +195,7 @@ export default function TrustBlock() {
           transition-delay: 0.4s;
         }
 
-         .tb-reveal.tb-visible,
+        .tb-reveal.tb-visible,
         .tb-reveal-stats.tb-visible {
           opacity: 1;
           transform: translateY(0);
@@ -100,9 +205,96 @@ export default function TrustBlock() {
           opacity: 1;
         }
 
+        /* ——— iOS glassy specialty ticker ——— */
+        .tb-ticker {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          margin-top: 48px;
+          padding: 16px 0;
+          background: rgba(255, 255, 255, 0.04);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tb-ticker-fade-left,
+        .tb-ticker-fade-right {
+          position: absolute;
+          top: 0;
+          width: 120px;
+          height: 100%;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .tb-ticker-fade-left {
+          left: 0;
+          background: linear-gradient(to right, #1C1C1C 0%, transparent 100%);
+        }
+
+        .tb-ticker-fade-right {
+          right: 0;
+          background: linear-gradient(to left, #1C1C1C 0%, transparent 100%);
+        }
+
+        .tb-ticker-track {
+          display: flex;
+          flex-direction: row;
+          width: max-content;
+          animation: tickerScroll 20s linear infinite;
+          cursor: grab;
+        }
+
+        .tb-ticker-track:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes tickerScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .tb-ticker-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+          white-space: nowrap;
+          margin-right: 16px;
+          padding: 10px 24px;
+          border-radius: 100px;
+          background: rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(201, 168, 76, 0.25);
+          cursor: grab;
+          transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tb-ticker-chip:hover {
+          background: rgba(201, 168, 76, 0.12);
+          border-color: rgba(201, 168, 76, 0.5);
+        }
+
+        .tb-ticker-chip-icon {
+          color: #C9A84C;
+          font-size: 10px;
+          line-height: 1;
+        }
+
+        .tb-ticker-chip-text {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 500;
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.85);
+          letter-spacing: 0.02em;
+        }
+
         @media (max-width: 768px) {
-           .tb-reveal { transform: translateY(20px); }
-           .tb-reveal.tb-visible { transform: translateY(0); }
+          .tb-reveal { transform: translateY(20px); }
+          .tb-reveal.tb-visible { transform: translateY(0); }
           .tb-stats-row {
             display: grid !important;
             grid-template-columns: 1fr 1fr;
@@ -123,6 +315,10 @@ export default function TrustBlock() {
           .tb-section-inner {
             padding-left: 20px !important;
             padding-right: 20px !important;
+          }
+          .tb-ticker-fade-left,
+          .tb-ticker-fade-right {
+            width: 64px;
           }
         }
       `}</style>
@@ -171,20 +367,30 @@ export default function TrustBlock() {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* ——— Part 3: feature chips ——— */}
-        <ul className="tb-reveal-chips mt-12 flex flex-wrap items-center justify-center gap-3" data-delay="400">
-          {CHIPS.map((chip) => (
-            <li key={chip}>
-              <span
-                className="inline-flex items-center rounded-[20px] border border-[rgba(201,168,76,0.3)] px-6 py-2.5 font-inter text-[14px] font-medium text-[#C9A84C]"
-                style={{ background: "rgba(201,168,76,0.1)" }}
-              >
-                ✦ {chip}
+      {/* ——— Part 3: full-width iOS glassy specialty ticker ——— */}
+      <div
+        className="tb-ticker tb-reveal-chips"
+        data-delay="400"
+        aria-label="Writer specialties"
+      >
+        <div className="tb-ticker-fade-left" aria-hidden="true" />
+        <div className="tb-ticker-fade-right" aria-hidden="true" />
+
+        <div ref={trackRef} className="tb-ticker-track">
+          {TICKER_CHIPS.map((chip, index) => (
+            <span
+              key={`${chip}-${index}`}
+              className="tb-ticker-chip"
+            >
+              <span className="tb-ticker-chip-icon" aria-hidden="true">
+                ✦
               </span>
-            </li>
+              <span className="tb-ticker-chip-text">{chip}</span>
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
