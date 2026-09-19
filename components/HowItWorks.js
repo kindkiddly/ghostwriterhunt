@@ -148,7 +148,7 @@ export default function HowItWorks() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
-  // Reveal once when the section enters the viewport
+  // Reveal once when ~15% of the section is visible
   useEffect(() => {
     const node = sectionRef.current;
     if (!node) return;
@@ -160,10 +160,16 @@ export default function HowItWorks() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
     );
 
-    observer.observe(node);
+    requestAnimationFrame(() => {
+      observer.observe(node);
+    });
+
     return () => observer.disconnect();
   }, []);
 

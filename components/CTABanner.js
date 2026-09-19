@@ -9,14 +9,9 @@ import { useEffect } from "react";
  */
 
 export default function CTABanner() {
-  // Observe after next paint so scroll triggers fire when the section enters view
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(".cta-reveal");
-
-    // Reset all to hidden first
-    elements.forEach((el) => {
-      el.classList.remove("cta-visible");
-    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,14 +26,14 @@ export default function CTABanner() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    // Small delay only for observing — not for the animation trigger
     requestAnimationFrame(() => {
       elements.forEach((el) => {
+        el.classList.remove("cta-visible");
         observer.observe(el);
       });
     });

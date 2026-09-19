@@ -72,35 +72,35 @@ function GoldStarIcon() {
 }
 
 export default function NarrativeBlock1() {
-  // Trigger reveal only when elements scroll 100px into the viewport
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(
       ".nb1-reveal-left, .nb1-reveal-right, .nb1-reveal-card"
     );
 
-    // rootMargin shrinks the bottom of the root so we don't fire at the edge
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Small delay so the reveal follows a real scroll into view
+            const delay = parseInt(entry.target.dataset.delay || "0");
             setTimeout(() => {
               entry.target.classList.add("nb1-is-visible");
-            }, 100);
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -100px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      // Reset to hidden first
-      el.classList.remove("nb1-is-visible");
-      observer.observe(el);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("nb1-is-visible");
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
@@ -167,7 +167,7 @@ export default function NarrativeBlock1() {
 
       <div className="nb1-section-inner mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}
-        <div className="nb1-reveal-left w-full lg:w-1/2">
+        <div className="nb1-reveal-left w-full lg:w-1/2" data-delay="0">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
             WHY GHOSTWRITERHUNT
           </p>
@@ -212,7 +212,7 @@ export default function NarrativeBlock1() {
         </div>
 
         {/* ——— Right: image + floating stats card ——— */}
-        <div className="nb1-reveal-right relative w-full max-w-full lg:w-1/2">
+        <div className="nb1-reveal-right relative w-full max-w-full lg:w-1/2" data-delay="150">
           {/* Mobile: image on top — flex-col-reverse handles stack order */}
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -226,6 +226,7 @@ export default function NarrativeBlock1() {
             {/* Floating card — overlaps bottom-left of image */}
             <div
               className="nb1-reveal-card absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              data-delay="400"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
               <div className="flex items-start gap-2">

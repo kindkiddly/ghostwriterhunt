@@ -46,7 +46,7 @@ function GoldQuoteIcon() {
 }
 
 export default function NarrativeBlock2() {
-  // Scroll-reveal: fire once when targets enter the viewport (with bottom inset)
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(
       ".nb2-reveal-left, .nb2-reveal-right, .nb2-reveal-card"
@@ -56,22 +56,25 @@ export default function NarrativeBlock2() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
             setTimeout(() => {
               entry.target.classList.add("nb2-is-visible");
-            }, 100);
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -100px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      el.classList.remove("nb2-is-visible");
-      observer.observe(el);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("nb2-is-visible");
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
@@ -134,7 +137,7 @@ export default function NarrativeBlock2() {
       {/* Image first in DOM → on top for mobile; left on desktop */}
       <div className="nb2-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: image + floating quote card ——— */}
-        <div className="nb2-reveal-left relative w-full max-w-full lg:w-1/2">
+        <div className="nb2-reveal-left relative w-full max-w-full lg:w-1/2" data-delay="0">
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -147,6 +150,7 @@ export default function NarrativeBlock2() {
             {/* Floating card — overlaps bottom-right of image */}
             <div
               className="nb2-reveal-card absolute -bottom-5 -right-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              data-delay="400"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
               <div className="flex items-start gap-2">
@@ -165,7 +169,7 @@ export default function NarrativeBlock2() {
         </div>
 
         {/* ——— Right: label, headline, body, process steps, CTA ——— */}
-        <div className="nb2-reveal-right w-full lg:w-1/2">
+        <div className="nb2-reveal-right w-full lg:w-1/2" data-delay="150">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
             OUR APPROACH
           </p>

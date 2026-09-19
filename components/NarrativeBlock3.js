@@ -46,7 +46,7 @@ function WhiteGlobeIcon() {
 }
 
 export default function NarrativeBlock3() {
-  // Reveal once when targets scroll 100px into the viewport
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(
       ".nb4-reveal-left, .nb4-reveal-right, .nb4-reveal-card"
@@ -56,22 +56,25 @@ export default function NarrativeBlock3() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
             setTimeout(() => {
               entry.target.classList.add("nb4-is-visible");
-            }, 100);
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -100px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      el.classList.remove("nb4-is-visible");
-      observer.observe(el);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("nb4-is-visible");
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
@@ -145,7 +148,7 @@ export default function NarrativeBlock3() {
       {/* Text first → on top for mobile; left on desktop */}
       <div className="nb4-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left (55%): publishing copy, platforms, stats, CTA ——— */}
-        <div className="nb4-reveal-left w-full max-w-full lg:w-[55%]">
+        <div className="nb4-reveal-left w-full max-w-full lg:w-[55%]" data-delay="0">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
             GLOBAL PUBLISHING
           </p>
@@ -204,7 +207,7 @@ export default function NarrativeBlock3() {
         </div>
 
         {/* ——— Right (45%): image + floating platforms card ——— */}
-        <div className="nb4-reveal-right relative w-full lg:w-[45%]">
+        <div className="nb4-reveal-right relative w-full lg:w-[45%]" data-delay="150">
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -220,6 +223,7 @@ export default function NarrativeBlock3() {
             {/* Floating gold card — top-right overlap */}
             <div
               className="nb4-reveal-card nb4-float-card-pos absolute right-[-20px] top-[30px] rounded-xl bg-[#C9A84C] px-5 py-4"
+              data-delay="400"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.3)" }}
             >
               <div className="flex items-start gap-2.5">

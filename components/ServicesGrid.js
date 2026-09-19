@@ -254,6 +254,7 @@ export default function ServicesGrid() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
+  // Reveal once when ~15% of the section is visible
   useEffect(() => {
     const node = sectionRef.current;
     if (!node) return;
@@ -265,10 +266,16 @@ export default function ServicesGrid() {
           observer.disconnect();
         }
       },
-      { threshold: 0.12 }
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
     );
 
-    observer.observe(node);
+    requestAnimationFrame(() => {
+      observer.observe(node);
+    });
+
     return () => observer.disconnect();
   }, []);
 

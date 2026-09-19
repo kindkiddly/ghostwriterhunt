@@ -98,7 +98,7 @@ function PlusMinusIcon({ open }) {
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Scroll-reveal header + staggered FAQ cards once into view
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(".faq-reveal");
 
@@ -106,22 +106,25 @@ export default function FAQ() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
             setTimeout(() => {
               entry.target.classList.add("faq-visible");
-            }, 100);
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
       },
       {
         threshold: 0.15,
-        rootMargin: "0px 0px -80px 0px",
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      el.classList.remove("faq-visible");
-      observer.observe(el);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("faq-visible");
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
@@ -193,6 +196,7 @@ export default function FAQ() {
               <li
                 key={item.question}
                 className="faq-reveal mb-3"
+                data-delay={index * 80}
                 style={{ transitionDelay: `${index * 0.08}s` }}
               >
                 <button

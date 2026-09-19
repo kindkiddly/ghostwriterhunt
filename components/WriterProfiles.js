@@ -195,7 +195,7 @@ function HorizontalCard({ writer, delay }) {
 }
 
 export default function WriterProfiles() {
-  // Staggered scroll reveal via data-delay on each card
+  // Scroll-reveal: fire once when ~15% of each card is visible
   useEffect(() => {
     const elements = document.querySelectorAll(".wp-reveal");
 
@@ -212,8 +212,8 @@ export default function WriterProfiles() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 

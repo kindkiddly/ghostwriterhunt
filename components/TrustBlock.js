@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * GhostWriterHunt — Trust Block
  * Superside-style full-width dark confidence band:
  * bold statement, gold-divided stats, genre trust chips.
- * Scroll-reveal via nb3- prefixed CSS classes.
+ * Scroll-reveal via tb- prefixed CSS classes.
  */
 
 const STATS = [
@@ -26,32 +26,35 @@ const CHIPS = [
 ];
 
 export default function TrustBlock() {
-  // Reveal headline, stats, and chips once when section scrolls into view
+  // Scroll-reveal: fire once when ~15% of each target is visible
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".nb3-reveal-up, .nb3-reveal-stats, .nb3-reveal-chips"
+      ".tb-reveal, .tb-reveal-stats, .tb-reveal-chips"
     );
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || "0");
             setTimeout(() => {
-              entry.target.classList.add("nb3-is-visible");
-            }, 100);
+              entry.target.classList.add("tb-visible");
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -100px 0px",
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      el.classList.remove("nb3-is-visible");
-      observer.observe(el);
+    requestAnimationFrame(() => {
+      elements.forEach((el) => {
+        el.classList.remove("tb-visible");
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
@@ -69,64 +72,64 @@ export default function TrustBlock() {
       aria-label="Our Standard"
     >
       <style>{`
-        .nb3-reveal-up {
+         .tb-reveal {
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
 
-        .nb3-reveal-stats {
+        .tb-reveal-stats {
           opacity: 0;
           transform: translateY(20px);
           transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .nb3-reveal-chips {
+        .tb-reveal-chips {
           opacity: 0;
           transition: opacity 0.5s ease-out;
           transition-delay: 0.4s;
         }
 
-        .nb3-reveal-up.nb3-is-visible,
-        .nb3-reveal-stats.nb3-is-visible {
+         .tb-reveal.tb-visible,
+        .tb-reveal-stats.tb-visible {
           opacity: 1;
           transform: translateY(0);
         }
 
-        .nb3-reveal-chips.nb3-is-visible {
+        .tb-reveal-chips.tb-visible {
           opacity: 1;
         }
 
         @media (max-width: 768px) {
-          .nb3-reveal-up { transform: translateY(20px); }
-          .nb3-reveal-up.nb3-is-visible { transform: translateY(0); }
-          .nb3-stats-row {
+           .tb-reveal { transform: translateY(20px); }
+           .tb-reveal.tb-visible { transform: translateY(0); }
+          .tb-stats-row {
             display: grid !important;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             width: 100%;
           }
-          .nb3-stats-row > div {
+          .tb-stats-row > div {
             width: 100%;
             justify-content: center;
           }
-          .nb3-reveal-stats {
+          .tb-reveal-stats {
             padding-left: 12px !important;
             padding-right: 12px !important;
           }
-          .nb3-reveal-stats p:first-child {
+          .tb-reveal-stats p:first-child {
             font-size: 40px !important;
           }
-          .nb3-section-inner {
+          .tb-section-inner {
             padding-left: 20px !important;
             padding-right: 20px !important;
           }
         }
       `}</style>
 
-      <div className="nb3-section-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
+      <div className="tb-section-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
         {/* ——— Part 1: centered statement ——— */}
-        <div className="nb3-reveal-up flex flex-col items-center text-center">
+        <div className="tb-reveal flex flex-col items-center text-center" data-delay="0">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
             OUR STANDARD
           </p>
@@ -144,7 +147,7 @@ export default function TrustBlock() {
         </div>
 
         {/* ——— Part 2: stats row with gold dividers ——— */}
-        <div className="nb3-stats-row flex flex-col items-center justify-center sm:flex-row sm:flex-wrap lg:flex-nowrap">
+        <div className="tb-stats-row flex flex-col items-center justify-center sm:flex-row sm:flex-wrap lg:flex-nowrap">
           {STATS.map((stat, index) => (
             <div key={stat.label} className="flex items-center">
               {index > 0 && (
@@ -154,8 +157,8 @@ export default function TrustBlock() {
                 />
               )}
               <div
-                className="nb3-reveal-stats px-10 py-6 text-center sm:py-0"
-                style={{ transitionDelay: `${index * 0.1}s` }}
+                className="tb-reveal-stats px-10 py-6 text-center sm:py-0"
+                data-delay={index * 100}
               >
                 <p className="font-playfair text-[56px] font-bold leading-none text-[#FFFFFF]">
                   {stat.number}
@@ -170,7 +173,7 @@ export default function TrustBlock() {
         </div>
 
         {/* ——— Part 3: feature chips ——— */}
-        <ul className="nb3-reveal-chips mt-12 flex flex-wrap items-center justify-center gap-3">
+        <ul className="tb-reveal-chips mt-12 flex flex-wrap items-center justify-center gap-3" data-delay="400">
           {CHIPS.map((chip) => (
             <li key={chip}>
               <span

@@ -61,7 +61,7 @@ export default function StatsCounter() {
   const sectionRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // Fire count-up once when the section enters the viewport
+  // Count-up once when ~15% of the section is visible
   useEffect(() => {
     const node = sectionRef.current;
     if (!node || hasAnimated) return;
@@ -73,10 +73,16 @@ export default function StatsCounter() {
           observer.disconnect();
         }
       },
-      { threshold: 0.35 }
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
     );
 
-    observer.observe(node);
+    requestAnimationFrame(() => {
+      observer.observe(node);
+    });
+
     return () => observer.disconnect();
   }, [hasAnimated]);
 
