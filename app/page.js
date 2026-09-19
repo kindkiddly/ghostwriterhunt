@@ -13,6 +13,7 @@ import Comparison from "@/components/Comparison";
 import Pricing from "@/components/Pricing";
 import NarrativeBlock3 from "@/components/NarrativeBlock3";
 import FAQ from "@/components/FAQ";
+import ContactForm from "@/components/ContactForm";
 import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 
@@ -34,6 +35,7 @@ export default function Home() {
       <Pricing />
       <NarrativeBlock3 />
       <FAQ />
+      <ContactForm />
       <CTABanner />
       <Footer />
     </main>
