@@ -211,32 +211,46 @@ export default function TrustBlock() {
           width: 100%;
           overflow: hidden;
           margin-top: 48px;
-          padding: 16px 0;
-          background: rgba(255, 255, 255, 0.04);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 20px 0;
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-top: 1px solid rgba(201, 168, 76, 0.15);
+          border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .tb-ticker-fade-left,
         .tb-ticker-fade-right {
           position: absolute;
           top: 0;
-          width: 120px;
+          width: 160px;
           height: 100%;
           z-index: 2;
           pointer-events: none;
         }
 
+        /* Gradual charcoal fades into the glass strip */
         .tb-ticker-fade-left {
           left: 0;
-          background: linear-gradient(to right, #1C1C1C 0%, transparent 100%);
+          background: linear-gradient(
+            to right,
+            rgba(28, 28, 28, 1) 0%,
+            rgba(28, 28, 28, 0.8) 40%,
+            transparent 100%
+          );
         }
 
         .tb-ticker-fade-right {
           right: 0;
-          background: linear-gradient(to left, #1C1C1C 0%, transparent 100%);
+          background: linear-gradient(
+            to left,
+            rgba(28, 28, 28, 1) 0%,
+            rgba(28, 28, 28, 0.8) 40%,
+            transparent 100%
+          );
         }
 
         .tb-ticker-track {
@@ -256,40 +270,73 @@ export default function TrustBlock() {
           100% { transform: translateX(-50%); }
         }
 
+        /* Subtle bob — odd / even chips offset for alternating float */
+        @keyframes chipFloat {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-3px); }
+          100% { transform: translateY(0px); }
+        }
+
         .tb-ticker-chip {
           display: inline-flex;
           align-items: center;
           gap: 8px;
           flex-shrink: 0;
           white-space: nowrap;
-          margin-right: 16px;
-          padding: 10px 24px;
+          margin-right: 20px;
+          padding: 10px 28px;
           border-radius: 100px;
-          background: rgba(255, 255, 255, 0.06);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(201, 168, 76, 0.25);
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.12) 0%,
+            rgba(201, 168, 76, 0.04) 100%
+          );
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(201, 168, 76, 0.3);
+          box-shadow:
+            0 2px 12px rgba(201, 168, 76, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
           cursor: grab;
-          transition: background 0.2s ease, border-color 0.2s ease;
+          transition: all 0.2s ease;
+        }
+
+        .tb-ticker-chip:nth-child(odd) {
+          animation: chipFloat 3s ease-in-out infinite;
+        }
+
+        .tb-ticker-chip:nth-child(even) {
+          animation: chipFloat 3s ease-in-out infinite;
+          animation-delay: 1.5s;
         }
 
         .tb-ticker-chip:hover {
-          background: rgba(201, 168, 76, 0.12);
-          border-color: rgba(201, 168, 76, 0.5);
+          background: linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.22) 0%,
+            rgba(201, 168, 76, 0.10) 100%
+          );
+          border: 1px solid rgba(201, 168, 76, 0.6);
+          box-shadow:
+            0 4px 20px rgba(201, 168, 76, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+          transform: translateY(-1px);
+          animation-play-state: paused;
         }
 
         .tb-ticker-chip-icon {
           color: #C9A84C;
-          font-size: 10px;
+          font-size: 11px;
           line-height: 1;
+          text-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
         }
 
         .tb-ticker-chip-text {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 500;
           font-size: 13px;
-          color: rgba(255, 255, 255, 0.85);
-          letter-spacing: 0.02em;
+          color: rgba(255, 255, 255, 0.9);
+          letter-spacing: 0.04em;
         }
 
         @media (max-width: 768px) {
@@ -318,7 +365,7 @@ export default function TrustBlock() {
           }
           .tb-ticker-fade-left,
           .tb-ticker-fade-right {
-            width: 64px;
+            width: 100px;
           }
         }
       `}</style>
