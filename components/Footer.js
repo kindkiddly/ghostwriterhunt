@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import LegalModal from "./legal/LegalModal";
+
 /**
  * GhostWriterHunt — Footer
  * Newsletter strip + 3 columns (Brand · Company · Contact) + legal bar.
@@ -14,11 +17,11 @@ const COMPANY_LINKS = [
   { label: "Contact Us", href: "/#start" },
 ];
 
-const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Use", href: "/terms-of-use" },
-  { label: "Cookie Policy", href: "/cookie-policy" },
-  { label: "Legal", href: "/legal" },
+const LEGAL_MODAL_LINKS = [
+  { label: "Privacy Policy", type: "privacy" },
+  { label: "Terms of Use", type: "terms" },
+  { label: "Cookie Policy", type: "cookies" },
+  { label: "Legal", type: "legal" },
 ];
 
 function SocialIcon({ type }) {
@@ -60,6 +63,14 @@ function SocialIcon({ type }) {
 }
 
 export default function Footer() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("privacy");
+
+  const openModal = (type) => {
+    setModalType(type);
+    setModalOpen(true);
+  };
+
   return (
     <footer className="gwh-footer" aria-label="Site footer">
       <style>{`
@@ -275,15 +286,18 @@ export default function Footer() {
           align-items: center;
           gap: 20px;
         }
-        .gwh-ft-legal a {
+        .gwh-ft-legal button {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 400;
           font-size: 12px;
           color: #555555;
-          text-decoration: none;
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
           transition: color 0.2s ease;
         }
-        .gwh-ft-legal a:hover { color: #C9A84C; }
+        .gwh-ft-legal button:hover { color: #C9A84C; }
 
         @media (max-width: 768px) {
           .gwh-ft-strip-inner {
@@ -446,14 +460,24 @@ export default function Footer() {
             © 2026 GhostWriterHunt. All rights reserved.
           </p>
           <nav className="gwh-ft-legal" aria-label="Legal">
-            {LEGAL_LINKS.map((link) => (
-              <a key={link.label} href={link.href}>
+            {LEGAL_MODAL_LINKS.map((link) => (
+              <button
+                key={link.type}
+                type="button"
+                onClick={() => openModal(link.type)}
+              >
                 {link.label}
-              </a>
+              </button>
             ))}
           </nav>
         </div>
       </div>
+
+      <LegalModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        type={modalType}
+      />
     </footer>
   );
 }
