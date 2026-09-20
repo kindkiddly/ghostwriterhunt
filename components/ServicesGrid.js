@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 const SERVICES = [
   {
     id: "ghostwriting",
+    href: "/services/ghostwriting",
     icon: "pen",
     title: "Professional Ghostwriting",
     description:
@@ -19,6 +20,7 @@ const SERVICES = [
   },
   {
     id: "editing",
+    href: "/services/manuscript-editing",
     icon: "edit",
     title: "Manuscript Editing",
     description:
@@ -26,6 +28,7 @@ const SERVICES = [
   },
   {
     id: "cover",
+    href: "/services/book-cover-design",
     icon: "palette",
     title: "Book Cover Design",
     description:
@@ -33,6 +36,7 @@ const SERVICES = [
   },
   {
     id: "layout",
+    href: "/services/interior-layout",
     icon: "layout",
     title: "Interior Layout and Formatting",
     description:
@@ -40,6 +44,7 @@ const SERVICES = [
   },
   {
     id: "illustration",
+    href: "/services/illustration-graphics",
     icon: "brush",
     title: "Illustration and Graphics",
     description:
@@ -47,6 +52,7 @@ const SERVICES = [
   },
   {
     id: "publishing",
+    href: "/services/ebook-publishing",
     icon: "ebook",
     title: "eBook Publishing",
     description:
@@ -54,6 +60,7 @@ const SERVICES = [
   },
   {
     id: "branding",
+    href: "/services/author-branding",
     icon: "star",
     title: "Author Branding",
     description:
@@ -61,6 +68,7 @@ const SERVICES = [
   },
   {
     id: "marketing",
+    href: "/services/book-marketing",
     icon: "megaphone",
     title: "Book Marketing",
     description:
@@ -399,7 +407,7 @@ export default function ServicesGrid() {
               </p>
 
               <a
-                href={`#${service.id}`}
+                href={service.href}
                 className="mt-4 inline-block font-inter text-[14px] font-medium text-[#C9A84C] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline"
               >
                 Learn more →
