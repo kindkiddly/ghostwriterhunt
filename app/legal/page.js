@@ -62,6 +62,53 @@ function DocIcon() {
 }
 
 const styles = `
+  .lp-nav {
+    position: sticky;
+    top: 0;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E8D5A3;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    gap: 16px;
+  }
+  .lp-nav-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #1C1C1C;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .lp-nav-back:hover { color: #C9A84C; }
+  .lp-nav-title {
+    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1C1C1C;
+    margin: 0;
+    text-align: center;
+  }
+  .lp-nav-home {
+    background: #C9A84C;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .lp-nav-home:hover { background: #B8960C; }
+  @media (max-width: 640px) {
+    .lp-nav-title { display: none; }
+  }
   .lp-hero {
     background: #1C1C1C;
     padding: 120px 0 80px;
@@ -237,6 +284,17 @@ export default function LegalPage() {
   return (
     <main className="m-0 max-w-full overflow-x-hidden p-0">
       <style>{styles}</style>
+
+      <nav className="lp-nav" aria-label="Legal page navigation">
+        <a href="/" className="lp-nav-back">
+          <span aria-hidden="true">←</span>
+          Back to GhostWriterHunt
+        </a>
+        <p className="lp-nav-title">Legal</p>
+        <a href="/" className="lp-nav-home">
+          Home
+        </a>
+      </nav>
 
       <section className="lp-hero">
         <div className="lp-hero-inner">

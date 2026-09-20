@@ -2,19 +2,8 @@
 
 /**
  * GhostWriterHunt — Footer
- * Premium 3-section dark band: newsletter strip, 4 columns, legal bar.
+ * Newsletter strip + 3 columns (Brand · Company · Contact) + legal bar.
  */
-
-const SERVICE_LINKS = [
-  { label: "Professional Ghostwriting", href: "/services/ghostwriting" },
-  { label: "Manuscript Editing", href: "/services/manuscript-editing" },
-  { label: "Book Cover Design", href: "/services/book-cover-design" },
-  { label: "Interior Layout", href: "/services/interior-layout" },
-  { label: "Illustration & Graphics", href: "/services/illustration-graphics" },
-  { label: "eBook Publishing", href: "/services/ebook-publishing" },
-  { label: "Author Branding", href: "/services/author-branding" },
-  { label: "Book Marketing", href: "/services/book-marketing" },
-];
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
@@ -34,8 +23,8 @@ const LEGAL_LINKS = [
 
 function SocialIcon({ type }) {
   const common = {
-    width: 16,
-    height: 16,
+    width: 15,
+    height: 15,
     viewBox: "0 0 24 24",
     fill: "currentColor",
     "aria-hidden": true,
@@ -70,66 +59,6 @@ function SocialIcon({ type }) {
   }
 }
 
-function MailIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#C9A84C"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-      <polyline points="22,6 12,13 2,6" />
-    </svg>
-  );
-}
-
-function MapPinIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#888888"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#888888"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
-
 export default function Footer() {
   return (
     <footer className="gwh-footer" aria-label="Site footer">
@@ -140,11 +69,11 @@ export default function Footer() {
           overflow-x: hidden;
         }
 
-        /* ——— Section 1: Newsletter strip ——— */
+        /* Newsletter strip */
         .gwh-ft-strip {
           background: #242424;
           border-bottom: 1px solid #2A2A2A;
-          padding: 32px 0;
+          padding: 28px 0;
         }
         .gwh-ft-strip-inner {
           max-width: 1200px;
@@ -153,20 +82,20 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 32px;
+          gap: 24px;
         }
         .gwh-ft-strip-heading {
           font-family: var(--font-playfair), "Playfair Display", serif;
           font-weight: 700;
-          font-size: 20px;
+          font-size: 18px;
           color: #FFFFFF;
           margin: 0;
         }
         .gwh-ft-strip-sub {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 400;
-          font-size: 14px;
-          color: #999999;
+          font-size: 13px;
+          color: #888888;
           margin: 4px 0 0;
         }
         .gwh-ft-form {
@@ -175,49 +104,42 @@ export default function Footer() {
           flex-shrink: 0;
         }
         .gwh-ft-input {
-          width: 260px;
+          width: 220px;
           background: #1C1C1C;
           border: 1px solid #333333;
           border-radius: 6px 0 0 6px;
-          padding: 12px 20px;
+          padding: 10px 16px;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 14px;
+          font-size: 13px;
           color: #FFFFFF;
           outline: none;
         }
-        .gwh-ft-input::placeholder {
-          color: #555555;
-        }
-        .gwh-ft-input:focus {
-          border-color: #C9A84C;
-        }
+        .gwh-ft-input::placeholder { color: #555555; }
+        .gwh-ft-input:focus { border-color: #C9A84C; }
         .gwh-ft-submit {
           background: #C9A84C;
           border: none;
           border-radius: 0 6px 6px 0;
-          padding: 12px 24px;
+          padding: 10px 20px;
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 600;
-          font-size: 14px;
+          font-size: 13px;
           color: #FFFFFF;
           cursor: pointer;
           transition: background 0.2s ease;
         }
-        .gwh-ft-submit:hover {
-          background: #B8960C;
-        }
+        .gwh-ft-submit:hover { background: #B8960C; }
 
-        /* ——— Section 2: Main columns ——— */
+        /* Main 3 columns */
         .gwh-ft-main {
-          padding: 60px 0 48px;
+          padding: 48px 0 40px;
         }
         .gwh-ft-main-inner {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 24px;
           display: grid;
-          grid-template-columns: 1.4fr 1fr 1fr 1fr;
+          grid-template-columns: 1.4fr 1fr 1fr;
           gap: 48px;
           align-items: start;
         }
@@ -225,8 +147,11 @@ export default function Footer() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          padding-top: 0;
-          margin-top: 0;
+        }
+        /* Push logo so wordmark bottom aligns with COMPANY/CONTACT headings */
+        .gwh-ft-logo-wrap {
+          padding-top: 32px;
+          line-height: 0;
         }
         .gwh-ft-tagline {
           font-family: var(--font-inter), Inter, sans-serif;
@@ -235,17 +160,16 @@ export default function Footer() {
           color: #888888;
           line-height: 1.7;
           max-width: 220px;
-          margin: 0 0 24px;
+          margin: 16px 0 24px;
         }
         .gwh-ft-social {
           display: flex;
           flex-direction: row;
-          gap: 16px;
-          margin-top: 0;
+          gap: 12px;
         }
         .gwh-ft-social-btn {
-          width: 36px;
-          height: 36px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
           background: #2A2A2A;
           display: flex;
@@ -268,7 +192,7 @@ export default function Footer() {
           letter-spacing: 0.15em;
           text-transform: uppercase;
           margin: 0 0 20px;
-          padding: 0 0 12px;
+          padding: 0 0 10px;
           border-bottom: 1px solid #2A2A2A;
         }
         .gwh-ft-link {
@@ -279,18 +203,15 @@ export default function Footer() {
           color: #888888;
           text-decoration: none;
           padding: 5px 0;
-          transition: color 0.2s ease, padding-left 0.2s ease;
+          transition: all 0.15s ease;
         }
         .gwh-ft-link:hover {
           color: #FFFFFF;
           padding-left: 4px;
         }
 
-        .gwh-ft-contact-row {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 14px;
+        .gwh-ft-contact-item {
+          margin-bottom: 12px;
         }
         .gwh-ft-contact-email {
           font-family: var(--font-inter), Inter, sans-serif;
@@ -299,9 +220,7 @@ export default function Footer() {
           color: #C9A84C;
           text-decoration: none;
         }
-        .gwh-ft-contact-email:hover {
-          text-decoration: underline;
-        }
+        .gwh-ft-contact-email:hover { text-decoration: underline; }
         .gwh-ft-contact-text {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 400;
@@ -309,27 +228,14 @@ export default function Footer() {
           color: #888888;
           margin: 0;
         }
-        .gwh-ft-contact-divider {
-          border: none;
-          border-top: 1px solid #2A2A2A;
-          margin: 20px 0;
-        }
-        .gwh-ft-cta-label {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 13px;
-          color: #666666;
-          margin: 0 0 10px;
-        }
         .gwh-ft-cta-btn {
           display: block;
-          width: 100%;
-          box-sizing: border-box;
-          text-align: center;
+          width: fit-content;
+          margin-top: 20px;
           background: transparent;
           border: 1px solid #C9A84C;
           border-radius: 6px;
-          padding: 10px 16px;
+          padding: 9px 14px;
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 500;
           font-size: 13px;
@@ -342,10 +248,10 @@ export default function Footer() {
           color: #FFFFFF;
         }
 
-        /* ——— Section 3: Bottom bar ——— */
+        /* Bottom bar */
         .gwh-ft-bottom {
           border-top: 1px solid #2A2A2A;
-          padding: 20px 0;
+          padding: 18px 0;
         }
         .gwh-ft-bottom-inner {
           max-width: 1200px;
@@ -359,7 +265,7 @@ export default function Footer() {
         .gwh-ft-copy {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 400;
-          font-size: 13px;
+          font-size: 12px;
           color: #555555;
           margin: 0;
         }
@@ -367,19 +273,17 @@ export default function Footer() {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          gap: 24px;
+          gap: 20px;
         }
         .gwh-ft-legal a {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 400;
-          font-size: 13px;
+          font-size: 12px;
           color: #555555;
           text-decoration: none;
           transition: color 0.2s ease;
         }
-        .gwh-ft-legal a:hover {
-          color: #C9A84C;
-        }
+        .gwh-ft-legal a:hover { color: #C9A84C; }
 
         @media (max-width: 768px) {
           .gwh-ft-strip-inner {
@@ -402,22 +306,23 @@ export default function Footer() {
             margin-top: 8px;
           }
           .gwh-ft-main-inner {
-            grid-template-columns: 1fr 1fr;
-            gap: 36px 24px;
+            grid-template-columns: 1fr;
+            gap: 36px;
           }
           .gwh-ft-brand {
-            grid-column: 1 / -1;
             align-items: center;
             text-align: center;
           }
-          .gwh-ft-tagline {
-            max-width: 280px;
+          .gwh-ft-logo-wrap {
+            padding-top: 0;
           }
           .gwh-ft-social {
             justify-content: center;
           }
-          .gwh-ft-contact {
-            grid-column: 1 / -1;
+          .gwh-ft-cta-btn {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
           }
           .gwh-ft-bottom-inner {
             flex-direction: column;
@@ -425,12 +330,11 @@ export default function Footer() {
           }
           .gwh-ft-legal {
             justify-content: center;
-            gap: 16px;
           }
         }
       `}</style>
 
-      {/* ——— Section 1: Newsletter strip ——— */}
+      {/* Newsletter strip */}
       <div className="gwh-ft-strip">
         <div className="gwh-ft-strip-inner">
           <div>
@@ -438,11 +342,9 @@ export default function Footer() {
               Stay updated with publishing tips
             </p>
             <p className="gwh-ft-strip-sub">
-              Join 10,000+ authors getting weekly writing and publishing
-              insights.
+              Weekly insights for authors.
             </p>
           </div>
-
           <form
             className="gwh-ft-form"
             onSubmit={(e) => e.preventDefault()}
@@ -451,7 +353,7 @@ export default function Footer() {
             <input
               type="email"
               name="email"
-              placeholder="Your email address"
+              placeholder="Your email"
               className="gwh-ft-input"
               required
             />
@@ -462,25 +364,24 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ——— Section 2: Main columns ——— */}
+      {/* Main columns: Brand · Company · Contact */}
       <div className="gwh-ft-main">
         <div className="gwh-ft-main-inner">
-          {/* Column 1 — Brand */}
           <div className="gwh-ft-brand">
-            <a href="/" style={{ display: "block", lineHeight: 0 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/GhostWriterHunt-logo-white.webp"
-                alt="GhostWriterHunt"
-                style={{
-                  width: "180px",
-                  height: "auto",
-                  display: "block",
-                  marginBottom: "16px",
-                  marginTop: 0,
-                }}
-              />
-            </a>
+            <div className="gwh-ft-logo-wrap">
+              <a href="/" style={{ display: "block", lineHeight: 0 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/GhostWriterHunt-logo-white.webp"
+                  alt="GhostWriterHunt"
+                  style={{
+                    width: "180px",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              </a>
+            </div>
             <p className="gwh-ft-tagline">
               Professional ghostwriting services for authors worldwide. Your
               story. Your voice. Perfectly told.
@@ -504,19 +405,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 — Services */}
-          <div>
-            <h3 className="gwh-ft-heading">SERVICES</h3>
-            <nav aria-label="Footer services">
-              {SERVICE_LINKS.map((link) => (
-                <a key={link.label} href={link.href} className="gwh-ft-link">
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Column 3 — Company */}
           <div>
             <h3 className="gwh-ft-heading">COMPANY</h3>
             <nav aria-label="Footer company">
@@ -528,12 +416,9 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Column 4 — Contact */}
           <div className="gwh-ft-contact" id="contact">
             <h3 className="gwh-ft-heading">CONTACT</h3>
-
-            <div className="gwh-ft-contact-row">
-              <MailIcon />
+            <div className="gwh-ft-contact-item">
               <a
                 href="mailto:hello@ghostwriterhunt.com"
                 className="gwh-ft-contact-email"
@@ -541,20 +426,12 @@ export default function Footer() {
                 hello@ghostwriterhunt.com
               </a>
             </div>
-
-            <div className="gwh-ft-contact-row">
-              <MapPinIcon />
+            <div className="gwh-ft-contact-item">
               <p className="gwh-ft-contact-text">Houston, Texas, USA</p>
             </div>
-
-            <div className="gwh-ft-contact-row">
-              <ClockIcon />
-              <p className="gwh-ft-contact-text">Mon-Fri: 9am - 6pm CST</p>
+            <div className="gwh-ft-contact-item">
+              <p className="gwh-ft-contact-text">Mon–Fri: 9am – 6pm CST</p>
             </div>
-
-            <hr className="gwh-ft-contact-divider" />
-
-            <p className="gwh-ft-cta-label">Ready to start your book?</p>
             <a href="/#start" className="gwh-ft-cta-btn">
               Book Free Consultation
             </a>
@@ -562,7 +439,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ——— Section 3: Bottom bar ——— */}
+      {/* Bottom bar */}
       <div className="gwh-ft-bottom">
         <div className="gwh-ft-bottom-inner">
           <p className="gwh-ft-copy">
