@@ -181,13 +181,16 @@ export default function Footer() {
             <a href="/" className="mb-5 inline-block">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/GhostWriterHunt-LOGO-Transparent.webp"
+                src="/images/GhostWriterHunt-logo-white.webp"
                 alt="GhostWriterHunt"
                 style={{
-                  height: "48px",
-                  width: "auto",
+                  height: "auto",
+                  width: "200px",
+                  maxWidth: "200px",
+                  objectFit: "contain",
+                  objectPosition: "left bottom",
                   display: "block",
-                  filter: "brightness(0) invert(1)",
+                  marginBottom: "0",
                 }}
               />
             </a>
