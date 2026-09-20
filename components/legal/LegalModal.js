@@ -4,47 +4,57 @@ import { useEffect, useState } from "react";
 import { legalContent } from "./legalContent";
 
 /**
- * GhostWriterHunt — Mac OS–style bottom legal modal panel
+ * GhostWriterHunt — Bottom legal modal panel
  * Props: { isOpen, onClose, type } — type: privacy | terms | cookies | legal
  */
 
 const styles = `
-  @keyframes legalModalOpen {
+  @keyframes modalOpen {
     0% {
-      transform: scale(0.05) translateY(100%);
+      transform: translateY(100%);
       opacity: 0;
-      transform-origin: bottom center;
-    }
-    60% {
-      transform: scale(1.02) translateY(0);
-      opacity: 1;
     }
     100% {
-      transform: scale(1) translateY(0);
+      transform: translateY(0);
       opacity: 1;
     }
   }
 
-  @keyframes legalModalClose {
+  @keyframes modalClose {
     0% {
-      transform: scale(1) translateY(0);
+      transform: translateY(0);
       opacity: 1;
-      transform-origin: bottom center;
     }
     100% {
-      transform: scale(0.05) translateY(100%);
+      transform: translateY(100%);
       opacity: 0;
     }
   }
 
-  @keyframes legalBackdropIn {
+  @keyframes backdropOpen {
     from { opacity: 0; }
     to { opacity: 1; }
   }
 
-  @keyframes legalBackdropOut {
+  @keyframes backdropClose {
     from { opacity: 1; }
     to { opacity: 0; }
+  }
+
+  .modal-opening {
+    animation: modalOpen 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .modal-closing {
+    animation: modalClose 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .backdrop-opening {
+    animation: backdropOpen 0.3s ease forwards;
+  }
+
+  .backdrop-closing {
+    animation: backdropClose 0.3s ease forwards;
   }
 
   .legal-backdrop {
@@ -57,11 +67,6 @@ const styles = `
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 2000;
-    animation: legalBackdropIn 0.3s ease forwards;
-  }
-
-  .legal-backdrop.is-closing {
-    animation: legalBackdropOut 0.3s ease forwards;
   }
 
   .legal-panel {
@@ -76,12 +81,6 @@ const styles = `
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    animation: legalModalOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    transform-origin: bottom center;
-  }
-
-  .legal-panel.is-closing {
-    animation: legalModalClose 0.3s ease-in forwards;
   }
 
   .legal-header {
@@ -224,6 +223,11 @@ const styles = `
   }
 `;
 
+function clearBodyLock() {
+  document.body.style.overflow = "";
+  document.body.style.paddingRight = "";
+}
+
 export default function LegalModal({ isOpen, onClose, type }) {
   const [isClosing, setIsClosing] = useState(false);
 
@@ -235,18 +239,22 @@ export default function LegalModal({ isOpen, onClose, type }) {
     setTimeout(() => {
       setIsClosing(false);
       onClose();
-    }, 300);
+      clearBodyLock();
+    }, 350);
   };
 
-  // Body scroll lock
+  // Body scroll lock with scrollbar-width compensation (no layout shift)
   useEffect(() => {
     if (isOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
-      document.body.style.overflow = "";
+      clearBodyLock();
     }
     return () => {
-      document.body.style.overflow = "";
+      clearBodyLock();
     };
   }, [isOpen]);
 
@@ -271,13 +279,13 @@ export default function LegalModal({ isOpen, onClose, type }) {
       <style>{styles}</style>
 
       <div
-        className={`legal-backdrop${isClosing ? " is-closing" : ""}`}
+        className={`legal-backdrop ${isClosing ? "backdrop-closing" : "backdrop-opening"}`}
         onClick={handleClose}
         aria-hidden="true"
       />
 
       <div
-        className={`legal-panel${isClosing ? " is-closing" : ""}`}
+        className={`legal-panel ${isClosing ? "modal-closing" : "modal-opening"}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="legal-modal-title"
