@@ -72,7 +72,7 @@ function SocialIcon({ type }) {
 
 function FooterHeading({ children }) {
   return (
-    <h3 className="mb-5 font-inter text-[13px] font-semibold uppercase tracking-[0.1em] text-[#FFFFFF]">
+    <h3 className="mb-5 mt-0 font-inter text-[13px] font-semibold uppercase tracking-[0.1em] text-[#FFFFFF]">
       {children}
     </h3>
   );
@@ -98,8 +98,35 @@ export default function Footer() {
       <style>{`
         .gwh-footer-grid {
           display: grid;
-          grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+          grid-template-columns: 1.2fr 1fr 0.8fr 1fr;
           gap: 40px;
+          align-items: start;
+        }
+
+        .gwh-footer-brand {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-top: 0;
+          margin-top: 0;
+        }
+
+        .gwh-footer-brand-link {
+          display: block;
+          margin: 0;
+          padding: 0;
+          line-height: 0;
+        }
+
+        .gwh-footer-logo {
+          width: 180px;
+          max-width: 180px;
+          height: auto;
+          object-fit: contain;
+          object-position: left top;
+          display: block;
+          margin: 0 0 20px 0;
+          padding: 0;
         }
 
         @media (max-width: 768px) {
@@ -138,6 +165,7 @@ export default function Footer() {
             align-items: center;
             display: flex;
             flex-direction: column;
+            padding-top: 0;
           }
           .gwh-footer-social {
             justify-content: center;
@@ -202,20 +230,12 @@ export default function Footer() {
         <div className="gwh-footer-grid">
           {/* Column 1 — Brand */}
           <div className="gwh-footer-brand">
-            <a href="/" className="mb-5 inline-block">
+            <a href="/" className="gwh-footer-brand-link">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/GhostWriterHunt-logo-white.webp"
                 alt="GhostWriterHunt"
-                style={{
-                  height: "auto",
-                  width: "200px",
-                  maxWidth: "200px",
-                  objectFit: "contain",
-                  objectPosition: "left bottom",
-                  display: "block",
-                  marginBottom: "0",
-                }}
+                className="gwh-footer-logo"
               />
             </a>
             <p className="mb-6 max-w-[220px] font-inter text-[14px] font-normal leading-[1.7] text-[#999999]">
