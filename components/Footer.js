@@ -33,9 +33,10 @@ const COMPANY_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "#privacy" },
-  { label: "Terms of Use", href: "#terms" },
-  { label: "Cookie Policy", href: "#cookies" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Use", href: "/terms-of-use" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Legal", href: "/legal" },
 ];
 
 function SocialIcon({ type }) {
