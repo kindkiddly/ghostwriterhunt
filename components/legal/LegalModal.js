@@ -226,6 +226,23 @@ const styles = `
 function clearBodyLock() {
   document.body.style.overflow = "";
   document.body.style.paddingRight = "";
+  const navbar = document.querySelector("nav");
+  if (navbar) {
+    navbar.style.paddingRight = "";
+  }
+}
+
+function applyBodyLock() {
+  const scrollbarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
+  const navbar = document.querySelector("nav");
+
+  document.body.style.overflow = "hidden";
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+  if (navbar) {
+    navbar.style.paddingRight = `${scrollbarWidth}px`;
+  }
 }
 
 export default function LegalModal({ isOpen, onClose, type }) {
@@ -246,10 +263,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
   // Body scroll lock with scrollbar-width compensation (no layout shift)
   useEffect(() => {
     if (isOpen) {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      applyBodyLock();
     } else {
       clearBodyLock();
     }
