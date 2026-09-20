@@ -1,19 +1,16 @@
+"use client";
+
+import { useEffect } from "react";
 import Footer from "@/components/Footer";
 
 /**
  * GhostWriterHunt — Privacy Policy
  */
 
-export const metadata = {
-  title: "Privacy Policy | GhostWriterHunt",
-  description:
-    "GhostWriterHunt privacy policy — how we collect, use and protect your personal information.",
-};
-
 const styles = `
   .lp-hero {
     background: #1C1C1C;
-    padding: 80px 0 80px;
+    padding-bottom: 80px;
   }
   .lp-hero-inner, .lp-content-inner {
     max-width: 800px;
@@ -122,16 +119,33 @@ const styles = `
   @media (max-width: 768px) {
     .lp-title { font-size: 36px; }
     .lp-card { padding: 32px 24px; }
-    .lp-hero { padding: 80px 0 60px; }
+    .lp-hero { padding-bottom: 60px; }
   }
 `;
 
 export default function PrivacyPolicyPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "Privacy Policy | GhostWriterHunt";
+  }, []);
+
   return (
-    <main className="m-0 max-w-full overflow-x-hidden p-0">
+    <main
+      className="m-0 max-w-full p-0"
+      style={{
+        overflowX: "hidden",
+        overflowAnchor: "none",
+      }}
+    >
       <style>{styles}</style>
 
-      <section className="lp-hero">
+      <section
+        className="lp-hero"
+        style={{
+          paddingTop: "80px",
+          scrollMarginTop: "80px",
+        }}
+      >
         <div className="lp-hero-inner">
           <p className="lp-label">LEGAL</p>
           <h1 className="lp-title">Privacy Policy</h1>

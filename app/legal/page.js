@@ -1,15 +1,12 @@
+"use client";
+
+import { useEffect } from "react";
 import Footer from "@/components/Footer";
 
 /**
  * GhostWriterHunt — Legal hub
  * Links to all legal documents + SMS consent agreement.
  */
-
-export const metadata = {
-  title: "Legal | GhostWriterHunt",
-  description:
-    "GhostWriterHunt legal information — privacy policy, terms of use, cookie policy and consent agreements.",
-};
 
 const DOCUMENTS = [
   {
@@ -64,7 +61,7 @@ function DocIcon() {
 const styles = `
   .lp-hero {
     background: #1C1C1C;
-    padding: 80px 0 80px;
+    padding-bottom: 80px;
   }
   .lp-hero-inner, .lp-content-inner {
     max-width: 800px;
@@ -224,7 +221,7 @@ const styles = `
   @media (max-width: 768px) {
     .lp-title { font-size: 36px; }
     .lp-card { padding: 32px 24px; }
-    .lp-hero { padding: 80px 0 60px; }
+    .lp-hero { padding-bottom: 60px; }
     .lp-doc-card {
       flex-direction: column;
       align-items: flex-start;
@@ -234,11 +231,28 @@ const styles = `
 `;
 
 export default function LegalPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "Legal | GhostWriterHunt";
+  }, []);
+
   return (
-    <main className="m-0 max-w-full overflow-x-hidden p-0">
+    <main
+      className="m-0 max-w-full p-0"
+      style={{
+        overflowX: "hidden",
+        overflowAnchor: "none",
+      }}
+    >
       <style>{styles}</style>
 
-      <section className="lp-hero">
+      <section
+        className="lp-hero"
+        style={{
+          paddingTop: "80px",
+          scrollMarginTop: "80px",
+        }}
+      >
         <div className="lp-hero-inner">
           <p className="lp-label">LEGAL</p>
           <h1 className="lp-title">Legal</h1>
