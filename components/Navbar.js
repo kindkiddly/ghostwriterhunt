@@ -58,11 +58,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const closeTimer = useRef(null);
+  const aboutCloseTimer = useRef(null);
   const servicesLinkRef = useRef(null);
+  const aboutLinkRef = useRef(null);
   const megaMenuRef = useRef(null);
+  const aboutMenuRef = useRef(null);
 
   useEffect(() => {
     // Smooth in-page jumps for hash nav links
@@ -89,24 +93,29 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Close mega menu on Escape
+  // Close mega menus on Escape
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape") setMegaMenuOpen(false);
+      if (e.key === "Escape") {
+        setMegaMenuOpen(false);
+        setAboutMenuOpen(false);
+      }
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  // Clear close timer on unmount
+  // Clear close timers on unmount
   useEffect(() => {
     return () => {
       clearTimeout(closeTimer.current);
+      clearTimeout(aboutCloseTimer.current);
     };
   }, []);
 
   const handleServicesEnter = () => {
     clearTimeout(closeTimer.current);
+    setAboutMenuOpen(false);
     setMegaMenuOpen(true);
   };
 
@@ -124,12 +133,33 @@ export default function Navbar() {
     setMegaMenuOpen(false);
   };
 
+  const handleAboutEnter = () => {
+    clearTimeout(aboutCloseTimer.current);
+    setMegaMenuOpen(false);
+    setAboutMenuOpen(true);
+  };
+
+  const handleAboutLeave = () => {
+    aboutCloseTimer.current = setTimeout(() => {
+      setAboutMenuOpen(false);
+    }, 150);
+  };
+
+  const handleAboutMenuEnter = () => {
+    clearTimeout(aboutCloseTimer.current);
+  };
+
+  const handleAboutMenuLeave = () => {
+    setAboutMenuOpen(false);
+  };
+
   const navLinks = [
     { label: "How It Works", href: "#how-it-works" },
     { label: "Services", href: "#services", isServices: true },
     { label: "Our Writers", href: "#writers" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
+    { label: "About Us", href: "/about", isAbout: true },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -163,17 +193,17 @@ export default function Navbar() {
         outline: "none",
         boxShadow: isLegalPage
           ? "0 1px 20px rgba(0,0,0,0.06)"
-          : scrolled || mobileOpen || megaMenuOpen
+          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
             ? "0 1px 20px rgba(0,0,0,0.06)"
             : "none",
         backdropFilter: isLegalPage
           ? "none"
-          : scrolled || mobileOpen || megaMenuOpen
+          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
             ? "blur(12px)"
             : "none",
         background: isLegalPage
           ? "rgba(250,250,247,0.98)"
-          : scrolled || mobileOpen || megaMenuOpen
+          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
             ? "rgba(250,250,247,0.98)"
             : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
         transition: isLegalPage
@@ -293,6 +323,11 @@ export default function Navbar() {
         }
         .nav-mega-footer-right:hover {
           text-decoration: underline;
+        }
+
+        /* About Us mega — single column (does not alter Services grid) */
+        .nav-mega-about .nav-mega-inner {
+          grid-template-columns: minmax(200px, 280px);
         }
 
         /* Mobile services accordion */
@@ -425,6 +460,48 @@ export default function Navbar() {
                   >
                     {link.label}
                     <ChevronIcon open={megaMenuOpen} />
+                  </a>
+                </li>
+              );
+            }
+
+            if (link.isAbout) {
+              return (
+                <li
+                  key={link.href}
+                  style={{ display: "flex", height: "70px" }}
+                  ref={aboutLinkRef}
+                  onMouseEnter={handleAboutEnter}
+                  onMouseLeave={handleAboutLeave}
+                >
+                  <a
+                    href={link.href}
+                    aria-haspopup="true"
+                    aria-expanded={aboutMenuOpen}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "70px",
+                      padding: "0 16px",
+                      fontSize: "15px",
+                      fontFamily: "var(--font-inter), Inter, sans-serif",
+                      fontWeight: 500,
+                      color: aboutMenuOpen ? "#C9A84C" : "#1C1C1C",
+                      textDecoration: "none",
+                      whiteSpace: "nowrap",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#C9A84C";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!aboutMenuOpen) {
+                        e.currentTarget.style.color = "#1C1C1C";
+                      }
+                    }}
+                  >
+                    {link.label}
+                    <ChevronIcon open={aboutMenuOpen} />
                   </a>
                 </li>
               );
@@ -599,6 +676,48 @@ export default function Navbar() {
           </p>
           <a href="/#services" className="nav-mega-footer-right">
             View all services →
+          </a>
+        </div>
+      </div>
+
+      {/* Desktop About Us mega menu */}
+      <div
+        ref={aboutMenuRef}
+        className={`nav-mega nav-mega-about${aboutMenuOpen ? " open" : ""}`}
+        onMouseEnter={handleAboutMenuEnter}
+        onMouseLeave={handleAboutMenuLeave}
+        aria-hidden={!aboutMenuOpen}
+      >
+        <div className="nav-mega-inner">
+          <div className="nav-mega-col">
+            <p className="nav-mega-heading">COMPANY</p>
+            <a
+              href="/about"
+              className="nav-mega-link"
+              onClick={() => setAboutMenuOpen(false)}
+            >
+              About Us
+            </a>
+          </div>
+        </div>
+
+        <div className="nav-mega-footer">
+          <p className="nav-mega-footer-left">
+            <a
+              href="/about"
+              className="nav-mega-footer-link"
+              style={{ marginLeft: 0 }}
+              onClick={() => setAboutMenuOpen(false)}
+            >
+              Learn more about our team →
+            </a>
+          </p>
+          <a
+            href="/#start"
+            className="nav-mega-footer-right"
+            onClick={() => setAboutMenuOpen(false)}
+          >
+            Contact Us →
           </a>
         </div>
       </div>
