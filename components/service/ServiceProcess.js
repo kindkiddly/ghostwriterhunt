@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { getImageDimensions } from "@/data/imageDimensions";
 
 /**
  * GhostWriterHunt — ServiceProcess
@@ -162,12 +163,17 @@ export default function ServiceProcess({ service }) {
           {service.process.map((step, index) => {
             // Odd steps (0,2,4): image left — Even: content left (image right)
             const imageLeft = index % 2 === 0;
+            const { width, height } = getImageDimensions(step.image);
             const image = (
               <div className="sp-col">
                 <img
                   src={step.image}
                   alt={step.title}
                   className="sp-img"
+                  width={width}
+                  height={height}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             );

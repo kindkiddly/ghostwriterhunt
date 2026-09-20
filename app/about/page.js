@@ -1124,6 +1124,10 @@ export default function AboutPage() {
               src="/images/modern-office.webp"
               alt="Professional team"
               className="ab-why-img"
+              width="800"
+              height="533"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

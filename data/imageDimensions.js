@@ -1,0 +1,39 @@
+/**
+ * Intrinsic width/height for optimized images in public/images,
+ * used to set explicit <img> dimensions and prevent layout shift.
+ */
+
+export const IMAGE_DIMENSIONS = {
+  "/images/author-reading.webp": { width: 800, height: 533 },
+  "/images/book-pen-laptop.webp": { width: 800, height: 600 },
+  "/images/books-education.webp": { width: 400, height: 300 },
+  "/images/books-fairy-lights.webp": { width: 600, height: 900 },
+  "/images/books-flatlay.webp": { width: 1620, height: 1080 },
+  "/images/books-stack-pink.webp": { width: 1350, height: 900 },
+  "/images/books-table.webp": { width: 800, height: 533 },
+  "/images/coffee-laptop.webp": { width: 1620, height: 1080 },
+  "/images/collaboration-laptop.webp": { width: 400, height: 300 },
+  "/images/desk-quote.webp": { width: 1620, height: 1080 },
+  "/images/flipping-book.webp": { width: 900, height: 900 },
+  "/images/fountain-pen-notes.webp": { width: 400, height: 300 },
+  "/images/GhostWriterHunt-LOGO-Transparent.webp": { width: 400, height: 160 },
+  "/images/GhostWriterHunt-logo-white.webp": { width: 400, height: 160 },
+  "/images/laptop-workspace.webp": { width: 1620, height: 1080 },
+  "/images/library-books.webp": { width: 300, height: 350 },
+  "/images/library-wide.webp": { width: 685, height: 800 },
+  "/images/modern-office.webp": { width: 800, height: 533 },
+  "/images/notebook-coffee.webp": { width: 1620, height: 1080 },
+  "/images/office-meeting.webp": { width: 1350, height: 900 },
+  "/images/open-book-light.webp": { width: 1620, height: 1080 },
+  "/images/team-collaboration.webp": { width: 467, height: 700 },
+  "/images/typewriter.webp": { width: 1620, height: 1080 },
+  "/images/workspace-desk.webp": { width: 1701, height: 1080 },
+  "/images/writing-desk.webp": { width: 400, height: 300 },
+  "/images/writing-hands.webp": { width: 1350, height: 900 },
+};
+
+const FALLBACK_DIMENSIONS = { width: 800, height: 600 };
+
+export function getImageDimensions(src) {
+  return IMAGE_DIMENSIONS[src] || FALLBACK_DIMENSIONS;
+}

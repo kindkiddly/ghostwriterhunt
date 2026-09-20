@@ -214,6 +214,10 @@ export default function NarrativeBlock3() {
               src="/images/library-books.webp"
               alt="Stack of books ready for global publishing"
               className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
+              width="300"
+              height="350"
+              loading="lazy"
+              decoding="async"
               style={{
                 boxShadow:
                   "0 0 0 1px rgba(201,168,76,0.2), 0 20px 60px rgba(0,0,0,0.4)",

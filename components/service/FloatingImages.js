@@ -1,5 +1,7 @@
 "use client";
 
+import { getImageDimensions } from "@/data/imageDimensions";
+
 /**
  * GhostWriterHunt — FloatingImages
  * Reusable floating / mosaic image cluster for service pages.
@@ -57,14 +59,21 @@ export default function FloatingImages({ images = [], className = "" }) {
             }
           }
         `}</style>
-        {list.map((img) => (
-          <img
-            key={img.url}
-            src={img.url}
-            alt={img.alt || ""}
-            className="fi-mosaic-img"
-          />
-        ))}
+        {list.map((img) => {
+          const { width, height } = getImageDimensions(img.url);
+          return (
+            <img
+              key={img.url}
+              src={img.url}
+              alt={img.alt || ""}
+              className="fi-mosaic-img"
+              width={width}
+              height={height}
+              loading="lazy"
+              decoding="async"
+            />
+          );
+        })}
       </div>
     );
   }
@@ -101,11 +110,20 @@ export default function FloatingImages({ images = [], className = "" }) {
             }
           }
         `}</style>
-        <img
-          src={list[0].url}
-          alt={list[0].alt || ""}
-          className="fi-single-img"
-        />
+        {(() => {
+          const { width, height } = getImageDimensions(list[0].url);
+          return (
+            <img
+              src={list[0].url}
+              alt={list[0].alt || ""}
+              className="fi-single-img"
+              width={width}
+              height={height}
+              loading="lazy"
+              decoding="async"
+            />
+          );
+        })()}
       </div>
     );
   }
@@ -204,12 +222,17 @@ export default function FloatingImages({ images = [], className = "" }) {
             : img.size === "small"
               ? "fi-float-small"
               : "fi-float-large";
+        const { width, height } = getImageDimensions(img.url);
         return (
           <img
             key={img.url}
             src={img.url}
             alt={img.alt || ""}
             className={`fi-float-img ${sizeClass}`}
+            width={width}
+            height={height}
+            loading="lazy"
+            decoding="async"
           />
         );
       })}

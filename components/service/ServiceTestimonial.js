@@ -154,6 +154,10 @@ export default function ServiceTestimonial({ service }) {
             src={t.image}
             alt={t.author}
             className="st-photo"
+            width="64"
+            height="64"
+            loading="lazy"
+            decoding="async"
           />
           <div>
             <p className="st-name">{t.author}</p>
