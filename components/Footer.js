@@ -2,7 +2,7 @@
 
 /**
  * GhostWriterHunt — Footer
- * 4-column dark band: brand, services, company, contact + legal bar.
+ * Premium 3-section dark band: newsletter strip, 4 columns, legal bar.
  */
 
 const SERVICE_LINKS = [
@@ -34,8 +34,8 @@ const LEGAL_LINKS = [
 
 function SocialIcon({ type }) {
   const common = {
-    width: 18,
-    height: 18,
+    width: 16,
+    height: 16,
     viewBox: "0 0 24 24",
     fill: "currentColor",
     "aria-hidden": true,
@@ -70,143 +70,381 @@ function SocialIcon({ type }) {
   }
 }
 
-function FooterHeading({ children }) {
+function MailIcon() {
   return (
-    <h3 className="mb-5 mt-0 font-inter text-[13px] font-semibold uppercase tracking-[0.1em] text-[#FFFFFF]">
-      {children}
-    </h3>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#C9A84C"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
   );
 }
 
-function FooterLink({ href, children }) {
+function MapPinIcon() {
   return (
-    <a
-      href={href}
-      className="block font-inter text-[14px] font-normal leading-[2] text-[#666666] no-underline transition-colors duration-200 ease-in-out hover:text-[#C9A84C]"
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#888888"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0"
     >
-      {children}
-    </a>
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#888888"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
   );
 }
 
 export default function Footer() {
   return (
-    <footer
-      className="w-full overflow-x-hidden bg-[#1C1C1C] pb-10 pt-[80px]"
-      aria-label="Site footer"
-    >
+    <footer className="gwh-footer" aria-label="Site footer">
       <style>{`
-        .gwh-footer-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr 0.8fr 1fr;
-          gap: 40px;
-          align-items: start;
+        .gwh-footer {
+          width: 100%;
+          background: #1C1C1C;
+          overflow-x: hidden;
         }
 
-        .gwh-footer-brand {
+        /* ——— Section 1: Newsletter strip ——— */
+        .gwh-ft-strip {
+          background: #242424;
+          border-bottom: 1px solid #2A2A2A;
+          padding: 32px 0;
+        }
+        .gwh-ft-strip-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+        }
+        .gwh-ft-strip-heading {
+          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-weight: 700;
+          font-size: 20px;
+          color: #FFFFFF;
+          margin: 0;
+        }
+        .gwh-ft-strip-sub {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #999999;
+          margin: 4px 0 0;
+        }
+        .gwh-ft-form {
+          display: flex;
+          flex-direction: row;
+          flex-shrink: 0;
+        }
+        .gwh-ft-input {
+          width: 260px;
+          background: #1C1C1C;
+          border: 1px solid #333333;
+          border-radius: 6px 0 0 6px;
+          padding: 12px 20px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #FFFFFF;
+          outline: none;
+        }
+        .gwh-ft-input::placeholder {
+          color: #555555;
+        }
+        .gwh-ft-input:focus {
+          border-color: #C9A84C;
+        }
+        .gwh-ft-submit {
+          background: #C9A84C;
+          border: none;
+          border-radius: 0 6px 6px 0;
+          padding: 12px 24px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          color: #FFFFFF;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .gwh-ft-submit:hover {
+          background: #B8960C;
+        }
+
+        /* ——— Section 2: Main columns ——— */
+        .gwh-ft-main {
+          padding: 60px 0 48px;
+        }
+        .gwh-ft-main-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+          display: grid;
+          grid-template-columns: 1.4fr 1fr 1fr 1fr;
+          gap: 48px;
+          align-items: start;
+        }
+        .gwh-ft-brand {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           padding-top: 0;
           margin-top: 0;
         }
-
-        .gwh-footer-brand-link {
-          display: block;
-          margin: 0;
-          padding: 0;
-          line-height: 0;
+        .gwh-ft-tagline {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #888888;
+          line-height: 1.7;
+          max-width: 220px;
+          margin: 0 0 24px;
+        }
+        .gwh-ft-social {
+          display: flex;
+          flex-direction: row;
+          gap: 16px;
+          margin-top: 0;
+        }
+        .gwh-ft-social-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #2A2A2A;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #888888;
+          text-decoration: none;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .gwh-ft-social-btn:hover {
+          background: #C9A84C;
+          color: #FFFFFF;
         }
 
-        .gwh-footer-logo {
-          width: 180px;
-          max-width: 180px;
-          height: auto;
-          object-fit: contain;
-          object-position: left top;
+        .gwh-ft-heading {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          color: #C9A84C;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          margin: 0 0 20px;
+          padding: 0 0 12px;
+          border-bottom: 1px solid #2A2A2A;
+        }
+        .gwh-ft-link {
           display: block;
-          margin: 0 0 20px 0;
-          padding: 0;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #888888;
+          text-decoration: none;
+          padding: 5px 0;
+          transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+        .gwh-ft-link:hover {
+          color: #FFFFFF;
+          padding-left: 4px;
+        }
+
+        .gwh-ft-contact-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 14px;
+        }
+        .gwh-ft-contact-email {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 500;
+          font-size: 14px;
+          color: #C9A84C;
+          text-decoration: none;
+        }
+        .gwh-ft-contact-email:hover {
+          text-decoration: underline;
+        }
+        .gwh-ft-contact-text {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #888888;
+          margin: 0;
+        }
+        .gwh-ft-contact-divider {
+          border: none;
+          border-top: 1px solid #2A2A2A;
+          margin: 20px 0;
+        }
+        .gwh-ft-cta-label {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 13px;
+          color: #666666;
+          margin: 0 0 10px;
+        }
+        .gwh-ft-cta-btn {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          text-align: center;
+          background: transparent;
+          border: 1px solid #C9A84C;
+          border-radius: 6px;
+          padding: 10px 16px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 500;
+          font-size: 13px;
+          color: #C9A84C;
+          text-decoration: none;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .gwh-ft-cta-btn:hover {
+          background: #C9A84C;
+          color: #FFFFFF;
+        }
+
+        /* ——— Section 3: Bottom bar ——— */
+        .gwh-ft-bottom {
+          border-top: 1px solid #2A2A2A;
+          padding: 20px 0;
+        }
+        .gwh-ft-bottom-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+        }
+        .gwh-ft-copy {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 13px;
+          color: #555555;
+          margin: 0;
+        }
+        .gwh-ft-legal {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 24px;
+        }
+        .gwh-ft-legal a {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 13px;
+          color: #555555;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        .gwh-ft-legal a:hover {
+          color: #C9A84C;
         }
 
         @media (max-width: 768px) {
-          .gwh-footer-inner {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-          }
-          .gwh-footer-newsletter {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
+          .gwh-ft-strip-inner {
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            align-items: center !important;
           }
-          .gwh-footer-form {
-            flex-direction: column !important;
-            width: 100% !important;
-            max-width: 100% !important;
-          }
-          .gwh-footer-form input {
-            width: 100% !important;
-            border-radius: 6px !important;
-            border-right-width: 1px !important;
-          }
-          .gwh-footer-form button {
+          .gwh-ft-form {
+            flex-direction: column;
             width: 100%;
-            border-radius: 6px !important;
+          }
+          .gwh-ft-input {
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 6px;
+          }
+          .gwh-ft-submit {
+            width: 100%;
+            border-radius: 6px;
             margin-top: 8px;
           }
-          .gwh-footer-grid {
+          .gwh-ft-main-inner {
             grid-template-columns: 1fr 1fr;
-            gap: 32px 24px;
+            gap: 36px 24px;
           }
-          .gwh-footer-brand {
+          .gwh-ft-brand {
             grid-column: 1 / -1;
-            text-align: center;
             align-items: center;
-            display: flex;
-            flex-direction: column;
-            padding-top: 0;
+            text-align: center;
           }
-          .gwh-footer-social {
+          .gwh-ft-tagline {
+            max-width: 280px;
+          }
+          .gwh-ft-social {
             justify-content: center;
           }
-          .gwh-footer-contact {
+          .gwh-ft-contact {
             grid-column: 1 / -1;
           }
-          .gwh-footer-mini-form {
-            flex-direction: column !important;
-            width: 100% !important;
-          }
-          .gwh-footer-mini-form input {
-            width: 100% !important;
-            border-radius: 6px !important;
-            border-right-width: 1px !important;
-          }
-          .gwh-footer-mini-form button {
-            width: 100%;
-            border-radius: 6px !important;
-            margin-top: 8px;
-          }
-          .gwh-footer-bottom {
+          .gwh-ft-bottom-inner {
+            flex-direction: column;
             text-align: center;
-            justify-content: center !important;
+          }
+          .gwh-ft-legal {
+            justify-content: center;
+            gap: 16px;
           }
         }
       `}</style>
-      <div className="gwh-footer-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
-        {/* Newsletter strip */}
-        <div className="gwh-footer-newsletter mb-[60px] flex flex-col items-start justify-between gap-6 rounded-2xl bg-[#2A2A2A] px-10 py-8 lg:flex-row lg:items-center">
+
+      {/* ——— Section 1: Newsletter strip ——— */}
+      <div className="gwh-ft-strip">
+        <div className="gwh-ft-strip-inner">
           <div>
-            <p className="mb-2 font-playfair text-[22px] font-bold text-[#FFFFFF]">
+            <p className="gwh-ft-strip-heading">
               Stay updated with publishing tips
             </p>
-            <p className="font-inter text-[14px] font-normal text-[#666666]">
-              Join 10,000+ authors getting weekly insights.
+            <p className="gwh-ft-strip-sub">
+              Join 10,000+ authors getting weekly writing and publishing
+              insights.
             </p>
           </div>
 
           <form
-            className="gwh-footer-form flex w-full max-w-[420px] shrink-0"
+            className="gwh-ft-form"
             onSubmit={(e) => e.preventDefault()}
             aria-label="Newsletter signup"
           >
@@ -214,35 +452,40 @@ export default function Footer() {
               type="email"
               name="email"
               placeholder="Your email address"
-              className="w-full min-w-0 flex-1 rounded-l-[6px] border border-[#333333] border-r-0 bg-[#1C1C1C] px-5 py-3 font-inter text-[14px] text-white outline-none placeholder:text-[#666666] focus:border-[#C9A84C] lg:w-[280px] lg:flex-none"
+              className="gwh-ft-input"
               required
             />
-            <button
-              type="submit"
-              className="shrink-0 rounded-r-[6px] border-0 bg-[#C9A84C] px-6 py-3 font-inter text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
-            >
+            <button type="submit" className="gwh-ft-submit">
               Subscribe
             </button>
           </form>
         </div>
+      </div>
 
-        {/* 4-column grid: Brand · Services · Company · Contact */}
-        <div className="gwh-footer-grid">
+      {/* ——— Section 2: Main columns ——— */}
+      <div className="gwh-ft-main">
+        <div className="gwh-ft-main-inner">
           {/* Column 1 — Brand */}
-          <div className="gwh-footer-brand">
-            <a href="/" className="gwh-footer-brand-link">
+          <div className="gwh-ft-brand">
+            <a href="/" style={{ display: "block", lineHeight: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/GhostWriterHunt-logo-white.webp"
                 alt="GhostWriterHunt"
-                className="gwh-footer-logo"
+                style={{
+                  width: "180px",
+                  height: "auto",
+                  display: "block",
+                  marginBottom: "16px",
+                  marginTop: 0,
+                }}
               />
             </a>
-            <p className="mb-6 max-w-[220px] font-inter text-[14px] font-normal leading-[1.7] text-[#999999]">
+            <p className="gwh-ft-tagline">
               Professional ghostwriting services for authors worldwide. Your
               story. Your voice. Perfectly told.
             </p>
-            <div className="gwh-footer-social flex items-center gap-4">
+            <div className="gwh-ft-social">
               {[
                 { type: "facebook", label: "Facebook", href: "#facebook" },
                 { type: "twitter", label: "Twitter", href: "#twitter" },
@@ -253,7 +496,7 @@ export default function Footer() {
                   key={social.type}
                   href={social.href}
                   aria-label={social.label}
-                  className="text-[#666666] transition-colors duration-200 ease-in-out hover:text-[#C9A84C]"
+                  className="gwh-ft-social-btn"
                 >
                   <SocialIcon type={social.type} />
                 </a>
@@ -263,89 +506,71 @@ export default function Footer() {
 
           {/* Column 2 — Services */}
           <div>
-            <FooterHeading>Services</FooterHeading>
+            <h3 className="gwh-ft-heading">SERVICES</h3>
             <nav aria-label="Footer services">
               {SERVICE_LINKS.map((link) => (
-                <FooterLink key={link.label} href={link.href}>
+                <a key={link.label} href={link.href} className="gwh-ft-link">
                   {link.label}
-                </FooterLink>
+                </a>
               ))}
             </nav>
           </div>
 
           {/* Column 3 — Company */}
           <div>
-            <FooterHeading>Company</FooterHeading>
+            <h3 className="gwh-ft-heading">COMPANY</h3>
             <nav aria-label="Footer company">
               {COMPANY_LINKS.map((link) => (
-                <FooterLink key={link.label} href={link.href}>
+                <a key={link.label} href={link.href} className="gwh-ft-link">
                   {link.label}
-                </FooterLink>
+                </a>
               ))}
             </nav>
           </div>
 
           {/* Column 4 — Contact */}
-          <div className="gwh-footer-contact" id="contact">
-            <FooterHeading>Contact</FooterHeading>
-            <a
-              href="mailto:hello@ghostwriterhunt.com"
-              className="font-inter text-[14px] font-medium text-[#C9A84C] no-underline hover:underline"
-            >
-              hello@ghostwriterhunt.com
-            </a>
-            <p className="mt-3 font-inter text-[14px] font-normal text-[#666666]">
-              Houston, USA
-            </p>
-            <p className="mt-1 font-inter text-[14px] font-normal text-[#666666]">
-              Mon-Fri: 9am - 6pm CST
-            </p>
+          <div className="gwh-ft-contact" id="contact">
+            <h3 className="gwh-ft-heading">CONTACT</h3>
 
-            <div className="my-5 h-px w-full bg-[#333333]" aria-hidden="true" />
-
-            <p className="mb-3 font-inter text-[13px] font-normal text-[#999999]">
-              Get writing tips weekly
-            </p>
-            <form
-              className="gwh-footer-mini-form flex w-full"
-              onSubmit={(e) => e.preventDefault()}
-              aria-label="Footer newsletter signup"
-            >
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email"
-                className="w-full min-w-0 flex-1 rounded-l-[6px] border border-[#333333] border-r-0 bg-[#1C1C1C] px-3 py-2.5 font-inter text-[13px] text-white outline-none placeholder:text-[#666666] focus:border-[#C9A84C]"
-                required
-              />
-              <button
-                type="submit"
-                className="shrink-0 rounded-r-[6px] border-0 bg-[#C9A84C] px-4 py-2.5 font-inter text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
+            <div className="gwh-ft-contact-row">
+              <MailIcon />
+              <a
+                href="mailto:hello@ghostwriterhunt.com"
+                className="gwh-ft-contact-email"
               >
-                Subscribe
-              </button>
-            </form>
+                hello@ghostwriterhunt.com
+              </a>
+            </div>
+
+            <div className="gwh-ft-contact-row">
+              <MapPinIcon />
+              <p className="gwh-ft-contact-text">Houston, Texas, USA</p>
+            </div>
+
+            <div className="gwh-ft-contact-row">
+              <ClockIcon />
+              <p className="gwh-ft-contact-text">Mon-Fri: 9am - 6pm CST</p>
+            </div>
+
+            <hr className="gwh-ft-contact-divider" />
+
+            <p className="gwh-ft-cta-label">Ready to start your book?</p>
+            <a href="/#start" className="gwh-ft-cta-btn">
+              Book Free Consultation
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Divider */}
-        <div className="my-10 h-px w-full bg-[#2A2A2A]" aria-hidden="true" />
-
-        {/* Bottom bar */}
-        <div className="gwh-footer-bottom flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
-          <p className="font-inter text-[13px] font-normal text-[#666666]">
+      {/* ——— Section 3: Bottom bar ——— */}
+      <div className="gwh-ft-bottom">
+        <div className="gwh-ft-bottom-inner">
+          <p className="gwh-ft-copy">
             © 2026 GhostWriterHunt. All rights reserved.
           </p>
-          <nav
-            className="flex flex-wrap items-center justify-center gap-6"
-            aria-label="Legal"
-          >
+          <nav className="gwh-ft-legal" aria-label="Legal">
             {LEGAL_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="font-inter text-[13px] font-normal text-[#666666] no-underline transition-colors duration-200 ease-in-out hover:text-[#C9A84C]"
-              >
+              <a key={link.label} href={link.href}>
                 {link.label}
               </a>
             ))}
