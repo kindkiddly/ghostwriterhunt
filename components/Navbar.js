@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { servicesByCategory } from "@/data/services";
 
 /**
@@ -45,6 +46,15 @@ function ChevronIcon({ open }) {
 }
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isLegalPage = [
+    "/privacy-policy",
+    "/terms-of-use",
+    "/cookie-policy",
+    "/legal",
+    "/about",
+  ].includes(pathname);
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -58,6 +68,11 @@ export default function Navbar() {
     // Smooth in-page jumps for hash nav links
     document.documentElement.style.scrollBehavior = "smooth";
 
+    if (isLegalPage) {
+      setScrolled(true);
+      return;
+    }
+
     const onScroll = () => {
       setScrolled(window.scrollY > 80);
     };
@@ -65,7 +80,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isLegalPage]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -146,17 +161,24 @@ export default function Navbar() {
         border: "none",
         borderBottom: "none",
         outline: "none",
-        boxShadow:
-          scrolled || mobileOpen || megaMenuOpen
+        boxShadow: isLegalPage
+          ? "0 1px 20px rgba(0,0,0,0.06)"
+          : scrolled || mobileOpen || megaMenuOpen
             ? "0 1px 20px rgba(0,0,0,0.06)"
             : "none",
-        backdropFilter:
-          scrolled || mobileOpen || megaMenuOpen ? "blur(12px)" : "none",
-        background:
-          scrolled || mobileOpen || megaMenuOpen
+        backdropFilter: isLegalPage
+          ? "none"
+          : scrolled || mobileOpen || megaMenuOpen
+            ? "blur(12px)"
+            : "none",
+        background: isLegalPage
+          ? "rgba(250,250,247,0.98)"
+          : scrolled || mobileOpen || megaMenuOpen
             ? "rgba(250,250,247,0.98)"
             : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
-        transition: "background 0.4s ease, box-shadow 0.4s ease",
+        transition: isLegalPage
+          ? "none"
+          : "background 0.4s ease, box-shadow 0.4s ease",
       }}
     >
       <style>{`

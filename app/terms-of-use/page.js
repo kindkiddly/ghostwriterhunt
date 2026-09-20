@@ -12,45 +12,9 @@ export const metadata = {
 
 const styles = `
   .lp-hero {
-    position: relative;
     background: #1C1C1C;
-    padding: 120px 0 60px;
+    padding: 80px 0 80px;
   }
-  .lp-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-inter), Inter, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: #C9A84C;
-    text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin: 0 0 24px;
-    transition: opacity 0.2s ease;
-  }
-  .lp-back:hover { opacity: 0.8; }
-  .lp-close {
-    position: absolute;
-    top: 100px;
-    right: 24px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    color: #FFFFFF;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    line-height: 1;
-  }
-  .lp-close:hover { background: rgba(255,255,255,0.2); }
   .lp-hero-inner, .lp-content-inner {
     max-width: 800px;
     margin: 0 auto;
@@ -158,8 +122,7 @@ const styles = `
   @media (max-width: 768px) {
     .lp-title { font-size: 36px; }
     .lp-card { padding: 32px 24px; }
-    .lp-hero { padding: 110px 0 48px; }
-    .lp-close { top: 90px; right: 16px; }
+    .lp-hero { padding: 80px 0 60px; }
   }
 `;
 
@@ -169,13 +132,7 @@ export default function TermsOfUsePage() {
       <style>{styles}</style>
 
       <section className="lp-hero">
-        <a href="/" className="lp-close" aria-label="Close and return home">
-          ✕
-        </a>
         <div className="lp-hero-inner">
-          <a href="/" className="lp-back">
-            ← Back to GhostWriterHunt
-          </a>
           <p className="lp-label">LEGAL</p>
           <h1 className="lp-title">Terms of Use</h1>
           <p className="lp-updated">Last updated: September 2026</p>
