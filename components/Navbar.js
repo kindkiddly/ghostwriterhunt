@@ -1,15 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { servicesByCategory } from "@/data/services";
 
 /**
  * GhostWriterHunt — primary site navigation
  * Flex row: logo left · links center · CTAs right.
  * Transparent→solid sticky bar on scroll + mobile drawer.
+ * Services mega menu (desktop hover) + accordion (mobile).
  */
+
+const CATEGORY_ORDER = [
+  "Writing",
+  "Editing",
+  "Design",
+  "Publishing",
+  "Marketing",
+];
+
+function ChevronIcon({ open }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden="true"
+      style={{
+        marginLeft: 6,
+        transition: "transform 0.2s ease",
+        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+        flexShrink: 0,
+      }}
+    >
+      <path
+        d="M2.5 4.5L6 8L9.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  const closeTimer = useRef(null);
+  const servicesLinkRef = useRef(null);
+  const megaMenuRef = useRef(null);
 
   useEffect(() => {
     // Smooth in-page jumps for hash nav links
@@ -31,16 +74,54 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  // Close mega menu on Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setMegaMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  // Clear close timer on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeout(closeTimer.current);
+    };
+  }, []);
+
+  const handleServicesEnter = () => {
+    clearTimeout(closeTimer.current);
+    setMegaMenuOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    closeTimer.current = setTimeout(() => {
+      setMegaMenuOpen(false);
+    }, 150);
+  };
+
+  const handleMenuEnter = () => {
+    clearTimeout(closeTimer.current);
+  };
+
+  const handleMenuLeave = () => {
+    setMegaMenuOpen(false);
+  };
+
   const navLinks = [
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "#services", isServices: true },
     { label: "Our Writers", href: "#writers" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ];
 
-  const closeMobile = () => setMobileOpen(false);
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileServicesOpen(false);
+  };
 
   const linkHover = {
     onMouseEnter: (e) => {
@@ -66,18 +147,169 @@ export default function Navbar() {
         borderBottom: "none",
         outline: "none",
         boxShadow:
-          scrolled || mobileOpen
+          scrolled || mobileOpen || megaMenuOpen
             ? "0 1px 20px rgba(0,0,0,0.06)"
             : "none",
         backdropFilter:
-          scrolled || mobileOpen ? "blur(12px)" : "none",
+          scrolled || mobileOpen || megaMenuOpen ? "blur(12px)" : "none",
         background:
-          scrolled || mobileOpen
+          scrolled || mobileOpen || megaMenuOpen
             ? "rgba(250,250,247,0.98)"
             : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
         transition: "background 0.4s ease, box-shadow 0.4s ease",
       }}
     >
+      <style>{`
+        /* Desktop mega menu */
+        .nav-mega {
+          display: none;
+        }
+        @media (min-width: 769px) {
+          .nav-mega {
+            display: block;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E8D5A3;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            z-index: 999;
+            padding: 40px 0 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition:
+              opacity 0.2s ease-in,
+              transform 0.2s ease-in;
+          }
+          .nav-mega.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            transition:
+              opacity 0.25s ease-out,
+              transform 0.25s ease-out;
+          }
+        }
+        .nav-mega-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 0;
+        }
+        .nav-mega-col {
+          padding: 0 28px;
+          border-right: 1px solid #F0E8D5;
+        }
+        .nav-mega-col:last-child {
+          border-right: none;
+        }
+        .nav-mega-heading {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          color: #C9A84C;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          margin: 0 0 16px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid #E8D5A3;
+        }
+        .nav-mega-link {
+          display: block;
+          padding: 8px 0;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #444444;
+          text-decoration: none;
+          border-radius: 4px;
+          transition: color 0.15s ease, padding-left 0.15s ease;
+        }
+        .nav-mega-link:hover {
+          color: #C9A84C;
+          padding-left: 4px;
+        }
+        .nav-mega-footer {
+          max-width: 1200px;
+          margin: 24px auto 0;
+          padding: 16px 24px 24px;
+          border-top: 1px solid #F0E8D5;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+        }
+        .nav-mega-footer-left {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          color: #666666;
+        }
+        .nav-mega-footer-link {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #C9A84C;
+          text-decoration: none;
+          margin-left: 6px;
+        }
+        .nav-mega-footer-link:hover {
+          text-decoration: underline;
+        }
+        .nav-mega-footer-right {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #C9A84C;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        .nav-mega-footer-right:hover {
+          text-decoration: underline;
+        }
+
+        /* Mobile services accordion */
+        .nav-mobile-svc-list {
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: max-height 0.3s ease, opacity 0.25s ease;
+          padding-left: 12px;
+        }
+        .nav-mobile-svc-list.open {
+          max-height: 1200px;
+          opacity: 1;
+        }
+        .nav-mobile-cat {
+          margin-top: 8px;
+          margin-bottom: 4px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #C9A84C;
+          padding: 8px 16px 4px;
+        }
+        .nav-mobile-svc-link {
+          display: block;
+          padding: 8px 16px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          color: #444444;
+          text-decoration: none;
+        }
+        .nav-mobile-svc-link:hover {
+          color: #C9A84C;
+        }
+      `}</style>
+
       {/* Inner bar — logo | nav | CTAs */}
       <nav
         aria-label="Primary"
@@ -118,7 +350,7 @@ export default function Navbar() {
           />
         </a>
 
-        {/* CENTER — Desktop nav links (flex:1 keeps them truly centered) */}
+        {/* CENTER — Desktop nav links */}
         <ul
           className="hidden md:!flex"
           style={{
@@ -133,29 +365,73 @@ export default function Navbar() {
             margin: 0,
           }}
         >
-          {navLinks.map((link) => (
-            <li key={link.href} style={{ display: "flex", height: "70px" }}>
-              <a
-                href={link.href}
-                {...linkHover}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "70px",
-                  padding: "0 16px",
-                  fontSize: "15px",
-                  fontFamily: "var(--font-inter), Inter, sans-serif",
-                  fontWeight: 500,
-                  color: "#1C1C1C",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                  transition: "color 0.2s ease",
-                }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            if (link.isServices) {
+              return (
+                <li
+                  key={link.href}
+                  style={{ display: "flex", height: "70px" }}
+                  ref={servicesLinkRef}
+                  onMouseEnter={handleServicesEnter}
+                  onMouseLeave={handleServicesLeave}
+                >
+                  <a
+                    href={link.href}
+                    aria-haspopup="true"
+                    aria-expanded={megaMenuOpen}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "70px",
+                      padding: "0 16px",
+                      fontSize: "15px",
+                      fontFamily: "var(--font-inter), Inter, sans-serif",
+                      fontWeight: 500,
+                      color: megaMenuOpen ? "#C9A84C" : "#1C1C1C",
+                      textDecoration: "none",
+                      whiteSpace: "nowrap",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#C9A84C";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!megaMenuOpen) {
+                        e.currentTarget.style.color = "#1C1C1C";
+                      }
+                    }}
+                  >
+                    {link.label}
+                    <ChevronIcon open={megaMenuOpen} />
+                  </a>
+                </li>
+              );
+            }
+
+            return (
+              <li key={link.href} style={{ display: "flex", height: "70px" }}>
+                <a
+                  href={link.href}
+                  {...linkHover}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: "70px",
+                    padding: "0 16px",
+                    fontSize: "15px",
+                    fontFamily: "var(--font-inter), Inter, sans-serif",
+                    fontWeight: 500,
+                    color: "#1C1C1C",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap",
+                    transition: "color 0.2s ease",
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* RIGHT — Desktop CTAs */}
@@ -263,11 +539,53 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* Desktop Services mega menu */}
+      <div
+        ref={megaMenuRef}
+        className={`nav-mega${megaMenuOpen ? " open" : ""}`}
+        onMouseEnter={handleMenuEnter}
+        onMouseLeave={handleMenuLeave}
+        aria-hidden={!megaMenuOpen}
+      >
+        <div className="nav-mega-inner">
+          {CATEGORY_ORDER.map((category) => {
+            const items = servicesByCategory[category] || [];
+            return (
+              <div key={category} className="nav-mega-col">
+                <p className="nav-mega-heading">{category}</p>
+                {items.map((service) => (
+                  <a
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className="nav-mega-link"
+                    onClick={() => setMegaMenuOpen(false)}
+                  >
+                    {service.title}
+                  </a>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="nav-mega-footer">
+          <p className="nav-mega-footer-left">
+            Not sure where to start?
+            <a href="/#start" className="nav-mega-footer-link">
+              Book a free consultation →
+            </a>
+          </p>
+          <a href="/#services" className="nav-mega-footer-right">
+            View all services →
+          </a>
+        </div>
+      </div>
+
       {/* Mobile dropdown */}
       <div
         className={`overflow-hidden border-t border-[#E8D5A3] bg-[#FFFFFF] transition-all duration-300 ease-in-out md:hidden ${
           mobileOpen
-            ? "max-h-[520px] opacity-100"
+            ? "max-h-[90vh] overflow-y-auto opacity-100"
             : "pointer-events-none max-h-0 opacity-0"
         }`}
         style={{
@@ -278,17 +596,68 @@ export default function Navbar() {
         }}
       >
         <ul className="flex flex-col gap-1 px-6 py-4">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={closeMobile}
-                className="block px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            if (link.isServices) {
+              return (
+                <li key={link.href}>
+                  <button
+                    type="button"
+                    aria-expanded={mobileServicesOpen}
+                    aria-haspopup="true"
+                    onClick={() =>
+                      setMobileServicesOpen((open) => !open)
+                    }
+                    className="flex w-full items-center justify-between px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                    style={{
+                      color: mobileServicesOpen ? "#C9A84C" : "#1C1C1C",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronIcon open={mobileServicesOpen} />
+                  </button>
+
+                  <div
+                    className={`nav-mobile-svc-list${mobileServicesOpen ? " open" : ""}`}
+                  >
+                    {CATEGORY_ORDER.map((category) => {
+                      const items = servicesByCategory[category] || [];
+                      return (
+                        <div key={category}>
+                          <p className="nav-mobile-cat">{category}</p>
+                          {items.map((service) => (
+                            <a
+                              key={service.slug}
+                              href={`/services/${service.slug}`}
+                              onClick={closeMobile}
+                              className="nav-mobile-svc-link"
+                            >
+                              {service.title}
+                            </a>
+                          ))}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </li>
+              );
+            }
+
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={closeMobile}
+                  className="block px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex flex-col items-center gap-3 border-t border-[#E8D5A3] px-6 py-5">
