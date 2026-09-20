@@ -6,73 +6,33 @@ import FloatingImages from "@/components/service/FloatingImages";
 
 /**
  * GhostWriterHunt — About Us page
- * Full-page story, values, team, and CTA.
  * Navbar comes from root layout (do not duplicate).
  */
 
 const STORY_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=700&fit=crop",
+    url: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=500&fit=crop",
     alt: "Team collaboration",
     size: "large",
   },
   {
-    url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=350&fit=crop",
-    alt: "Writing team",
-    size: "medium",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=200&h=240&fit=crop",
+    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=280&h=320&fit=crop",
     alt: "Professional writing",
-    size: "small",
-  },
-];
-
-const WHY_IMAGES = [
-  {
-    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=700&fit=crop",
-    alt: "Professional team",
-    size: "large",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=300&h=350&fit=crop",
-    alt: "Office environment",
     size: "medium",
   },
 ];
 
-const VALUES = [
-  {
-    title: "Absolute Confidentiality",
-    description:
-      "Every project is protected by a comprehensive NDA from day one. Your story, your ideas and your identity are completely safe with us — always and without exception.",
-    icon: "shield",
-  },
-  {
-    title: "Uncompromising Quality",
-    description:
-      "We accept only the top 1% of ghostwriter applicants. Every writer, editor and designer on our platform has been rigorously vetted and proven across multiple successful published projects.",
-    icon: "star",
-  },
-  {
-    title: "Author First Always",
-    description:
-      "Your vision guides everything. We write in your voice, follow your direction and deliver a book that feels completely and authentically yours — because it is.",
-    icon: "heart",
-  },
-  {
-    title: "Global Publishing Reach",
-    description:
-      "We do not just write your book — we publish it to the world. 47+ platforms, global distribution and 100% of your rights and royalties retained.",
-    icon: "globe",
-  },
+const HERO_PILLS = [
+  "500+ Books Published",
+  "96% Client Satisfaction",
+  "50+ Professional Writers",
 ];
 
 const STATS = [
-  { number: "5,000", suffix: "+", label: "Books Published" },
-  { number: "200", suffix: "+", label: "Professional Writers" },
-  { number: "98", suffix: "%", label: "Client Satisfaction" },
-  { number: "47", suffix: "+", label: "Publishing Platforms" },
+  { number: "500", suffix: "+", label: "Books Published" },
+  { number: "50", suffix: "+", label: "Professional Writers" },
+  { number: "96", suffix: "%", label: "Client Satisfaction" },
+  { number: "12", suffix: "+", label: "Publishing Platforms" },
 ];
 
 const TEAM = [
@@ -80,12 +40,14 @@ const TEAM = [
     name: "A.R",
     role: "Founder",
     bio: "Visionary founder with a passion for connecting authors with the perfect words to tell their story.",
+    chip: "Leadership",
     initials: true,
   },
   {
     name: "Elizabeth Jones",
     role: "Co-Founder",
     bio: "Co-founder driving the strategic vision and day-to-day excellence that defines the GhostWriterHunt experience.",
+    chip: "Strategy",
     photo:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
   },
@@ -93,13 +55,15 @@ const TEAM = [
     name: "Rachel Thompson",
     role: "Head of Editorial",
     bio: "Editorial leader ensuring every manuscript meets the highest standards of craft and quality.",
+    chip: "Editorial",
     photo:
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&h=200&fit=crop&crop=face",
   },
   {
     name: "James Harrison",
     role: "Head of Publishing",
-    bio: "Publishing veteran managing our global distribution network across 47+ platforms worldwide.",
+    bio: "Publishing veteran managing our global distribution network across 12+ platforms worldwide.",
+    chip: "Publishing",
     photo:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face",
   },
@@ -107,6 +71,7 @@ const TEAM = [
     name: "Amanda Foster",
     role: "Client Success Lead",
     bio: "Dedicated to ensuring every author has an exceptional experience from first consultation to published book.",
+    chip: "Client Success",
     photo:
       "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=200&h=200&fit=crop&crop=face",
   },
@@ -114,6 +79,7 @@ const TEAM = [
     name: "Thomas Reed",
     role: "Head of Technology",
     bio: "Technology architect building the platform that powers seamless author and writer collaboration.",
+    chip: "Technology",
     photo:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
   },
@@ -121,6 +87,7 @@ const TEAM = [
     name: "Michael Carter",
     role: "Creative Director",
     bio: "Creative director overseeing book cover design, interior layout and illustration across all projects.",
+    chip: "Creative",
     photo:
       "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=200&h=200&fit=crop&crop=face",
   },
@@ -128,6 +95,7 @@ const TEAM = [
     name: "Jennifer Hayes",
     role: "Marketing Strategist",
     bio: "Marketing strategist helping authors build their brand and reach the readers they deserve.",
+    chip: "Marketing",
     photo:
       "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=200&h=200&fit=crop&crop=face",
   },
@@ -135,6 +103,7 @@ const TEAM = [
     name: "Caroline Brooks",
     role: "Publishing Manager",
     bio: "Publishing manager coordinating projects from manuscript to global launch with precision and care.",
+    chip: "Operations",
     photo:
       "https://images.unsplash.com/photo-1548142813-c348350df52b?w=200&h=200&fit=crop&crop=face",
   },
@@ -142,6 +111,7 @@ const TEAM = [
     name: "David Williams",
     role: "Senior Project Manager",
     bio: "Senior project manager ensuring every book project is delivered on time, on brief and beyond expectations.",
+    chip: "Project Management",
     photo:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
   },
@@ -152,17 +122,17 @@ const WHY_BULLETS = [
   "Every project protected by full NDA",
   "Your voice captured — not ours",
   "100% of rights and royalties yours",
-  "Published on 47+ global platforms",
-  "5,000+ books successfully delivered",
+  "Published on 12+ global platforms",
+  "500+ books successfully delivered",
 ];
 
-function ValueIcon({ type }) {
+function ValueIcon({ type, size = 28, color = "#C9A84C" }) {
   const common = {
-    width: 28,
-    height: 28,
+    width: size,
+    height: size,
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#C9A84C",
+    stroke: color,
     strokeWidth: 1.75,
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -207,30 +177,43 @@ const styles = `
   }
 
   /* —— Animations —— */
-  .ab-reveal {
+  .ab-fade-up {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
-  .ab-reveal-left {
+  .ab-slide-left {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-60px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
-  .ab-reveal-right {
+  .ab-slide-right {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(60px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     transition-delay: 0.15s;
   }
-  .ab-reveal.ab-visible,
-  .ab-reveal-left.ab-visible,
-  .ab-reveal-right.ab-visible {
+  .ab-scale-up {
+    opacity: 0;
+    transform: scale(0.88);
+    transition: opacity 0.6s ease-out,
+      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ab-rotate-in {
+    opacity: 0;
+    transform: translateY(30px) rotate(-2deg);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .ab-fade-up.ab-visible,
+  .ab-slide-left.ab-visible,
+  .ab-slide-right.ab-visible,
+  .ab-scale-up.ab-visible,
+  .ab-rotate-in.ab-visible {
     opacity: 1;
-    transform: translateX(0) translateY(0);
+    transform: none;
   }
 
-  /* —— Section 1 Hero —— */
+  /* —— Hero —— */
   .ab-hero {
     position: relative;
     overflow: hidden;
@@ -293,7 +276,7 @@ const styles = `
     font-size: 18px;
     color: rgba(255, 255, 255, 0.75);
     max-width: 680px;
-    margin: 0 auto 48px;
+    margin: 0 auto 0;
     line-height: 1.7;
   }
   .ab-pills {
@@ -301,22 +284,24 @@ const styles = `
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+    margin-top: 40px;
   }
   .ab-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(201, 168, 76, 0.1);
-    border: 1px solid rgba(201, 168, 76, 0.3);
+    background: #C9A84C;
+    border: 1px solid #C9A84C;
     border-radius: 100px;
-    padding: 12px 28px;
+    padding: 10px 28px;
+    margin: 0 8px;
     font-family: var(--font-inter), Inter, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: #C9A84C;
+    font-weight: 600;
+    font-size: 13px;
+    color: #1C1C1C;
+    letter-spacing: 0.05em;
   }
 
-  /* —— Shared layout —— */
+  /* —— Shared —— */
   .ab-wrap {
     max-width: 1200px;
     margin: 0 auto;
@@ -385,50 +370,148 @@ const styles = `
     text-align: center;
   }
 
-  /* —— Values —— */
+  /* —— Values (asymmetric dark) —— */
+  .ab-values {
+    background: #1C1C1C;
+    padding: 100px 0;
+  }
+  .ab-values .ab-label-gold {
+    text-align: center;
+  }
+  .ab-values-title {
+    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: #FFFFFF;
+    line-height: 1.15;
+    text-align: center;
+    margin: 0 0 16px;
+  }
+  .ab-values-title em {
+    font-style: italic;
+    color: #C9A84C;
+    font-weight: 700;
+  }
+  .ab-values-sub {
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #999999;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
   .ab-values-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 900px;
+    grid-template-columns: 1.3fr 0.9fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    max-width: 1100px;
     margin: 0 auto;
   }
-  .ab-value-card {
+  .ab-vcard-1 {
+    grid-column: 1;
+    grid-row: span 2;
+    background: #C9A84C;
+    border-radius: 24px;
+    padding: 48px 40px;
+    transition: transform 0.3s ease;
+  }
+  .ab-vcard-1:hover {
+    transform: scale(1.02);
+  }
+  .ab-vcard-1 .ab-vcard-title {
+    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #FFFFFF;
+    margin: 16px 0 12px;
+  }
+  .ab-vcard-1 .ab-vcard-desc {
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin: 0;
+  }
+  .ab-vcard-2 {
+    grid-column: 2;
+    grid-row: 1;
+    background: #2A2A2A;
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    transition: border-color 0.3s ease;
+  }
+  .ab-vcard-2:hover {
+    border-color: rgba(201, 168, 76, 0.6);
+  }
+  .ab-vcard-3 {
+    grid-column: 3;
+    grid-row: 1;
     background: #FFFFFF;
+    border-radius: 20px;
+    padding: 36px 32px;
     border: 1px solid #E8D5A3;
-    border-top: 3px solid #C9A84C;
-    border-radius: 16px;
-    padding: 40px 36px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .ab-value-card:hover {
+  .ab-vcard-3:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   }
-  .ab-value-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #FDF6E3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+  .ab-vcard-2 .ab-vcard-title,
+  .ab-vcard-4 .ab-vcard-title {
+    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin: 14px 0 10px;
   }
-  .ab-value-title {
+  .ab-vcard-2 .ab-vcard-desc,
+  .ab-vcard-4 .ab-vcard-desc {
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #999999;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .ab-vcard-3 .ab-vcard-title {
     font-family: var(--font-playfair), "Playfair Display", serif;
     font-weight: 700;
     font-size: 22px;
     color: #1C1C1C;
-    margin: 0 0 12px;
+    margin: 14px 0 10px;
   }
-  .ab-value-desc {
+  .ab-vcard-3 .ab-vcard-desc {
     font-family: var(--font-inter), Inter, sans-serif;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14px;
     color: #666666;
     line-height: 1.7;
     margin: 0;
+  }
+  .ab-vcard-4 {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    background: rgba(201, 168, 76, 0.08);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 20px;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .ab-vcard-4:hover {
+    border-color: rgba(201, 168, 76, 0.55);
+    box-shadow: 0 0 24px rgba(201, 168, 76, 0.12);
+  }
+  .ab-vcard-4 .ab-vcard-title {
+    margin-top: 0;
   }
 
   /* —— Stats —— */
@@ -471,7 +554,7 @@ const styles = `
     margin: 0;
   }
 
-  /* —— Team —— */
+  /* —— Team (writer-card style) —— */
   .ab-team-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -482,14 +565,19 @@ const styles = `
   .ab-team-card {
     background: #FFFFFF;
     border: 1px solid #E8D5A3;
-    border-radius: 16px;
-    padding: 32px 24px;
+    border-radius: 20px;
+    padding: 36px 28px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 24px rgba(201, 168, 76, 0.08);
+    transition: all 0.3s ease;
   }
   .ab-team-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(201, 168, 76, 0.16);
+    border-color: #C9A84C;
   }
   .ab-team-card:nth-child(9) {
     grid-column: 2;
@@ -506,10 +594,10 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
+    margin: 0 auto 20px;
     font-family: var(--font-playfair), "Playfair Display", serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 24px;
     color: #C9A84C;
   }
   .ab-avatar-photo {
@@ -520,12 +608,12 @@ const styles = `
     object-fit: cover;
     object-position: center top;
     display: block;
-    margin: 0 auto 16px;
+    margin: 0 auto 20px;
   }
   .ab-team-name {
     font-family: var(--font-playfair), "Playfair Display", serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     color: #1C1C1C;
     margin: 0 0 4px;
   }
@@ -534,16 +622,27 @@ const styles = `
     font-weight: 500;
     font-size: 13px;
     color: #C9A84C;
-    margin: 0 0 12px;
+    margin: 0 0 16px;
   }
   .ab-team-bio {
     font-family: var(--font-inter), Inter, sans-serif;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14px;
     color: #666666;
-    line-height: 1.6;
-    max-width: 200px;
-    margin: 0 auto;
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+  .ab-team-chip {
+    display: inline-flex;
+    align-items: center;
+    background: #FDF6E3;
+    border: 1px solid #E8D5A3;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #6B7C3A;
   }
 
   /* —— Why us —— */
@@ -566,6 +665,14 @@ const styles = `
     color: #C9A84C;
     font-size: 16px;
     flex-shrink: 0;
+  }
+  .ab-why-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: block;
   }
 
   /* —— CTA —— */
@@ -657,6 +764,25 @@ const styles = `
   }
 
   @media (max-width: 1024px) {
+    .ab-values-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .ab-vcard-1 {
+      grid-column: 1 / span 2;
+      grid-row: auto;
+    }
+    .ab-vcard-2 {
+      grid-column: 1;
+      grid-row: auto;
+    }
+    .ab-vcard-3 {
+      grid-column: 2;
+      grid-row: auto;
+    }
+    .ab-vcard-4 {
+      grid-column: 1 / span 2;
+      grid-row: auto;
+    }
     .ab-team-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -667,6 +793,10 @@ const styles = `
   }
 
   @media (max-width: 768px) {
+    .ab-slide-left,
+    .ab-slide-right {
+      transform: translateY(30px);
+    }
     .ab-hero {
       padding: 120px 20px 72px;
     }
@@ -676,8 +806,12 @@ const styles = `
     .ab-hero-sub {
       font-size: 16px;
     }
+    .ab-pill {
+      margin: 0;
+    }
     .ab-section-white,
-    .ab-section-cream {
+    .ab-section-cream,
+    .ab-values {
       padding: 72px 0;
     }
     .ab-two-col {
@@ -687,11 +821,23 @@ const styles = `
     .ab-h2 {
       font-size: 32px;
     }
-    .ab-h2-center {
+    .ab-h2-center,
+    .ab-values-title {
       font-size: 32px;
     }
     .ab-values-grid {
       grid-template-columns: 1fr;
+    }
+    .ab-vcard-1,
+    .ab-vcard-2,
+    .ab-vcard-3,
+    .ab-vcard-4 {
+      grid-column: 1;
+    }
+    .ab-vcard-4 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
     .ab-stats-row {
       grid-template-columns: 1fr 1fr;
@@ -712,6 +858,9 @@ const styles = `
     .ab-team-grid {
       grid-template-columns: 1fr;
     }
+    .ab-why-img {
+      height: 320px;
+    }
     .ab-cta-title {
       font-size: 36px;
     }
@@ -729,7 +878,7 @@ export default function AboutPage() {
 
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".ab-reveal, .ab-reveal-left, .ab-reveal-right"
+      ".ab-fade-up, .ab-slide-left, .ab-slide-right, .ab-scale-up, .ab-rotate-in"
     );
     const observer = new IntersectionObserver(
       (entries) => {
@@ -744,13 +893,12 @@ export default function AboutPage() {
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px",
       }
     );
     requestAnimationFrame(() => {
       elements.forEach((el) => {
-        el.classList.remove("ab-visible");
         observer.observe(el);
       });
     });
@@ -764,24 +912,29 @@ export default function AboutPage() {
       {/* —— Section 1: Hero —— */}
       <section className="ab-hero">
         <div className="ab-hero-glow" aria-hidden="true" />
-        <div className="ab-hero-inner ab-reveal" data-delay="0">
-          <p className="ab-label-gold">OUR STORY</p>
-          <h1 className="ab-hero-title">
-            We believe every story
-            <br />
-            <em>deserves to be told.</em>
-          </h1>
-          <p className="ab-hero-sub">
-            GhostWriterHunt was founded with a single belief — that remarkable
-            stories should not go untold simply because their authors need a
-            professional hand to tell them. We exist to bridge that gap,
-            connecting visionary authors with exceptional ghostwriters who bring
-            their stories to life with craft, care and complete confidentiality.
-          </p>
-          <div className="ab-pills">
-            <span className="ab-pill">5,000+ Books Published</span>
-            <span className="ab-pill">98% Client Satisfaction</span>
-            <span className="ab-pill">200+ Professional Writers</span>
+        <div className="ab-hero-inner">
+          <div className="ab-fade-up" data-delay="0">
+            <p className="ab-label-gold">OUR STORY</p>
+            <h1 className="ab-hero-title">
+              We believe every story
+              <br />
+              <em>deserves to be told.</em>
+            </h1>
+            <p className="ab-hero-sub">
+              GhostWriterHunt was founded with a single belief — that remarkable
+              stories should not go untold simply because their authors need a
+              professional hand to tell them. We exist to bridge that gap,
+              connecting visionary authors with exceptional ghostwriters who
+              bring their stories to life with craft, care and complete
+              confidentiality.
+            </p>
+          </div>
+          <div className="ab-pills ab-scale-up" data-delay="200">
+            {HERO_PILLS.map((pill) => (
+              <span key={pill} className="ab-pill">
+                {pill}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -789,14 +942,14 @@ export default function AboutPage() {
       {/* —— Section 2: Our Story —— */}
       <section className="ab-section-white">
         <div className="ab-wrap ab-two-col">
-          <div className="ab-reveal-left">
+          <div className="ab-slide-left">
             <p className="ab-label-olive">HOW WE BEGAN</p>
             <h2 className="ab-h2">
               Born from a passion for <em>storytelling.</em>
             </h2>
             <p className="ab-body">
-              GhostWriterHunt began in Houston, Texas, with a simple observation
-              — thousands of people carry extraordinary stories inside them but
+              GhostWriterHunt began in the USA with a simple observation —
+              thousands of people carry extraordinary stories inside them but
               lack the writing expertise to bring those stories to the page.
               Business leaders with decades of hard-won wisdom. Families with
               histories that deserve to be preserved. Visionaries with ideas that
@@ -811,54 +964,82 @@ export default function AboutPage() {
               and an unwavering commitment to quality.
             </p>
             <p className="ab-body">
-              Today GhostWriterHunt has helped more than 5,000 authors across
+              Today GhostWriterHunt has helped more than 500 authors across
               every genre and format bring their books to life — from personal
               memoirs treasured by families to business books that have opened
               doors, and novels that have found readers around the world.
             </p>
           </div>
-          <div className="ab-reveal-right">
+          <div className="ab-slide-right">
             <FloatingImages images={STORY_IMAGES} />
           </div>
         </div>
       </section>
 
       {/* —— Section 3: Mission & Values —— */}
-      <section className="ab-section-cream">
+      <section className="ab-values">
         <div className="ab-wrap">
-          <div className="ab-center">
-            <p className="ab-label-olive">WHAT WE STAND FOR</p>
-            <h2 className="ab-h2-center">
-              Our mission and <em>core values.</em>
-            </h2>
-            <p className="ab-sub-center">
-              Everything we do is guided by four principles that have defined
-              GhostWriterHunt from day one.
-            </p>
-          </div>
+          <p className="ab-label-gold">WHAT WE STAND FOR</p>
+          <h2 className="ab-values-title">
+            Our mission and <em>core values.</em>
+          </h2>
+          <p className="ab-values-sub">
+            Everything we do is guided by four principles that have defined
+            GhostWriterHunt from day one.
+          </p>
+
           <div className="ab-values-grid">
-            {VALUES.map((value, i) => (
-              <div
-                key={value.title}
-                className="ab-value-card ab-reveal"
-                data-delay={String(i * 100)}
-              >
-                <div className="ab-value-icon">
-                  <ValueIcon type={value.icon} />
-                </div>
-                <h3 className="ab-value-title">{value.title}</h3>
-                <p className="ab-value-desc">{value.description}</p>
+            <div className="ab-vcard-1 ab-rotate-in" data-delay="0">
+              <ValueIcon type="shield" size={32} color="#FFFFFF" />
+              <h3 className="ab-vcard-title">Absolute Confidentiality</h3>
+              <p className="ab-vcard-desc">
+                Every project is protected by a comprehensive NDA from day one.
+                Your story, your ideas and your identity are completely safe
+                with us — always and without exception.
+              </p>
+            </div>
+
+            <div className="ab-vcard-2 ab-rotate-in" data-delay="100">
+              <ValueIcon type="star" size={28} color="#C9A84C" />
+              <h3 className="ab-vcard-title">Uncompromising Quality</h3>
+              <p className="ab-vcard-desc">
+                We accept only the top 1% of ghostwriter applicants — each one
+                vetted, proven and passionate.
+              </p>
+            </div>
+
+            <div className="ab-vcard-3 ab-rotate-in" data-delay="200">
+              <ValueIcon type="heart" size={28} color="#C9A84C" />
+              <h3 className="ab-vcard-title">Author First Always</h3>
+              <p className="ab-vcard-desc">
+                Your vision guides everything. We write in your voice and
+                deliver a book that feels completely and authentically yours.
+              </p>
+            </div>
+
+            <div className="ab-vcard-4 ab-fade-up" data-delay="300">
+              <ValueIcon type="globe" size={36} color="#C9A84C" />
+              <div>
+                <h3 className="ab-vcard-title">Global Publishing Reach</h3>
+                <p className="ab-vcard-desc">
+                  We publish your book to 12+ platforms worldwide — and you keep
+                  100% of your rights and royalties.
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* —— Section 4: Stats —— */}
       <section className="ab-stats">
-        <div className="ab-stats-row ab-reveal" data-delay="0">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="ab-stat">
+        <div className="ab-stats-row">
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="ab-stat ab-scale-up"
+              data-delay={String(i * 100)}
+            >
               <p className="ab-stat-num">
                 {stat.number}
                 <span>{stat.suffix}</span>
@@ -886,7 +1067,7 @@ export default function AboutPage() {
             {TEAM.map((member, i) => (
               <div
                 key={member.name}
-                className="ab-team-card ab-reveal"
+                className="ab-team-card ab-scale-up"
                 data-delay={String(i * 80)}
               >
                 {member.initials ? (
@@ -904,6 +1085,7 @@ export default function AboutPage() {
                 <h3 className="ab-team-name">{member.name}</h3>
                 <p className="ab-team-role">{member.role}</p>
                 <p className="ab-team-bio">{member.bio}</p>
+                <span className="ab-team-chip">{member.chip}</span>
               </div>
             ))}
           </div>
@@ -913,7 +1095,7 @@ export default function AboutPage() {
       {/* —— Section 6: Why Choose Us —— */}
       <section className="ab-section-cream">
         <div className="ab-wrap ab-two-col">
-          <div className="ab-reveal-left">
+          <div className="ab-slide-left">
             <p className="ab-label-olive">WHY GHOSTWRITERHUNT</p>
             <h2 className="ab-h2">
               The professional choice for <em>serious authors.</em>
@@ -936,8 +1118,13 @@ export default function AboutPage() {
               ))}
             </ul>
           </div>
-          <div className="ab-reveal-right">
-            <FloatingImages images={WHY_IMAGES} />
+          <div className="ab-slide-right">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=650&fit=crop"
+              alt="Professional team"
+              className="ab-why-img"
+            />
           </div>
         </div>
       </section>
@@ -945,7 +1132,7 @@ export default function AboutPage() {
       {/* —— Section 7: CTA —— */}
       <section className="ab-cta">
         <div className="ab-cta-overlay" aria-hidden="true" />
-        <div className="ab-cta-inner ab-reveal" data-delay="0">
+        <div className="ab-cta-inner ab-fade-up" data-delay="0">
           <p className="ab-label-gold">START YOUR JOURNEY</p>
           <h2 className="ab-cta-title">
             Your story is waiting
