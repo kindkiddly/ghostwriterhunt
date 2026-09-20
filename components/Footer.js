@@ -10,7 +10,6 @@ import LegalModal from "./legal/LegalModal";
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
-  { label: "Our Writers", href: "/#writers" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },

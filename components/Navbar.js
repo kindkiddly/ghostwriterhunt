@@ -156,7 +156,6 @@ export default function Navbar() {
   const navLinks = [
     { label: "How It Works", href: "#how-it-works" },
     { label: "Services", href: "#services", isServices: true },
-    { label: "Our Writers", href: "#writers" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
     { label: "About Us", href: "/about", isAbout: true },
