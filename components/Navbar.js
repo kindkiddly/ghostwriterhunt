@@ -46,14 +46,14 @@ function ChevronIcon({ open }) {
 }
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const isLegalPage = [
-    "/privacy-policy",
-    "/terms-of-use",
-    "/cookie-policy",
-    "/legal",
-    "/about",
-  ].includes(pathname);
+  const pathname = usePathname() || "";
+  const isLegalPage =
+    [
+      "/privacy-policy",
+      "/terms-of-use",
+      "/cookie-policy",
+      "/legal",
+    ].includes(pathname) || pathname.startsWith("/about");
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
