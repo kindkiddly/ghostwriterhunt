@@ -1,95 +1,69 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 /**
  * GhostWriterHunt — Stats Counters
  * Superside-style count-up digits with Reedsy's warm literary tone.
- * Triggers once via Intersection Observer when the section enters view.
+ * Triggers once via Intersection Observer when each digit enters view.
  */
 
 const STATS = [
-  { value: 5000, suffix: "+", label: "Books Written" },
-  { value: 50, suffix: "+", label: "Genres Covered" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 200, suffix: "+", label: "Professional Writers" },
+  { target: 5000, suffix: "+", label: "Books Written" },
+  { target: 50, suffix: "+", label: "Genres Covered" },
+  { target: 98, suffix: "%", label: "Client Satisfaction" },
+  { target: 200, suffix: "+", label: "Professional Writers" },
 ];
 
-/** Ease-out cubic for a natural deceleration into the final number */
-function easeOutCubic(t) {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-function StatItem({ value, suffix, label, active }) {
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!active) return;
-
-    const duration = 2000;
-    let frameId;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = easeOutCubic(progress);
-      setDisplay(Math.round(value * eased));
-
-      if (progress < 1) {
-        frameId = requestAnimationFrame(tick);
-      }
-    };
-
-    frameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frameId);
-  }, [active, value]);
-
-  return (
-    <div className="border-t-[3px] border-[var(--color-accent-gold)] pt-8 text-center">
-      <p className="font-playfair text-[48px] font-bold leading-none text-[var(--color-text)] lg:text-[64px]">
-        <span>{display.toLocaleString()}</span>
-        <span className="text-[var(--color-accent-gold)]">{suffix}</span>
-      </p>
-      <p className="mt-2 font-inter text-[15px] font-normal leading-[1.6] text-[#666666]">
-        {label}
-      </p>
-    </div>
-  );
-}
+/** Animate a DOM node from 0 → target over `duration` ms (~60fps) */
+const countUp = (element, target, duration) => {
+  let start = 0;
+  const increment = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += increment;
+    if (start >= target) {
+      start = target;
+      clearInterval(timer);
+    }
+    element.textContent = Math.floor(start).toLocaleString();
+  }, 16);
+};
 
 export default function StatsCounter() {
-  const sectionRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  // Count-up once when ~15% of the section is visible
+  // Count-up once when each .stat-number scrolls into view
   useEffect(() => {
-    const node = sectionRef.current;
-    if (!node || hasAnimated) return;
+    const counters = document.querySelectorAll(".stat-number");
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasAnimated(true);
-          observer.disconnect();
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.dataset.target);
+            const duration = 2000;
+            countUp(entry.target, target, duration);
+            observer.unobserve(entry.target);
+          }
+        });
       },
       {
-        threshold: 0.15,
+        threshold: 0.3,
         rootMargin: "0px 0px -60px 0px",
       }
     );
 
     requestAnimationFrame(() => {
-      observer.observe(node);
+      counters.forEach((el) => {
+        el.textContent = "0";
+        observer.observe(el);
+      });
     });
 
     return () => observer.disconnect();
-  }, [hasAnimated]);
+  }, []);
 
   return (
     <>
       <section
-        ref={sectionRef}
         className="w-full bg-[var(--color-background)] py-[80px]"
         aria-label="Impact statistics"
       >
@@ -110,13 +84,25 @@ export default function StatsCounter() {
           {/* Stats grid: 1 → 2 → 4 columns */}
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map((stat) => (
-              <StatItem
+              <div
                 key={stat.label}
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-                active={hasAnimated}
-              />
+                className="border-t-[3px] border-[var(--color-accent-gold)] pt-8 text-center"
+              >
+                <p className="font-playfair text-[48px] font-bold leading-none text-[var(--color-text)] lg:text-[64px]">
+                  <span
+                    className="stat-number"
+                    data-target={stat.target}
+                  >
+                    0
+                  </span>
+                  <span className="stat-suffix text-[var(--color-accent-gold)]">
+                    {stat.suffix}
+                  </span>
+                </p>
+                <p className="mt-2 font-inter text-[15px] font-normal leading-[1.6] text-[#666666]">
+                  {stat.label}
+                </p>
+              </div>
             ))}
           </div>
         </div>
