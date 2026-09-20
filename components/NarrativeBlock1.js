@@ -35,17 +35,17 @@ const FEATURES = [
 
 const NB1_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop",
+    url: "/images/writing-desk.webp",
     alt: "Professional writer at desk",
     size: "large",
   },
   {
-    url: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=350&fit=crop",
+    url: "/images/fountain-pen-notes.webp",
     alt: "Writing manuscript",
     size: "medium",
   },
   {
-    url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=240&fit=crop",
+    url: "/images/book-pen-laptop.webp",
     alt: "Author notes and pen",
     size: "small",
   },

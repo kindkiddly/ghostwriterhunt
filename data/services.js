@@ -13,17 +13,17 @@ export const services = [
     
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop',
+        url: '/images/writing-hands.webp',
         alt: 'Writer at desk',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=300&h=350&fit=crop',
+        url: '/images/books-stack-pink.webp',
         alt: 'Open manuscript',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=200&h=240&fit=crop',
+        url: '/images/author-reading.webp',
         alt: 'Writing tools',
         size: 'small'
       }
@@ -43,17 +43,17 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&h=600&fit=crop',
+          url: '/images/writing-desk.webp',
           alt: 'Author writing',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=280&h=320&fit=crop',
+          url: '/images/fountain-pen-notes.webp',
           alt: 'Manuscript pages',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1550399105-c4db5fb85c18?w=200&h=240&fit=crop',
+          url: '/images/books-table.webp',
           alt: 'Books',
           size: 'small'
         }
@@ -83,31 +83,31 @@ export const services = [
         number: '01',
         title: 'Free Consultation',
         description: 'We begin with an in-depth conversation about your book idea, goals, target audience and vision.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Author Interview',
         description: 'Your ghostwriter conducts deep interviews to understand your voice, personality and unique story.',
-        image: 'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '03',
         title: 'Voice Guide and Outline',
         description: 'We document your unique style and create a detailed chapter outline for your approval.',
-        image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=400&h=300&fit=crop'
+        image: '/images/fountain-pen-notes.webp'
       },
       {
         number: '04',
         title: 'Writing and Review',
         description: 'Your ghostwriter writes chapter by chapter with regular reviews and feedback rounds.',
-        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop'
+        image: '/images/writing-hands.webp'
       },
       {
         number: '05',
         title: 'Final Polish',
         description: 'Full editorial review, final revisions and manuscript delivery ready for publishing.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -202,7 +202,7 @@ export const services = [
     ctaHeadline: 'Your story is waiting',
     ctaHeadlineItalic: 'to be written.',
     ctaSubtext: 'Book a free consultation today and meet your perfect ghostwriter.',
-    ctaImage: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&h=600&fit=crop'
+    ctaImage: '/images/library-books.webp'
   },
 
   // ─────────────────────────────────
@@ -218,17 +218,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=700&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Editor reviewing manuscript',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=300&h=350&fit=crop',
+        url: '/images/fountain-pen-notes.webp',
         alt: 'Marked up pages',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=200&h=240&fit=crop',
+        url: '/images/book-pen-laptop.webp',
         alt: 'Pen and paper',
         size: 'small'
       }
@@ -248,12 +248,12 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&h=400&fit=crop',
+          url: '/images/writing-desk.webp',
           alt: 'Editing workspace',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=280&h=280&fit=crop',
+          url: '/images/fountain-pen-notes.webp',
           alt: 'Manuscript',
           size: 'medium'
         }
@@ -283,31 +283,31 @@ export const services = [
         number: '01',
         title: 'Manuscript Assessment',
         description: 'We review your complete manuscript and provide an initial assessment report.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Developmental Edit',
         description: 'Structure, pacing, character and narrative flow are evaluated and refined.',
-        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop'
+        image: '/images/writing-hands.webp'
       },
       {
         number: '03',
         title: 'Line Edit',
         description: 'Sentence by sentence refinement for clarity, style and voice consistency.',
-        image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=400&h=300&fit=crop'
+        image: '/images/fountain-pen-notes.webp'
       },
       {
         number: '04',
         title: 'Copy Edit',
         description: 'Grammar, spelling, punctuation and consistency thoroughly corrected.',
-        image: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop'
+        image: '/images/fountain-pen-notes.webp'
       },
       {
         number: '05',
         title: 'Final Proofread',
         description: 'Final pass ensures your manuscript is completely error-free and publication ready.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -397,7 +397,7 @@ export const services = [
     ctaHeadline: 'Your manuscript deserves',
     ctaHeadlineItalic: 'its finest form.',
     ctaSubtext: 'Book a free consultation and let our editors show you what your manuscript can become.',
-    ctaImage: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=1920&h=600&fit=crop'
+    ctaImage: '/images/library-books.webp'
   },
 
   // ─────────────────────────────────
@@ -413,17 +413,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&h=700&fit=crop',
+        url: '/images/books-fairy-lights.webp',
         alt: 'Book cover design',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&h=350&fit=crop',
+        url: '/images/library-books.webp',
         alt: 'Book collection',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=200&h=240&fit=crop',
+        url: '/images/library-books.webp',
         alt: 'Creative design',
         size: 'small'
       }
@@ -443,22 +443,22 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop',
+          url: '/images/books-fairy-lights.webp',
           alt: 'Book design 1',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=300&h=400&fit=crop',
+          url: '/images/books-stack-pink.webp',
           alt: 'Book design 2',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=300&h=400&fit=crop',
+          url: '/images/flipping-book.webp',
           alt: 'Book design 3',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=400&fit=crop',
+          url: '/images/books-fairy-lights.webp',
           alt: 'Book design 4',
           size: 'medium'
         }
@@ -488,31 +488,31 @@ export const services = [
         number: '01',
         title: 'Brief and Discovery',
         description: 'We learn about your book, genre, target reader and design preferences.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Concept Development',
         description: 'Our designers develop multiple distinct cover concepts for your review.',
-        image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop'
+        image: '/images/flipping-book.webp'
       },
       {
         number: '03',
         title: 'Refinement',
         description: 'You select your preferred direction and we refine every detail to perfection.',
-        image: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '04',
         title: 'Typography and Detail',
         description: 'Title, author name, tagline and all typographic elements are perfected.',
-        image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=300&fit=crop'
+        image: '/images/library-books.webp'
       },
       {
         number: '05',
         title: 'Final Files Delivery',
         description: 'Print-ready and digital files delivered in all required formats and sizes.',
-        image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop'
+        image: '/images/books-fairy-lights.webp'
       }
     ],
 
@@ -602,7 +602,7 @@ export const services = [
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
     ctaSubtext: 'Book a free design consultation and see what our designers can create for your book.',
-    ctaImage: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&h=600&fit=crop'
+    ctaImage: '/images/library-books.webp'
   },
 
   // ─────────────────────────────────
@@ -618,17 +618,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&h=700&fit=crop',
+        url: '/images/library-books.webp',
         alt: 'Book interior layout',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&h=350&fit=crop',
+        url: '/images/books-stack-pink.webp',
         alt: 'Open book pages',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=240&fit=crop',
+        url: '/images/author-reading.webp',
         alt: 'Typography detail',
         size: 'small'
       }
@@ -648,12 +648,12 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=400&h=500&fit=crop',
+          url: '/images/library-books.webp',
           alt: 'Book pages',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=250&h=300&fit=crop',
+          url: '/images/author-reading.webp',
           alt: 'Typography',
           size: 'medium'
         }
@@ -683,31 +683,31 @@ export const services = [
         number: '01',
         title: 'Style Consultation',
         description: 'We discuss your genre, aesthetic preferences and platform requirements.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Sample Pages',
         description: 'We design sample pages for your approval before formatting the full manuscript.',
-        image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=400&h=300&fit=crop'
+        image: '/images/library-books.webp'
       },
       {
         number: '03',
         title: 'Full Layout',
         description: 'The complete manuscript is laid out with all design elements applied consistently.',
-        image: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       },
       {
         number: '04',
         title: 'Review and Revision',
         description: 'You review the complete layout and we refine any details to your satisfaction.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'Print-ready PDF and all digital format files delivered ready for publishing.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -797,7 +797,7 @@ export const services = [
     ctaHeadline: 'Give your readers a book',
     ctaHeadlineItalic: 'they love to hold.',
     ctaSubtext: 'Book a free consultation and let our designers show you what premium interior design looks like.',
-    ctaImage: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1920&h=600&fit=crop'
+    ctaImage: '/images/books-stack-pink.webp'
   },
 
   // ─────────────────────────────────
@@ -813,12 +813,12 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=700&fit=crop',
+        url: '/images/books-stack-pink.webp',
         alt: 'Illustration work',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=350&fit=crop',
+        url: '/images/flipping-book.webp',
         alt: 'Creative artwork',
         size: 'medium'
       },
@@ -843,17 +843,17 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=500&fit=crop',
+          url: '/images/books-stack-pink.webp',
           alt: 'Illustration 1',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=250&h=300&fit=crop',
+          url: '/images/flipping-book.webp',
           alt: 'Illustration 2',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=200&h=240&fit=crop',
+          url: '/images/collaboration-laptop.webp',
           alt: 'Illustration 3',
           size: 'small'
         }
@@ -883,31 +883,31 @@ export const services = [
         number: '01',
         title: 'Style Brief',
         description: 'We discuss your vision, reference styles and the emotional tone you want your illustrations to convey.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Sketches and Concepts',
         description: 'Initial pencil sketches or digital concepts are presented for your feedback.',
-        image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop'
+        image: '/images/flipping-book.webp'
       },
       {
         number: '03',
         title: 'Refinement',
         description: 'Approved sketches are developed into full color or finished illustrations.',
-        image: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '04',
         title: 'Final Details',
         description: 'Colors, textures and final details are perfected to your satisfaction.',
-        image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'High resolution files delivered in all formats required for your publishing platform.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -997,7 +997,7 @@ export const services = [
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
     ctaSubtext: 'Book a free illustration consultation and discover what our artists can create for your book.',
-    ctaImage: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&h=600&fit=crop'
+    ctaImage: '/images/flipping-book.webp'
   },
 
   // ─────────────────────────────────
@@ -1013,17 +1013,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=700&fit=crop',
+        url: '/images/library-books.webp',
         alt: 'Digital publishing',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=350&fit=crop',
+        url: '/images/books-fairy-lights.webp',
         alt: 'eReader device',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=200&h=240&fit=crop',
+        url: '/images/flipping-book.webp',
         alt: 'Global reach',
         size: 'small'
       }
@@ -1043,17 +1043,17 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500&h=400&fit=crop',
+          url: '/images/library-books.webp',
           alt: 'Publishing platform',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=280&h=280&fit=crop',
+          url: '/images/books-fairy-lights.webp',
           alt: 'Digital device',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=200&h=200&fit=crop',
+          url: '/images/flipping-book.webp',
           alt: 'Books',
           size: 'small'
         }
@@ -1083,31 +1083,31 @@ export const services = [
         number: '01',
         title: 'File Review',
         description: 'We review your manuscript and cover files to ensure they meet all platform requirements.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Format Conversion',
         description: 'Your manuscript is converted into all required digital formats for every platform.',
-        image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop'
+        image: '/images/library-books.webp'
       },
       {
         number: '03',
         title: 'ISBN and Metadata',
         description: 'ISBN registration, category selection, keywords and all metadata are set up for maximum discoverability.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '04',
         title: 'Platform Publishing',
         description: 'Your book is uploaded, configured and published across all 47+ platforms simultaneously.',
-        image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop'
+        image: '/images/books-fairy-lights.webp'
       },
       {
         number: '05',
         title: 'Launch Confirmation',
         description: 'We confirm your book is live on all platforms and provide direct links to every listing.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -1197,7 +1197,7 @@ export const services = [
     ctaHeadline: 'Your book belongs',
     ctaHeadlineItalic: 'in the hands of readers.',
     ctaSubtext: 'Book a free publishing consultation and let us take your book to the world.',
-    ctaImage: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=1920&h=600&fit=crop'
+    ctaImage: '/images/flipping-book.webp'
   },
 
   // ─────────────────────────────────
@@ -1218,12 +1218,12 @@ export const services = [
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=300&h=350&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Brand identity',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&h=240&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Author platform',
         size: 'small'
       }
@@ -1248,7 +1248,7 @@ export const services = [
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=250&h=300&fit=crop',
+          url: '/images/collaboration-laptop.webp',
           alt: 'Brand elements',
           size: 'medium'
         }
@@ -1278,19 +1278,19 @@ export const services = [
         number: '01',
         title: 'Brand Discovery',
         description: 'We learn about your book, your audience, your values and the impression you want to make on readers.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Voice Development',
         description: 'We develop your unique author voice — the tone and style that will define all your public communication.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '03',
         title: 'Content Creation',
         description: 'All bio copy, website content, social profiles and press materials are written and designed.',
-        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop'
+        image: '/images/writing-hands.webp'
       },
       {
         number: '04',
@@ -1302,7 +1302,7 @@ export const services = [
         number: '05',
         title: 'Brand Guide Delivery',
         description: 'You receive a complete brand guide so you can maintain consistency in all future communications.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -1408,17 +1408,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=700&fit=crop',
+        url: '/images/office-meeting.webp',
         alt: 'Book marketing strategy',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=300&h=350&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Marketing analytics',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&h=240&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Social media',
         size: 'small'
       }
@@ -1438,17 +1438,17 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop',
+          url: '/images/office-meeting.webp',
           alt: 'Marketing strategy',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=280&h=280&fit=crop',
+          url: '/images/collaboration-laptop.webp',
           alt: 'Analytics',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=200&h=200&fit=crop',
+          url: '/images/writing-desk.webp',
           alt: 'Social media',
           size: 'small'
         }
@@ -1478,31 +1478,31 @@ export const services = [
         number: '01',
         title: 'Market Research',
         description: 'We research your genre, competition and target readers to build a strategy that works.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Strategy Development',
         description: 'A custom marketing plan is created covering platforms, tactics and timeline.',
-        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop'
+        image: '/images/office-meeting.webp'
       },
       {
         number: '03',
         title: 'Amazon Optimization',
         description: 'Keywords, categories, description and listing copy are optimized for maximum discoverability.',
-        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '04',
         title: 'Campaign Execution',
         description: 'Social media, email and outreach campaigns are launched and managed by our marketing team.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Monitoring and Reporting',
         description: 'Regular performance reports keep you informed of results, adjustments and sales progress.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -1594,7 +1594,7 @@ export const services = [
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
     ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
-    ctaImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=600&fit=crop'
+    ctaImage: '/images/office-meeting.webp'
   },
 
   // ─────────────────────────────────
@@ -1610,17 +1610,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=700&fit=crop',
+        url: '/images/books-fairy-lights.webp',
         alt: 'eBook writing',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=350&fit=crop',
+        url: '/images/writing-desk.webp',
         alt: 'Digital content',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=240&fit=crop',
+        url: '/images/books-education.webp',
         alt: 'Writing desk',
         size: 'small'
       }
@@ -1640,12 +1640,12 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=500&fit=crop',
+          url: '/images/books-fairy-lights.webp',
           alt: 'eBook content',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=250&h=300&fit=crop',
+          url: '/images/books-education.webp',
           alt: 'Writing',
           size: 'medium'
         }
@@ -1675,31 +1675,31 @@ export const services = [
         number: '01',
         title: 'Topic and Scope',
         description: 'We define your eBook topic, target reader, key messages and desired outcomes.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Research and Outline',
         description: 'Thorough research is conducted and a detailed chapter outline is created for your approval.',
-        image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '03',
         title: 'Writing',
         description: 'Your dedicated eBook writer produces the complete manuscript chapter by chapter.',
-        image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop'
+        image: '/images/writing-hands.webp'
       },
       {
         number: '04',
         title: 'Edit and Polish',
         description: 'The manuscript is edited for clarity, flow and consistency before your review.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Final Delivery',
         description: 'Your completed eBook is delivered in all required formats ready for publishing or distribution.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -1790,7 +1790,7 @@ export const services = [
     ctaHeadline: 'Share your expertise with',
     ctaHeadlineItalic: 'the world.',
     ctaSubtext: 'Book a free consultation and let us write the eBook that establishes your authority.',
-    ctaImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1920&h=600&fit=crop'
+    ctaImage: '/images/books-fairy-lights.webp'
   },
 
   // ─────────────────────────────────
@@ -1806,17 +1806,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=600&h=700&fit=crop',
+        url: '/images/book-pen-laptop.webp',
         alt: "Children's books",
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=350&fit=crop',
+        url: '/images/books-education.webp',
         alt: 'Child reading',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=200&h=240&fit=crop',
+        url: '/images/book-pen-laptop.webp',
         alt: 'Colorful books',
         size: 'small'
       }
@@ -1836,17 +1836,17 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=500&fit=crop',
+          url: '/images/book-pen-laptop.webp',
           alt: "Children's books",
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=250&h=300&fit=crop',
+          url: '/images/books-education.webp',
           alt: 'Reading child',
           size: 'medium'
         },
         {
-          url: 'https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=200&h=240&fit=crop',
+          url: '/images/book-pen-laptop.webp',
           alt: 'Books',
           size: 'small'
         }
@@ -1876,31 +1876,31 @@ export const services = [
         number: '01',
         title: 'Story Discovery',
         description: 'We discuss your story idea, target age group, themes, characters and the message you want to share.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Character and Plot',
         description: 'Characters are developed and a story outline is created and approved before writing begins.',
-        image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop'
+        image: '/images/books-education.webp'
       },
       {
         number: '03',
         title: 'First Draft',
         description: 'Your specialist writer crafts the complete first draft with rhythm, warmth and wonder.',
-        image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=300&fit=crop'
+        image: '/images/book-pen-laptop.webp'
       },
       {
         number: '04',
         title: 'Review and Refine',
         description: 'You read the draft aloud and share feedback. We refine until every word feels perfect.',
-        image: 'https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=400&h=300&fit=crop'
+        image: '/images/book-pen-laptop.webp'
       },
       {
         number: '05',
         title: 'Final Manuscript',
         description: 'The completed manuscript is delivered ready for illustration and publishing.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -1990,7 +1990,7 @@ export const services = [
     ctaHeadline: 'Create a story your child',
     ctaHeadlineItalic: 'will never forget.',
     ctaSubtext: 'Book a free consultation and let us write the children\'s book that becomes a family treasure.',
-    ctaImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=1920&h=600&fit=crop'
+    ctaImage: '/images/book-pen-laptop.webp'
   },
 
   // ─────────────────────────────────
@@ -2011,12 +2011,12 @@ export const services = [
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=350&fit=crop',
+        url: '/images/writing-desk.webp',
         alt: 'Writing content',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=200&h=240&fit=crop',
+        url: '/images/writing-hands.webp',
         alt: 'Editorial desk',
         size: 'small'
       }
@@ -2041,7 +2041,7 @@ export const services = [
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=250&h=300&fit=crop',
+          url: '/images/writing-desk.webp',
           alt: 'Content creation',
           size: 'medium'
         }
@@ -2071,13 +2071,13 @@ export const services = [
         number: '01',
         title: 'Topic and Brief',
         description: 'We discuss your topic, target keywords, audience and the goal of each article.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Research',
         description: 'Thorough research is conducted to ensure accuracy, depth and genuine value for your readers.',
-        image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '03',
@@ -2089,13 +2089,13 @@ export const services = [
         number: '04',
         title: 'Edit and Polish',
         description: 'Every article is edited for clarity, flow and consistency before delivery.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Your completed article is delivered in your preferred format ready for publication.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -2209,7 +2209,7 @@ export const services = [
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=200&h=240&fit=crop',
+        url: '/images/writing-desk.webp',
         alt: 'Writing workspace',
         size: 'small'
       }
@@ -2264,7 +2264,7 @@ export const services = [
         number: '01',
         title: 'Voice and Style',
         description: 'We study your existing content and interview you to capture your unique voice and style.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
@@ -2282,13 +2282,13 @@ export const services = [
         number: '04',
         title: 'Review',
         description: 'You review each post before publication — providing feedback for any refinements.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Publish and Monitor',
         description: 'Posts are delivered publication-ready and we track performance to continually improve.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -2394,17 +2394,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&h=700&fit=crop',
+        url: '/images/fountain-pen-notes.webp',
         alt: 'Proofreading',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=350&fit=crop',
+        url: '/images/collaboration-laptop.webp',
         alt: 'Editing manuscript',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=200&h=240&fit=crop',
+        url: '/images/book-pen-laptop.webp',
         alt: 'Pen and paper',
         size: 'small'
       }
@@ -2424,12 +2424,12 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=500&fit=crop',
+          url: '/images/fountain-pen-notes.webp',
           alt: 'Proofreading work',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=250&h=300&fit=crop',
+          url: '/images/book-pen-laptop.webp',
           alt: 'Checking manuscript',
           size: 'medium'
         }
@@ -2459,31 +2459,31 @@ export const services = [
         number: '01',
         title: 'Manuscript Receipt',
         description: 'We receive your manuscript and confirm scope, style guide requirements and turnaround time.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'First Pass',
         description: 'A thorough first read catches spelling, grammar and punctuation errors throughout.',
-        image: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop'
+        image: '/images/fountain-pen-notes.webp'
       },
       {
         number: '03',
         title: 'Consistency Check',
         description: 'Character names, place names, dates and factual consistency are verified throughout.',
-        image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '04',
         title: 'Formatting Review',
         description: 'Page numbers, chapter headings, spacing and formatting consistency are checked.',
-        image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400&h=300&fit=crop'
+        image: '/images/book-pen-laptop.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Your corrected manuscript is returned with all changes tracked and a summary report.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -2570,7 +2570,7 @@ export const services = [
     ctaHeadline: 'Publish with complete',
     ctaHeadlineItalic: 'confidence.',
     ctaSubtext: 'Book a free consultation and let our proofreaders ensure your manuscript is flawless.',
-    ctaImage: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=1920&h=600&fit=crop'
+    ctaImage: '/images/fountain-pen-notes.webp'
   },
 
   // ─────────────────────────────────
@@ -2586,17 +2586,17 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&h=700&fit=crop',
+        url: '/images/library-books.webp',
         alt: 'Book formatting',
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&h=350&fit=crop',
+        url: '/images/books-stack-pink.webp',
         alt: 'Formatted pages',
         size: 'medium'
       },
       {
-        url: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=240&fit=crop',
+        url: '/images/author-reading.webp',
         alt: 'Typography',
         size: 'small'
       }
@@ -2616,12 +2616,12 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=400&h=500&fit=crop',
+          url: '/images/library-books.webp',
           alt: 'Book layout',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=250&h=300&fit=crop',
+          url: '/images/author-reading.webp',
           alt: 'Typography detail',
           size: 'medium'
         }
@@ -2651,31 +2651,31 @@ export const services = [
         number: '01',
         title: 'File Review',
         description: 'We assess your manuscript file and identify all formatting requirements for your chosen platforms.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Clean and Prepare',
         description: 'The manuscript is cleaned of hidden formatting issues that cause problems during conversion.',
-        image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=400&h=300&fit=crop'
+        image: '/images/library-books.webp'
       },
       {
         number: '03',
         title: 'Format and Convert',
         description: 'Files are formatted and converted for each required platform — print PDF, ePub and MOBI.',
-        image: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       },
       {
         number: '04',
         title: 'Quality Testing',
         description: 'All files are tested on real devices and checked against platform requirements.',
-        image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop'
+        image: '/images/author-reading.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'All platform-ready files are delivered with upload instructions for each platform.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -2764,7 +2764,7 @@ export const services = [
     ctaHeadline: 'Get your book formatted',
     ctaHeadlineItalic: 'right the first time.',
     ctaSubtext: 'Book a free consultation and let our formatting specialists prepare your book for every platform.',
-    ctaImage: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=1920&h=600&fit=crop'
+    ctaImage: '/images/library-books.webp'
   },
 
   // ─────────────────────────────────
@@ -2850,7 +2850,7 @@ export const services = [
         number: '01',
         title: 'Creative Brief',
         description: 'We discuss your book, its tone, target audience and the emotional response you want the trailer to create.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
@@ -2874,7 +2874,7 @@ export const services = [
         number: '05',
         title: 'Delivery',
         description: 'Final trailer files delivered in all required formats with thumbnail images for each platform.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -3069,13 +3069,13 @@ export const services = [
         number: '04',
         title: 'Quality Review',
         description: 'You listen to the final production and approve before distribution.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Distribution',
         description: 'Your audiobook is submitted and published across all major audio platforms.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -3252,7 +3252,7 @@ export const services = [
         number: '01',
         title: 'Discovery and Brief',
         description: 'We discuss your books, your brand, your audience and the goals of your website.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
@@ -3276,7 +3276,7 @@ export const services = [
         number: '05',
         title: 'Launch',
         description: 'Your website goes live and we provide training so you can manage it confidently yourself.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 
@@ -3390,7 +3390,7 @@ export const services = [
         size: 'large'
       },
       {
-        url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=350&fit=crop',
+        url: '/images/writing-desk.webp',
         alt: 'Writing workspace',
         size: 'medium'
       },
@@ -3420,7 +3420,7 @@ export const services = [
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=250&h=300&fit=crop',
+          url: '/images/writing-desk.webp',
           alt: 'Writing',
           size: 'medium'
         }
@@ -3450,7 +3450,7 @@ export const services = [
         number: '01',
         title: 'Discovery',
         description: 'We learn about your books, your audience, your goals and the action you want visitors to take.',
-        image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
@@ -3462,19 +3462,19 @@ export const services = [
         number: '03',
         title: 'Copy Writing',
         description: 'All pages are written with clarity, persuasion and your unique author voice at the forefront.',
-        image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=300&fit=crop'
+        image: '/images/writing-desk.webp'
       },
       {
         number: '04',
         title: 'Review and Refine',
         description: 'You review all copy and we refine until every word reflects your voice and achieves your goals.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'
+        image: '/images/collaboration-laptop.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Final copy delivered in your preferred format ready for your web designer or directly into your website.',
-        image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop'
+        image: '/images/books-stack-pink.webp'
       }
     ],
 

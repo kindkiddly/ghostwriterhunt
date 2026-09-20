@@ -49,7 +49,7 @@ export default function CTABanner() {
         backgroundImage: `
           radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 60%),
           linear-gradient(rgba(28,28,28,0.85) 0%, rgba(28,28,28,0.90) 100%),
-          url(https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1920&h=600&fit=crop)
+          url(/images/writing-hands.webp)
         `,
         backgroundSize: "cover",
         backgroundPosition: "center",

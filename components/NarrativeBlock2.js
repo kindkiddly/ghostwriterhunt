@@ -32,17 +32,17 @@ const STEPS = [
 
 const NB2_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&h=700&fit=crop",
+    url: "/images/books-stack-pink.webp",
     alt: "Author working on manuscript",
     size: "large",
   },
   {
-    url: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=300&h=350&fit=crop",
+    url: "/images/author-reading.webp",
     alt: "Writing and storytelling",
     size: "medium",
   },
   {
-    url: "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=200&h=240&fit=crop",
+    url: "/images/flipping-book.webp",
     alt: "Pen and paper",
     size: "small",
   },

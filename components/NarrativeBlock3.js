@@ -211,7 +211,7 @@ export default function NarrativeBlock3() {
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=700&fit=crop"
+              src="/images/library-books.webp"
               alt="Stack of books ready for global publishing"
               className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               style={{

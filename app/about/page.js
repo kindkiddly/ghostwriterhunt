@@ -11,12 +11,12 @@ import FloatingImages from "@/components/service/FloatingImages";
 
 const STORY_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=500&fit=crop",
+    url: "/images/team-collaboration.webp",
     alt: "Team collaboration",
     size: "large",
   },
   {
-    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=280&h=320&fit=crop",
+    url: "/images/writing-desk.webp",
     alt: "Professional writing",
     size: "medium",
   },
@@ -684,7 +684,7 @@ const styles = `
     justify-content: center;
     text-align: center;
     padding: 80px 24px;
-    background-image: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&h=600&fit=crop");
+    background-image: url("/images/library-wide.webp");
     background-size: cover;
     background-position: center;
   }
@@ -1121,7 +1121,7 @@ export default function AboutPage() {
           <div className="ab-slide-right">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=650&fit=crop"
+              src="/images/modern-office.webp"
               alt="Professional team"
               className="ab-why-img"
             />
