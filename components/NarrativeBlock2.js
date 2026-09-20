@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import FloatingImages from "@/components/service/FloatingImages";
 
 /**
  * GhostWriterHunt — Narrative Block 2
- * Superside-style reversed layout: image left, approach copy right.
+ * Superside-style reversed layout: floating images left, approach copy right.
  * Visual foil to Block 1. Scroll-reveal via nb2- prefixed CSS classes.
  */
 
@@ -29,21 +30,23 @@ const STEPS = [
   },
 ];
 
-function GoldQuoteIcon() {
-  return (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="#C9A84C"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <path d="M7.17 6C4.87 6 3 7.87 3 10.17V14h5.5v-4H6.2c.2-1.1 1.15-1.9 2.3-1.9V6H7.17zm9.66 0C14.53 6 12.66 7.87 12.66 10.17V14H18.2v-4h-2.3c.2-1.1 1.15-1.9 2.3-1.9V6h-1.37z" />
-    </svg>
-  );
-}
+const NB2_IMAGES = [
+  {
+    url: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&h=700&fit=crop",
+    alt: "Author working on manuscript",
+    size: "large",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=300&h=350&fit=crop",
+    alt: "Writing and storytelling",
+    size: "medium",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=200&h=240&fit=crop",
+    alt: "Pen and paper",
+    size: "small",
+  },
+];
 
 export default function NarrativeBlock2() {
   // Scroll-reveal: fire once when ~15% of each target is visible
@@ -113,6 +116,24 @@ export default function NarrativeBlock2() {
           transform: translateX(0) scale(1);
         }
 
+        .nb2-img-wrap {
+          position: relative;
+          width: 100%;
+          height: 520px;
+          overflow: visible;
+        }
+
+        .nb2-float-card {
+          position: absolute;
+          bottom: -20px;
+          right: -20px;
+          background: #C9A84C;
+          border-radius: 12px;
+          padding: 16px 20px;
+          box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+          z-index: 5;
+        }
+
         @media (max-width: 768px) {
           .nb2-reveal-left { transform: translateX(-20px); }
           .nb2-reveal-right { transform: translateX(20px); }
@@ -125,10 +146,11 @@ export default function NarrativeBlock2() {
             padding-right: 20px !important;
             gap: 32px !important;
           }
-          .nb2-section-img {
-            height: 280px !important;
+          .nb2-img-wrap {
+            height: 320px;
           }
-          .nb2-reveal-card {
+          .nb2-reveal-card,
+          .nb2-float-card {
             display: none !important;
           }
         }
@@ -136,34 +158,32 @@ export default function NarrativeBlock2() {
 
       {/* Image first in DOM → on top for mobile; left on desktop */}
       <div className="nb2-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
-        {/* ——— Left: image + floating quote card ——— */}
+        {/* ——— Left: floating images + quote card ——— */}
         <div className="nb2-reveal-left relative w-full max-w-full lg:w-1/2" data-delay="0">
-          <div className="relative w-full">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&h=700&fit=crop"
-              alt="Open book and reading atmosphere"
-              className="nb2-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
-              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
-            />
+          <div className="nb2-img-wrap">
+            <FloatingImages images={NB2_IMAGES} />
 
-            {/* Floating card — overlaps bottom-right of image */}
+            {/* Floating card — overlaps bottom-right */}
             <div
-              className="nb2-reveal-card absolute -bottom-5 -right-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              className="nb2-float-card nb2-reveal-card"
               data-delay="400"
-              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
-              <div className="flex items-start gap-2">
-                <GoldQuoteIcon />
-                <div>
-                  <p className="font-playfair text-[16px] italic leading-tight text-[#1C1C1C]">
-                    Your voice. Perfectly captured.
-                  </p>
-                  <p className="mt-1 font-inter text-[13px] font-normal text-[#666666]">
-                    every single word
-                  </p>
-                </div>
-              </div>
+              <p
+                aria-hidden="true"
+                className="font-playfair text-[32px] font-bold leading-none text-white"
+                style={{ marginBottom: 4 }}
+              >
+                &ldquo;
+              </p>
+              <p className="font-playfair text-[14px] italic leading-tight text-white">
+                Your voice. Perfectly captured.
+              </p>
+              <p
+                className="mt-1 font-inter text-[12px] font-normal"
+                style={{ color: "rgba(255,255,255,0.8)" }}
+              >
+                every single word
+              </p>
             </div>
           </div>
         </div>

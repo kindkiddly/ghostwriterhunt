@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import FloatingImages from "@/components/service/FloatingImages";
 
 /**
  * GhostWriterHunt — Narrative Block 1
  * Superside-style two-column story section:
- * bold copy + feature bullets left, editorial image + floating card right.
+ * bold copy + feature bullets left, floating images + card right.
  * Scroll-reveal via Intersection Observer + .nb1-is-visible CSS classes.
  */
 
@@ -32,6 +33,24 @@ const FEATURES = [
   },
 ];
 
+const NB1_IMAGES = [
+  {
+    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop",
+    alt: "Professional writer at desk",
+    size: "large",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=350&fit=crop",
+    alt: "Writing manuscript",
+    size: "medium",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=240&fit=crop",
+    alt: "Author notes and pen",
+    size: "small",
+  },
+];
+
 function GoldCheckIcon() {
   return (
     <svg
@@ -51,22 +70,6 @@ function GoldCheckIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
-  );
-}
-
-function GoldStarIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="#C9A84C"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.47L12 17.27l-5.8 3.05 1.11-6.47-4.7-4.58 6.49-.94L12 2.5z" />
     </svg>
   );
 }
@@ -144,6 +147,25 @@ export default function NarrativeBlock1() {
           transform: translateX(0) scale(1);
         }
 
+        .nb1-img-wrap {
+          position: relative;
+          width: 100%;
+          height: 520px;
+          overflow: visible;
+        }
+
+        .nb1-float-card {
+          position: absolute;
+          bottom: -20px;
+          left: -20px;
+          background: #FFFFFF;
+          border-radius: 12px;
+          padding: 16px 20px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+          border-left: 4px solid #C9A84C;
+          z-index: 5;
+        }
+
         @media (max-width: 768px) {
           .nb1-reveal-left { transform: translateX(-20px); }
           .nb1-reveal-right { transform: translateX(20px); }
@@ -156,10 +178,11 @@ export default function NarrativeBlock1() {
             padding-right: 20px !important;
             gap: 32px !important;
           }
-          .nb1-section-img {
-            height: 280px !important;
+          .nb1-img-wrap {
+            height: 320px;
           }
-          .nb1-reveal-card {
+          .nb1-reveal-card,
+          .nb1-float-card {
             display: none !important;
           }
         }
@@ -211,31 +234,33 @@ export default function NarrativeBlock1() {
           </a>
         </div>
 
-        {/* ——— Right: image + floating stats card ——— */}
+        {/* ——— Right: floating images + stats card ——— */}
         <div className="nb1-reveal-right relative w-full max-w-full lg:w-1/2" data-delay="150">
-          {/* Mobile: image on top — flex-col-reverse handles stack order */}
-          <div className="relative w-full">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=700&fit=crop"
-              alt="Author writing at a desk with manuscript pages"
-              className="nb1-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
-              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
-            />
+          <div className="nb1-img-wrap">
+            <FloatingImages images={NB1_IMAGES} />
 
-            {/* Floating card — overlaps bottom-left of image */}
+            {/* Floating card — overlaps bottom-left */}
             <div
-              className="nb1-reveal-card absolute -bottom-5 -left-5 rounded-xl bg-[#FFFFFF] px-5 py-4"
+              className="nb1-float-card nb1-reveal-card"
               data-delay="400"
-              style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
             >
               <div className="flex items-start gap-2">
-                <GoldStarIcon />
+                <span
+                  aria-hidden="true"
+                  style={{
+                    color: "#C9A84C",
+                    fontSize: "18px",
+                    lineHeight: 1,
+                    flexShrink: 0,
+                  }}
+                >
+                  ★
+                </span>
                 <div>
-                  <p className="font-playfair text-[18px] font-bold leading-tight text-[#1C1C1C]">
+                  <p className="font-playfair text-[16px] font-bold leading-tight text-[#1C1C1C]">
                     5,000+ Books Written
                   </p>
-                  <p className="mt-1 font-inter text-[13px] font-normal text-[#666666]">
+                  <p className="mt-1 font-inter text-[12px] font-normal text-[#666666]">
                     by professional ghostwriters
                   </p>
                 </div>
