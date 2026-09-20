@@ -221,40 +221,7 @@ const styles = `
       padding: 28px 20px;
     }
   }
-
-  /* Scrollbar compensation — covers body + fixed nav/header */
-  body.modal-open {
-    overflow: hidden;
-    padding-right: var(--scrollbar-width);
-  }
-  body.modal-open nav,
-  body.modal-open header,
-  body.modal-open [class*="navbar"],
-  body.modal-open [class*="Navbar"] {
-    padding-right: var(--scrollbar-width) !important;
-  }
 `;
-
-function clearBodyLock() {
-  document.documentElement.style.setProperty("--scrollbar-width", "0px");
-  document.body.classList.remove("modal-open");
-  // Clear any leftover inline styles from prior lock approach
-  document.body.style.overflow = "";
-  document.body.style.paddingRight = "";
-  document.querySelectorAll("nav, header").forEach((el) => {
-    el.style.paddingRight = "";
-  });
-}
-
-function applyBodyLock() {
-  const scrollbarWidth =
-    window.innerWidth - document.documentElement.clientWidth;
-  document.documentElement.style.setProperty(
-    "--scrollbar-width",
-    `${scrollbarWidth}px`
-  );
-  document.body.classList.add("modal-open");
-}
 
 export default function LegalModal({ isOpen, onClose, type }) {
   const [isClosing, setIsClosing] = useState(false);
@@ -267,21 +234,8 @@ export default function LegalModal({ isOpen, onClose, type }) {
     setTimeout(() => {
       setIsClosing(false);
       onClose();
-      clearBodyLock();
     }, 350);
   };
-
-  // Body scroll lock via CSS class + --scrollbar-width (no layout shift)
-  useEffect(() => {
-    if (isOpen) {
-      applyBodyLock();
-    } else {
-      clearBodyLock();
-    }
-    return () => {
-      clearBodyLock();
-    };
-  }, [isOpen]);
 
   // Escape key
   useEffect(() => {
