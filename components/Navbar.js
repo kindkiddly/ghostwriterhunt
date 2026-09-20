@@ -154,12 +154,12 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "How It Works", href: "/#how-it-works" },
     { label: "Services", href: "#services", isServices: true },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "FAQ", href: "/#faq" },
     { label: "About Us", href: "/about", isAbout: true },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/#start" },
   ];
 
   const closeMobile = () => {
