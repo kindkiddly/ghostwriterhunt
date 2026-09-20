@@ -2,34 +2,27 @@
 
 /**
  * GhostWriterHunt — Footer
- * Reedsy 5-column structure + Superside dark premium band:
- * newsletter strip, brand/social, link columns, contact, legal bar.
+ * 4-column dark band: brand, services, company, contact + legal bar.
  */
 
 const SERVICE_LINKS = [
-  { label: "Ghostwriting", href: "#services" },
-  { label: "Manuscript Editing", href: "#services" },
-  { label: "Book Cover Design", href: "#services" },
-  { label: "Interior Layout", href: "#services" },
-  { label: "eBook Publishing", href: "#services" },
-  { label: "Book Marketing", href: "#services" },
-];
-
-const GENRE_LINKS = [
-  { label: "Fiction", href: "#services" },
-  { label: "Non-Fiction", href: "#services" },
-  { label: "Biography", href: "#services" },
-  { label: "Memoir", href: "#services" },
-  { label: "Self-Help", href: "#services" },
-  { label: "Business Books", href: "#services" },
+  { label: "Professional Ghostwriting", href: "/services/ghostwriting" },
+  { label: "Manuscript Editing", href: "/services/manuscript-editing" },
+  { label: "Book Cover Design", href: "/services/book-cover-design" },
+  { label: "Interior Layout", href: "/services/interior-layout" },
+  { label: "Illustration & Graphics", href: "/services/illustration-graphics" },
+  { label: "eBook Publishing", href: "/services/ebook-publishing" },
+  { label: "Author Branding", href: "/services/author-branding" },
+  { label: "Book Marketing", href: "/services/book-marketing" },
 ];
 
 const COMPANY_LINKS = [
-  { label: "About Us", href: "#about" },
-  { label: "Our Writers", href: "#writers" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact Us", href: "#start" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Writers", href: "/#writers" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact Us", href: "/#start" },
 ];
 
 const LEGAL_LINKS = [
@@ -98,8 +91,17 @@ function FooterLink({ href, children }) {
 
 export default function Footer() {
   return (
-    <footer className="w-full overflow-x-hidden bg-[#1C1C1C] pb-10 pt-[80px]" aria-label="Site footer">
+    <footer
+      className="w-full overflow-x-hidden bg-[#1C1C1C] pb-10 pt-[80px]"
+      aria-label="Site footer"
+    >
       <style>{`
+        .gwh-footer-grid {
+          display: grid;
+          grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+          gap: 40px;
+        }
+
         @media (max-width: 768px) {
           .gwh-footer-inner {
             padding-left: 20px !important;
@@ -126,7 +128,12 @@ export default function Footer() {
             border-radius: 6px !important;
             margin-top: 8px;
           }
+          .gwh-footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 32px 24px;
+          }
           .gwh-footer-brand {
+            grid-column: 1 / -1;
             text-align: center;
             align-items: center;
             display: flex;
@@ -134,6 +141,23 @@ export default function Footer() {
           }
           .gwh-footer-social {
             justify-content: center;
+          }
+          .gwh-footer-contact {
+            grid-column: 1 / -1;
+          }
+          .gwh-footer-mini-form {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .gwh-footer-mini-form input {
+            width: 100% !important;
+            border-radius: 6px !important;
+            border-right-width: 1px !important;
+          }
+          .gwh-footer-mini-form button {
+            width: 100%;
+            border-radius: 6px !important;
+            margin-top: 8px;
           }
           .gwh-footer-bottom {
             text-align: center;
@@ -174,8 +198,8 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* 5-column link grid */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-10">
+        {/* 4-column grid: Brand · Services · Company · Contact */}
+        <div className="gwh-footer-grid">
           {/* Column 1 — Brand */}
           <div className="gwh-footer-brand">
             <a href="/" className="mb-5 inline-block">
@@ -229,19 +253,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Column 3 — Genres */}
-          <div>
-            <FooterHeading>Genres</FooterHeading>
-            <nav aria-label="Footer genres">
-              {GENRE_LINKS.map((link) => (
-                <FooterLink key={link.label} href={link.href}>
-                  {link.label}
-                </FooterLink>
-              ))}
-            </nav>
-          </div>
-
-          {/* Column 4 — Company */}
+          {/* Column 3 — Company */}
           <div>
             <FooterHeading>Company</FooterHeading>
             <nav aria-label="Footer company">
@@ -253,25 +265,46 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Column 5 — Contact */}
-          <div id="contact">
-            <FooterHeading>Get In Touch</FooterHeading>
-            <p className="mb-1 font-inter text-[12px] font-normal text-[#666666]">
-              Email us at
-            </p>
+          {/* Column 4 — Contact */}
+          <div className="gwh-footer-contact" id="contact">
+            <FooterHeading>Contact</FooterHeading>
             <a
               href="mailto:hello@ghostwriterhunt.com"
               className="font-inter text-[14px] font-medium text-[#C9A84C] no-underline hover:underline"
             >
               hello@ghostwriterhunt.com
             </a>
-            <div className="my-5 h-px w-full bg-[#333333]" aria-hidden="true" />
-            <p className="mb-2 font-inter text-[14px] font-normal text-[#666666]">
+            <p className="mt-3 font-inter text-[14px] font-normal text-[#666666]">
               Houston, USA
             </p>
-            <p className="font-inter text-[14px] font-normal text-[#666666]">
+            <p className="mt-1 font-inter text-[14px] font-normal text-[#666666]">
               Mon-Fri: 9am - 6pm CST
             </p>
+
+            <div className="my-5 h-px w-full bg-[#333333]" aria-hidden="true" />
+
+            <p className="mb-3 font-inter text-[13px] font-normal text-[#999999]">
+              Get writing tips weekly
+            </p>
+            <form
+              className="gwh-footer-mini-form flex w-full"
+              onSubmit={(e) => e.preventDefault()}
+              aria-label="Footer newsletter signup"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                className="w-full min-w-0 flex-1 rounded-l-[6px] border border-[#333333] border-r-0 bg-[#1C1C1C] px-3 py-2.5 font-inter text-[13px] text-white outline-none placeholder:text-[#666666] focus:border-[#C9A84C]"
+                required
+              />
+              <button
+                type="submit"
+                className="shrink-0 rounded-r-[6px] border-0 bg-[#C9A84C] px-4 py-2.5 font-inter text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-[#B8960C]"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
 
