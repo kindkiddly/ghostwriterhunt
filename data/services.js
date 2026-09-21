@@ -223,8 +223,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/fountain-pen-notes.webp',
-        alt: 'Marked up pages',
+        url: '/images/HERO-M-02.webp',
+        alt: 'Manuscript editing detail',
         size: 'medium'
       },
       {
@@ -418,8 +418,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/library-books.webp',
-        alt: 'Book collection',
+        url: '/images/HERO-M03.webp',
+        alt: 'Book cover design detail',
         size: 'medium'
       },
       {
@@ -818,8 +818,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/flipping-book.webp',
-        alt: 'Creative artwork',
+        url: '/images/HERO-M05.webp',
+        alt: 'Illustration detail',
         size: 'medium'
       },
       {
@@ -1018,8 +1018,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/books-fairy-lights.webp',
-        alt: 'eReader device',
+        url: '/images/HERO-M06.webp',
+        alt: 'eBook publishing detail',
         size: 'medium'
       },
       {
@@ -1218,8 +1218,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/collaboration-laptop.webp',
-        alt: 'Brand identity',
+        url: '/images/HERO-M07.webp',
+        alt: 'Author branding detail',
         size: 'medium'
       },
       {
