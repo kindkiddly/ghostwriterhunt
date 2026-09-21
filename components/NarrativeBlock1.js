@@ -35,18 +35,18 @@ const FEATURES = [
 
 const NB1_IMAGES = [
   {
-    url: "/images/writing-desk.webp",
-    alt: "Professional writer at desk",
+    url: "/images/ghost-writer-3.webp",
+    alt: "Writer at a typewriter under a desk lamp",
     size: "large",
   },
   {
-    url: "/images/fountain-pen-notes.webp",
-    alt: "Writing manuscript",
+    url: "/images/book-H3.webp",
+    alt: "Handwriting a book story in a notebook beside writing books",
     size: "medium",
   },
   {
-    url: "/images/book-pen-laptop.webp",
-    alt: "Author notes and pen",
+    url: "/images/Pen-writing.webp",
+    alt: "Fountain pen writing on a manuscript page",
     size: "small",
   },
 ];

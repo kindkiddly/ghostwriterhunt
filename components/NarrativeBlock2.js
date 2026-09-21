@@ -32,18 +32,18 @@ const STEPS = [
 
 const NB2_IMAGES = [
   {
-    url: "/images/books-stack-pink.webp",
-    alt: "Author working on manuscript",
+    url: "/images/book-H11.webp",
+    alt: "Autobiography beside a notebook of handwritten draft lines",
     size: "large",
   },
   {
-    url: "/images/author-reading.webp",
-    alt: "Writing and storytelling",
+    url: "/images/writing-1.webp",
+    alt: "Hands writing on paper",
     size: "medium",
   },
   {
-    url: "/images/flipping-book.webp",
-    alt: "Pen and paper",
+    url: "/images/book-H9.webp",
+    alt: "Reader holding a finished author's book",
     size: "small",
   },
 ];

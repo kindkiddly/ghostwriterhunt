@@ -211,11 +211,11 @@ export default function NarrativeBlock3() {
           <div className="relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/library-books.webp"
-              alt="Stack of books ready for global publishing"
+              src="/images/library.webp"
+              alt="Grand library with shelves of books reaching worldwide readers"
               className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
-              width="300"
-              height="350"
+              width="800"
+              height="1200"
               loading="lazy"
               decoding="async"
               style={{
