@@ -12,36 +12,36 @@ const FALLBACK_COVER =
   "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=180&h=220&fit=crop";
 
 const COLUMN_1 = [
-  "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=180&h=220&fit=crop",
+  "/images/book-H5.webp",
+  "/images/book-H6.webp",
+  "/images/book-H8.webp",
+  "/images/book-H9.webp",
+  "/images/book-H13.webp",
+  "/images/book-H14.webp",
+  "/images/books-3.webp",
+  "/images/books-7.webp",
 ];
 
 const COLUMN_2 = [
-  "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=180&h=220&fit=crop",
+  "/images/books-9.webp",
+  "/images/books-11.webp",
+  "/images/books-14.webp",
+  "/images/Books-2.webp",
+  "/images/book-H2.webp",
+  "/images/books-6.webp",
+  "/images/books-fairy-lights.webp",
+  "/images/e-book-publishing.webp",
 ];
 
 const COLUMN_3 = [
-  "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1535398089889-dd807df1dfaa?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=180&h=220&fit=crop",
-  "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=180&h=220&fit=crop",
+  "/images/books-flatlay.webp",
+  "/images/books-stack-pink.webp",
+  "/images/books-reading.webp",
+  "/images/book-H12.webp",
+  "/images/books-5.webp",
+  "/images/books-8.webp",
+  "/images/books-10.webp",
+  "/images/flipping-book.webp",
 ];
 
 function BookCover({ src, alt }) {

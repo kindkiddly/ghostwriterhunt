@@ -29,7 +29,7 @@ const BOOKS = [
     genre: "Fiction",
     writer: "Written by Sarah Mitchell",
     image:
-      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
+      "/images/book-H6.webp",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const BOOKS = [
     genre: "Non-Fiction",
     writer: "Written by Dr. Amanda Clarke",
     image:
-      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop",
+      "/images/book-H13.webp",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const BOOKS = [
     genre: "Biography",
     writer: "Written by Robert Callahan",
     image:
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=600&fit=crop",
+      "/images/books-9.webp",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const BOOKS = [
     genre: "Memoir",
     writer: "Written by Sarah Mitchell",
     image:
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
+      "/images/Books-2.webp",
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const BOOKS = [
     genre: "Self-Help",
     writer: "Written by Dr. Amanda Clarke",
     image:
-      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=600&fit=crop",
+      "/images/books-11.webp",
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const BOOKS = [
     genre: "Business",
     writer: "Written by Dr. Marcus Chen",
     image:
-      "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&h=600&fit=crop",
+      "/images/book-H14.webp",
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const BOOKS = [
     genre: "Children's",
     writer: "Written by Priya Sharma",
     image:
-      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop",
+      "/images/books-fairy-lights.webp",
   },
   {
     id: 8,
@@ -85,7 +85,7 @@ const BOOKS = [
     genre: "Mystery",
     writer: "Written by James Whitmore",
     image:
-      "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=400&h=600&fit=crop",
+      "/images/books-7.webp",
   },
   {
     id: 9,
@@ -93,7 +93,7 @@ const BOOKS = [
     genre: "Romance",
     writer: "Written by Isabella Romano",
     image:
-      "https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=400&h=600&fit=crop",
+      "/images/books-3.webp",
   },
   {
     id: 10,
@@ -101,7 +101,7 @@ const BOOKS = [
     genre: "Fiction",
     writer: "Written by James Whitmore",
     image:
-      "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=600&fit=crop",
+      "/images/book-H2.webp",
   },
   {
     id: 11,
@@ -109,7 +109,7 @@ const BOOKS = [
     genre: "Non-Fiction",
     writer: "Written by Dr. Marcus Chen",
     image:
-      "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=400&h=600&fit=crop",
+      "/images/book-H8.webp",
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ const BOOKS = [
     genre: "Biography",
     writer: "Written by Robert Callahan",
     image:
-      "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=400&h=600&fit=crop",
+      "/images/books-6.webp",
   },
 ];
 
