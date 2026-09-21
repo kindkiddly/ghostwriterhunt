@@ -1811,8 +1811,8 @@ export const services = [
         size: 'large'
       },
       {
-        url: '/images/books-education.webp',
-        alt: 'Child reading',
+        url: '/images/childrens-stories-9.webp',
+        alt: 'Mother reading a picture book to her child',
         size: 'medium'
       },
       {
@@ -1836,18 +1836,18 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/book-pen-laptop.webp',
-          alt: "Children's books",
+          url: '/images/children-stories-16.webp',
+          alt: "Stack of children's picture books",
           size: 'large'
         },
         {
-          url: '/images/books-education.webp',
-          alt: 'Reading child',
+          url: '/images/children-stories-1.webp',
+          alt: 'Child reading before bedtime',
           size: 'medium'
         },
         {
-          url: '/images/book-pen-laptop.webp',
-          alt: 'Books',
+          url: '/images/chidren-stories-17.webp',
+          alt: "Children's coloring book and crayons",
           size: 'small'
         }
       ]
@@ -1876,31 +1876,31 @@ export const services = [
         number: '01',
         title: 'Story Discovery',
         description: 'We discuss your story idea, target age group, themes, characters and the message you want to share.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/children-stories-9.webp'
       },
       {
         number: '02',
         title: 'Character and Plot',
         description: 'Characters are developed and a story outline is created and approved before writing begins.',
-        image: '/images/books-education.webp'
+        image: '/images/children-stories-11.webp'
       },
       {
         number: '03',
         title: 'First Draft',
         description: 'Your specialist writer crafts the complete first draft with rhythm, warmth and wonder.',
-        image: '/images/book-pen-laptop.webp'
+        image: '/images/children-stories-7.webp'
       },
       {
         number: '04',
         title: 'Review and Refine',
         description: 'You read the draft aloud and share feedback. We refine until every word feels perfect.',
-        image: '/images/book-pen-laptop.webp'
+        image: '/images/children-stories-8.webp'
       },
       {
         number: '05',
         title: 'Final Manuscript',
         description: 'The completed manuscript is delivered ready for illustration and publishing.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/children-stories-13.webp'
       }
     ],
 
@@ -1990,7 +1990,7 @@ export const services = [
     ctaHeadline: 'Create a story your child',
     ctaHeadlineItalic: 'will never forget.',
     ctaSubtext: 'Book a free consultation and let us write the children\'s book that becomes a family treasure.',
-    ctaImage: '/images/book-pen-laptop.webp'
+    ctaImage: '/images/children-stories-3.webp'
   },
 
   // ─────────────────────────────────
