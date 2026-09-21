@@ -23,8 +23,8 @@ export const services = [
         size: 'medium'
       },
       {
-        url: '/images/author-reading.webp',
-        alt: 'Writing tools',
+        url: '/images/HERO-S01.webp',
+        alt: 'Ghostwriting detail',
         size: 'small'
       }
     ],
@@ -1223,8 +1223,8 @@ export const services = [
         size: 'medium'
       },
       {
-        url: '/images/collaboration-laptop.webp',
-        alt: 'Author platform',
+        url: '/images/HERO-S7.webp',
+        alt: 'Author branding detail',
         size: 'small'
       }
     ],
@@ -1418,8 +1418,8 @@ export const services = [
         size: 'medium'
       },
       {
-        url: '/images/collaboration-laptop.webp',
-        alt: 'Social media',
+        url: '/images/HERO-S8.webp',
+        alt: 'Book marketing detail',
         size: 'small'
       }
     ],
@@ -1816,8 +1816,8 @@ export const services = [
         size: 'medium'
       },
       {
-        url: '/images/book-pen-laptop.webp',
-        alt: 'Colorful books',
+        url: '/images/HERO-S10.webp',
+        alt: 'Children book detail',
         size: 'small'
       }
     ],
@@ -2016,8 +2016,8 @@ export const services = [
         size: 'medium'
       },
       {
-        url: '/images/writing-hands.webp',
-        alt: 'Editorial desk',
+        url: '/images/HERO-S11.webp',
+        alt: 'Article writing detail',
         size: 'small'
       }
     ],
