@@ -602,7 +602,7 @@ export const services = [
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
     ctaSubtext: 'Book a free design consultation and see what our designers can create for your book.',
-    ctaImage: '/images/CTA-BOOKS.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -797,7 +797,7 @@ export const services = [
     ctaHeadline: 'Give your readers a book',
     ctaHeadlineItalic: 'they love to hold.',
     ctaSubtext: 'Book a free consultation and let our designers show you what premium interior design looks like.',
-    ctaImage: '/images/CTA-BOOKS.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -997,7 +997,7 @@ export const services = [
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
     ctaSubtext: 'Book a free illustration consultation and discover what our artists can create for your book.',
-    ctaImage: '/images/CTA-BOOKS.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -1594,7 +1594,7 @@ export const services = [
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
     ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
-    ctaImage: '/images/CTA-BOOKS.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
