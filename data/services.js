@@ -1408,7 +1408,7 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/office-meeting.webp',
+        url: '/images/child-reading-book.webp',
         alt: 'Book marketing strategy',
         size: 'large'
       },
@@ -1438,7 +1438,7 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/office-meeting.webp',
+          url: '/images/child-reading-book.webp',
           alt: 'Marketing strategy',
           size: 'large'
         },
@@ -1484,7 +1484,7 @@ export const services = [
         number: '02',
         title: 'Strategy Development',
         description: 'A custom marketing plan is created covering platforms, tactics and timeline.',
-        image: '/images/office-meeting.webp'
+        image: '/images/child-reading-book.webp'
       },
       {
         number: '03',
@@ -1594,7 +1594,7 @@ export const services = [
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
     ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
-    ctaImage: '/images/office-meeting.webp'
+    ctaImage: '/images/child-reading-book.webp'
   },
 
   // ─────────────────────────────────
