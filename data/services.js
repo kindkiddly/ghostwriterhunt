@@ -1409,7 +1409,7 @@ export const services = [
     heroImages: [
       {
         url: '/images/child-reading-book.webp',
-        alt: 'Book marketing strategy',
+        alt: 'Child reading a book',
         size: 'large'
       },
       {
@@ -1439,7 +1439,7 @@ export const services = [
       images: [
         {
           url: '/images/child-reading-book.webp',
-          alt: 'Marketing strategy',
+          alt: 'Child reading a book',
           size: 'large'
         },
         {
