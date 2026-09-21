@@ -13,8 +13,8 @@ export const services = [
     
     heroImages: [
       {
-        url: '/images/writing-hands.webp',
-        alt: 'Writer at desk',
+        url: '/images/Heero-L01.webp',
+        alt: 'Professional ghostwriter at desk',
         size: 'large'
       },
       {
@@ -218,8 +218,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/collaboration-laptop.webp',
-        alt: 'Editor reviewing manuscript',
+        url: '/images/HEERO-L02.webp',
+        alt: 'Manuscript editing professional',
         size: 'large'
       },
       {
@@ -413,8 +413,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/books-fairy-lights.webp',
-        alt: 'Book cover design',
+        url: '/images/Heero-L03.webp',
+        alt: 'Book cover designer at work',
         size: 'large'
       },
       {
@@ -618,8 +618,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/library-books.webp',
-        alt: 'Book interior layout',
+        url: '/images/HEERO-L04.webp',
+        alt: 'Interior layout designer',
         size: 'large'
       },
       {
@@ -813,8 +813,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/books-stack-pink.webp',
-        alt: 'Illustration work',
+        url: '/images/Heero-L05.webp',
+        alt: 'Illustrator creating artwork',
         size: 'large'
       },
       {
@@ -1013,8 +1013,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/library-books.webp',
-        alt: 'Digital publishing',
+        url: '/images/HEERO-L06.webp',
+        alt: 'eBook publishing professional',
         size: 'large'
       },
       {
@@ -1213,8 +1213,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop',
-        alt: 'Professional author',
+        url: '/images/HEERO-L07.webp',
+        alt: 'Author branding session',
         size: 'large'
       },
       {
@@ -1408,8 +1408,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/child-reading-book.webp',
-        alt: 'Child reading a book',
+        url: '/images/HEERO-L08.webp',
+        alt: 'Book marketing professional',
         size: 'large'
       },
       {
@@ -1610,8 +1610,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/books-fairy-lights.webp',
-        alt: 'eBook writing',
+        url: '/images/HEERO-L09.webp',
+        alt: 'eBook writer at work',
         size: 'large'
       },
       {
@@ -1806,8 +1806,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/book-pen-laptop.webp',
-        alt: "Children's books",
+        url: '/images/HEERO-L10.webp',
+        alt: 'Children book author reading',
         size: 'large'
       },
       {
@@ -2006,8 +2006,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=700&fit=crop',
-        alt: 'Article writing',
+        url: '/images/HEERO-L11.webp',
+        alt: 'Article writing professionals',
         size: 'large'
       },
       {
@@ -2199,8 +2199,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=700&fit=crop',
-        alt: 'Blog writing',
+        url: '/images/HEERO-L12.webp',
+        alt: 'Blog writing team',
         size: 'large'
       },
       {
@@ -2394,8 +2394,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/fountain-pen-notes.webp',
-        alt: 'Proofreading',
+        url: '/images/HEERO-L13.webp',
+        alt: 'Proofreading professionals',
         size: 'large'
       },
       {
@@ -2586,8 +2586,8 @@ export const services = [
 
     heroImages: [
       {
-        url: '/images/library-books.webp',
-        alt: 'Book formatting',
+        url: '/images/HEERO-L14.webp',
+        alt: 'Book formatting professional',
         size: 'large'
       },
       {
@@ -2780,8 +2780,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1536240478700-b869ad10a2eb?w=600&h=700&fit=crop',
-        alt: 'Video production',
+        url: '/images/HEERO-L15.webp',
+        alt: 'Video book trailer production',
         size: 'large'
       },
       {
@@ -2981,8 +2981,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=700&fit=crop',
-        alt: 'Audiobook recording',
+        url: '/images/HEERO-L16.webp',
+        alt: 'Audiobook recording studio',
         size: 'large'
       },
       {
@@ -3182,8 +3182,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=700&fit=crop',
-        alt: 'Website design',
+        url: '/images/HEERO-L17.webp',
+        alt: 'Author website design team',
         size: 'large'
       },
       {
@@ -3385,8 +3385,8 @@ export const services = [
 
     heroImages: [
       {
-        url: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&h=700&fit=crop',
-        alt: 'Content writing',
+        url: '/images/HEERO-L18.webp',
+        alt: 'Website content writing team',
         size: 'large'
       },
       {
