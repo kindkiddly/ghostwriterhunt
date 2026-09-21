@@ -5,8 +5,12 @@ import { getImageDimensions } from "@/data/imageDimensions";
 /**
  * GhostWriterHunt — FloatingImages
  * Reusable floating / mosaic image cluster for service pages.
- * Props: { images, className, slug }
+ * Props: { images, className, slug, eager }
  * size: 'large' | 'medium' | 'small'
+ *
+ * `eager` is opt-in (2–3 image floating layout only): loads the images
+ * immediately and promotes them to their own GPU layer so scroll-reveal
+ * animations don't pop. Only the homepage narrative blocks pass it.
  *
  * `slug` is optional and only passed by ServiceHero — it selects the large
  * frame's aspect ratio for that service's hero image. Every other caller
@@ -29,7 +33,12 @@ const SQUARE_HERO_SLUGS = new Set([
   "website-content",
 ]);
 
-export default function FloatingImages({ images = [], className = "", slug = null }) {
+export default function FloatingImages({
+  images = [],
+  className = "",
+  slug = null,
+  eager = false,
+}) {
   const list = images.slice(0, 4);
   const count = list.length;
 
@@ -267,8 +276,13 @@ export default function FloatingImages({ images = [], className = "", slug = nul
             className={`fi-float-img ${sizeClass}${largeVariant ? ` ${largeVariant}` : ""}`}
             width={width}
             height={height}
-            loading="lazy"
+            loading={eager ? "eager" : "lazy"}
             decoding="async"
+            style={
+              eager
+                ? { willChange: "transform", backfaceVisibility: "hidden" }
+                : undefined
+            }
           />
         );
       })}

@@ -30,6 +30,12 @@ export const IMAGE_DIMENSIONS = {
   "/images/workspace-desk.webp": { width: 1701, height: 1080 },
   "/images/writing-desk.webp": { width: 400, height: 300 },
   "/images/writing-hands.webp": { width: 1350, height: 900 },
+  "/images/ghost-writer-3.webp": { width: 2136, height: 2843 },
+  "/images/book-H3.webp": { width: 984, height: 1200 },
+  "/images/Pen-writing.webp": { width: 600, height: 699 },
+  "/images/book-H11.webp": { width: 984, height: 1200 },
+  "/images/writing-1.webp": { width: 1920, height: 1280 },
+  "/images/book-H9.webp": { width: 800, height: 1200 },
 };
 
 const FALLBACK_DIMENSIONS = { width: 800, height: 600 };

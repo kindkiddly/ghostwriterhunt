@@ -216,11 +216,13 @@ export default function NarrativeBlock3() {
               className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               width="800"
               height="1200"
-              loading="lazy"
+              loading="eager"
               decoding="async"
               style={{
                 boxShadow:
                   "0 0 0 1px rgba(201,168,76,0.2), 0 20px 60px rgba(0,0,0,0.4)",
+                willChange: "transform",
+                backfaceVisibility: "hidden",
               }}
             />
 

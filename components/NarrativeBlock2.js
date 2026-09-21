@@ -161,7 +161,7 @@ export default function NarrativeBlock2() {
         {/* ——— Left: floating images + quote card ——— */}
         <div className="nb2-reveal-left relative w-full max-w-full lg:w-1/2" data-delay="0">
           <div className="nb2-img-wrap">
-            <FloatingImages images={NB2_IMAGES} />
+            <FloatingImages images={NB2_IMAGES} eager />
 
             {/* Floating card — overlaps bottom-right */}
             <div

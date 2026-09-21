@@ -237,7 +237,7 @@ export default function NarrativeBlock1() {
         {/* ——— Right: floating images + stats card ——— */}
         <div className="nb1-reveal-right relative w-full max-w-full lg:w-1/2" data-delay="150">
           <div className="nb1-img-wrap">
-            <FloatingImages images={NB1_IMAGES} />
+            <FloatingImages images={NB1_IMAGES} eager />
 
             {/* Floating card — overlaps bottom-left */}
             <div
