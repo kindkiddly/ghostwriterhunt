@@ -397,7 +397,7 @@ export const services = [
     ctaHeadline: 'Your manuscript deserves',
     ctaHeadlineItalic: 'its finest form.',
     ctaSubtext: 'Book a free consultation and let our editors show you what your manuscript can become.',
-    ctaImage: '/images/CTA-LIBRARY.webp'
+    ctaImage: '/images/CTA-MIX.webp'
   },
 
   // ─────────────────────────────────
@@ -602,7 +602,7 @@ export const services = [
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
     ctaSubtext: 'Book a free design consultation and see what our designers can create for your book.',
-    ctaImage: '/images/CTA-LIBRARY.webp'
+    ctaImage: '/images/CTA-MIX.webp'
   },
 
   // ─────────────────────────────────
@@ -997,7 +997,7 @@ export const services = [
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
     ctaSubtext: 'Book a free illustration consultation and discover what our artists can create for your book.',
-    ctaImage: '/images/CTA-LIBRARY.webp'
+    ctaImage: '/images/CTA-MIX.webp'
   },
 
   // ─────────────────────────────────
@@ -2570,7 +2570,7 @@ export const services = [
     ctaHeadline: 'Publish with complete',
     ctaHeadlineItalic: 'confidence.',
     ctaSubtext: 'Book a free consultation and let our proofreaders ensure your manuscript is flawless.',
-    ctaImage: '/images/CTA-LIBRARY.webp'
+    ctaImage: '/images/CTA-MIX.webp'
   },
 
   // ─────────────────────────────────
@@ -2764,7 +2764,7 @@ export const services = [
     ctaHeadline: 'Get your book formatted',
     ctaHeadlineItalic: 'right the first time.',
     ctaSubtext: 'Book a free consultation and let our formatting specialists prepare your book for every platform.',
-    ctaImage: '/images/CTA-LIBRARY.webp'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
   // ─────────────────────────────────
