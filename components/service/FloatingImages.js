@@ -5,11 +5,31 @@ import { getImageDimensions } from "@/data/imageDimensions";
 /**
  * GhostWriterHunt — FloatingImages
  * Reusable floating / mosaic image cluster for service pages.
- * Props: { images, className }
+ * Props: { images, className, slug }
  * size: 'large' | 'medium' | 'small'
+ *
+ * `slug` is optional and only passed by ServiceHero — it selects the large
+ * frame's aspect ratio for that service's hero image. Every other caller
+ * (NarrativeBlock1/2, ServiceOverview, the About page) omits it and keeps
+ * the default portrait large frame.
  */
 
-export default function FloatingImages({ images = [], className = "" }) {
+const LANDSCAPE_HERO_SLUGS = new Set([
+  "manuscript-editing",
+  "author-branding",
+  "childrens-book",
+  "article-writing",
+  "audiobook-publishing",
+  "author-website",
+]);
+
+const SQUARE_HERO_SLUGS = new Set([
+  "blog-writing",
+  "proofreading",
+  "website-content",
+]);
+
+export default function FloatingImages({ images = [], className = "", slug = null }) {
   const list = images.slice(0, 4);
   const count = list.length;
 
@@ -156,6 +176,14 @@ export default function FloatingImages({ images = [], className = "" }) {
           box-shadow: 0 20px 60px rgba(0,0,0,0.15);
           z-index: 1;
         }
+        .fi-float-large.fi-float-large-landscape {
+          width: 400px;
+          height: 260px;
+        }
+        .fi-float-large.fi-float-large-square {
+          width: 320px;
+          height: 320px;
+        }
         .fi-float-medium {
           width: 200px;
           height: 260px;
@@ -222,13 +250,21 @@ export default function FloatingImages({ images = [], className = "" }) {
             : img.size === "small"
               ? "fi-float-small"
               : "fi-float-large";
+        const largeVariant =
+          sizeClass === "fi-float-large" && slug
+            ? LANDSCAPE_HERO_SLUGS.has(slug)
+              ? "fi-float-large-landscape"
+              : SQUARE_HERO_SLUGS.has(slug)
+                ? "fi-float-large-square"
+                : ""
+            : "";
         const { width, height } = getImageDimensions(img.url);
         return (
           <img
             key={img.url}
             src={img.url}
             alt={img.alt || ""}
-            className={`fi-float-img ${sizeClass}`}
+            className={`fi-float-img ${sizeClass}${largeVariant ? ` ${largeVariant}` : ""}`}
             width={width}
             height={height}
             loading="lazy"

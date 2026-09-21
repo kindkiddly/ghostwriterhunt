@@ -224,7 +224,7 @@ export default function ServiceHero({ service }) {
         </div>
 
         <div className="sh-right sh-reveal-img" data-delay="200">
-          <FloatingImages images={service.heroImages} />
+          <FloatingImages images={service.heroImages} slug={service.slug} />
         </div>
       </div>
     </section>
