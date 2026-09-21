@@ -202,7 +202,7 @@ export const services = [
     ctaHeadline: 'Your story is waiting',
     ctaHeadlineItalic: 'to be written.',
     ctaSubtext: 'Book a free consultation today and meet your perfect ghostwriter.',
-    ctaImage: '/images/library-books.webp'
+    ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
   // ─────────────────────────────────
@@ -397,7 +397,7 @@ export const services = [
     ctaHeadline: 'Your manuscript deserves',
     ctaHeadlineItalic: 'its finest form.',
     ctaSubtext: 'Book a free consultation and let our editors show you what your manuscript can become.',
-    ctaImage: '/images/library-books.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -602,7 +602,7 @@ export const services = [
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
     ctaSubtext: 'Book a free design consultation and see what our designers can create for your book.',
-    ctaImage: '/images/library-books.webp'
+    ctaImage: '/images/CTA-BOOKS.webp'
   },
 
   // ─────────────────────────────────
@@ -797,7 +797,7 @@ export const services = [
     ctaHeadline: 'Give your readers a book',
     ctaHeadlineItalic: 'they love to hold.',
     ctaSubtext: 'Book a free consultation and let our designers show you what premium interior design looks like.',
-    ctaImage: '/images/books-stack-pink.webp'
+    ctaImage: '/images/CTA-BOOKS.webp'
   },
 
   // ─────────────────────────────────
@@ -997,7 +997,7 @@ export const services = [
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
     ctaSubtext: 'Book a free illustration consultation and discover what our artists can create for your book.',
-    ctaImage: '/images/flipping-book.webp'
+    ctaImage: '/images/CTA-BOOKS.webp'
   },
 
   // ─────────────────────────────────
@@ -1197,7 +1197,7 @@ export const services = [
     ctaHeadline: 'Your book belongs',
     ctaHeadlineItalic: 'in the hands of readers.',
     ctaSubtext: 'Book a free publishing consultation and let us take your book to the world.',
-    ctaImage: '/images/flipping-book.webp'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
   // ─────────────────────────────────
@@ -1392,7 +1392,7 @@ export const services = [
     ctaHeadline: 'Step into your identity',
     ctaHeadlineItalic: 'as a published author.',
     ctaSubtext: 'Book a free brand consultation and discover what your author presence could look like.',
-    ctaImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
   // ─────────────────────────────────
@@ -1594,7 +1594,7 @@ export const services = [
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
     ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
-    ctaImage: '/images/child-reading-book.webp'
+    ctaImage: '/images/CTA-BOOKS.webp'
   },
 
   // ─────────────────────────────────
@@ -1790,7 +1790,7 @@ export const services = [
     ctaHeadline: 'Share your expertise with',
     ctaHeadlineItalic: 'the world.',
     ctaSubtext: 'Book a free consultation and let us write the eBook that establishes your authority.',
-    ctaImage: '/images/books-fairy-lights.webp'
+    ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
   // ─────────────────────────────────
@@ -1990,7 +1990,7 @@ export const services = [
     ctaHeadline: 'Create a story your child',
     ctaHeadlineItalic: 'will never forget.',
     ctaSubtext: 'Book a free consultation and let us write the children\'s book that becomes a family treasure.',
-    ctaImage: '/images/children-stories-3.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -2183,7 +2183,7 @@ export const services = [
     ctaHeadline: 'Build your authority',
     ctaHeadlineItalic: 'one article at a time.',
     ctaSubtext: 'Book a free consultation and let us create the content that establishes you as the expert in your field.',
-    ctaImage: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
   // ─────────────────────────────────
@@ -2378,7 +2378,7 @@ export const services = [
     ctaHeadline: 'Start the blog that',
     ctaHeadlineItalic: 'builds your readership.',
     ctaSubtext: 'Book a free consultation and let us create consistent, compelling content for your audience.',
-    ctaImage: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
   // ─────────────────────────────────
@@ -2570,7 +2570,7 @@ export const services = [
     ctaHeadline: 'Publish with complete',
     ctaHeadlineItalic: 'confidence.',
     ctaSubtext: 'Book a free consultation and let our proofreaders ensure your manuscript is flawless.',
-    ctaImage: '/images/fountain-pen-notes.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -2764,7 +2764,7 @@ export const services = [
     ctaHeadline: 'Get your book formatted',
     ctaHeadlineItalic: 'right the first time.',
     ctaSubtext: 'Book a free consultation and let our formatting specialists prepare your book for every platform.',
-    ctaImage: '/images/library-books.webp'
+    ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
   // ─────────────────────────────────
@@ -2965,7 +2965,7 @@ export const services = [
     ctaHeadline: 'Give your book the trailer',
     ctaHeadlineItalic: 'it deserves.',
     ctaSubtext: 'Book a free creative consultation and let us produce a trailer that makes readers want your book immediately.',
-    ctaImage: 'https://images.unsplash.com/photo-1536240478700-b869ad10a2eb?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-MIX.webp'
   },
 
   // ─────────────────────────────────
@@ -3166,7 +3166,7 @@ export const services = [
     ctaHeadline: 'Let your book be',
     ctaHeadlineItalic: 'heard as well as read.',
     ctaSubtext: 'Book a free consultation and discover how we can bring your book to life in audio.',
-    ctaImage: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-07.webp'
   },
 
   // ─────────────────────────────────
@@ -3369,7 +3369,7 @@ export const services = [
     ctaHeadline: 'Claim your space on',
     ctaHeadlineItalic: 'the web.',
     ctaSubtext: 'Book a free consultation and let us design the author website your readers deserve.',
-    ctaImage: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
   // ─────────────────────────────────
@@ -3563,7 +3563,7 @@ export const services = [
     ctaHeadline: 'Make every word on your site',
     ctaHeadlineItalic: 'work for you.',
     ctaSubtext: 'Book a free consultation and let us write the copy that turns your website visitors into readers.',
-    ctaImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=1920&h=600&fit=crop'
+    ctaImage: '/images/CTA-LAPTOP.webp'
   }
 
 ];

@@ -684,7 +684,7 @@ const styles = `
     justify-content: center;
     text-align: center;
     padding: 80px 24px;
-    background-image: url("/images/library-wide.webp");
+    background-image: url("/images/CTA-AUTHOR.webp");
     background-size: cover;
     background-position: center;
   }
