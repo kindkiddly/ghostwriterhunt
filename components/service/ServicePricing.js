@@ -281,6 +281,15 @@ export default function ServicePricing({ service }) {
           color: #444444;
         }
         .spr-card.featured .spr-feature { color: #CCCCCC; }
+        .spr-guarantee {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 500;
+          font-size: 13px;
+          color: #6B7C3A;
+          text-align: center;
+          margin: 0 0 16px;
+        }
+        .spr-card.featured .spr-guarantee { color: #6B7C3A; }
         .spr-cta {
           display: block;
           width: 100%;
@@ -421,6 +430,10 @@ export default function ServicePricing({ service }) {
                     </li>
                   ))}
                 </ul>
+
+                {plan.guarantee && (
+                  <p className="spr-guarantee">{plan.guarantee}</p>
+                )}
 
                 <a
                   href="/#start"
