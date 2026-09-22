@@ -43,18 +43,18 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/writing-desk.webp',
-          alt: 'Author writing',
+          url: '/images/ghost-writer-2.webp',
+          alt: 'Ghostwriter focused at work',
           size: 'large'
         },
         {
-          url: '/images/fountain-pen-notes.webp',
-          alt: 'Manuscript pages',
+          url: '/images/pen-book2.webp',
+          alt: 'Pens resting on a manuscript notebook',
           size: 'medium'
         },
         {
-          url: '/images/books-table.webp',
-          alt: 'Books',
+          url: '/images/ghostwriting-2.webp',
+          alt: 'Typewriter page reading "In the beginning..."',
           size: 'small'
         }
       ]
@@ -89,19 +89,19 @@ export const services = [
         number: '02',
         title: 'Author Interview',
         description: 'Your ghostwriter conducts deep interviews to understand your voice, personality and unique story.',
-        image: '/images/writing-desk.webp'
+        image: '/images/writing-2.webp'
       },
       {
         number: '03',
         title: 'Voice Guide and Outline',
         description: 'We document your unique style and create a detailed chapter outline for your approval.',
-        image: '/images/fountain-pen-notes.webp'
+        image: '/images/pen-ink-author.webp'
       },
       {
         number: '04',
         title: 'Writing and Review',
         description: 'Your ghostwriter writes chapter by chapter with regular reviews and feedback rounds.',
-        image: '/images/writing-hands.webp'
+        image: '/images/author-1.webp'
       },
       {
         number: '05',
