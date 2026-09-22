@@ -544,29 +544,6 @@ export default function Navbar() {
           }}
         >
           <a
-            href="#sign-in"
-            {...linkHover}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "40px",
-              padding: "0 16px",
-              fontSize: "14px",
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-              fontWeight: 500,
-              color: "#1C1C1C",
-              background: "transparent",
-              border: "none",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              cursor: "pointer",
-              transition: "color 0.2s ease",
-            }}
-          >
-            Sign In
-          </a>
-          <a
             href="#start"
             style={{
               display: "flex",
@@ -801,13 +778,6 @@ export default function Navbar() {
         </ul>
 
         <div className="flex flex-col items-center gap-3 border-t border-[#E8D5A3] px-6 py-5">
-          <a
-            href="#sign-in"
-            onClick={closeMobile}
-            className="inline-flex h-10 items-center justify-center px-4 font-inter text-[14px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
-          >
-            Sign In
-          </a>
           <a
             href="#start"
             onClick={closeMobile}
