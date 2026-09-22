@@ -28,6 +28,10 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeHeaderValue(value) {
+  return String(value).replace(/[\r\n]+/g, " ").trim();
+}
+
 export async function POST(request) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -94,7 +98,7 @@ export async function POST(request) {
       from: "GhostWriterHunt <noreply@lumexforge.com>",
       to: "ghostwriterhunt@lumexforge.com",
       replyTo: email,
-      subject: `New inquiry from ${fullName} — GhostWriterHunt`,
+      subject: `New inquiry from ${sanitizeHeaderValue(fullName)} — GhostWriterHunt`,
       html,
       text,
     });
