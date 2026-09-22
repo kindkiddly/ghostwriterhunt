@@ -3,6 +3,15 @@
  * HTML strings rendered inside LegalModal via dangerouslySetInnerHTML.
  */
 
+const EMAIL_SUBTITLE_STYLE = "font-size:11px;font-weight:500;color:#C9A84C;";
+
+// Two contact emails, each with a small subtitle. Reused across all legal documents.
+const CONTACT_EMAILS_STACKED = `<a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a><span style="display:block;margin-top:2px;${EMAIL_SUBTITLE_STYLE}">New projects &amp; consultations</span><a href="mailto:support.gwh@lumexforge.com" style="display:inline-block;margin-top:10px;">support.gwh@lumexforge.com</a><span style="display:block;margin-top:2px;${EMAIL_SUBTITLE_STYLE}">Client support &amp; project help</span>`;
+
+const CONTACT_EMAILS_BESIDE_LABEL = `<span style="display:inline-block;vertical-align:top;">${CONTACT_EMAILS_STACKED}</span>`;
+
+const CONTACT_EMAILS_INLINE = `<a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> <span style="${EMAIL_SUBTITLE_STYLE}">(New projects &amp; consultations)</span> or <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> <span style="${EMAIL_SUBTITLE_STYLE}">(Client support &amp; project help)</span>`;
+
 export const legalContent = {
   privacy: {
     title: "Privacy Policy",
@@ -50,7 +59,7 @@ export const legalContent = {
   <li><strong>Account Alerts</strong> — Important alerts regarding your account or project.</li>
   <li><strong>Service Updates</strong> — Information about new services and offerings from GhostWriterHunt.</li>
 </ol>
-<p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or contact us at <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a>. Message and data rates may apply.</p>
+<p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or contact us at ${CONTACT_EMAILS_INLINE}. Message and data rates may apply.</p>
 <hr />
 <h2>Information Sharing</h2>
 <p>We do not sell, trade or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
@@ -81,8 +90,8 @@ export const legalContent = {
 <hr />
 <h2>Contact Us</h2>
 <p>If you have questions about this Privacy Policy, please contact us at:</p>
-<p>GhostWriterHunt<br />Houston, USA<br />Email: <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br /><a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
+<p>GhostWriterHunt<br />Houston, USA<br />Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
+<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
 
@@ -150,8 +159,8 @@ export const legalContent = {
 <hr />
 <h2>Contact Us</h2>
 <p>Questions about these terms:</p>
-<p>Email: <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a><br />Location: Houston, USA</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br /><a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
+<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: Houston, USA</p>
+<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
 
@@ -208,8 +217,8 @@ export const legalContent = {
 <hr />
 <h2>Contact Us</h2>
 <p>Questions about our cookie policy:</p>
-<p>Email: <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br /><a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
+<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
+<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
 
@@ -239,15 +248,15 @@ export const legalContent = {
 <p>You have the right to withdraw your consent to receive text messages from GhostWriterHunt at any time using any of the following methods:</p>
 <ol>
   <li><strong>Reply STOP</strong> — Reply to any text message you receive from us with the word "STOP." This will automatically unsubscribe you from further text communications.</li>
-  <li><strong>Contact Us</strong> — Reach out to our client support team at <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a> and request to be unsubscribed from text message communications.</li>
+  <li><strong>Contact Us</strong> — Reach out to our client support team at ${CONTACT_EMAILS_INLINE} and request to be unsubscribed from text message communications.</li>
   <li><strong>Update Preferences</strong> — Contact us directly to update your communication preferences and opt out of receiving text messages.</li>
 </ol>
 <p>Please note that even if you opt out of promotional text messages, you may still receive transactional messages directly related to your active book project.</p>
 <p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>
 <p>Message and data rates may apply. Message frequency varies based on your project status and activity.</p>
 <p>For questions or concerns regarding this consent agreement, please contact us at:</p>
-<p>Email: <a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a><br />Location: Houston, USA</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br /><a href="mailto:hello@ghostwriterhunt.com">hello@ghostwriterhunt.com</a></p>
+<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: Houston, USA</p>
+<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
 };

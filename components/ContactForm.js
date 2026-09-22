@@ -48,6 +48,15 @@ const TRUST_POINTS = [
   "Free sample chapter before you commit",
 ];
 
+const EMAIL_SUBTITLE_STYLE = {
+  display: "block",
+  marginTop: "2px",
+  fontFamily: "var(--font-inter), Inter, sans-serif",
+  fontWeight: 500,
+  fontSize: "11px",
+  color: "#C9A84C",
+};
+
 const INITIAL_FORM = {
   fullName: "",
   email: "",
@@ -475,12 +484,28 @@ export default function ContactForm() {
             <hr className="cf-divider" />
 
             <p className="cf-email-label">Email us directly</p>
-            <a
-              href="mailto:hello@ghostwriterhunt.com"
-              className="cf-email-link"
-            >
-              hello@ghostwriterhunt.com
-            </a>
+            <div>
+              <a
+                href="mailto:ghostwriterhunt@lumexforge.com"
+                className="cf-email-link"
+              >
+                ghostwriterhunt@lumexforge.com
+              </a>
+              <span style={EMAIL_SUBTITLE_STYLE}>
+                New projects &amp; consultations
+              </span>
+            </div>
+            <div style={{ marginTop: "12px" }}>
+              <a
+                href="mailto:support.gwh@lumexforge.com"
+                className="cf-email-link"
+              >
+                support.gwh@lumexforge.com
+              </a>
+              <span style={EMAIL_SUBTITLE_STYLE}>
+                Client support &amp; project help
+              </span>
+            </div>
           </div>
 
           {/* RIGHT — form card */}

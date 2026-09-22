@@ -16,6 +16,15 @@ const COMPANY_LINKS = [
   { label: "Contact Us", href: "/#start" },
 ];
 
+const EMAIL_SUBTITLE_STYLE = {
+  display: "block",
+  marginTop: "2px",
+  fontFamily: "var(--font-inter), Inter, sans-serif",
+  fontWeight: 500,
+  fontSize: "10px",
+  color: "#C9A84C",
+};
+
 const LEGAL_MODAL_LINKS = [
   { label: "Privacy Policy", type: "privacy" },
   { label: "Terms of Use", type: "terms" },
@@ -433,11 +442,25 @@ export default function Footer() {
             <h3 className="gwh-ft-heading">CONTACT</h3>
             <div className="gwh-ft-contact-item">
               <a
-                href="mailto:hello@ghostwriterhunt.com"
+                href="mailto:ghostwriterhunt@lumexforge.com"
                 className="gwh-ft-contact-email"
               >
-                hello@ghostwriterhunt.com
+                ghostwriterhunt@lumexforge.com
               </a>
+              <span style={EMAIL_SUBTITLE_STYLE}>
+                New projects &amp; consultations
+              </span>
+            </div>
+            <div className="gwh-ft-contact-item">
+              <a
+                href="mailto:support.gwh@lumexforge.com"
+                className="gwh-ft-contact-email"
+              >
+                support.gwh@lumexforge.com
+              </a>
+              <span style={EMAIL_SUBTITLE_STYLE}>
+                Client support &amp; project help
+              </span>
             </div>
             <div className="gwh-ft-contact-item">
               <p className="gwh-ft-contact-text">Houston, Texas, USA</p>
