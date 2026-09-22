@@ -1,84 +1,35 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SHARED_PRICING } from "@/data/pricing";
 
 /**
  * GhostWriterHunt — Pricing
  * Superside 3-plan cards + shared inclusions;
  * Reedsy warm literary pricing presentation.
  * Toggle switches Per Chapter ↔ Full Book prices.
+ *
+ * Plan data is derived from the shared pricing packages (same source as
+ * every service page's Professional Ghostwriting-based pricing cards).
+ * The shared tiers only carry a single full-book price (no per-chapter
+ * price), so both toggle states show that same price.
  */
 
-const PLANS = [
-  {
-    id: "essentials",
-    label: "ESSENTIALS",
-    title: "Starter",
-    description:
-      "Perfect for short books, novellas and first-time authors.",
-    chapterPrice: "299",
-    fullPrice: "1,499",
-    bestFor: "First-time authors and short book projects",
-    features: [
-      "Up to 20,000 words",
-      "1 professional ghostwriter assigned",
-      "2 revision rounds per chapter",
-      "Basic manuscript editing",
-      "eBook formatting included",
-      "Publishing on 3 major platforms",
-      "You keep 100% royalties",
-    ],
+const PLANS = SHARED_PRICING.map((tier) => {
+  const price = tier.price.fullBook.toLocaleString("en-US");
+  return {
+    id: tier.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+    label: tier.label,
+    title: tier.name,
+    description: tier.description,
+    chapterPrice: price,
+    fullPrice: price,
+    bestFor: tier.bestFor,
+    features: tier.features,
     cta: "Get Started",
-    featured: false,
-  },
-  {
-    id: "professional",
-    label: "MOST POPULAR",
-    title: "Professional",
-    description:
-      "Our most popular plan for full-length books across all genres.",
-    chapterPrice: "499",
-    fullPrice: "2,999",
-    bestFor: "Authors who want a complete, professionally published book",
-    features: [
-      "Up to 60,000 words",
-      "1 senior ghostwriter assigned",
-      "Unlimited revision rounds",
-      "Full developmental editing",
-      "Professional cover design included",
-      "Interior layout and formatting",
-      "Publishing on 47+ global platforms",
-      "Author branding package",
-      "You keep 100% royalties",
-    ],
-    cta: "Start Your Book",
-    featured: true,
-  },
-  {
-    id: "premium",
-    label: "PREMIUM",
-    title: "Masterpiece",
-    description:
-      "The complete white-glove experience for ambitious authors.",
-    chapterPrice: "799",
-    fullPrice: "4,999",
-    bestFor: "Authors who want the very best — no compromises",
-    features: [
-      "Unlimited word count",
-      "Elite senior ghostwriter assigned",
-      "Unlimited revisions — perfection only",
-      "Full editorial suite included",
-      "Premium cover and interior design",
-      "Custom illustrations included",
-      "Publishing on 47+ global platforms",
-      "Full author branding and marketing",
-      "Book launch strategy included",
-      "You keep 100% royalties",
-    ],
-    cta: "Go Premium",
-    featured: false,
-  },
-];
+    featured: tier.featured,
+  };
+});
 
 const INCLUSIONS = [
   "Full NDA confidentiality",

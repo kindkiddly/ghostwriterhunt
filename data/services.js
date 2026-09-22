@@ -1,3 +1,5 @@
+import { SHARED_PRICING } from './pricing.js';
+
 export const services = [
 
   // ─────────────────────────────────
@@ -111,65 +113,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Starter',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 150 },
-        description: 'Perfect for authors who have already written their manuscript and are ready to publish professionally.',
-        bestFor: 'Authors who have already written their manuscript',
-        features: [
-          'Dedicated team of 4 publishing professionals',
-          'Professional manuscript editing and formatting',
-          'eBook formatting included',
-          'Publishing on 5 major platforms',
-          'eBook, Paperback and Hardcover formats',
-          'You keep 100% of your royalties'
-        ],
-        guarantee: '✓ 14-Day Money Back Guarantee',
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 200 },
-        description: 'A complete, professionally published book — everything you need to launch your title with confidence and authority.',
-        bestFor: 'Authors looking for a complete professionally published book',
-        features: [
-          'Unlimited word count',
-          'Team of 6 professionals assigned — Project Manager, Writer, Editor, Formatter, Web Designer and Publisher',
-          'Unlimited revision rounds for every chapter',
-          'Best-selling cover design',
-          'Professional author website',
-          'Author Central setup',
-          'Publishing on 5 global platforms',
-          'eBook, Paperback and Hardcover formats',
-          'You keep 100% royalties'
-        ],
-        guarantee: '✓ 14-Day Money Back Guarantee',
-        featured: true
-      },
-      {
-        name: 'Complete Publishing Package',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 299 },
-        description: 'The ultimate ghostwriting and publishing experience — no compromises, no limits, no equal.',
-        bestFor: 'Authors who want the very best — no compromises',
-        features: [
-          'Unlimited word count',
-          'Team of 6 professionals assigned — Project Manager, Writer, Editor, Formatter, Web Designer and Publisher',
-          'Unlimited revision rounds per chapter',
-          'Best-selling cover design',
-          'Professional author website',
-          'Author Central setup',
-          'Publishing on 5 global platforms',
-          'eBook, Paperback and Hardcover formats',
-          'You keep 100% royalties'
-        ],
-        guarantee: '✓ 14-Day Money Back Guarantee',
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -313,58 +257,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Copy Edit',
-        label: 'ESSENTIALS',
-        price: { perChapter: 99, fullBook: 599 },
-        description: 'Grammar, spelling and consistency correction.',
-        bestFor: 'Well-written manuscripts needing a final polish',
-        features: [
-          'Grammar and spelling correction',
-          'Punctuation and consistency',
-          'Style guide application',
-          'One revision round',
-          'Editorial report included',
-          '7-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Line Edit',
-        label: 'MOST POPULAR',
-        price: { perChapter: 199, fullBook: 1199 },
-        description: 'Deep sentence level editing for clarity and style.',
-        bestFor: 'Authors who want their prose to truly sing',
-        features: [
-          'Full line edit pass',
-          'Clarity and style refinement',
-          'Voice consistency throughout',
-          'Grammar and copy editing',
-          'Two revision rounds',
-          'Detailed editorial notes',
-          '14-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Full Edit',
-        label: 'PREMIUM',
-        price: { perChapter: 349, fullBook: 1999 },
-        description: 'Complete developmental, line and copy editing.',
-        bestFor: 'Authors who want the full editorial experience',
-        features: [
-          'Developmental edit',
-          'Full line edit pass',
-          'Copy edit and proofread',
-          'Unlimited revision rounds',
-          'Comprehensive editorial report',
-          'Direct editor access',
-          '21-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -518,58 +411,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 299 },
-        description: 'A clean professional cover for your digital book.',
-        bestFor: 'First-time authors and eBook only releases',
-        features: [
-          'Front cover design only',
-          '2 initial concepts',
-          '3 revision rounds',
-          'eBook formats included',
-          'High resolution files',
-          '7-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 599 },
-        description: 'Complete cover design for serious authors.',
-        bestFor: 'Authors publishing across multiple platforms',
-        features: [
-          'Front and back cover design',
-          'Spine design included',
-          '4 initial concepts',
-          'Unlimited revision rounds',
-          'All digital and print formats',
-          'Amazon KDP optimized',
-          '10-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'Award-worthy cover design that commands attention.',
-        bestFor: 'Authors who demand the highest standard of design',
-        features: [
-          'Full cover suite — front, back, spine',
-          'Custom illustration or photography',
-          '6 initial concepts',
-          'Unlimited revisions — perfection only',
-          'All formats for every platform',
-          'Social media promotional graphics',
-          'Priority 7-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -713,58 +555,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Digital',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 199 },
-        description: 'Clean professional formatting for digital publishing.',
-        bestFor: 'eBook only releases on major platforms',
-        features: [
-          'ePub and MOBI formatting',
-          'Chapter heading styling',
-          'Table of contents',
-          'Amazon KDP ready',
-          '1 revision round',
-          '5-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Print and Digital',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 399 },
-        description: 'Complete formatting for print and digital.',
-        bestFor: 'Authors publishing in multiple formats',
-        features: [
-          'Print PDF and all digital formats',
-          'Custom typography selection',
-          'Chapter heading design',
-          'Page numbers, headers, footers',
-          'Table of contents',
-          '3 revision rounds',
-          '10-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium Layout',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 699 },
-        description: 'Premium typographic design for discerning authors.',
-        bestFor: 'Authors who want a truly beautiful interior',
-        features: [
-          'All print and digital formats',
-          'Custom chapter heading illustrations',
-          'Drop capitals and ornamental details',
-          'Premium typeface selection',
-          'Unlimited revisions',
-          'All platform optimized files',
-          '14-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -913,58 +704,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Starter',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 399 },
-        description: 'Up to 10 illustrations for your book.',
-        bestFor: 'Books needing chapter headers or spot illustrations',
-        features: [
-          'Up to 10 illustrations',
-          'Digital color artwork',
-          '2 revision rounds per illustration',
-          'High resolution files',
-          'Rights transfer included',
-          '14-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 899 },
-        description: 'Up to 25 illustrations with full character development.',
-        bestFor: 'Children\'s books and illustrated non-fiction',
-        features: [
-          'Up to 25 illustrations',
-          'Character design included',
-          'Full color digital artwork',
-          'Unlimited revision rounds',
-          'Style guide created',
-          'All format files delivered',
-          '21-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'Unlimited illustrations — complete visual storytelling.',
-        bestFor: 'Full picture books and heavily illustrated titles',
-        features: [
-          'Unlimited illustrations',
-          'Full character and world design',
-          'Custom art style development',
-          'Unlimited revisions',
-          'Print and digital optimized',
-          'Cover illustration included',
-          'Priority turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1113,58 +853,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 299 },
-        description: 'Publishing on the top 3 major platforms.',
-        bestFor: 'Authors publishing on Amazon, Apple and Kobo',
-        features: [
-          'Amazon KDP publishing',
-          'Apple Books publishing',
-          'Kobo publishing',
-          'ISBN registration',
-          'Basic metadata setup',
-          '30-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Global',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 599 },
-        description: 'Full global distribution on 47+ platforms.',
-        bestFor: 'Authors who want maximum global reach',
-        features: [
-          'Publishing on 47+ platforms worldwide',
-          'Amazon listing optimization',
-          'Full metadata and keyword setup',
-          'ISBN registration included',
-          'Pricing strategy consultation',
-          'All digital format files',
-          '30-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium Launch',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'Complete publishing and launch strategy package.',
-        bestFor: 'Authors who want a strategic book launch',
-        features: [
-          'Publishing on 47+ platforms',
-          'Amazon optimization — advanced',
-          'Book launch strategy included',
-          'Pre-order setup on all platforms',
-          'Author profile setup — all platforms',
-          'First month sales monitoring',
-          'Priority 14-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1308,58 +997,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 299 },
-        description: 'Core author bio and Amazon profile.',
-        bestFor: 'Newly published authors establishing their presence',
-        features: [
-          'Professional author bio — 2 lengths',
-          'Amazon Author Central setup',
-          'Goodreads author profile',
-          '1 revision round',
-          'Delivered in 7 days'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 699 },
-        description: 'Complete author brand across all platforms.',
-        bestFor: 'Authors building a serious readership',
-        features: [
-          'Professional author bio — 3 lengths',
-          'Amazon and Goodreads setup',
-          'Social media bio — all platforms',
-          'Author website copy — 5 pages',
-          'Press kit creation',
-          'Brand voice guide',
-          'Unlimited revisions',
-          'Delivered in 14 days'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1299 },
-        description: 'Full author brand identity and media presence.',
-        bestFor: 'Authors who want to build a powerful public profile',
-        features: [
-          'Everything in Professional',
-          'Full media kit and press release',
-          'Speaking bio and one-sheet',
-          'Podcast and interview pitch copy',
-          'Email newsletter setup copy',
-          'Social media content plan',
-          'Priority 10-day delivery'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1508,60 +1146,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Launch',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 499 },
-        description: 'Essential marketing for your book launch.',
-        bestFor: 'Authors launching their first book',
-        features: [
-          'Amazon listing optimization',
-          'Social media promotion — 3 months',
-          'Review generation strategy',
-          '5 blog and article placements',
-          'Monthly performance report',
-          'Dedicated marketing manager'
-        ],
-        featured: false
-      },
-      {
-        name: 'Growth',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'Comprehensive marketing for serious authors.',
-        bestFor: 'Authors committed to building a readership',
-        features: [
-          'Advanced Amazon optimization',
-          'Social media promotion — 6 months',
-          'Email marketing campaign',
-          '10 blog and article placements',
-          'Influencer outreach program',
-          'Video review campaign',
-          'Bi-weekly performance reports',
-          'Dedicated marketing manager'
-        ],
-        featured: true
-      },
-      {
-        name: 'Authority',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'Full-scale marketing for maximum impact.',
-        bestFor: 'Authors who want to become bestsellers',
-        features: [
-          'Everything in Growth plan',
-          'Amazon PPC advertising management',
-          'Press release to 200+ outlets',
-          'Podcast booking campaign',
-          'Social media advertising',
-          'Bestseller campaign strategy',
-          'Weekly performance reports',
-          'Priority marketing manager'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1705,59 +1290,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Short eBook',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 499 },
-        description: 'Up to 10,000 words — perfect for lead magnets.',
-        bestFor: 'Lead magnets and short how-to guides',
-        features: [
-          'Up to 10,000 words',
-          'Research included',
-          'Chapter outline approval',
-          '2 revision rounds',
-          'Word document delivery',
-          '14-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Standard eBook',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'Up to 30,000 words — complete thought leadership piece.',
-        bestFor: 'Authors establishing expertise in their field',
-        features: [
-          'Up to 30,000 words',
-          'Deep research included',
-          'Chapter outline approval',
-          'Unlimited revision rounds',
-          'All format files delivered',
-          'Basic cover design included',
-          '21-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Full eBook',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'Up to 60,000 words — complete digital book.',
-        bestFor: 'Authors publishing a full-length digital book',
-        features: [
-          'Up to 60,000 words',
-          'Comprehensive research',
-          'Full editorial review',
-          'Unlimited revisions',
-          'Professional cover design',
-          'Interior layout included',
-          'Publishing ready on all platforms',
-          '30-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1906,58 +1439,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Picture Book',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 399 },
-        description: 'A complete picture book manuscript — up to 800 words.',
-        bestFor: 'Picture books for children aged 2 to 5',
-        features: [
-          'Up to 800 words',
-          'Character development',
-          'Story outline approval',
-          '3 revision rounds',
-          'Illustration notes included',
-          '14-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Early Reader',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 699 },
-        description: 'An early reader or chapter book — up to 5,000 words.',
-        bestFor: 'Books for children aged 5 to 8',
-        features: [
-          'Up to 5,000 words',
-          'Full character development',
-          'Story outline approval',
-          'Unlimited revision rounds',
-          'Chapter structure included',
-          'Illustration brief included',
-          '21-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Middle Grade',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1499 },
-        description: 'A full middle grade novel — up to 30,000 words.',
-        bestFor: 'Chapter books for children aged 7 to 12',
-        features: [
-          'Up to 30,000 words',
-          'Full world and character development',
-          'Detailed plot outline',
-          'Unlimited revisions',
-          'Series bible included',
-          'Editorial review included',
-          '45-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2101,56 +1583,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Standard',
-        label: 'ESSENTIALS',
-        price: { perChapter: 99, fullBook: null },
-        description: 'Per article — up to 1,000 words.',
-        bestFor: 'Regular blog posts and website articles',
-        features: [
-          'Up to 1,000 words per article',
-          'SEO keyword integration',
-          'Research included',
-          '1 revision round',
-          '3-day turnaround per article',
-          'Delivered in Word format'
-        ],
-        featured: false
-      },
-      {
-        name: 'In-Depth',
-        label: 'MOST POPULAR',
-        price: { perChapter: 199, fullBook: null },
-        description: 'Per article — up to 2,500 words.',
-        bestFor: 'Long-form content and thought leadership',
-        features: [
-          'Up to 2,500 words per article',
-          'Advanced SEO optimization',
-          'Deep research included',
-          '2 revision rounds',
-          '5-day turnaround per article',
-          'Meta description included'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: 399, fullBook: null },
-        description: 'Per article — up to 5,000 words.',
-        bestFor: 'Major publications and comprehensive guides',
-        features: [
-          'Up to 5,000 words per article',
-          'Expert-level research',
-          'Original data and analysis',
-          'Unlimited revisions',
-          '7-day turnaround per article',
-          'Images and graphics brief included'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2294,58 +1727,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Starter',
-        label: 'ESSENTIALS',
-        price: { perChapter: 299, fullBook: null },
-        description: '4 blog posts per month — up to 800 words each.',
-        bestFor: 'Authors starting their blogging journey',
-        features: [
-          '4 posts per month',
-          'Up to 800 words per post',
-          'SEO keyword integration',
-          'Topic research included',
-          '1 revision per post',
-          'Monthly content calendar'
-        ],
-        featured: false
-      },
-      {
-        name: 'Growth',
-        label: 'MOST POPULAR',
-        price: { perChapter: 599, fullBook: null },
-        description: '8 blog posts per month — up to 1,500 words each.',
-        bestFor: 'Authors building a serious content presence',
-        features: [
-          '8 posts per month',
-          'Up to 1,500 words per post',
-          'Advanced SEO optimization',
-          'Topic research and ideation',
-          '2 revisions per post',
-          'Monthly content calendar',
-          'Meta descriptions included'
-        ],
-        featured: true
-      },
-      {
-        name: 'Authority',
-        label: 'PREMIUM',
-        price: { perChapter: 999, fullBook: null },
-        description: '12 blog posts per month — up to 2,500 words each.',
-        bestFor: 'Authors committed to content leadership',
-        features: [
-          '12 posts per month',
-          'Up to 2,500 words per post',
-          'Expert SEO strategy',
-          'Full content calendar management',
-          'Unlimited revisions',
-          'Image sourcing included',
-          'Monthly performance report'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2489,55 +1871,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Standard',
-        label: 'ESSENTIALS',
-        price: { perChapter: 49, fullBook: 299 },
-        description: 'Professional proofreading for manuscripts up to 30,000 words.',
-        bestFor: 'Short books, novellas and eBooks',
-        features: [
-          'Up to 30,000 words',
-          'Spelling and grammar check',
-          'Punctuation correction',
-          'Tracked changes delivery',
-          '7-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: 79, fullBook: 499 },
-        description: 'Thorough proofreading for full-length manuscripts.',
-        bestFor: 'Full-length novels and non-fiction books',
-        features: [
-          'Up to 80,000 words',
-          'Full grammar and spelling check',
-          'Consistency verification',
-          'Formatting review',
-          'Error summary report',
-          '10-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: 99, fullBook: 799 },
-        description: 'Comprehensive proofreading plus style check.',
-        bestFor: 'Academic, technical and complex manuscripts',
-        features: [
-          'Unlimited word count',
-          'Full proofreading suite',
-          'Style guide compliance',
-          'Fact and name consistency',
-          'Detailed error report',
-          'Rush 5-day turnaround available'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2681,57 +2015,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Digital',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 149 },
-        description: 'ePub and MOBI formatting for digital platforms.',
-        bestFor: 'eBook only publishing',
-        features: [
-          'ePub 3.0 formatting',
-          'MOBI for Kindle',
-          'Clickable table of contents',
-          'Device tested',
-          '5-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Print and Digital',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 299 },
-        description: 'Complete formatting for print and digital publishing.',
-        bestFor: 'Authors publishing in all formats',
-        features: [
-          'Print-ready PDF',
-          'ePub and MOBI formatting',
-          'All platform specifications met',
-          'Clickable table of contents',
-          'Image optimization',
-          'Device tested',
-          '7-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 499 },
-        description: 'Complete multi-platform formatting with design elements.',
-        bestFor: 'Authors who want premium presentation',
-        features: [
-          'All print and digital formats',
-          'Custom chapter heading styling',
-          'Drop capitals and ornamentals',
-          'Advanced image formatting',
-          'All platforms quality tested',
-          'Upload assistance included',
-          '5-day rush turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2880,59 +2164,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 499 },
-        description: 'A 30-second animated book trailer.',
-        bestFor: 'Authors launching their first video promotion',
-        features: [
-          '30-second trailer',
-          'Script writing included',
-          'Motion graphics and animation',
-          'Licensed music track',
-          'YouTube and social media formats',
-          '14-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'A 60-second cinematic book trailer.',
-        bestFor: 'Authors who want a full cinematic trailer',
-        features: [
-          '60-second trailer',
-          'Full script and storyboard',
-          'Advanced motion graphics',
-          'Licensed cinematic music score',
-          'Professional voice-over',
-          'All platform formats delivered',
-          '21-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'A full cinematic trailer plus promotional cut-downs.',
-        bestFor: 'Authors investing in a complete video marketing campaign',
-        features: [
-          '90-second hero trailer',
-          '30-second social media cut',
-          '15-second Instagram Stories cut',
-          'Full script and storyboard',
-          'Custom music composition',
-          'Professional voice-over talent',
-          'Thumbnail design for all platforms',
-          'Priority 21-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -3081,59 +2313,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'Professional audiobook for books up to 30,000 words.',
-        bestFor: 'Short books, novellas and eBooks',
-        features: [
-          'Up to 30,000 words',
-          'Professional narrator selection',
-          'Studio recording',
-          'Audio mastering',
-          'Audible and Apple distribution',
-          '30-day production'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'Full audiobook production for standard length books.',
-        bestFor: 'Full-length novels and non-fiction books',
-        features: [
-          'Up to 80,000 words',
-          'Narrator auditions provided',
-          'Studio quality recording',
-          'Full audio mastering',
-          'All major platform distribution',
-          'Retail audio cover design',
-          '45-day production'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 3999 },
-        description: 'Premium production for maximum impact.',
-        bestFor: 'Authors who want the highest quality audiobook',
-        features: [
-          'Unlimited word count',
-          'Multiple narrator auditions',
-          'Premium studio recording',
-          'Advanced audio mastering',
-          'Global platform distribution',
-          'Audio cover design',
-          'Launch strategy included',
-          'Priority production'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -3282,61 +2462,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 999 },
-        description: 'A professional author website — 3 pages.',
-        bestFor: 'Authors who need a professional online presence quickly',
-        features: [
-          'Home, About and Books pages',
-          'Custom design — not templated',
-          'Mobile responsive',
-          'Basic SEO setup',
-          'Buy links to Amazon and other platforms',
-          'Contact form included',
-          '14-day delivery'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 1999 },
-        description: 'A complete author website — 6 pages.',
-        bestFor: 'Authors building a serious online readership',
-        features: [
-          'Up to 6 custom pages',
-          'Blog section included',
-          'Email newsletter integration',
-          'Advanced SEO optimization',
-          'Social media integration',
-          'Google Analytics setup',
-          'Book sample download',
-          '21-day delivery'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 3499 },
-        description: 'A full-featured author platform.',
-        bestFor: 'Authors who want a complete professional platform',
-        features: [
-          'Unlimited pages',
-          'Full blog with categories',
-          'Events and appearances section',
-          'Media and press kit page',
-          'Email list building tools',
-          'Advanced SEO and analytics',
-          'Monthly maintenance included',
-          '30-day delivery'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -3480,57 +2606,7 @@ export const services = [
       }
     ],
 
-    pricing: [
-      {
-        name: 'Essential',
-        label: 'ESSENTIALS',
-        price: { perChapter: null, fullBook: 399 },
-        description: 'Copy for 3 core website pages.',
-        bestFor: 'Authors who need their core pages written professionally',
-        features: [
-          'Home, About and one Book page',
-          'SEO keyword integration',
-          'Meta descriptions included',
-          '2 revision rounds',
-          '7-day turnaround'
-        ],
-        featured: false
-      },
-      {
-        name: 'Professional',
-        label: 'MOST POPULAR',
-        price: { perChapter: null, fullBook: 799 },
-        description: 'Copy for a complete author website — up to 6 pages.',
-        bestFor: 'Authors building their complete web presence',
-        features: [
-          'Up to 6 website pages',
-          'Advanced SEO optimization',
-          'Email opt-in copy',
-          'Meta descriptions for all pages',
-          'Unlimited revisions',
-          'Voice guide included',
-          '14-day turnaround'
-        ],
-        featured: true
-      },
-      {
-        name: 'Premium',
-        label: 'PREMIUM',
-        price: { perChapter: null, fullBook: 1499 },
-        description: 'Comprehensive copy for a full author platform.',
-        bestFor: 'Authors who want every word to work perfectly',
-        features: [
-          'Unlimited website pages',
-          'Full SEO strategy',
-          'Email sequence copy — 5 emails',
-          'Press and media page',
-          'Speaking and events copy',
-          'Ongoing content support — 3 months',
-          'Priority 10-day turnaround'
-        ],
-        featured: false
-      }
-    ],
+    pricing: SHARED_PRICING,
 
     faqs: [
       {
