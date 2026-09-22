@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
 
 /**
@@ -111,31 +112,77 @@ function ChevronDownIcon({ open }) {
   );
 }
 
+const COUNTRY_DROPDOWN_WIDTH = 280;
+const COUNTRY_DROPDOWN_MAX_HEIGHT = 280;
+
 function CountryCodeSelect({ value, onChange }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [coords, setCoords] = useState(null);
   const wrapRef = useRef(null);
+  const dropdownRef = useRef(null);
   const searchRef = useRef(null);
+
+  const updateCoords = () => {
+    if (!wrapRef.current) return;
+    const rect = wrapRef.current.getBoundingClientRect();
+    const gap = 6;
+    const margin = 16;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const openUp = spaceBelow < COUNTRY_DROPDOWN_MAX_HEIGHT && spaceAbove > spaceBelow;
+
+    let left = Math.min(rect.left, viewportWidth - COUNTRY_DROPDOWN_WIDTH - margin);
+    left = Math.max(margin, left);
+
+    const maxHeight = Math.max(
+      160,
+      Math.min(
+        COUNTRY_DROPDOWN_MAX_HEIGHT,
+        (openUp ? spaceAbove : spaceBelow) - gap - margin
+      )
+    );
+
+    setCoords({
+      left,
+      width: COUNTRY_DROPDOWN_WIDTH,
+      maxHeight,
+      top: openUp ? undefined : rect.bottom + gap,
+      bottom: openUp ? viewportHeight - rect.top + gap : undefined,
+    });
+  };
 
   useEffect(() => {
     if (!open) return;
 
+    updateCoords();
+
     function handleClickOutside(e) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
-        setOpen(false);
-      }
+      const inTrigger = wrapRef.current && wrapRef.current.contains(e.target);
+      const inDropdown = dropdownRef.current && dropdownRef.current.contains(e.target);
+      if (!inTrigger && !inDropdown) setOpen(false);
     }
     function handleKeyDown(e) {
       if (e.key === "Escape") setOpen(false);
     }
+    function handleReposition() {
+      updateCoords();
+    }
 
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleReposition, true);
+    window.addEventListener("resize", handleReposition);
     searchRef.current?.focus();
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleReposition, true);
+      window.removeEventListener("resize", handleReposition);
     };
   }, [open]);
 
@@ -169,38 +216,54 @@ function CountryCodeSelect({ value, onChange }) {
         <ChevronDownIcon open={open} />
       </button>
 
-      {open && (
-        <div className="cf-country-dropdown" role="listbox">
-          <input
-            ref={searchRef}
-            type="text"
-            className="cf-country-search"
-            placeholder="Search country or code"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <div className="cf-country-list">
-            {filtered.length === 0 ? (
-              <p className="cf-country-empty">No countries found</p>
-            ) : (
-              filtered.map((c) => (
-                <button
-                  key={c.iso2}
-                  type="button"
-                  role="option"
-                  aria-selected={c.iso2 === value.iso2}
-                  className={`cf-country-item${c.iso2 === value.iso2 ? " active" : ""}`}
-                  onClick={() => handleSelect(c)}
-                >
-                  <span aria-hidden="true">{getFlagEmoji(c.iso2)}</span>
-                  <span>{c.name}</span>
-                  <span className="cf-country-item-dial">{c.dial}</span>
-                </button>
-              ))
-            )}
-          </div>
-        </div>
-      )}
+      {open &&
+        coords &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            ref={dropdownRef}
+            className="cf-country-dropdown"
+            role="listbox"
+            style={{
+              position: "fixed",
+              top: coords.top,
+              bottom: coords.bottom,
+              left: coords.left,
+              width: coords.width,
+              maxHeight: coords.maxHeight,
+            }}
+          >
+            <input
+              ref={searchRef}
+              type="text"
+              className="cf-country-search"
+              placeholder="Search country or code"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <div className="cf-country-list">
+              {filtered.length === 0 ? (
+                <p className="cf-country-empty">No countries found</p>
+              ) : (
+                filtered.map((c) => (
+                  <button
+                    key={c.iso2}
+                    type="button"
+                    role="option"
+                    aria-selected={c.iso2 === value.iso2}
+                    className={`cf-country-item${c.iso2 === value.iso2 ? " active" : ""}`}
+                    onClick={() => handleSelect(c)}
+                  >
+                    <span aria-hidden="true">{getFlagEmoji(c.iso2)}</span>
+                    <span>{c.name}</span>
+                    <span className="cf-country-item-dial">{c.dial}</span>
+                  </button>
+                ))
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
@@ -544,17 +607,12 @@ export default function ContactForm() {
           box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
         }
         .cf-country-dropdown {
-          position: absolute;
-          top: calc(100% + 6px);
-          left: 0;
-          width: 280px;
-          max-width: calc(100vw - 48px);
-          max-height: 280px;
+          max-width: calc(100vw - 32px);
           background: #FFFFFF;
           border: 1px solid #E8D5A3;
           border-radius: 8px;
           box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-          z-index: 20;
+          z-index: 2000;
           display: flex;
           flex-direction: column;
           overflow: hidden;
@@ -575,8 +633,9 @@ export default function ContactForm() {
           color: #999999;
         }
         .cf-country-list {
+          flex: 1;
+          min-height: 0;
           overflow-y: auto;
-          max-height: 232px;
         }
         .cf-country-item {
           display: flex;
@@ -614,12 +673,6 @@ export default function ContactForm() {
           font-size: 14px;
           color: #999999;
           text-align: center;
-        }
-        @media (max-width: 768px) {
-          .cf-country-dropdown {
-            left: auto;
-            right: 0;
-          }
         }
         .cf-submit {
           width: 100%;
