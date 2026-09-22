@@ -7,9 +7,9 @@ export const services = [
     slug: 'ghostwriting',
     category: 'Writing',
     title: 'Professional Ghostwriting',
-    tagline: 'Your story, told',
-    taglineItalic: 'perfectly.',
-    heroSubtext: 'Our handpicked ghostwriters become the voice behind your vision — capturing how you think, speak and feel in every single word. From the first chapter to the final page, your book will sound unmistakably like you.',
+    tagline: 'Your story, written',
+    taglineItalic: 'flawlessly.',
+    heroSubtext: 'You have a story worth telling. We have the professionals to tell it perfectly. Share your vision with us — we craft every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
     
     heroImages: [
       {
@@ -30,16 +30,16 @@ export const services = [
     ],
 
     overview: {
-      headline: 'Your book should sound like',
-      headlineItalic: 'you — only better.',
-      body: 'Every great book begins with a great conversation. Before a single word is written, your dedicated ghostwriter spends time truly understanding you — your voice, your vision and the story only you can tell. Through in-depth interviews and careful study of how you communicate, we create a personal voice guide that governs every word of your manuscript. The result is a book that feels completely authentic — because it is.',
+      headline: 'From your idea to a',
+      headlineItalic: 'published masterpiece.',
+      body: 'The world is full of extraordinary stories waiting to be told — business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent — it is having the right professional in your corner. At GhostWriterHunt, we assign you a dedicated professional ghostwriter who becomes the invisible architect of your book. You share your vision — through written notes, voice recordings, existing drafts or a simple outline — and we handle everything from the first word to the final page. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
       bullets: [
-        'Dedicated senior ghostwriter assigned to your project',
-        'In-depth author interview before writing begins',
-        'Personal voice guide created for your manuscript',
-        'Chapter by chapter review and approval process',
-        'Unlimited revisions until every word is perfect',
-        'Full NDA — complete confidentiality guaranteed'
+        'Submit your vision via our secure form, email or voice recording',
+        'Handpicked ghostwriter matched to your genre and style',
+        'Full NDA signed and enforced from day one',
+        'Your project manager handles all communication — complete anonymity maintained',
+        'Unlimited revisions until every word meets your standard',
+        '100% ownership — your name, your rights, your royalties'
       ],
       images: [
         {
@@ -81,32 +81,32 @@ export const services = [
     process: [
       {
         number: '01',
-        title: 'Free Consultation',
-        description: 'We begin with an in-depth conversation about your book idea, goals, target audience and vision.',
+        title: 'Share Your Vision',
+        description: 'Tell us about your book through our secure contact form or email. Submit whatever you have — a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, we have the professionals to tell it.',
         image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
-        title: 'Author Interview',
-        description: 'Your ghostwriter conducts deep interviews to understand your voice, personality and unique story.',
+        title: 'Expert Matching',
+        description: 'Our team reviews your submission with care and precision. We analyze your genre, your audience, your tone and your goals — then handpick the ghostwriter from our vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
         image: '/images/writing-2.webp'
       },
       {
         number: '03',
-        title: 'Voice Guide and Outline',
-        description: 'We document your unique style and create a detailed chapter outline for your approval.',
+        title: 'Voice Crafting',
+        description: 'Before a single word of your manuscript is written, your ghostwriter conducts an in-depth study of everything you have shared. Your natural communication style, your personality, your perspective and your vision are distilled into a personal voice guide — the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
         image: '/images/pen-ink-author.webp'
       },
       {
         number: '04',
-        title: 'Writing and Review',
-        description: 'Your ghostwriter writes chapter by chapter with regular reviews and feedback rounds.',
+        title: 'Chapter by Chapter Excellence',
+        description: 'Writing begins — and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review, provide feedback and request any revisions. We refine until you are completely satisfied before moving forward. No chapter progresses without your sign-off.',
         image: '/images/author-1.webp'
       },
       {
         number: '05',
-        title: 'Final Polish',
-        description: 'Full editorial review, final revisions and manuscript delivery ready for publishing.',
+        title: 'Your Masterpiece Delivered',
+        description: 'Your completed manuscript arrives within approximately 40 days — a timeline that reflects both our commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by our permanent confidentiality agreement and ready to be published under your name to the world.',
         image: '/images/books-stack-pink.webp'
       }
     ],
@@ -193,15 +193,15 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'Working with GhostWriterHunt was the best decision I made for my book. My ghostwriter understood my voice from the very first conversation. The final manuscript moved me to tears — it sounded more like me than anything I could have written myself.',
+      quote: 'I had an idea for a book but no writing experience whatsoever. GhostWriterHunt transformed my rough notes and voice recordings into a manuscript that left me speechless. Every word sounded like me — only better. The entire process was handled through my project manager and my identity was protected throughout. My book is now published and I could not be prouder.',
       author: 'Margaret Thompson',
       book: 'Finding My Way Home',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face'
     },
 
-    ctaHeadline: 'Your story is waiting',
-    ctaHeadlineItalic: 'to be written.',
-    ctaSubtext: 'Book a free consultation today and meet your perfect ghostwriter.',
+    ctaHeadline: 'Your story deserves',
+    ctaHeadlineItalic: 'to be told.',
+    ctaSubtext: 'Share your vision with us today. Our professional ghostwriters are ready to transform your idea into the book you have always imagined — completely confidential, completely yours.',
     ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
