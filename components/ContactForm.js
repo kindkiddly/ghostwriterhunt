@@ -54,7 +54,7 @@ const EMAIL_SUBTITLE_STYLE = {
   fontFamily: "var(--font-inter), Inter, sans-serif",
   fontWeight: 500,
   fontSize: "11px",
-  color: "#C9A84C",
+  color: "#888888",
 };
 
 const INITIAL_FORM = {
