@@ -62,19 +62,19 @@ export const services = [
 
     approach: [
       {
+        icon: 'shield',
+        title: 'Secure Idea Submission',
+        description: 'Share your vision through our secure platform — written notes, voice recordings, audio files, existing drafts or a simple outline. Whatever format works for you, we work with it.'
+      },
+      {
         icon: 'pen',
-        title: 'Voice Matching',
-        description: 'We study your natural communication style through interviews and writing samples before crafting a single sentence.'
+        title: 'Professional Voice Crafting',
+        description: 'Your assigned ghostwriter studies every detail of your submission to capture your unique tone, style and perspective — creating a personal voice guide before writing a single word.'
       },
       {
-        icon: 'book',
-        title: 'Genre Expertise',
-        description: 'Every ghostwriter specializes in specific genres — you are always matched with someone who truly understands your category.'
-      },
-      {
-        icon: 'check',
-        title: 'Collaborative Process',
-        description: 'Regular chapter reviews, direct writer access and multiple revision rounds ensure your complete satisfaction throughout.'
+        icon: 'users',
+        title: 'Managed Excellence',
+        description: 'Your dedicated project manager handles all communication and coordination. You review chapters, request revisions and approve progress — with complete confidentiality maintained throughout.'
       }
     ],
 
