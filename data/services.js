@@ -40,7 +40,7 @@ export const services = [
         'Handpicked ghostwriter matched to your genre and style',
         'Full NDA signed and enforced from day one',
         'Your project manager handles all communication — complete anonymity maintained',
-        'Unlimited revisions until every word meets your standard',
+        'Unlimited revisions with our Professional and Complete Publishing packages',
         '100% ownership — your name, your rights, your royalties'
       ],
       images: [
@@ -190,7 +190,7 @@ export const services = [
         'Copy editing — grammar, spelling and consistency',
         'Proofreading — final error-free polish',
         'Detailed editorial report with every pass',
-        'Multiple revision rounds included'
+        'Multiple revision rounds included with our Professional and Complete Publishing packages'
       ],
       images: [
         {
@@ -334,7 +334,7 @@ export const services = [
         'Front cover, back cover and spine design',
         'Optimized for Amazon KDP and all platforms',
         'Multiple initial concepts to choose from',
-        'Unlimited revisions until perfect'
+        'Unlimited revisions with our Professional and Complete Publishing packages'
       ],
       images: [
         {
@@ -544,7 +544,7 @@ export const services = [
       {
         number: '04',
         title: 'Review and Revision',
-        description: 'You review the complete layout and we refine any details to your satisfaction.',
+        description: 'You review the complete layout and request refinements — unlimited revisions are included with our Professional and Complete Publishing packages.',
         image: '/images/collaboration-laptop.webp'
       },
       {
@@ -667,7 +667,7 @@ export const services = [
       {
         icon: 'repeat',
         title: 'Revision Friendly',
-        description: 'Illustrations evolve through feedback. We refine every image until it matches your vision exactly.'
+        description: 'Illustrations evolve through feedback, with unlimited revisions included on our Professional and Complete Publishing packages.'
       }
     ],
 

@@ -21,7 +21,7 @@ const STEPS = [
     number: "02",
     title: "We Craft Your Story",
     description:
-      "Your dedicated ghostwriter brings your vision to life — chapter by chapter, in your voice. Regular reviews, collaborative feedback, and multiple revision rounds ensure every word is exactly right.",
+      "Your dedicated ghostwriter brings your vision to life — chapter by chapter, in your voice. Regular reviews, collaborative feedback, and unlimited revisions with our Professional and Complete Publishing packages ensure every word is exactly right.",
     icon: "pen",
   },
   {
@@ -36,7 +36,6 @@ const STEPS = [
 const CHECKLIST = [
   "100% Rights and Royalties Yours",
   "Full NDA Confidentiality",
-  "Free Sample Chapter",
   "Dedicated Writer Assigned",
 ];
 

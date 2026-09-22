@@ -27,7 +27,6 @@ const PLANS = SHARED_PRICING.map((tier) => ({
 const INCLUSIONS = [
   "Full NDA confidentiality",
   "100% rights and royalties",
-  "Free sample chapter",
   "Dedicated writer assigned",
   "Regular progress updates",
   "Secure file handling",
