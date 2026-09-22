@@ -22,7 +22,7 @@ const EMAIL_SUBTITLE_STYLE = {
   fontFamily: "var(--font-inter), Inter, sans-serif",
   fontWeight: 500,
   fontSize: "10px",
-  color: "#C9A84C",
+  color: "#888888",
 };
 
 const LEGAL_MODAL_LINKS = [
