@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 /**
  * GhostWriterHunt — ServicePricing
- * Service-specific pricing cards with optional chapter/book toggle.
+ * Service-specific pricing cards.
  * Prefix: spr-
  */
 
@@ -37,8 +37,6 @@ function formatPrice(n) {
 
 export default function ServicePricing({ service }) {
   const plans = service?.pricing || [];
-  const hasChapterPricing = plans.some((p) => p.price?.perChapter != null);
-  const [fullBook, setFullBook] = useState(!hasChapterPricing);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".spr-reveal");
@@ -115,42 +113,6 @@ export default function ServicePricing({ service }) {
           margin: 0 auto 40px;
           line-height: 1.7;
         }
-        .spr-toggle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          margin-bottom: 48px;
-        }
-        .spr-toggle-label {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          color: #666666;
-          transition: color 0.2s;
-        }
-        .spr-toggle-label.active { color: #1C1C1C; }
-        .spr-switch {
-          position: relative;
-          width: 48px;
-          height: 24px;
-          border-radius: 20px;
-          background: #E8D5A3;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-        }
-        .spr-switch-knob {
-          position: absolute;
-          top: 2px;
-          left: 2px;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: #C9A84C;
-          transition: transform 0.2s;
-        }
-        .spr-switch-knob.on { transform: translateX(24px); }
         .spr-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -347,50 +309,9 @@ export default function ServicePricing({ service }) {
           No hidden fees. No surprises. You own 100% of your work.
         </p>
 
-        {hasChapterPricing && (
-          <div className="spr-toggle spr-reveal" data-delay="160">
-            <span
-              className={`spr-toggle-label${!fullBook ? " active" : ""}`}
-            >
-              Per Chapter
-            </span>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={fullBook}
-              aria-label="Toggle between per chapter and full book pricing"
-              className="spr-switch"
-              onClick={() => setFullBook((v) => !v)}
-            >
-              <span
-                className={`spr-switch-knob${fullBook ? " on" : ""}`}
-              />
-            </button>
-            <span
-              className={`spr-toggle-label${fullBook ? " active" : ""}`}
-            >
-              Full Book
-            </span>
-          </div>
-        )}
-
         <div className="spr-grid">
           {plans.map((plan, index) => {
             const featured = plan.featured;
-            let amount = null;
-            let priceLabel = "one-time";
-
-            if (hasChapterPricing && !fullBook && plan.price.perChapter != null) {
-              amount = plan.price.perChapter;
-              priceLabel = "per chapter";
-            } else if (plan.price.fullBook != null) {
-              amount = plan.price.fullBook;
-              priceLabel =
-                plan.price.perChapter == null ? "one-time" : "per full book";
-            } else if (plan.price.perChapter != null) {
-              amount = plan.price.perChapter;
-              priceLabel = "per chapter";
-            }
 
             return (
               <article
@@ -411,10 +332,10 @@ export default function ServicePricing({ service }) {
                   <p className="spr-price-row">
                     <span className="spr-price-currency">$</span>
                     <span className="spr-price-amount">
-                      {formatPrice(amount)}
+                      {formatPrice(plan.price.fullBook)}
                     </span>
                   </p>
-                  <p className="spr-price-label">{priceLabel}</p>
+                  <p className="spr-price-label">one-time</p>
                 </div>
 
                 <div className="spr-divider" />

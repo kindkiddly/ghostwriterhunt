@@ -7,29 +7,22 @@ import { SHARED_PRICING } from "@/data/pricing";
  * GhostWriterHunt — Pricing
  * Superside 3-plan cards + shared inclusions;
  * Reedsy warm literary pricing presentation.
- * Toggle switches Per Chapter ↔ Full Book prices.
  *
  * Plan data is derived from the shared pricing packages (same source as
  * every service page's Professional Ghostwriting-based pricing cards).
- * The shared tiers only carry a single full-book price (no per-chapter
- * price), so both toggle states show that same price.
  */
 
-const PLANS = SHARED_PRICING.map((tier) => {
-  const price = tier.price.fullBook.toLocaleString("en-US");
-  return {
-    id: tier.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
-    label: tier.label,
-    title: tier.name,
-    description: tier.description,
-    chapterPrice: price,
-    fullPrice: price,
-    bestFor: tier.bestFor,
-    features: tier.features,
-    cta: "Get Started",
-    featured: tier.featured,
-  };
-});
+const PLANS = SHARED_PRICING.map((tier) => ({
+  id: tier.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+  label: tier.label,
+  title: tier.name,
+  description: tier.description,
+  price: tier.price.fullBook.toLocaleString("en-US"),
+  bestFor: tier.bestFor,
+  features: tier.features,
+  cta: "Get Started",
+  featured: tier.featured,
+}));
 
 const INCLUSIONS = [
   "Full NDA confidentiality",
@@ -38,7 +31,7 @@ const INCLUSIONS = [
   "Dedicated writer assigned",
   "Regular progress updates",
   "Secure file handling",
-  "Direct writer access",
+  "Secure, managed communication",
   "Satisfaction guarantee",
   "Professional project management",
 ];
@@ -66,10 +59,8 @@ function CheckIcon({ className = "text-[var(--color-accent-gold)]" }) {
   );
 }
 
-function PlanCard({ plan, fullBook, index }) {
+function PlanCard({ plan, index }) {
   const featured = plan.featured;
-  const price = fullBook ? plan.fullPrice : plan.chapterPrice;
-  const priceLabel = fullBook ? "per full book" : "per chapter";
 
   return (
     <article
@@ -115,14 +106,14 @@ function PlanCard({ plan, fullBook, index }) {
           }`}
         >
           <span className="align-top text-[24px]">$</span>
-          <span className="text-[56px]">{price}</span>
+          <span className="text-[56px]">{plan.price}</span>
         </p>
         <p
           className={`mt-1 font-inter text-[14px] font-normal ${
             featured ? "text-[#666666]" : "text-[#999999]"
           }`}
         >
-          {priceLabel}
+          one-time
         </p>
       </div>
 
@@ -178,7 +169,6 @@ function PlanCard({ plan, fullBook, index }) {
 export default function Pricing() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
-  const [fullBook, setFullBook] = useState(false);
 
   // Reveal once when ~15% of the section is visible
   useEffect(() => {
@@ -232,7 +222,6 @@ export default function Pricing() {
         .gwh-price-label,
         .gwh-price-headline,
         .gwh-price-sub,
-        .gwh-price-toggle,
         .gwh-price-card,
         .gwh-price-includes,
         .gwh-price-consult {
@@ -249,10 +238,6 @@ export default function Pricing() {
 
         .gwh-price-visible .gwh-price-sub {
           animation: gwh-price-up 0.5s ease-out 0.1s forwards;
-        }
-
-        .gwh-price-visible .gwh-price-toggle {
-          animation: gwh-price-fade 0.5s ease-out 0.15s forwards;
         }
 
         .gwh-price-visible .gwh-price-card {
@@ -287,49 +272,10 @@ export default function Pricing() {
           surprises. You own 100% of your book and all royalties.
         </p>
 
-        {/* Billing toggle — Per Chapter / Full Book */}
-        <div className="gwh-price-toggle mb-12 flex items-center justify-center gap-3">
-          <span
-            className={`font-inter text-[14px] font-medium transition-colors duration-200 ${
-              !fullBook ? "text-[var(--color-text)]" : "text-[#666666]"
-            }`}
-          >
-            Per Chapter
-          </span>
-
-          <button
-            type="button"
-            role="switch"
-            aria-checked={fullBook}
-            aria-label="Toggle between per chapter and full book pricing"
-            onClick={() => setFullBook((v) => !v)}
-            className="relative h-6 w-12 rounded-[20px] bg-[var(--color-border)] transition-colors duration-200"
-          >
-            <span
-              className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-[var(--color-accent-gold)] transition-transform duration-200 ${
-                fullBook ? "translate-x-6" : "translate-x-0"
-              }`}
-            />
-          </button>
-
-          <span
-            className={`font-inter text-[14px] font-medium transition-colors duration-200 ${
-              fullBook ? "text-[var(--color-text)]" : "text-[#666666]"
-            }`}
-          >
-            Full Book
-          </span>
-        </div>
-
         {/* Plan cards */}
         <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-stretch gap-7 lg:grid-cols-3 lg:items-center">
           {PLANS.map((plan, index) => (
-            <PlanCard
-              key={plan.id}
-              plan={plan}
-              fullBook={fullBook}
-              index={index}
-            />
+            <PlanCard key={plan.id} plan={plan} index={index} />
           ))}
         </div>
 

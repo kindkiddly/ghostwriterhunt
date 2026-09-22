@@ -12,7 +12,7 @@ const FAQ_ITEMS = [
   {
     question: "How does the ghostwriting process work?",
     answer:
-      "We begin with a free consultation where you share your book idea, goals and vision. We then match you with the perfect ghostwriter for your genre and voice. Your writer conducts an in-depth author interview to understand how you think and speak. Writing begins chapter by chapter with regular reviews and feedback rounds until every word is exactly right.",
+      "We begin with a free consultation where you share your book idea, goals and vision. We then match you with the perfect ghostwriter for your genre and voice. Your ghostwriter studies everything you share — written notes, voice recordings or existing drafts — to understand how you think and speak. Writing begins chapter by chapter with regular reviews and feedback rounds through your project manager until every word is exactly right.",
   },
   {
     question: "How long does it take to write a book?",
@@ -22,7 +22,7 @@ const FAQ_ITEMS = [
   {
     question: "Will the book sound like me?",
     answer:
-      "Absolutely. Before writing a single word your ghostwriter studies your communication style through in-depth interviews and any existing writing you share. We create a personal voice guide and write a sample chapter for your approval before the full manuscript begins. Our clients consistently tell us the finished book sounds more like them than anything they could have written themselves.",
+      "Absolutely. Before writing a single word your ghostwriter studies your communication style through everything you submit — written notes, voice recordings and any existing writing you share. We create a personal voice guide and write a sample chapter for your approval before the full manuscript begins. Our clients consistently tell us the finished book sounds more like them than anything they could have written themselves.",
   },
   {
     question: "Do I own the book and all the royalties?",
@@ -52,12 +52,12 @@ const FAQ_ITEMS = [
   {
     question: "How much does it cost?",
     answer:
-      "Our pricing starts at $1,499 for shorter books and goes up to $4,999+ for full length premium projects. We offer flexible payment plans to make professional ghostwriting accessible. Book a free consultation and we will give you a detailed quote based on your specific project requirements.",
+      "Our packages start at $150 with the Starter plan for authors who already have a finished manuscript, $200 for our most popular Professional package, and $299 for the Complete Publishing Package — our full white-glove experience. Book a free consultation and we will help you choose the right package for your project.",
   },
   {
     question: "What if I am not happy with the writing?",
     answer:
-      "Your satisfaction is our priority. Every plan includes multiple revision rounds and we work with you until the manuscript meets your expectations. Our Professional and Masterpiece plans include unlimited revisions. If at any point you are not satisfied we will reassign your project to a different writer at no extra cost.",
+      "Your satisfaction is our priority. Every plan includes multiple revision rounds and we work with you until the manuscript meets your expectations. Our Professional and Complete Publishing Package plans include unlimited revisions. If at any point you are not satisfied we will reassign your project to a different writer at no extra cost.",
   },
 ];
 

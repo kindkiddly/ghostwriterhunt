@@ -1698,7 +1698,7 @@ export const services = [
       {
         number: '01',
         title: 'Voice and Style',
-        description: 'We study your existing content and interview you to capture your unique voice and style.',
+        description: 'We study your existing content and everything you submit to capture your unique voice and style.',
         image: '/images/collaboration-laptop.webp'
       },
       {
@@ -1732,7 +1732,7 @@ export const services = [
     faqs: [
       {
         question: 'How do you match the writer to my blog\'s voice?',
-        answer: 'We begin every blog writing engagement with a detailed voice and style study — reading your existing posts, interviewing you about your perspective and preferences, and creating a style guide that governs every post we write for you.'
+        answer: 'We begin every blog writing engagement with a detailed voice and style study — reading your existing posts, reviewing the preferences and material you submit, and creating a style guide that governs every post we write for you.'
       },
       {
         question: 'Can I review posts before they are published?',
@@ -1740,7 +1740,7 @@ export const services = [
       },
       {
         question: 'Do you handle the content calendar and topic planning?',
-        answer: 'Yes. Our Growth and Authority plans include full content calendar management — researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
+        answer: 'Yes. Our Professional and Complete Publishing Package plans include full content calendar management — researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
       },
       {
         question: 'Will my blog posts be SEO optimized?',
@@ -2611,7 +2611,7 @@ export const services = [
     faqs: [
       {
         question: 'How do you write in my voice for my website?',
-        answer: 'We begin with a detailed voice discovery session — studying your existing writing, interviewing you about your style and preferences and creating a voice guide that governs every word we write for your website.'
+        answer: 'We begin with a detailed voice discovery process — studying your existing writing and everything you submit about your style and preferences, and creating a voice guide that governs every word we write for your website.'
       },
       {
         question: 'Will the copy be SEO friendly?',

@@ -13,7 +13,7 @@ const TESTIMONIALS = [
   {
     id: 1,
     quote:
-      "Working with GhostWriterHunt was the best decision I made for my book. Sarah understood my voice from our very first conversation and the final manuscript moved me to tears. My memoir has since touched thousands of readers and I could not be more grateful.",
+      "Working with GhostWriterHunt was the best decision I made for my book. Sarah captured my voice perfectly from the very first draft and the final manuscript moved me to tears. My memoir has since touched thousands of readers and I could not be more grateful.",
     author: "Margaret Thompson",
     details: "Author of 'Finding My Way Home' · Jan 2026",
     photo:
@@ -76,7 +76,7 @@ const TESTIMONIALS = [
   {
     id: 8,
     quote:
-      "Robert Callahan spent weeks interviewing me and my family before writing a single word. The level of care and dedication he showed to getting every detail right was extraordinary. Our family history is now preserved forever in a beautifully written book.",
+      "Robert Callahan spent weeks studying everything my family and I submitted before writing a single word. The level of care and dedication he showed to getting every detail right was extraordinary. Our family history is now preserved forever in a beautifully written book.",
     author: "Charles Bennett",
     details: "Author of 'My Father's Legacy' · Aug 2026",
     photo:

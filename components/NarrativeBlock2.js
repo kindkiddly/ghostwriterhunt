@@ -12,9 +12,9 @@ import FloatingImages from "@/components/service/FloatingImages";
 const STEPS = [
   {
     number: "01",
-    title: "Deep Author Interview",
+    title: "Secure Voice Submission",
     description:
-      "We begin by listening — learning how you think, speak and tell stories through in-depth conversations.",
+      "We begin by studying everything you share — written notes, voice recordings or existing drafts — to learn how you think, speak and tell stories.",
   },
   {
     number: "02",
