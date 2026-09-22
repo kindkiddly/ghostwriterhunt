@@ -94,6 +94,7 @@ export default function ContactForm() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   // Scroll-reveal: left copy, right card, staggered form rows
   useEffect(() => {
@@ -160,15 +161,26 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (submitting || success) return;
     setSubmitting(true);
-    // Fake submit — show success after 1s (no backend yet)
-    setTimeout(() => {
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Request failed");
       setSubmitting(false);
       setSuccess(true);
-    }, 1000);
+    } catch {
+      setSubmitting(false);
+      setError(
+        "Something went wrong. Please try again or email us at ghostwriterhunt@lumexforge.com."
+      );
+    }
   }
 
   return (
@@ -696,6 +708,12 @@ export default function ContactForm() {
                       ? "Sending..."
                       : "Book My Free Consultation"}
                   </button>
+
+                  {error && (
+                    <p className="cf-success-text" role="alert">
+                      {error}
+                    </p>
+                  )}
                 </form>
               )}
             </div>
