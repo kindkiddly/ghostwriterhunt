@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
 
 /**
  * GhostWriterHunt — Contact & Booking Form
@@ -32,13 +33,6 @@ const PROJECT_OPTIONS = [
   "Author Branding",
   "Book Marketing",
   "Complete Package",
-];
-
-const REFERRAL_OPTIONS = [
-  "Google Search",
-  "Social Media",
-  "Referral from a friend",
-  "Blog or Article",
   "Other",
 ];
 
@@ -64,8 +58,10 @@ const INITIAL_FORM = {
   genre: "",
   projectType: "",
   about: "",
-  referral: "",
 };
+
+const DEFAULT_COUNTRY =
+  COUNTRY_CODES.find((c) => c.iso2 === "US") || COUNTRY_CODES[0];
 
 function CheckIcon({ size = 18 }) {
   return (
@@ -90,8 +86,128 @@ function CheckIcon({ size = 18 }) {
   );
 }
 
+function ChevronDownIcon({ open }) {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 12 8"
+      fill="none"
+      aria-hidden="true"
+      style={{
+        flexShrink: 0,
+        transition: "transform 0.2s ease",
+        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+      }}
+    >
+      <path
+        d="M1 1l5 5 5-5"
+        stroke="#999999"
+        strokeWidth="1.5"
+        fill="none"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CountryCodeSelect({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const wrapRef = useRef(null);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleClickOutside(e) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    searchRef.current?.focus();
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
+  const filtered = COUNTRY_CODES.filter((c) => {
+    const q = search.trim().toLowerCase();
+    if (!q) return true;
+    return (
+      c.name.toLowerCase().includes(q) ||
+      c.dial.replace("+", "").includes(q.replace("+", ""))
+    );
+  });
+
+  function handleSelect(country) {
+    onChange(country);
+    setOpen(false);
+    setSearch("");
+  }
+
+  return (
+    <div className="cf-country" ref={wrapRef}>
+      <button
+        type="button"
+        className="cf-country-btn"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={`Country code: ${value.name} ${value.dial}`}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <span aria-hidden="true">{getFlagEmoji(value.iso2)}</span>
+        <span>{value.dial}</span>
+        <ChevronDownIcon open={open} />
+      </button>
+
+      {open && (
+        <div className="cf-country-dropdown" role="listbox">
+          <input
+            ref={searchRef}
+            type="text"
+            className="cf-country-search"
+            placeholder="Search country or code"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <div className="cf-country-list">
+            {filtered.length === 0 ? (
+              <p className="cf-country-empty">No countries found</p>
+            ) : (
+              filtered.map((c) => (
+                <button
+                  key={c.iso2}
+                  type="button"
+                  role="option"
+                  aria-selected={c.iso2 === value.iso2}
+                  className={`cf-country-item${c.iso2 === value.iso2 ? " active" : ""}`}
+                  onClick={() => handleSelect(c)}
+                >
+                  <span aria-hidden="true">{getFlagEmoji(c.iso2)}</span>
+                  <span>{c.name}</span>
+                  <span className="cf-country-item-dial">{c.dial}</span>
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState(INITIAL_FORM);
+  const [country, setCountry] = useState(DEFAULT_COUNTRY);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -166,11 +282,15 @@ export default function ContactForm() {
     if (submitting || success) return;
     setSubmitting(true);
     setError("");
+    const payload = {
+      ...form,
+      phone: form.phone.trim() ? `${country.dial} ${form.phone.trim()}` : "",
+    };
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("Request failed");
       setSubmitting(false);
@@ -387,6 +507,120 @@ export default function ContactForm() {
           resize: vertical;
           min-height: 110px;
         }
+        .cf-phone-wrap {
+          display: flex;
+          gap: 8px;
+        }
+        .cf-phone-input {
+          flex: 1;
+          min-width: 0;
+        }
+        .cf-country {
+          position: relative;
+          flex-shrink: 0;
+        }
+        .cf-country-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          height: 100%;
+          background: #FAFAF7;
+          border: 1px solid #E8D5A3;
+          border-radius: 8px;
+          padding: 14px 12px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 15px;
+          color: #1C1C1C;
+          cursor: pointer;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cf-country-btn:hover {
+          border-color: #C9A84C;
+        }
+        .cf-country-btn:focus {
+          border-color: #C9A84C;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+        }
+        .cf-country-dropdown {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          width: 280px;
+          max-width: calc(100vw - 48px);
+          max-height: 280px;
+          background: #FFFFFF;
+          border: 1px solid #E8D5A3;
+          border-radius: 8px;
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+          z-index: 20;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .cf-country-search {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid #E8D5A3;
+          padding: 12px 14px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #1C1C1C;
+          outline: none;
+          box-sizing: border-box;
+        }
+        .cf-country-search::placeholder {
+          color: #999999;
+        }
+        .cf-country-list {
+          overflow-y: auto;
+          max-height: 232px;
+        }
+        .cf-country-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+          padding: 10px 14px;
+          background: transparent;
+          border: none;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: #1C1C1C;
+          text-align: left;
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease;
+        }
+        .cf-country-item:hover,
+        .cf-country-item.active {
+          background: #FAFAF7;
+          color: #C9A84C;
+        }
+        .cf-country-item-dial {
+          margin-left: auto;
+          color: #999999;
+        }
+        .cf-country-item:hover .cf-country-item-dial,
+        .cf-country-item.active .cf-country-item-dial {
+          color: #C9A84C;
+        }
+        .cf-country-empty {
+          margin: 0;
+          padding: 14px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 14px;
+          color: #999999;
+          text-align: center;
+        }
+        @media (max-width: 768px) {
+          .cf-country-dropdown {
+            left: auto;
+            right: 0;
+          }
+        }
         .cf-submit {
           width: 100%;
           background: #C9A84C;
@@ -584,15 +818,18 @@ export default function ContactForm() {
                       <label className="cf-field-label" htmlFor="cf-phone">
                         Phone Number
                       </label>
-                      <input
-                        id="cf-phone"
-                        className="cf-input"
-                        type="tel"
-                        name="phone"
-                        placeholder="+1 (optional)"
-                        value={form.phone}
-                        onChange={handleChange}
-                      />
+                      <div className="cf-phone-wrap">
+                        <CountryCodeSelect value={country} onChange={setCountry} />
+                        <input
+                          id="cf-phone"
+                          className="cf-input cf-phone-input"
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone number"
+                          value={form.phone}
+                          onChange={handleChange}
+                        />
+                      </div>
                     </div>
                     <div className="cf-field">
                       <label className="cf-field-label" htmlFor="cf-genre">
@@ -669,32 +906,6 @@ export default function ContactForm() {
                         onChange={handleChange}
                         required
                       />
-                    </div>
-                  </div>
-
-                  {/* Row 5 — referral */}
-                  <div
-                    className="cf-form-row cf-full cf-reveal-field"
-                    data-delay="620"
-                  >
-                    <div className="cf-field">
-                      <label className="cf-field-label" htmlFor="cf-referral">
-                        How did you hear about us?
-                      </label>
-                      <select
-                        id="cf-referral"
-                        className={`cf-select${form.referral ? "" : " cf-placeholder"}`}
-                        name="referral"
-                        value={form.referral}
-                        onChange={handleChange}
-                      >
-                        <option value="">Select an option</option>
-                        {REFERRAL_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
                     </div>
                   </div>
 

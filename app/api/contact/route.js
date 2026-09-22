@@ -13,7 +13,6 @@ const FIELD_LABELS = {
   genre: "Book Genre",
   projectType: "Project Type",
   about: "Tell us about your book",
-  referral: "How did you hear about us?",
 };
 
 const REQUIRED_FIELDS = ["fullName", "email", "genre", "projectType", "about"];
@@ -60,7 +59,7 @@ export async function POST(request) {
     }
   }
 
-  const { fullName, email, phone, genre, projectType, about, referral } = body;
+  const { fullName, email, phone, genre, projectType, about } = body;
 
   if (!EMAIL_REGEX.test(String(email).trim())) {
     return NextResponse.json(
@@ -69,7 +68,7 @@ export async function POST(request) {
     );
   }
 
-  const fields = { fullName, email, phone, genre, projectType, about, referral };
+  const fields = { fullName, email, phone, genre, projectType, about };
 
   const rowsHtml = Object.entries(fields)
     .filter(([, value]) => value)
