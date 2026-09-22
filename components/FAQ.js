@@ -197,7 +197,6 @@ export default function FAQ() {
                 key={item.question}
                 className="faq-reveal mb-3"
                 data-delay={index * 80}
-                style={{ transitionDelay: `${index * 0.08}s` }}
               >
                 <button
                   type="button"

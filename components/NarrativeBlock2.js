@@ -100,14 +100,12 @@ export default function NarrativeBlock2() {
           transform: translateX(40px);
           transition: opacity 0.7s ease-out,
                       transform 0.7s ease-out;
-          transition-delay: 0.15s;
         }
         .nb2-reveal-card {
           opacity: 0;
           transform: scale(0.8);
           transition: opacity 0.5s ease-out,
                       transform 0.5s ease-out;
-          transition-delay: 0.4s;
         }
         .nb2-reveal-left.nb2-is-visible,
         .nb2-reveal-right.nb2-is-visible,

@@ -130,14 +130,12 @@ export default function NarrativeBlock1() {
           opacity: 0;
           transform: translateX(40px);
           transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-          transition-delay: 0.15s;
         }
 
         .nb1-reveal-card {
           opacity: 0;
           transform: scale(0.8);
           transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-          transition-delay: 0.4s;
         }
 
         .nb1-reveal-left.nb1-is-visible,

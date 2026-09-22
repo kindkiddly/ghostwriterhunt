@@ -185,7 +185,6 @@ export default function ContactForm() {
           transform: translateY(40px) scale(0.97);
           transition: opacity 0.7s ease-out,
                       transform 0.7s ease-out;
-          transition-delay: 0.15s;
         }
         .cf-reveal-field {
           opacity: 0;

@@ -192,7 +192,6 @@ export default function TrustBlock() {
         .tb-reveal-chips {
           opacity: 0;
           transition: opacity 0.5s ease-out;
-          transition-delay: 0.4s;
         }
 
         .tb-reveal.tb-visible,

@@ -46,7 +46,7 @@ export default function StatsCounter() {
         });
       },
       {
-        threshold: 0.3,
+        threshold: 0.15,
         rootMargin: "0px 0px -60px 0px",
       }
     );

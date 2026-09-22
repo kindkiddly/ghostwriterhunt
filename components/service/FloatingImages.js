@@ -240,7 +240,7 @@ export default function FloatingImages({
           }
           .fi-float-img {
             position: static;
-            width: 100px;
+            width: 80px;
             height: 130px;
             border-radius: 10px;
             transform: none !important;
