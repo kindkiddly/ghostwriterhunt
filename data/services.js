@@ -178,7 +178,7 @@ export const services = [
       },
       {
         question: 'Will my book truly sound like me?',
-        answer: 'Absolutely. Before writing begins your ghostwriter conducts in-depth interviews and studies your existing writing. We create a personal voice guide to ensure every word reflects your unique voice and personality.'
+        answer: 'Absolutely. Before writing begins your ghostwriter conducts a thorough study of everything you submit — your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created from this study to ensure every word of your manuscript reflects your unique tone, style and personality.'
       },
       {
         question: 'How long does the ghostwriting process take?',
@@ -190,7 +190,7 @@ export const services = [
       },
       {
         question: 'Can I be involved in the writing process?',
-        answer: 'Absolutely. We encourage active collaboration. You review and approve each chapter before we move forward, ensuring the manuscript meets your exact vision at every stage.'
+        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward. You provide feedback, request revisions and guide the direction — ensuring every page meets your exact vision. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
       }
     ],
 
