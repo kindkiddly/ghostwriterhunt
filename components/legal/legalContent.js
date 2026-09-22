@@ -90,7 +90,7 @@ export const legalContent = {
 <hr />
 <h2>Contact Us</h2>
 <p>If you have questions about this Privacy Policy, please contact us at:</p>
-<p>GhostWriterHunt<br />Houston, USA<br />Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
+<p>GhostWriterHunt<br />TX, USA<br />Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
 <p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
@@ -159,7 +159,7 @@ export const legalContent = {
 <hr />
 <h2>Contact Us</h2>
 <p>Questions about these terms:</p>
-<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: Houston, USA</p>
+<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: TX, USA</p>
 <p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },
@@ -255,7 +255,7 @@ export const legalContent = {
 <p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>
 <p>Message and data rates may apply. Message frequency varies based on your project status and activity.</p>
 <p>For questions or concerns regarding this consent agreement, please contact us at:</p>
-<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: Houston, USA</p>
+<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: TX, USA</p>
 <p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
 `,
   },

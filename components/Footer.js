@@ -463,7 +463,7 @@ export default function Footer() {
               </span>
             </div>
             <div className="gwh-ft-contact-item">
-              <p className="gwh-ft-contact-text">Houston, Texas, USA</p>
+              <p className="gwh-ft-contact-text">TX, USA</p>
             </div>
             <div className="gwh-ft-contact-item">
               <p className="gwh-ft-contact-text">Mon–Fri: 9am – 6pm CST</p>
