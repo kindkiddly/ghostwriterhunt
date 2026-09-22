@@ -721,7 +721,7 @@ export const services = [
       },
       {
         question: 'How many revisions are included?',
-        answer: 'Our Professional and Premium plans include unlimited revisions. Our Starter plan includes 2 revision rounds per illustration. Additional revisions can be arranged if needed.'
+        answer: 'Our Professional and Complete Publishing Package plans include unlimited revisions. Exact revision terms for other packages are confirmed in your custom project plan.'
       },
       {
         question: 'Can you match an existing illustration style?',
@@ -1010,7 +1010,7 @@ export const services = [
       },
       {
         question: 'Can you help with social media for authors?',
-        answer: 'Yes. We create optimized bios for Instagram, Twitter/X, Facebook, LinkedIn and TikTok. Our Professional and Premium plans also include a social media content strategy guide.'
+        answer: 'Yes. We create optimized bios for Instagram, Twitter/X, Facebook, LinkedIn and TikTok as part of your author branding package.'
       },
       {
         question: 'What is a press kit and do I need one?',
@@ -1018,7 +1018,7 @@ export const services = [
       },
       {
         question: 'Can you write the copy for my author website?',
-        answer: 'Yes. Our Professional plan includes copy for up to 5 pages of your author website — Home, About, Books, Blog and Contact. Our Premium plan includes additional pages and ongoing content support.'
+        answer: 'Yes. Our Professional and Complete Publishing Package plans include a professional author website. Exact pages and scope are confirmed in your custom project plan.'
       }
     ],
 
@@ -1155,7 +1155,7 @@ export const services = [
       },
       {
         question: 'Do you run Amazon advertising for my book?',
-        answer: 'Yes — our Authority plan includes full Amazon PPC advertising management. We research keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
+        answer: 'Yes — Amazon PPC advertising management is available as part of your book marketing package. We research keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
       },
       {
         question: 'Can you help with a book launch?',
@@ -1307,7 +1307,7 @@ export const services = [
       },
       {
         question: 'Will my eBook be formatted and ready to publish?',
-        answer: 'Our Standard and Full eBook plans include formatting in all required digital formats. Your eBook will be ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
+        answer: 'Yes. Every eBook we deliver includes formatting in all required digital formats — ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
       },
       {
         question: 'Can I use my eBook as a lead magnet or marketing tool?',
@@ -1740,7 +1740,7 @@ export const services = [
       },
       {
         question: 'Do you handle the content calendar and topic planning?',
-        answer: 'Yes. Our Professional and Complete Publishing Package plans include full content calendar management — researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
+        answer: 'Yes. Content calendar management is available as part of your blog writing package — researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
       },
       {
         question: 'Will my blog posts be SEO optimized?',
@@ -1884,7 +1884,7 @@ export const services = [
       },
       {
         question: 'How fast can you proofread my manuscript?',
-        answer: 'Standard turnaround is 7 to 10 days depending on manuscript length. Rush turnaround in 3 to 5 days is available on our Premium plan for urgent publication deadlines.'
+        answer: 'Standard turnaround is 7 to 10 days depending on manuscript length. Rush turnaround in 3 to 5 days is available for urgent publication deadlines.'
       },
       {
         question: 'Do you proofread non-English manuscripts?',
@@ -2032,11 +2032,11 @@ export const services = [
       },
       {
         question: 'Do you provide upload assistance?',
-        answer: 'Our Premium plan includes upload assistance — we provide step-by-step instructions for uploading your files to each platform and are available to answer questions during the upload process.'
+        answer: 'Yes. We provide step-by-step instructions for uploading your files to each platform and are available to answer questions during the upload process.'
       },
       {
         question: 'How long does formatting take?',
-        answer: 'Digital-only formatting typically takes 5 days. Full print and digital formatting takes 7 days. Rush formatting in 3 days is available for urgent publishing deadlines on our Premium plan.'
+        answer: 'Digital-only formatting typically takes 5 days. Full print and digital formatting takes 7 days. Rush formatting in 3 days is available for urgent publishing deadlines.'
       }
     ],
 
@@ -2479,11 +2479,11 @@ export const services = [
       },
       {
         question: 'Can you include a shop where I sell books directly?',
-        answer: 'Yes. Our Professional and Premium plans can include a direct sales shop integrated with your website — allowing readers to purchase signed copies or digital editions directly from you, keeping more of the royalty than through Amazon.'
+        answer: 'Yes. A direct sales shop can be integrated with your website — allowing readers to purchase signed copies or digital editions directly from you, keeping more of the royalty than through Amazon.'
       },
       {
         question: 'What happens after my website is launched?',
-        answer: 'We provide full training for managing your website and remain available for questions. Our Premium plan includes ongoing monthly maintenance. For all plans, support packages are available for updates, new pages and technical assistance.'
+        answer: 'We provide full training for managing your website and remain available for questions. Ongoing maintenance and support packages are available for updates, new pages and technical assistance.'
       }
     ],
 

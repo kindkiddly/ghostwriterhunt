@@ -57,7 +57,7 @@ const FAQ_ITEMS = [
   {
     question: "What if I am not happy with the writing?",
     answer:
-      "Your satisfaction is our priority. Every plan includes multiple revision rounds and we work with you until the manuscript meets your expectations. Our Professional and Complete Publishing Package plans include unlimited revisions. If at any point you are not satisfied we will reassign your project to a different writer at no extra cost.",
+      "Your satisfaction is our priority. Our Professional and Complete Publishing Package plans include unlimited revisions, and we work with you until the manuscript meets your expectations. If at any point you are not satisfied we will reassign your project to a different writer at no extra cost.",
   },
 ];
 
