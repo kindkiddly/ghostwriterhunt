@@ -87,6 +87,26 @@ function CheckIcon({ size = 18 }) {
   );
 }
 
+function CloseIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M1 1l12 12M13 1L1 13"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function ChevronDownIcon({ open }) {
   return (
     <svg
@@ -366,6 +386,13 @@ export default function ContactForm() {
     }
   }
 
+  function handleReset() {
+    setForm(INITIAL_FORM);
+    setCountry(DEFAULT_COUNTRY);
+    setError("");
+    setSuccess(false);
+  }
+
   return (
     <>
       <style>{`
@@ -501,11 +528,32 @@ export default function ContactForm() {
         }
 
         .cf-card {
+          position: relative;
           background: #FFFFFF;
           border: 1px solid #E8D5A3;
           border-radius: 20px;
           padding: 40px;
           box-shadow: 0 8px 40px rgba(201, 168, 76, 0.10);
+        }
+        .cf-close-btn {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          background: transparent;
+          border: none;
+          border-radius: 6px;
+          color: #1C1C1C;
+          cursor: pointer;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .cf-close-btn:hover {
+          background: #FAFAF7;
+          color: #C9A84C;
         }
         .cf-form-row {
           display: flex;
@@ -813,16 +861,26 @@ export default function ContactForm() {
           >
             <div className="cf-card">
               {success ? (
-                <div className="cf-success" role="status">
-                  <div className="cf-success-icon">
-                    <CheckIcon size={56} />
+                <>
+                  <button
+                    type="button"
+                    className="cf-close-btn"
+                    aria-label="Close"
+                    onClick={handleReset}
+                  >
+                    <CloseIcon />
+                  </button>
+                  <div className="cf-success" role="status">
+                    <div className="cf-success-icon">
+                      <CheckIcon size={56} />
+                    </div>
+                    <h3 className="cf-success-heading">Thank you!</h3>
+                    <p className="cf-success-text">
+                      We have received your request and will be in touch within 24
+                      hours.
+                    </p>
                   </div>
-                  <h3 className="cf-success-heading">Thank you!</h3>
-                  <p className="cf-success-text">
-                    We have received your request and will be in touch within 24
-                    hours.
-                  </p>
-                </div>
+                </>
               ) : (
                 <form onSubmit={handleSubmit} noValidate={false}>
                   {/* Row 1 — name + email */}
