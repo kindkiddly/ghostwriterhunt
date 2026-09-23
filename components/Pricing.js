@@ -33,6 +33,7 @@ const INCLUSIONS = [
   "Secure, managed communication",
   "Satisfaction guarantee",
   "Professional project management",
+  "100% original, plagiarism-free writing",
 ];
 
 function CheckIcon({ className = "text-[var(--color-accent-gold)]" }) {

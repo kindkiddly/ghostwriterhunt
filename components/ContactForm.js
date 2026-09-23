@@ -40,7 +40,6 @@ const PROJECT_OPTIONS = [
 const TRUST_POINTS = [
   "Free consultation — no commitment",
   "Full NDA confidentiality guaranteed",
-  "Free sample chapter before you commit",
 ];
 
 const EMAIL_SUBTITLE_STYLE = {

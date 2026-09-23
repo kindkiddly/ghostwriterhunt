@@ -37,6 +37,7 @@ const CHECKLIST = [
   "100% Rights and Royalties Yours",
   "Full NDA Confidentiality",
   "Dedicated Writer Assigned",
+  "Secure, Managed Communication",
 ];
 
 function StepIcon({ type }) {

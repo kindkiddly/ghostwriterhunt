@@ -76,7 +76,7 @@ export const services = [
       {
         icon: 'users',
         title: 'Managed Excellence',
-        description: 'Your dedicated project manager handles all communication and coordination. You review chapters, request revisions and approve progress — with complete confidentiality maintained throughout.'
+        description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress — with revisions included on our Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
       }
     ],
 
@@ -102,7 +102,7 @@ export const services = [
       {
         number: '04',
         title: 'Chapter by Chapter Excellence',
-        description: 'Writing begins — and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review, provide feedback and request any revisions. We refine until you are completely satisfied before moving forward. No chapter progresses without your sign-off.',
+        description: 'Writing begins — and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before we move on — revisions are included with our Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
         image: '/images/author-1.webp'
       },
       {
@@ -134,7 +134,7 @@ export const services = [
       },
       {
         question: 'Can I be involved in the writing process?',
-        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward. You provide feedback, request revisions and guide the direction — ensuring every page meets your exact vision. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
+        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward — revisions are included with our Professional and Complete Publishing packages. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
       }
     ],
 
@@ -1736,7 +1736,7 @@ export const services = [
       },
       {
         question: 'Can I review posts before they are published?',
-        answer: 'Yes — always. You receive every post for review before it goes live. You can request revisions, add your own insights or approve it as written. Publication only happens with your explicit approval.'
+        answer: 'Yes — always. You receive every post for review before it goes live and approve it before publication — revisions are included with our Professional and Complete Publishing packages. Publication only happens with your explicit approval.'
       },
       {
         question: 'Do you handle the content calendar and topic planning?',
