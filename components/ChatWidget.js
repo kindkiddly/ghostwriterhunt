@@ -89,6 +89,11 @@ export default function ChatWidget() {
   const typingTimeoutRef = useRef(null);
   const conversationIdRef = useRef(null);
   const lastSendAtRef = useRef(0);
+  const isOpenRef = useRef(false);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
 
   const isAdminRoute = pathname?.startsWith("/admin");
 
@@ -224,6 +229,10 @@ export default function ChatWidget() {
               },
             ];
           });
+          // It just arrived while the panel is open, so it's being seen now.
+          if (isOpenRef.current) {
+            supabase.rpc("mark_messages_seen", { p_conversation_id: conversationId });
+          }
         }
       )
       .subscribe();
@@ -233,6 +242,40 @@ export default function ChatWidget() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationId, supabase]);
+
+  // Seen marks: whenever the panel is opened with an active conversation,
+  // mark any already-unseen agent/AI messages as seen (no-op if none).
+  useEffect(() => {
+    if (isAdminRoute || !isOpen || !conversationIdRef.current) return;
+    supabase
+      .rpc("mark_messages_seen", { p_conversation_id: conversationIdRef.current })
+      .then(({ error }) => {
+        if (error) console.error("ChatWidget: failed to mark messages seen", error);
+      });
+  }, [isOpen, conversationId, isAdminRoute, supabase]);
+
+  // Online presence: as long as a conversation exists and this tab stays
+  // open, track it on the shared "chat-presence" channel (keyed by
+  // conversation id) so the admin inbox can show a live online/offline
+  // dot. Ends automatically when the tab/connection closes.
+  useEffect(() => {
+    if (isAdminRoute || !conversationId) return;
+
+    const channel = supabase.channel("chat-presence", {
+      config: { presence: { key: conversationId } },
+    });
+
+    channel.subscribe(async (status) => {
+      if (status === "SUBSCRIBED") {
+        await channel.track({ online: true });
+      }
+    });
+
+    return () => {
+      channel.untrack();
+      supabase.removeChannel(channel);
+    };
+  }, [isAdminRoute, conversationId, supabase]);
 
   /**
    * persistMessage — saves one visitor message to Supabase: ensures an

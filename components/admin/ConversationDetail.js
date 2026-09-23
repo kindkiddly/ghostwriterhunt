@@ -43,14 +43,18 @@ function MessageBubble({ message }) {
       </div>
       <span className="mt-1 px-1 font-inter text-[11px] text-[#999999]">
         {isAi ? "AI" : isVisitor ? "Visitor" : "You"} · {formatTime(message.created_at)}
+        {!isVisitor && (
+          <> · {message.seen_at ? `Seen ${formatTime(message.seen_at)}` : "Sent"}</>
+        )}
       </span>
     </div>
   );
 }
 
 export default function ConversationDetail({ conversationId, onBack }) {
-  const { supabase, conversations, markSeen } = useAdminRealtime();
+  const { supabase, conversations, markSeen, onlineConversationIds } = useAdminRealtime();
   const conversation = conversations.find((c) => c.id === conversationId) || null;
+  const online = onlineConversationIds.has(conversationId);
 
   const [messages, setMessages] = useState([]);
   const [loadingMessages, setLoadingMessages] = useState(true);
@@ -103,6 +107,13 @@ export default function ConversationDetail({ conversationId, onBack }) {
         (payload) => {
           setMessages((prev) => (prev.some((m) => m.id === payload.new.id) ? prev : [...prev, payload.new]));
           markSeen(conversationId);
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "messages", filter: `conversation_id=eq.${conversationId}` },
+        (payload) => {
+          setMessages((prev) => prev.map((m) => (m.id === payload.new.id ? { ...m, ...payload.new } : m)));
         }
       )
       .subscribe();
@@ -273,7 +284,13 @@ export default function ConversationDetail({ conversationId, onBack }) {
             <p className="truncate font-playfair text-[16px] font-bold text-[var(--color-text)]">
               {conversation.contact_name || "Anonymous visitor"}
             </p>
-            <p className="truncate font-inter text-[12px] text-[#999999]">
+            <p className="flex items-center gap-1.5 truncate font-inter text-[12px] text-[#999999]">
+              <span
+                className={`h-1.5 w-1.5 shrink-0 rounded-full ${online ? "bg-[#4F9A55]" : "bg-[#C4C4C4]"}`}
+                aria-hidden="true"
+              />
+              {online ? "Online" : "Offline"}
+              {" · "}
               {conversation.contact_email || "No email"} {conversation.country ? `· ${conversation.country}` : ""}
             </p>
           </div>

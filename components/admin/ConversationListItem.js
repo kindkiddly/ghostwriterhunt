@@ -1,6 +1,6 @@
 "use client";
 
-import { isConversationUnread } from "@/lib/admin/AdminRealtimeContext";
+import { isConversationUnread, useAdminRealtime } from "@/lib/admin/AdminRealtimeContext";
 
 function timeAgo(iso) {
   if (!iso) return "";
@@ -16,7 +16,9 @@ function timeAgo(iso) {
 }
 
 export default function ConversationListItem({ conversation, active, onClick }) {
+  const { onlineConversationIds } = useAdminRealtime();
   const unread = isConversationUnread(conversation);
+  const online = onlineConversationIds.has(conversation.id);
   const name = conversation.contact_name || "Anonymous visitor";
   const preview = conversation.last_message_preview || "No messages yet";
 
@@ -48,6 +50,13 @@ export default function ConversationListItem({ conversation, active, onClick }) 
       </p>
 
       <div className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1 font-inter text-[11px] text-[#999999]">
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${online ? "bg-[#4F9A55]" : "bg-[#C4C4C4]"}`}
+            aria-hidden="true"
+          />
+          {online ? "Online" : "Offline"}
+        </span>
         {conversation.country && (
           <span className="font-inter text-[11px] text-[#999999]">{conversation.country}</span>
         )}
