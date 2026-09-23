@@ -1630,7 +1630,7 @@ export const services = [
     title: 'Blog Writing',
     tagline: 'Consistent, compelling blogs',
     taglineItalic: 'that grow your audience.',
-    heroSubtext: 'A great blog builds trust, drives organic traffic and keeps your audience coming back month after month. Our blog writers deliver consistent, high-quality content that sounds like you and achieves your goals.',
+    heroSubtext: 'A great blog builds trust, drives organic traffic and keeps your audience coming back month after month. Our professional blog writers deliver consistent, high-quality posts that sound like you, rank in search and turn readers into loyal followers.',
 
     heroImages: [
       {
@@ -1653,24 +1653,24 @@ export const services = [
     overview: {
       headline: 'Your blog, written with',
       headlineItalic: 'consistency and craft.',
-      body: 'The hardest part of blogging is not writing one great post — it is writing fifty great posts while running a business or pursuing a career. Our blog writers take that burden completely off your shoulders. We research, write and deliver publication-ready blog posts in your voice, on your schedule, consistently — so your audience always has something valuable to read and your search rankings keep climbing.',
+      body: 'The hardest part of blogging is not writing one great post — it is writing fifty great posts while running a business or pursuing a career. Our blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief — your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently — so your audience always has something valuable to read and your search rankings keep climbing.',
       bullets: [
-        'Blog posts from 500 to 3,000 words',
+        'Flexible post lengths tailored to your content goals',
         'SEO-optimized for organic traffic growth',
         'Written in your unique voice and style',
         'Consistent publishing schedule maintained',
         'Topic research and content calendar planning',
-        'Images sourced and brief included'
+        'Relevant images sourced for every post'
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=500&fit=crop',
-          alt: 'Blogging',
+          url: '/images/blog-writing-overview-1.webp',
+          alt: 'Creative writing desk with laptop and content notes',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=250&h=300&fit=crop',
-          alt: 'Writing',
+          url: '/images/blog-writing-overview-2.webp',
+          alt: 'Open book catching afternoon light',
           size: 'medium'
         }
       ]
@@ -1699,31 +1699,31 @@ export const services = [
         number: '01',
         title: 'Voice and Style',
         description: 'We study your existing content and everything you submit to capture your unique voice and style.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/blog-writing-process-1.webp'
       },
       {
         number: '02',
         title: 'Content Calendar',
         description: 'A monthly content calendar is planned with topics, keywords and publishing dates.',
-        image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=300&fit=crop'
+        image: '/images/blog-writing-process-2.webp'
       },
       {
         number: '03',
         title: 'Writing',
         description: 'Each post is researched and written with your audience and SEO goals in mind.',
-        image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
+        image: '/images/blog-writing-process-3.webp'
       },
       {
         number: '04',
         title: 'Review',
         description: 'You review each post before publication — providing feedback for any refinements.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/blog-writing-process-4.webp'
       },
       {
         number: '05',
         title: 'Publish and Monitor',
         description: 'Posts are delivered publication-ready and we track performance to continually improve.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/blog-writing-process-5.webp'
       }
     ],
 
@@ -1761,7 +1761,7 @@ export const services = [
 
     ctaHeadline: 'Start the blog that',
     ctaHeadlineItalic: 'builds your readership.',
-    ctaSubtext: 'Book a free consultation and let us create consistent, compelling content for your audience.',
+    ctaSubtext: 'Book a free consultation and let us build the consistent, compelling blog that turns readers into loyal followers — professionally researched, expertly written and delivered ready to publish.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 

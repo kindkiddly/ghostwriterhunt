@@ -42,6 +42,13 @@ export const IMAGE_DIMENSIONS = {
   "/images/article-writing-process-3.webp": { width: 940, height: 560 },
   "/images/article-writing-process-4.webp": { width: 940, height: 560 },
   "/images/article-writing-process-5.webp": { width: 940, height: 560 },
+  "/images/blog-writing-overview-1.webp": { width: 640, height: 800 },
+  "/images/blog-writing-overview-2.webp": { width: 400, height: 520 },
+  "/images/blog-writing-process-1.webp": { width: 940, height: 560 },
+  "/images/blog-writing-process-2.webp": { width: 940, height: 560 },
+  "/images/blog-writing-process-3.webp": { width: 940, height: 560 },
+  "/images/blog-writing-process-4.webp": { width: 940, height: 560 },
+  "/images/blog-writing-process-5.webp": { width: 940, height: 560 },
 };
 
 const FALLBACK_DIMENSIONS = { width: 800, height: 600 };
