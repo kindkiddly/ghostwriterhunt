@@ -36,6 +36,12 @@ export const IMAGE_DIMENSIONS = {
   "/images/book-H11.webp": { width: 984, height: 1200 },
   "/images/writing-1.webp": { width: 1920, height: 1280 },
   "/images/book-H9.webp": { width: 800, height: 1200 },
+  "/images/article-writing-overview-1.webp": { width: 640, height: 800 },
+  "/images/article-writing-overview-2.webp": { width: 400, height: 520 },
+  "/images/article-writing-process-1.webp": { width: 940, height: 560 },
+  "/images/article-writing-process-3.webp": { width: 940, height: 560 },
+  "/images/article-writing-process-4.webp": { width: 940, height: 560 },
+  "/images/article-writing-process-5.webp": { width: 940, height: 560 },
 };
 
 const FALLBACK_DIMENSIONS = { width: 800, height: 600 };

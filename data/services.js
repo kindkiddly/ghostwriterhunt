@@ -1486,7 +1486,7 @@ export const services = [
     title: 'Article Writing',
     tagline: 'Articles that inform,',
     taglineItalic: 'engage and convert.',
-    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles — our professional article writers produce content that establishes your authority, drives traffic and keeps readers coming back for more.',
+    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles — our professional article writers produce content that establishes your authority, drives organic traffic and keeps readers coming back for more.',
 
     heroImages: [
       {
@@ -1509,24 +1509,24 @@ export const services = [
     overview: {
       headline: 'Content that builds authority',
       headlineItalic: 'and drives results.',
-      body: 'In a world saturated with content, only the best rises to the top. Our article writers combine deep research skills, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces — we deliver writing that makes readers trust you.',
+      body: 'In a world saturated with content, only the best rises to the top. Our professional article writers combine deep research, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. You share your topic, goals and key points through a simple written brief — your dedicated project manager coordinates everything from there while a handpicked writer, matched to your industry, brings it to life. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces, every article is delivered ready to publish under your name.',
       bullets: [
-        'SEO-optimized articles for website and blog',
+        'SEO-optimized articles for your website and blog',
         'Thought leadership pieces for major publications',
         'Guest post writing and placement support',
-        'Research-backed long-form articles',
+        'Research-backed, long-form articles that go deep',
         'Industry news and analysis pieces',
-        'Ghostwritten under your byline'
+        'Ghostwritten and delivered under your byline'
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=500&fit=crop',
-          alt: 'Article writing',
+          url: '/images/article-writing-overview-1.webp',
+          alt: 'Business and thought leadership books beside a laptop',
           size: 'large'
         },
         {
-          url: '/images/writing-desk.webp',
-          alt: 'Content creation',
+          url: '/images/article-writing-overview-2.webp',
+          alt: 'Writer researching and taking notes',
           size: 'medium'
         }
       ]
@@ -1554,32 +1554,32 @@ export const services = [
       {
         number: '01',
         title: 'Topic and Brief',
-        description: 'We discuss your topic, target keywords, audience and the goal of each article.',
-        image: '/images/collaboration-laptop.webp'
+        description: 'You share your topic, target keywords, audience and the goal of each article through a simple written brief.',
+        image: '/images/article-writing-process-1.webp'
       },
       {
         number: '02',
         title: 'Research',
         description: 'Thorough research is conducted to ensure accuracy, depth and genuine value for your readers.',
-        image: '/images/writing-desk.webp'
+        image: '/images/books-table.webp'
       },
       {
         number: '03',
         title: 'Writing',
         description: 'Your article is written with clarity, authority and the perfect balance of information and engagement.',
-        image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop'
+        image: '/images/article-writing-process-3.webp'
       },
       {
         number: '04',
         title: 'Edit and Polish',
         description: 'Every article is edited for clarity, flow and consistency before delivery.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/article-writing-process-4.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Your completed article is delivered in your preferred format ready for publication.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/article-writing-process-5.webp'
       }
     ],
 
@@ -1600,7 +1600,7 @@ export const services = [
       },
       {
         question: 'Can I order articles on a regular basis?',
-        answer: 'Yes — we offer monthly retainer packages for authors and businesses who need regular content. Retainer pricing offers significant savings compared to per-article rates and ensures priority scheduling.'
+        answer: 'Yes. Many clients order articles on an ongoing basis to support their website, blog or publication schedule. Book a free consultation and your project manager will set up a simple, consistent workflow for your regular content needs.'
       },
       {
         question: 'Do you write articles for specific publications?',
@@ -1617,7 +1617,7 @@ export const services = [
 
     ctaHeadline: 'Build your authority',
     ctaHeadlineItalic: 'one article at a time.',
-    ctaSubtext: 'Book a free consultation and let us create the content that establishes you as the expert in your field.',
+    ctaSubtext: 'Book a free consultation and let us create content that establishes you as the trusted expert in your field — professionally researched, expertly written and ready to publish under your name.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
