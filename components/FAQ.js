@@ -42,7 +42,7 @@ const FAQ_ITEMS = [
   {
     question: "Which platforms will my book be published on?",
     answer:
-      "We publish your book on 47+ global digital platforms including Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords and Draft2Digital. We handle all ISBN registration, metadata optimization and platform setup so your book is discoverable worldwide.",
+      "We publish your book on 47+ global digital platforms including Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords and Draft2Digital. We handle your ISBN setup and guide you through registration, plus metadata optimization and platform setup, so your book is published in your name and discoverable worldwide.",
   },
   {
     question: "What genres do you cover?",

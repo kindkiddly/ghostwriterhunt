@@ -751,7 +751,7 @@ export const services = [
     title: 'eBook Publishing',
     tagline: 'Your book, live on',
     taglineItalic: '47+ platforms worldwide.',
-    heroSubtext: 'We handle every step of the digital publishing process — from file preparation and ISBN registration to platform setup and listing optimization. Your book goes live globally while you keep 100% of your rights and royalties.',
+    heroSubtext: 'We handle every step of the digital publishing process — from file preparation to platform setup and listing optimization. We handle your ISBN setup and guide you through registration, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
 
     heroImages: [
       {
@@ -774,10 +774,10 @@ export const services = [
     overview: {
       headline: 'Published globally in',
       headlineItalic: '30 days or less.',
-      body: 'Self-publishing has never been more powerful — or more complex. Between file formats, platform requirements, metadata optimization and ISBN registration, the process can overwhelm even experienced authors. Our publishing team handles every technical detail so you can focus entirely on your next book while we launch your current one to readers around the world.',
+      body: 'Self-publishing has never been more powerful — or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. Our publishing team handles every technical detail — including your ISBN setup and registration guidance — so you can focus entirely on your next book while we launch your current one to readers around the world.',
       bullets: [
         'Publishing on Amazon KDP, Apple Books, Kobo and 47+ platforms',
-        'ISBN registration and metadata setup',
+        'ISBN setup and publishing guidance',
         'Amazon listing optimization for discoverability',
         'All digital formats — ePub, MOBI, PDF',
         'Pricing strategy consultation included',
@@ -836,7 +836,7 @@ export const services = [
       {
         number: '03',
         title: 'ISBN and Metadata',
-        description: 'ISBN registration, category selection, keywords and all metadata are set up for maximum discoverability.',
+        description: 'We guide you through ISBN setup and registration, plus category selection, keywords and all metadata for maximum discoverability.',
         image: '/images/collaboration-laptop.webp'
       },
       {
