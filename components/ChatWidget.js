@@ -2,12 +2,16 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 /**
  * GhostWriterHunt — ChatWidget
- * Demo-mode live chat widget (UI only, no backend). Palette is lifted
- * directly from the featured "Professional" pricing card in Pricing.js:
- * dark background #1C1C1C, gold accent #C9A84C, white text.
+ * Live chat widget. Visitor messages and conversations persist to
+ * Supabase (anonymous auth + RLS); the team/AI reply is still a local-only
+ * demo auto-reply until the real AI/agent pipeline is wired up (see the
+ * TODO in persistMessage). Palette is lifted directly from the featured
+ * "Professional" pricing card in Pricing.js: dark background #1C1C1C,
+ * gold accent #C9A84C, white text.
  * Prefix: gcw-
  */
 
@@ -17,6 +21,8 @@ const AUTO_REPLY_MESSAGE =
   "Thanks for reaching out — a member of our team will reply shortly. If you've left your email, we'll also follow up there.";
 const TYPING_DELAY_MS = 1200;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
+const MAX_MESSAGE_LENGTH = 4000;
+const MIN_SEND_INTERVAL_MS = 1000;
 
 function ChatBubbleIcon() {
   return (
@@ -74,11 +80,15 @@ export default function ChatWidget() {
   const [visitorEmail, setVisitorEmail] = useState("");
   const [contactFieldsDismissed, setContactFieldsDismissed] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
+  const [supabase] = useState(() => createClient());
 
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
   const launcherRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+  const conversationIdRef = useRef(null);
+  const lastSendAtRef = useRef(0);
 
   const isAdminRoute = pathname?.startsWith("/admin");
 
@@ -129,43 +139,220 @@ export default function ChatWidget() {
     };
   }, []);
 
+  // On mount (page refresh): if a session already exists, restore the
+  // visitor's open conversation and its message history from Supabase.
+  useEffect(() => {
+    if (isAdminRoute) return;
+    let cancelled = false;
+
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session || cancelled) return;
+
+      const { data: existing, error } = await supabase
+        .from("conversations")
+        .select("id")
+        .eq("visitor_id", session.user.id)
+        .eq("status", "open")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (error || !existing || cancelled) return;
+
+      const { data: history } = await supabase
+        .from("messages")
+        .select("id, sender, content, created_at")
+        .eq("conversation_id", existing.id)
+        .order("created_at", { ascending: true });
+
+      if (cancelled) return;
+
+      conversationIdRef.current = existing.id;
+      setConversationId(existing.id);
+
+      if (history && history.length > 0) {
+        setHasOpenedOnce(true); // skip the synthetic local welcome message
+        setMessages(
+          history.map((row) => ({
+            id: row.id,
+            sender: row.sender === "visitor" ? "visitor" : "team",
+            text: row.content,
+            timestamp: new Date(row.created_at),
+            status: "sent",
+          }))
+        );
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supabase]);
+
+  // Realtime: live-append agent/AI messages that arrive on this
+  // conversation. The visitor's own messages are already shown
+  // optimistically at send-time, so they're skipped here. Cleans up on
+  // conversation change / unmount.
+  useEffect(() => {
+    if (isAdminRoute || !conversationId) return;
+
+    const channel = supabase
+      .channel(`messages-${conversationId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "messages",
+          filter: `conversation_id=eq.${conversationId}`,
+        },
+        (payload) => {
+          const row = payload.new;
+          if (row.sender === "visitor") return;
+          setMessages((prev) => {
+            if (prev.some((m) => m.id === row.id)) return prev;
+            return [
+              ...prev,
+              {
+                id: row.id,
+                sender: "team",
+                text: row.content,
+                timestamp: new Date(row.created_at),
+                status: "sent",
+              },
+            ];
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversationId, supabase]);
+
+  /**
+   * persistMessage — saves one visitor message to Supabase: ensures an
+   * anonymous session, starts a conversation via /api/chat/start on the
+   * first message, then inserts the message row. Called by sendMessage
+   * and by the retry button on a failed message.
+   */
+  const persistMessage = useCallback(
+    async (localId, text) => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        let activeSession = session;
+        if (!activeSession) {
+          const { data, error } = await supabase.auth.signInAnonymously();
+          if (error) throw error;
+          activeSession = data.session;
+        }
+
+        let convId = conversationIdRef.current;
+        if (!convId) {
+          const res = await fetch("/api/chat/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              accessToken: activeSession.access_token,
+              name: visitorName.trim() || null,
+              email: visitorEmail.trim() || null,
+              firstMessage: text,
+            }),
+          });
+          if (!res.ok) {
+            const errBody = await res.json().catch(() => ({}));
+            throw new Error(errBody.error || "Could not start conversation");
+          }
+          const data = await res.json();
+          convId = data.conversationId;
+          conversationIdRef.current = convId;
+          setConversationId(convId);
+        }
+
+        const { error: insertError } = await supabase.from("messages").insert({
+          conversation_id: convId,
+          sender: "visitor",
+          content: text,
+        });
+        if (insertError) throw insertError;
+
+        setMessages((prev) =>
+          prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
+        );
+
+        // --- DEMO AUTO-REPLY (display-only, NOT saved to Supabase) ---
+        // TODO: remove this block once real AI/agent replies are wired up —
+        // real replies will arrive through the Realtime subscription above.
+        setIsTyping(true);
+        if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = setTimeout(() => {
+          setIsTyping(false);
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: `team-${Date.now()}`,
+              sender: "team",
+              text: AUTO_REPLY_MESSAGE,
+              timestamp: new Date(),
+              status: "sent",
+            },
+          ]);
+        }, TYPING_DELAY_MS);
+      } catch (err) {
+        console.error("ChatWidget: failed to save message", err);
+        setMessages((prev) =>
+          prev.map((m) => (m.id === localId ? { ...m, status: "failed" } : m))
+        );
+      }
+    },
+    [supabase, visitorName, visitorEmail]
+  );
+
   /**
    * sendMessage — single entry point for outgoing visitor messages.
-   * Demo mode only: appends the message to local state, simulates a
-   * typing indicator, then posts one canned auto-reply. Swap the
-   * setTimeout block below for a real API/Supabase call later — the
-   * `messages` state shape can stay the same.
+   * Appends the message locally (optimistic) then hands it to
+   * persistMessage. Keep all message/send logic funneled through this pair
+   * of functions so a future AI/agent pipeline can hook in cleanly.
    */
-  const sendMessage = useCallback((text) => {
-    const trimmed = text.trim();
-    if (!trimmed) return;
+  const sendMessage = useCallback(
+    (text) => {
+      const trimmed = text.trim().slice(0, MAX_MESSAGE_LENGTH);
+      if (!trimmed) return;
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `visitor-${Date.now()}`,
-        sender: "visitor",
-        text: trimmed,
-        timestamp: new Date(),
-      },
-    ]);
-    setInputValue("");
-    setIsTyping(true);
+      const now = Date.now();
+      if (now - lastSendAtRef.current < MIN_SEND_INTERVAL_MS) return;
+      lastSendAtRef.current = now;
 
-    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-    typingTimeoutRef.current = setTimeout(() => {
-      setIsTyping(false);
+      const localId = `visitor-${now}`;
       setMessages((prev) => [
         ...prev,
         {
-          id: `team-${Date.now()}`,
-          sender: "team",
-          text: AUTO_REPLY_MESSAGE,
+          id: localId,
+          sender: "visitor",
+          text: trimmed,
           timestamp: new Date(),
+          status: "sent",
         },
       ]);
-    }, TYPING_DELAY_MS);
-  }, []);
+      setInputValue("");
+
+      persistMessage(localId, trimmed);
+    },
+    [persistMessage]
+  );
+
+  function retryMessage(localId, text) {
+    setMessages((prev) =>
+      prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
+    );
+    persistMessage(localId, text);
+  }
 
   function handleSend() {
     sendMessage(inputValue);
@@ -386,6 +573,25 @@ export default function ChatWidget() {
           font-size: 11px;
           color: #999999;
         }
+        .gcw-error-notice {
+          margin-top: 4px;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 11px;
+          color: #999999;
+        }
+        .gcw-retry-btn {
+          border: none;
+          background: transparent;
+          padding: 0;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          color: #C9A84C;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+        .gcw-retry-btn:hover { color: #B8960C; }
+        .gcw-retry-btn:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
 
         .gcw-typing {
           display: flex;
@@ -562,7 +768,20 @@ export default function ChatWidget() {
               <div className={`gcw-bubble gcw-bubble-${m.sender}`}>
                 <p className="gcw-bubble-text">{m.text}</p>
               </div>
-              <span className="gcw-timestamp">{formatTime(m.timestamp)}</span>
+              {m.status === "failed" ? (
+                <span className="gcw-error-notice">
+                  Couldn&apos;t send ·{" "}
+                  <button
+                    type="button"
+                    className="gcw-retry-btn"
+                    onClick={() => retryMessage(m.id, m.text)}
+                  >
+                    Retry
+                  </button>
+                </span>
+              ) : (
+                <span className="gcw-timestamp">{formatTime(m.timestamp)}</span>
+              )}
             </div>
           ))}
 
