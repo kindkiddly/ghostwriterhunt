@@ -22,7 +22,7 @@ const AUTO_REPLY_MESSAGE =
 const TYPING_DELAY_MS = 1200;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
 const MAX_MESSAGE_LENGTH = 4000;
-const MIN_SEND_INTERVAL_MS = 1000;
+const MARK_SEEN_DEBOUNCE_MS = 500;
 
 function ChatBubbleIcon() {
   return (
@@ -81,6 +81,8 @@ export default function ChatWidget() {
   const [contactFieldsDismissed, setContactFieldsDismissed] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
+  const [contactHasEmail, setContactHasEmail] = useState(false);
+  const [restoring, setRestoring] = useState(true);
   const [supabase] = useState(() => createClient());
 
   const messagesEndRef = useRef(null);
@@ -88,7 +90,8 @@ export default function ChatWidget() {
   const launcherRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const conversationIdRef = useRef(null);
-  const lastSendAtRef = useRef(0);
+  const sendLockRef = useRef(false);
+  const markSeenTimeoutRef = useRef(null);
   const isOpenRef = useRef(false);
 
   useEffect(() => {
@@ -145,48 +148,59 @@ export default function ChatWidget() {
   }, []);
 
   // On mount (page refresh): if a session already exists, restore the
-  // visitor's open conversation and its message history from Supabase.
+  // visitor's open conversation, whether its contact already has an email
+  // on file (via /api/chat/status — visitors have no RLS access to
+  // `contacts` directly), and its message history.
   useEffect(() => {
-    if (isAdminRoute) return;
+    if (isAdminRoute) {
+      setRestoring(false);
+      return;
+    }
     let cancelled = false;
 
     (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session || cancelled) return;
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session || cancelled) return;
 
-      const { data: existing, error } = await supabase
-        .from("conversations")
-        .select("id")
-        .eq("visitor_id", session.user.id)
-        .eq("status", "open")
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+        const res = await fetch("/api/chat/status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken: session.access_token }),
+        });
+        if (!res.ok || cancelled) return;
+        const statusData = await res.json();
 
-      if (error || !existing || cancelled) return;
+        if (!statusData.conversationId || cancelled) return;
 
-      const { data: history } = await supabase
-        .from("messages")
-        .select("id, sender, content, created_at")
-        .eq("conversation_id", existing.id)
-        .order("created_at", { ascending: true });
+        conversationIdRef.current = statusData.conversationId;
+        setConversationId(statusData.conversationId);
+        setContactHasEmail(!!statusData.contactHasEmail);
 
-      if (cancelled) return;
+        const { data: history } = await supabase
+          .from("messages")
+          .select("id, sender, content, created_at")
+          .eq("conversation_id", statusData.conversationId)
+          .order("created_at", { ascending: true });
 
-      conversationIdRef.current = existing.id;
-      setConversationId(existing.id);
+        if (cancelled) return;
 
-      if (history && history.length > 0) {
-        setHasOpenedOnce(true); // skip the synthetic local welcome message
-        setMessages(
-          history.map((row) => ({
-            id: row.id,
-            sender: row.sender === "visitor" ? "visitor" : "team",
-            text: row.content,
-            timestamp: new Date(row.created_at),
-            status: "sent",
-          }))
-        );
+        if (history && history.length > 0) {
+          setHasOpenedOnce(true); // skip the synthetic local welcome message
+          setMessages(
+            history.map((row) => ({
+              id: row.id,
+              sender: row.sender === "visitor" ? "visitor" : "team",
+              text: row.content,
+              timestamp: new Date(row.created_at),
+              status: "sent",
+            }))
+          );
+        }
+      } catch (err) {
+        console.error("ChatWidget: failed to restore conversation", err);
+      } finally {
+        if (!cancelled) setRestoring(false);
       }
     })();
 
@@ -195,6 +209,26 @@ export default function ChatWidget() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supabase]);
+
+  // Seen marks: debounced so a burst of incoming messages or open/close
+  // toggling only triggers one RPC call, and never blocks sending/display.
+  const scheduleMarkSeen = useCallback(() => {
+    if (!conversationIdRef.current) return;
+    if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
+    markSeenTimeoutRef.current = setTimeout(() => {
+      supabase
+        .rpc("mark_messages_seen", { p_conversation_id: conversationIdRef.current })
+        .then(({ error }) => {
+          if (error) console.error("ChatWidget: failed to mark messages seen", error);
+        });
+    }, MARK_SEEN_DEBOUNCE_MS);
+  }, [supabase]);
+
+  useEffect(() => {
+    return () => {
+      if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
+    };
+  }, []);
 
   // Realtime: live-append agent/AI messages that arrive on this
   // conversation. The visitor's own messages are already shown
@@ -230,9 +264,7 @@ export default function ChatWidget() {
             ];
           });
           // It just arrived while the panel is open, so it's being seen now.
-          if (isOpenRef.current) {
-            supabase.rpc("mark_messages_seen", { p_conversation_id: conversationId });
-          }
+          if (isOpenRef.current) scheduleMarkSeen();
         }
       )
       .subscribe();
@@ -243,16 +275,13 @@ export default function ChatWidget() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationId, supabase]);
 
-  // Seen marks: whenever the panel is opened with an active conversation,
-  // mark any already-unseen agent/AI messages as seen (no-op if none).
+  // Whenever the panel is opened with an active conversation, mark any
+  // already-unseen agent/AI messages as seen (no-op if none).
   useEffect(() => {
     if (isAdminRoute || !isOpen || !conversationIdRef.current) return;
-    supabase
-      .rpc("mark_messages_seen", { p_conversation_id: conversationIdRef.current })
-      .then(({ error }) => {
-        if (error) console.error("ChatWidget: failed to mark messages seen", error);
-      });
-  }, [isOpen, conversationId, isAdminRoute, supabase]);
+    scheduleMarkSeen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, conversationId, isAdminRoute]);
 
   // Online presence: as long as a conversation exists and this tab stays
   // open, track it on the shared "chat-presence" channel (keyed by
@@ -278,10 +307,11 @@ export default function ChatWidget() {
   }, [isAdminRoute, conversationId, supabase]);
 
   /**
-   * persistMessage — saves one visitor message to Supabase: ensures an
-   * anonymous session, starts a conversation via /api/chat/start on the
-   * first message, then inserts the message row. Called by sendMessage
-   * and by the retry button on a failed message.
+   * persistMessage — saves one visitor message via the single POST
+   * /api/chat/send call: ensures an anonymous session, then in one
+   * server-side step creates the conversation if needed, links/creates
+   * the contact, and saves the message. Called by sendMessage and by the
+   * retry button on a failed message.
    */
   const persistMessage = useCallback(
     async (localId, text) => {
@@ -296,34 +326,30 @@ export default function ChatWidget() {
           activeSession = data.session;
         }
 
-        let convId = conversationIdRef.current;
-        if (!convId) {
-          const res = await fetch("/api/chat/start", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              accessToken: activeSession.access_token,
-              name: visitorName.trim() || null,
-              email: visitorEmail.trim() || null,
-              firstMessage: text,
-            }),
-          });
-          if (!res.ok) {
-            const errBody = await res.json().catch(() => ({}));
-            throw new Error(errBody.error || "Could not start conversation");
-          }
-          const data = await res.json();
-          convId = data.conversationId;
-          conversationIdRef.current = convId;
-          setConversationId(convId);
-        }
-
-        const { error: insertError } = await supabase.from("messages").insert({
-          conversation_id: convId,
-          sender: "visitor",
-          content: text,
+        const res = await fetch("/api/chat/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            accessToken: activeSession.access_token,
+            conversationId: conversationIdRef.current,
+            // Once a contact with an email is on file, there's nothing
+            // left to resolve — skip resending these on every message.
+            name: contactHasEmail ? null : visitorName.trim() || null,
+            email: contactHasEmail ? null : visitorEmail.trim() || null,
+            content: text,
+          }),
         });
-        if (insertError) throw insertError;
+        if (!res.ok) {
+          const errBody = await res.json().catch(() => ({}));
+          throw new Error(errBody.error || "Could not send message");
+        }
+        const data = await res.json();
+
+        if (!conversationIdRef.current) {
+          conversationIdRef.current = data.conversationId;
+          setConversationId(data.conversationId);
+        }
+        setContactHasEmail(!!data.contactHasEmail);
 
         setMessages((prev) =>
           prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
@@ -354,25 +380,26 @@ export default function ChatWidget() {
         );
       }
     },
-    [supabase, visitorName, visitorEmail]
+    [supabase, visitorName, visitorEmail, contactHasEmail]
   );
 
   /**
    * sendMessage — single entry point for outgoing visitor messages.
-   * Appends the message locally (optimistic) then hands it to
-   * persistMessage. Keep all message/send logic funneled through this pair
-   * of functions so a future AI/agent pipeline can hook in cleanly.
+   * Appends the message locally (optimistic, instant) then hands it to
+   * persistMessage. A simple in-flight lock (not a time-based throttle)
+   * blocks double-clicking send; it's released once persistMessage
+   * settles either way. Keep all message/send logic funneled through
+   * this pair of functions so a future AI/agent pipeline can hook in
+   * cleanly.
    */
   const sendMessage = useCallback(
     (text) => {
+      if (sendLockRef.current) return;
       const trimmed = text.trim().slice(0, MAX_MESSAGE_LENGTH);
       if (!trimmed) return;
 
-      const now = Date.now();
-      if (now - lastSendAtRef.current < MIN_SEND_INTERVAL_MS) return;
-      lastSendAtRef.current = now;
-
-      const localId = `visitor-${now}`;
+      sendLockRef.current = true;
+      const localId = `visitor-${Date.now()}`;
       setMessages((prev) => [
         ...prev,
         {
@@ -385,16 +412,22 @@ export default function ChatWidget() {
       ]);
       setInputValue("");
 
-      persistMessage(localId, trimmed);
+      persistMessage(localId, trimmed).finally(() => {
+        sendLockRef.current = false;
+      });
     },
     [persistMessage]
   );
 
   function retryMessage(localId, text) {
+    if (sendLockRef.current) return;
+    sendLockRef.current = true;
     setMessages((prev) =>
       prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
     );
-    persistMessage(localId, text);
+    persistMessage(localId, text).finally(() => {
+      sendLockRef.current = false;
+    });
   }
 
   function handleSend() {
@@ -423,8 +456,12 @@ export default function ChatWidget() {
 
   if (isAdminRoute) return null;
 
-  const hasVisitorMessage = messages.some((m) => m.sender === "visitor");
-  const showContactFields = isOpen && !contactFieldsDismissed && !hasVisitorMessage;
+  // Same rule every time, DB-backed: show only until this visitor's
+  // conversation has a contact with an email on file — not derived from
+  // local message-send history, so it can't flip inconsistently across
+  // refreshes or return visits. `restoring` gates the brief window before
+  // we know the true state, so the fields never flash incorrectly.
+  const showContactFields = isOpen && !restoring && !contactHasEmail && !contactFieldsDismissed;
 
   return (
     <div className="gcw-root">
@@ -813,13 +850,13 @@ export default function ChatWidget() {
               </div>
               {m.status === "failed" ? (
                 <span className="gcw-error-notice">
-                  Couldn&apos;t send ·{" "}
+                  Not sent —{" "}
                   <button
                     type="button"
                     className="gcw-retry-btn"
                     onClick={() => retryMessage(m.id, m.text)}
                   >
-                    Retry
+                    tap to retry
                   </button>
                 </span>
               ) : (

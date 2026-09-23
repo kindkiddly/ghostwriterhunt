@@ -52,7 +52,8 @@ function MessageBubble({ message }) {
 }
 
 export default function ConversationDetail({ conversationId, onBack }) {
-  const { supabase, conversations, markSeen, onlineConversationIds } = useAdminRealtime();
+  const { supabase, conversations, loading: conversationsLoading, markSeen, onlineConversationIds } =
+    useAdminRealtime();
   const conversation = conversations.find((c) => c.id === conversationId) || null;
   const online = onlineConversationIds.has(conversationId);
 
@@ -259,9 +260,14 @@ export default function ConversationDetail({ conversationId, onBack }) {
   }
 
   if (!conversation) {
+    // Don't assume "gone" just because the shared conversations list
+    // hasn't loaded (or hasn't caught up to a just-created conversation)
+    // yet — only say that once loading has actually finished.
     return (
       <div className="flex h-full items-center justify-center px-6 text-center">
-        <p className="font-inter text-[14px] text-[#999999]">This conversation is no longer available.</p>
+        <p className="font-inter text-[14px] text-[#999999]">
+          {conversationsLoading ? "Loading conversation…" : "This conversation is no longer available."}
+        </p>
       </div>
     );
   }
