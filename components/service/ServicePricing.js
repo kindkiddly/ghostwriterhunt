@@ -138,8 +138,9 @@ export default function ServicePricing({ service }) {
           z-index: 1;
         }
         .spr-badge {
-          display: inline-block;
-          align-self: center;
+          display: block;
+          width: fit-content;
+          margin: 0 auto 24px;
           background: #C9A84C;
           color: #FFFFFF;
           font-family: var(--font-inter), Inter, sans-serif;
@@ -149,7 +150,6 @@ export default function ServicePricing({ service }) {
           letter-spacing: 0.06em;
           padding: 4px 14px;
           border-radius: 20px;
-          margin-bottom: 24px;
         }
         .spr-plan-label {
           font-family: var(--font-inter), Inter, sans-serif;
@@ -183,7 +183,7 @@ export default function ServicePricing({ service }) {
           text-align: center;
         }
         .spr-head {
-          min-height: 284px;
+          min-height: 278px;
         }
         .spr-price-row {
           font-family: var(--font-playfair), "Playfair Display", serif;

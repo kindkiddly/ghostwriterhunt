@@ -12,7 +12,7 @@ export const SHARED_PRICING = [
     label: 'ESSENTIALS',
     price: { perChapter: null, fullBook: 150 },
     description: 'Perfect for authors who have already written their manuscript and are ready for a professional, publisher-quality launch.',
-    bestFor: 'Authors who have already written their manuscript',
+    bestFor: 'Perfect for authors building a series — consistent quality, release after release',
     features: [
       'Team of 4 professionals assigned — Project Manager, Editor, Formatter and Publisher',
       'Professional manuscript editing and formatting',
@@ -20,7 +20,6 @@ export const SHARED_PRICING = [
       'Bestseller-quality cover design',
       'Author Central setup',
       'Publishing on 5 major platforms',
-      'eBook, Paperback and Hardcover formats',
       'You keep 100% of your royalties'
     ],
     guarantee: '✓ 14-Day Money Back Guarantee',

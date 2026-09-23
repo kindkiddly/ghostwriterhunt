@@ -72,10 +72,10 @@ function PlanCard({ plan, index }) {
       style={{ animationDelay: `${0.2 + index * 0.15}s` }}
     >
       {/* Label/name/description — equal height at lg so prices align in one row */}
-      <div className="gwh-price-head lg:min-h-[270px]">
+      <div className="gwh-price-head lg:min-h-[256px]">
         {/* Featured badge or standard plan label */}
         {featured ? (
-          <span className="mb-6 inline-block self-center rounded-[20px] bg-[var(--color-accent-gold)] px-3.5 py-1 font-inter text-[11px] font-semibold uppercase tracking-wide text-white">
+          <span className="mb-6 block w-fit rounded-[20px] bg-[var(--color-accent-gold)] px-3.5 py-1 font-inter text-[11px] font-semibold uppercase tracking-wide text-white mx-auto">
             Most Popular
           </span>
         ) : (
