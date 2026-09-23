@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   const service = getServiceBySlug(params.slug);
   if (!service) return {};
   return {
-    title: `${service.title} | GhostWriterHunt`,
+    title: service.title,
     description: service.heroSubtext,
   };
 }

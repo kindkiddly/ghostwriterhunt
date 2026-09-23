@@ -5,7 +5,7 @@ import LegalModal from "./legal/LegalModal";
 
 /**
  * GhostWriterHunt — Footer
- * Newsletter strip + 3 columns (Brand · Company · Contact) + legal bar.
+ * 3 columns (Brand · Company · Contact) + legal bar.
  */
 
 const COMPANY_LINKS = [
@@ -87,67 +87,6 @@ export default function Footer() {
           background: #1C1C1C;
           overflow-x: hidden;
         }
-
-        /* Newsletter strip */
-        .gwh-ft-strip {
-          background: #242424;
-          border-bottom: 1px solid #2A2A2A;
-          padding: 28px 0;
-        }
-        .gwh-ft-strip-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 24px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 24px;
-        }
-        .gwh-ft-strip-heading {
-          font-family: var(--font-playfair), "Playfair Display", serif;
-          font-weight: 700;
-          font-size: 18px;
-          color: #FFFFFF;
-          margin: 0;
-        }
-        .gwh-ft-strip-sub {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 13px;
-          color: #888888;
-          margin: 4px 0 0;
-        }
-        .gwh-ft-form {
-          display: flex;
-          flex-direction: row;
-          flex-shrink: 0;
-        }
-        .gwh-ft-input {
-          width: 220px;
-          background: #1C1C1C;
-          border: 1px solid #333333;
-          border-radius: 6px 0 0 6px;
-          padding: 10px 16px;
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 13px;
-          color: #FFFFFF;
-          outline: none;
-        }
-        .gwh-ft-input::placeholder { color: #555555; }
-        .gwh-ft-input:focus { border-color: #C9A84C; }
-        .gwh-ft-submit {
-          background: #C9A84C;
-          border: none;
-          border-radius: 0 6px 6px 0;
-          padding: 10px 20px;
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 600;
-          font-size: 13px;
-          color: #FFFFFF;
-          cursor: pointer;
-          transition: background 0.2s ease;
-        }
-        .gwh-ft-submit:hover { background: #B8960C; }
 
         /* Main 3 columns */
         .gwh-ft-main {
@@ -308,25 +247,6 @@ export default function Footer() {
         .gwh-ft-legal button:hover { color: #C9A84C; }
 
         @media (max-width: 768px) {
-          .gwh-ft-strip-inner {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-          .gwh-ft-form {
-            flex-direction: column;
-            width: 100%;
-          }
-          .gwh-ft-input {
-            width: 100%;
-            box-sizing: border-box;
-            border-radius: 6px;
-          }
-          .gwh-ft-submit {
-            width: 100%;
-            border-radius: 6px;
-            margin-top: 8px;
-          }
           .gwh-ft-main-inner {
             grid-template-columns: 1fr;
             gap: 36px;
@@ -355,36 +275,6 @@ export default function Footer() {
           }
         }
       `}</style>
-
-      {/* Newsletter strip */}
-      <div className="gwh-ft-strip">
-        <div className="gwh-ft-strip-inner">
-          <div>
-            <p className="gwh-ft-strip-heading">
-              Stay updated with publishing tips
-            </p>
-            <p className="gwh-ft-strip-sub">
-              Weekly insights for authors.
-            </p>
-          </div>
-          <form
-            className="gwh-ft-form"
-            onSubmit={(e) => e.preventDefault()}
-            aria-label="Newsletter signup"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="Your email"
-              className="gwh-ft-input"
-              required
-            />
-            <button type="submit" className="gwh-ft-submit">
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
 
       {/* Main columns: Brand · Company · Contact */}
       <div className="gwh-ft-main">

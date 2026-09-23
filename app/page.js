@@ -16,6 +16,12 @@ import ContactForm from "@/components/ContactForm";
 import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  title: "Professional Ghostwriting & Book Publishing Services | GhostWriterHunt",
+  description:
+    "Turn your idea into a professionally published book. Our vetted ghostwriters, editors and publishing team handle everything — completely confidential, with 100% of the rights and royalties in your name.",
+};
+
 export default function Home() {
   return (
     <main className="m-0 max-w-full overflow-x-hidden p-0">
