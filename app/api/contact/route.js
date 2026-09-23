@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
  * GhostWriterHunt — Contact form submission handler
@@ -29,6 +30,44 @@ function escapeHtml(value) {
 
 function sanitizeHeaderValue(value) {
   return String(value).replace(/[\r\n]+/g, " ").trim();
+}
+
+/**
+ * Best-effort CRM side effect: find-or-create the contact by email and
+ * append this submission to their notes. Never throws — a DB hiccup here
+ * must never affect the contact form's existing email-sending response.
+ */
+async function saveContactFromForm({ fullName, email, phone, genre, projectType, about }) {
+  try {
+    const admin = createAdminClient();
+    const trimmedEmail = String(email).trim();
+
+    const { data: existing } = await admin
+      .from("contacts")
+      .select("id, notes")
+      .eq("email", trimmedEmail)
+      .maybeSingle();
+
+    const noteEntry = `[${new Date().toISOString()}] Contact form submission\nGenre: ${genre}\nProject type: ${projectType}\nMessage: ${about}`;
+
+    if (existing) {
+      const updatedNotes = existing.notes ? `${existing.notes}\n\n${noteEntry}` : noteEntry;
+      await admin
+        .from("contacts")
+        .update({ name: fullName, phone: phone || null, notes: updatedNotes })
+        .eq("id", existing.id);
+    } else {
+      await admin.from("contacts").insert({
+        name: fullName,
+        email: trimmedEmail,
+        phone: phone || null,
+        source: "contact_form",
+        notes: noteEntry,
+      });
+    }
+  } catch (err) {
+    console.error("contact: failed to save contact record", err);
+  }
 }
 
 export async function POST(request) {
@@ -69,6 +108,8 @@ export async function POST(request) {
   }
 
   const fields = { fullName, email, phone, genre, projectType, about };
+
+  await saveContactFromForm(fields);
 
   const rowsHtml = Object.entries(fields)
     .filter(([, value]) => value)

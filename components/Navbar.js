@@ -176,6 +176,8 @@ export default function Navbar() {
     },
   };
 
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[1000] w-full outline-none"
