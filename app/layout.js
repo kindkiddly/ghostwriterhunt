@@ -2,6 +2,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ChatWidget from "@/components/ChatWidget";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
         <Navbar />
         {children}
+        <ChatWidget />
         <Analytics />
       </body>
     </html>
