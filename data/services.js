@@ -1664,13 +1664,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/blog-writing-overview-1.webp',
-          alt: 'Creative writing desk with laptop and content notes',
+          url: '/images/blog-writing-overview-1b.webp',
+          alt: 'Writer crafting a post by hand at her desk',
           size: 'large'
         },
         {
-          url: '/images/blog-writing-overview-2.webp',
-          alt: 'Open book catching afternoon light',
+          url: '/images/blog-writing-overview-2b.webp',
+          alt: 'Writer typing consistently at her laptop',
           size: 'medium'
         }
       ]
