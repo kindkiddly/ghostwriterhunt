@@ -1376,8 +1376,8 @@ export const services = [
           size: 'large'
         },
         {
-          url: '/images/children-stories-1.webp',
-          alt: 'Child reading before bedtime',
+          url: '/images/childrens-book-overview-1.webp',
+          alt: 'Child reading a picture book on a library staircase',
           size: 'medium'
         },
         {

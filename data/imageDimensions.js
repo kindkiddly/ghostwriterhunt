@@ -51,6 +51,7 @@ export const IMAGE_DIMENSIONS = {
   "/images/blog-writing-process-5.webp": { width: 940, height: 560 },
   "/images/blog-writing-overview-1b.webp": { width: 640, height: 800 },
   "/images/blog-writing-overview-2b.webp": { width: 400, height: 520 },
+  "/images/childrens-book-overview-1.webp": { width: 400, height: 520 },
 };
 
 const FALLBACK_DIMENSIONS = { width: 800, height: 600 };
