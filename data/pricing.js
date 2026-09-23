@@ -14,9 +14,11 @@ export const SHARED_PRICING = [
     description: 'Perfect for authors who have already written their manuscript and are ready to publish professionally.',
     bestFor: 'Authors who have already written their manuscript',
     features: [
-      'Dedicated team of 4 publishing professionals',
+      'Team of 4 professionals assigned — Project Manager, Editor, Formatter and Publisher',
       'Professional manuscript editing and formatting',
       'eBook formatting included',
+      'Bestseller-quality cover design',
+      'Author Central setup',
       'Publishing on 5 major platforms',
       'eBook, Paperback and Hardcover formats',
       'You keep 100% of your royalties'
