@@ -71,32 +71,35 @@ function PlanCard({ plan, index }) {
       }`}
       style={{ animationDelay: `${0.2 + index * 0.15}s` }}
     >
-      {/* Featured badge or standard plan label */}
-      {featured ? (
-        <span className="mb-6 inline-block self-center rounded-[20px] bg-[var(--color-accent-gold)] px-3.5 py-1 font-inter text-[11px] font-semibold uppercase tracking-wide text-white">
-          Most Popular
-        </span>
-      ) : (
-        <p className="mb-2 font-inter text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--color-accent-olive)]">
-          {plan.label}
+      {/* Label/name/description — equal height at lg so prices align in one row */}
+      <div className="gwh-price-head lg:min-h-[270px]">
+        {/* Featured badge or standard plan label */}
+        {featured ? (
+          <span className="mb-6 inline-block self-center rounded-[20px] bg-[var(--color-accent-gold)] px-3.5 py-1 font-inter text-[11px] font-semibold uppercase tracking-wide text-white">
+            Most Popular
+          </span>
+        ) : (
+          <p className="mb-2 font-inter text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--color-accent-olive)]">
+            {plan.label}
+          </p>
+        )}
+
+        <h3
+          className={`mb-2 font-playfair text-[28px] font-bold ${
+            featured ? "text-center text-white" : "text-[var(--color-text)]"
+          }`}
+        >
+          {plan.title}
+        </h3>
+
+        <p
+          className={`mb-6 font-inter text-[14px] font-normal leading-relaxed ${
+            featured ? "text-center text-[#999999]" : "text-[#666666]"
+          }`}
+        >
+          {plan.description}
         </p>
-      )}
-
-      <h3
-        className={`mb-2 font-playfair text-[28px] font-bold ${
-          featured ? "text-center text-white" : "text-[var(--color-text)]"
-        }`}
-      >
-        {plan.title}
-      </h3>
-
-      <p
-        className={`mb-6 font-inter text-[14px] font-normal leading-relaxed ${
-          featured ? "text-center text-[#999999]" : "text-[#666666]"
-        }`}
-      >
-        {plan.description}
-      </p>
+      </div>
 
       {/* Price */}
       <div className={featured ? "text-center" : ""}>

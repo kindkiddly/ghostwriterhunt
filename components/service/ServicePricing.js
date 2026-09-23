@@ -182,6 +182,9 @@ export default function ServicePricing({ service }) {
           color: #999999;
           text-align: center;
         }
+        .spr-head {
+          min-height: 284px;
+        }
         .spr-price-row {
           font-family: var(--font-playfair), "Playfair Display", serif;
           font-weight: 700;
@@ -294,6 +297,7 @@ export default function ServicePricing({ service }) {
           .spr-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
           .spr-card.featured { transform: none; }
           .spr-headline { font-size: 32px; }
+          .spr-head { min-height: 0; }
         }
       `}</style>
 
@@ -319,14 +323,16 @@ export default function ServicePricing({ service }) {
                 className={`spr-card spr-reveal${featured ? " featured" : ""}`}
                 data-delay={200 + index * 100}
               >
-                {featured ? (
-                  <span className="spr-badge">Most Popular</span>
-                ) : (
-                  <p className="spr-plan-label">{plan.label}</p>
-                )}
+                <div className="spr-head">
+                  {featured ? (
+                    <span className="spr-badge">Most Popular</span>
+                  ) : (
+                    <p className="spr-plan-label">{plan.label}</p>
+                  )}
 
-                <h3 className="spr-plan-name">{plan.name}</h3>
-                <p className="spr-plan-desc">{plan.description}</p>
+                  <h3 className="spr-plan-name">{plan.name}</h3>
+                  <p className="spr-plan-desc">{plan.description}</p>
+                </div>
 
                 <div className={featured ? "text-center" : ""}>
                   <p className="spr-price-row">

@@ -11,7 +11,7 @@ export const SHARED_PRICING = [
     name: 'Starter',
     label: 'ESSENTIALS',
     price: { perChapter: null, fullBook: 150 },
-    description: 'Perfect for authors who have already written their manuscript and are ready to publish professionally.',
+    description: 'Perfect for authors who have already written their manuscript and are ready for a professional, publisher-quality launch.',
     bestFor: 'Authors who have already written their manuscript',
     features: [
       'Team of 4 professionals assigned — Project Manager, Editor, Formatter and Publisher',
