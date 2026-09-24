@@ -464,7 +464,7 @@ export default function ChatWidget() {
   const showContactFields = isOpen && !restoring && !contactHasEmail && !contactFieldsDismissed;
 
   return (
-    <div className="gcw-root">
+    <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
       <style>{`
         .gcw-root {
           position: fixed;
@@ -472,9 +472,8 @@ export default function ChatWidget() {
           z-index: 9999;
           pointer-events: none;
           --gcw-edge-x: 24px;
-          --gcw-edge-y: 24px;
+          --gcw-edge-y: 20px;
           --gcw-launcher-size: 56px;
-          --gcw-launcher-gap: 10px;
         }
 
         .gcw-launcher {
@@ -497,7 +496,19 @@ export default function ChatWidget() {
             0 8px 32px rgba(28,28,28,0.35),
             0 2px 8px rgba(0,0,0,0.2),
             inset 0 1px 0 rgba(255,255,255,0.12);
-          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+          transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+        }
+        /* Open panel replaces the launcher — no overlap */
+        .gcw-is-open .gcw-launcher {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: scale(0.88);
         }
         .gcw-launcher:hover {
           transform: translateY(-2px) scale(1.03);
@@ -529,7 +540,7 @@ export default function ChatWidget() {
         .gcw-panel {
           position: fixed;
           right: var(--gcw-edge-x);
-          bottom: calc(var(--gcw-edge-y) + var(--gcw-launcher-size) + var(--gcw-launcher-gap));
+          bottom: var(--gcw-edge-y);
           width: 380px;
           max-width: calc(100vw - 32px);
           height: min(600px, 80vh);
@@ -537,17 +548,13 @@ export default function ChatWidget() {
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          background: rgba(28,28,28,0.72);
-          backdrop-filter: blur(28px) saturate(180%);
-          -webkit-backdrop-filter: blur(28px) saturate(180%);
+          background: transparent;
           border: 1px solid rgba(201,168,76,0.28);
           box-shadow:
             0 32px 80px rgba(28,28,28,0.45),
-            0 8px 24px rgba(0,0,0,0.25),
-            inset 0 1px 0 rgba(255,255,255,0.1),
-            inset 0 0 0 1px rgba(255,255,255,0.04);
+            0 8px 24px rgba(0,0,0,0.25);
           opacity: 0;
-          transform: translateY(20px) scale(0.96);
+          transform: translateY(16px) scale(0.97);
           visibility: hidden;
           pointer-events: none;
           transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
@@ -558,9 +565,6 @@ export default function ChatWidget() {
           visibility: visible;
           pointer-events: auto;
         }
-        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .gcw-panel { background: #1C1C1C; }
-        }
 
         .gcw-header {
           position: relative;
@@ -569,9 +573,9 @@ export default function ChatWidget() {
           gap: 12px;
           padding: 17px 18px 16px;
           min-height: 72px;
-          background: rgba(28,28,28,0.55);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          background: rgba(28,28,28,0.88);
+          backdrop-filter: blur(20px) saturate(160%);
+          -webkit-backdrop-filter: blur(20px) saturate(160%);
           border-bottom: 1px solid rgba(201,168,76,0.18);
           flex-shrink: 0;
         }
@@ -585,7 +589,7 @@ export default function ChatWidget() {
           background: linear-gradient(90deg, transparent, rgba(201,168,76,0.45), transparent);
         }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .gcw-header { background: #242424; }
+          .gcw-header { background: #1C1C1C; }
         }
         .gcw-avatar {
           width: 42px;
@@ -684,7 +688,7 @@ export default function ChatWidget() {
         }
         .gcw-close-btn:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
 
-        /* Cream glass canvas — brand interior */
+        /* Message wall ONLY — light frosted cream; header/footer stay solid dark glass */
         .gcw-messages {
           flex: 1;
           overflow-y: auto;
@@ -692,12 +696,9 @@ export default function ChatWidget() {
           display: flex;
           flex-direction: column;
           gap: 18px;
-          background:
-            radial-gradient(ellipse 90% 60% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 100% 100%, rgba(232,213,163,0.2) 0%, transparent 55%),
-            rgba(250,250,247,0.88);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+          background: rgba(250,250,247,0.55);
+          backdrop-filter: blur(10px) saturate(115%);
+          -webkit-backdrop-filter: blur(10px) saturate(115%);
           scrollbar-width: thin;
           scrollbar-color: rgba(201,168,76,0.45) transparent;
         }
@@ -798,18 +799,18 @@ export default function ChatWidget() {
         .gcw-typing-dot:nth-child(2) { animation-delay: 0.15s; }
         .gcw-typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-        /* Charcoal glass dock */
         .gcw-footer {
           flex-shrink: 0;
           padding: 14px 16px;
           padding-bottom: max(14px, env(safe-area-inset-bottom));
-          background: rgba(28,28,28,0.62);
+          background: rgba(28,28,28,0.88);
           backdrop-filter: blur(20px) saturate(160%);
           -webkit-backdrop-filter: blur(20px) saturate(160%);
           border-top: 1px solid rgba(201,168,76,0.2);
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
         }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-header { background: #1C1C1C; }
           .gcw-footer { background: #1C1C1C; }
         }
 
@@ -1030,6 +1031,8 @@ export default function ChatWidget() {
         aria-label={isOpen ? "Close chat" : "Open chat"}
         aria-expanded={isOpen}
         aria-controls="gcw-panel"
+        aria-hidden={isOpen}
+        tabIndex={isOpen ? -1 : 0}
         onClick={() => setIsOpen((v) => !v)}
       >
         <ChatBubbleIcon />
