@@ -177,9 +177,23 @@ export default function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="w-full bg-[var(--color-card)] py-[80px]"
+      className="relative w-full overflow-hidden bg-[var(--color-background)] py-[80px]"
       aria-label="How it works"
     >
+      {/* Subtle landscape background — ~15% visible through the section */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/background-1.webp"
+          alt=""
+          className="h-full w-full object-cover object-center opacity-[0.15]"
+          width={1920}
+          height={1081}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
       {/* Scoped reveal animations */}
       <style>{`
         @keyframes gwh-hiw-fade {
@@ -236,7 +250,7 @@ export default function HowItWorks() {
       `}</style>
 
       <div
-        className={`mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-hiw-visible" : ""}`}
+        className={`relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-hiw-visible" : ""}`}
       >
         {/* Section label */}
         <p className="gwh-hiw-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
@@ -269,7 +283,7 @@ export default function HowItWorks() {
             {STEPS.map((step) => (
               <li
                 key={step.number}
-                className="gwh-hiw-card group relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-10 py-12 shadow-[0_4px_32px_rgba(201,168,76,0.08)] transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
+                className="gwh-hiw-card group relative rounded-2xl border border-[var(--color-border)] bg-white/95 px-10 py-12 shadow-[0_4px_32px_rgba(201,168,76,0.08)] backdrop-blur-sm transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-white hover:shadow-[0_12px_40px_rgba(201,168,76,0.16)]"
               >
                 {/* Top gold accent */}
                 <div
@@ -298,7 +312,7 @@ export default function HowItWorks() {
         </div>
 
         {/* What's included checklist */}
-        <ul className="gwh-hiw-checklist mt-[60px] grid grid-cols-2 gap-6 rounded-xl bg-[var(--color-background)] px-5 py-8 sm:px-12 lg:grid-cols-4 lg:gap-8">
+        <ul className="gwh-hiw-checklist mt-[60px] grid grid-cols-2 gap-6 rounded-xl border border-[var(--color-border)] bg-white/92 px-5 py-8 backdrop-blur-sm sm:px-12 lg:grid-cols-4 lg:gap-8">
           {CHECKLIST.map((item) => (
             <li
               key={item}
