@@ -838,7 +838,7 @@ export const services = [
     faqs: [
       {
         question: 'Which platforms will my book be published on?',
-        answer: 'We publish on Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords, Draft2Digital and 40+ additional platforms reaching readers in virtually every country in the world.'
+        answer: 'We publish on Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords, Draft2Digital — 47+ platforms worldwide — reaching readers in virtually every country in the world.'
       },
       {
         question: 'Do I need my own accounts on these platforms?',
@@ -859,7 +859,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'GhostWriterHunt published my book on 47 platforms in less than 3 weeks. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything — and my book was live globally before I had even fully processed that it was real.',
+      quote: 'GhostWriterHunt published my book on 47+ platforms in less than 3 weeks. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything — and my book was live globally before I had even fully processed that it was real.',
       author: 'Thomas Williams',
       book: 'A Life Remembered',
       image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=96&h=96&fit=crop&crop=face'

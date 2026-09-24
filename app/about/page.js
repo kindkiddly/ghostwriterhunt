@@ -23,16 +23,16 @@ const STORY_IMAGES = [
 ];
 
 const HERO_PILLS = [
-  "500+ Books Published",
-  "96% Client Satisfaction",
+  "5000+ Books Published",
+  "98% Client Satisfaction",
   "50+ Professional Writers",
 ];
 
 const STATS = [
-  { number: "500", suffix: "+", label: "Books Published" },
+  { number: "5000", suffix: "+", label: "Books Published" },
   { number: "50", suffix: "+", label: "Professional Writers" },
-  { number: "96", suffix: "%", label: "Client Satisfaction" },
-  { number: "12", suffix: "+", label: "Publishing Platforms" },
+  { number: "98", suffix: "%", label: "Client Satisfaction" },
+  { number: "47", suffix: "+", label: "Publishing Platforms" },
 ];
 
 const TEAM = [
@@ -62,7 +62,7 @@ const TEAM = [
   {
     name: "James Harrison",
     role: "Head of Publishing",
-    bio: "Publishing veteran managing our global distribution network across 12+ platforms worldwide.",
+    bio: "Publishing veteran managing our global distribution network across 47+ platforms worldwide.",
     chip: "Publishing",
     photo:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face",
@@ -122,8 +122,8 @@ const WHY_BULLETS = [
   "Every project protected by full NDA",
   "Your voice captured — not ours",
   "100% of rights and royalties yours",
-  "Published on 12+ global platforms",
-  "500+ books successfully delivered",
+  "Published on 47+ global platforms",
+  "5000+ books successfully delivered",
 ];
 
 function ValueIcon({ type, size = 28, color = "#C9A84C" }) {
@@ -1022,7 +1022,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="ab-vcard-title">Global Publishing Reach</h3>
                 <p className="ab-vcard-desc">
-                  We publish your book to 12+ platforms worldwide — and you keep
+                  We publish your book to 47+ platforms worldwide — and you keep
                   100% of your rights and royalties.
                 </p>
               </div>

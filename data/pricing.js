@@ -19,7 +19,7 @@ export const SHARED_PRICING = [
       'eBook formatting included',
       'Bestseller-quality cover design',
       'Author Central setup',
-      'Publishing on 5 major platforms',
+      'Publishing on 47+ platforms',
       'You keep 100% of your royalties'
     ],
     guarantee: '✓ 14-Day Money Back Guarantee',
@@ -38,7 +38,7 @@ export const SHARED_PRICING = [
       'Best-selling cover design',
       'Professional author website',
       'Author Central setup',
-      'Publishing on 5 global platforms',
+      'Publishing on 47+ platforms',
       'eBook, Paperback and Hardcover formats',
       'You keep 100% royalties'
     ],
@@ -58,7 +58,7 @@ export const SHARED_PRICING = [
       'Best-selling cover design',
       'Professional author website',
       'Author Central setup',
-      'Publishing on 5 global platforms',
+      'Publishing on 47+ platforms',
       'eBook, Paperback and Hardcover formats',
       'You keep 100% royalties'
     ],
