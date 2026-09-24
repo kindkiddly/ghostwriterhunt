@@ -1,16 +1,27 @@
 /**
  * GhostWriterHunt — Legal document content
- * HTML strings rendered inside LegalModal via dangerouslySetInnerHTML.
+ * Semantic HTML with class hooks styled in LegalDocumentPage.js
  */
 
-const EMAIL_SUBTITLE_STYLE = "font-size:11px;font-weight:500;color:#C9A84C;";
-
-// Two contact emails, each with a small subtitle. Reused across all legal documents.
-const CONTACT_EMAILS_STACKED = `<a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a><span style="display:block;margin-top:2px;${EMAIL_SUBTITLE_STYLE}">New projects &amp; consultations</span><a href="mailto:support.gwh@lumexforge.com" style="display:inline-block;margin-top:10px;">support.gwh@lumexforge.com</a><span style="display:block;margin-top:2px;${EMAIL_SUBTITLE_STYLE}">Client support &amp; project help</span>`;
-
-const CONTACT_EMAILS_BESIDE_LABEL = `<span style="display:inline-block;vertical-align:top;">${CONTACT_EMAILS_STACKED}</span>`;
-
-const CONTACT_EMAILS_INLINE = `<a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> <span style="${EMAIL_SUBTITLE_STYLE}">(New projects &amp; consultations)</span> or <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> <span style="${EMAIL_SUBTITLE_STYLE}">(Client support &amp; project help)</span>`;
+const CONTACT_SECTION = `
+<div class="legal-contact-section">
+  <h2 class="legal-contact-heading">Contact Us</h2>
+  <p class="legal-contact-intro">Questions about our policies or your project? Reach our team directly.</p>
+  <div class="legal-contact-grid">
+    <div class="legal-contact-card">
+      <p class="legal-contact-label">New Projects</p>
+      <a href="mailto:ghostwriterhunt@lumexforge.com" class="legal-contact-email">ghostwriterhunt@lumexforge.com</a>
+      <p class="legal-contact-note">New projects &amp; consultations</p>
+    </div>
+    <div class="legal-contact-card">
+      <p class="legal-contact-label">Client Support</p>
+      <a href="mailto:support.gwh@lumexforge.com" class="legal-contact-email">support.gwh@lumexforge.com</a>
+      <p class="legal-contact-note">Client support &amp; project help</p>
+    </div>
+  </div>
+  <p class="legal-contact-location">GhostWriterHunt · TX, USA</p>
+</div>
+`;
 
 export const legalContent = {
   privacy: {
@@ -59,7 +70,7 @@ export const legalContent = {
   <li><strong>Account Alerts</strong> — Important alerts regarding your account or project.</li>
   <li><strong>Service Updates</strong> — Information about new services and offerings from GhostWriterHunt.</li>
 </ol>
-<p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or contact us at ${CONTACT_EMAILS_INLINE}. Message and data rates may apply.</p>
+<p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. Message and data rates may apply.</p>
 <hr />
 <h2>Information Sharing</h2>
 <p>We do not sell, trade or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
@@ -86,12 +97,9 @@ export const legalContent = {
 </ul>
 <hr />
 <h2>Cookies</h2>
-<p>We use cookies to enhance your browsing experience. Please see our Cookie Policy for full details.</p>
+<p>We use cookies to enhance your browsing experience. Please see our <a href="/cookie-policy">Cookie Policy</a> for full details.</p>
 <hr />
-<h2>Contact Us</h2>
-<p>If you have questions about this Privacy Policy, please contact us at:</p>
-<p>GhostWriterHunt<br />TX, USA<br />Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
+${CONTACT_SECTION}
 `,
   },
 
@@ -157,10 +165,7 @@ export const legalContent = {
 <h2>Changes to Terms</h2>
 <p>We reserve the right to update these Terms of Use at any time. Continued use of our website constitutes acceptance of updated terms.</p>
 <hr />
-<h2>Contact Us</h2>
-<p>Questions about these terms:</p>
-<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: TX, USA</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
+${CONTACT_SECTION}
 `,
   },
 
@@ -215,10 +220,7 @@ export const legalContent = {
 </ul>
 <p>These third party cookies are governed by their respective privacy policies.</p>
 <hr />
-<h2>Contact Us</h2>
-<p>Questions about our cookie policy:</p>
-<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
+${CONTACT_SECTION}
 `,
   },
 
@@ -230,10 +232,24 @@ export const legalContent = {
 <p>This page provides access to all legal documents governing your use of GhostWriterHunt's website and professional ghostwriting services.</p>
 <hr />
 <h2>Our Legal Documents</h2>
-<p><strong>Privacy Policy</strong> — How we collect, use and protect your personal information when you use our website and services. Open via the Privacy Policy link under About Us in the navigation menu.</p>
-<p><strong>Terms of Use</strong> — The terms and conditions governing your use of our website and the services we provide. Open via the Terms of Use link under About Us in the navigation menu.</p>
-<p><strong>Cookie Policy</strong> — How we use cookies and similar tracking technologies on our website. Open via the Cookie Policy link under About Us in the navigation menu.</p>
-<p><strong>Text Message Consent Agreement</strong> — Your rights and our obligations regarding SMS and text message communications. See details below.</p>
+<ul class="legal-doc-list">
+  <li class="legal-doc-item">
+    <a href="/privacy-policy" class="legal-doc-link">Privacy Policy</a>
+    <p class="legal-doc-desc">How we collect, use and protect your personal information when you use our website and services.</p>
+  </li>
+  <li class="legal-doc-item">
+    <a href="/terms-of-use" class="legal-doc-link">Terms of Use</a>
+    <p class="legal-doc-desc">The terms and conditions governing your use of our website and the services we provide.</p>
+  </li>
+  <li class="legal-doc-item">
+    <a href="/cookie-policy" class="legal-doc-link">Cookie Policy</a>
+    <p class="legal-doc-desc">How we use cookies and similar tracking technologies on our website.</p>
+  </li>
+  <li class="legal-doc-item">
+    <a href="/legal#sms-consent" class="legal-doc-link">Text Message Consent Agreement</a>
+    <p class="legal-doc-desc">Your rights and our obligations regarding SMS and text message communications.</p>
+  </li>
+</ul>
 <hr />
 <h2 id="sms-consent">Text Message Consent Agreement</h2>
 <p>By providing your phone number and opting in to text message communications, you agree to receive SMS messages from GhostWriterHunt related to the following purposes:</p>
@@ -248,15 +264,14 @@ export const legalContent = {
 <p>You have the right to withdraw your consent to receive text messages from GhostWriterHunt at any time using any of the following methods:</p>
 <ol>
   <li><strong>Reply STOP</strong> — Reply to any text message you receive from us with the word "STOP." This will automatically unsubscribe you from further text communications.</li>
-  <li><strong>Contact Us</strong> — Reach out to our client support team at ${CONTACT_EMAILS_INLINE} and request to be unsubscribed from text message communications.</li>
+  <li><strong>Contact Us</strong> — Email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> and request to be unsubscribed from text message communications.</li>
   <li><strong>Update Preferences</strong> — Contact us directly to update your communication preferences and opt out of receiving text messages.</li>
 </ol>
 <p>Please note that even if you opt out of promotional text messages, you may still receive transactional messages directly related to your active book project.</p>
 <p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>
 <p>Message and data rates may apply. Message frequency varies based on your project status and activity.</p>
-<p>For questions or concerns regarding this consent agreement, please contact us at:</p>
-<p>Email: ${CONTACT_EMAILS_BESIDE_LABEL}<br />Location: TX, USA</p>
-<p style="margin-top:40px;text-align:center;color:#666666;">Questions about our legal policies?<br />${CONTACT_EMAILS_STACKED}</p>
+<hr />
+${CONTACT_SECTION}
 `,
   },
 };
