@@ -43,7 +43,6 @@ export default function CTABanner() {
 
   return (
     <section
-      id="start"
       className="cta-banner-section relative flex min-h-[500px] w-full items-center justify-center overflow-hidden py-[80px]"
       style={{
         backgroundImage: `
