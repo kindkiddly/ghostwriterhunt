@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { waitUntil } from "@vercel/functions";
 import { Resend } from "resend";
+import { generateAndSaveAiReplies } from "@/lib/ai/chatAgent";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
@@ -146,7 +147,7 @@ export async function POST(request) {
   if (clientConversationId && typeof clientConversationId === "string") {
     const { data: knownConv } = await admin
       .from("conversations")
-      .select("id, contact_id, status, country")
+      .select("id, contact_id, status, country, region, ai_enabled")
       .eq("id", clientConversationId)
       .eq("visitor_id", visitorId)
       .maybeSingle();
@@ -160,7 +161,7 @@ export async function POST(request) {
   if (!conversation) {
     const { data: recentConvs } = await admin
       .from("conversations")
-      .select("id, contact_id, status, country, created_at")
+      .select("id, contact_id, status, country, region, ai_enabled, created_at")
       .eq("visitor_id", visitorId)
       .order("created_at", { ascending: false })
       .limit(20);
@@ -193,7 +194,7 @@ export async function POST(request) {
     const { data: newConv, error: convError } = await admin
       .from("conversations")
       .insert({ visitor_id: visitorId, country, region, contact_id: contactId })
-      .select("id, contact_id, country")
+      .select("id, contact_id, country, region, ai_enabled")
       .single();
 
     if (convError || !newConv) {
@@ -262,12 +263,32 @@ export async function POST(request) {
     );
   }
 
+  const aiEnabled = conversation.ai_enabled !== false;
+  const aiPending = aiEnabled && !!process.env.ANTHROPIC_API_KEY;
+
+  if (aiPending) {
+    waitUntil(
+      generateAndSaveAiReplies({
+        admin,
+        conversationId: conversation.id,
+        visitorMessage: trimmedContent,
+        isNewConversation,
+        visitorName: trimmedName || null,
+        visitorEmail: trimmedEmail || null,
+        country: conversation.country,
+        region: conversation.region || null,
+        contactHasEmail,
+      })
+    );
+  }
+
   return NextResponse.json(
     {
       conversationId: conversation.id,
       messageId: message.id,
       createdAt: message.created_at,
       contactHasEmail,
+      aiPending,
     },
     { status: isNewConversation ? 201 : 200 }
   );

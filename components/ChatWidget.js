@@ -7,19 +7,17 @@ import { createClient } from "@/lib/supabase/client";
 /**
  * GhostWriterHunt — ChatWidget
  * Live chat widget. Visitor messages and conversations persist to
- * Supabase (anonymous auth + RLS); the team/AI reply is still a local-only
- * demo auto-reply until the real AI/agent pipeline is wired up (see the
- * TODO in persistMessage). Palette is lifted directly from the featured
+ * Supabase (anonymous auth + RLS); AI replies arrive server-side (Claude
+ * Haiku, sender 'ai') and are appended via Realtime. Palette is lifted
+ * directly from the featured
  * "Professional" pricing card in Pricing.js: dark background #1C1C1C,
  * gold accent #C9A84C, white text.
  * Prefix: gcw-
  */
 
 const WELCOME_MESSAGE =
-  "Welcome to GhostWriterHunt. How can we help with your book today?";
-const AUTO_REPLY_MESSAGE =
-  "Thanks for reaching out — a member of our team will reply shortly. If you've left your email, we'll also follow up there.";
-const TYPING_DELAY_MS = 1200;
+  "Tell us about your book — we're here to help with your publishing project.";
+const TYPING_TIMEOUT_MS = 45000;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
 const MAX_MESSAGE_LENGTH = 4000;
 const MARK_SEEN_DEBOUNCE_MS = 500;
@@ -250,6 +248,8 @@ export default function ChatWidget() {
         (payload) => {
           const row = payload.new;
           if (row.sender === "visitor") return;
+          setIsTyping(false);
+          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
           setMessages((prev) => {
             if (prev.some((m) => m.id === row.id)) return prev;
             return [
@@ -355,26 +355,14 @@ export default function ChatWidget() {
           prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
         );
 
-        // --- DEMO AUTO-REPLY (display-only, NOT saved to Supabase) ---
-        // TODO: remove this block once real AI/agent replies are wired up —
-        // real replies will arrive through the Realtime subscription above.
-        setIsTyping(true);
-        if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-        typingTimeoutRef.current = setTimeout(() => {
-          setIsTyping(false);
-          setMessages((prev) => [
-            ...prev,
-            {
-              id: `team-${Date.now()}`,
-              sender: "team",
-              text: AUTO_REPLY_MESSAGE,
-              timestamp: new Date(),
-              status: "sent",
-            },
-          ]);
-        }, TYPING_DELAY_MS);
+        if (data.aiPending) {
+          setIsTyping(true);
+          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+          typingTimeoutRef.current = setTimeout(() => setIsTyping(false), TYPING_TIMEOUT_MS);
+        }
       } catch (err) {
         console.error("ChatWidget: failed to save message", err);
+        setIsTyping(false);
         setMessages((prev) =>
           prev.map((m) => (m.id === localId ? { ...m, status: "failed" } : m))
         );

@@ -20,6 +20,28 @@ function ContactsIcon() {
     </svg>
   );
 }
+function PaymentsIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M3 8.5h14" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M6.5 12.5h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+function CallbacksIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M5.5 3.5h9a1.5 1.5 0 011.5 1.5v7.5l-3-2.5H5.5a1.5 1.5 0 01-1.5-1.5V5a1.5 1.5 0 011.5-1.5z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path d="M8.5 11.5h3M8.5 8.5h5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
 function LogoutIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -55,13 +77,15 @@ function Badge({ count }) {
 }
 
 const NAV_ITEMS = [
-  { href: "/admin", label: "Inbox", icon: InboxIcon, badge: true },
-  { href: "/admin/contacts", label: "Contacts", icon: ContactsIcon, badge: false },
+  { href: "/admin", label: "Inbox", icon: InboxIcon, badgeKey: "inbox" },
+  { href: "/admin/callbacks", label: "Callbacks", icon: CallbacksIcon, badgeKey: "callbacks" },
+  { href: "/admin/payments", label: "Payments", icon: PaymentsIcon, badgeKey: null },
+  { href: "/admin/contacts", label: "Contacts", icon: ContactsIcon, badgeKey: null },
 ];
 
 function AdminShell({ children }) {
   const pathname = usePathname();
-  const { unreadCount, soundEnabled, toggleSound } = useAdminRealtime();
+  const { unreadCount, callbackPendingCount, soundEnabled, toggleSound } = useAdminRealtime();
 
   async function handleLogout() {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -80,8 +104,10 @@ function AdminShell({ children }) {
         </div>
 
         <nav className="flex flex-1 flex-col gap-1 px-3">
-          {NAV_ITEMS.map(({ href, label, icon: Icon, badge }) => {
+          {NAV_ITEMS.map(({ href, label, icon: Icon, badgeKey }) => {
             const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
+            const badgeCount =
+              badgeKey === "inbox" ? unreadCount : badgeKey === "callbacks" ? callbackPendingCount : 0;
             return (
               <Link
                 key={href}
@@ -94,7 +120,7 @@ function AdminShell({ children }) {
               >
                 <Icon />
                 {label}
-                {badge && <Badge count={unreadCount} />}
+                {badgeKey && <Badge count={badgeCount} />}
               </Link>
             );
           })}
@@ -149,8 +175,10 @@ function AdminShell({ children }) {
 
       {/* Mobile bottom nav */}
       <nav className="fixed inset-x-0 bottom-0 z-20 flex border-t border-[var(--color-border)] bg-[var(--color-card)] lg:hidden">
-        {NAV_ITEMS.map(({ href, label, icon: Icon, badge }) => {
+        {NAV_ITEMS.map(({ href, label, icon: Icon, badgeKey }) => {
           const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
+          const badgeCount =
+            badgeKey === "inbox" ? unreadCount : badgeKey === "callbacks" ? callbackPendingCount : 0;
           return (
             <Link
               key={href}
@@ -161,7 +189,7 @@ function AdminShell({ children }) {
             >
               <Icon />
               {label}
-              {badge && unreadCount > 0 && (
+              {badgeKey && badgeCount > 0 && (
                 <span className="absolute right-[28%] top-1.5 h-2 w-2 rounded-full bg-[var(--color-accent-gold)]" />
               )}
             </Link>

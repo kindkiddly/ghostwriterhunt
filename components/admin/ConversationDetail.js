@@ -300,6 +300,12 @@ export default function ConversationDetail({ conversationId, onBack }) {
               {conversation.contact_email || "No email"} {conversation.country ? `· ${conversation.country}` : ""}
             </p>
           </div>
+          <Link
+            href={`/admin/payments?conversationId=${conversationId}${conversation.contact_id ? `&contactId=${conversation.contact_id}` : ""}`}
+            className="hidden rounded-full bg-[#F5F0E3] px-3 py-1.5 font-inter text-[12px] font-semibold text-[#8A6D2C] transition-colors hover:bg-[#EFE7D2] sm:inline-block"
+          >
+            Payment link
+          </Link>
           <button
             type="button"
             onClick={toggleAi}

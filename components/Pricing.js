@@ -2,6 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { SHARED_PRICING } from "@/data/pricing";
+import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
+
+const PACKAGE_KEY_BY_NAME = {
+  Starter: "starter",
+  Professional: "professional",
+  "Complete Publishing Package": "complete",
+};
 
 /**
  * GhostWriterHunt — Pricing
@@ -14,10 +21,12 @@ import { SHARED_PRICING } from "@/data/pricing";
 
 const PLANS = SHARED_PRICING.map((tier) => ({
   id: tier.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+  packageKey: PACKAGE_KEY_BY_NAME[tier.name] || null,
   label: tier.label,
   title: tier.name,
   description: tier.description,
   price: tier.price.fullBook.toLocaleString("en-US"),
+  priceAmount: tier.price.fullBook,
   bestFor: tier.bestFor,
   features: tier.features,
   cta: "Get Started",
@@ -61,6 +70,20 @@ function CheckIcon({ className = "text-[var(--color-accent-gold)]" }) {
 
 function PlanCard({ plan, index }) {
   const featured = plan.featured;
+  const [paying, setPaying] = useState(false);
+  const [payError, setPayError] = useState(null);
+
+  async function handlePaySecurely() {
+    if (!plan.packageKey || paying) return;
+    setPayError(null);
+    setPaying(true);
+    try {
+      await startPackageCheckout(plan.packageKey);
+    } catch (err) {
+      setPayError(err.message || "Checkout unavailable");
+      setPaying(false);
+    }
+  }
 
   return (
     <article
@@ -155,16 +178,33 @@ function PlanCard({ plan, index }) {
         ))}
       </ul>
 
-      <a
-        href="#start"
-        className={`mt-auto block w-full rounded-lg px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 ${
-          featured
-            ? "bg-[var(--color-accent-gold)] text-white hover:bg-[#B8960C]"
-            : "border-2 border-[var(--color-accent-gold)] bg-transparent text-[var(--color-accent-gold)] hover:bg-[var(--color-accent-gold)] hover:text-white"
-        }`}
-      >
-        {plan.cta}
-      </a>
+      <div className="mt-auto flex flex-col gap-2.5">
+        {plan.packageKey && (
+          <button
+            type="button"
+            onClick={handlePaySecurely}
+            disabled={paying}
+            className={`block w-full rounded-lg px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 disabled:opacity-60 ${
+              featured
+                ? "bg-[var(--color-accent-gold)] text-white hover:bg-[#B8960C]"
+                : "border-2 border-[var(--color-accent-gold)] bg-transparent text-[var(--color-accent-gold)] hover:bg-[var(--color-accent-gold)] hover:text-white"
+            }`}
+          >
+            {paying ? "Opening checkout…" : `Pay securely — $${plan.priceAmount}`}
+          </button>
+        )}
+        <a
+          href="#start"
+          className={`block w-full rounded-lg px-7 py-3 text-center font-inter text-[14px] font-medium transition-colors ${
+            featured ? "text-[#CCCCCC] hover:text-white" : "text-[#666666] hover:text-[var(--color-text)]"
+          }`}
+        >
+          Questions? Get in touch
+        </a>
+        {payError && (
+          <p className="text-center font-inter text-[12px] text-[#9A2E24]">{payError}</p>
+        )}
+      </div>
     </article>
   );
 }
