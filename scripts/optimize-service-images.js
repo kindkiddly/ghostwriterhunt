@@ -19,9 +19,9 @@ const SERVICE_SOURCES = {
     overview: ["website-content-writing-2.webp", "website-content-writing.webp"],
     process: [
       "laptop-workspace.webp",
-      "coffee-laptop.webp",
+      "modern-office.webp",
       "website-content-writing-2.webp",
-      "notebook-coffee.webp",
+      "team-collaboration.webp",
       "website.webp",
     ],
   },
