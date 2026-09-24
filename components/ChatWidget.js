@@ -471,39 +471,55 @@ export default function ChatWidget() {
           inset: 0;
           z-index: 9999;
           pointer-events: none;
+          --gcw-edge-x: 24px;
+          --gcw-edge-y: 24px;
+          --gcw-launcher-size: 56px;
+          --gcw-launcher-gap: 10px;
         }
 
         .gcw-launcher {
           position: fixed;
-          right: 24px;
-          bottom: 24px;
-          width: 56px;
-          height: 56px;
+          right: var(--gcw-edge-x);
+          bottom: var(--gcw-edge-y);
+          width: var(--gcw-launcher-size);
+          height: var(--gcw-launcher-size);
           border-radius: 50%;
-          background: #1C1C1C;
-          border: 1px solid rgba(201,168,76,0.4);
+          background: rgba(28,28,28,0.78);
+          backdrop-filter: blur(18px) saturate(160%);
+          -webkit-backdrop-filter: blur(18px) saturate(160%);
+          border: 1px solid rgba(201,168,76,0.5);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           pointer-events: auto;
-          box-shadow: 0 10px 30px rgba(28,28,28,0.35);
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          box-shadow:
+            0 8px 32px rgba(28,28,28,0.35),
+            0 2px 8px rgba(0,0,0,0.2),
+            inset 0 1px 0 rgba(255,255,255,0.12);
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
         .gcw-launcher:hover {
-          transform: scale(1.06);
-          box-shadow: 0 14px 36px rgba(28,28,28,0.42);
+          transform: translateY(-2px) scale(1.03);
+          border-color: rgba(201,168,76,0.75);
+          box-shadow:
+            0 12px 40px rgba(28,28,28,0.4),
+            0 4px 12px rgba(201,168,76,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.15);
         }
         .gcw-launcher:focus-visible {
           outline: 2px solid #C9A84C;
           outline-offset: 3px;
         }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-launcher { background: #1C1C1C; }
+        }
         .gcw-online-dot {
           position: absolute;
           top: 2px;
           right: 2px;
-          width: 12px;
-          height: 12px;
+          width: 11px;
+          height: 11px;
           border-radius: 50%;
           background: #C9A84C;
           border: 2px solid #FAFAF7;
@@ -512,25 +528,29 @@ export default function ChatWidget() {
 
         .gcw-panel {
           position: fixed;
-          right: 24px;
-          bottom: 96px;
+          right: var(--gcw-edge-x);
+          bottom: calc(var(--gcw-edge-y) + var(--gcw-launcher-size) + var(--gcw-launcher-gap));
           width: 380px;
           max-width: calc(100vw - 32px);
           height: min(600px, 80vh);
-          border-radius: 20px;
+          border-radius: 22px;
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          background: rgba(28,28,28,0.85);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(255,255,255,0.12);
-          box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+          background: rgba(28,28,28,0.72);
+          backdrop-filter: blur(28px) saturate(180%);
+          -webkit-backdrop-filter: blur(28px) saturate(180%);
+          border: 1px solid rgba(201,168,76,0.28);
+          box-shadow:
+            0 32px 80px rgba(28,28,28,0.45),
+            0 8px 24px rgba(0,0,0,0.25),
+            inset 0 1px 0 rgba(255,255,255,0.1),
+            inset 0 0 0 1px rgba(255,255,255,0.04);
           opacity: 0;
-          transform: translateY(16px) scale(0.97);
+          transform: translateY(20px) scale(0.96);
           visibility: hidden;
           pointer-events: none;
-          transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+          transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
         }
         .gcw-panel-open {
           opacity: 1;
@@ -543,151 +563,210 @@ export default function ChatWidget() {
         }
 
         .gcw-header {
+          position: relative;
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 16px 16px;
-          background: rgba(255,255,255,0.06);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border-bottom: 1px solid rgba(255,255,255,0.12);
+          padding: 17px 18px 16px;
+          min-height: 72px;
+          background: rgba(28,28,28,0.55);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border-bottom: 1px solid rgba(201,168,76,0.18);
           flex-shrink: 0;
         }
+        .gcw-header::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 18px;
+          right: 18px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.45), transparent);
+        }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .gcw-header { background: #262626; }
+          .gcw-header { background: #242424; }
         }
         .gcw-avatar {
-          width: 36px;
-          height: 36px;
+          width: 42px;
+          height: 42px;
           border-radius: 50%;
-          background: #C9A84C;
+          background: linear-gradient(165deg, #F2E6C8 0%, #D4B85A 28%, #C9A84C 52%, #9A7A18 100%);
           color: #1C1C1C;
           font-family: var(--font-playfair), "Playfair Display", serif;
           font-weight: 700;
-          font-size: 17px;
+          font-size: 18px;
+          line-height: 1;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+          border: 1px solid #8B7010;
+          box-shadow:
+            inset 0 3px 5px rgba(255,255,255,0.55),
+            inset 0 -4px 7px rgba(0,0,0,0.28),
+            0 2px 4px rgba(0,0,0,0.35);
+          text-shadow: 0 1px 0 rgba(255,255,255,0.35);
         }
-        .gcw-header-text { flex: 1; min-width: 0; }
+        .gcw-header-text {
+          flex: 1;
+          min-width: 0;
+          overflow: visible;
+          padding: 2px 0 1px;
+        }
         .gcw-header-title {
           font-family: var(--font-playfair), "Playfair Display", serif;
           font-weight: 700;
-          font-size: 15px;
-          color: #FFFFFF;
+          font-size: 17px;
+          color: #FAFAF7;
           margin: 0;
-          line-height: 1.25;
-          letter-spacing: 0.01em;
+          padding-bottom: 3px;
+          line-height: 1.45;
+          letter-spacing: 0.02em;
+          display: block;
+          overflow: visible;
         }
         .gcw-header-status {
           display: flex;
           align-items: center;
           flex-wrap: wrap;
-          gap: 5px;
-          margin: 3px 0 0;
+          gap: 6px;
+          margin: 5px 0 0;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 10px;
           font-weight: 400;
-          line-height: 1.3;
-          color: #888888;
+          line-height: 1.2;
         }
         .gcw-status-online {
           display: inline-flex;
           align-items: center;
-          gap: 4px;
+          gap: 5px;
           font-weight: 500;
-          color: #AAAAAA;
+          color: rgba(250,250,247,0.65);
         }
         .gcw-status-dot {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #C9A84C;
+          background: #6B7C3A;
+          box-shadow: 0 0 8px rgba(107,124,58,0.55);
           flex-shrink: 0;
         }
         .gcw-status-sep {
-          color: #555555;
+          color: rgba(201,168,76,0.35);
           font-weight: 400;
           user-select: none;
         }
         .gcw-status-meta {
-          color: #777777;
+          color: rgba(250,250,247,0.42);
           font-weight: 400;
         }
         .gcw-close-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: none;
-          background: transparent;
-          color: #CCCCCC;
+          width: 36px;
+          height: 36px;
+          border-radius: 12px;
+          border: 1px solid rgba(250,250,247,0.12);
+          background: rgba(250,250,247,0.06);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: rgba(250,250,247,0.6);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           flex-shrink: 0;
-          transition: background 0.2s ease, color 0.2s ease;
+          transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
-        .gcw-close-btn:hover { background: rgba(255,255,255,0.1); color: #FFFFFF; }
+        .gcw-close-btn:hover {
+          background: rgba(250,250,247,0.12);
+          border-color: rgba(201,168,76,0.35);
+          color: #FAFAF7;
+        }
         .gcw-close-btn:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
 
+        /* Cream glass canvas — brand interior */
         .gcw-messages {
           flex: 1;
           overflow-y: auto;
-          padding: 16px;
+          padding: 22px 18px;
           display: flex;
           flex-direction: column;
-          gap: 14px;
-          background: var(--color-background);
+          gap: 18px;
+          background:
+            radial-gradient(ellipse 90% 60% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 60%),
+            radial-gradient(ellipse 70% 50% at 100% 100%, rgba(232,213,163,0.2) 0%, transparent 55%),
+            rgba(250,250,247,0.88);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          scrollbar-width: thin;
+          scrollbar-color: rgba(201,168,76,0.45) transparent;
         }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-messages { background: #FAFAF7; }
+        }
+        .gcw-messages::-webkit-scrollbar { width: 4px; }
+        .gcw-messages::-webkit-scrollbar-thumb {
+          background: rgba(201,168,76,0.4);
+          border-radius: 99px;
+        }
+        .gcw-messages::-webkit-scrollbar-track { background: transparent; }
 
         .gcw-bubble-row {
           display: flex;
           flex-direction: column;
-          max-width: 82%;
+          max-width: 84%;
         }
         .gcw-bubble-row-visitor { align-self: flex-end; align-items: flex-end; }
         .gcw-bubble-row-team { align-self: flex-start; align-items: flex-start; }
 
         .gcw-bubble {
-          padding: 10px 14px;
+          padding: 12px 16px;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 14px;
           line-height: 1.55;
+          letter-spacing: 0.01em;
         }
         .gcw-bubble-team {
-          background: rgba(28,28,28,0.8);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255,255,255,0.12);
-          color: #FFFFFF;
-          border-radius: 14px 14px 14px 4px;
+          background: rgba(255,255,255,0.72);
+          backdrop-filter: blur(12px) saturate(150%);
+          -webkit-backdrop-filter: blur(12px) saturate(150%);
+          border: 1px solid rgba(232,213,163,0.55);
+          border-left: 3px solid #C9A84C;
+          color: #1C1C1C;
+          border-radius: 4px 18px 18px 18px;
+          box-shadow:
+            0 4px 20px rgba(28,28,28,0.06),
+            inset 0 1px 0 rgba(255,255,255,0.8);
         }
         .gcw-bubble-visitor {
-          background: rgba(201,168,76,0.92);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255,255,255,0.18);
-          color: #FFFFFF;
-          border-radius: 14px 14px 4px 14px;
+          background: linear-gradient(135deg, rgba(232,213,163,0.95) 0%, rgba(201,168,76,0.92) 50%, rgba(184,150,12,0.95) 100%);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.45);
+          color: #1C1C1C;
+          border-radius: 18px 18px 4px 18px;
+          box-shadow:
+            0 6px 24px rgba(201,168,76,0.22),
+            inset 0 1px 0 rgba(255,255,255,0.35);
         }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .gcw-bubble-team { background: #1C1C1C; }
+          .gcw-bubble-team { background: #FFFFFF; }
           .gcw-bubble-visitor { background: #C9A84C; }
         }
         .gcw-bubble-text { margin: 0; white-space: pre-wrap; word-break: break-word; }
         .gcw-timestamp {
-          margin-top: 4px;
+          margin-top: 6px;
+          padding: 0 4px;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 11px;
+          font-size: 10px;
           color: #999999;
         }
+        .gcw-bubble-row-visitor .gcw-timestamp { color: #888888; }
         .gcw-error-notice {
-          margin-top: 4px;
+          margin-top: 6px;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 11px;
-          color: #999999;
+          font-size: 10px;
+          color: #888888;
         }
         .gcw-retry-btn {
           border: none;
@@ -710,138 +789,207 @@ export default function ChatWidget() {
           padding: 12px 14px;
         }
         .gcw-typing-dot {
-          width: 6px;
-          height: 6px;
+          width: 5px;
+          height: 5px;
           border-radius: 50%;
-          background: #CCCCCC;
+          background: #C9A84C;
           animation: gcw-typing-bounce 1.2s ease-in-out infinite;
         }
         .gcw-typing-dot:nth-child(2) { animation-delay: 0.15s; }
         .gcw-typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-        /* Footer: same cream as messages — no dark strip behind the composer */
+        /* Charcoal glass dock */
         .gcw-footer {
           flex-shrink: 0;
-          background: var(--color-background);
-          border-top: 1px solid rgba(28,28,28,0.08);
-          box-shadow: 0 -8px 24px rgba(28,28,28,0.04);
-          padding: 12px 14px;
-          padding-bottom: max(12px, env(safe-area-inset-bottom));
+          padding: 14px 16px;
+          padding-bottom: max(14px, env(safe-area-inset-bottom));
+          background: rgba(28,28,28,0.62);
+          backdrop-filter: blur(20px) saturate(160%);
+          -webkit-backdrop-filter: blur(20px) saturate(160%);
+          border-top: 1px solid rgba(201,168,76,0.2);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-footer { background: #1C1C1C; }
         }
 
         .gcw-contact-card {
-          margin-bottom: 10px;
-          padding: 10px 12px;
-          border-radius: 12px;
-          background: #FFFFFF;
-          border: 1px solid rgba(28,28,28,0.08);
+          margin-bottom: 12px;
+          padding: 13px 14px 14px;
+          border-radius: 16px;
+          background: rgba(250,250,247,0.07);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(232,213,163,0.32);
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.1),
+            0 4px 16px rgba(0,0,0,0.12);
         }
         .gcw-contact-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 8px;
-          margin-bottom: 8px;
+          margin-bottom: 12px;
         }
         .gcw-contact-label {
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 11px;
-          font-weight: 500;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-          color: #888888;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          color: rgba(250,250,247,0.55);
         }
         .gcw-skip-link {
           border: none;
           background: transparent;
           padding: 0;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 500;
-          color: #999999;
+          color: rgba(232,213,163,0.7);
           cursor: pointer;
           text-decoration: none;
           transition: color 0.2s ease;
         }
-        .gcw-skip-link:hover { color: #C9A84C; }
+        .gcw-skip-link:hover { color: #E8D5A3; }
         .gcw-skip-link:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; border-radius: 2px; }
 
         .gcw-contact-inputs {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        @media (max-width: 360px) {
+          .gcw-contact-inputs { grid-template-columns: 1fr; }
+        }
+        .gcw-field {
           display: flex;
           flex-direction: column;
           gap: 6px;
+          min-width: 0;
+        }
+        .gcw-field-label {
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: rgba(232,213,163,0.85);
+          padding-left: 2px;
         }
         .gcw-contact-input {
           width: 100%;
           min-width: 0;
-          padding: 9px 12px;
-          border-radius: 8px;
-          border: 1px solid #E5E5E0;
-          background: #FAFAF7;
+          padding: 11px 13px;
+          border-radius: 12px;
+          border: 1px solid rgba(232,213,163,0.55);
+          background: rgba(250,250,247,0.96);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
           color: #1C1C1C;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 13px;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.95),
+            inset 0 -1px 0 rgba(28,28,28,0.04),
+            0 2px 6px rgba(0,0,0,0.08);
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .gcw-contact-input::placeholder { color: #AAAAAA; }
+        .gcw-contact-input::placeholder { color: #B0B0B0; font-weight: 400; }
+        .gcw-field:focus-within .gcw-field-label { color: #C9A84C; }
         .gcw-contact-input:focus {
           border-color: #C9A84C;
-          box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+          box-shadow:
+            0 0 0 3px rgba(201,168,76,0.16),
+            inset 0 1px 0 rgba(255,255,255,0.95),
+            0 2px 8px rgba(201,168,76,0.12);
           outline: none;
         }
 
+        /* Premium cream-glass composer capsule */
         .gcw-composer {
           display: flex;
           align-items: flex-end;
-          gap: 8px;
+          gap: 0;
+          padding: 5px 5px 5px 6px;
+          border-radius: 28px;
+          background: rgba(250,250,247,0.94);
+          backdrop-filter: blur(16px) saturate(180%);
+          -webkit-backdrop-filter: blur(16px) saturate(180%);
+          border: 1px solid rgba(232,213,163,0.65);
+          box-shadow:
+            0 8px 32px rgba(0,0,0,0.18),
+            0 2px 8px rgba(201,168,76,0.12),
+            inset 0 1px 0 rgba(255,255,255,0.95),
+            inset 0 -1px 0 rgba(28,28,28,0.04);
+          transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-composer { background: #FAFAF7; }
+        }
+        .gcw-composer:focus-within {
+          border-color: rgba(201,168,76,0.85);
+          box-shadow:
+            0 8px 36px rgba(0,0,0,0.2),
+            0 0 0 3px rgba(201,168,76,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.95);
         }
         .gcw-textarea {
           flex: 1;
           resize: none;
           max-height: 100px;
           overflow-y: hidden;
-          padding: 10px 16px;
-          border-radius: 22px;
-          border: 1px solid #E0E0DC;
-          background: #FFFFFF;
+          padding: 11px 8px 11px 14px;
+          border: none;
+          background: transparent;
           color: #1C1C1C;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 14px;
           line-height: 1.45;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .gcw-textarea::placeholder { color: #AAAAAA; }
-        .gcw-textarea:focus {
-          border-color: #C9A84C;
-          box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
-          outline: none;
-        }
+        .gcw-textarea:focus { outline: none; }
 
         .gcw-privacy-note {
-          margin: 8px 4px 0;
+          margin: 10px 8px 0;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 10px;
-          line-height: 1.4;
-          color: #AAAAAA;
-          text-align: left;
+          font-size: 9px;
+          line-height: 1.45;
+          letter-spacing: 0.04em;
+          color: rgba(250,250,247,0.38);
+          text-align: center;
         }
         .gcw-send-btn {
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
-          border: none;
+          border: 1px solid rgba(255,255,255,0.35);
           flex-shrink: 0;
-          background: #C9A84C;
-          color: #FFFFFF;
+          background: linear-gradient(145deg, #E8D5A3 0%, #C9A84C 48%, #B8960C 100%);
+          color: #1C1C1C;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: background 0.2s ease, transform 0.2s ease;
+          box-shadow:
+            0 4px 16px rgba(201,168,76,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.4);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .gcw-send-btn:hover:not(:disabled) { background: #B8960C; transform: scale(1.05); }
-        .gcw-send-btn:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
-        .gcw-send-btn:disabled { background: #555555; color: #999999; cursor: not-allowed; }
+        .gcw-send-btn:hover:not(:disabled) {
+          transform: scale(1.05);
+          box-shadow:
+            0 6px 22px rgba(201,168,76,0.5),
+            inset 0 1px 0 rgba(255,255,255,0.45);
+        }
+        .gcw-send-btn:focus-visible { outline: 2px solid #FAFAF7; outline-offset: 2px; }
+        .gcw-send-btn:disabled {
+          background: rgba(250,250,247,0.15);
+          border-color: rgba(250,250,247,0.1);
+          color: rgba(250,250,247,0.3);
+          box-shadow: none;
+          cursor: not-allowed;
+        }
 
         @keyframes gcw-pulse {
           0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
@@ -858,6 +1006,10 @@ export default function ChatWidget() {
         }
 
         @media (max-width: 639px) {
+          .gcw-root {
+            --gcw-edge-x: max(16px, env(safe-area-inset-right, 0px));
+            --gcw-edge-y: max(16px, calc(env(safe-area-inset-bottom, 0px) + 12px));
+          }
           .gcw-panel {
             right: 0;
             bottom: 0;
@@ -955,7 +1107,7 @@ export default function ChatWidget() {
           {showContactFields && (
             <div className="gcw-contact-card">
               <div className="gcw-contact-header">
-                <span className="gcw-contact-label">Stay in touch (optional)</span>
+                <span className="gcw-contact-label">Share your details (optional)</span>
                 <button
                   type="button"
                   className="gcw-skip-link"
@@ -965,22 +1117,28 @@ export default function ChatWidget() {
                 </button>
               </div>
               <div className="gcw-contact-inputs">
-                <input
-                  type="text"
-                  className="gcw-contact-input"
-                  placeholder="Your name"
-                  aria-label="Your name (optional)"
-                  value={visitorName}
-                  onChange={(e) => setVisitorName(e.target.value)}
-                />
-                <input
-                  type="email"
-                  className="gcw-contact-input"
-                  placeholder="Your email"
-                  aria-label="Your email (optional)"
-                  value={visitorEmail}
-                  onChange={(e) => setVisitorEmail(e.target.value)}
-                />
+                <label className="gcw-field">
+                  <span className="gcw-field-label">Name</span>
+                  <input
+                    type="text"
+                    className="gcw-contact-input"
+                    placeholder="John Smith"
+                    aria-label="Your name (optional)"
+                    value={visitorName}
+                    onChange={(e) => setVisitorName(e.target.value)}
+                  />
+                </label>
+                <label className="gcw-field">
+                  <span className="gcw-field-label">Email</span>
+                  <input
+                    type="email"
+                    className="gcw-contact-input"
+                    placeholder="you@email.com"
+                    aria-label="Your email (optional)"
+                    value={visitorEmail}
+                    onChange={(e) => setVisitorEmail(e.target.value)}
+                  />
+                </label>
               </div>
             </div>
           )}
