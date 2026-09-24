@@ -689,76 +689,112 @@ export default function ChatWidget() {
         .gcw-typing-dot:nth-child(2) { animation-delay: 0.15s; }
         .gcw-typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-        .gcw-privacy-note {
-          margin: 0;
-          padding: 0 16px 8px;
+        /* Footer: same cream as messages — no dark strip behind the composer */
+        .gcw-footer {
+          flex-shrink: 0;
+          background: var(--color-background);
+          border-top: 1px solid rgba(28,28,28,0.08);
+          box-shadow: 0 -8px 24px rgba(28,28,28,0.04);
+          padding: 12px 14px;
+          padding-bottom: max(12px, env(safe-area-inset-bottom));
+        }
+
+        .gcw-contact-card {
+          margin-bottom: 10px;
+          padding: 10px 12px;
+          border-radius: 12px;
+          background: #FFFFFF;
+          border: 1px solid rgba(28,28,28,0.08);
+        }
+        .gcw-contact-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+        .gcw-contact-label {
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 11px;
-          color: #999999;
-          text-align: center;
-          flex-shrink: 0;
+          font-weight: 500;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #888888;
         }
-
-        .gcw-contact-fields {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          padding: 0 16px 12px;
-          flex-shrink: 0;
-        }
-        .gcw-contact-input {
-          flex: 1 1 140px;
-          min-width: 0;
-          padding: 8px 12px;
-          border-radius: 10px;
-          border: 1px solid rgba(255,255,255,0.14);
-          background: rgba(255,255,255,0.06);
-          color: #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 13px;
-        }
-        .gcw-contact-input::placeholder { color: #999999; }
-        .gcw-contact-input:focus-visible { outline: 2px solid #C9A84C; outline-offset: 1px; }
-        .gcw-skip-btn {
-          flex-shrink: 0;
-          padding: 8px 12px;
-          border-radius: 10px;
-          border: 1px solid rgba(255,255,255,0.14);
+        .gcw-skip-link {
+          border: none;
           background: transparent;
-          color: #999999;
+          padding: 0;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 12px;
+          font-weight: 500;
+          color: #999999;
           cursor: pointer;
-          transition: color 0.2s ease, border-color 0.2s ease;
+          text-decoration: none;
+          transition: color 0.2s ease;
         }
-        .gcw-skip-btn:hover { color: #FFFFFF; border-color: rgba(255,255,255,0.3); }
+        .gcw-skip-link:hover { color: #C9A84C; }
+        .gcw-skip-link:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; border-radius: 2px; }
 
-        .gcw-input-row {
+        .gcw-contact-inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .gcw-contact-input {
+          width: 100%;
+          min-width: 0;
+          padding: 9px 12px;
+          border-radius: 8px;
+          border: 1px solid #E5E5E0;
+          background: #FAFAF7;
+          color: #1C1C1C;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 13px;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .gcw-contact-input::placeholder { color: #AAAAAA; }
+        .gcw-contact-input:focus {
+          border-color: #C9A84C;
+          box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+          outline: none;
+        }
+
+        .gcw-composer {
           display: flex;
           align-items: flex-end;
           gap: 8px;
-          padding: 12px 16px;
-          padding-bottom: max(12px, env(safe-area-inset-bottom));
-          border-top: 1px solid rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.04);
-          flex-shrink: 0;
         }
         .gcw-textarea {
           flex: 1;
           resize: none;
           max-height: 100px;
           overflow-y: hidden;
-          padding: 10px 14px;
-          border-radius: 14px;
-          border: 1px solid rgba(255,255,255,0.14);
-          background: rgba(255,255,255,0.06);
-          color: #FFFFFF;
+          padding: 10px 16px;
+          border-radius: 22px;
+          border: 1px solid #E0E0DC;
+          background: #FFFFFF;
+          color: #1C1C1C;
           font-family: var(--font-inter), Inter, sans-serif;
           font-size: 14px;
-          line-height: 1.4;
+          line-height: 1.45;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .gcw-textarea::placeholder { color: #999999; }
-        .gcw-textarea:focus-visible { outline: 2px solid #C9A84C; outline-offset: 1px; }
+        .gcw-textarea::placeholder { color: #AAAAAA; }
+        .gcw-textarea:focus {
+          border-color: #C9A84C;
+          box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+          outline: none;
+        }
+
+        .gcw-privacy-note {
+          margin: 8px 4px 0;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 10px;
+          line-height: 1.4;
+          color: #AAAAAA;
+          text-align: left;
+        }
         .gcw-send-btn {
           width: 40px;
           height: 40px;
@@ -878,58 +914,65 @@ export default function ChatWidget() {
           <div ref={messagesEndRef} />
         </div>
 
-        <p className="gcw-privacy-note">
-          Your conversation is private and confidential.
-        </p>
+        <div className="gcw-footer">
+          {showContactFields && (
+            <div className="gcw-contact-card">
+              <div className="gcw-contact-header">
+                <span className="gcw-contact-label">Stay in touch (optional)</span>
+                <button
+                  type="button"
+                  className="gcw-skip-link"
+                  onClick={() => setContactFieldsDismissed(true)}
+                >
+                  Skip
+                </button>
+              </div>
+              <div className="gcw-contact-inputs">
+                <input
+                  type="text"
+                  className="gcw-contact-input"
+                  placeholder="Your name"
+                  aria-label="Your name (optional)"
+                  value={visitorName}
+                  onChange={(e) => setVisitorName(e.target.value)}
+                />
+                <input
+                  type="email"
+                  className="gcw-contact-input"
+                  placeholder="Your email"
+                  aria-label="Your email (optional)"
+                  value={visitorEmail}
+                  onChange={(e) => setVisitorEmail(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
 
-        {showContactFields && (
-          <div className="gcw-contact-fields">
-            <input
-              type="text"
-              className="gcw-contact-input"
-              placeholder="Name (optional)"
-              aria-label="Your name (optional)"
-              value={visitorName}
-              onChange={(e) => setVisitorName(e.target.value)}
-            />
-            <input
-              type="email"
-              className="gcw-contact-input"
-              placeholder="Email (optional)"
-              aria-label="Your email (optional)"
-              value={visitorEmail}
-              onChange={(e) => setVisitorEmail(e.target.value)}
+          <div className="gcw-composer">
+            <textarea
+              ref={inputRef}
+              className="gcw-textarea"
+              placeholder="Type your message…"
+              aria-label="Type your message"
+              rows={1}
+              value={inputValue}
+              onChange={handleTextareaInput}
+              onKeyDown={handleTextareaKeyDown}
             />
             <button
               type="button"
-              className="gcw-skip-btn"
-              onClick={() => setContactFieldsDismissed(true)}
+              className="gcw-send-btn"
+              aria-label="Send message"
+              disabled={!inputValue.trim()}
+              onClick={handleSend}
             >
-              Skip
+              <SendIcon />
             </button>
           </div>
-        )}
 
-        <div className="gcw-input-row">
-          <textarea
-            ref={inputRef}
-            className="gcw-textarea"
-            placeholder="Type your message…"
-            aria-label="Type your message"
-            rows={1}
-            value={inputValue}
-            onChange={handleTextareaInput}
-            onKeyDown={handleTextareaKeyDown}
-          />
-          <button
-            type="button"
-            className="gcw-send-btn"
-            aria-label="Send message"
-            disabled={!inputValue.trim()}
-            onClick={handleSend}
-          >
-            <SendIcon />
-          </button>
+          <p className="gcw-privacy-note">
+            Your conversation is private and confidential.
+          </p>
         </div>
       </div>
     </div>
