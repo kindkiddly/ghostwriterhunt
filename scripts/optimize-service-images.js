@@ -21,7 +21,7 @@ const SERVICE_SOURCES = {
       "laptop-workspace.webp",
       "modern-office.webp",
       "website-content-writing-2.webp",
-      "team-collaboration.webp",
+      "HEERO-L.webp",
       "website.webp",
     ],
   },
