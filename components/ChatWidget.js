@@ -574,16 +574,46 @@ export default function ChatWidget() {
         .gcw-header-title {
           font-family: var(--font-playfair), "Playfair Display", serif;
           font-weight: 700;
-          font-size: 16px;
+          font-size: 15px;
           color: #FFFFFF;
           margin: 0;
-          line-height: 1.3;
+          line-height: 1.25;
+          letter-spacing: 0.01em;
         }
-        .gcw-header-subtitle {
+        .gcw-header-status {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 5px;
+          margin: 3px 0 0;
           font-family: var(--font-inter), Inter, sans-serif;
-          font-size: 12px;
-          color: #C9A84C;
-          margin: 2px 0 0;
+          font-size: 10px;
+          font-weight: 400;
+          line-height: 1.3;
+          color: #888888;
+        }
+        .gcw-status-online {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-weight: 500;
+          color: #AAAAAA;
+        }
+        .gcw-status-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #C9A84C;
+          flex-shrink: 0;
+        }
+        .gcw-status-sep {
+          color: #555555;
+          font-weight: 400;
+          user-select: none;
+        }
+        .gcw-status-meta {
+          color: #777777;
+          font-weight: 400;
         }
         .gcw-close-btn {
           width: 32px;
@@ -866,7 +896,14 @@ export default function ChatWidget() {
           <div className="gcw-avatar" aria-hidden="true">G</div>
           <div className="gcw-header-text">
             <p className="gcw-header-title">GhostWriterHunt</p>
-            <p className="gcw-header-subtitle">Online · Typically replies in minutes</p>
+            <p className="gcw-header-status">
+              <span className="gcw-status-online">
+                <span className="gcw-status-dot" aria-hidden="true" />
+                Online
+              </span>
+              <span className="gcw-status-sep" aria-hidden="true">·</span>
+              <span className="gcw-status-meta">Typically replies in minutes</span>
+            </p>
           </div>
           <button
             type="button"
