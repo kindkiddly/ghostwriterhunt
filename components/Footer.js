@@ -1,11 +1,6 @@
-"use client";
-
-import { useState } from "react";
-import LegalModal from "./legal/LegalModal";
-
 /**
  * GhostWriterHunt — Footer
- * 3 columns (Brand · Company · Contact) + legal bar.
+ * 3 columns (Brand · Company · Contact) + copyright bar.
  */
 
 const COMPANY_LINKS = [
@@ -24,13 +19,6 @@ const EMAIL_SUBTITLE_STYLE = {
   fontSize: "10px",
   color: "#888888",
 };
-
-const LEGAL_MODAL_LINKS = [
-  { label: "Privacy Policy", type: "privacy" },
-  { label: "Terms of Use", type: "terms" },
-  { label: "Cookie Policy", type: "cookies" },
-  { label: "Legal", type: "legal" },
-];
 
 function SocialIcon({ type }) {
   const common = {
@@ -71,14 +59,6 @@ function SocialIcon({ type }) {
 }
 
 export default function Footer() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState("privacy");
-
-  const openModal = (type) => {
-    setModalType(type);
-    setModalOpen(true);
-  };
-
   return (
     <footer className="gwh-footer" aria-label="Site footer">
       <style>{`
@@ -227,25 +207,6 @@ export default function Footer() {
           color: #555555;
           margin: 0;
         }
-        .gwh-ft-legal {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 20px;
-        }
-        .gwh-ft-legal button {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 12px;
-          color: #555555;
-          background: none;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          transition: color 0.2s ease;
-        }
-        .gwh-ft-legal button:hover { color: #C9A84C; }
-
         @media (max-width: 768px) {
           .gwh-ft-main-inner {
             grid-template-columns: 1fr;
@@ -269,9 +230,6 @@ export default function Footer() {
           .gwh-ft-bottom-inner {
             flex-direction: column;
             text-align: center;
-          }
-          .gwh-ft-legal {
-            justify-content: center;
           }
         }
       `}</style>
@@ -371,25 +329,8 @@ export default function Footer() {
           <p className="gwh-ft-copy">
             © 2026 GhostWriterHunt. All rights reserved.
           </p>
-          <nav className="gwh-ft-legal" aria-label="Legal">
-            {LEGAL_MODAL_LINKS.map((link) => (
-              <button
-                key={link.type}
-                type="button"
-                onClick={() => openModal(link.type)}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
         </div>
       </div>
-
-      <LegalModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        type={modalType}
-      />
     </footer>
   );
 }

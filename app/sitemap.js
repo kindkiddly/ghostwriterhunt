@@ -3,7 +3,14 @@ import { getAllServiceSlugs } from "@/data/services";
 const SITE_URL = "https://ghostwriterhunt.lumexforge.com";
 
 export default function sitemap() {
-  const staticRoutes = ["", "/about"].map((path) => ({
+  const staticRoutes = [
+    "",
+    "/about",
+    "/privacy-policy",
+    "/terms-of-use",
+    "/cookie-policy",
+    "/legal",
+  ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
   }));

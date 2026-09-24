@@ -19,6 +19,14 @@ const CATEGORY_ORDER = [
   "Marketing",
 ];
 
+const ABOUT_LINKS = [
+  { label: "About Us", href: "/about" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Use", href: "/terms-of-use" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Legal", href: "/legal" },
+];
+
 function ChevronIcon({ open }) {
   return (
     <svg
@@ -60,6 +68,7 @@ export default function Navbar() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
   const closeTimer = useRef(null);
   const aboutCloseTimer = useRef(null);
@@ -165,6 +174,7 @@ export default function Navbar() {
   const closeMobile = () => {
     setMobileOpen(false);
     setMobileServicesOpen(false);
+    setMobileAboutOpen(false);
   };
 
   const linkHover = {
@@ -669,13 +679,16 @@ export default function Navbar() {
         <div className="nav-mega-inner">
           <div className="nav-mega-col">
             <p className="nav-mega-heading">COMPANY</p>
-            <a
-              href="/about"
-              className="nav-mega-link"
-              onClick={() => setAboutMenuOpen(false)}
-            >
-              About Us
-            </a>
+            {ABOUT_LINKS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="nav-mega-link"
+                onClick={() => setAboutMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -760,6 +773,45 @@ export default function Navbar() {
                         </div>
                       );
                     })}
+                  </div>
+                </li>
+              );
+            }
+
+            if (link.isAbout) {
+              return (
+                <li key={link.href}>
+                  <button
+                    type="button"
+                    aria-expanded={mobileAboutOpen}
+                    aria-haspopup="true"
+                    onClick={() => setMobileAboutOpen((open) => !open)}
+                    className="flex w-full items-center justify-between px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                    style={{
+                      color: mobileAboutOpen ? "#C9A84C" : "#1C1C1C",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronIcon open={mobileAboutOpen} />
+                  </button>
+
+                  <div
+                    className={`nav-mobile-svc-list${mobileAboutOpen ? " open" : ""}`}
+                  >
+                    {ABOUT_LINKS.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMobile}
+                        className="nav-mobile-svc-link"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
                   </div>
                 </li>
               );

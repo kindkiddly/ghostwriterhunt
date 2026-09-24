@@ -230,9 +230,9 @@ export const legalContent = {
 <p>This page provides access to all legal documents governing your use of GhostWriterHunt's website and professional ghostwriting services.</p>
 <hr />
 <h2>Our Legal Documents</h2>
-<p><strong>Privacy Policy</strong> — How we collect, use and protect your personal information when you use our website and services. Open via the Privacy Policy link in the footer.</p>
-<p><strong>Terms of Use</strong> — The terms and conditions governing your use of our website and the services we provide. Open via the Terms of Use link in the footer.</p>
-<p><strong>Cookie Policy</strong> — How we use cookies and similar tracking technologies on our website. Open via the Cookie Policy link in the footer.</p>
+<p><strong>Privacy Policy</strong> — How we collect, use and protect your personal information when you use our website and services. Open via the Privacy Policy link under About Us in the navigation menu.</p>
+<p><strong>Terms of Use</strong> — The terms and conditions governing your use of our website and the services we provide. Open via the Terms of Use link under About Us in the navigation menu.</p>
+<p><strong>Cookie Policy</strong> — How we use cookies and similar tracking technologies on our website. Open via the Cookie Policy link under About Us in the navigation menu.</p>
 <p><strong>Text Message Consent Agreement</strong> — Your rights and our obligations regarding SMS and text message communications. See details below.</p>
 <hr />
 <h2 id="sms-consent">Text Message Consent Agreement</h2>
