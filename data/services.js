@@ -194,13 +194,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/writing-desk.webp',
-          alt: 'Editing workspace',
+          url: '/images/manuscript-editing-overview-1.webp',
+          alt: 'Editor reviewing a manuscript at a desk',
           size: 'large'
         },
         {
-          url: '/images/fountain-pen-notes.webp',
-          alt: 'Manuscript',
+          url: '/images/manuscript-editing-overview-2.webp',
+          alt: 'Close-up of manuscript editing and markup',
           size: 'medium'
         }
       ]
@@ -229,31 +229,31 @@ export const services = [
         number: '01',
         title: 'Manuscript Assessment',
         description: 'We review your complete manuscript and provide an initial assessment report.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/manuscript-editing-process-1.webp'
       },
       {
         number: '02',
         title: 'Developmental Edit',
         description: 'Structure, pacing, character and narrative flow are evaluated and refined.',
-        image: '/images/writing-hands.webp'
+        image: '/images/manuscript-editing-process-2.webp'
       },
       {
         number: '03',
         title: 'Line Edit',
         description: 'Sentence by sentence refinement for clarity, style and voice consistency.',
-        image: '/images/fountain-pen-notes.webp'
+        image: '/images/manuscript-editing-process-3.webp'
       },
       {
         number: '04',
         title: 'Copy Edit',
         description: 'Grammar, spelling, punctuation and consistency thoroughly corrected.',
-        image: '/images/fountain-pen-notes.webp'
+        image: '/images/manuscript-editing-process-4.webp'
       },
       {
         number: '05',
         title: 'Final Proofread',
         description: 'Final pass ensures your manuscript is completely error-free and publication ready.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/manuscript-editing-process-5.webp'
       }
     ],
 
@@ -338,23 +338,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/books-fairy-lights.webp',
-          alt: 'Book design 1',
-          size: 'medium'
+          url: '/images/book-cover-design-overview-1.webp',
+          alt: 'Beautifully designed book covers on display',
+          size: 'large'
         },
         {
-          url: '/images/books-stack-pink.webp',
-          alt: 'Book design 2',
-          size: 'medium'
-        },
-        {
-          url: '/images/flipping-book.webp',
-          alt: 'Book design 3',
-          size: 'medium'
-        },
-        {
-          url: '/images/books-fairy-lights.webp',
-          alt: 'Book design 4',
+          url: '/images/book-cover-design-overview-2.webp',
+          alt: 'Designer reviewing a striking book cover concept',
           size: 'medium'
         }
       ]
@@ -383,31 +373,31 @@ export const services = [
         number: '01',
         title: 'Brief and Discovery',
         description: 'We learn about your book, genre, target reader and design preferences.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/book-cover-design-process-1.webp'
       },
       {
         number: '02',
         title: 'Concept Development',
         description: 'Our designers develop multiple distinct cover concepts for your review.',
-        image: '/images/flipping-book.webp'
+        image: '/images/book-cover-design-process-2.webp'
       },
       {
         number: '03',
         title: 'Refinement',
         description: 'You select your preferred direction and we refine every detail to perfection.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/book-cover-design-process-3.webp'
       },
       {
         number: '04',
         title: 'Typography and Detail',
         description: 'Title, author name, tagline and all typographic elements are perfected.',
-        image: '/images/library-books.webp'
+        image: '/images/book-cover-design-process-4.webp'
       },
       {
         number: '05',
         title: 'Final Files Delivery',
         description: 'Print-ready and digital files delivered in all required formats and sizes.',
-        image: '/images/books-fairy-lights.webp'
+        image: '/images/book-cover-design-process-5.webp'
       }
     ],
 
@@ -492,13 +482,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/library-books.webp',
-          alt: 'Book pages',
+          url: '/images/interior-layout-overview-1.webp',
+          alt: 'Open book showing elegant interior typography',
           size: 'large'
         },
         {
-          url: '/images/author-reading.webp',
-          alt: 'Typography',
+          url: '/images/interior-layout-overview-2.webp',
+          alt: 'Professional book layout and page design',
           size: 'medium'
         }
       ]
@@ -527,31 +517,31 @@ export const services = [
         number: '01',
         title: 'Style Consultation',
         description: 'We discuss your genre, aesthetic preferences and platform requirements.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/interior-layout-process-1.webp'
       },
       {
         number: '02',
         title: 'Sample Pages',
         description: 'We design sample pages for your approval before formatting the full manuscript.',
-        image: '/images/library-books.webp'
+        image: '/images/interior-layout-process-2.webp'
       },
       {
         number: '03',
         title: 'Full Layout',
         description: 'The complete manuscript is laid out with all design elements applied consistently.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/interior-layout-process-3.webp'
       },
       {
         number: '04',
         title: 'Review and Revision',
         description: 'You review the complete layout and request refinements — unlimited revisions are included with our Professional and Complete Publishing packages.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/interior-layout-process-4.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'Print-ready PDF and all digital format files delivered ready for publishing.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/interior-layout-process-5.webp'
       }
     ],
 
@@ -636,19 +626,14 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/books-stack-pink.webp',
-          alt: 'Illustration 1',
+          url: '/images/illustration-graphics-overview-1.webp',
+          alt: 'Illustrator creating detailed book artwork',
           size: 'large'
         },
         {
-          url: '/images/flipping-book.webp',
-          alt: 'Illustration 2',
+          url: '/images/illustration-graphics-overview-2.webp',
+          alt: 'Colorful illustrated book pages and artwork',
           size: 'medium'
-        },
-        {
-          url: '/images/collaboration-laptop.webp',
-          alt: 'Illustration 3',
-          size: 'small'
         }
       ]
     },
@@ -676,31 +661,31 @@ export const services = [
         number: '01',
         title: 'Style Brief',
         description: 'We discuss your vision, reference styles and the emotional tone you want your illustrations to convey.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/illustration-graphics-process-1.webp'
       },
       {
         number: '02',
         title: 'Sketches and Concepts',
         description: 'Initial pencil sketches or digital concepts are presented for your feedback.',
-        image: '/images/flipping-book.webp'
+        image: '/images/illustration-graphics-process-2.webp'
       },
       {
         number: '03',
         title: 'Refinement',
         description: 'Approved sketches are developed into full color or finished illustrations.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/illustration-graphics-process-3.webp'
       },
       {
         number: '04',
         title: 'Final Details',
         description: 'Colors, textures and final details are perfected to your satisfaction.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/illustration-graphics-process-4.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'High resolution files delivered in all formats required for your publishing platform.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/illustration-graphics-process-5.webp'
       }
     ],
 
@@ -785,19 +770,14 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/library-books.webp',
-          alt: 'Publishing platform',
+          url: '/images/ebook-publishing-overview-1.webp',
+          alt: 'Digital eBook publishing on tablet and devices',
           size: 'large'
         },
         {
-          url: '/images/books-fairy-lights.webp',
-          alt: 'Digital device',
+          url: '/images/ebook-publishing-overview-2.webp',
+          alt: 'Reader enjoying a published eBook',
           size: 'medium'
-        },
-        {
-          url: '/images/flipping-book.webp',
-          alt: 'Books',
-          size: 'small'
         }
       ]
     },
@@ -825,31 +805,31 @@ export const services = [
         number: '01',
         title: 'File Review',
         description: 'We review your manuscript and cover files to ensure they meet all platform requirements.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/ebook-publishing-process-1.webp'
       },
       {
         number: '02',
         title: 'Format Conversion',
         description: 'Your manuscript is converted into all required digital formats for every platform.',
-        image: '/images/library-books.webp'
+        image: '/images/ebook-publishing-process-2.webp'
       },
       {
         number: '03',
         title: 'ISBN and Metadata',
         description: 'We guide you through ISBN setup and registration, plus category selection, keywords and all metadata for maximum discoverability.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/ebook-publishing-process-3.webp'
       },
       {
         number: '04',
         title: 'Platform Publishing',
         description: 'Your book is uploaded, configured and published across all 47+ platforms simultaneously.',
-        image: '/images/books-fairy-lights.webp'
+        image: '/images/ebook-publishing-process-4.webp'
       },
       {
         number: '05',
         title: 'Launch Confirmation',
         description: 'We confirm your book is live on all platforms and provide direct links to every listing.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/ebook-publishing-process-5.webp'
       }
     ],
 
@@ -934,13 +914,13 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop',
-          alt: 'Author branding',
+          url: '/images/author-branding-overview-1.webp',
+          alt: 'Professional author portrait for brand identity',
           size: 'large'
         },
         {
-          url: '/images/collaboration-laptop.webp',
-          alt: 'Brand elements',
+          url: '/images/author-branding-overview-2.webp',
+          alt: 'Author building a cohesive public presence',
           size: 'medium'
         }
       ]
@@ -969,31 +949,31 @@ export const services = [
         number: '01',
         title: 'Brand Discovery',
         description: 'We learn about your book, your audience, your values and the impression you want to make on readers.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/author-branding-process-1.webp'
       },
       {
         number: '02',
         title: 'Voice Development',
         description: 'We develop your unique author voice — the tone and style that will define all your public communication.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/author-branding-process-2.webp'
       },
       {
         number: '03',
         title: 'Content Creation',
         description: 'All bio copy, website content, social profiles and press materials are written and designed.',
-        image: '/images/writing-hands.webp'
+        image: '/images/author-branding-process-3.webp'
       },
       {
         number: '04',
         title: 'Platform Setup',
         description: 'Your brand is applied consistently across all platforms — Amazon, Goodreads, social media and more.',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop'
+        image: '/images/author-branding-process-4.webp'
       },
       {
         number: '05',
         title: 'Brand Guide Delivery',
         description: 'You receive a complete brand guide so you can maintain consistency in all future communications.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/author-branding-process-5.webp'
       }
     ],
 
@@ -1078,19 +1058,14 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/child-reading-book.webp',
-          alt: 'Child reading a book',
+          url: '/images/book-marketing-overview-1.webp',
+          alt: 'Book marketing strategy and promotion planning',
           size: 'large'
         },
         {
-          url: '/images/collaboration-laptop.webp',
-          alt: 'Analytics',
+          url: '/images/book-marketing-overview-2.webp',
+          alt: 'Marketing analytics and campaign workspace',
           size: 'medium'
-        },
-        {
-          url: '/images/writing-desk.webp',
-          alt: 'Social media',
-          size: 'small'
         }
       ]
     },
@@ -1118,31 +1093,31 @@ export const services = [
         number: '01',
         title: 'Market Research',
         description: 'We research your genre, competition and target readers to build a strategy that works.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/book-marketing-process-1.webp'
       },
       {
         number: '02',
         title: 'Strategy Development',
         description: 'A custom marketing plan is created covering platforms, tactics and timeline.',
-        image: '/images/child-reading-book.webp'
+        image: '/images/book-marketing-process-2.webp'
       },
       {
         number: '03',
         title: 'Amazon Optimization',
         description: 'Keywords, categories, description and listing copy are optimized for maximum discoverability.',
-        image: '/images/writing-desk.webp'
+        image: '/images/book-marketing-process-3.webp'
       },
       {
         number: '04',
         title: 'Campaign Execution',
         description: 'Social media, email and outreach campaigns are launched and managed by our marketing team.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/book-marketing-process-4.webp'
       },
       {
         number: '05',
         title: 'Monitoring and Reporting',
         description: 'Regular performance reports keep you informed of results, adjustments and sales progress.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/book-marketing-process-5.webp'
       }
     ],
 
@@ -1808,13 +1783,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/fountain-pen-notes.webp',
-          alt: 'Proofreading work',
+          url: '/images/proofreading-overview-1.webp',
+          alt: 'Proofreader carefully checking a manuscript',
           size: 'large'
         },
         {
-          url: '/images/book-pen-laptop.webp',
-          alt: 'Checking manuscript',
+          url: '/images/proofreading-overview-2.webp',
+          alt: 'Detailed manuscript proofreading and correction',
           size: 'medium'
         }
       ]
@@ -1843,31 +1818,31 @@ export const services = [
         number: '01',
         title: 'Manuscript Receipt',
         description: 'We receive your manuscript and confirm scope, style guide requirements and turnaround time.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/proofreading-process-1.webp'
       },
       {
         number: '02',
         title: 'First Pass',
         description: 'A thorough first read catches spelling, grammar and punctuation errors throughout.',
-        image: '/images/fountain-pen-notes.webp'
+        image: '/images/proofreading-process-2.webp'
       },
       {
         number: '03',
         title: 'Consistency Check',
         description: 'Character names, place names, dates and factual consistency are verified throughout.',
-        image: '/images/writing-desk.webp'
+        image: '/images/proofreading-process-3.webp'
       },
       {
         number: '04',
         title: 'Formatting Review',
         description: 'Page numbers, chapter headings, spacing and formatting consistency are checked.',
-        image: '/images/book-pen-laptop.webp'
+        image: '/images/proofreading-process-4.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Your corrected manuscript is returned with all changes tracked and a summary report.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/proofreading-process-5.webp'
       }
     ],
 
@@ -1952,13 +1927,13 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/library-books.webp',
-          alt: 'Book layout',
+          url: '/images/book-formatting-overview-1.webp',
+          alt: 'Professionally formatted eBook layout',
           size: 'large'
         },
         {
-          url: '/images/author-reading.webp',
-          alt: 'Typography detail',
+          url: '/images/book-formatting-overview-2.webp',
+          alt: 'Book formatting and typography detail',
           size: 'medium'
         }
       ]
@@ -1987,31 +1962,31 @@ export const services = [
         number: '01',
         title: 'File Review',
         description: 'We assess your manuscript file and identify all formatting requirements for your chosen platforms.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/book-formatting-process-1.webp'
       },
       {
         number: '02',
         title: 'Clean and Prepare',
         description: 'The manuscript is cleaned of hidden formatting issues that cause problems during conversion.',
-        image: '/images/library-books.webp'
+        image: '/images/book-formatting-process-2.webp'
       },
       {
         number: '03',
         title: 'Format and Convert',
         description: 'Files are formatted and converted for each required platform — print PDF, ePub and MOBI.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/book-formatting-process-3.webp'
       },
       {
         number: '04',
         title: 'Quality Testing',
         description: 'All files are tested on real devices and checked against platform requirements.',
-        image: '/images/author-reading.webp'
+        image: '/images/book-formatting-process-4.webp'
       },
       {
         number: '05',
         title: 'File Delivery',
         description: 'All platform-ready files are delivered with upload instructions for each platform.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/book-formatting-process-5.webp'
       }
     ],
 
@@ -2096,19 +2071,14 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1536240478700-b869ad10a2eb?w=400&h=500&fit=crop',
-          alt: 'Video production',
+          url: '/images/video-book-trailer-overview-1.webp',
+          alt: 'Cinematic book trailer production setup',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=250&h=300&fit=crop',
-          alt: 'Film production',
+          url: '/images/video-book-trailer-overview-2.webp',
+          alt: 'Video editing and book trailer creation',
           size: 'medium'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=200&h=240&fit=crop',
-          alt: 'Editing suite',
-          size: 'small'
         }
       ]
     },
@@ -2136,31 +2106,31 @@ export const services = [
         number: '01',
         title: 'Creative Brief',
         description: 'We discuss your book, its tone, target audience and the emotional response you want the trailer to create.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/video-book-trailer-process-1.webp'
       },
       {
         number: '02',
         title: 'Script and Storyboard',
         description: 'A compelling script and visual storyboard are created and approved before production begins.',
-        image: 'https://images.unsplash.com/photo-1536240478700-b869ad10a2eb?w=400&h=300&fit=crop'
+        image: '/images/video-book-trailer-process-2.webp'
       },
       {
         number: '03',
         title: 'Production',
         description: 'Animation, motion graphics, typography and visual elements are produced by our creative team.',
-        image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&h=300&fit=crop'
+        image: '/images/video-book-trailer-process-3.webp'
       },
       {
         number: '04',
         title: 'Music and Voice',
         description: 'Licensed music score and professional voice-over are added and mixed to create the final trailer.',
-        image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop'
+        image: '/images/video-book-trailer-process-4.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Final trailer files delivered in all required formats with thumbnail images for each platform.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/video-book-trailer-process-5.webp'
       }
     ],
 
@@ -2245,19 +2215,14 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=500&fit=crop',
-          alt: 'Recording studio',
+          url: '/images/audiobook-publishing-overview-1.webp',
+          alt: 'Audiobook production and listening experience',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1453738773917-9c3eff1db985?w=250&h=300&fit=crop',
-          alt: 'Microphone',
+          url: '/images/audiobook-publishing-overview-2.webp',
+          alt: 'Reader enjoying an audiobook',
           size: 'medium'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=240&fit=crop',
-          alt: 'Listening',
-          size: 'small'
         }
       ]
     },
@@ -2285,31 +2250,31 @@ export const services = [
         number: '01',
         title: 'Narrator Selection',
         description: 'We present narrator audition samples for your approval — selecting the perfect voice for your book.',
-        image: 'https://images.unsplash.com/photo-1453738773917-9c3eff1db985?w=400&h=300&fit=crop'
+        image: '/images/audiobook-publishing-process-1.webp'
       },
       {
         number: '02',
         title: 'Recording',
         description: 'Your book is recorded in a professional studio to ACX quality standards.',
-        image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=300&fit=crop'
+        image: '/images/audiobook-publishing-process-2.webp'
       },
       {
         number: '03',
         title: 'Editing and Mastering',
         description: 'The recording is edited for errors and mastered to meet all platform technical requirements.',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop'
+        image: '/images/audiobook-publishing-process-3.webp'
       },
       {
         number: '04',
         title: 'Quality Review',
         description: 'You listen to the final production and approve before distribution.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/audiobook-publishing-process-4.webp'
       },
       {
         number: '05',
         title: 'Distribution',
         description: 'Your audiobook is submitted and published across all major audio platforms.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/audiobook-publishing-process-5.webp'
       }
     ],
 
@@ -2394,19 +2359,14 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&h=400&fit=crop',
-          alt: 'Website design',
+          url: '/images/author-website-overview-1.webp',
+          alt: 'Professional author website design on screen',
           size: 'large'
         },
         {
-          url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=280&h=280&fit=crop',
-          alt: 'Development',
+          url: '/images/author-website-overview-2.webp',
+          alt: 'Web developer building an author website',
           size: 'medium'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=200&h=200&fit=crop',
-          alt: 'Design',
-          size: 'small'
         }
       ]
     },
@@ -2434,31 +2394,31 @@ export const services = [
         number: '01',
         title: 'Discovery and Brief',
         description: 'We discuss your books, your brand, your audience and the goals of your website.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/author-website-process-1.webp'
       },
       {
         number: '02',
         title: 'Design Mockup',
         description: 'A complete website design mockup is created for your review before any development begins.',
-        image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop'
+        image: '/images/author-website-process-2.webp'
       },
       {
         number: '03',
         title: 'Development',
         description: 'Your website is built to pixel-perfect specification — fast, secure and SEO optimized.',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop'
+        image: '/images/author-website-process-3.webp'
       },
       {
         number: '04',
         title: 'Content and Review',
         description: 'Content is added, integrations are connected and you review the complete website before launch.',
-        image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop'
+        image: '/images/author-website-process-4.webp'
       },
       {
         number: '05',
         title: 'Launch',
         description: 'Your website goes live and we provide training so you can manage it confidently yourself.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/author-website-process-5.webp'
       }
     ],
 
@@ -2543,13 +2503,13 @@ export const services = [
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=400&h=500&fit=crop',
-          alt: 'Content creation',
+          url: '/images/website-content-overview-1.webp',
+          alt: 'Website content writer crafting persuasive copy',
           size: 'large'
         },
         {
-          url: '/images/writing-desk.webp',
-          alt: 'Writing',
+          url: '/images/website-content-overview-2.webp',
+          alt: 'Professional web copywriting workspace',
           size: 'medium'
         }
       ]
@@ -2578,31 +2538,31 @@ export const services = [
         number: '01',
         title: 'Discovery',
         description: 'We learn about your books, your audience, your goals and the action you want visitors to take.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/website-content-process-1.webp'
       },
       {
         number: '02',
         title: 'Research',
         description: 'We research your genre, your ideal readers and the language that resonates most with your audience.',
-        image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=400&h=300&fit=crop'
+        image: '/images/website-content-process-2.webp'
       },
       {
         number: '03',
         title: 'Copy Writing',
         description: 'All pages are written with clarity, persuasion and your unique author voice at the forefront.',
-        image: '/images/writing-desk.webp'
+        image: '/images/website-content-process-3.webp'
       },
       {
         number: '04',
         title: 'Review and Refine',
         description: 'You review all copy and we refine until every word reflects your voice and achieves your goals.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/website-content-process-4.webp'
       },
       {
         number: '05',
         title: 'Delivery',
         description: 'Final copy delivered in your preferred format ready for your web designer or directly into your website.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/website-content-process-5.webp'
       }
     ],
 
