@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * GhostWriterHunt — How It Works
- * Reedsy: warm 3-step literary clarity.
- * Superside: bold step numbers + scroll-reveal confidence.
- * Animations via Intersection Observer + CSS (no libraries).
+ * Glass process cards over photographic background (background-howitworks-2.webp).
+ * Card styling aligned to background-howitworks-1 design reference.
  */
 
 const STEPS = [
@@ -14,14 +13,14 @@ const STEPS = [
     number: "01",
     title: "Share Your Vision",
     description:
-      "Tell us about your book — your idea, your audience, and the story you want to tell. We listen deeply and match you with the perfect ghostwriter for your genre and voice.",
+      "Tell us about your book — your idea, your audience, and the story you want to tell. Our dedicated project team listens carefully to your goals, genre, and preferred voice, then personally matches your project with the right professional ghostwriter — with complete confidentiality from the start.",
     icon: "chat",
   },
   {
     number: "02",
     title: "We Craft Your Story",
     description:
-      "Your dedicated ghostwriter brings your vision to life — chapter by chapter, in your voice. Regular reviews, collaborative feedback, and unlimited revisions with our Professional and Complete Publishing packages ensure every word is exactly right.",
+      "Your matched professional ghostwriter brings your vision to life — chapter by chapter, in your voice. Regular chapter reviews, clear feedback, and unlimited revisions with our Professional and Complete Publishing packages are handled through our project team, so every word is exactly right while your communication stays securely managed.",
     icon: "pen",
   },
   {
@@ -36,14 +35,14 @@ const STEPS = [
 const CHECKLIST = [
   "100% Rights and Royalties Yours",
   "Full NDA Confidentiality",
-  "Dedicated Writer Assigned",
+  "Expert Writer Confidentially Matched",
   "Secure, Managed Communication",
 ];
 
 function StepIcon({ type }) {
   const common = {
-    width: 32,
-    height: 32,
+    width: 26,
+    height: 26,
     viewBox: "0 0 40 40",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
@@ -130,7 +129,7 @@ function CheckIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      className="mt-0.5 shrink-0 text-[var(--color-accent-gold)]"
+      className="mt-0.5 shrink-0 text-[#C9A84C]"
     >
       <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
       <path
@@ -160,7 +159,7 @@ export default function HowItWorks() {
         }
       },
       {
-        threshold: 0.15,
+        threshold: 0.12,
         rootMargin: "0px 0px -60px 0px",
       }
     );
@@ -176,10 +175,43 @@ export default function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="relative w-full overflow-hidden bg-[var(--color-background)] py-16 lg:py-20"
+      className="gwh-hiw-section relative w-full overflow-hidden"
       aria-label="How it works"
     >
       <style>{`
+        .gwh-hiw-section {
+          background-color: #12141c;
+        }
+
+        .gwh-hiw-bg {
+          position: absolute;
+          inset: 0;
+          background-image: url("/images/background-howitworks-2.webp");
+          background-size: cover;
+          background-position: 72% center;
+          background-repeat: no-repeat;
+        }
+
+        .gwh-hiw-overlay {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(
+              105deg,
+              rgba(12, 14, 22, 0.94) 0%,
+              rgba(12, 14, 22, 0.82) 42%,
+              rgba(12, 14, 22, 0.45) 68%,
+              rgba(12, 14, 22, 0.25) 100%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(8, 10, 16, 0.55) 0%,
+              transparent 28%,
+              transparent 72%,
+              rgba(8, 10, 16, 0.65) 100%
+            );
+        }
+
         @keyframes gwh-hiw-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -231,58 +263,118 @@ export default function HowItWorks() {
         .gwh-hiw-visible .gwh-hiw-checklist {
           animation: gwh-hiw-fade 0.6s ease-out 0.8s forwards;
         }
+
+        .gwh-hiw-card {
+          border: 1px solid rgba(201, 168, 76, 0.38);
+          background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.11) 0%,
+            rgba(255, 255, 255, 0.04) 100%
+          );
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+            0 0 28px rgba(201, 168, 76, 0.12),
+            0 12px 40px rgba(0, 0, 0, 0.35);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+        }
+
+        .gwh-hiw-card:hover {
+          border-color: rgba(201, 168, 76, 0.55);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+            0 0 36px rgba(201, 168, 76, 0.22),
+            0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .gwh-hiw-icon-ring {
+          border: 1px solid rgba(201, 168, 76, 0.55);
+          background: rgba(201, 168, 76, 0.08);
+          box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+        }
+
+        .gwh-hiw-card-divider {
+          height: 1px;
+          width: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba(201, 168, 76, 0.65) 0%,
+            rgba(201, 168, 76, 0.15) 100%
+          );
+        }
+
+        @media (max-width: 1023px) {
+          .gwh-hiw-bg {
+            background-position: 80% center;
+          }
+          .gwh-hiw-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(12, 14, 22, 0.92) 0%,
+                rgba(12, 14, 22, 0.88) 55%,
+                rgba(12, 14, 22, 0.75) 100%
+              );
+          }
+        }
       `}</style>
 
+      <div className="gwh-hiw-bg" aria-hidden="true" />
+      <div className="gwh-hiw-overlay" aria-hidden="true" />
+
       <div
-        className={`relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-hiw-visible" : ""}`}
+        className={`relative z-10 mx-auto max-w-[1200px] px-5 py-16 sm:px-6 lg:py-20 ${visible ? "gwh-hiw-visible" : ""}`}
       >
-        <p className="gwh-hiw-label mb-3 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
-          The Process
-        </p>
+        <div className="mb-10 text-center lg:mb-12 lg:text-left">
+          <p className="gwh-hiw-label mb-3 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
+            The Process
+          </p>
 
-        <h2 className="gwh-hiw-headline mb-3 text-center font-playfair text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-[var(--color-text)] sm:text-[40px] lg:text-[48px]">
-          <span className="block font-normal">Your book begins</span>
-          <span className="block italic text-[var(--color-accent-gold)]">
-            with a single conversation.
-          </span>
-        </h2>
+          <h2 className="gwh-hiw-headline mb-3 font-playfair text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-white sm:text-[40px] lg:text-[48px]">
+            <span className="block font-normal">Your book begins</span>
+            <span className="block italic text-[#C9A84C]">
+              with a single conversation.
+            </span>
+          </h2>
 
-        <p className="gwh-hiw-sub mx-auto mb-12 max-w-[540px] text-center font-inter text-[15px] font-normal leading-[1.65] text-[#666666] lg:mb-14">
-          From first idea to published masterpiece — we guide every step of the
-          journey.
-        </p>
+          <p className="gwh-hiw-sub mx-auto max-w-[540px] font-inter text-[15px] font-normal leading-[1.65] text-[#c8c8c8] lg:mx-0 lg:mb-0">
+            From first idea to published masterpiece — we guide every step of the
+            journey.
+          </p>
+        </div>
 
-        <div className="gwh-hiw-steps relative mx-auto w-full max-w-[1040px] lg:mr-auto lg:max-w-[min(100%,640px)] xl:max-w-[min(100%,660px)]">
-          <div
-            className="pointer-events-none absolute left-[4%] right-[4%] top-[56px] z-0 hidden border-t border-dashed border-[var(--color-border)] lg:block lg:right-[6%]"
-            aria-hidden="true"
-          />
-
-          <ol className="relative z-10 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-5">
-            {STEPS.map((step) => (
+        <div className="gwh-hiw-steps relative w-full">
+          <ol className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-6">
+            {STEPS.map((step, index) => (
               <li
                 key={step.number}
-                className="gwh-hiw-card group relative rounded-xl border border-[var(--color-border)]/90 bg-white/90 px-5 py-7 shadow-[0_2px_20px_rgba(28,28,28,0.04)] backdrop-blur-[10px] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[var(--color-border)] hover:bg-white hover:shadow-[0_8px_28px_rgba(201,168,76,0.12)] sm:px-6"
+                className={`gwh-hiw-card group relative flex flex-col rounded-2xl px-6 py-7 transition-all duration-300 ease-out hover:-translate-y-1 sm:px-7 sm:py-8 ${
+                  index === 2
+                    ? "md:col-span-2 md:max-w-xl md:justify-self-center lg:col-span-1 lg:max-w-none lg:justify-self-stretch"
+                    : ""
+                }`}
               >
                 <div
-                  className="absolute inset-x-0 top-0 h-[2px] rounded-t-xl bg-[var(--color-accent-gold)]"
+                  className="gwh-hiw-icon-ring mb-5 flex h-12 w-12 items-center justify-center rounded-full text-[#C9A84C]"
+                >
+                  <StepIcon type={step.icon} />
+                </div>
+
+                <div className="mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span className="font-inter text-[13px] font-semibold tracking-wide text-[#C9A84C]">
+                    {step.number}
+                  </span>
+                  <h3 className="font-playfair text-[20px] font-bold leading-snug text-white sm:text-[21px]">
+                    {step.title}
+                  </h3>
+                </div>
+
+                <div
+                  className="gwh-hiw-card-divider mb-4"
                   aria-hidden="true"
                 />
 
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <span className="font-playfair text-[44px] font-bold leading-none tracking-tight text-[var(--color-border)] sm:text-[48px]">
-                    {step.number}
-                  </span>
-                  <div className="mt-1 text-[var(--color-accent-gold)]">
-                    <StepIcon type={step.icon} />
-                  </div>
-                </div>
-
-                <h3 className="mb-2.5 font-playfair text-[18px] font-bold leading-snug text-[var(--color-text)] sm:text-[19px]">
-                  {step.title}
-                </h3>
-
-                <p className="font-inter text-[13px] font-normal leading-[1.65] text-[#5c5c5c] sm:text-[14px] sm:leading-[1.7]">
+                <p className="font-inter text-[14px] font-normal leading-[1.7] text-[#d4d4d4] sm:text-[15px]">
                   {step.description}
                 </p>
               </li>
@@ -290,14 +382,16 @@ export default function HowItWorks() {
           </ol>
         </div>
 
-        <ul className="gwh-hiw-checklist mx-auto mt-10 flex max-w-[1100px] flex-wrap items-center justify-center gap-x-5 gap-y-3 px-2 lg:mt-12 lg:flex-nowrap lg:gap-x-8 xl:gap-x-10">
+        <ul className="gwh-hiw-checklist mx-auto mt-10 flex max-w-[1100px] flex-wrap items-center justify-center gap-x-5 gap-y-3 px-2 lg:mt-12 lg:flex-nowrap lg:justify-start lg:gap-x-8 xl:gap-x-10">
           {CHECKLIST.map((item) => (
             <li
               key={item}
-              className="flex shrink-0 items-center gap-2 font-inter text-[12px] font-medium leading-snug text-[var(--color-text)] sm:text-[13px] lg:text-[14px]"
+              className="flex shrink-0 items-center gap-2 font-inter text-[12px] font-medium leading-snug text-[#ececec] sm:text-[13px] lg:text-[14px]"
             >
               <CheckIcon />
-              <span className="whitespace-nowrap">{item}</span>
+              <span className="whitespace-normal sm:whitespace-nowrap">
+                {item}
+              </span>
             </li>
           ))}
         </ul>

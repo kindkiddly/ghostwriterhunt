@@ -34,10 +34,10 @@ export const services = [
     overview: {
       headline: 'From your idea to a',
       headlineItalic: 'published masterpiece.',
-      body: 'The world is full of extraordinary stories waiting to be told — business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent — it is having the right professional in your corner. At GhostWriterHunt, we assign you a dedicated professional ghostwriter who becomes the invisible architect of your book. You share your vision — through written notes, voice recordings, existing drafts or a simple outline — and we handle everything from the first word to the final page. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
+      body: 'The world is full of extraordinary stories waiting to be told — business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent — it is having the right professional in your corner. At GhostWriterHunt, our dedicated project team learns your goals, requirements, genre, and preferred voice — then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with our team — through written notes, voice recordings, existing drafts or a simple outline — and we handle everything from the first word to the final page. Your communication stays securely managed through us, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
       bullets: [
         'Submit your vision via our secure form, email or voice recording',
-        'Handpicked ghostwriter matched to your genre and style',
+        'Handpicked ghostwriter matched by our project team to your genre and style',
         'Full NDA signed and enforced from day one',
         'Your project manager handles all communication — complete anonymity maintained',
         'Unlimited revisions with our Professional and Complete Publishing packages',
@@ -71,7 +71,7 @@ export const services = [
       {
         icon: 'pen',
         title: 'Professional Voice Crafting',
-        description: 'Your assigned ghostwriter studies every detail of your submission to capture your unique tone, style and perspective — creating a personal voice guide before writing a single word.'
+        description: 'Our project team consolidates every detail of your submission so your matched ghostwriter can capture your unique tone, style and perspective — creating a personal voice guide before writing a single word.'
       },
       {
         icon: 'users',
@@ -96,7 +96,7 @@ export const services = [
       {
         number: '03',
         title: 'Voice Crafting',
-        description: 'Before a single word of your manuscript is written, your ghostwriter conducts an in-depth study of everything you have shared. Your natural communication style, your personality, your perspective and your vision are distilled into a personal voice guide — the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
+        description: 'Before a single word of your manuscript is written, our team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide — the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
         image: '/images/pen-ink-author.webp'
       },
       {
@@ -118,11 +118,11 @@ export const services = [
     faqs: [
       {
         question: 'How do you match me with the right ghostwriter?',
-        answer: 'We carefully review your project requirements, genre, tone and vision before hand-selecting a ghostwriter from our vetted team who specializes in your specific genre and writing style.'
+        answer: 'Your project is handled with complete confidentiality. Our dedicated project team carefully reviews your requirements, genre, tone and vision — then personally hand-selects the ghostwriter from our vetted roster whose expertise is the best fit. All communication stays securely managed through our team from start to finish.'
       },
       {
         question: 'Will my book truly sound like me?',
-        answer: 'Absolutely. Before writing begins your ghostwriter conducts a thorough study of everything you submit — your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created from this study to ensure every word of your manuscript reflects your unique tone, style and personality.'
+        answer: 'Absolutely. Before writing begins, our team captures your voice from everything you submit — your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through our team.'
       },
       {
         question: 'How long does the ghostwriting process take?',
@@ -846,7 +846,7 @@ export const services = [
       },
       {
         question: 'How long does publishing take?',
-        answer: 'Most platforms approve and publish books within 24 to 72 hours of submission. Our full publishing process from file receipt to live listing typically takes 7 to 14 days depending on your plan.'
+        answer: 'We follow a consistent 30-day publishing process from file receipt to live listings on 47+ platforms. Individual platforms often approve and publish within 24 to 72 hours once we submit your files, but every project is managed to our 30-day publishing timeline.'
       },
       {
         question: 'What royalties will I earn?',
@@ -859,7 +859,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'GhostWriterHunt published my book on 47+ platforms in less than 3 weeks. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything — and my book was live globally before I had even fully processed that it was real.',
+      quote: 'GhostWriterHunt published my book on 47+ platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything — and my book was live globally before I had even fully processed that it was real.',
       author: 'Thomas Williams',
       book: 'A Life Remembered',
       image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=96&h=96&fit=crop&crop=face'
@@ -1249,13 +1249,13 @@ export const services = [
         number: '03',
         title: 'Writing',
         description: 'Your dedicated eBook writer produces the complete manuscript chapter by chapter.',
-        image: '/images/writing-hands.webp'
+        image: '/images/ebook-writing-process-3.webp'
       },
       {
         number: '04',
         title: 'Edit and Polish',
         description: 'The manuscript is edited for clarity, flow and consistency before your review.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/ebook-writing-process-4.webp'
       },
       {
         number: '05',
@@ -1356,7 +1356,7 @@ export const services = [
           size: 'medium'
         },
         {
-          url: '/images/chidren-stories-17.webp',
+          url: '/images/children-stories-17.webp',
           alt: "Children's coloring book and crayons",
           size: 'small'
         }

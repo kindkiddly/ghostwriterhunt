@@ -12,7 +12,7 @@ const FAQ_ITEMS = [
   {
     question: "How does the ghostwriting process work?",
     answer:
-      "We begin with a free consultation where you share your book idea, goals and vision. We then match you with the perfect ghostwriter for your genre and voice. Your ghostwriter studies everything you share — written notes, voice recordings or existing drafts — to understand how you think and speak. Writing begins chapter by chapter with regular reviews and feedback rounds through your project manager until every word is exactly right.",
+      "We begin with a free consultation where you share your book idea, goals, and vision with our team. With complete confidentiality, our dedicated project team understands your requirements, genre, and preferred voice — then personally matches you with the right professional ghostwriter. Writing begins chapter by chapter; you review and approve each stage through your project manager with regular feedback rounds until every word is exactly right.",
   },
   {
     question: "How long does it take to write a book?",
@@ -22,7 +22,7 @@ const FAQ_ITEMS = [
   {
     question: "Will the book sound like me?",
     answer:
-      "Absolutely. Before writing a single word your ghostwriter studies your communication style through everything you submit — written notes, voice recordings and any existing writing you share. We create a personal voice guide and write a sample chapter for your approval before the full manuscript begins. Our clients consistently tell us the finished book sounds more like them than anything they could have written themselves.",
+      "Absolutely. Before writing a single word, our team captures your communication style from everything you submit — written notes, voice recordings, and any existing writing you share. We create a personal voice guide and deliver a sample chapter for your approval before the full manuscript begins. Our clients consistently tell us the finished book sounds more like them than anything they could have written themselves.",
   },
   {
     question: "Do I own the book and all the royalties?",
@@ -37,7 +37,7 @@ const FAQ_ITEMS = [
   {
     question: "Can I see a sample before committing?",
     answer:
-      "Yes. We offer a free sample chapter with every project before you commit to the full manuscript. This lets you experience your writer's style and confirm the voice is perfect before any significant investment is made.",
+      "Yes. We offer a free sample chapter with every project before you commit to the full manuscript. This lets you experience the voice we have captured for your project and confirm it is perfect before any significant investment is made.",
   },
   {
     question: "Which platforms will my book be published on?",

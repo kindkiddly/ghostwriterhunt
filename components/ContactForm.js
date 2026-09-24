@@ -813,8 +813,10 @@ export default function ContactForm() {
             </h2>
 
             <p className="cf-subtext">
-              Book a free consultation with our team. We will match you with
-              the perfect ghostwriter for your project — no commitment required.
+              Book a free consultation with our team. We will understand your
+              project in confidence, match you with the right professional
+              ghostwriter, and keep all communication securely managed through
+              us — no commitment required.
             </p>
 
             <ul className="cf-trust-list">

@@ -286,7 +286,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className="gwh-ft-contact" id="contact">
+          <div className="gwh-ft-contact">
             <h3 className="gwh-ft-heading">CONTACT</h3>
             <div className="gwh-ft-contact-item">
               <a

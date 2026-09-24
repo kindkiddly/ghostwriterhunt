@@ -7,7 +7,6 @@ import ServiceHero from "@/components/service/ServiceHero";
 import ServiceOverview from "@/components/service/ServiceOverview";
 import ServiceApproach from "@/components/service/ServiceApproach";
 import ServiceProcess from "@/components/service/ServiceProcess";
-import ServicePricing from "@/components/service/ServicePricing";
 import ServiceTestimonial from "@/components/service/ServiceTestimonial";
 import ServiceFAQ from "@/components/service/ServiceFAQ";
 import ServiceCTA from "@/components/service/ServiceCTA";
@@ -47,7 +46,6 @@ export default function ServicePage({ params }) {
       <ServiceOverview service={service} imagesOnLeft={imagesOnLeft} />
       <ServiceApproach service={service} />
       <ServiceProcess service={service} />
-      <ServicePricing service={service} />
       <ServiceTestimonial service={service} />
       <ServiceFAQ service={service} />
       <ServiceCTA service={service} />

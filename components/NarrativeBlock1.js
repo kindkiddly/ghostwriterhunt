@@ -201,11 +201,13 @@ export default function NarrativeBlock1() {
           </h2>
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666] break-words">
-            Every great book is the result of a partnership between a visionary
-            author and a skilled professional writer. At GhostWriterHunt, we
-            match you with the perfect ghostwriter for your genre, your voice,
-            and your vision — then guide you every step of the way from first
-            idea to published masterpiece.
+            Every great book begins with a visionary author and the right
+            professional team behind them. At GhostWriterHunt, our dedicated
+            project team learns your genre, voice, and vision — then personally
+            matches you with a handpicked ghostwriter while keeping your
+            communication securely managed through us. We guide you every step
+            of the way from first idea to published masterpiece, with complete
+            confidentiality throughout.
           </p>
 
           <ul className="mb-2 flex flex-col">

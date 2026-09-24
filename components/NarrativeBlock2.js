@@ -199,11 +199,12 @@ export default function NarrativeBlock2() {
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Your book should sound like you — only better. Before writing a
-            single word, your dedicated ghostwriter studies your communication
-            style, your personality and your vision. We capture the rhythm of
-            how you speak, the words you naturally use and the tone that is
-            uniquely yours. The result is a book that feels completely authentic
-            — because it is.
+            single word, our team studies your communication style, personality,
+            and vision from everything you share with us. We capture the rhythm
+            of how you speak, the words you naturally use, and the tone that is
+            uniquely yours — then your matched ghostwriter brings it to the
+            page. The result is a book that feels completely authentic — because
+            it is.
           </p>
 
           {/* Reedsy-style numbered process steps */}
