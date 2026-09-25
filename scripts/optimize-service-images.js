@@ -86,7 +86,7 @@ const SERVICE_SOURCES = {
     ],
   },
   "author-branding": {
-    overview: ["author.webp", "team-collaboration.webp"],
+    overview: ["author-2.webp", "team-collaboration.webp"],
     process: [
       "team-collaboration.webp",
       "modern-office.webp",
