@@ -108,24 +108,22 @@ function PlanCard({ plan, index }) {
     }
   }
 
-  const isDark = tier === "professional";
-
   return (
     <article
-      className={`gwh-price-card gwh-price-card--${tier} relative flex h-full flex-col rounded-[20px] px-7 py-10 sm:px-9 sm:py-12`}
+      className={`gwh-price-card gwh-price-card--${tier} relative flex h-full flex-col rounded-[22px] px-7 py-10 sm:px-9 sm:py-11`}
       style={{ animationDelay: `${0.2 + index * 0.15}s` }}
     >
       <div className="gwh-price-card-scroll flex min-h-0 flex-1 flex-col">
         {/* Label/name/description — equal height so prices align in one row */}
         <div className="gwh-price-head">
           {featured ? (
-            <span className="gwh-price-badge mb-6 block w-fit rounded-[20px] px-3.5 py-1 font-inter text-[11px] font-semibold uppercase tracking-wide mx-auto">
+            <span className="gwh-price-badge mb-6 block w-fit mx-auto rounded-full px-4 py-1.5 font-inter text-[11px] font-semibold uppercase tracking-[0.14em]">
               Most Popular
             </span>
           ) : (
-            <p className="gwh-price-tier-label mb-2 text-center font-inter text-[13px] font-semibold uppercase tracking-[0.12em]">
+            <span className="gwh-price-badge gwh-price-badge--tier mb-6 block w-fit mx-auto rounded-full px-4 py-1.5 font-inter text-[11px] font-semibold uppercase tracking-[0.14em]">
               {plan.label}
-            </p>
+            </span>
           )}
 
           <h3 className="gwh-price-title mb-2 text-center font-playfair text-[28px] font-bold">
@@ -162,11 +160,7 @@ function PlanCard({ plan, index }) {
               key={feature}
               className="flex items-start gap-2.5 font-inter text-[14px] leading-[1.7]"
             >
-              <CheckIcon
-                className={
-                  isDark ? "text-[#C9A84C]" : "text-[var(--color-accent-gold)]"
-                }
-              />
+              <CheckIcon className="gwh-price-check shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
@@ -179,9 +173,7 @@ function PlanCard({ plan, index }) {
             type="button"
             onClick={handlePaySecurely}
             disabled={paying}
-            className={`gwh-price-pay-btn block w-full rounded-lg px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 disabled:opacity-60 ${
-              featured ? "gwh-price-pay-btn--featured" : ""
-            }`}
+            className="gwh-price-pay-btn block w-full px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 disabled:opacity-60"
           >
             {paying ? "Opening checkout…" : `Pay securely — $${plan.priceAmount}`}
           </button>
@@ -289,6 +281,44 @@ export default function Pricing() {
           }
         }
 
+        .gwh-price-cards-stage {
+          position: relative;
+          margin-top: 8px;
+          padding: 36px 18px 40px;
+          border-radius: 28px;
+          background: linear-gradient(165deg, #0b0d14 0%, #121622 48%, #0e1018 100%);
+          overflow: hidden;
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .gwh-price-cards-stage::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(
+              ellipse 42% 55% at 18% 42%,
+              rgba(45, 212, 191, 0.22) 0%,
+              transparent 70%
+            ),
+            radial-gradient(
+              ellipse 40% 58% at 50% 38%,
+              rgba(168, 85, 247, 0.24) 0%,
+              transparent 72%
+            ),
+            radial-gradient(
+              ellipse 42% 55% at 82% 44%,
+              rgba(251, 191, 36, 0.2) 0%,
+              transparent 70%
+            );
+          pointer-events: none;
+        }
+
+        .gwh-price-cards-grid {
+          position: relative;
+          z-index: 1;
+        }
+
         .gwh-price-head {
           min-height: 200px;
           display: flex;
@@ -299,158 +329,189 @@ export default function Pricing() {
           text-align: center;
         }
 
-        .gwh-price-card--starter {
-          border: 1px solid rgba(107, 124, 58, 0.28);
+        .gwh-price-card {
+          border: 1px solid rgba(255, 255, 255, 0.14);
           background: linear-gradient(
-            155deg,
-            rgba(255, 255, 255, 0.92) 0%,
-            rgba(245, 248, 238, 0.78) 100%
+            145deg,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(255, 255, 255, 0.04) 100%
           );
-          box-shadow:
-            0 0 0 1px rgba(255, 255, 255, 0.65) inset,
-            0 12px 36px rgba(107, 124, 58, 0.12);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-        }
-        .gwh-price-card--starter .gwh-price-tier-label {
-          color: #6b7c3a;
-        }
-        .gwh-price-card--starter .gwh-price-title,
-        .gwh-price-card--starter .gwh-price-best-text {
-          color: #1c1c1c;
-        }
-        .gwh-price-card--starter .gwh-price-desc,
-        .gwh-price-card--starter .gwh-price-best-label,
-        .gwh-price-card--starter .gwh-price-term {
-          color: #666666;
-        }
-        .gwh-price-card--starter .gwh-price-value {
-          color: #1c1c1c;
-        }
-        .gwh-price-card--starter .gwh-price-divider {
-          background: rgba(107, 124, 58, 0.2);
-        }
-        .gwh-price-card--starter .gwh-price-features {
-          color: #444444;
-        }
-        .gwh-price-card--starter .gwh-price-pay-btn {
-          border: 2px solid #c9a84c;
-          background: transparent;
-          color: #c9a84c;
-        }
-        .gwh-price-card--starter .gwh-price-pay-btn:hover {
-          background: #c9a84c;
-          color: #ffffff;
-        }
-        .gwh-price-card--starter .gwh-price-contact {
-          color: #666666;
-        }
-        .gwh-price-card--starter .gwh-price-contact:hover {
-          color: #1c1c1c;
-        }
-
-        .gwh-price-card--professional {
-          z-index: 2;
-          border: 1px solid rgba(201, 168, 76, 0.45);
-          background: linear-gradient(
-            155deg,
-            rgba(32, 32, 36, 0.97) 0%,
-            rgba(18, 20, 28, 0.94) 100%
-          );
+          backdrop-filter: blur(22px);
+          -webkit-backdrop-filter: blur(22px);
           box-shadow:
             0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-            0 0 32px rgba(201, 168, 76, 0.18),
-            0 16px 48px rgba(0, 0, 0, 0.35);
-          backdrop-filter: blur(18px);
-          -webkit-backdrop-filter: blur(18px);
+            0 18px 50px rgba(0, 0, 0, 0.45);
         }
-        .gwh-price-card--professional .gwh-price-badge {
-          background: #c9a84c;
-          color: #ffffff;
+
+        .gwh-price-card::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: radial-gradient(
+            ellipse 90% 55% at 50% -10%,
+            rgba(255, 255, 255, 0.14) 0%,
+            transparent 58%
+          );
+          pointer-events: none;
         }
-        .gwh-price-card--professional .gwh-price-title,
-        .gwh-price-card--professional .gwh-price-value,
-        .gwh-price-card--professional .gwh-price-best-text {
-          color: #ffffff;
+
+        .gwh-price-card > * {
+          position: relative;
+          z-index: 1;
         }
-        .gwh-price-card--professional .gwh-price-desc,
-        .gwh-price-card--professional .gwh-price-best-label,
-        .gwh-price-card--professional .gwh-price-term {
-          color: #999999;
-        }
-        .gwh-price-card--professional .gwh-price-divider {
-          background: #333333;
-        }
-        .gwh-price-card--professional .gwh-price-features {
-          color: #cccccc;
-        }
-        .gwh-price-card--professional .gwh-price-pay-btn--featured {
-          background: #c9a84c;
-          color: #ffffff;
-        }
-        .gwh-price-card--professional .gwh-price-pay-btn--featured:hover {
-          background: #b8960c;
-        }
-        .gwh-price-card--professional .gwh-price-contact {
-          color: #cccccc;
-        }
-        .gwh-price-card--professional .gwh-price-contact:hover {
+
+        .gwh-price-title,
+        .gwh-price-value {
           color: #ffffff;
         }
 
-        .gwh-price-card--complete {
-          border: 1px solid rgba(201, 168, 76, 0.42);
-          background: linear-gradient(
-            155deg,
-            rgba(255, 252, 245, 0.95) 0%,
-            rgba(253, 246, 227, 0.82) 55%,
-            rgba(255, 255, 255, 0.88) 100%
-          );
+        .gwh-price-desc,
+        .gwh-price-best-text,
+        .gwh-price-features {
+          color: rgba(255, 255, 255, 0.86);
+        }
+
+        .gwh-price-best-label,
+        .gwh-price-term {
+          color: rgba(255, 255, 255, 0.52);
+        }
+
+        .gwh-price-divider {
+          width: 52px;
+          height: 2px;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 999px;
+          opacity: 0.95;
+        }
+
+        .gwh-price-badge {
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+
+        .gwh-price-pay-btn {
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.28);
+          background: rgba(255, 255, 255, 0.06);
+          color: #ffffff;
+          box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .gwh-price-pay-btn:hover {
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        .gwh-price-contact {
+          color: rgba(255, 255, 255, 0.55);
+        }
+
+        .gwh-price-contact:hover {
+          color: rgba(255, 255, 255, 0.92);
+        }
+
+        /* Starter — teal glass */
+        .gwh-price-card--starter {
+          border-color: rgba(94, 234, 212, 0.45);
           box-shadow:
-            0 0 0 1px rgba(255, 255, 255, 0.7) inset,
-            0 0 28px rgba(201, 168, 76, 0.16),
-            0 14px 40px rgba(201, 168, 76, 0.14);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+            0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+            0 0 36px rgba(45, 212, 191, 0.28),
+            0 20px 48px rgba(0, 0, 0, 0.42);
         }
-        .gwh-price-card--complete .gwh-price-tier-label {
-          color: #b8960c;
+        .gwh-price-card--starter .gwh-price-badge {
+          color: #99f6e4;
+          border-color: rgba(94, 234, 212, 0.55);
+          box-shadow: 0 0 18px rgba(45, 212, 191, 0.25);
         }
-        .gwh-price-card--complete .gwh-price-title {
-          color: #1c1c1c;
+        .gwh-price-card--starter .gwh-price-divider {
+          background: linear-gradient(90deg, #2dd4bf, #5eead4);
         }
-        .gwh-price-card--complete .gwh-price-value {
-          color: #9a7b2e;
+        .gwh-price-card--starter .gwh-price-check {
+          color: #5eead4;
         }
-        .gwh-price-card--complete .gwh-price-desc,
-        .gwh-price-card--complete .gwh-price-best-label,
-        .gwh-price-card--complete .gwh-price-term {
-          color: #777777;
+        .gwh-price-card--starter .gwh-price-pay-btn {
+          border-color: rgba(94, 234, 212, 0.65);
+          box-shadow:
+            0 0 22px rgba(45, 212, 191, 0.22),
+            0 10px 28px rgba(0, 0, 0, 0.3);
         }
-        .gwh-price-card--complete .gwh-price-best-text,
-        .gwh-price-card--complete .gwh-price-features {
-          color: #3d3d3d;
+        .gwh-price-card--starter .gwh-price-pay-btn:hover {
+          box-shadow:
+            0 0 28px rgba(45, 212, 191, 0.35),
+            0 12px 32px rgba(0, 0, 0, 0.32);
+        }
+
+        /* Professional — purple glass */
+        .gwh-price-card--professional {
+          z-index: 2;
+          border-color: rgba(192, 132, 252, 0.5);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+            0 0 42px rgba(168, 85, 247, 0.32),
+            0 22px 52px rgba(0, 0, 0, 0.48);
+        }
+        .gwh-price-card--professional .gwh-price-badge {
+          color: #e9d5ff;
+          border-color: rgba(192, 132, 252, 0.62);
+          box-shadow: 0 0 22px rgba(168, 85, 247, 0.3);
+        }
+        .gwh-price-card--professional .gwh-price-divider {
+          background: linear-gradient(90deg, #a855f7, #c084fc);
+        }
+        .gwh-price-card--professional .gwh-price-check {
+          color: #c084fc;
+        }
+        .gwh-price-card--professional .gwh-price-pay-btn {
+          border-color: rgba(192, 132, 252, 0.7);
+          box-shadow:
+            0 0 26px rgba(168, 85, 247, 0.28),
+            0 10px 28px rgba(0, 0, 0, 0.3);
+        }
+        .gwh-price-card--professional .gwh-price-pay-btn:hover {
+          box-shadow:
+            0 0 34px rgba(168, 85, 247, 0.4),
+            0 12px 32px rgba(0, 0, 0, 0.32);
+        }
+
+        /* Complete — amber / gold glass */
+        .gwh-price-card--complete {
+          border-color: rgba(251, 191, 36, 0.48);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+            0 0 38px rgba(245, 158, 11, 0.28),
+            0 20px 48px rgba(0, 0, 0, 0.42);
+        }
+        .gwh-price-card--complete .gwh-price-badge {
+          color: #fde68a;
+          border-color: rgba(251, 191, 36, 0.58);
+          box-shadow: 0 0 20px rgba(245, 158, 11, 0.26);
         }
         .gwh-price-card--complete .gwh-price-divider {
-          background: rgba(201, 168, 76, 0.35);
+          background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
+        .gwh-price-card--complete .gwh-price-check {
+          color: #fbbf24;
         }
         .gwh-price-card--complete .gwh-price-pay-btn {
-          border: 2px solid #c9a84c;
-          background: rgba(201, 168, 76, 0.12);
-          color: #8a6d1f;
+          border-color: rgba(251, 191, 36, 0.68);
+          box-shadow:
+            0 0 24px rgba(245, 158, 11, 0.24),
+            0 10px 28px rgba(0, 0, 0, 0.3);
         }
         .gwh-price-card--complete .gwh-price-pay-btn:hover {
-          background: #c9a84c;
-          color: #ffffff;
-        }
-        .gwh-price-card--complete .gwh-price-contact {
-          color: #666666;
-        }
-        .gwh-price-card--complete .gwh-price-contact:hover {
-          color: #1c1c1c;
+          box-shadow:
+            0 0 30px rgba(245, 158, 11, 0.36),
+            0 12px 32px rgba(0, 0, 0, 0.32);
         }
 
         @media (min-width: 1024px) {
+          .gwh-price-cards-stage {
+            padding: 44px 32px 48px;
+          }
+
           .gwh-price-head {
             min-height: 228px;
           }
@@ -469,7 +530,7 @@ export default function Pricing() {
             overscroll-behavior: contain;
             padding-right: 4px;
             scrollbar-width: thin;
-            scrollbar-color: rgba(201, 168, 76, 0.45) transparent;
+            scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
           }
 
           .gwh-price-card-scroll::-webkit-scrollbar {
@@ -477,16 +538,21 @@ export default function Pricing() {
           }
 
           .gwh-price-card-scroll::-webkit-scrollbar-thumb {
-            background: rgba(201, 168, 76, 0.45);
+            background: rgba(255, 255, 255, 0.28);
             border-radius: 999px;
           }
 
           .gwh-price-card--professional {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
           }
         }
 
         @media (max-width: 768px) {
+          .gwh-price-cards-stage {
+            padding: 28px 14px 32px;
+            border-radius: 22px;
+          }
+
           .gwh-price-head {
             min-height: 188px;
           }
@@ -512,11 +578,13 @@ export default function Pricing() {
           surprises. You own 100% of your book and all royalties.
         </p>
 
-        {/* Plan cards */}
-        <div className="gwh-price-cards-grid mx-auto grid max-w-[1100px] grid-cols-1 items-stretch gap-7 lg:grid-cols-3">
-          {PLANS.map((plan, index) => (
-            <PlanCard key={plan.id} plan={plan} index={index} />
-          ))}
+        {/* Plan cards — glass stage (reference-style) */}
+        <div className="gwh-price-cards-stage mx-auto max-w-[1140px]">
+          <div className="gwh-price-cards-grid grid grid-cols-1 items-stretch gap-7 lg:grid-cols-3">
+            {PLANS.map((plan, index) => (
+              <PlanCard key={plan.id} plan={plan} index={index} />
+            ))}
+          </div>
         </div>
 
         {/* Shared inclusions — Superside checklist style */}
