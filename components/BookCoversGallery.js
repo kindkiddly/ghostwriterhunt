@@ -223,6 +223,39 @@ export default function BookCoversGallery() {
         .gwh-bcg-visible .gwh-bcg-cta {
           animation: gwh-bcg-fade 0.5s ease-out 0.6s forwards;
         }
+
+        @media (max-width: 768px) {
+          .gwh-bcg-tabs {
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 8px !important;
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 6px;
+          }
+          .gwh-bcg-tabs::-webkit-scrollbar {
+            display: none;
+          }
+          .gwh-bcg-tab {
+            flex: 0 0 auto;
+            min-width: 92px;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px !important;
+            font-size: 13px !important;
+            letter-spacing: 0.01em;
+            border-radius: 999px !important;
+            box-shadow: 0 1px 0 rgba(201, 168, 76, 0.12);
+          }
+        }
       `}</style>
 
       <div
@@ -259,7 +292,7 @@ export default function BookCoversGallery() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-[20px] px-5 py-2 font-inter text-[14px] font-medium transition-all duration-300 ${
+                className={`gwh-bcg-tab rounded-[20px] px-5 py-2 font-inter text-[14px] font-medium transition-all duration-300 ${
                   isActive
                     ? "bg-[var(--color-accent-gold)] text-white"
                     : "border border-[var(--color-border)] bg-[var(--color-card)] text-[#666666] hover:border-[var(--color-accent-gold)]"

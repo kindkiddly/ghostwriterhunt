@@ -136,6 +136,55 @@ export default function NarrativeBlock3() {
           .nb4-reveal-card {
             display: none !important;
           }
+          .nb4-platform-list {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 8px;
+            margin-bottom: 28px !important;
+            margin-left: -4px;
+            margin-right: -4px;
+            padding-bottom: 6px;
+          }
+          .nb4-platform-list::-webkit-scrollbar {
+            display: none;
+          }
+          .nb4-platform-list > li {
+            flex: 0 0 auto;
+          }
+          .nb4-platform-chip {
+            min-width: 118px;
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px 12px !important;
+            font-size: 12px !important;
+            line-height: 1.25;
+            border-radius: 999px !important;
+          }
+          .nb4-mini-stats {
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            align-items: start;
+            width: 100%;
+          }
+          .nb4-mini-stats > div {
+            text-align: center;
+            min-width: 0;
+          }
+          .nb4-mini-stats p:first-child {
+            font-size: 26px !important;
+          }
+          .nb4-mini-stats p:last-child {
+            font-size: 11px !important;
+            line-height: 1.35;
+          }
         }
       `}</style>
 
@@ -163,11 +212,11 @@ export default function NarrativeBlock3() {
           </p>
 
           {/* Platform chips */}
-          <ul className="mb-9 flex flex-wrap gap-2.5">
+          <ul className="nb4-platform-list mb-9 flex flex-wrap gap-2.5">
             {PLATFORMS.map((platform) => (
               <li key={platform}>
                 <span
-                  className="inline-block rounded-lg border border-[rgba(255,255,255,0.12)] px-5 py-2.5 font-inter text-[13px] font-semibold text-[#FFFFFF]"
+                  className="nb4-platform-chip inline-block rounded-lg border border-[rgba(255,255,255,0.12)] px-5 py-2.5 font-inter text-[13px] font-semibold text-[#FFFFFF]"
                   style={{ background: "rgba(255,255,255,0.06)" }}
                 >
                   {platform}
@@ -177,7 +226,7 @@ export default function NarrativeBlock3() {
           </ul>
 
           {/* Mini stats */}
-          <div className="mb-0 flex flex-wrap items-start gap-8">
+          <div className="nb4-mini-stats mb-0 flex flex-wrap items-start gap-8">
             {STATS.map((stat) => (
               <div key={stat.label}>
                 <p className="font-playfair text-[28px] font-bold leading-none text-[#FFFFFF]">

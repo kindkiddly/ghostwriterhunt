@@ -244,6 +244,30 @@ export default function Hero() {
             padding-top: 96px !important;
             padding-bottom: 8px !important;
           }
+          .gwh-hero-genres {
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            width: min(100%, calc(100vw - 32px));
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 4px;
+            gap: 8px !important;
+          }
+          .gwh-hero-genres::-webkit-scrollbar {
+            display: none;
+          }
+          .gwh-hero-genre-pill {
+            flex: 0 0 auto;
+            min-width: 96px;
+            min-height: 36px;
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+            justify-content: center;
+          }
         }
 
         @media (max-width: 480px) {
@@ -298,10 +322,10 @@ export default function Hero() {
             </p>
 
             {/* Genre pills — single row on desktop, wrap on small screens */}
-            <ul className="gwh-hero-animate gwh-hero-delay-4 mb-0 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            <ul className="gwh-hero-genres gwh-hero-animate gwh-hero-delay-4 mb-0 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               {genres.map((genre) => (
-                <li key={genre}>
-                  <span className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-4 font-inter text-[12px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
+                <li key={genre} className="shrink-0">
+                  <span className="gwh-hero-genre-pill inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[20px] border border-[var(--color-border)] bg-[var(--color-card)] px-4 font-inter text-[12px] font-medium text-[var(--color-accent-olive)] transition-colors duration-300 hover:border-[var(--color-accent-gold)]">
                     {genre}
                   </span>
                 </li>

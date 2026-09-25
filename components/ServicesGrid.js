@@ -350,10 +350,58 @@ export default function ServicesGrid() {
           animation: gwh-svc-fade 0.5s ease-out 1s forwards;
         }
 
+        .gwh-svc-genre-scroll {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
         @media (max-width: 768px) {
           .gwh-svc-inner {
             padding-left: 16px !important;
             padding-right: 16px !important;
+          }
+          .gwh-svc-genres {
+            margin-top: 40px;
+            max-width: none;
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+          }
+          .gwh-svc-genres-label {
+            margin-bottom: 12px !important;
+          }
+          .gwh-svc-genre-scroll {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 8px;
+            padding: 2px 0 8px;
+            margin: 0 -16px;
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+          .gwh-svc-genre-scroll::-webkit-scrollbar {
+            display: none;
+          }
+          .gwh-svc-genre-chip {
+            flex: 0 0 auto;
+            min-width: 104px;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px 12px !important;
+            font-size: 12px !important;
+            line-height: 1.2;
+            white-space: nowrap;
           }
         }
       `}</style>
@@ -416,19 +464,21 @@ export default function ServicesGrid() {
           ))}
         </ul>
 
-        {/* Genre chips — centered wrap inside a soft bordered panel */}
-        <div className="gwh-svc-genres mx-auto mt-12 flex max-w-[900px] flex-wrap items-center justify-center gap-2.5 rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-6 py-8">
-          <p className="mb-4 w-full text-center font-inter text-[14px] font-medium text-[#999999]">
+        {/* Genre chips — panel on desktop; clean horizontal scroll on mobile */}
+        <div className="gwh-svc-genres mx-auto mt-12 max-w-[900px] rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-6 py-8">
+          <p className="gwh-svc-genres-label mb-4 w-full text-center font-inter text-[14px] font-medium text-[#999999]">
             Genres we cover:
           </p>
-          {GENRES.map((genre) => (
-            <span
-              key={genre}
-              className="inline-block shrink-0 cursor-default whitespace-nowrap rounded-[20px] border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.1)] px-[18px] py-2 font-inter text-[13px] font-medium text-[#C9A84C] transition-colors duration-300 hover:border-[rgba(201,168,76,0.6)]"
-            >
-              {genre}
-            </span>
-          ))}
+          <div className="gwh-svc-genre-scroll">
+            {GENRES.map((genre) => (
+              <span
+                key={genre}
+                className="gwh-svc-genre-chip inline-block shrink-0 cursor-default whitespace-nowrap rounded-[20px] border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.1)] px-[18px] py-2 font-inter text-[13px] font-medium text-[#C9A84C] transition-colors duration-300 hover:border-[rgba(201,168,76,0.6)]"
+              >
+                {genre}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -242,6 +242,40 @@ export default function Comparison() {
         .gwh-cmp-panel {
           animation: gwh-cmp-fade 0.3s ease forwards;
         }
+
+        @media (max-width: 768px) {
+          .gwh-cmp-tabs {
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 8px !important;
+            margin-bottom: 40px !important;
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 6px;
+          }
+          .gwh-cmp-tabs::-webkit-scrollbar {
+            display: none;
+          }
+          .gwh-cmp-tab {
+            flex: 0 0 auto;
+            min-width: 128px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px 14px !important;
+            font-size: 13px !important;
+            line-height: 1.25;
+            border-radius: 999px !important;
+          }
+        }
       `}</style>
 
       <div
@@ -278,7 +312,7 @@ export default function Comparison() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => handleTabChange(tab)}
-                className={`shrink-0 rounded-lg px-5 py-3 font-inter text-[14px] font-semibold transition-all duration-200 sm:px-7 ${
+                className={`gwh-cmp-tab shrink-0 rounded-lg px-5 py-3 font-inter text-[14px] font-semibold transition-all duration-200 sm:px-7 ${
                   isActive
                     ? "bg-[var(--color-text)] text-white"
                     : "border border-[var(--color-border)] bg-[var(--color-card)] text-[#666666] hover:border-[var(--color-accent-gold)]"

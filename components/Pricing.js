@@ -125,7 +125,7 @@ function PlanCard({ plan, index }) {
       </div>
 
       {/* Price */}
-      <div className={featured ? "text-center" : ""}>
+      <div className={`gwh-price-amount ${featured ? "text-center" : ""}`}>
         <p
           className={`font-playfair font-bold leading-none ${
             featured ? "text-white" : "text-[var(--color-text)]"
@@ -293,6 +293,12 @@ export default function Pricing() {
 
         .gwh-price-visible .gwh-price-consult {
           animation: gwh-price-fade 0.5s ease-out 0.85s forwards;
+        }
+
+        @media (max-width: 768px) {
+          .gwh-price-amount {
+            text-align: center;
+          }
         }
       `}</style>
 
