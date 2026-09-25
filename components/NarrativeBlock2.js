@@ -149,7 +149,11 @@ export default function NarrativeBlock2() {
             gap: 24px !important;
           }
           .nb2-img-wrap {
-            height: 408px;
+            height: 444px;
+            width: 100%;
+            max-width: min(392px, calc(100vw - 32px));
+            margin-left: auto;
+            margin-right: auto;
           }
           .nb2-float-card {
             bottom: 0;
@@ -157,6 +161,11 @@ export default function NarrativeBlock2() {
             left: auto;
             padding: 12px 14px;
             max-width: 200px;
+          }
+        }
+        @media (max-width: 360px) {
+          .nb2-img-wrap {
+            height: 420px;
           }
         }
       `}</style>

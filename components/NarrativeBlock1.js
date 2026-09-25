@@ -181,13 +181,22 @@ export default function NarrativeBlock1() {
             gap: 24px !important;
           }
           .nb1-img-wrap {
-            height: 408px;
+            height: 444px;
+            width: 100%;
+            max-width: min(392px, calc(100vw - 32px));
+            margin-left: auto;
+            margin-right: auto;
           }
           .nb1-float-card {
             bottom: 0;
             left: 0;
             padding: 12px 14px;
             max-width: 220px;
+          }
+        }
+        @media (max-width: 360px) {
+          .nb1-img-wrap {
+            height: 420px;
           }
         }
       `}</style>

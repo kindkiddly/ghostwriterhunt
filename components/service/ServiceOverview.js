@@ -197,6 +197,14 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           .so-inner {
             flex-direction: column;
             gap: 32px;
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+          .so-images {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: visible;
           }
           .so-headline { font-size: 32px; }
           .so-reveal-left, .so-reveal-right {

@@ -51,6 +51,7 @@ function BookCover({ src, alt }) {
     <img
       src={src}
       alt={alt}
+      className="gwh-book-cover"
       onError={(e) => {
         // Swap to a verified gallery cover if Unsplash fails
         if (e.currentTarget.src !== FALLBACK_COVER) {
@@ -61,6 +62,7 @@ function BookCover({ src, alt }) {
         width: "100%",
         height: "220px",
         objectFit: "cover",
+        objectPosition: "center center",
         borderRadius: "10px",
         marginBottom: "12px",
         display: "block",
@@ -228,8 +230,14 @@ export default function Hero() {
             transform: translateY(0) !important;
           }
           .gwh-books-ticker {
-            height: 300px !important;
-            max-height: 300px;
+            height: 340px !important;
+            max-height: 340px;
+            width: min(100%, calc(100vw - 32px));
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .gwh-book-cover {
+            height: 248px !important;
           }
           .gwh-hero-left {
             min-height: auto !important;

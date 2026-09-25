@@ -182,10 +182,18 @@ export default function ServiceHero({ service }) {
           .sh-inner {
             flex-direction: column;
             gap: 32px;
+            padding-left: 16px;
+            padding-right: 16px;
           }
           .sh-left, .sh-right {
             flex: 1 1 100%;
             max-width: 100%;
+          }
+          .sh-right {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            overflow: visible;
           }
           .sh-headline { font-size: 36px; }
           .sh-reveal-left { transform: translateY(20px); }

@@ -814,9 +814,19 @@ const styles = `
     .ab-values {
       padding: 72px 0;
     }
+    .ab-wrap {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
     .ab-two-col {
       grid-template-columns: 1fr;
       gap: 32px;
+    }
+    .ab-slide-right {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      overflow: visible;
     }
     .ab-h2 {
       font-size: 32px;
