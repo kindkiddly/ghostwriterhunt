@@ -176,8 +176,8 @@ export default function NarrativeBlock3() {
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
             Once your book is complete we handle everything — formatting for
-            every platform, ISBN setup and publishing guidance, metadata
-            optimization and global distribution. Your book goes live on 47+
+            every platform, metadata optimization and global distribution. Your
+            book goes live on 47+
             platforms worldwide. You keep 100% of your rights and every
             dollar of royalties.
           </p>
