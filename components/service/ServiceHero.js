@@ -1,6 +1,8 @@
 "use client";
 
 import FloatingImages from "./FloatingImages";
+import ServiceTrustLine from "./ServiceTrustLine";
+import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
@@ -120,17 +122,6 @@ export default function ServiceHero({ service }) {
           background: #C9A84C;
           color: #FFFFFF;
         }
-        .sh-trust {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 13px;
-          color: #999999;
-        }
-        .sh-trust-dot {
-          color: #C9A84C;
-          margin: 0 6px;
-        }
-
         .sh-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
@@ -175,70 +166,16 @@ export default function ServiceHero({ service }) {
           .sh-reveal-left { transform: translateY(20px); }
 
           .sh-section .sh-ctas {
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            justify-content: center !important;
-            align-items: stretch;
-            gap: 8px !important;
-            width: 100%;
-            max-width: 100%;
-            overflow: visible;
             padding-bottom: 0;
             margin-bottom: 20px;
           }
-          .sh-section .sh-btn-primary,
-          .sh-section .sh-btn-secondary {
-            flex: 1 1 0 !important;
-            min-width: 0;
-            width: auto !important;
-            max-width: none;
-            height: 44px !important;
-            padding: 0 10px !important;
-            border-radius: 6px !important;
-            font-size: 11px !important;
-            line-height: 1.2 !important;
-            font-weight: 600 !important;
-            text-align: center;
-            white-space: normal;
-            box-sizing: border-box !important;
-            border: 1.5px solid transparent !important;
-            box-shadow:
-              0 4px 0 rgba(0, 0, 0, 0.07),
-              0 7px 12px rgba(0, 0, 0, 0.11) !important;
-            filter: none !important;
-          }
-          .sh-section .sh-btn-primary {
-            background: #c9a84c !important;
-            color: #ffffff !important;
-            border-color: #c9a84c !important;
-          }
-          .sh-section .sh-btn-secondary {
-            background: #ffffff !important;
-            color: #c9a84c !important;
-            border-color: rgba(201, 168, 76, 0.45) !important;
-          }
-          .sh-section .sh-btn-primary:hover {
-            background: #c9a84c !important;
-            box-shadow:
-              0 4px 0 rgba(0, 0, 0, 0.07),
-              0 7px 12px rgba(0, 0, 0, 0.11) !important;
-          }
-          .sh-section .sh-btn-primary:active,
-          .sh-section .sh-btn-secondary:active {
-            box-shadow:
-              0 2px 0 rgba(0, 0, 0, 0.07),
-              0 4px 8px rgba(0, 0, 0, 0.1) !important;
-            transform: translateY(2px);
-          }
-          .sh-section .sh-btn-secondary:hover {
-            background: #ffffff !important;
-            color: #b8960c !important;
-            box-shadow:
-              0 4px 0 rgba(0, 0, 0, 0.07),
-              0 7px 12px rgba(0, 0, 0, 0.11) !important;
+
+          .sh-section .svc-trust {
+            margin-top: 4px;
           }
         }
       `}</style>
+      <ServiceMobileDualCtaStyles />
 
       <div className="sh-inner">
         <div className="sh-left sh-reveal-left" data-delay="0">
@@ -251,23 +188,23 @@ export default function ServiceHero({ service }) {
 
           <p className="sh-subtext">{service.heroSubtext}</p>
 
-          <div className="sh-ctas">
-            <a href="/#start" className="sh-btn-primary">
+          <div className="sh-ctas svc-dual-ctas">
+            <a
+              href="/#start"
+              className="sh-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
+            >
               <span className="lg:hidden">Start Your Project →</span>
               <span className="hidden lg:inline">Start Your Project</span>
             </a>
-            <a href="/#start" className="sh-btn-secondary">
+            <a
+              href="/#start"
+              className="sh-btn-secondary svc-dual-cta-btn svc-dual-cta-btn--secondary"
+            >
               Book Free Consultation
             </a>
           </div>
 
-          <p className="sh-trust">
-            Free consultation
-            <span className="sh-trust-dot">·</span>
-            No commitment
-            <span className="sh-trust-dot">·</span>
-            100% confidential
-          </p>
+          <ServiceTrustLine variant="light" />
         </div>
 
         <div className="sh-right sh-reveal-img" data-delay="200">

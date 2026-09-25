@@ -1,6 +1,8 @@
 "use client";
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import ServiceTrustLine from "./ServiceTrustLine";
+import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
 
 /**
  * GhostWriterHunt — ServiceCTA
@@ -107,16 +109,8 @@ export default function ServiceCTA({ service }) {
           background: #FFFFFF;
           color: #1C1C1C;
         }
-        .sc-trust {
+        .sc-section .svc-trust {
           margin-top: 24px;
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 13px;
-          color: rgba(255,255,255,0.5);
-        }
-        .sc-trust-dot {
-          color: #C9A84C;
-          margin: 0 6px;
         }
         .sc-reveal {
           opacity: 0;
@@ -129,10 +123,12 @@ export default function ServiceCTA({ service }) {
         }
         @media (max-width: 768px) {
           .sc-headline { font-size: 36px; }
-          .sc-ctas { flex-direction: column; align-items: stretch; }
-          .sc-btn-primary, .sc-btn-secondary { width: 100%; }
+          .sc-section .svc-trust {
+            margin-top: 4px;
+          }
         }
       `}</style>
+      <ServiceMobileDualCtaStyles />
 
       <div className="sc-inner">
         <p className="sc-label sc-reveal" data-delay="0">
@@ -147,21 +143,26 @@ export default function ServiceCTA({ service }) {
         <p className="sc-sub sc-reveal" data-delay="140">
           {service.ctaSubtext}
         </p>
-        <div className="sc-ctas sc-reveal" data-delay="200">
-          <a href="/#start" className="sc-btn-primary">
-            Start Your Project
+        <div className="sc-ctas svc-dual-ctas sc-reveal" data-delay="200">
+          <a
+            href="/#start"
+            className="sc-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
+          >
+            <span className="lg:hidden">Start Your Project →</span>
+            <span className="hidden lg:inline">Start Your Project</span>
           </a>
-          <a href="/#start" className="sc-btn-secondary">
+          <a
+            href="/#start"
+            className="sc-btn-secondary svc-dual-cta-btn svc-dual-cta-btn--secondary"
+          >
             Book Free Consultation
           </a>
         </div>
-        <p className="sc-trust sc-reveal" data-delay="280">
-          No commitment required
-          <span className="sc-trust-dot">·</span>
-          Free consultation
-          <span className="sc-trust-dot">·</span>
-          100% confidential
-        </p>
+        <ServiceTrustLine
+          variant="dark"
+          className="sc-reveal"
+          dataDelay={280}
+        />
       </div>
     </section>
   );
