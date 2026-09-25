@@ -52,6 +52,7 @@ function BookCover({ src, alt }) {
       src={src}
       alt={alt}
       className="gwh-book-cover"
+      decoding="async"
       onError={(e) => {
         // Swap to a verified gallery cover if Unsplash fails
         if (e.currentTarget.src !== FALLBACK_COVER) {
