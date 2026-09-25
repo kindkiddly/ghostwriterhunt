@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — ServiceApproach
@@ -315,33 +315,7 @@ function ApproachIcon({ name }) {
 }
 
 export default function ServiceApproach({ service }) {
-  useEffect(() => {
-    const elements = document.querySelectorAll(".sa-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("sa-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("sa-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, [service?.slug]);
+  useRevealSelector(".sa-reveal", "sa-visible", [service?.slug]);
 
   if (!service?.approach?.length) return null;
 

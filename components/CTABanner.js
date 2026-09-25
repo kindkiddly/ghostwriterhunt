@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — CTA Banner
@@ -9,37 +9,7 @@ import { useEffect } from "react";
  */
 
 export default function CTABanner() {
-  // Scroll-reveal: fire once when ~15% of each target is visible
-  useEffect(() => {
-    const elements = document.querySelectorAll(".cta-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("cta-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("cta-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useRevealSelector(".cta-reveal", "cta-visible");
 
   return (
     <section

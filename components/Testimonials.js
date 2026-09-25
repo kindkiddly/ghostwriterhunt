@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useSectionReveal } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Testimonials
@@ -191,8 +192,7 @@ function ArrowButton({ direction, onClick, label }) {
 }
 
 export default function Testimonials() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const { ref: sectionRef, visible } = useSectionReveal();
   const [setIndex, setSetIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [perView, setPerView] = useState(3);
@@ -236,31 +236,6 @@ export default function Testimonials() {
   useEffect(() => {
     if (setIndex >= pageCount) setSetIndex(0);
   }, [pageCount, setIndex]);
-
-  // Reveal once when ~15% of the section is visible
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      observer.observe(node);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   // Slide offset: track is pageCount × viewport wide; move by one page each step
   const trackTranslate = `translateX(-${(setIndex * 100) / pageCount}%)`;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Narrative Block 3
@@ -46,39 +46,10 @@ function WhiteGlobeIcon() {
 }
 
 export default function NarrativeBlock3() {
-  // Scroll-reveal: fire once when ~15% of each target is visible
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".nb4-reveal-left, .nb4-reveal-right, .nb4-reveal-card"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("nb4-is-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("nb4-is-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useRevealSelector(
+    ".nb4-reveal-left, .nb4-reveal-right, .nb4-reveal-card",
+    "nb4-is-visible"
+  );
 
   return (
     <section

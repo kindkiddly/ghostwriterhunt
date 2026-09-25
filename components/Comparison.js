@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useSectionReveal } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Comparison
@@ -144,37 +145,11 @@ function CheckIcon() {
 }
 
 export default function Comparison() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const { ref: sectionRef, visible } = useSectionReveal();
   const [activeTab, setActiveTab] = useState("Writing Yourself");
   const [contentKey, setContentKey] = useState(0);
 
   const content = TAB_CONTENT[activeTab];
-
-  // Reveal once when ~15% of the section is visible
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      observer.observe(node);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleTabChange = (tab) => {
     if (tab === activeTab) return;

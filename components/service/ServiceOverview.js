@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import FloatingImages from "./FloatingImages";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — ServiceOverview
@@ -32,35 +32,9 @@ function CheckMark() {
 }
 
 export default function ServiceOverview({ service, imagesOnLeft = false }) {
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".so-reveal-left, .so-reveal-right"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("so-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("so-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, [service?.slug]);
+  useRevealSelector(".so-reveal-left, .so-reveal-right", "so-visible", [
+    service?.slug,
+  ]);
 
   if (!service?.overview) return null;
   const { overview } = service;

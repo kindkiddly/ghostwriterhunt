@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — FAQ
@@ -98,37 +99,7 @@ function PlusMinusIcon({ open }) {
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Scroll-reveal: fire once when ~15% of each target is visible
-  useEffect(() => {
-    const elements = document.querySelectorAll(".faq-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("faq-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("faq-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useRevealSelector(".faq-reveal", "faq-visible");
 
   const toggleItem = (index) => {
     setOpenIndex((current) => (current === index ? null : index));

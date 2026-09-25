@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 import { getImageDimensions } from "@/data/imageDimensions";
 
 /**
@@ -9,33 +9,7 @@ import { getImageDimensions } from "@/data/imageDimensions";
  */
 
 export default function ServiceProcess({ service }) {
-  useEffect(() => {
-    const elements = document.querySelectorAll(".sp-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("sp-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("sp-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, [service?.slug]);
+  useRevealSelector(".sp-reveal", "sp-visible", [service?.slug]);
 
   if (!service?.process?.length) return null;
 

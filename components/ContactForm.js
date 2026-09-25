@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 import { createPortal } from "react-dom";
 import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
 
@@ -294,65 +295,11 @@ export default function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // Scroll-reveal: left copy, right card, staggered form rows
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".cf-reveal-left, .cf-reveal-right"
-    );
-    const fieldElements = document.querySelectorAll(".cf-reveal-field");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("cf-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    const fieldObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("cf-visible");
-            }, delay);
-            fieldObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -30px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("cf-visible");
-        observer.observe(el);
-      });
-      fieldElements.forEach((el) => {
-        el.classList.remove("cf-visible");
-        fieldObserver.observe(el);
-      });
-    });
-
-    return () => {
-      observer.disconnect();
-      fieldObserver.disconnect();
-    };
-  }, [success]);
+  useRevealSelector(
+    ".cf-reveal-left, .cf-reveal-right, .cf-reveal-field",
+    "cf-visible",
+    [success]
+  );
 
   function handleChange(e) {
     const { name, value } = e.target;

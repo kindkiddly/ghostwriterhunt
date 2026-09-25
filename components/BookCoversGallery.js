@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
+import { useSectionReveal } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Book Covers Gallery
@@ -122,39 +123,13 @@ const BOOKS = [
 ];
 
 export default function BookCoversGallery() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const { ref: sectionRef, visible } = useSectionReveal();
   const [activeTab, setActiveTab] = useState("All");
 
   const filteredBooks = useMemo(() => {
     if (activeTab === "All") return BOOKS;
     return BOOKS.filter((book) => book.genre === activeTab);
   }, [activeTab]);
-
-  // Reveal once when ~15% of the section is visible
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      observer.observe(node);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section

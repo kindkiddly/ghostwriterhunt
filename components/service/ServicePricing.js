@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — ServicePricing
@@ -38,33 +38,7 @@ function formatPrice(n) {
 export default function ServicePricing({ service }) {
   const plans = service?.pricing || [];
 
-  useEffect(() => {
-    const elements = document.querySelectorAll(".spr-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("spr-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("spr-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, [service?.slug]);
+  useRevealSelector(".spr-reveal", "spr-visible", [service?.slug]);
 
   if (!plans.length) return null;
 

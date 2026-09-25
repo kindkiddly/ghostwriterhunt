@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Trust Block
@@ -31,39 +32,7 @@ const TICKER_CHIPS = [...CHIPS, ...CHIPS];
 export default function TrustBlock() {
   const trackRef = useRef(null);
 
-  // Scroll-reveal: fire once when ~15% of each target is visible
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".tb-reveal, .tb-reveal-stats, .tb-reveal-chips"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("tb-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("tb-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useRevealSelector(".tb-reveal, .tb-reveal-stats, .tb-reveal-chips", "tb-visible");
 
   // Touch / mouse drag — pause CSS ticker and scrub via transform
   useEffect(() => {

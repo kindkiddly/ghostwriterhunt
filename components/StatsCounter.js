@@ -34,33 +34,43 @@ export default function StatsCounter() {
   useEffect(() => {
     const counters = document.querySelectorAll(".stat-number");
 
+    const runCount = (el) => {
+      if (el.dataset.animated === "true") return;
+      el.dataset.animated = "true";
+      const target = parseInt(el.dataset.target, 10);
+      el.textContent = "0";
+      countUp(el, target, 2000);
+      observer.unobserve(el);
+    };
+
+    const checkAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      counters.forEach((el) => {
+        if (el.dataset.animated === "true") return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < vh * 0.95 && rect.bottom > vh * 0.05) runCount(el);
+      });
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target.dataset.animated === "true") return;
-            entry.target.dataset.animated = "true";
-            const target = parseInt(entry.target.dataset.target, 10);
-            const duration = 2000;
-            entry.target.textContent = "0";
-            countUp(entry.target, target, duration);
-            observer.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) runCount(entry.target);
         });
       },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
+      { threshold: 0.08, rootMargin: "0px" }
     );
 
-    requestAnimationFrame(() => {
-      counters.forEach((el) => {
-        observer.observe(el);
-      });
-    });
+    counters.forEach((el) => observer.observe(el));
+    requestAnimationFrame(checkAll);
+    window.addEventListener("scroll", checkAll, { passive: true });
+    window.addEventListener("resize", checkAll, { passive: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", checkAll);
+      window.removeEventListener("resize", checkAll);
+    };
   }, []);
 
   return (

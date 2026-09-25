@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import FloatingImages from "@/components/service/FloatingImages";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — Narrative Block 1
@@ -75,39 +75,10 @@ function GoldCheckIcon() {
 }
 
 export default function NarrativeBlock1() {
-  // Scroll-reveal: fire once when ~15% of each target is visible
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".nb1-reveal-left, .nb1-reveal-right, .nb1-reveal-card"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("nb1-is-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("nb1-is-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useRevealSelector(
+    ".nb1-reveal-left, .nb1-reveal-right, .nb1-reveal-card",
+    "nb1-is-visible"
+  );
 
   return (
     <section

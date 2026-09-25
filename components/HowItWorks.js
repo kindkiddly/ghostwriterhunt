@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useSectionReveal } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — How It Works
@@ -144,32 +144,7 @@ function CheckIcon() {
 }
 
 export default function HowItWorks() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      observer.observe(node);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, visible } = useSectionReveal();
 
   return (
     <section

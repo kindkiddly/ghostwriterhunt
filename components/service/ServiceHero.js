@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import FloatingImages from "./FloatingImages";
+import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
  * GhostWriterHunt — ServiceHero
@@ -10,35 +10,11 @@ import FloatingImages from "./FloatingImages";
  */
 
 export default function ServiceHero({ service }) {
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".sh-reveal-left, .sh-reveal-img"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay || "0");
-            setTimeout(() => {
-              entry.target.classList.add("sh-visible");
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        el.classList.remove("sh-visible");
-        observer.observe(el);
-      });
-    });
-
-    return () => observer.disconnect();
-  }, [service?.slug]);
+  useRevealSelector(
+    ".sh-reveal-left, .sh-reveal-img",
+    "sh-visible",
+    [service?.slug]
+  );
 
   if (!service) return null;
 

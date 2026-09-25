@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useSectionReveal } from "@/lib/useSectionReveal";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
 
@@ -210,33 +211,7 @@ function PlanCard({ plan, index }) {
 }
 
 export default function Pricing() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  // Reveal once when ~15% of the section is visible
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    requestAnimationFrame(() => {
-      observer.observe(node);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, visible } = useSectionReveal();
 
   return (
     <section
@@ -273,26 +248,55 @@ export default function Pricing() {
 
         .gwh-price-visible .gwh-price-label {
           animation: gwh-price-fade 0.5s ease-out forwards;
+          animation-fill-mode: forwards;
         }
 
         .gwh-price-visible .gwh-price-headline {
           animation: gwh-price-up 0.5s ease-out 0.05s forwards;
+          animation-fill-mode: forwards;
         }
 
         .gwh-price-visible .gwh-price-sub {
           animation: gwh-price-up 0.5s ease-out 0.1s forwards;
+          animation-fill-mode: forwards;
         }
 
         .gwh-price-visible .gwh-price-card {
           animation: gwh-price-up 0.5s ease-out forwards;
+          animation-fill-mode: forwards;
+        }
+
+        .gwh-price-visible .gwh-price-card:nth-child(1) {
+          animation-delay: 0.15s;
+        }
+        .gwh-price-visible .gwh-price-card:nth-child(2) {
+          animation-delay: 0.3s;
+        }
+        .gwh-price-visible .gwh-price-card:nth-child(3) {
+          animation-delay: 0.45s;
         }
 
         .gwh-price-visible .gwh-price-includes {
           animation: gwh-price-fade 0.5s ease-out 0.7s forwards;
+          animation-fill-mode: forwards;
         }
 
         .gwh-price-visible .gwh-price-consult {
           animation: gwh-price-fade 0.5s ease-out 0.85s forwards;
+          animation-fill-mode: forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .gwh-price-label,
+          .gwh-price-headline,
+          .gwh-price-sub,
+          .gwh-price-card,
+          .gwh-price-includes,
+          .gwh-price-consult {
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+          }
         }
 
         @media (max-width: 768px) {
