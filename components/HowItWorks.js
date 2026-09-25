@@ -317,6 +317,23 @@ export default function HowItWorks() {
               );
           }
         }
+
+        @media (max-width: 767px) {
+          .gwh-hiw-bg {
+            background-image: url("/images/background-howitworks-M.webp");
+            background-position: center 38%;
+          }
+          .gwh-hiw-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(12, 14, 22, 0.88) 0%,
+                rgba(12, 14, 22, 0.72) 32%,
+                rgba(12, 14, 22, 0.78) 68%,
+                rgba(12, 14, 22, 0.9) 100%
+              );
+          }
+        }
       `}</style>
 
       <div className="gwh-hiw-bg" aria-hidden="true" />

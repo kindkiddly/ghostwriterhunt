@@ -196,7 +196,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         @media (max-width: 768px) {
           .so-inner {
             flex-direction: column;
-            gap: 40px;
+            gap: 32px;
           }
           .so-headline { font-size: 32px; }
           .so-reveal-left, .so-reveal-right {

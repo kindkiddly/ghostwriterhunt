@@ -816,7 +816,7 @@ const styles = `
     }
     .ab-two-col {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
     }
     .ab-h2 {
       font-size: 32px;

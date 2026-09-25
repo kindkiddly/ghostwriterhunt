@@ -181,7 +181,7 @@ export default function ServiceHero({ service }) {
           }
           .sh-inner {
             flex-direction: column;
-            gap: 40px;
+            gap: 32px;
           }
           .sh-left, .sh-right {
             flex: 1 1 100%;

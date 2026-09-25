@@ -144,7 +144,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
+      className="gwh-hero-root relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)",
@@ -218,17 +218,23 @@ export default function Hero() {
 
         /* ——— Mobile only ——— */
         @media (max-width: 768px) {
+          .gwh-hero-root {
+            min-height: auto;
+          }
+          .gwh-hero-inner {
+            gap: 24px !important;
+          }
           .gwh-hero-cta-shift {
-            transform: translateY(8px) !important;
+            transform: translateY(0) !important;
           }
           .gwh-books-ticker {
-            height: 280px !important;
-            max-height: 280px;
+            height: 300px !important;
+            max-height: 300px;
           }
           .gwh-hero-left {
             min-height: auto !important;
-            padding-top: 100px !important;
-            padding-bottom: 24px !important;
+            padding-top: 96px !important;
+            padding-bottom: 8px !important;
           }
         }
 
@@ -242,9 +248,9 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
+      <div className="gwh-hero-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
         {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
-        <div className="gwh-hero-left flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:items-start lg:text-left">
+        <div className="gwh-hero-left flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:min-h-screen lg:items-start lg:justify-center lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.0] tracking-[-0.03em] text-[var(--color-text)] sm:text-[48px] lg:text-[80px]">
             <span className="block font-normal">Where Ideas</span>
             <span className="block italic">Become Books.</span>

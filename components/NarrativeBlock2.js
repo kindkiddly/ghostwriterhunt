@@ -85,7 +85,7 @@ export default function NarrativeBlock2() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FAFAF7] py-[80px]"
+      className="nb2-section-mobile relative w-full overflow-hidden bg-[#FAFAF7] py-[80px]"
       aria-label="Our Approach"
     >
       <style>{`
@@ -139,17 +139,24 @@ export default function NarrativeBlock2() {
           .nb2-reveal-right.nb2-is-visible {
             transform: translateX(0) scale(1);
           }
+          .nb2-section-mobile {
+            padding-top: 56px !important;
+            padding-bottom: 56px !important;
+          }
           .nb2-section-inner {
             padding-left: 20px !important;
             padding-right: 20px !important;
-            gap: 32px !important;
+            gap: 24px !important;
           }
           .nb2-img-wrap {
-            height: 320px;
+            height: 408px;
           }
-          .nb2-reveal-card,
           .nb2-float-card {
-            display: none !important;
+            bottom: 0;
+            right: 0;
+            left: auto;
+            padding: 12px 14px;
+            max-width: 200px;
           }
         }
       `}</style>

@@ -74,17 +74,28 @@ export default function FloatingImages({
           }
           @media (max-width: 768px) {
             .fi-mosaic {
-              display: flex;
-              flex-direction: row;
-              gap: 12px;
-              max-width: 100%;
-              overflow-x: auto;
+              grid-template-columns: 1fr 1fr;
+              gap: 10px;
+              max-width: min(348px, 94vw);
+              margin: 0 auto;
             }
-            .fi-mosaic-img {
-              width: 100px;
-              height: 130px !important;
-              margin-top: 0 !important;
-              flex-shrink: 0;
+            .fi-mosaic-img:nth-child(1) {
+              width: 100%;
+              height: 184px !important;
+              margin-top: 12px !important;
+            }
+            .fi-mosaic-img:nth-child(2) {
+              height: 154px !important;
+            }
+            .fi-mosaic-img:nth-child(3) {
+              height: 154px !important;
+            }
+            .fi-mosaic-img:nth-child(4) {
+              height: 184px !important;
+              margin-top: -16px !important;
+            }
+            .fi-mosaic-img:hover {
+              transform: none;
             }
           }
         `}</style>
@@ -134,8 +145,12 @@ export default function FloatingImages({
           }
           @media (max-width: 768px) {
             .fi-single-img {
-              width: 100px;
-              height: 130px;
+              width: min(300px, 92vw);
+              height: 374px;
+              object-fit: cover;
+            }
+            .fi-single-img:hover {
+              transform: none;
             }
           }
         `}</style>
@@ -232,21 +247,73 @@ export default function FloatingImages({
         }
         @media (max-width: 768px) {
           .fi-float {
-            height: auto;
-            display: flex;
-            flex-direction: row;
-            gap: 12px;
-            align-items: center;
+            height: 408px;
+            max-width: min(360px, 94vw);
+            margin: 0 auto;
           }
           .fi-float-img {
-            position: static;
-            width: 80px;
-            height: 130px;
-            border-radius: 10px;
-            transform: none !important;
-            flex-shrink: 0;
+            position: absolute;
+            border-width: 3px;
+            object-fit: cover;
           }
-          .fi-float-deco { display: none; }
+          .fi-float-large {
+            width: 242px;
+            height: 306px;
+            top: 6px;
+            left: 50%;
+            margin-left: -121px;
+            border-radius: 14px;
+            z-index: 1;
+            transform: none;
+          }
+          .fi-float-large:hover {
+            transform: none;
+          }
+          .fi-float-large.fi-float-large-landscape {
+            width: 272px;
+            height: 185px;
+            margin-left: -136px;
+            top: 24px;
+          }
+          .fi-float-large.fi-float-large-square {
+            width: 242px;
+            height: 242px;
+            margin-left: -121px;
+            top: 18px;
+          }
+          .fi-float-medium {
+            width: 145px;
+            height: 187px;
+            top: 130px;
+            left: 50%;
+            margin-left: 30px;
+            border-radius: 11px;
+            z-index: 2;
+            transform: rotate(3deg);
+          }
+          .fi-float-medium:hover {
+            transform: rotate(3deg);
+          }
+          .fi-float-small {
+            width: 106px;
+            height: 136px;
+            top: 250px;
+            left: 50%;
+            margin-left: -130px;
+            border-radius: 9px;
+            z-index: 3;
+            transform: rotate(-4deg);
+          }
+          .fi-float-small:hover {
+            transform: rotate(-4deg);
+          }
+          .fi-float-deco {
+            display: block;
+            width: 48px;
+            height: 48px;
+            bottom: 28px;
+            right: 12px;
+          }
         }
       `}</style>
 

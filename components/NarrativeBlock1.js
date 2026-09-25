@@ -111,7 +111,7 @@ export default function NarrativeBlock1() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FFFFFF] py-[80px]"
+      className="nb1-section-mobile relative w-full overflow-hidden bg-[#FFFFFF] py-[80px]"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 0% 50%, rgba(201,168,76,0.05) 0%, transparent 60%)",
@@ -171,17 +171,23 @@ export default function NarrativeBlock1() {
           .nb1-reveal-right.nb1-is-visible {
             transform: translateX(0) scale(1);
           }
+          .nb1-section-mobile {
+            padding-top: 56px !important;
+            padding-bottom: 56px !important;
+          }
           .nb1-section-inner {
             padding-left: 20px !important;
             padding-right: 20px !important;
-            gap: 32px !important;
+            gap: 24px !important;
           }
           .nb1-img-wrap {
-            height: 320px;
+            height: 408px;
           }
-          .nb1-reveal-card,
           .nb1-float-card {
-            display: none !important;
+            bottom: 0;
+            left: 0;
+            padding: 12px 14px;
+            max-width: 220px;
           }
         }
       `}</style>
