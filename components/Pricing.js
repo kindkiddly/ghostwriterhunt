@@ -606,6 +606,35 @@ export default function Pricing() {
           .gwh-price-card {
             backdrop-filter: blur(12px) saturate(1.05);
             -webkit-backdrop-filter: blur(12px) saturate(1.05);
+            background: linear-gradient(
+              180deg,
+              rgba(12, 14, 22, 0.82) 0%,
+              rgba(0, 0, 0, 0.84) 100%
+            );
+          }
+
+          .gwh-price-card--starter {
+            background: linear-gradient(
+              180deg,
+              rgba(6, 42, 40, 0.86) 0%,
+              rgba(0, 0, 0, 0.86) 100%
+            );
+          }
+
+          .gwh-price-card--professional {
+            background: linear-gradient(
+              180deg,
+              rgba(42, 14, 68, 0.86) 0%,
+              rgba(0, 0, 0, 0.86) 100%
+            );
+          }
+
+          .gwh-price-card--complete {
+            background: linear-gradient(
+              180deg,
+              rgba(58, 32, 6, 0.86) 0%,
+              rgba(0, 0, 0, 0.86) 100%
+            );
           }
 
           .gwh-price-head {
