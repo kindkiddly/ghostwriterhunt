@@ -319,11 +319,9 @@ export default function ServiceApproach({ service }) {
 
   if (!service?.approach?.length) return null;
 
-  const isGhostwriting = service.slug === "ghostwriting";
-
   return (
     <section
-      className={`sa-section${isGhostwriting ? " sa-section--ghostwriting-mobile" : ""}`}
+      className="sa-section sa-section--glass-mobile"
       aria-label="Our approach"
     >
       <style>{`
@@ -415,13 +413,14 @@ export default function ServiceApproach({ service }) {
           .sa-headline { font-size: 32px; }
           .sa-grid { grid-template-columns: 1fr; }
 
-          .sa-section--ghostwriting-mobile {
+          /* Mobile glass cards — matches home How It Works theme */
+          .sa-section--glass-mobile {
             background: #141820;
             padding: 56px 0;
             position: relative;
             overflow: hidden;
           }
-          .sa-section--ghostwriting-mobile::before {
+          .sa-section--glass-mobile::before {
             content: "";
             position: absolute;
             inset: 0;
@@ -438,21 +437,26 @@ export default function ServiceApproach({ service }) {
               );
             pointer-events: none;
           }
-          .sa-section--ghostwriting-mobile .sa-inner {
+          .sa-section--glass-mobile .sa-inner {
             position: relative;
             z-index: 1;
+            padding-left: 16px;
+            padding-right: 16px;
           }
-          .sa-section--ghostwriting-mobile .sa-label {
+          .sa-section--glass-mobile .sa-label {
             color: #c9a84c;
           }
-          .sa-section--ghostwriting-mobile .sa-headline {
+          .sa-section--glass-mobile .sa-headline {
             color: #ffffff;
             margin-bottom: 28px;
           }
-          .sa-section--ghostwriting-mobile .sa-grid {
+          .sa-section--glass-mobile .sa-headline-italic {
+            color: #c9a84c;
+          }
+          .sa-section--glass-mobile .sa-grid {
             gap: 14px;
           }
-          .sa-section--ghostwriting-mobile .sa-card {
+          .sa-section--glass-mobile .sa-card {
             border: 1px solid rgba(201, 168, 76, 0.38);
             border-top: none;
             border-radius: 16px;
@@ -468,26 +472,35 @@ export default function ServiceApproach({ service }) {
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             padding: 24px 20px;
+            transform: none;
           }
-          .sa-section--ghostwriting-mobile .sa-icon-wrap {
+          .sa-section--glass-mobile .sa-card:hover {
+            transform: none;
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+              0 0 28px rgba(201, 168, 76, 0.12),
+              0 12px 40px rgba(0, 0, 0, 0.35);
+          }
+          .sa-section--glass-mobile .sa-icon-wrap {
             width: 48px;
             height: 48px;
             margin-bottom: 16px;
             border: 1px solid rgba(201, 168, 76, 0.55);
             background: rgba(201, 168, 76, 0.08);
             box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+            border-radius: 50%;
           }
-          .sa-section--ghostwriting-mobile .sa-card-title {
+          .sa-section--glass-mobile .sa-card-title {
             color: #ffffff;
             font-size: 19px;
             margin-bottom: 10px;
           }
-          .sa-section--ghostwriting-mobile .sa-card-desc {
+          .sa-section--glass-mobile .sa-card-desc {
             color: #d4d4d4;
             font-size: 14px;
             line-height: 1.65;
           }
-          .sa-section--ghostwriting-mobile .sa-card-title::after {
+          .sa-section--glass-mobile .sa-card-title::after {
             content: "";
             display: block;
             height: 1px;
