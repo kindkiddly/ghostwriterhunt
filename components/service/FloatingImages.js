@@ -240,17 +240,6 @@ export default function FloatingImages({
         .fi-float-small:hover {
           transform: rotate(-4deg) scale(1.04);
         }
-        .fi-float-deco {
-          position: absolute;
-          bottom: 40px;
-          right: 20px;
-          width: 60px;
-          height: 60px;
-          background: #C9A84C;
-          border-radius: 8px;
-          opacity: 0.15;
-          z-index: 0;
-        }
         @media (max-width: 768px) {
           .fi-float {
             width: min(392px, calc(100vw - 32px));
@@ -311,13 +300,6 @@ export default function FloatingImages({
           .fi-float-small:hover {
             transform: rotate(-4deg);
           }
-          .fi-float-deco {
-            display: block;
-            width: 52px;
-            height: 52px;
-            bottom: 24px;
-            right: 8px;
-          }
         }
         @media (max-width: 360px) {
           .fi-float {
@@ -344,8 +326,6 @@ export default function FloatingImages({
           }
         }
       `}</style>
-
-      <div className="fi-float-deco" aria-hidden="true" />
 
       {list.map((img) => {
         const sizeClass =

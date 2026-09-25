@@ -345,8 +345,13 @@ export default function ServiceApproach({ service }) {
 
   if (!service?.approach?.length) return null;
 
+  const isGhostwriting = service.slug === "ghostwriting";
+
   return (
-    <section className="sa-section" aria-label="Our approach">
+    <section
+      className={`sa-section${isGhostwriting ? " sa-section--ghostwriting-mobile" : ""}`}
+      aria-label="Our approach"
+    >
       <style>{`
         .sa-section {
           background: #FAFAF7;
@@ -435,6 +440,92 @@ export default function ServiceApproach({ service }) {
         @media (max-width: 768px) {
           .sa-headline { font-size: 32px; }
           .sa-grid { grid-template-columns: 1fr; }
+
+          .sa-section--ghostwriting-mobile {
+            background: #141820;
+            padding: 56px 0;
+            position: relative;
+            overflow: hidden;
+          }
+          .sa-section--ghostwriting-mobile::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+              radial-gradient(
+                ellipse at 80% 0%,
+                rgba(201, 168, 76, 0.12) 0%,
+                transparent 55%
+              ),
+              linear-gradient(
+                180deg,
+                rgba(12, 14, 22, 0.95) 0%,
+                rgba(12, 14, 22, 0.88) 100%
+              );
+            pointer-events: none;
+          }
+          .sa-section--ghostwriting-mobile .sa-inner {
+            position: relative;
+            z-index: 1;
+          }
+          .sa-section--ghostwriting-mobile .sa-label {
+            color: #c9a84c;
+          }
+          .sa-section--ghostwriting-mobile .sa-headline {
+            color: #ffffff;
+            margin-bottom: 28px;
+          }
+          .sa-section--ghostwriting-mobile .sa-grid {
+            gap: 14px;
+          }
+          .sa-section--ghostwriting-mobile .sa-card {
+            border: 1px solid rgba(201, 168, 76, 0.38);
+            border-top: none;
+            border-radius: 16px;
+            background: linear-gradient(
+              145deg,
+              rgba(255, 255, 255, 0.11) 0%,
+              rgba(255, 255, 255, 0.04) 100%
+            );
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+              0 0 28px rgba(201, 168, 76, 0.12),
+              0 12px 40px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 24px 20px;
+          }
+          .sa-section--ghostwriting-mobile .sa-icon-wrap {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(201, 168, 76, 0.55);
+            background: rgba(201, 168, 76, 0.08);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+          }
+          .sa-section--ghostwriting-mobile .sa-card-title {
+            color: #ffffff;
+            font-size: 19px;
+            margin-bottom: 10px;
+          }
+          .sa-section--ghostwriting-mobile .sa-card-desc {
+            color: #d4d4d4;
+            font-size: 14px;
+            line-height: 1.65;
+          }
+          .sa-section--ghostwriting-mobile .sa-card-title::after {
+            content: "";
+            display: block;
+            height: 1px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            background: linear-gradient(
+              90deg,
+              rgba(201, 168, 76, 0.65) 0%,
+              rgba(201, 168, 76, 0.15) 100%
+            );
+          }
         }
       `}</style>
 

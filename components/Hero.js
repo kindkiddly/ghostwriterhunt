@@ -107,6 +107,35 @@ function ScrollColumn({ images, animationClass, animationDelay, label }) {
   );
 }
 
+function HeroTrustPeopleIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="shrink-0 text-[#C9A84C]"
+    >
+      <circle cx="9" cy="8" r="3" fill="currentColor" />
+      <circle cx="16" cy="9" r="2.5" fill="currentColor" />
+      <path
+        d="M4 19c0-2.5 2.2-4 5-4s5 1.5 5 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 19c0-1.8 1.4-3 3.5-3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function BookTicker() {
   return (
     <div
@@ -244,7 +273,77 @@ export default function Hero() {
             padding-top: 96px !important;
             padding-bottom: 8px !important;
           }
+          .gwh-hero-left h1 {
+            font-size: 40px !important;
+            line-height: 1.05 !important;
+            margin-bottom: 14px !important;
+          }
+          .gwh-hero-h1-line1 {
+            color: #1c1c1c;
+          }
+          .gwh-hero-h1-line2 {
+            color: #c9a84c;
+            font-style: italic;
+          }
+          .gwh-hero-sub {
+            font-size: 15px !important;
+            line-height: 1.65 !important;
+            margin-bottom: 22px !important;
+            color: #666666 !important;
+          }
+          .gwh-hero-cta-secondary {
+            display: none !important;
+          }
+          .gwh-hero-cta-row {
+            margin-bottom: 18px !important;
+          }
+          .gwh-hero-cta-primary {
+            width: auto;
+            max-width: none;
+            height: 44px !important;
+            border-radius: 9999px !important;
+            padding-left: 22px !important;
+            padding-right: 22px !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 6px 18px rgba(201, 168, 76, 0.22);
+          }
+          .gwh-hero-trust-legacy {
+            display: none !important;
+          }
+          .gwh-hero-trust-bar {
+            display: flex !important;
+            width: 100%;
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 22px !important;
+            align-items: center;
+            gap: 10px;
+          }
+          .gwh-hero-trust-line {
+            flex: 1 1 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent 0%,
+              rgba(201, 168, 76, 0.85) 50%,
+              transparent 100%
+            );
+          }
+          .gwh-hero-trust-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            font-family: var(--font-inter), Inter, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: #8a8a8a;
+            white-space: nowrap;
+          }
           .gwh-hero-genres {
+            display: flex !important;
             flex-wrap: nowrap !important;
             justify-content: flex-start !important;
             overflow-x: auto;
@@ -252,6 +351,7 @@ export default function Hero() {
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             width: min(100%, calc(100vw - 32px));
+            max-width: none;
             margin-left: auto;
             margin-right: auto;
             padding-bottom: 4px;
@@ -262,20 +362,18 @@ export default function Hero() {
           }
           .gwh-hero-genre-pill {
             flex: 0 0 auto;
+            width: auto;
             min-width: 96px;
             min-height: 36px;
             padding-left: 14px !important;
             padding-right: 14px !important;
             justify-content: center;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .gwh-hero-cta-shift a {
-            width: 100%;
-          }
-          .gwh-hero-cta-shift .gwh-hero-delay-2 {
-            width: 100%;
+            border-radius: 9999px !important;
+            border: 1px solid #e3e3e3 !important;
+            background: #ffffff !important;
+            color: #333333 !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
           }
         }
       `}</style>
@@ -284,32 +382,45 @@ export default function Hero() {
         {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
         <div className="gwh-hero-left flex min-h-screen w-full flex-col items-center justify-center pb-[40px] pt-[160px] text-center lg:w-[55%] lg:min-h-screen lg:items-start lg:justify-center lg:text-left">
           <h1 className="gwh-hero-animate gwh-hero-delay-0 mb-5 mt-0 font-playfair text-[36px] leading-[1.0] tracking-[-0.03em] text-[var(--color-text)] sm:text-[48px] lg:text-[80px]">
-            <span className="block font-normal">Where Ideas</span>
-            <span className="block italic">Become Books.</span>
+            <span className="gwh-hero-h1-line1 block font-normal">Where Ideas</span>
+            <span className="gwh-hero-h1-line2 block italic">Become Books.</span>
           </h1>
 
-          <p className="gwh-hero-animate gwh-hero-delay-1 mb-7 max-w-[520px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
+          <p className="gwh-hero-sub gwh-hero-animate gwh-hero-delay-1 mb-7 max-w-[520px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Professional ghostwriters, designers and editors — everything your
             book needs, under one roof.
           </p>
 
           <div className="gwh-hero-cta-shift" style={{ transform: "translateY(24px)" }}>
-            <div className="gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <div className="gwh-hero-cta-row gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
                 href="#start"
-                className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
+                className="gwh-hero-cta-primary inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
               >
-                Start Your Book
+                <span className="lg:hidden">Start Your Book →</span>
+                <span className="hidden lg:inline">Start Your Book</span>
               </a>
               <a
                 href="#how-it-works"
-                className="inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
+                className="gwh-hero-cta-secondary inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
               >
                 See How It Works
               </a>
             </div>
 
-            <p className="gwh-hero-animate gwh-hero-delay-3 mb-6 flex items-center justify-center gap-3 font-inter text-[13px] font-normal text-[#999999] lg:justify-start">
+            <div
+              className="gwh-hero-trust-bar gwh-hero-animate gwh-hero-delay-3 mx-auto hidden max-w-[340px] max-lg:flex"
+              aria-label="Trust indicator"
+            >
+              <span className="gwh-hero-trust-line" aria-hidden="true" />
+              <span className="gwh-hero-trust-copy">
+                <HeroTrustPeopleIcon />
+                Trusted by 500+ authors worldwide
+              </span>
+              <span className="gwh-hero-trust-line" aria-hidden="true" />
+            </div>
+
+            <p className="gwh-hero-trust-legacy gwh-hero-animate gwh-hero-delay-3 mb-6 hidden items-center justify-center gap-3 font-inter text-[13px] font-normal text-[#999999] lg:flex lg:justify-start">
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
                 aria-hidden="true"
@@ -321,7 +432,7 @@ export default function Hero() {
               />
             </p>
 
-            {/* Genre pills — single row on desktop, wrap on small screens */}
+            {/* Genre pills — sample row of four on mobile */}
             <ul className="gwh-hero-genres gwh-hero-animate gwh-hero-delay-4 mb-0 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               {genres.map((genre) => (
                 <li key={genre} className="shrink-0">

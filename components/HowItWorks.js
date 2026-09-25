@@ -333,6 +333,37 @@ export default function HowItWorks() {
                 rgba(12, 14, 22, 0.9) 100%
               );
           }
+          .gwh-hiw-checklist {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            flex-wrap: nowrap !important;
+            gap: 11px !important;
+            width: min(100%, calc(100vw - 40px));
+            max-width: 340px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-top: 28px !important;
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+          }
+          .gwh-hiw-checklist li {
+            width: 100%;
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            font-size: 13px !important;
+            line-height: 1.45 !important;
+          }
+          .gwh-hiw-checklist li svg {
+            margin-top: 2px !important;
+          }
+          .gwh-hiw-checklist-text {
+            flex: 1 1 auto;
+            text-align: left !important;
+            white-space: normal !important;
+          }
         }
       `}</style>
 
@@ -406,7 +437,7 @@ export default function HowItWorks() {
               className="flex shrink-0 items-center gap-2 font-inter text-[12px] font-medium leading-snug text-[#ececec] sm:text-[13px] lg:text-[14px]"
             >
               <CheckIcon />
-              <span className="whitespace-normal sm:whitespace-nowrap">
+              <span className="gwh-hiw-checklist-text whitespace-normal sm:whitespace-nowrap">
                 {item}
               </span>
             </li>
