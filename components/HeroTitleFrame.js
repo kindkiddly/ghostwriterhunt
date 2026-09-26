@@ -128,6 +128,10 @@ export default function HeroTitleFrame({
           isolation: isolate;
         }
 
+        .gwh-hero-title-copy {
+          position: relative;
+        }
+
         .gwh-hero-title-backdrop {
           position: absolute;
           z-index: 0;
@@ -223,7 +227,8 @@ export default function HeroTitleFrame({
         }
 
         .gwh-hero-title-frame .gwh-hero-title-rule,
-        .gwh-hero-title-frame .gwh-hero-title-frame-h1 {
+        .gwh-hero-title-frame
+          .gwh-hero-title-frame-h1:not(.gwh-hero-title-frame-h1-measure) {
           position: relative;
           z-index: 1;
         }
@@ -280,7 +285,7 @@ export default function HeroTitleFrame({
         }
 
         .gwh-hero-title-frame-h1-measure {
-          position: absolute;
+          position: absolute !important;
           left: 0;
           top: 0;
           visibility: hidden;
@@ -372,9 +377,19 @@ export default function HeroTitleFrame({
           text-align: left;
         }
 
-        @media (min-width: 640px) {
+        /* Tablet+ — backdrop extends to gold rules; home title scales up (not mobile) */
+        @media (min-width: 769px) {
           .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
             font-size: 48px;
+          }
+
+          .gwh-hero-title-backdrop,
+          .gwh-hero-title-backdrop-feather {
+            inset: auto;
+            top: -37px;
+            bottom: -37px;
+            left: -52px;
+            right: -52px;
           }
         }
 
@@ -389,7 +404,10 @@ export default function HeroTitleFrame({
 
           .gwh-hero-title-backdrop,
           .gwh-hero-title-backdrop-feather {
-            inset: -24px -56px;
+            top: -41px;
+            bottom: -41px;
+            left: -56px;
+            right: -56px;
           }
 
           .gwh-hero-title-backdrop-photo {
@@ -434,47 +452,144 @@ export default function HeroTitleFrame({
         }
 
         @media (max-width: 768px) {
+          .gwh-hero-title-frame {
+            padding: 2px 12px 4px;
+            overflow: hidden;
+          }
+
+          /* Photo height = headline only (rules sit on plain page background) */
           .gwh-hero-title-backdrop,
           .gwh-hero-title-backdrop-feather {
-            inset: -16px -32px;
+            inset: 0 -22px;
+            border-radius: 2px;
+          }
+
+          .gwh-hero-title-backdrop {
+            -webkit-mask-image:
+              linear-gradient(
+                to right,
+                transparent 0%,
+                #000 8%,
+                #000 92%,
+                transparent 100%
+              ),
+              linear-gradient(
+                to bottom,
+                transparent 0%,
+                #000 10%,
+                #000 90%,
+                transparent 100%
+              );
+            mask-image:
+              linear-gradient(
+                to right,
+                transparent 0%,
+                #000 8%,
+                #000 92%,
+                transparent 100%
+              ),
+              linear-gradient(
+                to bottom,
+                transparent 0%,
+                #000 10%,
+                #000 90%,
+                transparent 100%
+              );
+          }
+
+          .gwh-hero-title-backdrop-feather {
+            background:
+              linear-gradient(
+                to right,
+                var(--color-background) 0%,
+                rgba(250, 250, 247, 0.5) 5%,
+                transparent 16%,
+                transparent 84%,
+                rgba(250, 250, 247, 0.5) 95%,
+                var(--color-background) 100%
+              ),
+              linear-gradient(
+                to bottom,
+                var(--color-background) 0%,
+                rgba(250, 250, 247, 0.45) 8%,
+                transparent 22%,
+                transparent 78%,
+                rgba(250, 250, 247, 0.45) 92%,
+                var(--color-background) 100%
+              );
           }
 
           .gwh-hero-title-backdrop-photo {
-            object-position: 50% 35%;
+            inset: auto;
+            top: -8%;
+            left: -4%;
+            width: 108%;
+            height: 116%;
+            transform: none;
+            object-position: 50% 18%;
             filter: blur(3px) saturate(1.12);
           }
 
-          .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
-            font-size: 40px;
-            line-height: 1.05;
+          .gwh-hero-title-backdrop-scrim {
+            background: linear-gradient(
+              to bottom,
+              rgba(252, 250, 245, 0.48) 0%,
+              rgba(252, 248, 238, 0.16) 20%,
+              rgba(252, 248, 238, 0) 38%,
+              rgba(8, 6, 4, 0.1) 55%,
+              rgba(4, 3, 2, 0.28) 78%,
+              rgba(4, 3, 2, 0.42) 100%
+            );
           }
 
+          .gwh-hero-title-rule--top {
+            margin-bottom: 10px;
+          }
+
+          .gwh-hero-title-rule--bottom {
+            margin-top: 10px;
+          }
+
+          /* Home + all service heroes — identical mobile title theme */
+          .gwh-hero-title-frame--home,
           .gwh-hero-title-frame--service {
             text-align: center;
           }
 
+          .gwh-hero-title-frame--home .gwh-hero-title-rule,
           .gwh-hero-title-frame--service .gwh-hero-title-rule {
             margin-left: auto;
             margin-right: auto;
           }
 
+          .gwh-hero-title-frame--home .gwh-hero-title-frame-h1,
           .gwh-hero-title-frame--service .gwh-hero-title-frame-h1 {
             font-size: 36px;
-            line-height: 1.1;
+            line-height: 1.08;
+          }
+
+          .gwh-hero-title-frame .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
+            text-shadow:
+              0 0 0.75px rgba(255, 255, 255, 0.62),
+              0 0 2.75px rgba(255, 255, 255, 0.26),
+              0 0 4.5px rgba(255, 255, 255, 0.11);
           }
 
           .gwh-hero-title-frame .gwh-hero-h1-line1-center {
             text-shadow:
-              0 0 0.85px rgba(28, 28, 28, 0.64),
-              0 0 2.75px rgba(28, 28, 28, 0.28),
-              0 0 4.5px rgba(28, 28, 28, 0.12);
+              0 0 0.85px rgba(28, 28, 28, 0.68),
+              0 0 2.75px rgba(28, 28, 28, 0.3),
+              0 0 4.75px rgba(28, 28, 28, 0.14);
           }
 
           .gwh-hero-title-frame .gwh-hero-h1-line2 {
             text-shadow:
-              0 0 1.15px rgba(28, 28, 28, 0.74),
-              0 0 3.5px rgba(28, 28, 28, 0.36),
-              0 0 6px rgba(28, 28, 28, 0.17);
+              0 0 1.35px rgba(18, 18, 18, 0.95),
+              0 0 2.25px rgba(18, 18, 18, 0.88),
+              0 0 4px rgba(18, 18, 18, 0.62),
+              0 0 7px rgba(18, 18, 18, 0.4),
+              0 0 10px rgba(18, 18, 18, 0.22),
+              0 1px 2px rgba(12, 12, 12, 0.35);
           }
         }
       `}</style>
@@ -482,23 +597,24 @@ export default function HeroTitleFrame({
       <div
         className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} ${className}`.trim()}
       >
-        <div className="gwh-hero-title-backdrop" aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/background-header.webp"
-            alt=""
-            className="gwh-hero-title-backdrop-photo"
-            decoding="async"
-            fetchPriority="low"
-          />
-          <div className="gwh-hero-title-backdrop-scrim" />
-        </div>
-        <div className="gwh-hero-title-backdrop-feather" aria-hidden="true" />
         <span
           className="gwh-hero-title-rule gwh-hero-title-rule--top"
           aria-hidden="true"
         />
-        <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+        <div className="gwh-hero-title-copy">
+          <div className="gwh-hero-title-backdrop" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/background-header.webp"
+              alt=""
+              className="gwh-hero-title-backdrop-photo"
+              decoding="async"
+              fetchPriority="low"
+            />
+            <div className="gwh-hero-title-backdrop-scrim" />
+          </div>
+          <div className="gwh-hero-title-backdrop-feather" aria-hidden="true" />
+          <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
           {headlineSplit.useThreeRow ? (
             <>
               <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
@@ -513,20 +629,21 @@ export default function HeroTitleFrame({
               <span className="gwh-hero-h1-line2">{line2}</span>
             </>
           )}
-        </h1>
-        <div
-          ref={measureH1Ref}
-          className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
-          aria-hidden="true"
-        >
+          </h1>
           <div
-            ref={measureBlock1Ref}
-            className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
-          />
-          <div
-            ref={measureBlock2Ref}
-            className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
-          />
+            ref={measureH1Ref}
+            className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+            aria-hidden="true"
+          >
+            <div
+              ref={measureBlock1Ref}
+              className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+            />
+            <div
+              ref={measureBlock2Ref}
+              className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+            />
+          </div>
         </div>
         <span
           className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
