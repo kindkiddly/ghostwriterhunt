@@ -99,11 +99,40 @@ export default function HeroTitleFrame({
       });
       return;
     }
+
+    const isMobileViewport =
+      typeof window !== "undefined" && window.innerWidth <= 768;
+    const isDefaultStrip =
+      titleStyle !== "home-glass" && titleStyle !== "illustration";
+
     measureH1.style.width = `${h1.clientWidth}px`;
+
+    if (isMobileViewport && isDefaultStrip) {
+      const line1Lines = measureBlockLines(measureBlock1, line1);
+
+      if (line1Lines.length <= 1) {
+        setHeadlineSplit({
+          useThreeRow: false,
+          top: line1,
+          center: null,
+          bottom: line2,
+        });
+        return;
+      }
+
+      setHeadlineSplit({
+        useThreeRow: true,
+        top: line1Lines[0],
+        center: line1Lines.slice(1).join(" "),
+        bottom: line2,
+      });
+      return;
+    }
+
     setHeadlineSplit(
       splitHeadlineByWrap(measureBlock1, measureBlock2, line1, line2)
     );
-  }, [line1, line2]);
+  }, [line1, line2, titleStyle]);
 
   useLayoutEffect(() => {
     let cancelled = false;
@@ -140,6 +169,11 @@ export default function HeroTitleFrame({
 
         .gwh-hero-title-copy {
           position: relative;
+        }
+
+        .gwh-hero-title-glass-mount {
+          position: relative;
+          z-index: 2;
         }
 
         .gwh-hero-title-backdrop {
@@ -329,8 +363,9 @@ export default function HeroTitleFrame({
             0 0 6px rgba(28, 28, 28, 0.17);
         }
 
-        /* Home hero — matches Hero.js Tailwind h1 (normal line 1, italic accent line 2) */
-        .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
+        /* Home strip hero typography (not background-H1 image home) */
+        .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+          .gwh-hero-title-frame-h1 {
           font-weight: 400;
           font-size: 36px;
           line-height: 1;
@@ -338,17 +373,20 @@ export default function HeroTitleFrame({
           color: var(--color-text);
         }
 
-        .gwh-hero-title-frame--home .gwh-hero-h1-line1 {
+        .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+          .gwh-hero-h1-line1 {
           font-weight: 400;
           color: var(--color-text);
         }
 
-        .gwh-hero-title-frame--home .gwh-hero-h1-line1-center {
+        .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+          .gwh-hero-h1-line1-center {
           font-weight: 400;
           color: #fffef9;
         }
 
-        .gwh-hero-title-frame--home .gwh-hero-h1-line2 {
+        .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+          .gwh-hero-h1-line2 {
           font-weight: 400;
           font-style: italic;
           color: var(--color-accent-gold);
@@ -379,7 +417,11 @@ export default function HeroTitleFrame({
           color: var(--color-accent-gold);
         }
 
-        .gwh-hero-title-frame--home {
+        .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass) {
+          text-align: center;
+        }
+
+        .gwh-hero-title-frame--home-glass {
           text-align: center;
         }
 
@@ -389,7 +431,8 @@ export default function HeroTitleFrame({
 
         /* Tablet+ — backdrop extends to gold rules; home title scales up (not mobile) */
         @media (min-width: 769px) {
-          .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-frame-h1 {
             font-size: 48px;
           }
 
@@ -408,8 +451,12 @@ export default function HeroTitleFrame({
             padding: 10px 22px 14px;
           }
 
-          .gwh-hero-title-frame--home {
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass) {
             text-align: left;
+          }
+
+          .gwh-hero-title-frame--home-glass {
+            text-align: center;
           }
 
           .gwh-hero-title-backdrop,
@@ -431,7 +478,8 @@ export default function HeroTitleFrame({
             width: min(340px, 92%);
           }
 
-          .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-frame-h1 {
             font-size: 80px;
           }
 
@@ -462,95 +510,77 @@ export default function HeroTitleFrame({
         }
 
         @media (max-width: 768px) {
-          .gwh-hero-title-frame {
+          .gwh-hero-title-frame:not(.gwh-hero-title-frame--home-glass) {
             padding: 2px 12px 4px;
             overflow: hidden;
           }
 
-          /* Photo height = headline only (rules sit on plain page background) */
-          .gwh-hero-title-backdrop,
-          .gwh-hero-title-backdrop-feather {
-            inset: 0 -22px;
-            border-radius: 2px;
+          /* Home — background-H1 image only; never use service strip / glass-mount */
+          .gwh-hero-title-frame--home-glass {
+            padding: 0;
+            overflow: visible;
           }
 
-          .gwh-hero-title-backdrop {
-            -webkit-mask-image:
-              linear-gradient(
-                to right,
-                transparent 0%,
-                #000 8%,
-                #000 92%,
-                transparent 100%
-              ),
-              linear-gradient(
-                to bottom,
-                transparent 0%,
-                #000 10%,
-                #000 90%,
-                transparent 100%
-              );
-            mask-image:
-              linear-gradient(
-                to right,
-                transparent 0%,
-                #000 8%,
-                #000 92%,
-                transparent 100%
-              ),
-              linear-gradient(
-                to bottom,
-                transparent 0%,
-                #000 10%,
-                #000 90%,
-                transparent 100%
-              );
+          .gwh-hero-title-frame--home-glass .gwh-home-scene-panel {
+            aspect-ratio: 8 / 3;
+            width: 100%;
+            border-radius: 4px;
           }
 
-          .gwh-hero-title-backdrop-feather {
-            background:
-              linear-gradient(
-                to right,
-                var(--color-background) 0%,
-                rgba(250, 250, 247, 0.5) 5%,
-                transparent 16%,
-                transparent 84%,
-                rgba(250, 250, 247, 0.5) 95%,
-                var(--color-background) 100%
-              ),
-              linear-gradient(
-                to bottom,
-                var(--color-background) 0%,
-                rgba(250, 250, 247, 0.45) 8%,
-                transparent 22%,
-                transparent 78%,
-                rgba(250, 250, 247, 0.45) 92%,
-                var(--color-background) 100%
-              );
+          .gwh-hero-title-frame--home-glass .gwh-home-scene-picture img {
+            object-fit: cover;
+            object-position: center center;
+            filter: none;
           }
 
-          /* Mobile only: sharp photo — edge merge via mask/feather/scrim, not blur */
-          .gwh-hero-title-backdrop-photo {
-            inset: auto;
-            top: -8%;
-            left: -4%;
-            width: 108%;
-            height: 116%;
+          /* Mobile strip — taller photo area only (title size unchanged) */
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-copy,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-copy {
+            position: relative;
+            display: block;
+            overflow: visible;
+            padding: 40px 0 44px;
+          }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-backdrop,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop {
+            inset: 0;
+            left: -14px;
+            right: -14px;
+            z-index: 0;
+            -webkit-mask-image: none;
+            mask-image: none;
+          }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-backdrop-feather,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop-feather {
+            display: none;
+          }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-backdrop-scrim,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop-scrim {
+            display: none;
+          }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-backdrop-photo,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop-photo {
+            inset: 0;
+            width: 100%;
+            height: 100%;
             transform: none;
-            object-position: 50% 18%;
-            filter: saturate(1.08);
-          }
-
-          .gwh-hero-title-backdrop-scrim {
-            background: linear-gradient(
-              to bottom,
-              rgba(252, 250, 245, 0.32) 0%,
-              rgba(252, 248, 238, 0.1) 20%,
-              rgba(252, 248, 238, 0) 38%,
-              rgba(8, 6, 4, 0.08) 55%,
-              rgba(4, 3, 2, 0.2) 78%,
-              rgba(4, 3, 2, 0.32) 100%
-            );
+            object-fit: cover;
+            object-position: 50% 42%;
+            filter: none;
           }
 
           .gwh-hero-title-rule--top {
@@ -561,13 +591,14 @@ export default function HeroTitleFrame({
             margin-top: 10px;
           }
 
-          /* Home + all service heroes — identical mobile title theme */
-          .gwh-hero-title-frame--home,
+          /* Service strip + old home strip — not background-H1 home image */
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass),
           .gwh-hero-title-frame--service {
             text-align: center;
           }
 
-          .gwh-hero-title-frame--home .gwh-hero-title-rule,
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-rule,
           .gwh-hero-title-frame--service .gwh-hero-title-rule {
             margin-left: auto;
             margin-right: auto;
@@ -577,8 +608,9 @@ export default function HeroTitleFrame({
             .gwh-hero-title-frame-h1,
           .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
             .gwh-hero-title-frame-h1 {
-            font-size: 40px;
+            font-size: clamp(24px, 6.8vw, 31px);
             line-height: 1.08;
+            letter-spacing: -0.02em;
           }
 
           /* Mobile — taller backdrop (default home strip + services; not glass/illustration) */
@@ -587,77 +619,156 @@ export default function HeroTitleFrame({
             overflow: visible;
           }
 
+          /* Mobile strip — line 1 black, line 2 gold italic (2 lines default, max 3) */
           .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
-            .gwh-hero-title-backdrop,
-          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
-            .gwh-hero-title-backdrop-feather,
+            .gwh-hero-title-glass-mount
+            .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center),
           .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
-            .gwh-hero-title-backdrop,
-          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
-            .gwh-hero-title-backdrop-feather {
-            inset: auto;
-            top: -28px;
-            bottom: -28px;
-            left: -22px;
-            right: -22px;
-          }
-
-          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
-            .gwh-hero-title-backdrop-photo,
-          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
-            .gwh-hero-title-backdrop-photo {
-            object-position: 50% 22%;
-            height: 124%;
-            top: -12%;
-          }
-
-          /* Home mobile — black headline lines match service pages (not glass hero) */
-          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
-            .gwh-hero-title-frame-h1 {
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #1c1c1c;
-          }
-
-          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount
             .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
+            display: block;
             font-weight: 700;
             color: #1c1c1c;
           }
 
           .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-h1-line1-center,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount
             .gwh-hero-h1-line1-center {
+            display: block;
             font-weight: 700;
+            color: #ffffff;
+            text-shadow:
+              -0.55px 0 0 rgba(0, 0, 0, 0.88),
+              0.55px 0 0 rgba(0, 0, 0, 0.88),
+              0 -0.55px 0 rgba(0, 0, 0, 0.88),
+              0 0.55px 0 rgba(0, 0, 0, 0.88),
+              0 1px 3px rgba(0, 0, 0, 0.65),
+              0 0 8px rgba(0, 0, 0, 0.4);
           }
 
           .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-h1-line2,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-h1-line2 {
+            display: block;
+            font-style: italic;
+            color: var(--color-accent-gold);
+            text-shadow:
+              -0.55px 0 0 rgba(0, 0, 0, 0.92),
+              0.55px 0 0 rgba(0, 0, 0, 0.92),
+              0 -0.55px 0 rgba(0, 0, 0, 0.92),
+              0 0.55px 0 rgba(0, 0, 0, 0.92),
+              0 1px 3px rgba(0, 0, 0, 0.78),
+              0 0 10px rgba(0, 0, 0, 0.55);
+          }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-h1-line2 {
+            font-weight: 400;
+          }
+
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount
             .gwh-hero-h1-line2 {
             font-weight: 700;
           }
 
-          .gwh-hero-title-frame .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
-            text-shadow:
-              0 0 0.75px rgba(255, 255, 255, 0.62),
-              0 0 2.75px rgba(255, 255, 255, 0.26),
-              0 0 4.5px rgba(255, 255, 255, 0.11);
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount {
+            --gwh-glass-clip: polygon(
+              14px 0,
+              calc(100% - 14px) 0,
+              100% 14px,
+              100% calc(100% - 16px),
+              calc(100% - 16px) 100%,
+              16px 100%,
+              0 calc(100% - 14px),
+              0 14px
+            );
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 16px 20px 18px 22px;
+            z-index: 2;
+            position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: 0 12px 26px rgba(28, 28, 28, 0.18);
+            overflow: hidden;
+            clip-path: var(--gwh-glass-clip);
+            -webkit-clip-path: var(--gwh-glass-clip);
+            -webkit-backdrop-filter: blur(48px) saturate(1.02);
+            backdrop-filter: blur(48px) saturate(1.02);
+            transform: translateZ(0);
           }
 
-          .gwh-hero-title-frame .gwh-hero-h1-line1-center {
-            text-shadow:
-              0 0 0.85px rgba(28, 28, 28, 0.68),
-              0 0 2.75px rgba(28, 28, 28, 0.3),
-              0 0 4.75px rgba(28, 28, 28, 0.14);
+          /* Single pane: whitish top half → charcoal (#1c1c1c) bottom half */
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount::before,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0.62) 0%,
+              rgba(255, 255, 255, 0.52) 16%,
+              rgba(255, 255, 255, 0.42) 30%,
+              rgba(255, 255, 255, 0.32) 42%,
+              rgba(255, 255, 255, 0.18) 50%,
+              rgba(28, 28, 28, 0.38) 58%,
+              rgba(28, 28, 28, 0.58) 68%,
+              rgba(28, 28, 28, 0.74) 80%,
+              rgba(28, 28, 28, 0.84) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-bottom-color: rgba(28, 28, 28, 0.35);
+            border-radius: 0;
+            box-shadow: none;
           }
 
-          .gwh-hero-title-frame .gwh-hero-h1-line2 {
-            text-shadow:
-              0 0 1.35px rgba(18, 18, 18, 0.95),
-              0 0 2.25px rgba(18, 18, 18, 0.88),
-              0 0 4px rgba(18, 18, 18, 0.62),
-              0 0 7px rgba(18, 18, 18, 0.4),
-              0 0 10px rgba(18, 18, 18, 0.22),
-              0 1px 2px rgba(12, 12, 12, 0.35);
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount::after,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount::after {
+            content: none;
+            display: none;
           }
+
+          .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-title-frame-h1,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-glass-mount
+            .gwh-hero-title-frame-h1 {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(24px, 6.8vw, 31px) !important;
+            line-height: 1.08 !important;
+          }
+
+          .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
+            text-shadow:
+              -0.55px 0 0 rgba(28, 28, 28, 0.52),
+              0.55px 0 0 rgba(28, 28, 28, 0.52),
+              0 -0.55px 0 rgba(28, 28, 28, 0.52),
+              0 0.55px 0 rgba(28, 28, 28, 0.52),
+              0 0 1.1px rgba(28, 28, 28, 0.4),
+              0 0 2.25px rgba(28, 28, 28, 0.24);
+          }
+
         }
 
         /* Home — background-H1 artwork (headline baked into image; no overlay text) */
@@ -856,6 +967,13 @@ export default function HeroTitleFrame({
           .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
             font-size: 0.92em;
           }
+
+          .gwh-hero-title-frame--illustration
+            .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
+            text-shadow:
+              0 0 1px rgba(28, 28, 28, 0.75),
+              0 0 4px rgba(28, 28, 28, 0.45);
+          }
         }
       `}</style>
 
@@ -950,35 +1068,37 @@ export default function HeroTitleFrame({
               <div className="gwh-hero-title-backdrop-scrim" />
             </div>
             <div className="gwh-hero-title-backdrop-feather" aria-hidden="true" />
-            <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
-              {headlineSplit.useThreeRow ? (
-                <>
-                  <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
-                  <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
-                    {headlineSplit.center}
-                  </span>
-                  <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
-                </>
-              ) : (
-                <>
-                  <span className="gwh-hero-h1-line1">{line1}</span>
-                  <span className="gwh-hero-h1-line2">{line2}</span>
-                </>
-              )}
-            </h1>
-            <div
-              ref={measureH1Ref}
-              className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
-              aria-hidden="true"
-            >
+            <div className="gwh-hero-title-glass-mount">
+              <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+                {headlineSplit.useThreeRow ? (
+                  <>
+                    <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
+                    <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
+                      {headlineSplit.center}
+                    </span>
+                    <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="gwh-hero-h1-line1">{line1}</span>
+                    <span className="gwh-hero-h1-line2">{line2}</span>
+                  </>
+                )}
+              </h1>
               <div
-                ref={measureBlock1Ref}
-                className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
-              />
-              <div
-                ref={measureBlock2Ref}
-                className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
-              />
+                ref={measureH1Ref}
+                className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+                aria-hidden="true"
+              >
+                <div
+                  ref={measureBlock1Ref}
+                  className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+                />
+                <div
+                  ref={measureBlock2Ref}
+                  className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+                />
+              </div>
             </div>
           </div>
           <span

@@ -61,6 +61,8 @@ export default function ServiceHero({ service }) {
           letter-spacing: 0.2em;
           color: #6B7C3A;
           margin: 0 0 20px;
+          position: relative;
+          z-index: 3;
         }
         .sh-headline-wrap {
           margin: 0 0 24px;
