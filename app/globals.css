@@ -18,3 +18,18 @@ body {
   background: var(--color-background);
   font-family: var(--font-inter), sans-serif;
 }
+
+/* Critical: hide alternate hero headline before client CSS hydrates (prevents flash) */
+@media (min-width: 769px) {
+  .sh-plain-mobile-only,
+  .sh-ghost-mobile-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sh-plain-desktop-only,
+  .sh-ghost-desktop-only {
+    display: none !important;
+  }
+}

@@ -97,6 +97,16 @@ export default function HeroTitleFrame({
   });
 
   const recomputeHeadlineSplit = useCallback(() => {
+    if (titleStyle === "plain") {
+      setHeadlineSplit({
+        useThreeRow: false,
+        top: line1,
+        center: null,
+        bottom: line2,
+      });
+      return;
+    }
+
     const h1 = h1Ref.current;
     const measureBlock1 = measureBlock1Ref.current;
     const measureBlock2 = measureBlock2Ref.current;
@@ -170,6 +180,16 @@ export default function HeroTitleFrame({
   }, [line1, line2, titleStyle]);
 
   useLayoutEffect(() => {
+    if (titleStyle === "plain") {
+      setHeadlineSplit({
+        useThreeRow: false,
+        top: line1,
+        center: null,
+        bottom: line2,
+      });
+      return undefined;
+    }
+
     let cancelled = false;
     const run = () => {
       if (!cancelled) recomputeHeadlineSplit();
@@ -190,7 +210,7 @@ export default function HeroTitleFrame({
       observer.disconnect();
       window.removeEventListener("resize", run);
     };
-  }, [recomputeHeadlineSplit, variant]);
+  }, [recomputeHeadlineSplit, variant, titleStyle, line1, line2]);
 
   return (
     <>

@@ -288,7 +288,7 @@ export default function ServiceHero({ service }) {
       <ServiceDesktopDualCtaStyles />
 
       <div className="sh-inner">
-        <div className="sh-left sh-reveal-left" data-delay="0">
+        <div className="sh-left sh-reveal-left sh-visible" data-delay="0">
           <p className="sh-label">{service.category}</p>
 
           {ghostDesktopTextHero ? (
@@ -389,7 +389,7 @@ export default function ServiceHero({ service }) {
           <ServiceTrustLine variant="light" />
         </div>
 
-        <div className="sh-right sh-reveal-img" data-delay="200">
+        <div className="sh-right sh-reveal-img sh-visible" data-delay="200">
           <FloatingImages
             images={service.heroImages}
             slug={service.slug}
