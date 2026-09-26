@@ -3,6 +3,7 @@
 import { useRevealSelector } from "@/lib/useSectionReveal";
 import ServiceTrustLine from "./ServiceTrustLine";
 import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
+import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 
 /**
  * GhostWriterHunt — ServiceCTA
@@ -129,6 +130,7 @@ export default function ServiceCTA({ service }) {
         }
       `}</style>
       <ServiceMobileDualCtaStyles />
+      <ServiceDesktopDualCtaStyles />
 
       <div className="sc-inner">
         <p className="sc-label sc-reveal" data-delay="0">

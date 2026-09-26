@@ -13,8 +13,13 @@ export default function ServiceProcess({ service }) {
 
   if (!service?.process?.length) return null;
 
+  const isGhostwriting = service.slug === "ghostwriting";
+
   return (
-    <section className="sp-section" aria-label="The process">
+    <section
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}`}
+      aria-label="The process"
+    >
       <style>{`
         .sp-section {
           background: #FFFFFF;
@@ -121,6 +126,29 @@ export default function ServiceProcess({ service }) {
           }
           .sp-number { font-size: 56px; }
           .sp-img { height: 200px; }
+
+          /* Ghostwriting — full-width process photos, less empty side space */
+          .sp-section--ghostwriting .sp-inner {
+            padding-left: 12px;
+            padding-right: 12px;
+          }
+          .sp-section--ghostwriting .sp-row,
+          .sp-section--ghostwriting .sp-row-reverse {
+            gap: 18px;
+          }
+          .sp-section--ghostwriting .sp-col {
+            width: 100%;
+          }
+          .sp-section--ghostwriting .sp-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 5 / 4;
+            min-height: 248px;
+            max-height: 360px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 14px;
+          }
         }
       `}</style>
 

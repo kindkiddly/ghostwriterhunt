@@ -4,6 +4,8 @@ import HeroTitleFrame from "@/components/HeroTitleFrame";
 import FloatingImages from "./FloatingImages";
 import ServiceTrustLine from "./ServiceTrustLine";
 import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
+import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
+import ServiceHeroLede from "./ServiceHeroLede";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 
 /**
@@ -24,8 +26,8 @@ export default function ServiceHero({ service }) {
   const isChildrensBook = service.slug === "childrens-book";
   const isBlogWriting = service.slug === "blog-writing";
   const isGhostwriting = service.slug === "ghostwriting";
-  const isBakedHeroImage =
-    isBlogWriting || isGhostwriting;
+  const isBakedHeroImage = isBlogWriting || isGhostwriting;
+  const ghostDesktopTextHero = isGhostwriting;
 
   return (
     <section
@@ -71,15 +73,6 @@ export default function ServiceHero({ service }) {
         .sh-headline-wrap {
           margin: 0 0 24px;
         }
-        .sh-subtext {
-          font-family: var(--font-inter), Inter, sans-serif;
-          font-weight: 400;
-          font-size: 17px;
-          color: #666666;
-          line-height: 1.7;
-          max-width: 480px;
-          margin: 0 0 36px;
-        }
         .sh-ctas {
           display: flex;
           flex-wrap: wrap;
@@ -121,27 +114,60 @@ export default function ServiceHero({ service }) {
           color: #FFFFFF;
         }
         .sh-reveal-left {
-          opacity: 0;
-          transform: translateX(-40px);
-          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          opacity: 1;
+          transform: translateX(-24px);
+          transition: transform 0.7s ease-out;
         }
         .sh-reveal-left.sh-visible {
-          opacity: 1;
           transform: translateX(0);
         }
         .sh-reveal-img {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          opacity: 1;
+          transform: translateY(20px);
+          transition: transform 0.7s ease-out;
         }
         .sh-reveal-img.sh-visible {
-          opacity: 1;
           transform: translateY(0);
         }
 
         @media (min-width: 1024px) {
           .sh-left {
             padding-left: 20px;
+          }
+        }
+
+        /* Ghostwriting — desktop text hero (no background-gwriting strip) */
+        .sh-ghost-desktop-only {
+          display: none;
+        }
+        .sh-ghost-mobile-only {
+          display: block;
+        }
+        .sh-ghost-desktop-h1 {
+          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-weight: 700;
+          font-size: 56px;
+          line-height: 1.08;
+          color: #1c1c1c;
+          margin: 0;
+        }
+        .sh-ghost-desktop-h1-line {
+          display: block;
+        }
+        .sh-ghost-desktop-h1-italic {
+          display: block;
+          font-style: italic;
+          color: #c9a84c;
+        }
+        @media (min-width: 769px) {
+          .sh-ghost-desktop-only {
+            display: block;
+          }
+          .sh-ghost-mobile-only {
+            display: none !important;
+          }
+          .sh-ghost-desktop-title {
+            margin: 0 0 20px;
           }
         }
 
@@ -175,6 +201,13 @@ export default function ServiceHero({ service }) {
             max-width: 100%;
             min-width: 0;
           }
+          .sh-left {
+            text-align: center;
+          }
+          .sh-left .sh-label {
+            margin-left: auto;
+            margin-right: auto;
+          }
 
           .sh-headline-wrap {
             max-width: 100%;
@@ -199,44 +232,71 @@ export default function ServiceHero({ service }) {
         }
       `}</style>
       <ServiceMobileDualCtaStyles />
+      <ServiceDesktopDualCtaStyles />
 
       <div className="sh-inner">
         <div className="sh-left sh-reveal-left" data-delay="0">
           <p className="sh-label">{service.category}</p>
 
-          <HeroTitleFrame
-            line1={service.tagline}
-            line2={service.taglineItalic}
-            variant="service"
-            className="sh-headline-wrap"
-            titleStyle={
-              isChildrensBook
-                ? "illustration"
-                : isBakedHeroImage
-                  ? "mobile-scene"
-                  : "default"
-            }
-            illustrationBg={
-              isChildrensBook
-                ? {
-                    desktop: "/images/childrens-book-hero-bg.webp",
-                    mobile: "/images/childrens-book-hero-bg-mobile.webp",
-                  }
-                : isBlogWriting
+          {ghostDesktopTextHero ? (
+            <>
+              <div className="sh-ghost-desktop-title sh-ghost-desktop-only">
+                <h1 className="sh-ghost-desktop-h1">
+                  <span className="sh-ghost-desktop-h1-line">Your Story,</span>
+                  <span className="sh-ghost-desktop-h1-italic">
+                    Written Flawlessly.
+                  </span>
+                </h1>
+              </div>
+              <div className="sh-headline-wrap sh-ghost-mobile-only">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="mobile-scene"
+                  naturalMobileHeight
+                  illustrationBg={{
+                    mobile: "/images/background-gwriting-mobile.webp",
+                  }}
+                />
+              </div>
+            </>
+          ) : (
+            <HeroTitleFrame
+              line1={service.tagline}
+              line2={service.taglineItalic}
+              variant="service"
+              className="sh-headline-wrap"
+              titleStyle={
+                isChildrensBook
+                  ? "illustration"
+                  : isBakedHeroImage
+                    ? "mobile-scene"
+                    : "default"
+              }
+              illustrationBg={
+                isChildrensBook
                   ? {
-                      desktop: "/images/background-blog.webp",
-                      mobile: "/images/background-blog-mobile.webp",
+                      desktop: "/images/childrens-book-hero-bg.webp",
+                      mobile: "/images/childrens-book-hero-bg-mobile.webp",
                     }
-                  : isGhostwriting
+                  : isBlogWriting
                     ? {
-                        desktop: "/images/background-gwriting.webp",
-                        mobile: "/images/background-gwriting-mobile.webp",
+                        desktop: "/images/background-blog.webp",
+                        mobile: "/images/background-blog-mobile.webp",
                       }
                     : null
-            }
-          />
+              }
+            />
+          )}
 
-          <p className="sh-subtext">{service.heroSubtext}</p>
+          <ServiceHeroLede
+            text={service.heroSubtext}
+            emphasis={service.heroSubtextEmphasis}
+            topLabel={service.title}
+            category={service.category}
+            slug={service.slug}
+          />
 
           <div className="sh-ctas svc-dual-ctas">
             <a

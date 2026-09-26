@@ -66,6 +66,7 @@ export default function HeroTitleFrame({
   className = "",
   titleStyle = "default",
   illustrationBg = null,
+  naturalMobileHeight = false,
 }) {
   const isIllustration =
     titleStyle === "illustration" &&
@@ -925,6 +926,30 @@ export default function HeroTitleFrame({
             display: none;
           }
 
+          /* Baked mobile headline — full image height (no 8:3 crop) */
+          .gwh-hero-title-frame--mobile-natural
+            .gwh-service-mobile-scene-panel {
+            aspect-ratio: auto;
+            height: auto;
+            overflow: hidden;
+          }
+
+          .gwh-hero-title-frame--mobile-natural
+            .gwh-service-mobile-scene-picture {
+            height: auto;
+            line-height: 0;
+          }
+
+          .gwh-hero-title-frame--mobile-natural
+            .gwh-service-mobile-scene-picture
+            img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: unset;
+            object-position: top center;
+          }
+
         }
 
         /* Children's book — full illustration panel (not background-header strip) */
@@ -1170,7 +1195,7 @@ export default function HeroTitleFrame({
         </div>
       ) : isMobileScene ? (
         <div
-          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--mobile-scene${isServiceBakedFull ? " gwh-hero-title-frame--baked-full" : ""} ${className}`.trim()}
+          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--mobile-scene${isServiceBakedFull ? " gwh-hero-title-frame--baked-full" : ""}${naturalMobileHeight ? " gwh-hero-title-frame--mobile-natural" : ""} ${className}`.trim()}
         >
           {isServiceBakedFull ? (
             <div className="gwh-service-baked-scene-panel">
@@ -1200,8 +1225,12 @@ export default function HeroTitleFrame({
                 <img
                   src={illustrationBg.mobile}
                   alt=""
-                  width={780}
-                  height={293}
+                  width={
+                    IMAGE_DIMENSIONS[illustrationBg.mobile]?.width ?? 780
+                  }
+                  height={
+                    IMAGE_DIMENSIONS[illustrationBg.mobile]?.height ?? 293
+                  }
                   decoding="async"
                   fetchPriority="high"
                 />

@@ -199,7 +199,7 @@ export default function Hero() {
 
   return (
     <section
-      className="gwh-hero-root relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
+      className="gwh-hero-root relative flex min-h-screen flex-col items-center justify-start overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)",
@@ -229,18 +229,27 @@ export default function Hero() {
 
         /* Seamless loop: track is images×2, so -50% = exactly one set */
         @keyframes scrollUp {
-          from { transform: translateY(0); }
-          to { transform: translateY(-50%); }
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(0, -50%, 0); }
         }
 
         @keyframes scrollDown {
-          from { transform: translateY(-50%); }
-          to { transform: translateY(0); }
+          from { transform: translate3d(0, -50%, 0); }
+          to { transform: translate3d(0, 0, 0); }
+        }
+
+        .gwh-books-ticker {
+          contain: layout style paint;
+        }
+
+        .scroll-track {
+          backface-visibility: hidden;
+          transform: translateZ(0);
         }
 
         .gwh-hero-animate {
-          opacity: 0;
-          animation: gwh-fade-up 0.7s ease-out forwards;
+          opacity: 1;
+          animation: gwh-fade-up 0.7s ease-out both;
         }
 
         .gwh-hero-delay-0 { animation-delay: 0s; }
@@ -254,15 +263,15 @@ export default function Hero() {
         }
 
         .gwh-scroll-col-1 {
-          animation: scrollUp 20s linear infinite;
+          animation: scrollUp 42s linear infinite;
         }
 
         .gwh-scroll-col-2 {
-          animation: scrollDown 25s linear infinite;
+          animation: scrollDown 48s linear infinite;
         }
 
         .gwh-scroll-col-3 {
-          animation: scrollUp 18s linear infinite;
+          animation: scrollUp 40s linear infinite;
         }
 
         .gwh-books-ticker:hover .gwh-scroll-col-1,
@@ -284,6 +293,161 @@ export default function Hero() {
         @media (min-width: 1024px) {
           .gwh-hero-head-content {
             padding-left: 20px;
+          }
+          .gwh-hero-root {
+            justify-content: flex-start;
+          }
+          .gwh-hero-inner {
+            align-items: flex-start;
+            min-height: auto;
+            padding-top: 0;
+          }
+          .gwh-hero-left {
+            min-height: auto !important;
+            padding-top: 70px !important;
+            padding-bottom: 40px !important;
+            justify-content: flex-start !important;
+          }
+          .gwh-hero-title-frame--home-glass {
+            margin-top: 0;
+          }
+        }
+
+        .gwh-hero-lede {
+          position: relative;
+          z-index: 1;
+        }
+
+        .gwh-hero-lede-rule {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 18px;
+        }
+
+        .gwh-hero-lede-rule--after {
+          margin-bottom: 0;
+          margin-top: 16px;
+        }
+
+        .gwh-hero-lede-line {
+          flex: 1 1 0;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(201, 168, 76, 0.85) 50%,
+            transparent 100%
+          );
+        }
+
+        .gwh-hero-lede-ornament {
+          flex-shrink: 0;
+          font-family: var(--font-inter), Inter, sans-serif;
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #6b7c3a;
+          white-space: nowrap;
+        }
+
+        .gwh-hero-lede-text {
+          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-weight: 700;
+          font-size: 26px;
+          line-height: 1.4;
+          color: #1c1c1c;
+          margin: 0;
+          max-width: 520px;
+        }
+
+        .gwh-hero-lede-text em {
+          font-style: italic;
+          font-weight: 700;
+          color: #c9a84c;
+        }
+
+        .gwh-hero-lede-rule {
+          max-width: 520px;
+        }
+
+        @media (min-width: 1024px) {
+          .gwh-hero-lede {
+            text-align: left;
+          }
+        }
+
+        /* Desktop — matched-width floating CTAs (static shadow, no loop animation) */
+        @media (min-width: 769px) {
+          .gwh-hero-cta-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            width: 100%;
+            max-width: 432px;
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-primary,
+          .gwh-hero-cta-row .gwh-hero-cta-secondary {
+            width: 100%;
+            min-height: 48px;
+            height: 48px;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+            border-radius: 8px !important;
+            border-width: 1.5px !important;
+            border-style: solid !important;
+            box-sizing: border-box;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow:
+              0 10px 26px rgba(201, 168, 76, 0.26),
+              0 4px 14px rgba(28, 28, 28, 0.08);
+            transition:
+              background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.3s ease;
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-primary {
+            border-color: rgba(255, 255, 255, 0.95) !important;
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-secondary {
+            background: rgba(255, 255, 255, 0.96) !important;
+            border-color: var(--color-accent-gold) !important;
+            box-shadow:
+              0 10px 26px rgba(201, 168, 76, 0.16),
+              0 4px 14px rgba(28, 28, 28, 0.08);
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-primary:hover,
+          .gwh-hero-cta-row .gwh-hero-cta-secondary:hover {
+            transform: translateY(-3px);
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-primary:hover {
+            box-shadow:
+              0 18px 40px rgba(201, 168, 76, 0.45),
+              0 10px 24px rgba(28, 28, 28, 0.12);
+          }
+
+          .gwh-hero-cta-row .gwh-hero-cta-secondary:hover {
+            box-shadow:
+              0 16px 36px rgba(201, 168, 76, 0.35),
+              0 10px 24px rgba(28, 28, 28, 0.1);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .gwh-scroll-col-1,
+          .gwh-scroll-col-2,
+          .gwh-scroll-col-3 {
+            animation: none !important;
           }
         }
 
@@ -310,14 +474,33 @@ export default function Hero() {
           }
           .gwh-hero-left {
             min-height: auto !important;
-            padding-top: 96px !important;
+            padding-top: 70px !important;
             padding-bottom: 8px !important;
+            justify-content: flex-start !important;
           }
-          .gwh-hero-sub {
-            font-size: 15px !important;
-            line-height: 1.65 !important;
-            margin-bottom: 22px !important;
-            color: #666666 !important;
+          .gwh-hero-lede {
+            width: 100%;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+          }
+          .gwh-hero-lede-rule {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .gwh-hero-lede-text {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .gwh-hero-lede-ornament {
+            white-space: normal;
+            text-align: center;
+            line-height: 1.45;
+            max-width: 9.5rem;
+          }
+          .gwh-hero-lede-rule--after .gwh-hero-lede-ornament {
+            max-width: 13.5rem;
           }
           .gwh-hero-cta-secondary {
             display: none !important;
@@ -406,9 +589,9 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="gwh-hero-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-screen lg:flex-row lg:items-center lg:gap-10">
-        {/* ——— Left column: vertically centered mid/lower in viewport ——— */}
-        <div className="gwh-hero-left relative flex min-h-screen w-full flex-col items-center justify-center overflow-visible pb-[40px] pt-[160px] text-center lg:w-[55%] lg:min-h-screen lg:items-start lg:justify-center lg:text-left">
+      <div className="gwh-hero-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-0 lg:flex-row lg:items-start lg:gap-10">
+        {/* ——— Left column: headline image flush under fixed nav ——— */}
+        <div className="gwh-hero-left relative flex w-full flex-col items-center justify-start overflow-visible pb-[40px] pt-[70px] text-center lg:w-[55%] lg:items-start lg:text-left">
           <div className="gwh-hero-head-content">
           <HeroTitleFrame
             line1="Where Ideas"
@@ -422,23 +605,41 @@ export default function Hero() {
             className="gwh-hero-animate gwh-hero-delay-0"
           />
 
-          <p className="gwh-hero-sub gwh-hero-animate gwh-hero-delay-1 mb-7 mt-5 max-w-[520px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-            Professional ghostwriters, designers and editors — everything your
-            book needs, under one roof.
-          </p>
+          <div className="gwh-hero-lede gwh-hero-animate gwh-hero-delay-1 mb-7 mt-5 max-w-[520px]">
+            <div className="gwh-hero-lede-rule" aria-hidden="true">
+              <span className="gwh-hero-lede-line" />
+              <span className="gwh-hero-lede-ornament">Full-service publishing</span>
+              <span className="gwh-hero-lede-line" />
+            </div>
+            <p className="gwh-hero-lede-text">
+              Professional ghostwriters, designers and editors — everything your
+              book needs,{" "}
+              <em>under one roof.</em>
+            </p>
+            <div
+              className="gwh-hero-lede-rule gwh-hero-lede-rule--after"
+              aria-hidden="true"
+            >
+              <span className="gwh-hero-lede-line" />
+              <span className="gwh-hero-lede-ornament">
+                Writing · Design · Editing · Publishing
+              </span>
+              <span className="gwh-hero-lede-line" />
+            </div>
+          </div>
 
           <div className="gwh-hero-cta-shift" style={{ transform: "translateY(24px)" }}>
             <div className="gwh-hero-cta-row gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
                 href="#start"
-                className="gwh-hero-cta-primary inline-flex h-11 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C]"
+                className="gwh-hero-cta-primary inline-flex h-11 min-w-0 flex-1 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] md:max-w-none md:flex-none"
               >
-                <span className="lg:hidden">Start Your Book →</span>
-                <span className="hidden lg:inline">Start Your Book</span>
+                <span className="md:hidden">Start Your Book →</span>
+                <span className="hidden md:inline">Start Your Book</span>
               </a>
               <a
                 href="#how-it-works"
-                className="gwh-hero-cta-secondary inline-flex h-11 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
+                className="gwh-hero-cta-secondary inline-flex h-11 min-w-0 flex-1 items-center justify-center rounded-[6px] border-[1.5px] border-[var(--color-accent-gold)] bg-transparent px-7 font-inter text-[14px] font-semibold text-[var(--color-accent-gold)] transition-colors duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white md:max-w-none md:flex-none"
               >
                 See How It Works
               </a>

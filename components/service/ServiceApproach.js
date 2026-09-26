@@ -358,10 +358,11 @@ export default function ServiceApproach({ service }) {
                                         ? " sa-section--glass-bg-author-website"
                                         : "";
   const hasGlassDesktop = Boolean(glassDesktopBgClass);
+  const isGhostwriting = service.slug === "ghostwriting";
 
   return (
     <section
-      className={`sa-section sa-section--glass-mobile${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}`}
+      className={`sa-section sa-section--glass-mobile${isGhostwriting ? " sa-section--ghostwriting" : ""}${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}`}
       aria-label="Our approach"
     >
       <style>{`
@@ -757,6 +758,35 @@ export default function ServiceApproach({ service }) {
               rgba(201, 168, 76, 0.65) 0%,
               rgba(201, 168, 76, 0.15) 100%
             );
+          }
+
+          /* Ghostwriting mobile — crisp card copy (no blur-soft text) */
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-card {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(20, 24, 34, 0.94);
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+              0 8px 24px rgba(0, 0, 0, 0.28);
+          }
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-card-title,
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-card-desc {
+            text-shadow: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-card-title {
+            color: #ffffff;
+            font-weight: 700;
+          }
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-card-desc {
+            color: #ececec;
+            font-size: 15px;
+            line-height: 1.65;
+          }
+          .sa-section--ghostwriting.sa-section--glass-mobile .sa-icon-wrap {
+            box-shadow: none;
+            background: rgba(201, 168, 76, 0.12);
           }
         }
       `}</style>
