@@ -38,6 +38,10 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
 
   if (!service?.overview) return null;
   const { overview } = service;
+  const isGhostwriting = service.slug === "ghostwriting";
+  const bodyText =
+    overview.body ??
+    [overview.bodyLead, overview.bodyContinued].filter(Boolean).join(" ");
 
   const textCol = (
     <div
@@ -49,7 +53,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         <span className="block">{overview.headline}</span>
         <span className="so-headline-italic">{overview.headlineItalic}</span>
       </h2>
-      <p className="so-body">{overview.body}</p>
+      <p className="so-body">{bodyText}</p>
       <ul className="so-bullets">
         {overview.bullets.map((item) => (
           <li key={item} className="so-bullet">
@@ -69,12 +73,18 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
       className={`so-images ${imagesOnLeft ? "so-reveal-left" : "so-reveal-right"}`}
       data-delay={imagesOnLeft ? "0" : "150"}
     >
-      <FloatingImages images={overview.images} />
+      <FloatingImages
+        images={overview.images}
+        layout={isGhostwriting ? "expanded" : "default"}
+      />
     </div>
   );
 
   return (
-    <section className="so-section" aria-label="About this service">
+    <section
+      className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}`}
+      aria-label="About this service"
+    >
       <style>{`
         .so-section {
           background: #FFFFFF;
@@ -92,6 +102,55 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           flex: 1;
           min-width: 0;
         }
+        @media (min-width: 769px) {
+          .so-inner {
+            align-items: flex-start;
+          }
+          .so-images {
+            display: flex;
+            justify-content: center;
+          }
+        }
+
+        /* Ghostwriting — editorial float: fixed photo cluster, text wraps beside then full width */
+        .so-inner--ghostwriting {
+          display: block;
+        }
+        .so-gw-editorial {
+          max-width: 100%;
+        }
+        .so-gw-flow::after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        @media (min-width: 769px) {
+          .so-gw-float-aside {
+            float: right;
+            width: min(480px, 46%);
+            margin: 2px 0 8px 44px;
+            display: flex;
+            justify-content: flex-end;
+          }
+          .so-gw-float-aside .fi-float--expanded {
+            margin-left: auto;
+            margin-right: 0;
+          }
+          .so-gw-flow-body {
+            max-width: none;
+            margin-bottom: 28px;
+          }
+          .so-gw-bullets-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 40px;
+            clear: both;
+          }
+          .so-gw-bullets-grid .so-bullet {
+            margin-bottom: 0;
+          }
+        }
+
         .so-label {
           font-family: var(--font-inter), Inter, sans-serif;
           font-weight: 500;
@@ -174,6 +233,16 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
             padding-left: 16px;
             padding-right: 16px;
           }
+          .so-gw-float-aside {
+            float: none;
+            width: 100%;
+            margin: 0 0 24px;
+            display: flex;
+            justify-content: center;
+          }
+          .so-gw-bullets-grid {
+            grid-template-columns: 1fr;
+          }
           .so-images {
             width: 100%;
             display: flex;
@@ -188,8 +257,42 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         }
       `}</style>
 
-      <div className="so-inner">
-        {imagesOnLeft ? (
+      <div className={`so-inner${isGhostwriting ? " so-inner--ghostwriting" : ""}`}>
+        {isGhostwriting ? (
+          <div className="so-gw-editorial">
+            <p className="so-label so-reveal-left" data-delay="0">
+              ABOUT THIS SERVICE
+            </p>
+            <h2 className="so-headline so-reveal-left" data-delay="0">
+              <span className="block">{overview.headline}</span>
+              <span className="so-headline-italic">
+                {overview.headlineItalic}
+              </span>
+            </h2>
+            <div className="so-gw-flow">
+              <aside
+                className="so-gw-float-aside so-reveal-right"
+                data-delay="150"
+              >
+                <FloatingImages images={overview.images} layout="expanded" />
+              </aside>
+              <p className="so-body so-gw-flow-body so-reveal-left" data-delay="0">
+                {bodyText}
+              </p>
+            </div>
+            <ul className="so-bullets so-gw-bullets-grid so-reveal-left" data-delay="100">
+              {overview.bullets.map((item) => (
+                <li key={item} className="so-bullet">
+                  <CheckMark />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/#start" className="so-cta so-reveal-left" data-delay="100">
+              Get Started →
+            </a>
+          </div>
+        ) : imagesOnLeft ? (
           <>
             {imageCol}
             {textCol}

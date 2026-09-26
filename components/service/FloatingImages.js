@@ -38,7 +38,9 @@ export default function FloatingImages({
   className = "",
   slug = null,
   eager = false,
+  layout = "default",
 }) {
+  const isExpanded = layout === "expanded";
   const list = images.slice(0, 4);
   const count = list.length;
 
@@ -180,7 +182,9 @@ export default function FloatingImages({
 
   // 2–3 images → floating overlap (desktop) / row (mobile)
   return (
-    <div className={`fi-float ${className}`}>
+    <div
+      className={`fi-float${isExpanded ? " fi-float--expanded" : ""} ${className}`.trim()}
+    >
       <style>{`
         .fi-float {
           position: relative;
@@ -240,6 +244,41 @@ export default function FloatingImages({
         .fi-float-small:hover {
           transform: rotate(-4deg) scale(1.04);
         }
+
+        /* Ghostwriting — larger frames, tighter cluster (hero + overview) */
+        .fi-float--expanded {
+          height: 548px;
+          max-width: 520px;
+          margin-left: auto;
+        }
+        .fi-float--expanded .fi-float-large {
+          width: 372px;
+          height: 464px;
+          top: 0;
+          left: 0;
+          border-radius: 18px;
+        }
+        .fi-float--expanded .fi-float-medium {
+          width: 232px;
+          height: 300px;
+          top: 108px;
+          left: 272px;
+          border-radius: 14px;
+        }
+        .fi-float--expanded .fi-float-medium:hover {
+          transform: rotate(3deg) scale(1.04);
+        }
+        .fi-float--expanded .fi-float-small {
+          width: 162px;
+          height: 208px;
+          top: 328px;
+          left: 44px;
+          border-radius: 12px;
+        }
+        .fi-float--expanded .fi-float-small:hover {
+          transform: rotate(-4deg) scale(1.04);
+        }
+
         @media (max-width: 768px) {
           .fi-float {
             width: min(392px, calc(100vw - 32px));
@@ -300,10 +339,35 @@ export default function FloatingImages({
           .fi-float-small:hover {
             transform: rotate(-4deg);
           }
+          .fi-float--expanded {
+            height: 468px;
+            max-width: min(392px, calc(100vw - 32px));
+          }
+          .fi-float--expanded .fi-float-large {
+            width: 278px;
+            height: 348px;
+            top: 0;
+            margin-left: -139px;
+          }
+          .fi-float--expanded .fi-float-medium {
+            width: 172px;
+            height: 222px;
+            top: 128px;
+            margin-left: 28px;
+          }
+          .fi-float--expanded .fi-float-small {
+            width: 122px;
+            height: 156px;
+            top: 288px;
+            margin-left: -148px;
+          }
         }
         @media (max-width: 360px) {
           .fi-float {
             height: 420px;
+          }
+          .fi-float--expanded {
+            height: 448px;
           }
           .fi-float-large,
           .fi-float-large.fi-float-large-landscape,

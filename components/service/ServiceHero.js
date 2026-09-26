@@ -29,7 +29,7 @@ export default function ServiceHero({ service }) {
 
   return (
     <section
-      className="sh-section"
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style>{`
@@ -145,6 +145,20 @@ export default function ServiceHero({ service }) {
           }
         }
 
+        /* Baked headline is taller — top-align columns; float cluster lines up with headline art */
+        @media (min-width: 769px) {
+          .sh-section--baked-headline .sh-inner {
+            align-items: flex-start;
+          }
+          .sh-section--baked-headline .sh-right {
+            padding-top: 36px;
+          }
+          /* Blog baked strip — align float tops with headline art (default float uses top: 20px) */
+          .sh-section--blog-baked .fi-float-large {
+            top: 0;
+          }
+        }
+
         @media (max-width: 768px) {
           .sh-section {
             min-height: auto;
@@ -244,7 +258,12 @@ export default function ServiceHero({ service }) {
         </div>
 
         <div className="sh-right sh-reveal-img" data-delay="200">
-          <FloatingImages images={service.heroImages} slug={service.slug} />
+          <FloatingImages
+            images={service.heroImages}
+            slug={service.slug}
+            layout={isGhostwriting ? "expanded" : "default"}
+            eager
+          />
         </div>
       </div>
     </section>

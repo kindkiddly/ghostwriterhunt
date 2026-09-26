@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { IMAGE_DIMENSIONS } from "../data/imageDimensions";
 
 /**
  * Shared hero headline frame: background-header backdrop, gold rules, two-line title.
@@ -78,6 +79,10 @@ export default function HeroTitleFrame({
     titleStyle === "mobile-scene" && illustrationBg?.mobile;
   const isServiceBakedFull =
     isMobileScene && illustrationBg?.desktop;
+  const bakedSceneDims =
+    isServiceBakedFull && illustrationBg?.desktop
+      ? IMAGE_DIMENSIONS[illustrationBg.desktop]
+      : null;
   const h1Ref = useRef(null);
   const measureBlock1Ref = useRef(null);
   const measureBlock2Ref = useRef(null);
@@ -853,7 +858,8 @@ export default function HeroTitleFrame({
         .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-panel {
           position: relative;
           width: 100%;
-          aspect-ratio: 8 / 3;
+          aspect-ratio: auto;
+          height: auto;
           overflow: hidden;
           border-radius: 4px;
           background: #fafaf7;
@@ -862,14 +868,16 @@ export default function HeroTitleFrame({
         .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture {
           display: block;
           width: 100%;
-          height: 100%;
+          height: auto;
+          line-height: 0;
         }
 
         .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center center;
+          height: auto;
+          max-height: none;
+          object-fit: unset;
+          object-position: top center;
           display: block;
         }
 
@@ -917,25 +925,6 @@ export default function HeroTitleFrame({
             display: none;
           }
 
-          /* Baked service hero — taller frame, full image visible (no top crop) */
-          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-panel {
-            aspect-ratio: auto;
-            height: auto;
-            overflow: hidden;
-          }
-
-          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture {
-            height: auto;
-            line-height: 0;
-          }
-
-          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture img {
-            width: 100%;
-            height: auto;
-            max-height: none;
-            object-fit: unset;
-            object-position: top center;
-          }
         }
 
         /* Children's book — full illustration panel (not background-header strip) */
@@ -1194,8 +1183,8 @@ export default function HeroTitleFrame({
                 <img
                   src={illustrationBg.desktop}
                   alt=""
-                  width={1920}
-                  height={720}
+                  width={bakedSceneDims?.width ?? 1920}
+                  height={bakedSceneDims?.height ?? 720}
                   decoding="async"
                   fetchPriority="high"
                 />

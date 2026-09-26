@@ -319,9 +319,49 @@ export default function ServiceApproach({ service }) {
 
   if (!service?.approach?.length) return null;
 
+  const glassDesktopBgClass =
+    service.slug === "blog-writing"
+      ? " sa-section--glass-bg-ebook"
+      : service.slug === "ghostwriting"
+        ? " sa-section--glass-bg-ghost"
+        : service.slug === "ebook-writing"
+          ? " sa-section--glass-bg-ebook-writing"
+          : service.slug === "childrens-book"
+            ? " sa-section--glass-bg-childrens-book"
+            : service.slug === "article-writing"
+              ? " sa-section--glass-bg-article-writing"
+              : service.slug === "website-content"
+                ? " sa-section--glass-bg-website-content"
+                : service.slug === "manuscript-editing"
+                  ? " sa-section--glass-bg-manuscript-editing"
+                  : service.slug === "proofreading"
+                    ? " sa-section--glass-bg-proofreading"
+                    : service.slug === "book-formatting"
+                      ? " sa-section--glass-bg-book-formatting"
+                      : service.slug === "book-cover-design"
+                        ? " sa-section--glass-bg-book-cover-design"
+                        : service.slug === "interior-layout"
+                          ? " sa-section--glass-bg-interior-layout"
+                          : service.slug === "illustration-graphics"
+                            ? " sa-section--glass-bg-illustration-graphics"
+                            : service.slug === "video-book-trailer"
+                              ? " sa-section--glass-bg-video-book-trailer"
+                              : service.slug === "ebook-publishing"
+                                ? " sa-section--glass-bg-ebook-publishing"
+                                : service.slug === "audiobook-publishing"
+                                  ? " sa-section--glass-bg-audiobook-publishing"
+                                  : service.slug === "author-branding"
+                                    ? " sa-section--glass-bg-author-branding"
+                                    : service.slug === "book-marketing"
+                                      ? " sa-section--glass-bg-book-marketing"
+                                      : service.slug === "author-website"
+                                        ? " sa-section--glass-bg-author-website"
+                                        : "";
+  const hasGlassDesktop = Boolean(glassDesktopBgClass);
+
   return (
     <section
-      className="sa-section sa-section--glass-mobile"
+      className={`sa-section sa-section--glass-mobile${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}`}
       aria-label="Our approach"
     >
       <style>{`
@@ -409,6 +449,211 @@ export default function ServiceApproach({ service }) {
           opacity: 1;
           transform: translateY(0);
         }
+
+        /* Selected services — desktop only: glass cards + photo backdrop */
+        @media (min-width: 769px) {
+          .sa-section--glass-desktop {
+            position: relative;
+            overflow: hidden;
+            background-color: #12141c;
+            padding: 80px 0;
+          }
+          .sa-section--glass-desktop::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+          }
+          .sa-section--glass-bg-ebook::before {
+            background-image: url(/images/ebook-writing-process-3.webp);
+          }
+          .sa-section--glass-bg-ghost::before {
+            background-image: url(/images/ghost-writer-2.webp);
+            background-position: center 40%;
+          }
+          .sa-section--glass-bg-ebook-writing::before {
+            background-image: url(/images/video-book-trailer-process-3.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-childrens-book::before {
+            background-image: url(/images/book-marketing-process-3.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-article-writing::before {
+            background-image: url(/images/blog-writing-process-3.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-website-content::before {
+            background-image: url(/images/background-website-1.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-manuscript-editing::before {
+            background-image: url(/images/background-menuscript.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-proofreading::before {
+            background-image: url(/images/background-proofreading.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-book-formatting::before {
+            background-image: url(/images/books-5.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-book-cover-design::before {
+            background-image: url(/images/author-website-process-4.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-interior-layout::before {
+            background-image: url(/images/CTA-MIX.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-illustration-graphics::before {
+            background-image: url(/images/background-illustration.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-video-book-trailer::before {
+            background-image: url(/images/background-videobook.webp);
+            background-position: left center;
+          }
+          .sa-section--glass-bg-ebook-publishing::before {
+            background-image: url(/images/background-ebookpublishing.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-audiobook-publishing::before {
+            background-image: url(/images/background-audiobookpublishing.webp);
+            background-position: center 42%;
+          }
+          .sa-section--glass-bg-author-branding::before {
+            background-image: url(/images/background-authorbranding.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-book-marketing::before {
+            background-image: url(/images/background-bookmarketing.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-bg-author-website::before {
+            background-image: url(/images/author-websitedesigning.webp);
+            background-position: center center;
+          }
+          .sa-section--glass-desktop::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+              linear-gradient(
+                105deg,
+                rgba(12, 14, 22, 0.94) 0%,
+                rgba(12, 14, 22, 0.82) 42%,
+                rgba(12, 14, 22, 0.45) 68%,
+                rgba(12, 14, 22, 0.25) 100%
+              ),
+              linear-gradient(
+                180deg,
+                rgba(8, 10, 16, 0.55) 0%,
+                transparent 28%,
+                transparent 72%,
+                rgba(8, 10, 16, 0.65) 100%
+              );
+            pointer-events: none;
+          }
+          /* Video book trailer: left is already dark — no extra shade over camera */
+          .sa-section--glass-bg-video-book-trailer.sa-section--glass-desktop::after {
+            background:
+              linear-gradient(
+                90deg,
+                transparent 0%,
+                transparent 32%,
+                rgba(12, 14, 22, 0.28) 52%,
+                rgba(12, 14, 22, 0.58) 72%,
+                rgba(12, 14, 22, 0.48) 100%
+              ),
+              linear-gradient(
+                180deg,
+                rgba(8, 10, 16, 0.4) 0%,
+                transparent 26%,
+                transparent 74%,
+                rgba(8, 10, 16, 0.55) 100%
+              );
+          }
+          .sa-section--glass-desktop .sa-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+          }
+          .sa-section--glass-desktop .sa-label {
+            color: #c9a84c;
+          }
+          .sa-section--glass-desktop .sa-headline {
+            color: #ffffff;
+          }
+          .sa-section--glass-desktop .sa-headline-italic {
+            color: #c9a84c;
+          }
+          .sa-section--glass-desktop .sa-grid {
+            gap: 24px;
+          }
+          .sa-section--glass-desktop .sa-card {
+            border: 1px solid rgba(201, 168, 76, 0.38);
+            border-top: none;
+            border-radius: 16px;
+            background: linear-gradient(
+              145deg,
+              rgba(255, 255, 255, 0.11) 0%,
+              rgba(255, 255, 255, 0.04) 100%
+            );
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+              0 0 28px rgba(201, 168, 76, 0.12),
+              0 12px 40px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 32px 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          }
+          .sa-section--glass-desktop .sa-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201, 168, 76, 0.55);
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+              0 0 36px rgba(201, 168, 76, 0.22),
+              0 16px 48px rgba(0, 0, 0, 0.4);
+          }
+          .sa-section--glass-desktop .sa-icon-wrap {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.55);
+            background: rgba(201, 168, 76, 0.08);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+            border-radius: 50%;
+          }
+          .sa-section--glass-desktop .sa-card-title {
+            color: #ffffff;
+            font-size: 21px;
+            margin-bottom: 0;
+          }
+          .sa-section--glass-desktop .sa-card-title::after {
+            content: "";
+            display: block;
+            height: 1px;
+            width: 100%;
+            margin-top: 12px;
+            margin-bottom: 16px;
+            background: linear-gradient(
+              90deg,
+              rgba(201, 168, 76, 0.65) 0%,
+              rgba(201, 168, 76, 0.15) 100%
+            );
+          }
+          .sa-section--glass-desktop .sa-card-desc {
+            color: #d4d4d4;
+            font-size: 15px;
+            line-height: 1.7;
+          }
+        }
+
         @media (max-width: 768px) {
           .sa-headline { font-size: 32px; }
           .sa-grid { grid-template-columns: 1fr; }
