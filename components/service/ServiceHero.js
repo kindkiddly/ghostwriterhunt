@@ -23,6 +23,9 @@ export default function ServiceHero({ service }) {
 
   const isChildrensBook = service.slug === "childrens-book";
   const isBlogWriting = service.slug === "blog-writing";
+  const isGhostwriting = service.slug === "ghostwriting";
+  const isBakedHeroImage =
+    isBlogWriting || isGhostwriting;
 
   return (
     <section
@@ -156,6 +159,12 @@ export default function ServiceHero({ service }) {
           .sh-left, .sh-right {
             flex: 1 1 100%;
             max-width: 100%;
+            min-width: 0;
+          }
+
+          .sh-headline-wrap {
+            max-width: 100%;
+            overflow: visible;
           }
           .sh-right {
             display: flex;
@@ -189,7 +198,7 @@ export default function ServiceHero({ service }) {
             titleStyle={
               isChildrensBook
                 ? "illustration"
-                : isBlogWriting
+                : isBakedHeroImage
                   ? "mobile-scene"
                   : "default"
             }
@@ -204,7 +213,12 @@ export default function ServiceHero({ service }) {
                       desktop: "/images/background-blog.webp",
                       mobile: "/images/background-blog-mobile.webp",
                     }
-                  : null
+                  : isGhostwriting
+                    ? {
+                        desktop: "/images/background-gwriting.webp",
+                        mobile: "/images/background-gwriting-mobile.webp",
+                      }
+                    : null
             }
           />
 

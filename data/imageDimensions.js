@@ -13,6 +13,8 @@ export const IMAGE_DIMENSIONS = {
   "/images/background-H1-mobile.webp": { width: 780, height: 293 },
   "/images/background-blog.webp": { width: 1920, height: 720 },
   "/images/background-blog-mobile.webp": { width: 780, height: 293 },
+  "/images/background-gwriting.webp": { width: 1920, height: 720 },
+  "/images/background-gwriting-mobile.webp": { width: 780, height: 293 },
   "/images/author-reading.webp": { width: 800, height: 533 },
   "/images/book-pen-laptop.webp": { width: 800, height: 600 },
   "/images/books-education.webp": { width: 400, height: 300 },

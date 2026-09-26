@@ -536,9 +536,17 @@ export default function HeroTitleFrame({
         }
 
         @media (max-width: 768px) {
-          .gwh-hero-title-frame:not(.gwh-hero-title-frame--home-glass) {
+          .gwh-hero-title-frame:not(.gwh-hero-title-frame--home-glass):not(
+              .gwh-hero-title-frame--illustration
+            ):not(.gwh-hero-title-frame--baked-full) {
             padding: 2px 12px 4px;
             overflow: hidden;
+          }
+
+          .gwh-hero-title-frame--illustration {
+            padding: 0;
+            overflow: visible;
+            max-width: 100%;
           }
 
           /* Home — background-H1 image only; never use service strip / glass-mount */
@@ -1044,23 +1052,28 @@ export default function HeroTitleFrame({
           }
 
           .gwh-childrens-title-wrap {
-            left: auto;
+            left: 0;
             right: 0;
             bottom: 0;
-            max-width: 62%;
-            padding: 8px 10px 10px 6px;
+            box-sizing: border-box;
+            max-width: 100%;
+            width: 100%;
+            padding: 10px 16px 12px;
           }
 
           .gwh-hero-title-frame--illustration .gwh-hero-title-frame-h1 {
-            font-size: 26px;
-            line-height: 1.06;
+            font-size: clamp(20px, 5.4vw, 26px);
+            line-height: 1.08;
             text-align: right;
+            max-width: 100%;
+            overflow-wrap: break-word;
           }
 
           .gwh-hero-title-frame--illustration .gwh-hero-h1-line1,
           .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
             display: block;
-            white-space: nowrap;
+            white-space: normal;
+            overflow-wrap: break-word;
           }
 
           .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
