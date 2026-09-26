@@ -76,6 +76,7 @@ export default function HeroTitleFrame({
     titleStyle === "home-glass" &&
     illustrationBg?.desktop &&
     illustrationBg?.mobile;
+  const isPlain = titleStyle === "plain";
   const isMobileScene =
     titleStyle === "mobile-scene" && illustrationBg?.mobile;
   const isServiceBakedFull =
@@ -115,7 +116,9 @@ export default function HeroTitleFrame({
     const isDefaultStrip =
       titleStyle !== "home-glass" &&
       titleStyle !== "illustration" &&
+      titleStyle !== "plain" &&
       !(titleStyle === "mobile-scene" && isMobileViewport);
+    const usesMobileHeadlineSplit = isDefaultStrip || titleStyle === "plain";
 
     measureH1.style.width = `${h1.clientWidth}px`;
 
@@ -139,7 +142,7 @@ export default function HeroTitleFrame({
       return;
     }
 
-    if (isMobileViewport && isDefaultStrip) {
+    if (isMobileViewport && usesMobileHeadlineSplit) {
       const line1Lines = measureBlockLines(measureBlock1, line1);
 
       if (line1Lines.length <= 1) {
@@ -460,6 +463,59 @@ export default function HeroTitleFrame({
         .gwh-hero-title-frame--service {
           text-align: left;
         }
+
+        /* Service — plain Playfair title (no background-header strip; home-style flow) */
+        .gwh-hero-title-frame--plain {
+          padding: 0;
+          text-align: left;
+        }
+
+        .gwh-hero-title-frame--plain .gwh-hero-title-frame-h1 {
+          font-weight: 700;
+          font-size: 36px;
+          line-height: 1.08;
+          letter-spacing: -0.02em;
+          color: #1c1c1c;
+          margin: 0;
+        }
+
+        .gwh-hero-title-frame--plain .gwh-hero-h1-line1,
+        .gwh-hero-title-frame--plain .gwh-hero-h1-line1-center {
+          display: block;
+          font-weight: 700;
+          color: #1c1c1c;
+          text-shadow: none;
+        }
+
+        .gwh-hero-title-frame--plain .gwh-hero-h1-line2 {
+          display: block;
+          font-weight: 700;
+          font-style: italic;
+          color: var(--color-accent-gold);
+          text-shadow: none;
+        }
+
+        .gwh-hero-title-frame--plain .gwh-hero-title-rule--top {
+          margin-bottom: 16px;
+        }
+
+        .gwh-hero-title-frame--plain .gwh-hero-title-rule--bottom {
+          margin-top: 16px;
+        }
+
+        @media (min-width: 769px) {
+          .gwh-hero-title-frame--plain .gwh-hero-title-frame-h1 {
+            font-size: 56px;
+            line-height: 1.08;
+          }
+
+          .gwh-hero-title-frame--plain .gwh-hero-title-rule {
+            margin-left: 0;
+            margin-right: auto;
+            width: min(340px, 92%);
+          }
+        }
+
 
         /* Tablet+ — backdrop extends to gold rules; home title scales up (not mobile) */
         @media (min-width: 769px) {
@@ -1187,6 +1243,49 @@ export default function HeroTitleFrame({
                 />
               </div>
             </div>
+          </div>
+          <span
+            className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
+            aria-hidden="true"
+          />
+        </div>
+      ) : isPlain ? (
+        <div
+          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--plain ${className}`.trim()}
+        >
+          <span
+            className="gwh-hero-title-rule gwh-hero-title-rule--top"
+            aria-hidden="true"
+          />
+          <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+            {headlineSplit.useThreeRow ? (
+              <>
+                <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
+                <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
+                  {headlineSplit.center}
+                </span>
+                <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
+              </>
+            ) : (
+              <>
+                <span className="gwh-hero-h1-line1">{line1}</span>
+                <span className="gwh-hero-h1-line2">{line2}</span>
+              </>
+            )}
+          </h1>
+          <div
+            ref={measureH1Ref}
+            className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+            aria-hidden="true"
+          >
+            <div
+              ref={measureBlock1Ref}
+              className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+            />
+            <div
+              ref={measureBlock2Ref}
+              className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+            />
           </div>
           <span
             className="gwh-hero-title-rule gwh-hero-title-rule--bottom"

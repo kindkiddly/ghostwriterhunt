@@ -14,6 +14,12 @@ import { useRevealSelector } from "@/lib/useSectionReveal";
  * Prefix: sh-
  */
 
+/**
+ * Desktop-only plain Playfair headline (no background-header strip).
+ * Keep baked/illustration heroes: children's book, blog, ghostwriting (custom).
+ */
+const DESKTOP_BAKED_HEADLINE_SLUGS = new Set(["childrens-book", "blog-writing"]);
+
 export default function ServiceHero({ service }) {
   useRevealSelector(
     ".sh-reveal-left, .sh-reveal-img",
@@ -26,12 +32,14 @@ export default function ServiceHero({ service }) {
   const isChildrensBook = service.slug === "childrens-book";
   const isBlogWriting = service.slug === "blog-writing";
   const isGhostwriting = service.slug === "ghostwriting";
+  const isPlainTextHeadline =
+    !isGhostwriting && !DESKTOP_BAKED_HEADLINE_SLUGS.has(service.slug);
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
   const ghostDesktopTextHero = isGhostwriting;
 
   return (
     <section
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style>{`
@@ -72,6 +80,28 @@ export default function ServiceHero({ service }) {
         }
         .sh-headline-wrap {
           margin: 0 0 24px;
+        }
+
+        .sh-plain-desktop-only {
+          display: none;
+        }
+        .sh-plain-mobile-only {
+          display: block;
+        }
+
+        @media (min-width: 769px) {
+          .sh-plain-desktop-only {
+            display: block;
+          }
+          .sh-plain-mobile-only {
+            display: none !important;
+          }
+          .sh-section--plain-headline .sh-headline-wrap {
+            margin-bottom: 20px;
+          }
+          .sh-section--plain-headline .sh-hero-lede {
+            margin-top: 0;
+          }
         }
         .sh-ctas {
           display: flex;
@@ -128,6 +158,29 @@ export default function ServiceHero({ service }) {
         }
         .sh-reveal-img.sh-visible {
           transform: translateY(0);
+        }
+
+        /* Desktop — hero sits flush under nav; float cluster top-aligned (not viewport-centered) */
+        @media (min-width: 769px) {
+          .sh-section {
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: auto;
+            padding-top: 70px;
+            padding-bottom: 80px;
+          }
+          .sh-inner {
+            align-items: flex-start;
+          }
+          .sh-right {
+            align-self: flex-start;
+          }
+          .sh-section .fi-float-large {
+            top: 0;
+          }
+          .sh-section .fi-single {
+            justify-content: flex-start;
+          }
         }
 
         @media (min-width: 1024px) {
@@ -258,6 +311,25 @@ export default function ServiceHero({ service }) {
                   illustrationBg={{
                     mobile: "/images/background-gwriting-mobile.webp",
                   }}
+                />
+              </div>
+            </>
+          ) : isPlainTextHeadline ? (
+            <>
+              <div className="sh-headline-wrap sh-plain-desktop-only">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="plain"
+                />
+              </div>
+              <div className="sh-headline-wrap sh-plain-mobile-only">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="default"
                 />
               </div>
             </>
