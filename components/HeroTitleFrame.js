@@ -74,6 +74,10 @@ export default function HeroTitleFrame({
     titleStyle === "home-glass" &&
     illustrationBg?.desktop &&
     illustrationBg?.mobile;
+  const isMobileScene =
+    titleStyle === "mobile-scene" && illustrationBg?.mobile;
+  const isServiceBakedFull =
+    isMobileScene && illustrationBg?.desktop;
   const h1Ref = useRef(null);
   const measureBlock1Ref = useRef(null);
   const measureBlock2Ref = useRef(null);
@@ -103,9 +107,31 @@ export default function HeroTitleFrame({
     const isMobileViewport =
       typeof window !== "undefined" && window.innerWidth <= 768;
     const isDefaultStrip =
-      titleStyle !== "home-glass" && titleStyle !== "illustration";
+      titleStyle !== "home-glass" &&
+      titleStyle !== "illustration" &&
+      !(titleStyle === "mobile-scene" && isMobileViewport);
 
     measureH1.style.width = `${h1.clientWidth}px`;
+
+    if (titleStyle === "mobile-scene" && illustrationBg?.desktop) {
+      setHeadlineSplit({
+        useThreeRow: false,
+        top: line1,
+        center: null,
+        bottom: line2,
+      });
+      return;
+    }
+
+    if (isMobileViewport && titleStyle === "mobile-scene") {
+      setHeadlineSplit({
+        useThreeRow: false,
+        top: line1,
+        center: null,
+        bottom: line2,
+      });
+      return;
+    }
 
     if (isMobileViewport && isDefaultStrip) {
       const line1Lines = measureBlockLines(measureBlock1, line1);
@@ -811,6 +837,79 @@ export default function HeroTitleFrame({
           border: 0;
         }
 
+        /* Service — baked headline in image (mobile + desktop when both assets) */
+        .gwh-hero-title-frame--mobile-scene {
+          padding: 0;
+        }
+
+        .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-panel {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 8 / 3;
+          overflow: hidden;
+          border-radius: 4px;
+          background: #fafaf7;
+        }
+
+        .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          display: block;
+        }
+
+        .gwh-service-mobile-scene-panel {
+          display: none;
+        }
+
+        .gwh-service-desktop-headline {
+          display: block;
+        }
+
+        .gwh-service-mobile-scene-picture {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        .gwh-service-mobile-scene-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .gwh-hero-title-frame--mobile-scene {
+            padding: 0;
+            overflow: visible;
+          }
+
+          .gwh-hero-title-frame--mobile-scene:not(.gwh-hero-title-frame--baked-full)
+            .gwh-service-mobile-scene-panel {
+            display: block;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 8 / 3;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #fafaf7;
+          }
+
+          .gwh-hero-title-frame--mobile-scene:not(.gwh-hero-title-frame--baked-full)
+            .gwh-service-desktop-headline {
+            display: none;
+          }
+        }
+
         /* Children's book — full illustration panel (not background-header strip) */
         .gwh-hero-title-frame--illustration {
           padding: 0;
@@ -1046,6 +1145,111 @@ export default function HeroTitleFrame({
             className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
             aria-hidden="true"
           />
+        </div>
+      ) : isMobileScene ? (
+        <div
+          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--mobile-scene${isServiceBakedFull ? " gwh-hero-title-frame--baked-full" : ""} ${className}`.trim()}
+        >
+          {isServiceBakedFull ? (
+            <div className="gwh-service-baked-scene-panel">
+              <picture className="gwh-service-baked-scene-picture">
+                <source
+                  media="(max-width: 768px)"
+                  srcSet={illustrationBg.mobile}
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={illustrationBg.desktop}
+                  alt=""
+                  width={1920}
+                  height={720}
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
+              <h1 ref={h1Ref} className="gwh-home-scene-sr-title">
+                {line1} {line2}
+              </h1>
+            </div>
+          ) : (
+            <div className="gwh-service-mobile-scene-panel">
+              <div className="gwh-service-mobile-scene-picture">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={illustrationBg.mobile}
+                  alt=""
+                  width={780}
+                  height={293}
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </div>
+              <h1 className="gwh-home-scene-sr-title">
+                {line1} {line2}
+              </h1>
+            </div>
+          )}
+          {!isServiceBakedFull && (
+          <div className="gwh-service-desktop-headline">
+            <span
+              className="gwh-hero-title-rule gwh-hero-title-rule--top"
+              aria-hidden="true"
+            />
+            <div className="gwh-hero-title-copy">
+              <div className="gwh-hero-title-backdrop" aria-hidden="true">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/background-header.webp"
+                  alt=""
+                  className="gwh-hero-title-backdrop-photo"
+                  decoding="async"
+                  fetchPriority="low"
+                />
+                <div className="gwh-hero-title-backdrop-scrim" />
+              </div>
+              <div
+                className="gwh-hero-title-backdrop-feather"
+                aria-hidden="true"
+              />
+              <div className="gwh-hero-title-glass-mount">
+                <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+                  {headlineSplit.useThreeRow ? (
+                    <>
+                      <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
+                      <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
+                        {headlineSplit.center}
+                      </span>
+                      <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="gwh-hero-h1-line1">{line1}</span>
+                      <span className="gwh-hero-h1-line2">{line2}</span>
+                    </>
+                  )}
+                </h1>
+                <div
+                  ref={measureH1Ref}
+                  className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+                  aria-hidden="true"
+                >
+                  <div
+                    ref={measureBlock1Ref}
+                    className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+                  />
+                  <div
+                    ref={measureBlock2Ref}
+                    className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+                  />
+                </div>
+              </div>
+            </div>
+            <span
+              className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
+              aria-hidden="true"
+            />
+          </div>
+          )}
         </div>
       ) : (
         <div

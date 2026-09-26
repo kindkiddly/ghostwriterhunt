@@ -294,6 +294,8 @@ export default function BookCoversGallery() {
                 height={600}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 1024px) 50vw, 25vw"
+                loading={index < 4 ? "eager" : "lazy"}
+                fetchPriority={index < 2 ? "auto" : "low"}
               />
 
               {/* Hover overlay — slides up from bottom */}

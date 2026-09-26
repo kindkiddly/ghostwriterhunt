@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
@@ -194,6 +194,14 @@ function PlanCard({ plan, index }) {
 
 export default function Pricing() {
   const { ref: sectionRef, visible } = useSectionReveal();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.src = "/images/background-cards.webp";
+  }, []);
 
   return (
     <section
@@ -486,26 +494,34 @@ export default function Pricing() {
           border-color: rgba(245, 158, 11, 0.88);
         }
 
+        .gwh-price-cards-bg {
+          display: none;
+        }
+
         @media (min-width: 1024px) {
           .gwh-price-cards-stage {
             padding: 52px 32px 56px;
             border-radius: 24px;
             overflow: hidden;
+            isolation: isolate;
+            contain: layout style;
           }
 
-          .gwh-price-cards-stage::before {
+          .gwh-price-cards-bg {
             display: block;
-            content: "";
             position: absolute;
             inset: 0;
             z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
             border-radius: inherit;
+            pointer-events: none;
             opacity: 0;
-            background: url(/images/background-cards.webp) center center / cover
-              no-repeat;
           }
 
-          .gwh-price-visible .gwh-price-cards-stage::before {
+          .gwh-price-visible .gwh-price-cards-bg {
             animation: gwh-price-fade 0.7s ease-out forwards;
           }
 
@@ -664,6 +680,17 @@ export default function Pricing() {
 
         {/* Plan cards — desktop: background-cards behind cards; mobile: no backdrop */}
         <div className="gwh-price-cards-stage mx-auto max-w-[1140px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/background-cards.webp"
+            alt=""
+            aria-hidden="true"
+            className="gwh-price-cards-bg"
+            width={1920}
+            height={1081}
+            decoding="async"
+            fetchPriority="low"
+          />
           <div className="gwh-price-cards-grid grid grid-cols-1 items-stretch gap-7 lg:grid-cols-3">
             {PLANS.map((plan, index) => (
               <PlanCard key={plan.id} plan={plan} index={index} />

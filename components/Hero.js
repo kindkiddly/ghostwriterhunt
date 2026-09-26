@@ -46,7 +46,13 @@ const COLUMN_3 = [
   "/images/carousel-flipping-book.webp",
 ];
 
-function BookCover({ src, alt }) {
+function BookCover({
+  src,
+  alt,
+  loading = "lazy",
+  fetchPriority,
+  ariaHidden,
+}) {
   return (
     // Regular img — fixed 220px height + 12px margin for exact -50% loop math
     // eslint-disable-next-line @next/next/no-img-element
@@ -54,7 +60,10 @@ function BookCover({ src, alt }) {
       src={src}
       alt={alt}
       className="gwh-book-cover"
+      loading={loading}
       decoding="async"
+      fetchPriority={fetchPriority}
+      aria-hidden={ariaHidden}
       onError={(e) => {
         // Swap to a verified gallery cover if Unsplash fails
         if (e.currentTarget.src !== FALLBACK_COVER) {
@@ -81,7 +90,13 @@ function BookCover({ src, alt }) {
  * Structure: wrapper (overflow hidden) → scroll-track (animated, images × 2).
  * translateY(-50%) moves exactly one image set → seamless loop.
  */
-function ScrollColumn({ images, animationClass, animationDelay, label }) {
+function ScrollColumn({
+  images,
+  animationClass,
+  animationDelay,
+  label,
+  priorityColumn = false,
+}) {
   return (
     <div
       className="h-full w-[calc(33.333%-8px)] shrink-0 overflow-hidden"
@@ -96,13 +111,18 @@ function ScrollColumn({ images, animationClass, animationDelay, label }) {
             key={`${label}-a-${i}`}
             src={src}
             alt={`Book cover ${i + 1}`}
+            loading={priorityColumn && i < 3 ? "eager" : "lazy"}
+            fetchPriority={priorityColumn && i === 0 ? "high" : "low"}
           />
         ))}
         {images.map((src, i) => (
           <BookCover
             key={`${label}-b-${i}`}
             src={src}
-            alt={`Book cover ${i + 1}`}
+            alt=""
+            aria-hidden={true}
+            loading="lazy"
+            fetchPriority="low"
           />
         ))}
       </div>
@@ -149,6 +169,7 @@ function BookTicker() {
         images={COLUMN_1}
         animationClass="gwh-scroll-col-1"
         label="Book column 1"
+        priorityColumn
       />
       <ScrollColumn
         images={COLUMN_2}

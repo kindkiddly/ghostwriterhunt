@@ -22,6 +22,7 @@ export default function ServiceHero({ service }) {
   if (!service) return null;
 
   const isChildrensBook = service.slug === "childrens-book";
+  const isBlogWriting = service.slug === "blog-writing";
 
   return (
     <section
@@ -185,14 +186,25 @@ export default function ServiceHero({ service }) {
             line2={service.taglineItalic}
             variant="service"
             className="sh-headline-wrap"
-            titleStyle={isChildrensBook ? "illustration" : "default"}
+            titleStyle={
+              isChildrensBook
+                ? "illustration"
+                : isBlogWriting
+                  ? "mobile-scene"
+                  : "default"
+            }
             illustrationBg={
               isChildrensBook
                 ? {
                     desktop: "/images/childrens-book-hero-bg.webp",
                     mobile: "/images/childrens-book-hero-bg-mobile.webp",
                   }
-                : null
+                : isBlogWriting
+                  ? {
+                      desktop: "/images/background-blog.webp",
+                      mobile: "/images/background-blog-mobile.webp",
+                    }
+                  : null
             }
           />
 
