@@ -391,11 +391,9 @@ export default function HeroTitleFrame({
           font-style: italic;
         }
 
+        /* Gold line — no blur glow here; mobile strip + desktop rules below */
         .gwh-hero-title-frame .gwh-hero-h1-line2 {
-          text-shadow:
-            0 0 1.15px rgba(28, 28, 28, 0.74),
-            0 0 3.5px rgba(28, 28, 28, 0.36),
-            0 0 6px rgba(28, 28, 28, 0.17);
+          text-shadow: none;
         }
 
         /* Home strip hero typography (not background-H1 image home) */
@@ -514,6 +512,30 @@ export default function HeroTitleFrame({
             margin-right: auto;
             width: min(340px, 92%);
           }
+
+          /* Desktop — crisp gold italic; tiny stroke only (no front glow) */
+          .gwh-hero-title-frame--plain .gwh-hero-h1-line2 {
+            text-shadow: none;
+          }
+
+          .gwh-hero-title-frame:not(.gwh-hero-title-frame--plain):not(
+              .gwh-hero-title-frame--illustration
+            ):not(.gwh-hero-title-frame--home-glass)
+            .gwh-hero-h1-line2 {
+            text-shadow:
+              -0.45px 0 0 rgba(28, 28, 28, 0.36),
+              0.45px 0 0 rgba(28, 28, 28, 0.36),
+              0 -0.45px 0 rgba(28, 28, 28, 0.36),
+              0 0.45px 0 rgba(28, 28, 28, 0.36);
+          }
+
+          .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
+            text-shadow:
+              -0.45px 0 0 rgba(18, 18, 18, 0.5),
+              0.45px 0 0 rgba(18, 18, 18, 0.5),
+              0 -0.45px 0 rgba(18, 18, 18, 0.5),
+              0 0.45px 0 rgba(18, 18, 18, 0.5);
+          }
         }
 
 
@@ -589,12 +611,6 @@ export default function HeroTitleFrame({
               0 0 5px rgba(28, 28, 28, 0.12);
           }
 
-          .gwh-hero-title-frame .gwh-hero-h1-line2 {
-            text-shadow:
-              0 0 1.25px rgba(28, 28, 28, 0.78),
-              0 0 4px rgba(28, 28, 28, 0.38),
-              0 0 6.5px rgba(28, 28, 28, 0.18);
-          }
         }
 
         @media (max-width: 768px) {
@@ -1079,10 +1095,7 @@ export default function HeroTitleFrame({
 
         .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
           color: #f3df9a;
-          text-shadow:
-            0 0 1.5px rgba(18, 18, 18, 0.95),
-            0 0 4px rgba(18, 18, 18, 0.65),
-            0 0 8px rgba(18, 18, 18, 0.35);
+          text-shadow: none;
         }
 
         .gwh-hero-title-frame--illustration .gwh-hero-title-rule--bottom {
@@ -1168,6 +1181,10 @@ export default function HeroTitleFrame({
 
           .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
             font-size: 0.92em;
+            text-shadow:
+              0 0 1.5px rgba(18, 18, 18, 0.95),
+              0 0 4px rgba(18, 18, 18, 0.65),
+              0 0 8px rgba(18, 18, 18, 0.35);
           }
 
           .gwh-hero-title-frame--illustration
