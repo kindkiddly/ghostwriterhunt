@@ -575,6 +575,53 @@ export default function HeroTitleFrame({
             line-height: 1.08;
           }
 
+          /* Mobile — taller backdrop (home + services; not children's illustration hero) */
+          .gwh-hero-title-frame--home,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration) {
+            overflow: visible;
+          }
+
+          .gwh-hero-title-frame--home .gwh-hero-title-backdrop,
+          .gwh-hero-title-frame--home .gwh-hero-title-backdrop-feather,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop-feather {
+            inset: auto;
+            top: -28px;
+            bottom: -28px;
+            left: -22px;
+            right: -22px;
+          }
+
+          .gwh-hero-title-frame--home .gwh-hero-title-backdrop-photo,
+          .gwh-hero-title-frame--service:not(.gwh-hero-title-frame--illustration)
+            .gwh-hero-title-backdrop-photo {
+            object-position: 50% 22%;
+            height: 124%;
+            top: -12%;
+          }
+
+          /* Home mobile — black headline lines match service pages (desktop home stays 400) */
+          .gwh-hero-title-frame--home .gwh-hero-title-frame-h1 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1c1c1c;
+          }
+
+          .gwh-hero-title-frame--home .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
+            font-weight: 700;
+            color: #1c1c1c;
+          }
+
+          .gwh-hero-title-frame--home .gwh-hero-h1-line1-center {
+            font-weight: 700;
+          }
+
+          .gwh-hero-title-frame--home .gwh-hero-h1-line2 {
+            font-weight: 700;
+          }
+
           .gwh-hero-title-frame .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
             text-shadow:
               0 0 0.75px rgba(255, 255, 255, 0.62),
