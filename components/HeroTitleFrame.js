@@ -519,6 +519,7 @@ export default function HeroTitleFrame({
               );
           }
 
+          /* Mobile only: sharp photo — edge merge via mask/feather/scrim, not blur */
           .gwh-hero-title-backdrop-photo {
             inset: auto;
             top: -8%;
@@ -527,18 +528,18 @@ export default function HeroTitleFrame({
             height: 116%;
             transform: none;
             object-position: 50% 18%;
-            filter: blur(3px) saturate(1.12);
+            filter: saturate(1.08);
           }
 
           .gwh-hero-title-backdrop-scrim {
             background: linear-gradient(
               to bottom,
-              rgba(252, 250, 245, 0.48) 0%,
-              rgba(252, 248, 238, 0.16) 20%,
+              rgba(252, 250, 245, 0.32) 0%,
+              rgba(252, 248, 238, 0.1) 20%,
               rgba(252, 248, 238, 0) 38%,
-              rgba(8, 6, 4, 0.1) 55%,
-              rgba(4, 3, 2, 0.28) 78%,
-              rgba(4, 3, 2, 0.42) 100%
+              rgba(8, 6, 4, 0.08) 55%,
+              rgba(4, 3, 2, 0.2) 78%,
+              rgba(4, 3, 2, 0.32) 100%
             );
           }
 
