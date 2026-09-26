@@ -916,6 +916,26 @@ export default function HeroTitleFrame({
             .gwh-service-desktop-headline {
             display: none;
           }
+
+          /* Baked service hero — taller frame, full image visible (no top crop) */
+          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-panel {
+            aspect-ratio: auto;
+            height: auto;
+            overflow: hidden;
+          }
+
+          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture {
+            height: auto;
+            line-height: 0;
+          }
+
+          .gwh-hero-title-frame--baked-full .gwh-service-baked-scene-picture img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: unset;
+            object-position: top center;
+          }
         }
 
         /* Children's book — full illustration panel (not background-header strip) */
