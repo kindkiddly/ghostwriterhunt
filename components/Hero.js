@@ -393,6 +393,11 @@ export default function Hero() {
             line1="Where Ideas"
             line2="Become Books."
             variant="home"
+            titleStyle="home-glass"
+            illustrationBg={{
+              desktop: "/images/background-H1.webp",
+              mobile: "/images/background-H1-mobile.webp",
+            }}
             className="gwh-hero-animate gwh-hero-delay-0"
           />
 
