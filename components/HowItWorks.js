@@ -161,7 +161,7 @@ export default function HowItWorks() {
         .gwh-hiw-bg {
           position: absolute;
           inset: 0;
-          background-image: url("/images/background-howitworks-2.webp");
+          background-image: url(/images/background-howitworks-2.webp);
           background-size: cover;
           background-position: 72% center;
           background-repeat: no-repeat;
@@ -295,7 +295,7 @@ export default function HowItWorks() {
 
         @media (max-width: 767px) {
           .gwh-hiw-bg {
-            background-image: url("/images/background-howitworks-M.webp");
+            background-image: url(/images/background-howitworks-M.webp);
             background-position: center 38%;
           }
           .gwh-hiw-overlay {

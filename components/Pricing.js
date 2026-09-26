@@ -501,7 +501,7 @@ export default function Pricing() {
             z-index: 0;
             border-radius: inherit;
             opacity: 0;
-            background: url("/images/background-cards.webp") center center / cover
+            background: url(/images/background-cards.webp) center center / cover
               no-repeat;
           }
 

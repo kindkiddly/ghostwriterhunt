@@ -1,5 +1,6 @@
 "use client";
 
+import HeroTitleFrame from "@/components/HeroTitleFrame";
 import FloatingImages from "./FloatingImages";
 import ServiceTrustLine from "./ServiceTrustLine";
 import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
@@ -59,19 +60,8 @@ export default function ServiceHero({ service }) {
           color: #6B7C3A;
           margin: 0 0 20px;
         }
-        .sh-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
-          font-weight: 700;
-          font-size: 56px;
-          line-height: 1.1;
-          letter-spacing: -0.02em;
-          color: #1C1C1C;
+        .sh-headline-wrap {
           margin: 0 0 24px;
-        }
-        .sh-headline-italic {
-          display: block;
-          font-style: italic;
-          color: #C9A84C;
         }
         .sh-subtext {
           font-family: var(--font-inter), Inter, sans-serif;
@@ -141,6 +131,12 @@ export default function ServiceHero({ service }) {
           transform: translateY(0);
         }
 
+        @media (min-width: 1024px) {
+          .sh-left {
+            padding-left: 20px;
+          }
+        }
+
         @media (max-width: 768px) {
           .sh-section {
             min-height: auto;
@@ -162,7 +158,6 @@ export default function ServiceHero({ service }) {
             width: 100%;
             overflow: visible;
           }
-          .sh-headline { font-size: 36px; }
           .sh-reveal-left { transform: translateY(20px); }
 
           .sh-section .sh-ctas {
@@ -181,10 +176,12 @@ export default function ServiceHero({ service }) {
         <div className="sh-left sh-reveal-left" data-delay="0">
           <p className="sh-label">{service.category}</p>
 
-          <h1 className="sh-headline">
-            <span className="block">{service.tagline}</span>
-            <span className="sh-headline-italic">{service.taglineItalic}</span>
-          </h1>
+          <HeroTitleFrame
+            line1={service.tagline}
+            line2={service.taglineItalic}
+            variant="service"
+            className="sh-headline-wrap"
+          />
 
           <p className="sh-subtext">{service.heroSubtext}</p>
 
