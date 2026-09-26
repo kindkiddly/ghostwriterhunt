@@ -21,6 +21,8 @@ export default function ServiceHero({ service }) {
 
   if (!service) return null;
 
+  const isChildrensBook = service.slug === "childrens-book";
+
   return (
     <section
       className="sh-section"
@@ -181,6 +183,15 @@ export default function ServiceHero({ service }) {
             line2={service.taglineItalic}
             variant="service"
             className="sh-headline-wrap"
+            titleStyle={isChildrensBook ? "illustration" : "default"}
+            illustrationBg={
+              isChildrensBook
+                ? {
+                    desktop: "/images/childrens-book-hero-bg.webp",
+                    mobile: "/images/childrens-book-hero-bg-mobile.webp",
+                  }
+                : null
+            }
           />
 
           <p className="sh-subtext">{service.heroSubtext}</p>

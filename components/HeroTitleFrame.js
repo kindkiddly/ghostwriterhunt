@@ -63,7 +63,13 @@ export default function HeroTitleFrame({
   line2,
   variant = "home",
   className = "",
+  titleStyle = "default",
+  illustrationBg = null,
 }) {
+  const isIllustration =
+    titleStyle === "illustration" &&
+    illustrationBg?.desktop &&
+    illustrationBg?.mobile;
   const h1Ref = useRef(null);
   const measureBlock1Ref = useRef(null);
   const measureBlock2Ref = useRef(null);
@@ -565,7 +571,7 @@ export default function HeroTitleFrame({
 
           .gwh-hero-title-frame--home .gwh-hero-title-frame-h1,
           .gwh-hero-title-frame--service .gwh-hero-title-frame-h1 {
-            font-size: 36px;
+            font-size: 40px;
             line-height: 1.08;
           }
 
@@ -593,64 +599,257 @@ export default function HeroTitleFrame({
               0 1px 2px rgba(12, 12, 12, 0.35);
           }
         }
+
+        /* Children's book — full illustration panel (not background-header strip) */
+        .gwh-hero-title-frame--illustration {
+          padding: 0;
+        }
+
+        .gwh-childrens-panel {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 8 / 3;
+          border-radius: 18px;
+          overflow: hidden;
+          background: #fafaf7;
+          box-shadow:
+            0 10px 32px rgba(28, 28, 28, 0.08),
+            0 0 0 1px rgba(201, 168, 76, 0.22);
+        }
+
+        .gwh-childrens-picture {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        .gwh-childrens-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center center;
+          display: block;
+        }
+
+        .gwh-childrens-scrim {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            to top,
+            rgba(28, 28, 28, 0.72) 0%,
+            rgba(28, 28, 28, 0.38) 28%,
+            rgba(28, 28, 28, 0.08) 52%,
+            transparent 68%
+          );
+        }
+
+        .gwh-childrens-title-wrap {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 2;
+          padding: 18px 16px 16px;
+        }
+
+        .gwh-hero-title-frame--illustration .gwh-hero-title-frame-h1 {
+          text-align: center;
+        }
+
+        .gwh-hero-title-frame--illustration
+          .gwh-hero-h1-line1:not(.gwh-hero-h1-line1-center) {
+          color: #fffef9;
+          text-shadow:
+            0 0 1px rgba(28, 28, 28, 0.75),
+            0 0 4px rgba(28, 28, 28, 0.45);
+        }
+
+        .gwh-hero-title-frame--illustration .gwh-hero-h1-line1-center {
+          color: #fffef9;
+        }
+
+        .gwh-hero-title-frame--illustration .gwh-hero-h1-line2 {
+          color: #f3df9a;
+          text-shadow:
+            0 0 1.5px rgba(18, 18, 18, 0.95),
+            0 0 4px rgba(18, 18, 18, 0.65),
+            0 0 8px rgba(18, 18, 18, 0.35);
+        }
+
+        .gwh-hero-title-frame--illustration .gwh-hero-title-rule--bottom {
+          margin-top: 14px;
+        }
+
+        @media (min-width: 769px) {
+          .gwh-childrens-panel {
+            border-radius: 22px;
+          }
+
+          .gwh-childrens-title-wrap {
+            padding: 12px 20px 10px;
+          }
+
+          .gwh-childrens-scrim {
+            background: linear-gradient(
+              to top,
+              rgba(28, 28, 28, 0.62) 0%,
+              rgba(28, 28, 28, 0.28) 24%,
+              rgba(28, 28, 28, 0.06) 46%,
+              transparent 58%
+            );
+          }
+
+          /* Children's page only — smaller overlay type so the face stays visible */
+          .gwh-hero-title-frame--illustration .gwh-hero-title-frame-h1 {
+            font-size: 34px;
+            line-height: 1.06;
+          }
+
+          .gwh-hero-title-frame--illustration.gwh-hero-title-frame--service
+            .gwh-hero-title-frame-h1 {
+            text-align: left;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .gwh-hero-title-frame--illustration .gwh-hero-title-frame-h1 {
+            font-size: 40px;
+            line-height: 1.08;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .gwh-childrens-panel {
+            border-radius: 16px;
+          }
+
+          .gwh-childrens-title-wrap {
+            padding: 14px 12px 12px;
+          }
+
+          .gwh-hero-title-frame--illustration .gwh-hero-title-frame-h1 {
+            font-size: 38px;
+            line-height: 1.1;
+          }
+        }
       `}</style>
 
-      <div
-        className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} ${className}`.trim()}
-      >
-        <span
-          className="gwh-hero-title-rule gwh-hero-title-rule--top"
-          aria-hidden="true"
-        />
-        <div className="gwh-hero-title-copy">
-          <div className="gwh-hero-title-backdrop" aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/background-header.webp"
-              alt=""
-              className="gwh-hero-title-backdrop-photo"
-              decoding="async"
-              fetchPriority="low"
-            />
-            <div className="gwh-hero-title-backdrop-scrim" />
+      {isIllustration ? (
+        <div
+          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--illustration ${className}`.trim()}
+        >
+          <div className="gwh-childrens-panel">
+            <picture className="gwh-childrens-picture">
+              <source
+                media="(max-width: 768px)"
+                srcSet={illustrationBg.mobile}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={illustrationBg.desktop}
+                alt=""
+                decoding="async"
+                fetchPriority="high"
+              />
+            </picture>
+            <div className="gwh-childrens-scrim" aria-hidden="true" />
+            <div className="gwh-childrens-title-wrap">
+              <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+                {headlineSplit.useThreeRow ? (
+                  <>
+                    <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
+                    <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
+                      {headlineSplit.center}
+                    </span>
+                    <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="gwh-hero-h1-line1">{line1}</span>
+                    <span className="gwh-hero-h1-line2">{line2}</span>
+                  </>
+                )}
+              </h1>
+              <div
+                ref={measureH1Ref}
+                className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+                aria-hidden="true"
+              >
+                <div
+                  ref={measureBlock1Ref}
+                  className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+                />
+                <div
+                  ref={measureBlock2Ref}
+                  className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+                />
+              </div>
+            </div>
           </div>
-          <div className="gwh-hero-title-backdrop-feather" aria-hidden="true" />
-          <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
-          {headlineSplit.useThreeRow ? (
-            <>
-              <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
-              <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
-                {headlineSplit.center}
-              </span>
-              <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
-            </>
-          ) : (
-            <>
-              <span className="gwh-hero-h1-line1">{line1}</span>
-              <span className="gwh-hero-h1-line2">{line2}</span>
-            </>
-          )}
-          </h1>
-          <div
-            ref={measureH1Ref}
-            className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+          <span
+            className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
             aria-hidden="true"
-          >
-            <div
-              ref={measureBlock1Ref}
-              className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
-            />
-            <div
-              ref={measureBlock2Ref}
-              className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
-            />
-          </div>
+          />
         </div>
-        <span
-          className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
-          aria-hidden="true"
-        />
-      </div>
+      ) : (
+        <div
+          className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} ${className}`.trim()}
+        >
+          <span
+            className="gwh-hero-title-rule gwh-hero-title-rule--top"
+            aria-hidden="true"
+          />
+          <div className="gwh-hero-title-copy">
+            <div className="gwh-hero-title-backdrop" aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/background-header.webp"
+                alt=""
+                className="gwh-hero-title-backdrop-photo"
+                decoding="async"
+                fetchPriority="low"
+              />
+              <div className="gwh-hero-title-backdrop-scrim" />
+            </div>
+            <div className="gwh-hero-title-backdrop-feather" aria-hidden="true" />
+            <h1 ref={h1Ref} className="gwh-hero-title-frame-h1 font-playfair">
+              {headlineSplit.useThreeRow ? (
+                <>
+                  <span className="gwh-hero-h1-line1">{headlineSplit.top}</span>
+                  <span className="gwh-hero-h1-line1 gwh-hero-h1-line1-center">
+                    {headlineSplit.center}
+                  </span>
+                  <span className="gwh-hero-h1-line2">{headlineSplit.bottom}</span>
+                </>
+              ) : (
+                <>
+                  <span className="gwh-hero-h1-line1">{line1}</span>
+                  <span className="gwh-hero-h1-line2">{line2}</span>
+                </>
+              )}
+            </h1>
+            <div
+              ref={measureH1Ref}
+              className="gwh-hero-title-frame-h1 gwh-hero-title-frame-h1-measure font-playfair"
+              aria-hidden="true"
+            >
+              <div
+                ref={measureBlock1Ref}
+                className="gwh-hero-h1-measure-block gwh-hero-h1-line1"
+              />
+              <div
+                ref={measureBlock2Ref}
+                className="gwh-hero-h1-measure-block gwh-hero-h1-measure-block--italic gwh-hero-h1-line2"
+              />
+            </div>
+          </div>
+          <span
+            className="gwh-hero-title-rule gwh-hero-title-rule--bottom"
+            aria-hidden="true"
+          />
+        </div>
+      )}
     </>
   );
 }
