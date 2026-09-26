@@ -97,7 +97,7 @@ const styles = `
   }
 
   .legal-header-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 22px;
     color: #1C1C1C;
@@ -105,7 +105,7 @@ const styles = `
   }
 
   .legal-header-updated {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 12px;
     color: #999999;
@@ -142,7 +142,7 @@ const styles = `
   }
 
   .legal-body h2 {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 22px;
     color: #1C1C1C;
@@ -154,7 +154,7 @@ const styles = `
   }
 
   .legal-body h3 {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 18px;
     color: #1C1C1C;
@@ -162,7 +162,7 @@ const styles = `
   }
 
   .legal-body p {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: #444444;
@@ -172,7 +172,7 @@ const styles = `
 
   .legal-body ul,
   .legal-body ol {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: #444444;
@@ -190,7 +190,7 @@ const styles = `
   }
 
   .legal-body strong {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     color: #1C1C1C;
   }

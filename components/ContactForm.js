@@ -46,7 +46,7 @@ const TRUST_POINTS = [
 const EMAIL_SUBTITLE_STYLE = {
   display: "block",
   marginTop: "2px",
-  fontFamily: "var(--font-inter), Inter, sans-serif",
+  fontFamily: "var(--font-inter), sans-serif",
   fontWeight: 500,
   fontSize: "11px",
   color: "#888888",
@@ -399,7 +399,7 @@ export default function ContactForm() {
           max-width: 55%;
         }
         .cf-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           color: #6B7C3A;
@@ -408,7 +408,7 @@ export default function ContactForm() {
           margin: 0 0 20px;
         }
         .cf-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 48px;
           line-height: 1.1;
@@ -426,7 +426,7 @@ export default function ContactForm() {
           font-weight: 700;
         }
         .cf-subtext {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 16px;
           color: #666666;
@@ -444,7 +444,7 @@ export default function ContactForm() {
           align-items: center;
           gap: 10px;
           margin-bottom: 16px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 14px;
           color: #1C1C1C;
@@ -455,14 +455,14 @@ export default function ContactForm() {
           margin: 24px 0;
         }
         .cf-email-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 12px;
           color: #999999;
           margin: 0 0 6px;
         }
         .cf-email-link {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 15px;
           color: #C9A84C;
@@ -515,7 +515,7 @@ export default function ContactForm() {
         }
         .cf-field-label {
           display: block;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 13px;
           color: #1C1C1C;
@@ -529,7 +529,7 @@ export default function ContactForm() {
           border: 1px solid #E8D5A3;
           border-radius: 8px;
           padding: 14px 16px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 15px;
           color: #1C1C1C;
@@ -585,7 +585,7 @@ export default function ContactForm() {
           border: 1px solid #E8D5A3;
           border-radius: 8px;
           padding: 14px 12px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 15px;
           color: #1C1C1C;
@@ -616,7 +616,7 @@ export default function ContactForm() {
           border: none;
           border-bottom: 1px solid #E8D5A3;
           padding: 12px 14px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #1C1C1C;
@@ -639,7 +639,7 @@ export default function ContactForm() {
           padding: 10px 14px;
           background: transparent;
           border: none;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #1C1C1C;
@@ -663,7 +663,7 @@ export default function ContactForm() {
         .cf-country-empty {
           margin: 0;
           padding: 14px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           color: #999999;
           text-align: center;
@@ -672,7 +672,7 @@ export default function ContactForm() {
           width: 100%;
           background: #C9A84C;
           color: #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 16px;
           padding: 16px;
@@ -700,14 +700,14 @@ export default function ContactForm() {
           margin-bottom: 20px;
         }
         .cf-success-heading {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 28px;
           color: #1C1C1C;
           margin: 0 0 12px;
         }
         .cf-success-text {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 16px;
           color: #666666;

@@ -46,7 +46,7 @@ export default function LogoTicker() {
         .gwh-logo-ticker-label {
           margin: 0 0 16px;
           text-align: center;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 11px;
           font-weight: 500;
           letter-spacing: 0.2em;
@@ -143,7 +143,7 @@ export default function LogoTicker() {
         .gwh-logo-ticker-name {
           white-space: nowrap;
           padding: 0 1.35rem;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 15px;
           font-weight: 600;
           letter-spacing: 0.05em;

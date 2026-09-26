@@ -9,7 +9,7 @@ export function ServiceTrustLineStyles() {
   return (
     <style>{`
       .svc-trust {
-        font-family: var(--font-inter), Inter, sans-serif;
+        font-family: var(--font-inter), sans-serif;
         font-weight: 400;
         font-size: 13px;
         margin: 0;

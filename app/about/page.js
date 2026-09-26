@@ -240,7 +240,7 @@ const styles = `
     margin: 0 auto;
   }
   .ab-label-gold {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 11px;
     color: #C9A84C;
@@ -249,7 +249,7 @@ const styles = `
     margin: 0 0 20px;
   }
   .ab-label-olive {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 11px;
     color: #6B7C3A;
@@ -258,7 +258,7 @@ const styles = `
     margin: 0 0 20px;
   }
   .ab-hero-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 64px;
     color: #FFFFFF;
@@ -271,7 +271,7 @@ const styles = `
     font-weight: 700;
   }
   .ab-hero-sub {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.75);
@@ -294,7 +294,7 @@ const styles = `
     border-radius: 100px;
     padding: 10px 28px;
     margin: 0 8px;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     font-size: 13px;
     color: #1C1C1C;
@@ -322,7 +322,7 @@ const styles = `
     align-items: center;
   }
   .ab-h2 {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 44px;
     color: #1C1C1C;
@@ -335,7 +335,7 @@ const styles = `
     font-weight: 700;
   }
   .ab-h2-center {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 48px;
     color: #1C1C1C;
@@ -349,7 +349,7 @@ const styles = `
     font-weight: 700;
   }
   .ab-body {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #666666;
@@ -357,7 +357,7 @@ const styles = `
     margin: 0 0 20px;
   }
   .ab-sub-center {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #666666;
@@ -379,7 +379,7 @@ const styles = `
     text-align: center;
   }
   .ab-values-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 48px;
     color: #FFFFFF;
@@ -393,7 +393,7 @@ const styles = `
     font-weight: 700;
   }
   .ab-values-sub {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #999999;
@@ -422,14 +422,14 @@ const styles = `
     transform: scale(1.02);
   }
   .ab-vcard-1 .ab-vcard-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 26px;
     color: #FFFFFF;
     margin: 16px 0 12px;
   }
   .ab-vcard-1 .ab-vcard-desc {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.85);
@@ -463,7 +463,7 @@ const styles = `
   }
   .ab-vcard-2 .ab-vcard-title,
   .ab-vcard-4 .ab-vcard-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 22px;
     color: #FFFFFF;
@@ -471,7 +471,7 @@ const styles = `
   }
   .ab-vcard-2 .ab-vcard-desc,
   .ab-vcard-4 .ab-vcard-desc {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #999999;
@@ -479,14 +479,14 @@ const styles = `
     margin: 0;
   }
   .ab-vcard-3 .ab-vcard-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 22px;
     color: #1C1C1C;
     margin: 14px 0 10px;
   }
   .ab-vcard-3 .ab-vcard-desc {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #666666;
@@ -536,7 +536,7 @@ const styles = `
     border-right: none;
   }
   .ab-stat-num {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 56px;
     color: #FFFFFF;
@@ -547,7 +547,7 @@ const styles = `
     color: #C9A84C;
   }
   .ab-stat-label {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #999999;
@@ -595,7 +595,7 @@ const styles = `
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 24px;
     color: #C9A84C;
@@ -611,21 +611,21 @@ const styles = `
     margin: 0 auto 20px;
   }
   .ab-team-name {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 20px;
     color: #1C1C1C;
     margin: 0 0 4px;
   }
   .ab-team-role {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 13px;
     color: #C9A84C;
     margin: 0 0 16px;
   }
   .ab-team-bio {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #666666;
@@ -639,7 +639,7 @@ const styles = `
     border: 1px solid #E8D5A3;
     border-radius: 20px;
     padding: 6px 14px;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 12px;
     color: #6B7C3A;
@@ -655,7 +655,7 @@ const styles = `
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: #1C1C1C;
@@ -699,7 +699,7 @@ const styles = `
     margin: 0 auto;
   }
   .ab-cta-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 56px;
     color: #FFFFFF;
@@ -712,7 +712,7 @@ const styles = `
     font-weight: 700;
   }
   .ab-cta-sub {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 17px;
     color: rgba(255, 255, 255, 0.75);
@@ -733,7 +733,7 @@ const styles = `
     border-radius: 6px;
     background: #C9A84C;
     color: #FFFFFF;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
@@ -751,7 +751,7 @@ const styles = `
     border-radius: 6px;
     background: transparent;
     color: #FFFFFF;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;

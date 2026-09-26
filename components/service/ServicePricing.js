@@ -55,7 +55,7 @@ export default function ServicePricing({ service }) {
           padding: 0 24px;
         }
         .spr-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -65,7 +65,7 @@ export default function ServicePricing({ service }) {
           margin: 0 0 16px;
         }
         .spr-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 48px;
           line-height: 1.1;
@@ -79,7 +79,7 @@ export default function ServicePricing({ service }) {
           color: #C9A84C;
         }
         .spr-sub {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 16px;
           color: #666666;
           text-align: center;
@@ -117,7 +117,7 @@ export default function ServicePricing({ service }) {
           margin: 0 auto 24px;
           background: #C9A84C;
           color: #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 11px;
           font-weight: 600;
           text-transform: uppercase;
@@ -126,7 +126,7 @@ export default function ServicePricing({ service }) {
           border-radius: 20px;
         }
         .spr-plan-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 13px;
           font-weight: 600;
           text-transform: uppercase;
@@ -135,7 +135,7 @@ export default function ServicePricing({ service }) {
           margin: 0 0 8px;
         }
         .spr-plan-name {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 28px;
           color: #1C1C1C;
@@ -146,7 +146,7 @@ export default function ServicePricing({ service }) {
           text-align: center;
         }
         .spr-plan-desc {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           color: #666666;
           line-height: 1.6;
@@ -160,7 +160,7 @@ export default function ServicePricing({ service }) {
           min-height: 278px;
         }
         .spr-price-row {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           color: #1C1C1C;
           line-height: 1;
@@ -172,7 +172,7 @@ export default function ServicePricing({ service }) {
         .spr-price-currency { font-size: 24px; vertical-align: top; }
         .spr-price-amount { font-size: 56px; }
         .spr-price-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           color: #999999;
           margin-top: 4px;
@@ -186,7 +186,7 @@ export default function ServicePricing({ service }) {
         }
         .spr-card.featured .spr-divider { background: #333333; }
         .spr-best-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 13px;
           font-weight: 500;
           color: #999999;
@@ -194,7 +194,7 @@ export default function ServicePricing({ service }) {
         }
         .spr-card.featured .spr-best-label { color: #666666; }
         .spr-best-for {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           color: #1C1C1C;
           margin: 0 0 24px;
@@ -214,14 +214,14 @@ export default function ServicePricing({ service }) {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           line-height: 1.7;
           color: #444444;
         }
         .spr-card.featured .spr-feature { color: #CCCCCC; }
         .spr-guarantee {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 13px;
           color: #6B7C3A;
@@ -235,7 +235,7 @@ export default function ServicePricing({ service }) {
           text-align: center;
           padding: 14px 28px;
           border-radius: 8px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 15px;
           text-decoration: none;

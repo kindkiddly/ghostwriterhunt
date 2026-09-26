@@ -152,7 +152,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         }
 
         .so-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -161,7 +161,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           margin: 0 0 16px;
         }
         .so-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 44px;
           line-height: 1.15;
@@ -174,7 +174,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           color: #C9A84C;
         }
         .so-body {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 16px;
           color: #666666;
@@ -192,7 +192,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           align-items: center;
           gap: 10px;
           margin-bottom: 12px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 15px;
           color: #1C1C1C;
@@ -200,7 +200,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         .so-cta {
           display: inline-block;
           margin-top: 24px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 15px;
           color: #C9A84C;

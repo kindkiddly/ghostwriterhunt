@@ -142,7 +142,7 @@ export default function ServiceHeroLede({
 
         .sh-hero-lede-ornament {
           flex-shrink: 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 9px;
           font-weight: 600;
           letter-spacing: 0.28em;
@@ -152,7 +152,7 @@ export default function ServiceHeroLede({
         }
 
         .sh-hero-lede-text {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 26px;
           line-height: 1.4;

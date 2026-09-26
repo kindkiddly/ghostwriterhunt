@@ -358,7 +358,7 @@ export default function HeroTitleFrame({
 
         .gwh-hero-title-frame-h1 {
           margin: 0;
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
         }
 
         .gwh-hero-h1-line1,

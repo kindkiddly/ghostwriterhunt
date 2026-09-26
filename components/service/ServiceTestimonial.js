@@ -48,7 +48,7 @@ export default function ServiceTestimonial({ service }) {
         }
         .st-quote-mark {
           display: block;
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 120px;
           color: rgba(201,168,76,0.2);
@@ -56,7 +56,7 @@ export default function ServiceTestimonial({ service }) {
           margin-bottom: -40px;
         }
         .st-quote {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-style: italic;
           font-size: 22px;
           color: #FFFFFF;
@@ -78,7 +78,7 @@ export default function ServiceTestimonial({ service }) {
           border: 3px solid #C9A84C;
         }
         .st-name {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 18px;
           color: #FFFFFF;
@@ -86,7 +86,7 @@ export default function ServiceTestimonial({ service }) {
           text-align: left;
         }
         .st-book {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #C9A84C;

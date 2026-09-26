@@ -59,7 +59,7 @@ export default function ServiceFAQ({ service }) {
           padding: 0 24px;
         }
         .sf-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -69,7 +69,7 @@ export default function ServiceFAQ({ service }) {
           margin: 0 0 16px;
         }
         .sf-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 48px;
           line-height: 1.1;
@@ -115,7 +115,7 @@ export default function ServiceFAQ({ service }) {
         }
         .sf-q {
           flex: 1;
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 18px;
           color: #1C1C1C;
@@ -128,7 +128,7 @@ export default function ServiceFAQ({ service }) {
           margin: 16px 0 0;
           padding-top: 16px;
           border-top: 1px solid #E8D5A3;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 15px;
           color: #666666;

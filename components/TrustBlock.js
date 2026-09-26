@@ -254,7 +254,7 @@ export default function TrustBlock() {
         }
 
         .tb-ticker-chip-text {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 13px;
           color: #1C1C1C;

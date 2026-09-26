@@ -68,7 +68,7 @@ export default function ServiceHero({ service }) {
           max-width: 45%;
         }
         .sh-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -115,7 +115,7 @@ export default function ServiceHero({ service }) {
           justify-content: center;
           background: #C9A84C;
           color: #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 15px;
           padding: 14px 32px;
@@ -131,7 +131,7 @@ export default function ServiceHero({ service }) {
           background: transparent;
           color: #C9A84C;
           border: 1.5px solid #C9A84C;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 15px;
           padding: 14px 32px;
@@ -197,7 +197,7 @@ export default function ServiceHero({ service }) {
           display: block;
         }
         .sh-ghost-desktop-h1 {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 56px;
           line-height: 1.08;

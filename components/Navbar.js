@@ -272,7 +272,7 @@ export default function Navbar() {
           border-right: none;
         }
         .nav-mega-heading {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 11px;
           color: #C9A84C;
@@ -285,7 +285,7 @@ export default function Navbar() {
         .nav-mega-link {
           display: block;
           padding: 8px 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #444444;
@@ -308,13 +308,13 @@ export default function Navbar() {
           gap: 16px;
         }
         .nav-mega-footer-left {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           font-weight: 400;
           color: #666666;
         }
         .nav-mega-footer-link {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           font-weight: 600;
           color: #C9A84C;
@@ -325,7 +325,7 @@ export default function Navbar() {
           text-decoration: underline;
         }
         .nav-mega-footer-right {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           font-weight: 600;
           color: #C9A84C;
@@ -356,7 +356,7 @@ export default function Navbar() {
         .nav-mobile-cat {
           margin-top: 8px;
           margin-bottom: 4px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 11px;
           letter-spacing: 0.12em;
@@ -367,7 +367,7 @@ export default function Navbar() {
         .nav-mobile-svc-link {
           display: block;
           padding: 8px 16px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           font-weight: 400;
           color: #444444;
@@ -453,7 +453,7 @@ export default function Navbar() {
                       height: "70px",
                       padding: "0 16px",
                       fontSize: "15px",
-                      fontFamily: "var(--font-inter), Inter, sans-serif",
+                      fontFamily: "var(--font-inter), sans-serif",
                       fontWeight: 500,
                       color: megaMenuOpen ? "#C9A84C" : "#1C1C1C",
                       textDecoration: "none",
@@ -495,7 +495,7 @@ export default function Navbar() {
                       height: "70px",
                       padding: "0 16px",
                       fontSize: "15px",
-                      fontFamily: "var(--font-inter), Inter, sans-serif",
+                      fontFamily: "var(--font-inter), sans-serif",
                       fontWeight: 500,
                       color: aboutMenuOpen ? "#C9A84C" : "#1C1C1C",
                       textDecoration: "none",
@@ -529,7 +529,7 @@ export default function Navbar() {
                     height: "70px",
                     padding: "0 16px",
                     fontSize: "15px",
-                    fontFamily: "var(--font-inter), Inter, sans-serif",
+                    fontFamily: "var(--font-inter), sans-serif",
                     fontWeight: 500,
                     color: "#1C1C1C",
                     textDecoration: "none",
@@ -564,7 +564,7 @@ export default function Navbar() {
               height: "40px",
               padding: "0 20px",
               fontSize: "14px",
-              fontFamily: "var(--font-inter), Inter, sans-serif",
+              fontFamily: "var(--font-inter), sans-serif",
               fontWeight: 600,
               color: "#FFFFFF",
               background: "#C9A84C",

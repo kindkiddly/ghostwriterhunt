@@ -40,7 +40,7 @@ export default function ServiceCTA({ service }) {
           margin: 0 auto;
         }
         .sc-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -49,7 +49,7 @@ export default function ServiceCTA({ service }) {
           margin: 0 0 20px;
         }
         .sc-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 56px;
           line-height: 1.1;
@@ -62,7 +62,7 @@ export default function ServiceCTA({ service }) {
           color: #C9A84C;
         }
         .sc-sub {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 17px;
           color: rgba(255,255,255,0.75);
@@ -82,7 +82,7 @@ export default function ServiceCTA({ service }) {
           justify-content: center;
           background: #C9A84C;
           color: #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 16px;
           padding: 16px 40px;
@@ -98,7 +98,7 @@ export default function ServiceCTA({ service }) {
           background: transparent;
           color: #FFFFFF;
           border: 1.5px solid #FFFFFF;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 16px;
           padding: 16px 40px;

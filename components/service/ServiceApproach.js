@@ -376,7 +376,7 @@ export default function ServiceApproach({ service }) {
           padding: 0 24px;
         }
         .sa-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -386,7 +386,7 @@ export default function ServiceApproach({ service }) {
           margin: 0 0 16px;
         }
         .sa-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 48px;
           line-height: 1.1;
@@ -427,14 +427,14 @@ export default function ServiceApproach({ service }) {
           margin-bottom: 20px;
         }
         .sa-card-title {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 20px;
           color: #1C1C1C;
           margin: 0 0 12px;
         }
         .sa-card-desc {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #666666;

@@ -343,7 +343,7 @@ export default function Hero() {
 
         .gwh-hero-lede-ornament {
           flex-shrink: 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 9px;
           font-weight: 600;
           letter-spacing: 0.28em;
@@ -353,7 +353,7 @@ export default function Hero() {
         }
 
         .gwh-hero-lede-text {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 26px;
           line-height: 1.4;
@@ -547,7 +547,7 @@ export default function Hero() {
             align-items: center;
             gap: 6px;
             flex-shrink: 0;
-            font-family: var(--font-inter), Inter, sans-serif;
+            font-family: var(--font-inter), sans-serif;
             font-size: 12px;
             font-weight: 400;
             color: #8a8a8a;

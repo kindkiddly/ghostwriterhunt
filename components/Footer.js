@@ -14,7 +14,7 @@ const COMPANY_LINKS = [
 const EMAIL_SUBTITLE_STYLE = {
   display: "block",
   marginTop: "2px",
-  fontFamily: "var(--font-inter), Inter, sans-serif",
+  fontFamily: "var(--font-inter), sans-serif",
   fontWeight: 500,
   fontSize: "10px",
   color: "#888888",
@@ -92,7 +92,7 @@ export default function Footer() {
           line-height: 0;
         }
         .gwh-ft-tagline {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #888888;
@@ -123,7 +123,7 @@ export default function Footer() {
         }
 
         .gwh-ft-heading {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 600;
           font-size: 11px;
           color: #C9A84C;
@@ -135,7 +135,7 @@ export default function Footer() {
         }
         .gwh-ft-link {
           display: block;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #888888;
@@ -152,7 +152,7 @@ export default function Footer() {
           margin-bottom: 12px;
         }
         .gwh-ft-contact-email {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 14px;
           color: #C9A84C;
@@ -160,7 +160,7 @@ export default function Footer() {
         }
         .gwh-ft-contact-email:hover { text-decoration: underline; }
         .gwh-ft-contact-text {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 14px;
           color: #888888;
@@ -174,7 +174,7 @@ export default function Footer() {
           border: 1px solid #C9A84C;
           border-radius: 6px;
           padding: 9px 14px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 13px;
           color: #C9A84C;
@@ -201,7 +201,7 @@ export default function Footer() {
           gap: 16px;
         }
         .gwh-ft-copy {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 12px;
           color: #555555;

@@ -36,7 +36,7 @@ const styles = `
     margin: 0 auto;
   }
   .legal-page-label {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 11px;
     color: #C9A84C;
@@ -45,7 +45,7 @@ const styles = `
     margin: 0 0 16px;
   }
   .legal-page-title {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 52px;
     line-height: 1.12;
@@ -53,7 +53,7 @@ const styles = `
     margin: 0 0 14px;
   }
   .legal-page-updated {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.65);
@@ -76,7 +76,7 @@ const styles = `
 
   /* —— Prose —— */
   .legal-page-body h2 {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 26px;
     color: #1C1C1C;
@@ -88,7 +88,7 @@ const styles = `
     margin-top: 0;
   }
   .legal-page-body h3 {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 19px;
     color: #1C1C1C;
@@ -96,7 +96,7 @@ const styles = `
     margin: 28px 0 10px;
   }
   .legal-page-body p {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #666666;
@@ -105,7 +105,7 @@ const styles = `
   }
   .legal-page-body ul,
   .legal-page-body ol {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #666666;
@@ -123,7 +123,7 @@ const styles = `
     color: #C9A84C;
   }
   .legal-page-body strong {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     color: #1C1C1C;
   }
@@ -163,7 +163,7 @@ const styles = `
   }
   .legal-doc-link {
     display: block;
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 18px;
     color: #1C1C1C !important;
@@ -173,7 +173,7 @@ const styles = `
     color: #C9A84C !important;
   }
   .legal-doc-desc {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-size: 14px;
     color: #888888;
     line-height: 1.65;
@@ -186,14 +186,14 @@ const styles = `
     padding-top: 8px;
   }
   .legal-contact-heading {
-    font-family: var(--font-playfair), "Playfair Display", serif;
+    font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 26px;
     color: #1C1C1C;
     margin: 0 0 10px;
   }
   .legal-contact-intro {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-size: 16px;
     color: #666666;
     line-height: 1.75;
@@ -212,7 +212,7 @@ const styles = `
     padding: 20px 22px;
   }
   .legal-contact-label {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     font-size: 11px;
     letter-spacing: 0.14em;
@@ -222,7 +222,7 @@ const styles = `
   }
   .legal-contact-email {
     display: block;
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 600;
     font-size: 15px;
     color: #C9A84C !important;
@@ -234,7 +234,7 @@ const styles = `
     color: #B8960C !important;
   }
   .legal-contact-note {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 13px;
     color: #888888;
@@ -242,7 +242,7 @@ const styles = `
     margin: 0;
   }
   .legal-contact-location {
-    font-family: var(--font-inter), Inter, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     font-weight: 500;
     font-size: 14px;
     color: #888888;

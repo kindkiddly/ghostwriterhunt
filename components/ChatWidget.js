@@ -585,7 +585,7 @@ export default function ChatWidget() {
           border-radius: 50%;
           background: linear-gradient(165deg, #F2E6C8 0%, #D4B85A 28%, #C9A84C 52%, #9A7A18 100%);
           color: #1C1C1C;
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 18px;
           line-height: 1;
@@ -607,7 +607,7 @@ export default function ChatWidget() {
           padding: 2px 0 1px;
         }
         .gcw-header-title {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 17px;
           color: #FAFAF7;
@@ -624,7 +624,7 @@ export default function ChatWidget() {
           flex-wrap: wrap;
           gap: 6px;
           margin: 5px 0 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 10px;
           font-weight: 400;
           line-height: 1.2;
@@ -710,7 +710,7 @@ export default function ChatWidget() {
 
         .gcw-bubble {
           padding: 12px 16px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           line-height: 1.55;
           letter-spacing: 0.01em;
@@ -746,14 +746,14 @@ export default function ChatWidget() {
         .gcw-timestamp {
           margin-top: 6px;
           padding: 0 4px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 10px;
           color: #999999;
         }
         .gcw-bubble-row-visitor .gcw-timestamp { color: #888888; }
         .gcw-error-notice {
           margin-top: 6px;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 10px;
           color: #888888;
         }
@@ -761,7 +761,7 @@ export default function ChatWidget() {
           border: none;
           background: transparent;
           padding: 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 11px;
           font-weight: 600;
           color: #C9A84C;
@@ -822,7 +822,7 @@ export default function ChatWidget() {
           margin-bottom: 12px;
         }
         .gcw-contact-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 11px;
           font-weight: 400;
           letter-spacing: 0.01em;
@@ -832,7 +832,7 @@ export default function ChatWidget() {
           border: none;
           background: transparent;
           padding: 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 11px;
           font-weight: 500;
           color: rgba(232,213,163,0.7);
@@ -858,7 +858,7 @@ export default function ChatWidget() {
           min-width: 0;
         }
         .gcw-field-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.06em;
@@ -876,7 +876,7 @@ export default function ChatWidget() {
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           color: #1C1C1C;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 13px;
           box-shadow:
             inset 0 1px 0 rgba(255,255,255,0.95),
@@ -932,7 +932,7 @@ export default function ChatWidget() {
           border: none;
           background: transparent;
           color: #1C1C1C;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 14px;
           line-height: 1.45;
         }
@@ -941,7 +941,7 @@ export default function ChatWidget() {
 
         .gcw-privacy-note {
           margin: 10px 8px 0;
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-size: 9px;
           line-height: 1.45;
           letter-spacing: 0.04em;

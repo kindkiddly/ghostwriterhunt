@@ -31,7 +31,7 @@ export default function ServiceProcess({ service }) {
           padding: 0 24px;
         }
         .sp-label {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 11px;
           text-transform: uppercase;
@@ -41,7 +41,7 @@ export default function ServiceProcess({ service }) {
           margin: 0 0 16px;
         }
         .sp-headline {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 48px;
           line-height: 1.1;
@@ -80,7 +80,7 @@ export default function ServiceProcess({ service }) {
           display: block;
         }
         .sp-number {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 80px;
           color: #E8D5A3;
@@ -88,14 +88,14 @@ export default function ServiceProcess({ service }) {
           margin: 0 0 8px;
         }
         .sp-title {
-          font-family: var(--font-playfair), "Playfair Display", serif;
+          font-family: var(--font-playfair), serif;
           font-weight: 700;
           font-size: 24px;
           color: #1C1C1C;
           margin: 0 0 12px;
         }
         .sp-desc {
-          font-family: var(--font-inter), Inter, sans-serif;
+          font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 15px;
           color: #666666;
