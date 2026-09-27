@@ -29,6 +29,7 @@ export default function ServiceProcess({ service }) {
   const isManuscriptEditing = service.slug === "manuscript-editing";
   const isInteriorLayout = service.slug === "interior-layout";
   const isIllustrationGraphics = service.slug === "illustration-graphics";
+  const isVideoBookTrailer = service.slug === "video-book-trailer";
   /** Mobile-only alternate layouts; desktop keeps standard alternating rows for both. */
   /**
    * Mobile “5 steps in one portrait” package art + per-band glass text strips.
@@ -39,7 +40,11 @@ export default function ServiceProcess({ service }) {
     ? "/images/HERO-M03.webp"
     : isIllustrationGraphics
       ? "/images/illustration-package-mobile.webp"
-      : null;
+      : isVideoBookTrailer
+        ? "/images/video-book-trailer-package-mobile.webp"
+        : null;
+  const usesIllustrationPackageMobile =
+    (isIllustrationGraphics || isVideoBookTrailer) && compactProcessPortraitSrc;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
     : null;
@@ -53,7 +58,7 @@ export default function ServiceProcess({ service }) {
 
   return (
     <section
-      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}`}
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}`}
       aria-label="The process"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -298,23 +303,27 @@ export default function ServiceProcess({ service }) {
             display: none;
           }
 
-          /* Illustration graphics — mobile: full-width package art, then 5 text blocks */
-          .sp-section--illustration-graphics {
+          /* Illustration / video trailer — mobile: full-width package art + 5 text strips */
+          .sp-section--illustration-graphics,
+          .sp-section--video-book-trailer {
             overflow-x: clip;
           }
-          .sp-section--illustration-graphics .sp-steps {
+          .sp-section--illustration-graphics .sp-steps,
+          .sp-section--video-book-trailer .sp-steps {
             width: 100%;
             max-width: 100%;
             min-width: 0;
             overflow: visible;
           }
-          .sp-section--illustration-graphics .sp-alternating-desktop-steps {
+          .sp-section--illustration-graphics .sp-alternating-desktop-steps,
+          .sp-section--video-book-trailer .sp-alternating-desktop-steps {
             display: none;
           }
           .sp-illustration-package-mobile {
             display: none;
           }
-          .sp-section--illustration-graphics .sp-illustration-package-mobile {
+          .sp-section--illustration-graphics .sp-illustration-package-mobile,
+          .sp-section--video-book-trailer .sp-illustration-package-mobile {
             display: block;
             width: 100%;
           }
@@ -514,6 +523,30 @@ export default function ServiceProcess({ service }) {
             .sp-illustration-package-slice-copy {
             bottom: 1px;
           }
+          /* Video book trailer — locked strip bottoms (01–05: -1, -1, 18, 34, -3 px) */
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy {
+            bottom: -1px;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy {
+            bottom: 18px;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy {
+            bottom: 34px;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy {
+            bottom: -3px;
+          }
           .sp-interior-mobile-steps {
             flex: 1 1 50%;
             min-width: 0;
@@ -588,6 +621,7 @@ export default function ServiceProcess({ service }) {
             align-self: center;
             transform: translateY(-10px);
           }
+
         }
         @media (min-width: 769px) {
           .sp-interior-mobile-bundle,
@@ -607,11 +641,15 @@ export default function ServiceProcess({ service }) {
         </h2>
 
         <div className="sp-steps">
-          {isIllustrationGraphics && compactProcessPortraitSrc ? (
+          {usesIllustrationPackageMobile ? (
             <div
               className="sp-illustration-package-mobile sp-reveal"
               data-delay="120"
-              aria-label="Illustration process overview"
+              aria-label={
+                isVideoBookTrailer
+                  ? "Video book trailer process overview"
+                  : "Illustration process overview"
+              }
             >
               <div className="sp-illustration-package-stack">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -674,7 +712,7 @@ export default function ServiceProcess({ service }) {
 
           <div
             className={
-              isInteriorLayout || isIllustrationGraphics
+              isInteriorLayout || isIllustrationGraphics || isVideoBookTrailer
                 ? "sp-alternating-desktop-steps"
                 : undefined
             }

@@ -26,6 +26,7 @@ export const IMAGE_DIMENSIONS = {
   "/images/illustration-graphics-mobile.webp": { width: 1560, height: 878 },
   "/images/HERO-M05.webp": { width: 400, height: 520 },
   "/images/illustration-package-mobile.webp": { width: 1081, height: 1920 },
+  "/images/video-book-trailer-package-mobile.webp": { width: 1081, height: 1920 },
   "/images/HEERO-L17.webp": { width: 800, height: 533 },
   "/images/HERO-M03.webp": { width: 400, height: 520 },
   "/images/background-proofreading.webp": { width: 1920, height: 1280 },
