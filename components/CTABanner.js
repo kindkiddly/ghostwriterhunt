@@ -96,7 +96,7 @@ export default function CTABanner() {
         >
           <a
             href="#start"
-            className="inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-10 py-4 font-inter text-[16px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
+            className="gwh-gold-btn-fill inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-10 py-4 font-inter text-[16px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
           >
             Start Your Book Today
           </a>

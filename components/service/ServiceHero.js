@@ -42,14 +42,35 @@ const MOBILE_PLAIN_HERO_ART = {
   "book-cover-design": "/images/book-cover-design-mobile.webp",
   "interior-layout": "/images/interior-layout-mobile.webp",
   "illustration-graphics": "/images/illustration-graphics-mobile.webp",
+  "author-branding": "/images/background-authorbranding.webp",
+  "author-website": "/images/author-website-mobile.webp",
 };
 
 export default function ServiceHero({ service }) {
+  const slug = service?.slug;
+  const splitDesktopMobileHeadline =
+    slug === "blog-writing" || slug === "childrens-book";
+
   useRevealSelector(
     ".sh-reveal-left, .sh-reveal-img",
     "sh-visible",
-    [service?.slug]
+    [slug]
   );
+
+  const [splitHeadlineMode, setSplitHeadlineMode] = useState(
+    splitDesktopMobileHeadline ? "unknown" : "desktop"
+  );
+
+  useLayoutEffect(() => {
+    if (!splitDesktopMobileHeadline) return undefined;
+
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () =>
+      setSplitHeadlineMode(mq.matches ? "desktop" : "mobile");
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [splitDesktopMobileHeadline]);
 
   if (!service) return null;
 
@@ -70,21 +91,6 @@ export default function ServiceHero({ service }) {
     !isGhostwriting && !DESKTOP_BAKED_HEADLINE_SLUGS.has(service.slug);
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
   const ghostDesktopTextHero = isGhostwriting;
-  const splitDesktopMobileHeadline = isBlogWriting || isChildrensBook;
-  const [splitHeadlineMode, setSplitHeadlineMode] = useState(
-    splitDesktopMobileHeadline ? "unknown" : "desktop"
-  );
-
-  useLayoutEffect(() => {
-    if (!splitDesktopMobileHeadline) return undefined;
-
-    const mq = window.matchMedia("(min-width: 769px)");
-    const sync = () =>
-      setSplitHeadlineMode(mq.matches ? "desktop" : "mobile");
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [splitDesktopMobileHeadline]);
 
   const showSplitDesktopHeadline =
     splitHeadlineMode === "desktop" || splitHeadlineMode === "unknown";
@@ -570,7 +576,7 @@ export default function ServiceHero({ service }) {
           <div className="sh-ctas svc-dual-ctas">
             <Link
               href="/#start"
-              className="sh-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
+              className="sh-btn-primary gwh-gold-btn-fill svc-dual-cta-btn svc-dual-cta-btn--primary"
             >
               <span className="lg:hidden">Start Your Project →</span>
               <span className="hidden lg:inline">Start Your Project</span>

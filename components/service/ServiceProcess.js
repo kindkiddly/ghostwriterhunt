@@ -31,6 +31,19 @@ export default function ServiceProcess({ service }) {
   const isIllustrationGraphics = service.slug === "illustration-graphics";
   const isVideoBookTrailer = service.slug === "video-book-trailer";
   const isEbookPublishing = service.slug === "ebook-publishing";
+  const isAudiobookPublishing = service.slug === "audiobook-publishing";
+  const isAuthorBranding = service.slug === "author-branding";
+  const authorBrandingMobileProcessSrc = "/images/HERO-S7.webp";
+  const authorBrandingMobileProcessDims = isAuthorBranding
+    ? getImageDimensions(authorBrandingMobileProcessSrc)
+    : null;
+  const isBookMarketing = service.slug === "book-marketing";
+  const isAuthorWebsite = service.slug === "author-website";
+  const bookMarketingMobileProcessImages = [
+    { src: "/images/HERO-S8.webp", maxWidth: 280 },
+    { src: "/images/book-marketing-overview-1.webp", maxWidth: 640 },
+    { src: "/images/HEERO-L07.webp", maxWidth: 800 },
+  ];
   /** Mobile-only alternate layouts; desktop keeps standard alternating rows for both. */
   /**
    * Mobile “5 steps in one portrait” package art + per-band glass text strips.
@@ -45,9 +58,17 @@ export default function ServiceProcess({ service }) {
         ? "/images/video-book-trailer-package-mobile.webp"
         : isEbookPublishing
           ? "/images/ebook-publishing-package-mobile.webp"
-          : null;
+          : isAudiobookPublishing
+            ? "/images/audiobook-publishing-package-mobile.webp"
+            : isAuthorWebsite
+              ? "/images/author-website-package-mobile.webp"
+              : null;
   const usesIllustrationPackageMobile =
-    (isIllustrationGraphics || isVideoBookTrailer || isEbookPublishing) &&
+    (isIllustrationGraphics ||
+      isVideoBookTrailer ||
+      isEbookPublishing ||
+      isAudiobookPublishing ||
+      isAuthorWebsite) &&
     compactProcessPortraitSrc;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
@@ -62,7 +83,7 @@ export default function ServiceProcess({ service }) {
 
   return (
     <section
-      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}`}
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}${isAudiobookPublishing ? " sp-section--audiobook-publishing" : ""}${isAuthorBranding ? " sp-section--author-branding" : ""}${isBookMarketing ? " sp-section--book-marketing" : ""}${isAuthorWebsite ? " sp-section--author-website" : ""}`}
       aria-label="The process"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -307,15 +328,19 @@ export default function ServiceProcess({ service }) {
             display: none;
           }
 
-          /* Illustration / video trailer / eBook — mobile: package art + 5 text strips */
+          /* Package slugs — mobile: portrait art + 5 glass text strips */
           .sp-section--illustration-graphics,
           .sp-section--video-book-trailer,
-          .sp-section--ebook-publishing {
+          .sp-section--ebook-publishing,
+          .sp-section--audiobook-publishing,
+          .sp-section--author-website {
             overflow-x: clip;
           }
           .sp-section--illustration-graphics .sp-steps,
           .sp-section--video-book-trailer .sp-steps,
-          .sp-section--ebook-publishing .sp-steps {
+          .sp-section--ebook-publishing .sp-steps,
+          .sp-section--audiobook-publishing .sp-steps,
+          .sp-section--author-website .sp-steps {
             width: 100%;
             max-width: 100%;
             min-width: 0;
@@ -323,7 +348,9 @@ export default function ServiceProcess({ service }) {
           }
           .sp-section--illustration-graphics .sp-alternating-desktop-steps,
           .sp-section--video-book-trailer .sp-alternating-desktop-steps,
-          .sp-section--ebook-publishing .sp-alternating-desktop-steps {
+          .sp-section--ebook-publishing .sp-alternating-desktop-steps,
+          .sp-section--audiobook-publishing .sp-alternating-desktop-steps,
+          .sp-section--author-website .sp-alternating-desktop-steps {
             display: none;
           }
           .sp-illustration-package-mobile {
@@ -331,7 +358,9 @@ export default function ServiceProcess({ service }) {
           }
           .sp-section--illustration-graphics .sp-illustration-package-mobile,
           .sp-section--video-book-trailer .sp-illustration-package-mobile,
-          .sp-section--ebook-publishing .sp-illustration-package-mobile {
+          .sp-section--ebook-publishing .sp-illustration-package-mobile,
+          .sp-section--audiobook-publishing .sp-illustration-package-mobile,
+          .sp-section--author-website .sp-illustration-package-mobile {
             display: block;
             width: 100%;
           }
@@ -495,9 +524,11 @@ export default function ServiceProcess({ service }) {
           .sp-illustration-package-slice--step-04 .sp-desc {
             color: #2a3840;
           }
-          .sp-illustration-package-slice--step-02
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-02
             .sp-illustration-package-slice-copy::before,
-          .sp-illustration-package-slice--step-04
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-04
             .sp-illustration-package-slice-copy::before {
             background: linear-gradient(
               90deg,
@@ -581,6 +612,551 @@ export default function ServiceProcess({ service }) {
             .sp-illustration-package-slice-copy {
             bottom: -3px;
           }
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy {
+            bottom: -9px;
+            display: inline-table;
+            width: auto;
+            max-width: min(82%, calc(100% - 10px));
+          }
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy {
+            bottom: 2px;
+          }
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy {
+            bottom: 3px;
+          }
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy {
+            bottom: -1px;
+          }
+          /* Author website — locked strip bottoms (01–05: -7, -5, 6, 19, -2 px) */
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy {
+            bottom: -7px;
+            display: inline-table;
+            width: auto;
+            max-width: min(82%, calc(100% - 10px));
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy {
+            bottom: -5px;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy {
+            bottom: 6px;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy {
+            bottom: 19px;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy {
+            bottom: -2px;
+          }
+
+          /* Illustration — band colors (01 dark photo; 02–05 light) */
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-03
+            .sp-title,
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-03
+            .sp-desc,
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-05
+            .sp-title,
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-05
+            .sp-desc {
+            color: #152228;
+          }
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-03
+            .sp-desc,
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-05
+            .sp-desc {
+            color: #2a3840;
+          }
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--illustration-graphics
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.58) 0%,
+              rgba(255, 255, 255, 0.34) 58%,
+              rgba(255, 255, 255, 0.1) 82%,
+              transparent 100%
+            );
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          }
+
+          /* Video / eBook / audiobook — bands 01–04 dark (light type), 05 light (dark type) */
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-01
+            .sp-title,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-02
+            .sp-title,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-03
+            .sp-title,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-04
+            .sp-title,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-title,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-title,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-title,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-title,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-title,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-title,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-title,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-title {
+            color: #fffef9;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-01
+            .sp-desc,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-02
+            .sp-desc,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-03
+            .sp-desc,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-04
+            .sp-desc,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-desc,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-desc,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-desc,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-desc,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-desc,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-desc,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-desc,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-desc {
+            color: rgba(255, 255, 255, 0.9);
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.22) 0%,
+              rgba(255, 255, 255, 0.12) 58%,
+              rgba(255, 255, 255, 0.04) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(11px) saturate(1.08);
+            -webkit-backdrop-filter: blur(11px) saturate(1.08);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.14);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-05
+            .sp-title,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-title,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-title {
+            color: #2a2218;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-05
+            .sp-desc,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-desc,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-desc {
+            color: #453a30;
+          }
+          .sp-section--video-book-trailer
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--ebook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy::before,
+          .sp-section--audiobook-publishing
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.58) 0%,
+              rgba(255, 255, 255, 0.34) 58%,
+              rgba(255, 255, 255, 0.1) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(11px) saturate(1.08);
+            -webkit-backdrop-filter: blur(11px) saturate(1.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+
+          /* Author website — per-band glass + type (matched to photo strips) */
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-01
+            .sp-title,
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-01
+            .sp-desc {
+            color: #1a2428;
+            text-shadow: none;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-01
+            .sp-desc {
+            color: #2e3a42;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-01
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(255, 250, 242, 0.84) 0%,
+              rgba(255, 246, 236, 0.58) 58%,
+              rgba(255, 242, 230, 0.16) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(12px) saturate(1.05);
+            -webkit-backdrop-filter: blur(12px) saturate(1.05);
+            border: 1px solid rgba(255, 255, 255, 0.62);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 10px rgba(42, 32, 22, 0.1);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-title,
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-desc {
+            color: #f8f6f2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-desc {
+            color: rgba(248, 246, 242, 0.92);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy {
+            display: inline-table;
+            width: auto;
+            max-width: min(82%, calc(100% - 10px));
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-02
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(22, 32, 42, 0.82) 0%,
+              rgba(22, 32, 42, 0.56) 58%,
+              rgba(22, 32, 42, 0.14) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(12px) saturate(1.1);
+            -webkit-backdrop-filter: blur(12px) saturate(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-03
+            .sp-title,
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-03
+            .sp-desc {
+            color: #fffef9;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-03
+            .sp-desc {
+            color: rgba(255, 254, 249, 0.92);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-03
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(10, 18, 28, 0.86) 0%,
+              rgba(10, 18, 28, 0.58) 58%,
+              rgba(10, 18, 28, 0.12) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(12px) saturate(1.12);
+            -webkit-backdrop-filter: blur(12px) saturate(1.12);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-04
+            .sp-title,
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-04
+            .sp-desc {
+            color: #121820;
+            text-shadow: none;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-04
+            .sp-desc {
+            color: #2a3540;
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-04
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(255, 255, 255, 0.88) 0%,
+              rgba(255, 255, 255, 0.62) 58%,
+              rgba(255, 255, 255, 0.18) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(12px) saturate(1.04);
+            -webkit-backdrop-filter: blur(12px) saturate(1.04);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 10px rgba(18, 24, 32, 0.12);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-05
+            .sp-title,
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-05
+            .sp-desc {
+            color: #fffef9;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-05
+            .sp-desc {
+            color: rgba(255, 254, 249, 0.9);
+          }
+          .sp-section--author-website
+            .sp-illustration-package-slice--step-05
+            .sp-illustration-package-slice-copy::before {
+            background: linear-gradient(
+              90deg,
+              rgba(18, 26, 36, 0.8) 0%,
+              rgba(18, 26, 36, 0.52) 58%,
+              rgba(18, 26, 36, 0.1) 82%,
+              transparent 100%
+            );
+            backdrop-filter: blur(12px) saturate(1.08);
+            -webkit-backdrop-filter: blur(12px) saturate(1.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.24);
+            -webkit-mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              to right,
+              #000 0%,
+              #000 52%,
+              rgba(0, 0, 0, 0.75) 72%,
+              rgba(0, 0, 0, 0.35) 88%,
+              transparent 100%
+            );
+          }
+
           .sp-interior-mobile-steps {
             flex: 1 1 50%;
             min-width: 0;
@@ -656,10 +1232,210 @@ export default function ServiceProcess({ service }) {
             transform: translateY(-10px);
           }
 
+          /* Author branding — mobile: fixed-width steps, then full-width HERO-S7 */
+          .sp-section--author-branding {
+            overflow-x: clip;
+          }
+          .sp-section--author-branding .sp-steps {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: visible;
+          }
+          .sp-author-branding-mobile-bundle {
+            display: none;
+          }
+          .sp-section--author-branding .sp-author-branding-mobile-bundle {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 20px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+          }
+          .sp-section--author-branding .sp-alternating-desktop-steps {
+            display: none;
+          }
+          .sp-author-branding-mobile-steps {
+            width: 100%;
+            max-width: min(360px, 100%);
+            flex: 0 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: visible;
+          }
+          .sp-author-branding-mobile-step {
+            margin-bottom: 14px;
+          }
+          .sp-author-branding-mobile-step:last-child {
+            margin-bottom: 0;
+          }
+          .sp-author-branding-mobile-step .sp-number {
+            font-size: 32px;
+            line-height: 1;
+            text-align: left;
+            margin: 0 0 4px;
+          }
+          .sp-author-branding-mobile-step .sp-title {
+            font-size: clamp(16px, 4.4vw, 18px);
+            line-height: 1.22;
+            text-align: left;
+            margin: 0 0 6px;
+            white-space: normal;
+          }
+          .sp-author-branding-mobile-step .sp-desc {
+            font-size: 13px;
+            line-height: 1.45;
+            font-weight: 500;
+            text-align: left;
+            margin: 0;
+            color: #444444;
+            overflow-wrap: break-word;
+            white-space: normal;
+          }
+          .sp-author-branding-mobile-media {
+            width: 100%;
+            line-height: 0;
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+          }
+          .sp-author-branding-mobile-media img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+          }
+
+          /* Book marketing — mobile: stacked steps + aligned gallery */
+          .sp-section--book-marketing {
+            overflow-x: clip;
+          }
+          .sp-section--book-marketing .sp-steps {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: visible;
+          }
+          .sp-book-marketing-mobile-bundle {
+            display: none;
+          }
+          .sp-section--book-marketing .sp-book-marketing-mobile-bundle {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+          }
+          .sp-section--book-marketing .sp-alternating-desktop-steps {
+            display: none;
+          }
+          .sp-book-marketing-mobile-steps {
+            width: 100%;
+            max-width: 100%;
+            padding: 2px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+          }
+          .sp-book-marketing-mobile-step {
+            padding: 20px 0;
+            margin: 0;
+            border-bottom: 1px solid rgba(232, 213, 163, 0.55);
+            text-align: left;
+          }
+          .sp-book-marketing-mobile-step:first-child {
+            padding-top: 0;
+          }
+          .sp-book-marketing-mobile-step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+          .sp-book-marketing-mobile-step .sp-number {
+            font-family: var(--font-playfair), serif;
+            font-weight: 700;
+            font-size: 44px;
+            line-height: 1;
+            color: #e8d5a3;
+            margin: 0 0 8px;
+            text-align: left;
+          }
+          .sp-book-marketing-mobile-step .sp-title {
+            font-family: var(--font-playfair), serif;
+            font-weight: 700;
+            font-size: clamp(17px, 4.6vw, 19px);
+            line-height: 1.26;
+            color: #1c1c1c;
+            margin: 0 0 8px;
+            text-align: left;
+            white-space: normal;
+          }
+          .sp-book-marketing-mobile-step .sp-desc {
+            font-family: var(--font-inter), sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 500;
+            text-align: left;
+            margin: 0;
+            color: #555555;
+            overflow-wrap: break-word;
+            white-space: normal;
+          }
+          .sp-book-marketing-mobile-gallery {
+            width: 100%;
+            max-width: 100%;
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(232, 213, 163, 0.65);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+          .sp-book-marketing-mobile-gallery-label {
+            width: 100%;
+            font-family: var(--font-inter), sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #6b7c3a;
+            text-align: center;
+            margin: 0 0 4px;
+          }
+          .sp-book-marketing-mobile-gallery-item {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            line-height: 0;
+          }
+          .sp-book-marketing-mobile-gallery-item img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 12px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+          }
+
         }
         @media (min-width: 769px) {
           .sp-interior-mobile-bundle,
-          .sp-illustration-package-mobile {
+          .sp-illustration-package-mobile,
+          .sp-author-branding-mobile-bundle,
+          .sp-book-marketing-mobile-bundle {
             display: none !important;
           }
         }
@@ -684,7 +1460,11 @@ export default function ServiceProcess({ service }) {
                   ? "Video book trailer process overview"
                   : isEbookPublishing
                     ? "eBook publishing process overview"
-                    : "Illustration process overview"
+                    : isAudiobookPublishing
+                      ? "Audiobook publishing process overview"
+                      : isAuthorWebsite
+                        ? "Author website process overview"
+                        : "Illustration process overview"
               }
             >
               <div className="sp-illustration-package-stack">
@@ -746,12 +1526,94 @@ export default function ServiceProcess({ service }) {
             </div>
           ) : null}
 
+          {isAuthorBranding ? (
+            <div
+              className="sp-author-branding-mobile-bundle sp-reveal"
+              data-delay="120"
+              aria-label="Author branding process steps"
+            >
+              <div className="sp-author-branding-mobile-steps">
+                {service.process.map((step) => (
+                  <article
+                    key={step.number}
+                    className="sp-author-branding-mobile-step"
+                  >
+                    <p className="sp-number">{step.number}</p>
+                    <h3 className="sp-title">{step.title}</h3>
+                    <p className="sp-desc">{step.description}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="sp-author-branding-mobile-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={authorBrandingMobileProcessSrc}
+                  alt=""
+                  width={authorBrandingMobileProcessDims?.width ?? 280}
+                  height={authorBrandingMobileProcessDims?.height ?? 360}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          ) : null}
+
+          {isBookMarketing ? (
+            <div
+              className="sp-book-marketing-mobile-bundle sp-reveal"
+              data-delay="120"
+              aria-label="Book marketing process steps"
+            >
+              <div className="sp-book-marketing-mobile-steps">
+                {service.process.map((step) => (
+                  <article
+                    key={step.number}
+                    className="sp-book-marketing-mobile-step"
+                  >
+                    <p className="sp-number">{step.number}</p>
+                    <h3 className="sp-title">{step.title}</h3>
+                    <p className="sp-desc">{step.description}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="sp-book-marketing-mobile-gallery">
+                <p className="sp-book-marketing-mobile-gallery-label">
+                  Visual highlights
+                </p>
+                {bookMarketingMobileProcessImages.map((item) => {
+                  const { width, height } = getImageDimensions(item.src);
+                  return (
+                    <div
+                      key={item.src}
+                      className="sp-book-marketing-mobile-gallery-item"
+                      style={{ maxWidth: `${item.maxWidth}px` }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.src}
+                        alt=""
+                        width={width}
+                        height={height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+
           <div
             className={
               isInteriorLayout ||
               isIllustrationGraphics ||
               isVideoBookTrailer ||
-              isEbookPublishing
+              isEbookPublishing ||
+              isAudiobookPublishing ||
+              isAuthorBranding ||
+              isBookMarketing ||
+              isAuthorWebsite
                 ? "sp-alternating-desktop-steps"
                 : undefined
             }

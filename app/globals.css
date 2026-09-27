@@ -34,6 +34,14 @@ body {
   }
 }
 
+/* Desktop — gold fill CTAs mirror white-outline primary (service dual CTAs) */
+@media (min-width: 769px) {
+  .gwh-gold-btn-fill {
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+    box-sizing: border-box;
+  }
+}
+
 /* —— Page transitions (app/template.js) ——
    Page content fades in on every load and navigation; the hero also
    rises gently. Navbar and chat live in the layout, and the footer is

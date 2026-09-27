@@ -359,7 +359,7 @@ export default function Comparison() {
         <div className="gwh-cmp-cta mt-12 px-1 text-center">
           <a
             href="#start"
-            className="inline-block w-full max-w-full rounded-[6px] bg-[var(--color-accent-gold)] px-10 py-4 text-center font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] sm:w-auto"
+            className="gwh-gold-btn-fill inline-block w-full max-w-full rounded-[6px] bg-[var(--color-accent-gold)] px-10 py-4 text-center font-inter text-base font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] sm:w-auto"
           >
             Start with a free consultation
           </a>

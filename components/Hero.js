@@ -642,7 +642,7 @@ export default function Hero() {
             <div className="gwh-hero-cta-row gwh-hero-animate gwh-hero-delay-2 mb-6 mt-2 flex w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
                 href="#start"
-                className="gwh-hero-cta-primary inline-flex h-11 min-w-0 flex-1 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] md:max-w-none md:flex-none"
+                className="gwh-hero-cta-primary gwh-gold-btn-fill inline-flex h-11 min-w-0 flex-1 items-center justify-center rounded-[6px] bg-[var(--color-accent-gold)] px-7 font-inter text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-[#B8960C] md:max-w-none md:flex-none"
               >
                 <span className="md:hidden">Start Your Book →</span>
                 <span className="hidden md:inline">Start Your Book</span>

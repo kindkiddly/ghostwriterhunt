@@ -156,7 +156,7 @@ export default function ServiceCTA({ service }) {
         <div className="sc-ctas svc-dual-ctas sc-reveal" data-delay="200">
           <Link
             href="/#start"
-            className="sc-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
+            className="sc-btn-primary gwh-gold-btn-fill svc-dual-cta-btn svc-dual-cta-btn--primary"
           >
             <span className="lg:hidden">Start Your Project →</span>
             <span className="hidden lg:inline">Start Your Project</span>

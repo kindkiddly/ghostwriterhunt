@@ -970,7 +970,7 @@ export default function ContactForm() {
 
                   <button
                     type="submit"
-                    className="cf-submit cf-reveal-field"
+                    className="cf-submit gwh-gold-btn-fill cf-reveal-field"
                     data-delay="700"
                     disabled={submitting}
                   >

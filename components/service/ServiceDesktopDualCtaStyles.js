@@ -56,6 +56,7 @@ export default function ServiceDesktopDualCtaStyles() {
 
         .svc-dual-ctas .svc-dual-cta-btn--primary:hover {
           background: #b8960c !important;
+          border-color: rgba(255, 255, 255, 0.95) !important;
           transform: translateY(-3px);
           box-shadow:
             0 18px 40px rgba(201, 168, 76, 0.45),

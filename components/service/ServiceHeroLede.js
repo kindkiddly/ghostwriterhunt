@@ -180,7 +180,9 @@ export default function ServiceHeroLede({
     SLUG_BOTTOM_TAGS[slug] ?? CATEGORY_BOTTOM_TAGS[category] ?? "Your book · Your way";
 
   return (
-    <div className="sh-hero-lede">
+    <div
+      className={`sh-hero-lede${slug === "author-website" ? " sh-hero-lede--author-website" : ""}`}
+    >
       <style dangerouslySetInnerHTML={{ __html: `
         .sh-hero-lede {
           position: relative;
@@ -275,6 +277,14 @@ export default function ServiceHeroLede({
           }
           .sh-hero-lede-rule--after .sh-hero-lede-ornament {
             max-width: 13.5rem;
+          }
+          .sh-hero-lede--author-website .sh-hero-lede-text {
+            font-size: clamp(16px, 4.1vw, 19px);
+            line-height: 1.48;
+          }
+          .sh-hero-lede--author-website .sh-hero-lede-ornament {
+            font-size: 8px;
+            letter-spacing: 0.22em;
           }
         }
 

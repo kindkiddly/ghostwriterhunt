@@ -215,7 +215,7 @@ export default function NarrativeBlock3() {
 
           <a
             href="#start"
-            className="mt-9 inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-8 py-3.5 font-inter text-[15px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
+            className="gwh-gold-btn-fill mt-9 inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-8 py-3.5 font-inter text-[15px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
           >
             Start Publishing Today
           </a>

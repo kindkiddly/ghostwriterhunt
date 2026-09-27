@@ -593,6 +593,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         >
           <a
             href="#start"
+            className="gwh-gold-btn-fill"
             style={{
               display: "flex",
               alignItems: "center",
@@ -604,7 +605,6 @@ export default function Navbar({ servicesByCategory = {} }) {
               fontWeight: 600,
               color: "#FFFFFF",
               background: "#C9A84C",
-              border: "none",
               borderRadius: "6px",
               textDecoration: "none",
               whiteSpace: "nowrap",
