@@ -10,6 +10,7 @@ export const IMAGE_DIMENSIONS = {
   "/images/childrens-book-hero-bg-mobile.webp": { width: 1536, height: 576 },
   "/images/background-H1.webp": { width: 1920, height: 720 },
   "/images/background-H1-mobile.webp": { width: 780, height: 293 },
+  "/images/quil-homepage-heading.webp": { width: 1920, height: 1081 },
   "/images/background-blog.webp": { width: 1920, height: 720 },
   "/images/background-blog-mobile.webp": { width: 780, height: 293 },
   "/images/background-gwriting-mobile.webp": { width: 780, height: 438 },

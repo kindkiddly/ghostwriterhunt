@@ -201,10 +201,6 @@ export default function Hero() {
     <section
       data-hero
       className="gwh-hero-root relative flex min-h-screen flex-col items-center justify-start overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
-      style={{
-        backgroundImage:
-          "radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)",
-      }}
       aria-label="Hero"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -289,6 +285,16 @@ export default function Hero() {
           position: relative;
           z-index: 1;
           width: 100%;
+        }
+
+        @media (min-width: 769px) {
+          .gwh-hero-root {
+            background-image: radial-gradient(
+              ellipse at 70% 50%,
+              rgba(201, 168, 76, 0.06) 0%,
+              transparent 70%
+            );
+          }
         }
 
         @media (min-width: 1024px) {
@@ -458,6 +464,7 @@ export default function Hero() {
         @media (max-width: 768px) {
           .gwh-hero-root {
             min-height: auto;
+            background-image: none;
           }
           .gwh-hero-inner {
             gap: 24px !important;
@@ -602,8 +609,7 @@ export default function Hero() {
             variant="home"
             titleStyle="home-glass"
             illustrationBg={{
-              desktop: "/images/background-H1.webp",
-              mobile: "/images/background-H1-mobile.webp",
+              desktop: "/images/quil-homepage-heading.webp",
             }}
             className="gwh-hero-animate gwh-hero-delay-0"
           />

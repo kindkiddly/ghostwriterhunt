@@ -17,6 +17,7 @@ import { createClient } from "@/lib/supabase/client";
 
 const WELCOME_MESSAGE =
   "Tell us about your book — we're here to help with your publishing project.";
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TYPING_TIMEOUT_MS = 45000;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
 const MAX_MESSAGE_LENGTH = 4000;
@@ -76,7 +77,12 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [visitorName, setVisitorName] = useState("");
   const [visitorEmail, setVisitorEmail] = useState("");
-  const [contactFieldsDismissed, setContactFieldsDismissed] = useState(false);
+  const [visitorPhone, setVisitorPhone] = useState("");
+  const [intakeSubmitting, setIntakeSubmitting] = useState(false);
+  const [intakePending, setIntakePending] = useState(false);
+  const [intakeError, setIntakeError] = useState("");
+  /** restoring | intro | intake | chat */
+  const [sessionPhase, setSessionPhase] = useState("restoring");
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
   const [contactHasEmail, setContactHasEmail] = useState(false);
@@ -91,6 +97,7 @@ export default function ChatWidget() {
   const sendLockRef = useRef(false);
   const markSeenTimeoutRef = useRef(null);
   const isOpenRef = useRef(false);
+  const authWarmupRef = useRef(null);
 
   useEffect(() => {
     isOpenRef.current = isOpen;
@@ -98,28 +105,43 @@ export default function ChatWidget() {
 
   const isAdminRoute = pathname?.startsWith("/admin");
 
-  // Show the team welcome message the first time the panel is opened.
-  useEffect(() => {
-    if (isOpen && !hasOpenedOnce) {
-      setHasOpenedOnce(true);
-      setMessages([
-        {
-          id: "welcome",
-          sender: "team",
-          text: WELCOME_MESSAGE,
-          timestamp: new Date(),
-        },
-      ]);
+  /** Anonymous Supabase session — warm early so "Start live chat" is not blocked on first sign-in. */
+  const warmAnonymousSession = useCallback(async () => {
+    if (authWarmupRef.current) return authWarmupRef.current;
+    authWarmupRef.current = (async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session?.access_token) return session.access_token;
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) throw error;
+      return data.session.access_token;
+    })();
+    try {
+      return await authWarmupRef.current;
+    } catch (err) {
+      authWarmupRef.current = null;
+      throw err;
     }
-  }, [isOpen, hasOpenedOnce]);
+  }, [supabase]);
 
-  // Move focus to the input whenever the panel opens.
   useEffect(() => {
-    if (isOpen) {
+    if (isAdminRoute) return;
+    warmAnonymousSession().catch(() => {});
+  }, [isAdminRoute, warmAnonymousSession]);
+
+  useEffect(() => {
+    if (!isOpen || isAdminRoute) return;
+    warmAnonymousSession().catch(() => {});
+  }, [isOpen, isAdminRoute, warmAnonymousSession]);
+
+  // Move focus to the composer when live chat is active.
+  useEffect(() => {
+    if (isOpen && sessionPhase === "chat") {
       const t = setTimeout(() => inputRef.current?.focus(), 150);
       return () => clearTimeout(t);
     }
-  }, [isOpen]);
+  }, [isOpen, sessionPhase]);
 
   // Escape closes the panel and returns focus to the launcher.
   useEffect(() => {
@@ -152,6 +174,7 @@ export default function ChatWidget() {
   useEffect(() => {
     if (isAdminRoute) {
       setRestoring(false);
+      setSessionPhase("intro");
       return;
     }
     let cancelled = false;
@@ -159,17 +182,26 @@ export default function ChatWidget() {
     (async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session || cancelled) return;
+        if (!session || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
 
         const res = await fetch("/api/chat/status", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ accessToken: session.access_token }),
         });
-        if (!res.ok || cancelled) return;
+        if (!res.ok || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
         const statusData = await res.json();
 
-        if (!statusData.conversationId || cancelled) return;
+        if (!statusData.conversationId || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
 
         conversationIdRef.current = statusData.conversationId;
         setConversationId(statusData.conversationId);
@@ -184,7 +216,7 @@ export default function ChatWidget() {
         if (cancelled) return;
 
         if (history && history.length > 0) {
-          setHasOpenedOnce(true); // skip the synthetic local welcome message
+          setHasOpenedOnce(true);
           setMessages(
             history.map((row) => ({
               id: row.id,
@@ -194,9 +226,24 @@ export default function ChatWidget() {
               status: "sent",
             }))
           );
+          setSessionPhase("chat");
+        } else if (statusData.contactHasEmail) {
+          setHasOpenedOnce(true);
+          setMessages([
+            {
+              id: "welcome",
+              sender: "team",
+              text: WELCOME_MESSAGE,
+              timestamp: new Date(),
+            },
+          ]);
+          setSessionPhase("chat");
+        } else {
+          setSessionPhase("intro");
         }
       } catch (err) {
         console.error("ChatWidget: failed to restore conversation", err);
+        setSessionPhase("intro");
       } finally {
         if (!cancelled) setRestoring(false);
       }
@@ -382,7 +429,7 @@ export default function ChatWidget() {
    */
   const sendMessage = useCallback(
     (text) => {
-      if (sendLockRef.current) return;
+      if (sendLockRef.current || intakePending) return;
       const trimmed = text.trim().slice(0, MAX_MESSAGE_LENGTH);
       if (!trimmed) return;
 
@@ -404,7 +451,7 @@ export default function ChatWidget() {
         sendLockRef.current = false;
       });
     },
-    [persistMessage]
+    [persistMessage, intakePending]
   );
 
   function retryMessage(localId, text) {
@@ -442,14 +489,73 @@ export default function ChatWidget() {
     el.style.overflowY = el.scrollHeight > TEXTAREA_MAX_HEIGHT_PX ? "auto" : "hidden";
   }
 
+  function validateIntakeIdentity() {
+    const name = visitorName.trim();
+    const email = visitorEmail.trim();
+    if (!name) return "Please enter your name.";
+    if (!email || !EMAIL_REGEX.test(email)) return "Please enter a valid email.";
+    return null;
+  }
+
+  async function submitLiveIntake() {
+    setIntakeError("");
+    const identityError = validateIntakeIdentity();
+    if (identityError) {
+      setIntakeError(identityError);
+      return;
+    }
+
+    setIntakeSubmitting(true);
+    setIntakeError("");
+    setHasOpenedOnce(true);
+    setContactHasEmail(true);
+    setMessages([
+      {
+        id: "welcome",
+        sender: "team",
+        text: WELCOME_MESSAGE,
+        timestamp: new Date(),
+      },
+    ]);
+    setSessionPhase("chat");
+    setIntakePending(true);
+
+    try {
+      const accessToken = await warmAnonymousSession();
+      const res = await fetch("/api/chat/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken,
+          name: visitorName.trim(),
+          email: visitorEmail.trim(),
+          phone: visitorPhone.trim() || null,
+          mode: "live",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+
+      if (data.conversationId) {
+        conversationIdRef.current = data.conversationId;
+        setConversationId(data.conversationId);
+      }
+    } catch (err) {
+      setSessionPhase("intake");
+      setMessages([]);
+      setContactHasEmail(false);
+      setIntakeError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setIntakeSubmitting(false);
+      setIntakePending(false);
+    }
+  }
+
   if (isAdminRoute) return null;
 
-  // Same rule every time, DB-backed: show only until this visitor's
-  // conversation has a contact with an email on file — not derived from
-  // local message-send history, so it can't flip inconsistently across
-  // refreshes or return visits. `restoring` gates the brief window before
-  // we know the true state, so the fields never flash incorrectly.
-  const showContactFields = isOpen && !restoring && !contactHasEmail && !contactFieldsDismissed;
+  const showComposer = sessionPhase === "chat" && !intakePending;
+  const showIntro = sessionPhase === "intro" && !restoring;
+  const showIntake = sessionPhase === "intake" && !restoring;
 
   return (
     <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
@@ -471,25 +577,24 @@ export default function ChatWidget() {
           width: var(--gcw-launcher-size);
           height: var(--gcw-launcher-size);
           border-radius: 50%;
-          background: rgba(28,28,28,0.78);
-          backdrop-filter: blur(18px) saturate(160%);
-          -webkit-backdrop-filter: blur(18px) saturate(160%);
-          border: 1px solid rgba(201,168,76,0.5);
+          background: #1c1c1c;
+          border: 1px solid rgba(201, 168, 76, 0.55);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           pointer-events: auto;
-          box-shadow:
-            0 8px 32px rgba(28,28,28,0.35),
-            0 2px 8px rgba(0,0,0,0.2),
-            inset 0 1px 0 rgba(255,255,255,0.12);
+          box-shadow: 0 2px 6px rgba(28, 28, 28, 0.18);
           transition:
             opacity 0.25s ease,
             visibility 0.25s ease,
             transform 0.25s ease,
             box-shadow 0.25s ease,
-            border-color 0.25s ease;
+            border-color 0.25s ease,
+            background-color 0.25s ease;
+        }
+        .gcw-launcher svg {
+          filter: none;
         }
         /* Open panel replaces the launcher — no overlap */
         .gcw-is-open .gcw-launcher {
@@ -499,19 +604,14 @@ export default function ChatWidget() {
           transform: scale(0.88);
         }
         .gcw-launcher:hover {
-          transform: translateY(-2px) scale(1.03);
-          border-color: rgba(201,168,76,0.75);
-          box-shadow:
-            0 12px 40px rgba(28,28,28,0.4),
-            0 4px 12px rgba(201,168,76,0.15),
-            inset 0 1px 0 rgba(255,255,255,0.15);
+          transform: translateY(-1px);
+          border-color: rgba(201, 168, 76, 0.85);
+          background: #252525;
+          box-shadow: 0 3px 8px rgba(28, 28, 28, 0.22);
         }
         .gcw-launcher:focus-visible {
           outline: 2px solid #C9A84C;
           outline-offset: 3px;
-        }
-        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .gcw-launcher { background: #1C1C1C; }
         }
         .gcw-online-dot {
           position: absolute;
@@ -520,9 +620,9 @@ export default function ChatWidget() {
           width: 11px;
           height: 11px;
           border-radius: 50%;
-          background: #C9A84C;
-          border: 2px solid #FAFAF7;
-          animation: gcw-pulse 2.4s ease-in-out infinite;
+          background: #c9a84c;
+          border: 2px solid #fafaf7;
+          box-shadow: none;
         }
 
         .gcw-panel {
@@ -980,10 +1080,128 @@ export default function ChatWidget() {
           cursor: not-allowed;
         }
 
-        @keyframes gcw-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
-          50% { box-shadow: 0 0 0 4px rgba(201,168,76,0); }
+        .gcw-intro-wrap {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 28px 20px;
         }
+        .gcw-start-chat-btn {
+          width: 100%;
+          max-width: 280px;
+          padding: 14px 22px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,0.35);
+          background: linear-gradient(145deg, #E8D5A3 0%, #C9A84C 48%, #B8960C 100%);
+          color: #1C1C1C;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow:
+            0 4px 16px rgba(201,168,76,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.4);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .gcw-start-chat-btn:hover:not(:disabled) {
+          transform: scale(1.02);
+          box-shadow:
+            0 6px 22px rgba(201,168,76,0.5),
+            inset 0 1px 0 rgba(255,255,255,0.45);
+        }
+        .gcw-start-chat-btn:focus-visible {
+          outline: 2px solid #C9A84C;
+          outline-offset: 3px;
+        }
+        .gcw-start-chat-btn:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+        }
+
+        .gcw-intake-wrap {
+          flex: 1;
+          overflow-y: auto;
+          padding: 18px 18px 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          background: rgba(250,250,247,0.55);
+          backdrop-filter: blur(10px) saturate(115%);
+          -webkit-backdrop-filter: blur(10px) saturate(115%);
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-intake-wrap { background: #FAFAF7; }
+        }
+        .gcw-intake-title {
+          margin: 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          color: #1c1c1c;
+          line-height: 1.5;
+        }
+        .gcw-intake-fields {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .gcw-intake-wrap .gcw-field-label {
+          color: #3d3a34;
+          text-transform: none;
+          letter-spacing: 0.02em;
+          font-size: 11px;
+          font-weight: 600;
+        }
+        .gcw-intake-wrap .gcw-field:focus-within .gcw-field-label {
+          color: #6b5a24;
+        }
+        .gcw-intake-fields .gcw-contact-input {
+          background: rgba(255,255,255,0.96);
+          color: #1c1c1c;
+        }
+        .gcw-intake-wrap .gcw-contact-input::placeholder {
+          color: #767676;
+        }
+        .gcw-intake-error {
+          margin: 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.4;
+          color: #8b2919;
+        }
+        .gcw-intake-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 4px;
+        }
+        .gcw-intake-btn-primary {
+          width: 100%;
+          padding: 12px 16px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,0.35);
+          background: linear-gradient(145deg, #E8D5A3 0%, #C9A84C 48%, #B8960C 100%);
+          color: #1C1C1C;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .gcw-intake-btn-primary:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+        }
+        @media (min-width: 640px) {
+          .gcw-panel {
+            top: 78px;
+            bottom: auto;
+            height: min(660px, calc(100vh - 90px));
+            max-height: calc(100vh - 90px);
+          }
+        }
+
         @keyframes gcw-typing-bounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
           30% { transform: translateY(-4px); opacity: 1; }
@@ -991,7 +1209,7 @@ export default function ChatWidget() {
 
         @media (prefers-reduced-motion: reduce) {
           .gcw-panel, .gcw-launcher, .gcw-send-btn { transition: none; }
-          .gcw-online-dot, .gcw-typing-dot { animation: none; }
+          .gcw-typing-dot { animation: none; }
         }
 
         @media (max-width: 639px) {
@@ -1058,103 +1276,147 @@ export default function ChatWidget() {
           </button>
         </div>
 
-        <div className="gcw-messages">
-          {messages.map((m) => (
-            <div key={m.id} className={`gcw-bubble-row gcw-bubble-row-${m.sender}`}>
-              <div className={`gcw-bubble gcw-bubble-${m.sender}`}>
-                <p className="gcw-bubble-text">{m.text}</p>
-              </div>
-              {m.status === "failed" ? (
-                <span className="gcw-error-notice">
-                  Not sent —{" "}
-                  <button
-                    type="button"
-                    className="gcw-retry-btn"
-                    onClick={() => retryMessage(m.id, m.text)}
-                  >
-                    tap to retry
-                  </button>
-                </span>
-              ) : (
-                <span className="gcw-timestamp">{formatTime(m.timestamp)}</span>
-              )}
-            </div>
-          ))}
-
-          {isTyping && (
-            <div className="gcw-bubble-row gcw-bubble-row-team">
-              <div className="gcw-bubble gcw-bubble-team gcw-typing" aria-label="Team is typing">
-                <span className="gcw-typing-dot" />
-                <span className="gcw-typing-dot" />
-                <span className="gcw-typing-dot" />
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
-        </div>
-
-        <div className="gcw-footer">
-          {showContactFields && (
-            <div className="gcw-contact-card">
-              <div className="gcw-contact-header">
-                <span className="gcw-contact-label">Share your details (optional)</span>
-                <button
-                  type="button"
-                  className="gcw-skip-link"
-                  onClick={() => setContactFieldsDismissed(true)}
-                >
-                  Skip
-                </button>
-              </div>
-              <div className="gcw-contact-inputs">
-                <label className="gcw-field">
-                  <span className="gcw-field-label">Name</span>
-                  <input
-                    type="text"
-                    className="gcw-contact-input"
-                    placeholder="John Smith"
-                    aria-label="Your name (optional)"
-                    value={visitorName}
-                    onChange={(e) => setVisitorName(e.target.value)}
-                  />
-                </label>
-                <label className="gcw-field">
-                  <span className="gcw-field-label">Email</span>
-                  <input
-                    type="email"
-                    className="gcw-contact-input"
-                    placeholder="you@email.com"
-                    aria-label="Your email (optional)"
-                    value={visitorEmail}
-                    onChange={(e) => setVisitorEmail(e.target.value)}
-                  />
-                </label>
-              </div>
-            </div>
-          )}
-
-          <div className="gcw-composer">
-            <textarea
-              ref={inputRef}
-              className="gcw-textarea"
-              placeholder="Type your message…"
-              aria-label="Type your message"
-              rows={1}
-              value={inputValue}
-              onChange={handleTextareaInput}
-              onKeyDown={handleTextareaKeyDown}
-            />
+        {showIntro ? (
+          <div className="gcw-intro-wrap">
             <button
               type="button"
-              className="gcw-send-btn"
-              aria-label="Send message"
-              disabled={!inputValue.trim()}
-              onClick={handleSend}
+              className="gcw-start-chat-btn"
+              onClick={() => {
+                setIntakeError("");
+                setSessionPhase("intake");
+                warmAnonymousSession().catch(() => {});
+              }}
             >
-              <SendIcon />
+              Let&apos;s Start Chat
             </button>
           </div>
+        ) : showIntake ? (
+          <div className="gcw-intake-wrap">
+            <p className="gcw-intake-title">
+              Share your details to start a live chat with our team.
+            </p>
+            <div className="gcw-intake-fields">
+              <label className="gcw-field">
+                <span className="gcw-field-label">Name</span>
+                <input
+                  type="text"
+                  className="gcw-contact-input"
+                  placeholder="John Smith"
+                  aria-label="Your name"
+                  value={visitorName}
+                  onChange={(e) => setVisitorName(e.target.value)}
+                  autoComplete="name"
+                />
+              </label>
+              <label className="gcw-field">
+                <span className="gcw-field-label">Email</span>
+                <input
+                  type="email"
+                  className="gcw-contact-input"
+                  placeholder="you@email.com"
+                  aria-label="Your email"
+                  value={visitorEmail}
+                  onChange={(e) => setVisitorEmail(e.target.value)}
+                  autoComplete="email"
+                />
+              </label>
+              <label className="gcw-field">
+                <span className="gcw-field-label">Phone (optional)</span>
+                <input
+                  type="tel"
+                  className="gcw-contact-input"
+                  placeholder="+1 555 000 0000"
+                  aria-label="Your phone number (optional)"
+                  value={visitorPhone}
+                  onChange={(e) => setVisitorPhone(e.target.value)}
+                  autoComplete="tel"
+                />
+              </label>
+            </div>
+            {intakeError ? <p className="gcw-intake-error">{intakeError}</p> : null}
+            <div className="gcw-intake-actions">
+              <button
+                type="button"
+                className="gcw-intake-btn-primary"
+                disabled={intakeSubmitting}
+                onClick={submitLiveIntake}
+              >
+                {intakeSubmitting ? "Starting…" : "Start live chat"}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="gcw-messages">
+            {messages.map((m) => (
+              <div key={m.id} className={`gcw-bubble-row gcw-bubble-row-${m.sender}`}>
+                <div className={`gcw-bubble gcw-bubble-${m.sender}`}>
+                  <p className="gcw-bubble-text">{m.text}</p>
+                </div>
+                {m.status === "failed" ? (
+                  <span className="gcw-error-notice">
+                    Not sent —{" "}
+                    <button
+                      type="button"
+                      className="gcw-retry-btn"
+                      onClick={() => retryMessage(m.id, m.text)}
+                    >
+                      tap to retry
+                    </button>
+                  </span>
+                ) : (
+                  <span className="gcw-timestamp">{formatTime(m.timestamp)}</span>
+                )}
+              </div>
+            ))}
+
+            {intakePending && (
+              <div className="gcw-bubble-row gcw-bubble-row-team">
+                <div className="gcw-bubble gcw-bubble-team gcw-typing" aria-label="Connecting">
+                  <span className="gcw-typing-dot" />
+                  <span className="gcw-typing-dot" />
+                  <span className="gcw-typing-dot" />
+                </div>
+              </div>
+            )}
+
+            {isTyping && (
+              <div className="gcw-bubble-row gcw-bubble-row-team">
+                <div className="gcw-bubble gcw-bubble-team gcw-typing" aria-label="Team is typing">
+                  <span className="gcw-typing-dot" />
+                  <span className="gcw-typing-dot" />
+                  <span className="gcw-typing-dot" />
+                </div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+        )}
+
+        <div className="gcw-footer">
+          {showComposer && (
+            <div className="gcw-composer">
+              <textarea
+                ref={inputRef}
+                className="gcw-textarea"
+                placeholder="Type your message…"
+                aria-label="Type your message"
+                rows={1}
+                value={inputValue}
+                onChange={handleTextareaInput}
+                onKeyDown={handleTextareaKeyDown}
+              />
+              <button
+                type="button"
+                className="gcw-send-btn"
+                aria-label="Send message"
+                disabled={!inputValue.trim()}
+                onClick={handleSend}
+              >
+                <SendIcon />
+              </button>
+            </div>
+          )}
 
           <p className="gcw-privacy-note">
             Your conversation is private and confidential.

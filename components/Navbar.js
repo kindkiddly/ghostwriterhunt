@@ -92,6 +92,7 @@ export default function Navbar({ servicesByCategory = {} }) {
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   const closeTimer = useRef(null);
   const aboutCloseTimer = useRef(null);
@@ -124,6 +125,14 @@ export default function Navbar({ servicesByCategory = {} }) {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const sync = () => setIsMobileViewport(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   // Close mega menus on Escape
   useEffect(() => {
@@ -211,6 +220,16 @@ export default function Navbar({ servicesByCategory = {} }) {
 
   if (pathname.startsWith("/admin")) return null;
 
+  const isHome = pathname === "/";
+  const navBarSolid =
+    isLegalPage ||
+    scrolled ||
+    mobileOpen ||
+    megaMenuOpen ||
+    aboutMenuOpen;
+  const navTopGradient =
+    !navBarSolid && !(isHome && isMobileViewport);
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[1000] w-full outline-none"
@@ -225,21 +244,12 @@ export default function Navbar({ servicesByCategory = {} }) {
         border: "none",
         borderBottom: "none",
         outline: "none",
-        boxShadow: isLegalPage
-          ? "0 1px 20px rgba(0,0,0,0.06)"
-          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
-            ? "0 1px 20px rgba(0,0,0,0.06)"
-            : "none",
-        backdropFilter: isLegalPage
-          ? "none"
-          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
-            ? "blur(12px)"
-            : "none",
-        background: isLegalPage
+        boxShadow: navBarSolid ? "0 1px 20px rgba(0,0,0,0.06)" : "none",
+        backdropFilter:
+          navBarSolid && !isLegalPage ? "blur(12px)" : "none",
+        background: navBarSolid || !navTopGradient
           ? "rgba(250,250,247,0.98)"
-          : scrolled || mobileOpen || megaMenuOpen || aboutMenuOpen
-            ? "rgba(250,250,247,0.98)"
-            : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
+          : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
         transition: isLegalPage
           ? "none"
           : "background 0.4s ease, box-shadow 0.4s ease",

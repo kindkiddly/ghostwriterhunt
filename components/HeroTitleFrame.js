@@ -73,9 +73,17 @@ export default function HeroTitleFrame({
     illustrationBg?.desktop &&
     illustrationBg?.mobile;
   const isHomeGlass =
-    titleStyle === "home-glass" &&
-    illustrationBg?.desktop &&
-    illustrationBg?.mobile;
+    titleStyle === "home-glass" && Boolean(illustrationBg?.desktop);
+  const homeGlassSrc = illustrationBg?.desktop ?? "";
+  const homeGlassMobileSrc =
+    illustrationBg?.mobile ?? illustrationBg?.desktop ?? "";
+  const homeGlassUsePicture =
+    Boolean(illustrationBg?.mobile) &&
+    illustrationBg.mobile !== illustrationBg.desktop;
+  const homeGlassDims = IMAGE_DIMENSIONS[homeGlassSrc] ?? {
+    width: 1920,
+    height: 1081,
+  };
   const isPlain = titleStyle === "plain";
   const isMobileScene =
     titleStyle === "mobile-scene" && illustrationBg?.mobile;
@@ -586,7 +594,11 @@ export default function HeroTitleFrame({
           }
 
           .gwh-hero-title-frame--home-glass {
-            text-align: center;
+            text-align: left;
+          }
+
+          .gwh-hero-title-frame--home-glass .gwh-home-scene-picture img {
+            object-position: left top;
           }
 
           .gwh-hero-title-backdrop,
@@ -654,14 +666,12 @@ export default function HeroTitleFrame({
           }
 
           .gwh-hero-title-frame--home-glass .gwh-home-scene-panel {
-            aspect-ratio: 8 / 3;
             width: 100%;
-            border-radius: 4px;
           }
 
           .gwh-hero-title-frame--home-glass .gwh-home-scene-picture img {
-            object-fit: cover;
-            object-position: center center;
+            object-fit: contain;
+            object-position: center top;
             filter: none;
           }
 
@@ -903,7 +913,7 @@ export default function HeroTitleFrame({
 
         }
 
-        /* Home — background-H1 artwork (headline baked into image; no overlay text) */
+        /* Home — transparent quill heading (title in artwork; sr-only h1) */
         .gwh-hero-title-frame--home-glass {
           padding: 0;
         }
@@ -911,23 +921,25 @@ export default function HeroTitleFrame({
         .gwh-home-scene-panel {
           position: relative;
           width: 100%;
-          aspect-ratio: 8 / 3;
-          overflow: hidden;
-          border-radius: 4px;
-          background: #fafaf7;
+          overflow: visible;
+          background: transparent;
+          line-height: 0;
         }
 
         .gwh-home-scene-picture {
           display: block;
           width: 100%;
-          height: 100%;
+          height: auto;
+          line-height: 0;
         }
 
-        .gwh-home-scene-picture img {
+        .gwh-home-scene-picture img,
+        img.gwh-home-scene-picture {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center center;
+          height: auto;
+          max-width: 100%;
+          object-fit: contain;
+          object-position: center top;
           display: block;
         }
 
@@ -1221,21 +1233,34 @@ export default function HeroTitleFrame({
           className={`gwh-hero-title-frame gwh-hero-title-frame--${variant} gwh-hero-title-frame--home-glass ${className}`.trim()}
         >
           <div className="gwh-home-scene-panel">
-            <picture className="gwh-home-scene-picture">
-              <source
-                media="(max-width: 768px)"
-                srcSet={illustrationBg.mobile}
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            {homeGlassUsePicture ? (
+              <picture className="gwh-home-scene-picture">
+                <source
+                  media="(max-width: 768px)"
+                  srcSet={homeGlassMobileSrc}
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={homeGlassSrc}
+                  alt=""
+                  width={homeGlassDims.width}
+                  height={homeGlassDims.height}
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
               <img
-                src={illustrationBg.desktop}
+                className="gwh-home-scene-picture"
+                src={homeGlassSrc}
                 alt=""
-                width={1920}
-                height={720}
+                width={homeGlassDims.width}
+                height={homeGlassDims.height}
                 decoding="async"
                 fetchPriority="high"
               />
-            </picture>
+            )}
             <h1 ref={h1Ref} className="gwh-home-scene-sr-title">
               {line1} {line2}
             </h1>
