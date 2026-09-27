@@ -26,10 +26,11 @@ export default function ServiceProcess({ service }) {
   if (!service?.process?.length) return null;
 
   const isGhostwriting = service.slug === "ghostwriting";
+  const isManuscriptEditing = service.slug === "manuscript-editing";
 
   return (
     <section
-      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}`}
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}`}
       aria-label="The process"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -90,6 +91,17 @@ export default function ServiceProcess({ service }) {
           border-radius: 16px;
           box-shadow: 0 8px 32px rgba(0,0,0,0.10);
           display: block;
+        }
+        .sp-section--manuscript-editing .sp-img {
+          object-fit: contain;
+          object-position: center center;
+          background: #fafaf7;
+        }
+        .sp-section--manuscript-editing .sp-img--landscape {
+          height: 336px;
+        }
+        .sp-section--manuscript-editing .sp-img--portrait {
+          height: 360px;
         }
         .sp-number {
           font-family: var(--font-playfair), serif;
@@ -218,6 +230,19 @@ export default function ServiceProcess({ service }) {
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
+          .sp-section--manuscript-editing .sp-img--landscape {
+            width: min(100%, 432px);
+            height: 240px;
+            object-fit: contain;
+            background: #fafaf7;
+          }
+          .sp-section--manuscript-editing .sp-img--portrait {
+            width: min(100%, 432px);
+            height: 288px;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
+          }
         }
       ` }} />
 
@@ -235,12 +260,13 @@ export default function ServiceProcess({ service }) {
             // Odd steps (0,2,4): image left — Even: content left (image right)
             const imageLeft = index % 2 === 0;
             const { width, height } = getImageDimensions(step.image);
+            const isPortrait = height > width;
             const image = (
               <div className="sp-col">
                 <img
                   src={step.image}
                   alt={step.title}
-                  className="sp-img"
+                  className={`sp-img${isPortrait ? " sp-img--portrait" : " sp-img--landscape"}`}
                   width={width}
                   height={height}
                   loading="lazy"

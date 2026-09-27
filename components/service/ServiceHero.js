@@ -7,6 +7,7 @@ import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
 import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 import ServiceHeroLede from "./ServiceHeroLede";
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { getImageDimensions } from "@/data/imageDimensions";
 
 import Link from "next/link";
 /**
@@ -27,6 +28,15 @@ const MOBILE_PLAIN_HERO_ART = {
   "video-book-trailer": "/images/background-videobook-mobile.webp",
   "ebook-publishing": "/images/background-ebookpublishing-mobile.webp",
   proofreading: "/images/background-proofreading-mobile.webp",
+  "audiobook-publishing":
+    "/images/background-audiobookpublishing-mobile.webp",
+  ghostwriting: "/images/CTA-AUTHOR.webp",
+  "ebook-writing": "/images/ebook-writing-mobile.webp",
+  "childrens-book": "/images/childrens-book-mobile-plain.webp",
+  "article-writing": "/images/article-writing-mobile.webp",
+  "blog-writing": "/images/blog-writing-mobile.webp",
+  "website-content": "/images/website-content-mobile.webp",
+  "manuscript-editing": "/images/manuscript-editing-mobile.webp",
 };
 
 export default function ServiceHero({ service }) {
@@ -42,6 +52,9 @@ export default function ServiceHero({ service }) {
   const isBlogWriting = service.slug === "blog-writing";
   const isGhostwriting = service.slug === "ghostwriting";
   const mobilePlainHeroArt = MOBILE_PLAIN_HERO_ART[service.slug] ?? null;
+  const mobilePlainHeroDims = mobilePlainHeroArt
+    ? getImageDimensions(mobilePlainHeroArt)
+    : null;
   const isPlainTextHeadline =
     !isGhostwriting && !DESKTOP_BAKED_HEADLINE_SLUGS.has(service.slug);
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
@@ -358,17 +371,62 @@ export default function ServiceHero({ service }) {
                   </span>
                 </h1>
               </div>
-              <div className="sh-headline-wrap sh-ghost-mobile-only">
+              <div className="sh-headline-wrap sh-ghost-mobile-only sh-mobile-plain-head">
+                <HeroTitleFrame
+                  line1="Your story written"
+                  line2="flawlessly."
+                  variant="service"
+                  titleStyle="plain"
+                />
+                {mobilePlainHeroArt ? (
+                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={mobilePlainHeroArt}
+                      alt=""
+                      width={mobilePlainHeroDims?.width ?? 1560}
+                      height={mobilePlainHeroDims?.height ?? 878}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </>
+          ) : isChildrensBook ? (
+            <>
+              <div className="sh-headline-wrap sh-plain-desktop-only">
                 <HeroTitleFrame
                   line1={service.tagline}
                   line2={service.taglineItalic}
                   variant="service"
-                  titleStyle="mobile-scene"
-                  naturalMobileHeight
+                  titleStyle="illustration"
                   illustrationBg={{
-                    mobile: "/images/background-gwriting-mobile.webp",
+                    desktop: "/images/childrens-book-hero-bg.webp",
+                    mobile: "/images/childrens-book-hero-bg-mobile.webp",
                   }}
                 />
+              </div>
+              <div className="sh-headline-wrap sh-plain-mobile-only sh-mobile-plain-head">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="plain"
+                />
+                {mobilePlainHeroArt ? (
+                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={mobilePlainHeroArt}
+                      alt=""
+                      width={mobilePlainHeroDims?.width ?? 1560}
+                      height={mobilePlainHeroDims?.height ?? 878}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </div>
+                ) : null}
               </div>
             </>
           ) : isPlainTextHeadline ? (
@@ -394,8 +452,8 @@ export default function ServiceHero({ service }) {
                     <img
                       src={mobilePlainHeroArt}
                       alt=""
-                      width={1560}
-                      height={878}
+                      width={mobilePlainHeroDims?.width ?? 1560}
+                      height={mobilePlainHeroDims?.height ?? 878}
                       decoding="async"
                       fetchPriority="high"
                     />
@@ -412,34 +470,43 @@ export default function ServiceHero({ service }) {
                 </div>
               )}
             </>
-          ) : (
-            <HeroTitleFrame
-              line1={service.tagline}
-              line2={service.taglineItalic}
-              variant="service"
-              className="sh-headline-wrap"
-              titleStyle={
-                isChildrensBook
-                  ? "illustration"
-                  : isBakedHeroImage
-                    ? "mobile-scene"
-                    : "default"
-              }
-              illustrationBg={
-                isChildrensBook
-                  ? {
-                      desktop: "/images/childrens-book-hero-bg.webp",
-                      mobile: "/images/childrens-book-hero-bg-mobile.webp",
-                    }
-                  : isBlogWriting
-                    ? {
-                        desktop: "/images/background-blog.webp",
-                        mobile: "/images/background-blog-mobile.webp",
-                      }
-                    : null
-              }
-            />
-          )}
+          ) : isBlogWriting ? (
+            <>
+              <div className="sh-headline-wrap sh-plain-desktop-only">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="mobile-scene"
+                  illustrationBg={{
+                    desktop: "/images/background-blog.webp",
+                    mobile: "/images/background-blog-mobile.webp",
+                  }}
+                />
+              </div>
+              <div className="sh-headline-wrap sh-plain-mobile-only sh-mobile-plain-head">
+                <HeroTitleFrame
+                  line1={service.tagline}
+                  line2={service.taglineItalic}
+                  variant="service"
+                  titleStyle="plain"
+                />
+                {mobilePlainHeroArt ? (
+                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={mobilePlainHeroArt}
+                      alt=""
+                      width={mobilePlainHeroDims?.width ?? 1560}
+                      height={mobilePlainHeroDims?.height ?? 878}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </>
+          ) : null}
 
           <ServiceHeroLede
             text={service.heroSubtext}

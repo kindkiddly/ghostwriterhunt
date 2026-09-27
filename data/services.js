@@ -9,7 +9,7 @@ export const services = [
     slug: 'ghostwriting',
     category: 'Writing',
     title: 'Professional Ghostwriting',
-    tagline: 'Your story, written',
+    tagline: 'Your story written',
     taglineItalic: 'flawlessly.',
     heroSubtext: 'You have a story worth telling. We have the professionals to tell it perfectly. Share your vision with us — we craft every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
     
@@ -235,7 +235,7 @@ export const services = [
         number: '02',
         title: 'Developmental Edit',
         description: 'Structure, pacing, character and narrative flow are evaluated and refined.',
-        image: '/images/manuscript-editing-process-2.webp'
+        image: '/images/Heero-L01.webp'
       },
       {
         number: '03',
@@ -253,7 +253,7 @@ export const services = [
         number: '05',
         title: 'Final Proofread',
         description: 'Final pass ensures your manuscript is completely error-free and publication ready.',
-        image: '/images/manuscript-editing-process-5.webp'
+        image: '/images/HEERO-L11.webp'
       }
     ],
 
