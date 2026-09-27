@@ -199,6 +199,7 @@ export default function Hero() {
 
   return (
     <section
+      data-hero
       className="gwh-hero-root relative flex min-h-screen flex-col items-center justify-start overflow-hidden bg-[var(--color-background)] px-6 pb-0 pt-0"
       style={{
         backgroundImage:

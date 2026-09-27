@@ -33,3 +33,52 @@ body {
     display: none !important;
   }
 }
+
+/* —— Page transitions (app/template.js) ——
+   Page content fades in on every load and navigation; the hero also
+   rises gently. Navbar and chat live in the layout, and the footer is
+   excluded, so they stay still. Opacity/transform only: no layout shift. */
+@keyframes gwh-page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gwh-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gwh-page > main > :not(.gwh-footer):not([data-hero]),
+.gwh-page > :not(main):not(.gwh-footer):not([data-hero]) {
+  animation: gwh-page-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gwh-page [data-hero] {
+  animation: gwh-hero-in 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Held (invisible) until the hero's priority images are decoded */
+.gwh-page--hold > main > :not(.gwh-footer):not([data-hero]),
+.gwh-page--hold > :not(main):not(.gwh-footer):not([data-hero]),
+.gwh-page--hold [data-hero] {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gwh-page > main > :not(.gwh-footer):not([data-hero]),
+  .gwh-page > :not(main):not(.gwh-footer):not([data-hero]),
+  .gwh-page [data-hero] {
+    animation: none;
+  }
+}

@@ -40,6 +40,7 @@ export default function ServiceHero({ service }) {
 
   return (
     <section
+      data-hero
       className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}`}
       aria-label={`${service.title} hero`}
     >

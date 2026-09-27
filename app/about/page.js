@@ -891,10 +891,6 @@ export default function AboutPage() {
   const [ctaBgRef, ctaBgReady] = useNearViewport();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     const elements = document.querySelectorAll(
       ".ab-fade-up, .ab-slide-left, .ab-slide-right, .ab-scale-up, .ab-rotate-in"
     );
@@ -928,10 +924,10 @@ export default function AboutPage() {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* —— Section 1: Hero —— */}
-      <section className="ab-hero">
+      <section data-hero className="ab-hero">
         <div className="ab-hero-glow" aria-hidden="true" />
         <div className="ab-hero-inner">
-          <div className="ab-fade-up" data-delay="0">
+          <div>
             <p className="ab-label-gold">OUR STORY</p>
             <h1 className="ab-hero-title">
               We believe every story

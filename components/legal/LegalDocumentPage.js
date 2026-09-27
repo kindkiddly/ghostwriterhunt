@@ -283,7 +283,7 @@ export default function LegalDocumentPage({ type }) {
     <main className="legal-page">
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
-      <header className="legal-page-hero">
+      <header data-hero className="legal-page-hero">
         <div className="legal-page-hero-glow" aria-hidden="true" />
         <div className="legal-page-hero-inner">
           <p className="legal-page-label">LEGAL</p>
