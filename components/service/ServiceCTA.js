@@ -127,6 +127,10 @@ export default function ServiceCTA({ service }) {
           transform: translateY(0);
         }
         @media (max-width: 768px) {
+          .sc-section {
+            padding-left: 32px;
+            padding-right: 32px;
+          }
           .sc-headline { font-size: 36px; }
           .sc-section .svc-trust {
             margin-top: 4px;

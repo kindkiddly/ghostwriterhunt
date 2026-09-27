@@ -14,7 +14,7 @@ export default function ServiceMobileDualCtaStyles() {
           flex-wrap: nowrap !important;
           justify-content: center !important;
           align-items: stretch;
-          gap: 8px !important;
+          gap: 10px !important;
           width: 100%;
           max-width: 100%;
           overflow: visible;
@@ -28,7 +28,7 @@ export default function ServiceMobileDualCtaStyles() {
           width: auto !important;
           max-width: none;
           height: 44px !important;
-          padding: 0 10px !important;
+          padding: 0 8px !important;
           border-radius: 6px !important;
           font-size: 11px !important;
           line-height: 1.2 !important;

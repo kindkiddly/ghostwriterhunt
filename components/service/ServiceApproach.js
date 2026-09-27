@@ -663,6 +663,10 @@ export default function ServiceApproach({ service }) {
         }
 
         @media (max-width: 768px) {
+          .sa-inner {
+            padding-left: 32px;
+            padding-right: 32px;
+          }
           .sa-headline { font-size: 32px; }
           .sa-grid { grid-template-columns: 1fr; }
 
@@ -693,8 +697,6 @@ export default function ServiceApproach({ service }) {
           .sa-section--glass-mobile .sa-inner {
             position: relative;
             z-index: 1;
-            padding-left: 16px;
-            padding-right: 16px;
           }
           .sa-section--glass-mobile .sa-label {
             color: #c9a84c;

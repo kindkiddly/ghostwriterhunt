@@ -103,6 +103,10 @@ export default function ServiceTestimonial({ service }) {
           transform: translateY(0);
         }
         @media (max-width: 768px) {
+          .st-inner {
+            padding-left: 32px;
+            padding-right: 32px;
+          }
           .st-quote { font-size: 18px; }
           .st-quote-mark { font-size: 80px; margin-bottom: -24px; }
         }

@@ -228,11 +228,14 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           transform: translateX(0);
         }
         @media (max-width: 768px) {
+          .so-section {
+            overflow-x: clip;
+          }
           .so-inner {
             flex-direction: column;
             gap: 32px;
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 32px;
+            padding-right: 32px;
           }
           .so-gw-float-aside {
             float: none;
@@ -253,44 +256,83 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           .so-gw-float-aside {
             display: none !important;
           }
+          .so-gw-mobile-stack {
+            display: none;
+          }
+          .so-gw-editorial--desktop {
+            display: block;
+          }
+          .so-inner--ghostwriting {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .so-section--ghostwriting .so-gw-editorial--desktop {
+            display: none !important;
+          }
+          .so-section--ghostwriting .so-gw-mobile-stack {
+            display: block;
+            width: 100%;
+          }
+          .so-body {
+            max-width: 100%;
+          }
+        }
+        @media (min-width: 769px) {
+          .so-gw-mobile-stack {
+            display: none !important;
+          }
         }
       ` }} />
 
       <div className={`so-inner${isGhostwriting ? " so-inner--ghostwriting" : ""}`}>
         {isGhostwriting ? (
-          <div className="so-gw-editorial">
-            <p className="so-label so-reveal-left" data-delay="0">
-              ABOUT THIS SERVICE
-            </p>
-            <h2 className="so-headline so-reveal-left" data-delay="0">
-              <span className="block">{overview.headline}</span>
-              <span className="so-headline-italic">
-                {overview.headlineItalic}
-              </span>
-            </h2>
-            <div className="so-gw-flow">
-              <aside
-                className="so-gw-float-aside so-reveal-right"
-                data-delay="150"
-              >
-                <FloatingImages images={overview.images} layout="expanded" />
-              </aside>
-              <p className="so-body so-gw-flow-body so-reveal-left" data-delay="0">
-                {bodyText}
+          <>
+            <div className="so-gw-editorial so-gw-editorial--desktop">
+              <p className="so-label so-reveal-left" data-delay="0">
+                ABOUT THIS SERVICE
               </p>
+              <h2 className="so-headline so-reveal-left" data-delay="0">
+                <span className="block">{overview.headline}</span>
+                <span className="so-headline-italic">
+                  {overview.headlineItalic}
+                </span>
+              </h2>
+              <div className="so-gw-flow">
+                <aside
+                  className="so-gw-float-aside so-reveal-right"
+                  data-delay="150"
+                >
+                  <FloatingImages images={overview.images} layout="expanded" />
+                </aside>
+                <p
+                  className="so-body so-gw-flow-body so-reveal-left"
+                  data-delay="0"
+                >
+                  {bodyText}
+                </p>
+              </div>
+              <ul
+                className="so-bullets so-gw-bullets-grid so-reveal-left"
+                data-delay="100"
+              >
+                {overview.bullets.map((item) => (
+                  <li key={item} className="so-bullet">
+                    <CheckMark />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/#start"
+                className="so-cta so-reveal-left"
+                data-delay="100"
+              >
+                Get Started →
+              </Link>
             </div>
-            <ul className="so-bullets so-gw-bullets-grid so-reveal-left" data-delay="100">
-              {overview.bullets.map((item) => (
-                <li key={item} className="so-bullet">
-                  <CheckMark />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link href="/#start" className="so-cta so-reveal-left" data-delay="100">
-              Get Started →
-            </Link>
-          </div>
+            <div className="so-gw-mobile-stack">{textCol}</div>
+          </>
         ) : imagesOnLeft ? (
           <>
             {imageCol}

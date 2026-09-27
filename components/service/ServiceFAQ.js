@@ -144,9 +144,13 @@ export default function ServiceFAQ({ service }) {
           transform: translateY(0);
         }
         @media (max-width: 768px) {
+          .sf-inner {
+            padding-left: 32px;
+            padding-right: 32px;
+          }
           .sf-headline { font-size: 32px; }
           .sf-q { font-size: 16px; word-break: break-word; }
-          .sf-btn { padding: 16px; }
+          .sf-btn { padding: 16px 18px; }
         }
       ` }} />
 

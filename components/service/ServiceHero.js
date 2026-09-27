@@ -1,5 +1,6 @@
 "use client";
 
+import { useLayoutEffect, useState } from "react";
 import HeroTitleFrame from "@/components/HeroTitleFrame";
 import FloatingImages from "./FloatingImages";
 import ServiceTrustLine from "./ServiceTrustLine";
@@ -37,6 +38,10 @@ const MOBILE_PLAIN_HERO_ART = {
   "blog-writing": "/images/blog-writing-mobile.webp",
   "website-content": "/images/website-content-mobile.webp",
   "manuscript-editing": "/images/manuscript-editing-mobile.webp",
+  "book-formatting": "/images/HEERO-L06.webp",
+  "book-cover-design": "/images/book-cover-design-mobile.webp",
+  "interior-layout": "/images/interior-layout-mobile.webp",
+  "illustration-graphics": "/images/illustration-graphics-mobile.webp",
 };
 
 export default function ServiceHero({ service }) {
@@ -55,15 +60,41 @@ export default function ServiceHero({ service }) {
   const mobilePlainHeroDims = mobilePlainHeroArt
     ? getImageDimensions(mobilePlainHeroArt)
     : null;
+  const mobileHeroArtClass = `sh-mobile-hero-art${
+    mobilePlainHeroDims &&
+    mobilePlainHeroDims.height > mobilePlainHeroDims.width
+      ? " sh-mobile-hero-art--portrait"
+      : ""
+  }`;
   const isPlainTextHeadline =
     !isGhostwriting && !DESKTOP_BAKED_HEADLINE_SLUGS.has(service.slug);
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
   const ghostDesktopTextHero = isGhostwriting;
+  const splitDesktopMobileHeadline = isBlogWriting || isChildrensBook;
+  const [splitHeadlineMode, setSplitHeadlineMode] = useState(
+    splitDesktopMobileHeadline ? "unknown" : "desktop"
+  );
+
+  useLayoutEffect(() => {
+    if (!splitDesktopMobileHeadline) return undefined;
+
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () =>
+      setSplitHeadlineMode(mq.matches ? "desktop" : "mobile");
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [splitDesktopMobileHeadline]);
+
+  const showSplitDesktopHeadline =
+    splitHeadlineMode === "desktop" || splitHeadlineMode === "unknown";
+  const showSplitMobileHeadline =
+    splitHeadlineMode === "mobile" || splitHeadlineMode === "unknown";
 
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -266,12 +297,13 @@ export default function ServiceHero({ service }) {
           .sh-section {
             min-height: auto;
             padding: 96px 0 60px;
+            overflow-x: clip;
           }
           .sh-inner {
             flex-direction: column;
-            gap: 20px;
-            padding-left: 16px;
-            padding-right: 16px;
+            gap: 12px;
+            padding-left: 32px;
+            padding-right: 32px;
           }
           .sh-left, .sh-right {
             flex: 1 1 100%;
@@ -282,8 +314,7 @@ export default function ServiceHero({ service }) {
             text-align: center;
           }
           .sh-left .sh-label {
-            margin-left: auto;
-            margin-right: auto;
+            display: none;
           }
 
           .sh-headline-wrap {
@@ -293,12 +324,12 @@ export default function ServiceHero({ service }) {
           .sh-right {
             display: flex;
             justify-content: center;
-            width: 100vw;
-            max-width: 100vw;
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            padding-left: 12px;
-            padding-right: 12px;
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 4px;
+            padding-right: 4px;
             box-sizing: border-box;
             overflow: visible;
           }
@@ -311,6 +342,12 @@ export default function ServiceHero({ service }) {
 
           .sh-section .svc-trust {
             margin-top: 4px;
+            margin-bottom: 0;
+          }
+
+          /* Blog / children's — no hidden desktop headline layer on mobile */
+          .sh-section--split-headline .sh-plain-desktop-only {
+            display: none !important;
           }
 
           /* Plain-title services — mobile hero art (home quill proportions) */
@@ -352,6 +389,12 @@ export default function ServiceHero({ service }) {
             object-position: center top;
             display: block;
           }
+          .sh-mobile-hero-art--portrait img {
+            width: 100%;
+            max-width: min(440px, 100%);
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
       ` }} />
       <ServiceMobileDualCtaStyles />
@@ -379,7 +422,7 @@ export default function ServiceHero({ service }) {
                   titleStyle="plain"
                 />
                 {mobilePlainHeroArt ? (
-                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                  <div className={mobileHeroArtClass} aria-hidden="true">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={mobilePlainHeroArt}
@@ -395,18 +438,21 @@ export default function ServiceHero({ service }) {
             </>
           ) : isChildrensBook ? (
             <>
-              <div className="sh-headline-wrap sh-plain-desktop-only">
-                <HeroTitleFrame
-                  line1={service.tagline}
-                  line2={service.taglineItalic}
-                  variant="service"
-                  titleStyle="illustration"
-                  illustrationBg={{
-                    desktop: "/images/childrens-book-hero-bg.webp",
-                    mobile: "/images/childrens-book-hero-bg-mobile.webp",
-                  }}
-                />
-              </div>
+              {showSplitDesktopHeadline ? (
+                <div className="sh-headline-wrap sh-plain-desktop-only">
+                  <HeroTitleFrame
+                    line1={service.tagline}
+                    line2={service.taglineItalic}
+                    variant="service"
+                    titleStyle="illustration"
+                    illustrationBg={{
+                      desktop: "/images/childrens-book-hero-bg.webp",
+                      mobile: "/images/childrens-book-hero-bg-mobile.webp",
+                    }}
+                  />
+                </div>
+              ) : null}
+              {showSplitMobileHeadline ? (
               <div className="sh-headline-wrap sh-plain-mobile-only sh-mobile-plain-head">
                 <HeroTitleFrame
                   line1={service.tagline}
@@ -415,7 +461,7 @@ export default function ServiceHero({ service }) {
                   titleStyle="plain"
                 />
                 {mobilePlainHeroArt ? (
-                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                  <div className={mobileHeroArtClass} aria-hidden="true">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={mobilePlainHeroArt}
@@ -428,6 +474,7 @@ export default function ServiceHero({ service }) {
                   </div>
                 ) : null}
               </div>
+              ) : null}
             </>
           ) : isPlainTextHeadline ? (
             <>
@@ -447,7 +494,7 @@ export default function ServiceHero({ service }) {
                     variant="service"
                     titleStyle="plain"
                   />
-                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                  <div className={mobileHeroArtClass} aria-hidden="true">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={mobilePlainHeroArt}
@@ -472,18 +519,21 @@ export default function ServiceHero({ service }) {
             </>
           ) : isBlogWriting ? (
             <>
-              <div className="sh-headline-wrap sh-plain-desktop-only">
-                <HeroTitleFrame
-                  line1={service.tagline}
-                  line2={service.taglineItalic}
-                  variant="service"
-                  titleStyle="mobile-scene"
-                  illustrationBg={{
-                    desktop: "/images/background-blog.webp",
-                    mobile: "/images/background-blog-mobile.webp",
-                  }}
-                />
-              </div>
+              {showSplitDesktopHeadline ? (
+                <div className="sh-headline-wrap sh-plain-desktop-only">
+                  <HeroTitleFrame
+                    line1={service.tagline}
+                    line2={service.taglineItalic}
+                    variant="service"
+                    titleStyle="mobile-scene"
+                    illustrationBg={{
+                      desktop: "/images/background-blog.webp",
+                      mobile: "/images/background-blog-mobile.webp",
+                    }}
+                  />
+                </div>
+              ) : null}
+              {showSplitMobileHeadline ? (
               <div className="sh-headline-wrap sh-plain-mobile-only sh-mobile-plain-head">
                 <HeroTitleFrame
                   line1={service.tagline}
@@ -492,7 +542,7 @@ export default function ServiceHero({ service }) {
                   titleStyle="plain"
                 />
                 {mobilePlainHeroArt ? (
-                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                  <div className={mobileHeroArtClass} aria-hidden="true">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={mobilePlainHeroArt}
@@ -505,6 +555,7 @@ export default function ServiceHero({ service }) {
                   </div>
                 ) : null}
               </div>
+              ) : null}
             </>
           ) : null}
 

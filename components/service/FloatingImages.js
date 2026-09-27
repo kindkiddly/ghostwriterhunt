@@ -78,8 +78,8 @@ export default function FloatingImages({
             .fi-mosaic {
               grid-template-columns: 1fr 1fr;
               gap: 10px;
-              width: min(392px, calc(100vw - 32px));
-              max-width: min(392px, calc(100vw - 32px));
+              width: min(392px, calc(100vw - 64px));
+              max-width: min(392px, calc(100vw - 64px));
               margin: 0 auto;
             }
             .fi-mosaic-img {
@@ -152,7 +152,7 @@ export default function FloatingImages({
           }
           @media (max-width: 768px) {
             .fi-single-img {
-              width: min(340px, calc(100vw - 32px));
+              width: min(340px, calc(100vw - 64px));
               height: 408px;
               object-fit: cover;
               object-position: center center;
@@ -281,8 +281,11 @@ export default function FloatingImages({
 
         @media (max-width: 768px) {
           .fi-float {
-            width: min(392px, calc(100vw - 32px));
-            max-width: min(392px, calc(100vw - 32px));
+            --fi-m-sm-nudge: 14px;
+            --fi-m-md-nudge-x: 12px;
+            --fi-m-md-nudge-y: 10px;
+            width: min(392px, calc(100vw - 64px));
+            max-width: min(392px, calc(100vw - 64px));
             height: 444px;
             margin: 0 auto;
           }
@@ -315,9 +318,9 @@ export default function FloatingImages({
           .fi-float-medium {
             width: 158px;
             height: 204px;
-            top: 142px;
+            top: calc(142px + var(--fi-m-md-nudge-y));
             left: 50%;
-            margin-left: 33px;
+            margin-left: calc(33px - var(--fi-m-md-nudge-x));
             border-radius: 11px;
             z-index: 2;
             transform: rotate(3deg);
@@ -330,7 +333,7 @@ export default function FloatingImages({
             height: 148px;
             top: 272px;
             left: 50%;
-            margin-left: -141px;
+            margin-left: calc(-141px + var(--fi-m-sm-nudge));
             border-radius: 9px;
             z-index: 3;
             transform: rotate(-4deg);
@@ -340,7 +343,7 @@ export default function FloatingImages({
           }
           .fi-float--expanded {
             height: 468px;
-            max-width: min(392px, calc(100vw - 32px));
+            max-width: min(392px, calc(100vw - 64px));
           }
           .fi-float--expanded .fi-float-large {
             width: 278px;
@@ -351,24 +354,27 @@ export default function FloatingImages({
           .fi-float--expanded .fi-float-medium {
             width: 172px;
             height: 222px;
-            top: 128px;
-            margin-left: 28px;
+            top: calc(128px + var(--fi-m-md-nudge-y));
+            margin-left: calc(28px - var(--fi-m-md-nudge-x));
           }
           .fi-float--expanded .fi-float-small {
             width: 122px;
             height: 156px;
             top: 288px;
-            margin-left: -148px;
+            margin-left: calc(-148px + var(--fi-m-sm-nudge));
           }
 
           /* Service hero — wide cluster; accent cards tuck to corners (minimal face overlap) */
           .fi-float.fi-float--service-hero {
-            --fi-m-lg: min(72vw, 348px);
-            --fi-m-md: min(34vw, 158px);
-            --fi-m-sm: min(28vw, 128px);
-            --fi-m-overlap: 38px;
-            width: calc(100vw - 24px);
-            max-width: calc(100vw - 24px);
+            --fi-m-lg: min(100%, 268px);
+            --fi-m-md: min(44%, 142px);
+            --fi-m-sm: min(36%, 112px);
+            --fi-m-overlap: 24px;
+            --fi-m-sm-nudge: 8px;
+            --fi-m-md-nudge-x: 8px;
+            --fi-m-md-nudge-y: 8px;
+            width: 100%;
+            max-width: 100%;
             height: calc(var(--fi-m-lg) * 1.24 + var(--fi-m-sm) * 0.42);
           }
           .fi-float.fi-float--service-hero .fi-float-large,
@@ -385,8 +391,11 @@ export default function FloatingImages({
           .fi-float.fi-float--service-hero .fi-float-medium {
             width: var(--fi-m-md);
             height: calc(var(--fi-m-md) * 1.28);
-            top: calc(var(--fi-m-lg) * 0.58);
-            left: calc(50% + var(--fi-m-lg) / 2 - var(--fi-m-overlap));
+            top: calc(var(--fi-m-lg) * 0.58 + var(--fi-m-md-nudge-y));
+            left: calc(
+              50% + var(--fi-m-lg) / 2 - var(--fi-m-overlap)
+              - var(--fi-m-md-nudge-x)
+            );
             margin-left: 0;
             z-index: 2;
             transform: rotate(4deg);
@@ -398,7 +407,10 @@ export default function FloatingImages({
             width: var(--fi-m-sm);
             height: calc(var(--fi-m-sm) * 1.28);
             top: calc(var(--fi-m-lg) * 1.24 - var(--fi-m-sm) * 0.42);
-            left: calc(50% - var(--fi-m-lg) / 2 - var(--fi-m-sm) + var(--fi-m-overlap));
+            left: calc(
+              50% - var(--fi-m-lg) / 2 - var(--fi-m-sm) + var(--fi-m-overlap)
+              + var(--fi-m-sm-nudge)
+            );
             margin-left: 0;
             z-index: 2;
             transform: rotate(-5deg);
@@ -407,17 +419,31 @@ export default function FloatingImages({
             transform: rotate(-5deg);
           }
           .fi-float.fi-float--service-hero.fi-float--expanded {
-            --fi-m-lg: min(74vw, 360px);
-            --fi-m-md: min(36vw, 168px);
-            --fi-m-sm: min(29vw, 134px);
-            --fi-m-overlap: 40px;
+            --fi-m-lg: min(100%, 276px);
+            --fi-m-md: min(46%, 148px);
+            --fi-m-sm: min(38%, 116px);
+            --fi-m-overlap: 26px;
+            --fi-m-sm-nudge: 10px;
+            --fi-m-md-nudge-x: 10px;
+            --fi-m-md-nudge-y: 10px;
             height: calc(var(--fi-m-lg) * 1.24 + var(--fi-m-sm) * 0.45);
           }
           .fi-float.fi-float--service-hero.fi-float--expanded .fi-float-medium {
-            top: calc(var(--fi-m-lg) * 0.56);
+            top: calc(var(--fi-m-lg) * 0.56 + var(--fi-m-md-nudge-y));
           }
           .fi-float.fi-float--service-hero.fi-float--expanded .fi-float-small {
             top: calc(var(--fi-m-lg) * 1.24 - var(--fi-m-sm) * 0.4);
+          }
+
+          /* Tighter shadows — avoid grey wash in the gap below trust / CTAs */
+          .fi-float.fi-float--service-hero .fi-float-large {
+            box-shadow: 0 12px 26px -10px rgba(0, 0, 0, 0.11);
+          }
+          .fi-float.fi-float--service-hero .fi-float-medium {
+            box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.1);
+          }
+          .fi-float.fi-float--service-hero .fi-float-small {
+            box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.1);
           }
         }
       ` }} />
