@@ -8,6 +8,18 @@ import { getImageDimensions } from "@/data/imageDimensions";
  * Alternating image / content process steps. Prefix: sp-
  */
 
+function splitProcessTitle(title) {
+  const words = (title ?? "").trim().split(/\s+/).filter(Boolean);
+  if (words.length <= 1) {
+    return { line1: title ?? "", line2: null };
+  }
+  const mid = Math.ceil(words.length / 2);
+  return {
+    line1: words.slice(0, mid).join(" "),
+    line2: words.slice(mid).join(" "),
+  };
+}
+
 export default function ServiceProcess({ service }) {
   useRevealSelector(".sp-reveal", "sp-visible", [service?.slug]);
 
@@ -118,36 +130,93 @@ export default function ServiceProcess({ service }) {
           opacity: 1;
           transform: translateY(0);
         }
-        @media (max-width: 768px) {
-          .sp-headline { font-size: 32px; }
-          .sp-row, .sp-row-reverse {
-            flex-direction: column;
-            gap: 24px;
+        @media (min-width: 769px) {
+          .sp-col-content {
+            width: auto;
+            margin: 0;
+            padding: 0;
           }
-          .sp-number { font-size: 56px; }
-          .sp-img { height: 200px; }
-
-          /* Ghostwriting — full-width process photos, less empty side space */
-          .sp-section--ghostwriting .sp-inner {
+          .sp-title-line {
+            display: inline;
+          }
+          .sp-title-line + .sp-title-line::before {
+            content: " ";
+          }
+        }
+        @media (max-width: 768px) {
+          .sp-section {
+            padding: 56px 0;
+          }
+          .sp-inner {
             padding-left: 12px;
             padding-right: 12px;
           }
-          .sp-section--ghostwriting .sp-row,
-          .sp-section--ghostwriting .sp-row-reverse {
+          .sp-headline {
+            font-size: 32px;
+            margin-bottom: 40px;
+          }
+          .sp-row,
+          .sp-row-reverse {
+            flex-direction: column;
+            align-items: stretch;
             gap: 18px;
           }
-          .sp-section--ghostwriting .sp-col {
+          .sp-col {
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: visible;
           }
-          .sp-section--ghostwriting .sp-img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 5 / 4;
-            min-height: 248px;
-            max-height: 360px;
+          .sp-col-content {
+            width: min(100%, 360px);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 6px;
+            overflow: visible;
+          }
+          .sp-number {
+            font-size: 56px;
+            text-align: center;
+          }
+          .sp-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(19px, 5.2vw, 22px);
+            line-height: 1.28;
+            margin-bottom: 10px;
+            overflow: visible;
+            overflow-wrap: break-word;
+          }
+          .sp-title-line {
+            display: block;
+          }
+          .sp-desc {
+            max-width: min(340px, calc(100vw - 40px));
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.55;
+            color: #555555;
+            overflow: visible;
+            overflow-wrap: break-word;
+            hyphens: auto;
+          }
+          .sp-connector {
+            height: 28px;
+            margin: 10px auto;
+          }
+          /* Process photos — standard mobile landscape (not full-bleed) */
+          .sp-img {
+            width: min(100%, 360px);
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
             object-fit: cover;
             object-position: center center;
-            border-radius: 14px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
         }
       ` }} />
@@ -179,10 +248,16 @@ export default function ServiceProcess({ service }) {
                 />
               </div>
             );
+            const { line1, line2 } = splitProcessTitle(step.title);
             const content = (
-              <div className="sp-col">
+              <div className="sp-col sp-col-content">
                 <p className="sp-number">{step.number}</p>
-                <h3 className="sp-title">{step.title}</h3>
+                <h3 className="sp-title">
+                  <span className="sp-title-line">{line1}</span>
+                  {line2 ? (
+                    <span className="sp-title-line">{line2}</span>
+                  ) : null}
+                </h3>
                 <p className="sp-desc">{step.description}</p>
               </div>
             );

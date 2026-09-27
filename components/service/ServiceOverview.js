@@ -244,17 +244,15 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           .so-gw-bullets-grid {
             grid-template-columns: 1fr;
           }
-          .so-images {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            overflow: visible;
-          }
           .so-headline { font-size: 32px; }
           .so-reveal-left, .so-reveal-right {
             transform: translateY(20px);
           }
-          .so-images { order: -1; }
+          /* Mobile — one hero float cluster only; drop duplicate overview mosaic */
+          .so-images,
+          .so-gw-float-aside {
+            display: none !important;
+          }
         }
       ` }} />
 

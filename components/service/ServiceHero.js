@@ -21,6 +21,14 @@ import Link from "next/link";
  */
 const DESKTOP_BAKED_HEADLINE_SLUGS = new Set(["childrens-book", "blog-writing"]);
 
+/** Mobile-only: plain Playfair title + hero art below (1560×878, home quill ratio). */
+const MOBILE_PLAIN_HERO_ART = {
+  "book-marketing": "/images/background-bookmarketing-mobile.webp",
+  "video-book-trailer": "/images/background-videobook-mobile.webp",
+  "ebook-publishing": "/images/background-ebookpublishing-mobile.webp",
+  proofreading: "/images/background-proofreading-mobile.webp",
+};
+
 export default function ServiceHero({ service }) {
   useRevealSelector(
     ".sh-reveal-left, .sh-reveal-img",
@@ -33,6 +41,7 @@ export default function ServiceHero({ service }) {
   const isChildrensBook = service.slug === "childrens-book";
   const isBlogWriting = service.slug === "blog-writing";
   const isGhostwriting = service.slug === "ghostwriting";
+  const mobilePlainHeroArt = MOBILE_PLAIN_HERO_ART[service.slug] ?? null;
   const isPlainTextHeadline =
     !isGhostwriting && !DESKTOP_BAKED_HEADLINE_SLUGS.has(service.slug);
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
@@ -41,7 +50,7 @@ export default function ServiceHero({ service }) {
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -247,7 +256,7 @@ export default function ServiceHero({ service }) {
           }
           .sh-inner {
             flex-direction: column;
-            gap: 32px;
+            gap: 20px;
             padding-left: 16px;
             padding-right: 16px;
           }
@@ -271,7 +280,13 @@ export default function ServiceHero({ service }) {
           .sh-right {
             display: flex;
             justify-content: center;
-            width: 100%;
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            padding-left: 12px;
+            padding-right: 12px;
+            box-sizing: border-box;
             overflow: visible;
           }
           .sh-reveal-left { transform: translateY(20px); }
@@ -283,6 +298,46 @@ export default function ServiceHero({ service }) {
 
           .sh-section .svc-trust {
             margin-top: 4px;
+          }
+
+          /* Plain-title services — mobile hero art (home quill proportions) */
+          .sh-section--mobile-plain-art .sh-mobile-plain-head {
+            width: 100%;
+          }
+          .sh-section--mobile-plain-art
+            .sh-mobile-plain-head
+            .gwh-hero-title-frame--plain {
+            padding: 0;
+            overflow: visible;
+            text-align: center;
+          }
+          .sh-section--mobile-plain-art
+            .sh-mobile-plain-head
+            .gwh-hero-title-frame--plain
+            .gwh-hero-title-frame-h1 {
+            font-size: clamp(24px, 6.8vw, 31px);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+          }
+          .sh-section--mobile-plain-art
+            .sh-mobile-plain-head
+            .gwh-hero-title-frame--plain
+            .gwh-hero-title-rule {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .sh-mobile-hero-art {
+            width: 100%;
+            margin-top: 16px;
+            line-height: 0;
+          }
+          .sh-mobile-hero-art img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: center top;
+            display: block;
           }
         }
       ` }} />
@@ -326,14 +381,36 @@ export default function ServiceHero({ service }) {
                   titleStyle="plain"
                 />
               </div>
-              <div className="sh-headline-wrap sh-plain-mobile-only">
-                <HeroTitleFrame
-                  line1={service.tagline}
-                  line2={service.taglineItalic}
-                  variant="service"
-                  titleStyle="default"
-                />
-              </div>
+              {mobilePlainHeroArt ? (
+                <div className="sh-headline-wrap sh-plain-mobile-only sh-mobile-plain-head">
+                  <HeroTitleFrame
+                    line1={service.tagline}
+                    line2={service.taglineItalic}
+                    variant="service"
+                    titleStyle="plain"
+                  />
+                  <div className="sh-mobile-hero-art" aria-hidden="true">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={mobilePlainHeroArt}
+                      alt=""
+                      width={1560}
+                      height={878}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="sh-headline-wrap sh-plain-mobile-only">
+                  <HeroTitleFrame
+                    line1={service.tagline}
+                    line2={service.taglineItalic}
+                    variant="service"
+                    titleStyle="default"
+                  />
+                </div>
+              )}
             </>
           ) : (
             <HeroTitleFrame
@@ -396,6 +473,7 @@ export default function ServiceHero({ service }) {
             images={service.heroImages}
             slug={service.slug}
             layout={isGhostwriting ? "expanded" : "default"}
+            className="fi-float--service-hero"
             eager
           />
         </div>

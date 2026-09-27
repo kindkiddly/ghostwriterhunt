@@ -1747,7 +1747,7 @@ export const services = [
     slug: 'proofreading',
     category: 'Editing',
     title: 'Proofreading',
-    tagline: 'Error-free manuscripts,',
+    tagline: 'Error free manuscripts,',
     taglineItalic: 'every single time.',
     heroSubtext: 'The final read before publication is the most critical. Our professional proofreaders catch every error that slipped through — from typos and grammatical mistakes to inconsistencies that would undermine your credibility with readers.',
 

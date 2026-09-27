@@ -16,8 +16,6 @@ const SLUG_BOTTOM_TAGS = {
   ghostwriting: "Your name · Your rights · Your book",
 };
 
-const EM_DASH = /\s[—–]\s/;
-
 function stripTerminalPunct(s) {
   return s.replace(/[.!?]+$/, "").trim();
 }
@@ -47,49 +45,127 @@ function splitOnEmDash(segment) {
   };
 }
 
-function splitHeroSubtext(text, explicitEmphasis) {
+/** @typedef {{ kind: "plain" | "gold", text: string }} LedeSegment */
+
+/** Phrases worth gold emphasis inside hero subtitles (keeps paragraph readable). */
+const SUBTITLE_GOLD_PHRASES =
+  /\b(?:the most critical|every error(?: that slipped through)?|100% of your rights and royalties|47\+ platforms worldwide|just the beginning|real visibility|real reviews and real sales|under your name|under one roof|globally|worldwide|immediately|make readers want to read immediately|your (?:credibility with readers|name|rights|book|vision|audience|story)|professional (?:proofreaders|ghostwriters|editors|designers|writers|blog writers|article writers|marketing specialists|eBook writers))\b/gi;
+
+function mergeAdjacentSegments(segments) {
+  /** @type {LedeSegment[]} */
+  const merged = [];
+  segments.forEach((segment) => {
+    if (!segment.text) return;
+    const prev = merged[merged.length - 1];
+    if (prev && prev.kind === segment.kind) {
+      prev.text += segment.text;
+      return;
+    }
+    merged.push({ ...segment });
+  });
+  return merged;
+}
+
+function applyPhraseHighlights(text) {
+  const re = new RegExp(SUBTITLE_GOLD_PHRASES.source, SUBTITLE_GOLD_PHRASES.flags);
+  /** @type {LedeSegment[]} */
+  const segments = [];
+  let cursor = 0;
+
+  for (const match of text.matchAll(re)) {
+    if (match.index === undefined) continue;
+    if (match.index > cursor) {
+      segments.push({ kind: "plain", text: text.slice(cursor, match.index) });
+    }
+    segments.push({ kind: "gold", text: match[0] });
+    cursor = match.index + match[0].length;
+  }
+
+  if (cursor < text.length) {
+    segments.push({ kind: "plain", text: text.slice(cursor) });
+  }
+
+  return mergeAdjacentSegments(segments);
+}
+
+function segmentsForSentence(sentence) {
+  const trimmed = sentence.trim();
+  if (!trimmed) return [];
+
+  const hyphenIdx = trimmed.search(/\s-\s/);
+  if (hyphenIdx !== -1) {
+    const lead = trimmed.slice(0, hyphenIdx).trimEnd();
+    const tail = trimmed.slice(hyphenIdx + 3).trim();
+    const highlightedLead = applyPhraseHighlights(lead);
+    return mergeAdjacentSegments([
+      ...highlightedLead,
+      { kind: "plain", text: " - " },
+      { kind: "gold", text: tail },
+    ]);
+  }
+
+  const emDash = splitOnEmDash(stripTerminalPunct(trimmed.replace(/[.!?]+$/, "")));
+  if (emDash) {
+    const punct = trimmed.match(/[.!?]+$/)?.[0] ?? "";
+    return mergeAdjacentSegments([
+      ...applyPhraseHighlights(emDash.body),
+      { kind: "gold", text: `${emDash.emphasis}${punct}` },
+    ]);
+  }
+
+  const highlighted = applyPhraseHighlights(trimmed);
+  if (highlighted.some((segment) => segment.kind === "gold")) {
+    return highlighted;
+  }
+
+  const clauses = trimmed.split(/,\s+/);
+  if (clauses.length >= 2) {
+    const last = clauses[clauses.length - 1];
+    const lead = `${clauses.slice(0, -1).join(", ")}, `;
+    return mergeAdjacentSegments([
+      ...applyPhraseHighlights(lead),
+      { kind: "gold", text: last },
+    ]);
+  }
+
+  return [{ kind: "plain", text: trimmed }];
+}
+
+/** Black / gold mix with in-sentence highlights (subtitle only). */
+function buildLedeSegments(text, explicitEmphasis) {
   const full = (text ?? "").trim();
-  if (!full) return { body: "", emphasis: null };
+  if (!full) return [];
 
   if (explicitEmphasis?.trim()) {
     const emph = explicitEmphasis.trim();
     const idx = full.indexOf(emph);
     if (idx !== -1) {
-      return {
-        body: full.slice(0, idx),
-        emphasis: stripTerminalPunct(emph),
-      };
+      return mergeAdjacentSegments([
+        ...applyPhraseHighlights(full.slice(0, idx)),
+        { kind: "gold", text: full.slice(idx).trim() },
+      ]);
     }
-    return { body: full, emphasis: stripTerminalPunct(emph) };
+    return [
+      { kind: "plain", text: full },
+      { kind: "gold", text: stripTerminalPunct(emph) + "." },
+    ];
   }
 
-  const sentences = full.match(/[^.!?]+[.!?]+/g);
-  if (sentences && sentences.length >= 2) {
-    const lead = sentences.slice(0, -1).join(" ").trim();
-    const lastRaw = sentences[sentences.length - 1].trim();
-    const lastInner = stripTerminalPunct(lastRaw);
+  const sentences = full.match(/[^.!?]+[.!?]+/g)?.map((s) => s.trim()) ?? [full];
+  /** @type {LedeSegment[]} */
+  const segments = [];
 
-    const dashSplit = splitOnEmDash(lastInner);
-    if (dashSplit) {
-      const body = lead.length ? `${lead} ${dashSplit.body}` : dashSplit.body;
-      return { body: body.endsWith(" ") ? body : `${body} `, emphasis: dashSplit.emphasis };
+  sentences.forEach((sentence, index) => {
+    segments.push(...segmentsForSentence(sentence));
+    if (index < sentences.length - 1) {
+      const last = segments[segments.length - 1];
+      if (last && !last.text.endsWith(" ")) {
+        last.text += " ";
+      }
     }
+  });
 
-    if (lastInner.length >= 6 && lastInner.length <= 220) {
-      const body = lead.length ? `${lead} ` : "";
-      return { body, emphasis: lastInner };
-    }
-  }
-
-  const singleDash = splitOnEmDash(stripTerminalPunct(full));
-  if (singleDash) {
-    return {
-      body: singleDash.body.endsWith(" ") ? singleDash.body : `${singleDash.body} `,
-      emphasis: singleDash.emphasis,
-    };
-  }
-
-  return { body: full, emphasis: null };
+  return mergeAdjacentSegments(segments);
 }
 
 export default function ServiceHeroLede({
@@ -99,7 +175,7 @@ export default function ServiceHeroLede({
   category,
   slug,
 }) {
-  const { body, emphasis } = splitHeroSubtext(text, emphasisOverride);
+  const segments = buildLedeSegments(text, emphasisOverride);
   const bottomTags =
     SLUG_BOTTOM_TAGS[slug] ?? CATEGORY_BOTTOM_TAGS[category] ?? "Your book · Your way";
 
@@ -154,13 +230,17 @@ export default function ServiceHeroLede({
         .sh-hero-lede-text {
           font-family: var(--font-playfair), serif;
           font-weight: 700;
-          font-size: 26px;
+          font-size: 24px;
           line-height: 1.4;
           color: #1c1c1c;
           margin: 0 auto;
           max-width: 520px;
           text-shadow: none;
           -webkit-font-smoothing: antialiased;
+        }
+
+        .sh-hero-lede-text span {
+          color: #1c1c1c;
         }
 
         .sh-hero-lede-text em {
@@ -182,7 +262,7 @@ export default function ServiceHeroLede({
             margin-right: auto;
           }
           .sh-hero-lede-text {
-            font-size: clamp(21px, 5.4vw, 26px);
+            font-size: clamp(19px, 5vw, 24px);
             line-height: 1.42;
             margin-left: auto;
             margin-right: auto;
@@ -219,13 +299,12 @@ export default function ServiceHeroLede({
         <span className="sh-hero-lede-line" />
       </div>
       <p className="sh-hero-lede-text">
-        {emphasis ? (
-          <>
-            {body}
-            <em>{emphasis}.</em>
-          </>
-        ) : (
-          text
+        {segments.map((segment, index) =>
+          segment.kind === "gold" ? (
+            <em key={index}>{segment.text}</em>
+          ) : (
+            <span key={index}>{segment.text}</span>
+          )
         )}
       </p>
       <div

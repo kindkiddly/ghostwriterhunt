@@ -305,7 +305,6 @@ export default function FloatingImages({
           .fi-float-large:hover {
             transform: none;
           }
-          /* Mobile: same portrait stack as homepage (ignore hero aspect variants) */
           .fi-float-large.fi-float-large-landscape,
           .fi-float-large.fi-float-large-square {
             width: 264px;
@@ -361,32 +360,64 @@ export default function FloatingImages({
             top: 288px;
             margin-left: -148px;
           }
-        }
-        @media (max-width: 360px) {
-          .fi-float {
-            height: 420px;
+
+          /* Service hero — wide cluster; accent cards tuck to corners (minimal face overlap) */
+          .fi-float.fi-float--service-hero {
+            --fi-m-lg: min(72vw, 348px);
+            --fi-m-md: min(34vw, 158px);
+            --fi-m-sm: min(28vw, 128px);
+            --fi-m-overlap: 38px;
+            width: calc(100vw - 24px);
+            max-width: calc(100vw - 24px);
+            height: calc(var(--fi-m-lg) * 1.24 + var(--fi-m-sm) * 0.42);
           }
-          .fi-float--expanded {
-            height: 448px;
+          .fi-float.fi-float--service-hero .fi-float-large,
+          .fi-float.fi-float--service-hero .fi-float-large.fi-float-large-landscape,
+          .fi-float.fi-float--service-hero .fi-float-large.fi-float-large-square {
+            width: var(--fi-m-lg);
+            height: calc(var(--fi-m-lg) * 1.24);
+            top: 0;
+            left: 50%;
+            margin-left: calc(var(--fi-m-lg) / -2);
+            z-index: 1;
+            object-position: center 28%;
           }
-          .fi-float-large,
-          .fi-float-large.fi-float-large-landscape,
-          .fi-float-large.fi-float-large-square {
-            width: 248px;
-            height: 314px;
-            margin-left: -124px;
+          .fi-float.fi-float--service-hero .fi-float-medium {
+            width: var(--fi-m-md);
+            height: calc(var(--fi-m-md) * 1.28);
+            top: calc(var(--fi-m-lg) * 0.58);
+            left: calc(50% + var(--fi-m-lg) / 2 - var(--fi-m-overlap));
+            margin-left: 0;
+            z-index: 2;
+            transform: rotate(4deg);
           }
-          .fi-float-medium {
-            width: 148px;
-            height: 192px;
-            top: 136px;
-            margin-left: 16px;
+          .fi-float.fi-float--service-hero .fi-float-medium:hover {
+            transform: rotate(4deg);
           }
-          .fi-float-small {
-            width: 108px;
-            height: 138px;
-            top: 258px;
-            margin-left: -132px;
+          .fi-float.fi-float--service-hero .fi-float-small {
+            width: var(--fi-m-sm);
+            height: calc(var(--fi-m-sm) * 1.28);
+            top: calc(var(--fi-m-lg) * 1.24 - var(--fi-m-sm) * 0.42);
+            left: calc(50% - var(--fi-m-lg) / 2 - var(--fi-m-sm) + var(--fi-m-overlap));
+            margin-left: 0;
+            z-index: 2;
+            transform: rotate(-5deg);
+          }
+          .fi-float.fi-float--service-hero .fi-float-small:hover {
+            transform: rotate(-5deg);
+          }
+          .fi-float.fi-float--service-hero.fi-float--expanded {
+            --fi-m-lg: min(74vw, 360px);
+            --fi-m-md: min(36vw, 168px);
+            --fi-m-sm: min(29vw, 134px);
+            --fi-m-overlap: 40px;
+            height: calc(var(--fi-m-lg) * 1.24 + var(--fi-m-sm) * 0.45);
+          }
+          .fi-float.fi-float--service-hero.fi-float--expanded .fi-float-medium {
+            top: calc(var(--fi-m-lg) * 0.56);
+          }
+          .fi-float.fi-float--service-hero.fi-float--expanded .fi-float-small {
+            top: calc(var(--fi-m-lg) * 1.24 - var(--fi-m-sm) * 0.4);
           }
         }
       ` }} />

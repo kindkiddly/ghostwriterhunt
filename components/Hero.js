@@ -362,7 +362,7 @@ export default function Hero() {
         .gwh-hero-lede-text {
           font-family: var(--font-playfair), serif;
           font-weight: 700;
-          font-size: 26px;
+          font-size: 24px;
           line-height: 1.4;
           color: #1c1c1c;
           margin: 0;
@@ -502,6 +502,7 @@ export default function Hero() {
           .gwh-hero-lede-text {
             margin-left: auto;
             margin-right: auto;
+            font-size: clamp(19px, 5vw, 24px);
           }
           .gwh-hero-lede-ornament {
             white-space: normal;
