@@ -255,7 +255,7 @@ export default function LegalModal({ isOpen, onClose, type }) {
 
   return (
     <>
-      <style>{styles}</style>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <div
         className={`legal-backdrop ${isClosing ? "backdrop-closing" : "backdrop-opening"}`}

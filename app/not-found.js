@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 
+import Link from "next/link";
 export const metadata = {
   title: "Page Not Found",
 };
@@ -20,12 +21,12 @@ export default function NotFound() {
         <p className="mb-9 max-w-[420px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           The page you&apos;re looking for doesn&apos;t exist or may have moved.
         </p>
-        <a
+        <Link
           href="/"
           className="inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-8 py-3.5 font-inter text-[15px] font-semibold text-white transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
         >
           Back to Home
-        </a>
+        </Link>
       </main>
       <Footer />
     </>

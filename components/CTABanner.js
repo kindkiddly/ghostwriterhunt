@@ -1,6 +1,7 @@
 "use client";
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useNearViewport } from "@/lib/useNearViewport";
 
 /**
  * GhostWriterHunt — CTA Banner
@@ -10,22 +11,24 @@ import { useRevealSelector } from "@/lib/useSectionReveal";
 
 export default function CTABanner() {
   useRevealSelector(".cta-reveal", "cta-visible");
+  const [bgRef, bgReady] = useNearViewport();
 
   return (
     <section
+      ref={bgRef}
       className="cta-banner-section relative flex min-h-[500px] w-full items-center justify-center overflow-hidden py-[80px]"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 60%),
-          linear-gradient(rgba(28,28,28,0.85) 0%, rgba(28,28,28,0.90) 100%),
-          url(/images/CTA-AUTHOR.webp)
+          linear-gradient(rgba(28,28,28,0.85) 0%, rgba(28,28,28,0.90) 100%)${bgReady ? `,
+          url(/images/CTA-AUTHOR.webp)` : ""}
         `,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
       aria-label="Get started today"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .cta-reveal {
           opacity: 0;
           transform: translateY(40px);
@@ -56,7 +59,7 @@ export default function CTABanner() {
             min-height: auto !important;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Gold glow sits above the photo via background stack; content centered */}
       <div className="cta-banner-inner relative z-10 mx-auto w-full max-w-[800px] px-10 text-center">

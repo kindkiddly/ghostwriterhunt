@@ -145,7 +145,7 @@ export default function TrustBlock() {
       }}
       aria-label="Our Standard"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .tb-reveal {
           opacity: 0;
           transform: translateY(30px);
@@ -287,7 +287,7 @@ export default function TrustBlock() {
             padding-right: 20px !important;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="tb-section-inner mx-auto w-full max-w-[1200px] px-6 lg:px-8">
         {/* ——— Part 1: centered statement ——— */}

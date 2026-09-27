@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import HomeImagePreloads from "@/components/HomeImagePreloads";
 import LogoTicker from "@/components/LogoTicker";
 import StatsCounter from "@/components/StatsCounter";
 import NarrativeBlock1 from "@/components/NarrativeBlock1";
@@ -26,7 +25,6 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="m-0 max-w-full overflow-x-hidden p-0">
-      <HomeImagePreloads />
       <Hero />
       <LogoTicker />
       <StatsCounter />

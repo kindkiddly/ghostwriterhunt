@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import Footer from "@/components/Footer";
 import FloatingImages from "@/components/service/FloatingImages";
 
+import Link from "next/link";
+import { useNearViewport } from "@/lib/useNearViewport";
 /**
  * GhostWriterHunt — About Us page
  * Navbar comes from root layout (do not duplicate).
@@ -688,6 +690,10 @@ const styles = `
     background-size: cover;
     background-position: center;
   }
+  /* Photo is requested only once the section nears the viewport */
+  .ab-cta:not(.ab-cta--bg-ready) {
+    background-image: none;
+  }
   .ab-cta-overlay {
     position: absolute;
     inset: 0;
@@ -882,6 +888,8 @@ const styles = `
 `;
 
 export default function AboutPage() {
+  const [ctaBgRef, ctaBgReady] = useNearViewport();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -917,7 +925,7 @@ export default function AboutPage() {
 
   return (
     <main className="ab-page">
-      <style>{styles}</style>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* —— Section 1: Hero —— */}
       <section className="ab-hero">
@@ -1090,6 +1098,10 @@ export default function AboutPage() {
                     src={member.photo}
                     alt={member.name}
                     className="ab-avatar-photo"
+                    width={100}
+                    height={100}
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
                 <h3 className="ab-team-name">{member.name}</h3>
@@ -1144,7 +1156,10 @@ export default function AboutPage() {
       </section>
 
       {/* —— Section 7: CTA —— */}
-      <section className="ab-cta">
+      <section
+        ref={ctaBgRef}
+        className={`ab-cta${ctaBgReady ? " ab-cta--bg-ready" : ""}`}
+      >
         <div className="ab-cta-overlay" aria-hidden="true" />
         <div className="ab-cta-inner ab-fade-up" data-delay="0">
           <p className="ab-label-gold">START YOUR JOURNEY</p>
@@ -1158,12 +1173,12 @@ export default function AboutPage() {
             book to life.
           </p>
           <div className="ab-cta-btns">
-            <a href="/#start" className="ab-btn-gold">
+            <Link href="/#start" className="ab-btn-gold">
               Start Your Book Today
-            </a>
-            <a href="/#start" className="ab-btn-outline">
+            </Link>
+            <Link href="/#start" className="ab-btn-outline">
               Book Free Consultation
-            </a>
+            </Link>
           </div>
         </div>
       </section>

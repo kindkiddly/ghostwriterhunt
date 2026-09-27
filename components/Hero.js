@@ -206,7 +206,7 @@ export default function Hero() {
       }}
       aria-label="Hero"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-fade-up {
           from {
             opacity: 0;
@@ -249,14 +249,14 @@ export default function Hero() {
 
         .gwh-hero-animate {
           opacity: 1;
-          animation: gwh-fade-up 0.7s ease-out both;
+          animation: gwh-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .gwh-hero-delay-0 { animation-delay: 0s; }
-        .gwh-hero-delay-1 { animation-delay: 0.2s; }
-        .gwh-hero-delay-2 { animation-delay: 0.4s; }
-        .gwh-hero-delay-3 { animation-delay: 0.6s; }
-        .gwh-hero-delay-4 { animation-delay: 0.8s; }
+        .gwh-hero-delay-1 { animation-delay: 0.25s; }
+        .gwh-hero-delay-2 { animation-delay: 0.5s; }
+        .gwh-hero-delay-3 { animation-delay: 0.75s; }
+        .gwh-hero-delay-4 { animation-delay: 1s; }
 
         .gwh-scroll-bounce {
           animation: gwh-bounce 1.6s ease-in-out infinite;
@@ -446,7 +446,9 @@ export default function Hero() {
         @media (prefers-reduced-motion: reduce) {
           .gwh-scroll-col-1,
           .gwh-scroll-col-2,
-          .gwh-scroll-col-3 {
+          .gwh-scroll-col-3,
+          .gwh-hero-animate,
+          .gwh-scroll-bounce {
             animation: none !important;
           }
         }
@@ -587,7 +589,7 @@ export default function Hero() {
             font-weight: 500 !important;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="gwh-hero-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 lg:min-h-0 lg:flex-row lg:items-start lg:gap-10">
         {/* ——— Left column: headline image flush under fixed nav ——— */}

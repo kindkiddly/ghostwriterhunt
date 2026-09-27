@@ -111,7 +111,7 @@ export default function FAQ() {
       className="w-full bg-[#FAFAF7] py-[80px]"
       aria-label="Frequently asked questions"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .faq-reveal {
           opacity: 0;
           transform: translateY(30px);
@@ -139,7 +139,7 @@ export default function FAQ() {
             font-size: 16px !important;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="faq-section-inner mx-auto w-full max-w-[900px] px-6">
         {/* Section header */}

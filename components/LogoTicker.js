@@ -21,7 +21,7 @@ export default function LogoTicker() {
       className="gwh-logo-ticker relative overflow-hidden"
       aria-label="Trusted publishing platforms"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-ticker-scroll {
           from {
             transform: translate3d(0, 0, 0);
@@ -174,7 +174,7 @@ export default function LogoTicker() {
             animation: none;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="gwh-logo-ticker-inner">
         <p className="gwh-logo-ticker-label">Trusted by authors publishing on</p>

@@ -8,6 +8,7 @@ import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 import ServiceHeroLede from "./ServiceHeroLede";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — ServiceHero
  * Full-viewport hero: left copy + right floating images.
@@ -42,7 +43,7 @@ export default function ServiceHero({ service }) {
       className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}`}
       aria-label={`${service.title} hero`}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sh-section {
           min-height: 100vh;
           background: #FAFAF7;
@@ -283,7 +284,7 @@ export default function ServiceHero({ service }) {
             margin-top: 4px;
           }
         }
-      `}</style>
+      ` }} />
       <ServiceMobileDualCtaStyles />
       <ServiceDesktopDualCtaStyles />
 
@@ -371,19 +372,19 @@ export default function ServiceHero({ service }) {
           />
 
           <div className="sh-ctas svc-dual-ctas">
-            <a
+            <Link
               href="/#start"
               className="sh-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
             >
               <span className="lg:hidden">Start Your Project →</span>
               <span className="hidden lg:inline">Start Your Project</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#start"
               className="sh-btn-secondary svc-dual-cta-btn svc-dual-cta-btn--secondary"
             >
               Book Free Consultation
-            </a>
+            </Link>
           </div>
 
           <ServiceTrustLine variant="light" />

@@ -63,7 +63,7 @@ export default function NarrativeBlock3() {
       aria-label="Global Publishing"
     >
       {/* Scroll-reveal states — nb4- prefix avoids clashes with other blocks */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .nb4-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
@@ -157,7 +157,7 @@ export default function NarrativeBlock3() {
             line-height: 1.35;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Text first → on top for mobile; left on desktop */}
       <div className="nb4-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
@@ -231,7 +231,7 @@ export default function NarrativeBlock3() {
               className="nb4-section-img h-[600px] w-full max-w-full rounded-[12px] object-cover"
               width="800"
               height="1200"
-              loading="eager"
+              loading="lazy"
               decoding="async"
               style={{
                 boxShadow:

@@ -48,7 +48,7 @@ export default function ServiceFAQ({ service }) {
 
   return (
     <section className="sf-section" aria-label="Frequently asked questions">
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sf-section {
           background: #FFFFFF;
           padding: 80px 0;
@@ -148,7 +148,7 @@ export default function ServiceFAQ({ service }) {
           .sf-q { font-size: 16px; word-break: break-word; }
           .sf-btn { padding: 16px; }
         }
-      `}</style>
+      ` }} />
 
       <div className="sf-inner">
         <p className="sf-label sf-reveal" data-delay="0">

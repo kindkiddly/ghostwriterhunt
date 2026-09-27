@@ -1,6 +1,7 @@
 "use client";
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useNearViewport } from "@/lib/useNearViewport";
 
 /**
  * GhostWriterHunt — ServiceApproach
@@ -316,6 +317,7 @@ function ApproachIcon({ name }) {
 
 export default function ServiceApproach({ service }) {
   useRevealSelector(".sa-reveal", "sa-visible", [service?.slug]);
+  const [bgRef, bgReady] = useNearViewport();
 
   if (!service?.approach?.length) return null;
 
@@ -362,10 +364,11 @@ export default function ServiceApproach({ service }) {
 
   return (
     <section
-      className={`sa-section sa-section--glass-mobile${isGhostwriting ? " sa-section--ghostwriting" : ""}${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}`}
+      ref={bgRef}
+      className={`sa-section sa-section--glass-mobile${isGhostwriting ? " sa-section--ghostwriting" : ""}${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}${bgReady ? " sa-bg-ready" : ""}`}
       aria-label="Our approach"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sa-section {
           background: #FAFAF7;
           padding: 80px 0;
@@ -466,6 +469,10 @@ export default function ServiceApproach({ service }) {
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
+          }
+          /* Photo is requested only once the section nears the viewport */
+          .sa-section--glass-desktop:not(.sa-bg-ready)::before {
+            background-image: none !important;
           }
           .sa-section--glass-bg-ebook::before {
             background-image: url(/images/ebook-writing-process-3.webp);
@@ -789,7 +796,7 @@ export default function ServiceApproach({ service }) {
             background: rgba(201, 168, 76, 0.12);
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="sa-inner">
         <p className="sa-label sa-reveal" data-delay="0">

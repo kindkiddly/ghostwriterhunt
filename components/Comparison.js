@@ -164,7 +164,7 @@ export default function Comparison() {
       className="w-full bg-[var(--color-background)] py-[80px]"
       aria-label="Comparison"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-cmp-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -251,7 +251,7 @@ export default function Comparison() {
             border-radius: 999px !important;
           }
         }
-      `}</style>
+      ` }} />
 
       <div
         className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-cmp-visible" : ""}`}

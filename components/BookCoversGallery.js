@@ -138,7 +138,7 @@ export default function BookCoversGallery() {
       className="w-full bg-[var(--color-background)] py-[80px]"
       aria-label="Book covers gallery"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-bcg-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -231,7 +231,7 @@ export default function BookCoversGallery() {
             box-shadow: 0 1px 0 rgba(201, 168, 76, 0.12);
           }
         }
-      `}</style>
+      ` }} />
 
       <div
         className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-bcg-visible" : ""}`}
@@ -294,7 +294,7 @@ export default function BookCoversGallery() {
                 height={600}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 1024px) 50vw, 25vw"
-                loading={index < 4 ? "eager" : "lazy"}
+                loading="lazy"
                 fetchPriority={index < 2 ? "auto" : "low"}
               />
 

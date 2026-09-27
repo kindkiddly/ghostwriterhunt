@@ -1,10 +1,12 @@
 "use client";
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useNearViewport } from "@/lib/useNearViewport";
 import ServiceTrustLine from "./ServiceTrustLine";
 import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
 import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — ServiceCTA
  * Full-bleed image CTA with dark overlay. Prefix: sc-
@@ -12,18 +14,20 @@ import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 
 export default function ServiceCTA({ service }) {
   useRevealSelector(".sc-reveal", "sc-visible", [service?.slug]);
+  const [bgRef, bgReady] = useNearViewport();
 
   if (!service) return null;
 
   return (
     <section
+      ref={bgRef}
       className="sc-section"
       aria-label="Get started"
       style={{
-        backgroundImage: `linear-gradient(rgba(28,28,28,0.88), rgba(28,28,28,0.88)), url(${service.ctaImage})`,
+        backgroundImage: `linear-gradient(rgba(28,28,28,0.88), rgba(28,28,28,0.88))${bgReady ? `, url(${service.ctaImage})` : ""}`,
       }}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sc-section {
           width: 100%;
           min-height: 480px;
@@ -128,7 +132,7 @@ export default function ServiceCTA({ service }) {
             margin-top: 4px;
           }
         }
-      `}</style>
+      ` }} />
       <ServiceMobileDualCtaStyles />
       <ServiceDesktopDualCtaStyles />
 
@@ -146,19 +150,19 @@ export default function ServiceCTA({ service }) {
           {service.ctaSubtext}
         </p>
         <div className="sc-ctas svc-dual-ctas sc-reveal" data-delay="200">
-          <a
+          <Link
             href="/#start"
             className="sc-btn-primary svc-dual-cta-btn svc-dual-cta-btn--primary"
           >
             <span className="lg:hidden">Start Your Project →</span>
             <span className="hidden lg:inline">Start Your Project</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#start"
             className="sc-btn-secondary svc-dual-cta-btn svc-dual-cta-btn--secondary"
           >
             Book Free Consultation
-          </a>
+          </Link>
         </div>
         <ServiceTrustLine
           variant="dark"

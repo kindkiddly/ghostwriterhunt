@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ChatWidget from "@/components/ChatWidget";
+import { servicesByCategory } from "@/data/services";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -22,6 +23,15 @@ const inter = Inter({
   preload: true,
   adjustFontFallback: true,
 });
+
+// Navbar only needs slug + title; passing this slim list keeps the full
+// service content out of the client bundle shared by every page.
+const navServicesByCategory = Object.fromEntries(
+  Object.entries(servicesByCategory).map(([category, items]) => [
+    category,
+    items.map(({ slug, title }) => ({ slug, title })),
+  ])
+);
 
 const SITE_URL = "https://ghostwriterhunt.lumexforge.com";
 const SITE_DESCRIPTION =
@@ -61,7 +71,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
-        <Navbar />
+        <Navbar servicesByCategory={navServicesByCategory} />
         {children}
         <ChatWidget />
         <Analytics />

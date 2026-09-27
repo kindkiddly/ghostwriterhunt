@@ -2,6 +2,7 @@
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — ServicePricing
  * Service-specific pricing cards.
@@ -44,7 +45,7 @@ export default function ServicePricing({ service }) {
 
   return (
     <section className="spr-section" aria-label="Pricing">
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .spr-section {
           background: #FAFAF7;
           padding: 80px 0;
@@ -273,7 +274,7 @@ export default function ServicePricing({ service }) {
           .spr-headline { font-size: 32px; }
           .spr-head { min-height: 0; }
         }
-      `}</style>
+      ` }} />
 
       <div className="spr-inner">
         <p className="spr-label spr-reveal" data-delay="0">
@@ -336,12 +337,12 @@ export default function ServicePricing({ service }) {
                   <p className="spr-guarantee">{plan.guarantee}</p>
                 )}
 
-                <a
+                <Link
                   href="/#start"
                   className={`spr-cta ${featured ? "spr-cta-filled" : "spr-cta-outline"}`}
                 >
                   Get Started
-                </a>
+                </Link>
               </article>
             );
           })}

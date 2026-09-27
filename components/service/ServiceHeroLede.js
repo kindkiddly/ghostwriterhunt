@@ -105,7 +105,7 @@ export default function ServiceHeroLede({
 
   return (
     <div className="sh-hero-lede">
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sh-hero-lede {
           position: relative;
           z-index: 1;
@@ -211,7 +211,7 @@ export default function ServiceHeroLede({
             margin-left: 0;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="sh-hero-lede-rule" aria-hidden="true">
         <span className="sh-hero-lede-line" />

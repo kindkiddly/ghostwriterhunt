@@ -59,7 +59,7 @@ export default function NarrativeBlock2() {
       className="nb2-section-mobile relative w-full overflow-hidden bg-[#FAFAF7] py-[80px]"
       aria-label="Our Approach"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .nb2-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
@@ -139,7 +139,7 @@ export default function NarrativeBlock2() {
             height: 420px;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Image first in DOM → on top for mobile; left on desktop */}
       <div className="nb2-section-inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">

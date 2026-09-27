@@ -6,7 +6,7 @@
 
 export default function ServiceDesktopDualCtaStyles() {
   return (
-    <style>{`
+    <style dangerouslySetInnerHTML={{ __html: `
       @media (min-width: 769px) {
         .svc-dual-ctas {
           display: grid !important;
@@ -80,6 +80,6 @@ export default function ServiceDesktopDualCtaStyles() {
             0 10px 24px rgba(28, 28, 28, 0.1) !important;
         }
       }
-    `}</style>
+    ` }} />
   );
 }

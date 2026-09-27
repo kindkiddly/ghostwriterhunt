@@ -1,6 +1,7 @@
 "use client";
 
 import { useSectionReveal } from "@/lib/useSectionReveal";
+import { useNearViewport } from "@/lib/useNearViewport";
 
 /**
  * GhostWriterHunt — How It Works
@@ -145,6 +146,7 @@ function CheckIcon() {
 
 export default function HowItWorks() {
   const { ref: sectionRef, visible } = useSectionReveal();
+  const [bgRef, bgReady] = useNearViewport();
 
   return (
     <section
@@ -153,7 +155,7 @@ export default function HowItWorks() {
       className="gwh-hiw-section relative w-full overflow-hidden"
       aria-label="How it works"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .gwh-hiw-section {
           background-color: #12141c;
         }
@@ -165,6 +167,11 @@ export default function HowItWorks() {
           background-size: cover;
           background-position: 72% center;
           background-repeat: no-repeat;
+        }
+
+        /* Photo is requested only once the section nears the viewport */
+        .gwh-hiw-bg:not(.gwh-hiw-bg--ready) {
+          background-image: none !important;
         }
 
         .gwh-hiw-overlay {
@@ -340,9 +347,13 @@ export default function HowItWorks() {
             white-space: normal !important;
           }
         }
-      `}</style>
+      ` }} />
 
-      <div className="gwh-hiw-bg" aria-hidden="true" />
+      <div
+        ref={bgRef}
+        className={`gwh-hiw-bg${bgReady ? " gwh-hiw-bg--ready" : ""}`}
+        aria-hidden="true"
+      />
       <div className="gwh-hiw-overlay" aria-hidden="true" />
 
       <div

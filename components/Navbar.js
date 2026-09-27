@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
-import { servicesByCategory } from "@/data/services";
+import { usePathname, useRouter } from "next/navigation";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — primary site navigation
  * Flex row: logo left · links center · CTAs right.
@@ -53,7 +53,30 @@ function ChevronIcon({ open }) {
   );
 }
 
-export default function Navbar() {
+/**
+ * Links inside the dropdown / mobile menus stay mounted while closed, so
+ * viewport prefetching would fetch every service page on each load.
+ * Prefetch only on intent (hover, focus, touch) instead.
+ */
+function MenuLink({ href, onMouseEnter, onFocus, onTouchStart, ...props }) {
+  const router = useRouter();
+  const prefetchOnIntent = (handler) => (e) => {
+    router.prefetch(href);
+    handler?.(e);
+  };
+  return (
+    <Link
+      href={href}
+      prefetch={false}
+      onMouseEnter={prefetchOnIntent(onMouseEnter)}
+      onFocus={prefetchOnIntent(onFocus)}
+      onTouchStart={prefetchOnIntent(onTouchStart)}
+      {...props}
+    />
+  );
+}
+
+export default function Navbar({ servicesByCategory = {} }) {
   const pathname = usePathname() || "";
   const isLegalPage =
     [
@@ -222,7 +245,7 @@ export default function Navbar() {
           : "background 0.4s ease, box-shadow 0.4s ease",
       }}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         /* Desktop mega menu */
         .nav-mega {
           display: none;
@@ -376,7 +399,7 @@ export default function Navbar() {
         .nav-mobile-svc-link:hover {
           color: #C9A84C;
         }
-      `}</style>
+      ` }} />
 
       {/* Inner bar — logo | nav | CTAs */}
       <nav
@@ -393,7 +416,7 @@ export default function Navbar() {
         }}
       >
         {/* LEFT — Logo */}
-        <a
+        <Link
           href="/"
           onClick={closeMobile}
           style={{
@@ -407,6 +430,9 @@ export default function Navbar() {
           <img
             src="/images/GhostWriterHunt-LOGO-Transparent.webp"
             alt="GhostWriterHunt"
+            width={400}
+            height={160}
+            fetchPriority="high"
             style={{
               height: "64px",
               width: "auto",
@@ -416,7 +442,7 @@ export default function Navbar() {
             }}
             className="max-h-[48px] max-w-[180px] md:max-h-[64px] md:max-w-[240px]"
           />
-        </a>
+        </Link>
 
         {/* CENTER — Desktop nav links */}
         <ul
@@ -485,7 +511,7 @@ export default function Navbar() {
                   onMouseEnter={handleAboutEnter}
                   onMouseLeave={handleAboutLeave}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     aria-haspopup="true"
                     aria-expanded={aboutMenuOpen}
@@ -513,14 +539,14 @@ export default function Navbar() {
                   >
                     {link.label}
                     <ChevronIcon open={aboutMenuOpen} />
-                  </a>
+                  </Link>
                 </li>
               );
             }
 
             return (
               <li key={link.href} style={{ display: "flex", height: "70px" }}>
-                <a
+                <Link
                   href={link.href}
                   {...linkHover}
                   style={{
@@ -538,7 +564,7 @@ export default function Navbar() {
                   }}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -641,14 +667,14 @@ export default function Navbar() {
               <div key={category} className="nav-mega-col">
                 <p className="nav-mega-heading">{category}</p>
                 {items.map((service) => (
-                  <a
+                  <MenuLink
                     key={service.slug}
                     href={`/services/${service.slug}`}
                     className="nav-mega-link"
                     onClick={() => setMegaMenuOpen(false)}
                   >
                     {service.title}
-                  </a>
+                  </MenuLink>
                 ))}
               </div>
             );
@@ -658,13 +684,13 @@ export default function Navbar() {
         <div className="nav-mega-footer">
           <p className="nav-mega-footer-left">
             Not sure where to start?
-            <a href="/#start" className="nav-mega-footer-link">
+            <MenuLink href="/#start" className="nav-mega-footer-link">
               Book a free consultation →
-            </a>
+            </MenuLink>
           </p>
-          <a href="/#services" className="nav-mega-footer-right">
+          <MenuLink href="/#services" className="nav-mega-footer-right">
             View all services →
-          </a>
+          </MenuLink>
         </div>
       </div>
 
@@ -680,36 +706,36 @@ export default function Navbar() {
           <div className="nav-mega-col">
             <p className="nav-mega-heading">COMPANY</p>
             {ABOUT_LINKS.map((item) => (
-              <a
+              <MenuLink
                 key={item.href}
                 href={item.href}
                 className="nav-mega-link"
                 onClick={() => setAboutMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </MenuLink>
             ))}
           </div>
         </div>
 
         <div className="nav-mega-footer">
           <p className="nav-mega-footer-left">
-            <a
+            <MenuLink
               href="/about"
               className="nav-mega-footer-link"
               style={{ marginLeft: 0 }}
               onClick={() => setAboutMenuOpen(false)}
             >
               Learn more about our team →
-            </a>
+            </MenuLink>
           </p>
-          <a
+          <MenuLink
             href="/#start"
             className="nav-mega-footer-right"
             onClick={() => setAboutMenuOpen(false)}
           >
             Contact Us →
-          </a>
+          </MenuLink>
         </div>
       </div>
 
@@ -761,14 +787,14 @@ export default function Navbar() {
                         <div key={category}>
                           <p className="nav-mobile-cat">{category}</p>
                           {items.map((service) => (
-                            <a
+                            <MenuLink
                               key={service.slug}
                               href={`/services/${service.slug}`}
                               onClick={closeMobile}
                               className="nav-mobile-svc-link"
                             >
                               {service.title}
-                            </a>
+                            </MenuLink>
                           ))}
                         </div>
                       );
@@ -803,14 +829,14 @@ export default function Navbar() {
                     className={`nav-mobile-svc-list${mobileAboutOpen ? " open" : ""}`}
                   >
                     {ABOUT_LINKS.map((item) => (
-                      <a
+                      <MenuLink
                         key={item.href}
                         href={item.href}
                         onClick={closeMobile}
                         className="nav-mobile-svc-link"
                       >
                         {item.label}
-                      </a>
+                      </MenuLink>
                     ))}
                   </div>
                 </li>
@@ -819,13 +845,13 @@ export default function Navbar() {
 
             return (
               <li key={link.href}>
-                <a
+                <MenuLink
                   href={link.href}
                   onClick={closeMobile}
                   className="block px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
                 >
                   {link.label}
-                </a>
+                </MenuLink>
               </li>
             );
           })}

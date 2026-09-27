@@ -90,7 +90,7 @@ export default function NarrativeBlock1() {
       aria-label="Why GhostWriterHunt"
     >
       {/* Scroll-reveal states — nb1- prefix avoids clashes with other sections */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .nb1-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
@@ -170,7 +170,7 @@ export default function NarrativeBlock1() {
             height: 420px;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="nb1-section-inner mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-12 px-6 lg:flex-row lg:gap-[60px] lg:px-8">
         {/* ——— Left: label, headline, body, bullets, CTA ——— */}

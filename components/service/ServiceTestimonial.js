@@ -29,7 +29,7 @@ export default function ServiceTestimonial({ service }) {
 
   return (
     <section className="st-section" aria-label="Client testimonial">
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .st-section {
           background: #1C1C1C;
           padding: 80px 0;
@@ -106,7 +106,7 @@ export default function ServiceTestimonial({ service }) {
           .st-quote { font-size: 18px; }
           .st-quote-mark { font-size: 80px; margin-bottom: -24px; }
         }
-      `}</style>
+      ` }} />
 
       <div className="st-inner">
         <div className="st-stars st-reveal" data-delay="0">

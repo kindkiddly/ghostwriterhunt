@@ -1,3 +1,4 @@
+import Link from "next/link";
 /**
  * GhostWriterHunt — Footer
  * 3 columns (Brand · Company · Contact) + copyright bar.
@@ -61,7 +62,7 @@ function SocialIcon({ type }) {
 export default function Footer() {
   return (
     <footer className="gwh-footer" aria-label="Site footer">
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .gwh-footer {
           width: 100%;
           background: #1C1C1C;
@@ -232,25 +233,29 @@ export default function Footer() {
             text-align: center;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Main columns: Brand · Company · Contact */}
       <div className="gwh-ft-main">
         <div className="gwh-ft-main-inner">
           <div className="gwh-ft-brand">
             <div className="gwh-ft-logo-wrap">
-              <a href="/" style={{ display: "block", lineHeight: 0 }}>
+              <Link href="/" style={{ display: "block", lineHeight: 0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/GhostWriterHunt-logo-white.webp"
                   alt="GhostWriterHunt"
+                  width={400}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     width: "180px",
                     height: "auto",
                     display: "block",
                   }}
                 />
-              </a>
+              </Link>
             </div>
             <p className="gwh-ft-tagline">
               Professional ghostwriting services for authors worldwide. Your
@@ -279,9 +284,9 @@ export default function Footer() {
             <h3 className="gwh-ft-heading">COMPANY</h3>
             <nav aria-label="Footer company">
               {COMPANY_LINKS.map((link) => (
-                <a key={link.label} href={link.href} className="gwh-ft-link">
+                <Link key={link.label} href={link.href} className="gwh-ft-link">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -316,9 +321,9 @@ export default function Footer() {
             <div className="gwh-ft-contact-item">
               <p className="gwh-ft-contact-text">Mon–Fri: 9am – 6pm CST</p>
             </div>
-            <a href="/#start" className="gwh-ft-cta-btn">
+            <Link href="/#start" className="gwh-ft-cta-btn">
               Book Free Consultation
-            </a>
+            </Link>
           </div>
         </div>
       </div>

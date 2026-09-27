@@ -79,7 +79,7 @@ export default function StatsCounter() {
         className="gwh-stats-section w-full bg-[var(--color-background)] py-[80px]"
         aria-label="Impact statistics"
       >
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           @media (max-width: 768px) {
             .gwh-stats-section {
               padding-top: 52px !important;
@@ -127,7 +127,7 @@ export default function StatsCounter() {
               letter-spacing: 0.01em;
             }
           }
-        `}</style>
+        ` }} />
         <div className="mx-auto max-w-[1100px] px-5 sm:px-6">
           {/* Section label */}
           <p className="mb-3 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)] max-lg:mb-2">

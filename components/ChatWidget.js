@@ -453,7 +453,7 @@ export default function ChatWidget() {
 
   return (
     <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .gcw-root {
           position: fixed;
           inset: 0;
@@ -1010,7 +1010,7 @@ export default function ChatWidget() {
           }
           .gcw-panel-open { transform: translateY(0); }
         }
-      `}</style>
+      ` }} />
 
       <button
         ref={launcherRef}

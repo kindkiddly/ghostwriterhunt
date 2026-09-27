@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
@@ -195,14 +195,6 @@ function PlanCard({ plan, index }) {
 export default function Pricing() {
   const { ref: sectionRef, visible } = useSectionReveal();
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
-    const img = new Image();
-    img.decoding = "async";
-    img.src = "/images/background-cards.webp";
-  }, []);
-
   return (
     <section
       ref={sectionRef}
@@ -210,7 +202,7 @@ export default function Pricing() {
       className="w-full bg-[var(--color-card)] py-[80px]"
       aria-label="Pricing plans"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-price-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -657,7 +649,7 @@ export default function Pricing() {
             min-height: 188px;
           }
         }
-      `}</style>
+      ` }} />
 
       <div
         className={`mx-auto max-w-[1200px] px-5 sm:px-6 ${visible ? "gwh-price-visible" : ""}`}
@@ -688,6 +680,7 @@ export default function Pricing() {
             className="gwh-price-cards-bg"
             width={1920}
             height={1081}
+            loading="lazy"
             decoding="async"
             fetchPriority="low"
           />

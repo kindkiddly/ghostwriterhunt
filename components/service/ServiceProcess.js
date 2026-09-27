@@ -20,7 +20,7 @@ export default function ServiceProcess({ service }) {
       className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}`}
       aria-label="The process"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .sp-section {
           background: #FFFFFF;
           padding: 80px 0;
@@ -150,7 +150,7 @@ export default function ServiceProcess({ service }) {
             border-radius: 14px;
           }
         }
-      `}</style>
+      ` }} />
 
       <div className="sp-inner">
         <p className="sp-label sp-reveal" data-delay="0">

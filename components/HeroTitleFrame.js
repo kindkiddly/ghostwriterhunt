@@ -214,7 +214,7 @@ export default function HeroTitleFrame({
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .gwh-hero-title-frame {
           position: relative;
           width: 100%;
@@ -1214,7 +1214,7 @@ export default function HeroTitleFrame({
               0 0 4px rgba(28, 28, 28, 0.45);
           }
         }
-      `}</style>
+      ` }} />
 
       {isHomeGlass ? (
         <div
@@ -1255,6 +1255,8 @@ export default function HeroTitleFrame({
               <img
                 src={illustrationBg.desktop}
                 alt=""
+                width={IMAGE_DIMENSIONS[illustrationBg.desktop]?.width ?? 1920}
+                height={IMAGE_DIMENSIONS[illustrationBg.desktop]?.height ?? 720}
                 decoding="async"
                 fetchPriority="high"
               />
@@ -1356,7 +1358,12 @@ export default function HeroTitleFrame({
             </div>
           ) : (
             <div className="gwh-service-mobile-scene-panel">
-              <div className="gwh-service-mobile-scene-picture">
+              <picture className="gwh-service-mobile-scene-picture">
+                {/* Panel is display:none on desktop — skip the download there */}
+                <source
+                  media="(min-width: 769px)"
+                  srcSet="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={illustrationBg.mobile}
@@ -1370,7 +1377,7 @@ export default function HeroTitleFrame({
                   decoding="async"
                   fetchPriority="high"
                 />
-              </div>
+              </picture>
               <h1 className="gwh-home-scene-sr-title">
                 {line1} {line2}
               </h1>
@@ -1389,6 +1396,7 @@ export default function HeroTitleFrame({
                   src="/images/background-header.webp"
                   alt=""
                   className="gwh-hero-title-backdrop-photo"
+                  loading="lazy"
                   decoding="async"
                   fetchPriority="low"
                 />
@@ -1453,6 +1461,7 @@ export default function HeroTitleFrame({
                 src="/images/background-header.webp"
                 alt=""
                 className="gwh-hero-title-backdrop-photo"
+                loading="lazy"
                 decoding="async"
                 fetchPriority="low"
               />

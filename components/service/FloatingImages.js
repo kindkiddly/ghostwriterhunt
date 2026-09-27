@@ -50,7 +50,7 @@ export default function FloatingImages({
   if (count === 4) {
     return (
       <div className={`fi-mosaic ${className}`}>
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           .fi-mosaic {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -105,7 +105,7 @@ export default function FloatingImages({
               transform: none;
             }
           }
-        `}</style>
+        ` }} />
         {list.map((img) => {
           const { width, height } = getImageDimensions(img.url);
           return (
@@ -129,7 +129,7 @@ export default function FloatingImages({
   if (count === 1) {
     return (
       <div className={`fi-single ${className}`}>
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           .fi-single {
             position: relative;
             width: 100%;
@@ -161,7 +161,7 @@ export default function FloatingImages({
               transform: none;
             }
           }
-        `}</style>
+        ` }} />
         {(() => {
           const { width, height } = getImageDimensions(list[0].url);
           return (
@@ -185,7 +185,7 @@ export default function FloatingImages({
     <div
       className={`fi-float${isExpanded ? " fi-float--expanded" : ""} ${className}`.trim()}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .fi-float {
           position: relative;
           width: 100%;
@@ -389,7 +389,7 @@ export default function FloatingImages({
             margin-left: -132px;
           }
         }
-      `}</style>
+      ` }} />
 
       {list.map((img) => {
         const sizeClass =
@@ -416,6 +416,9 @@ export default function FloatingImages({
             width={width}
             height={height}
             loading={eager ? "eager" : "lazy"}
+            fetchPriority={
+              eager && sizeClass === "fi-float-large" ? "high" : undefined
+            }
             decoding="async"
             style={
               eager

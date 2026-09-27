@@ -7,7 +7,7 @@
 
 export default function ServiceMobileDualCtaStyles() {
   return (
-    <style>{`
+    <style dangerouslySetInnerHTML={{ __html: `
       @media (max-width: 768px) {
         .svc-dual-ctas {
           flex-direction: row !important;
@@ -71,6 +71,6 @@ export default function ServiceMobileDualCtaStyles() {
           transform: translateY(2px);
         }
       }
-    `}</style>
+    ` }} />
   );
 }

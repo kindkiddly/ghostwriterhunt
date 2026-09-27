@@ -341,7 +341,7 @@ export default function ContactForm() {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .cf-reveal-left {
           opacity: 0;
           transform: translateX(-40px);
@@ -739,7 +739,7 @@ export default function ContactForm() {
             padding: 28px 20px;
           }
         }
-      `}</style>
+      ` }} />
 
       {/* Both #start and #contact land on this section */}
       <section

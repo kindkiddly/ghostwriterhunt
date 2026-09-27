@@ -7,7 +7,7 @@
 
 export function ServiceTrustLineStyles() {
   return (
-    <style>{`
+    <style dangerouslySetInnerHTML={{ __html: `
       .svc-trust {
         font-family: var(--font-inter), sans-serif;
         font-weight: 400;
@@ -56,7 +56,7 @@ export function ServiceTrustLineStyles() {
           line-height: 1;
         }
       }
-    `}</style>
+    ` }} />
   );
 }
 

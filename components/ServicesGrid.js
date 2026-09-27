@@ -2,6 +2,7 @@
 
 import { useSectionReveal } from "@/lib/useSectionReveal";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — Services Grid
  * Superside capability cards + chip tags;
@@ -274,7 +275,7 @@ export default function ServicesGrid() {
       }}
       aria-label="Services"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-svc-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -378,7 +379,7 @@ export default function ServicesGrid() {
             white-space: nowrap;
           }
         }
-      `}</style>
+      ` }} />
 
       <div
         className={`gwh-svc-inner mx-auto max-w-[1200px] px-6 ${visible ? "gwh-svc-visible" : ""}`}
@@ -428,12 +429,12 @@ export default function ServicesGrid() {
                 {service.description}
               </p>
 
-              <a
+              <Link
                 href={service.href}
                 className="mt-4 inline-block font-inter text-[14px] font-medium text-[#C9A84C] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline"
               >
                 Learn more →
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

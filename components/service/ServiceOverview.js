@@ -3,6 +3,7 @@
 import FloatingImages from "./FloatingImages";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 
+import Link from "next/link";
 /**
  * GhostWriterHunt — ServiceOverview
  * Two-column about section with floating images.
@@ -62,9 +63,9 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           </li>
         ))}
       </ul>
-      <a href="/#start" className="so-cta">
+      <Link href="/#start" className="so-cta">
         Get Started →
-      </a>
+      </Link>
     </div>
   );
 
@@ -85,7 +86,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
       className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}`}
       aria-label="About this service"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .so-section {
           background: #FFFFFF;
           padding: 80px 0;
@@ -255,7 +256,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           }
           .so-images { order: -1; }
         }
-      `}</style>
+      ` }} />
 
       <div className={`so-inner${isGhostwriting ? " so-inner--ghostwriting" : ""}`}>
         {isGhostwriting ? (
@@ -288,9 +289,9 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
                 </li>
               ))}
             </ul>
-            <a href="/#start" className="so-cta so-reveal-left" data-delay="100">
+            <Link href="/#start" className="so-cta so-reveal-left" data-delay="100">
               Get Started →
-            </a>
+            </Link>
           </div>
         ) : imagesOnLeft ? (
           <>

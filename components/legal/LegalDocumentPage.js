@@ -281,7 +281,7 @@ export default function LegalDocumentPage({ type }) {
 
   return (
     <main className="legal-page">
-      <style>{styles}</style>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <header className="legal-page-hero">
         <div className="legal-page-hero-glow" aria-hidden="true" />

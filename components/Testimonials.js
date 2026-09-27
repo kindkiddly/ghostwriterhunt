@@ -247,7 +247,7 @@ export default function Testimonials() {
       className="w-full bg-[var(--color-card)] py-[80px]"
       aria-label="Client testimonials"
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes gwh-tm-fade {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -286,7 +286,7 @@ export default function Testimonials() {
         .gwh-tm-visible .gwh-tm-carousel {
           animation: gwh-tm-fade 0.5s ease-out 0.2s forwards;
         }
-      `}</style>
+      ` }} />
 
       <div
         className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-tm-visible" : ""}`}
