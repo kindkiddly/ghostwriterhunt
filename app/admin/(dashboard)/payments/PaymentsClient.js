@@ -18,7 +18,6 @@ const FIXED_PACKAGES = [
 ];
 
 const HISTORY_MIN_HEIGHT = 280;
-const DEMO_BANNER_MIN_HEIGHT = 92;
 const SUMMARY_CARD_MIN_HEIGHT = 92;
 
 function formatMoney(cents) {
@@ -156,16 +155,6 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
   const [copyFeedback, setCopyFeedback] = useState("idle");
   const [sendFeedback, setSendFeedback] = useState("idle");
   const [tableCopiedId, setTableCopiedId] = useState(null);
-  const [paymentMode, setPaymentMode] = useState({ mock: true, live: false });
-  const [stripeStatusReady, setStripeStatusReady] = useState(false);
-
-  useEffect(() => {
-    fetch("/api/stripe/status")
-      .then((r) => r.json())
-      .then((data) => setPaymentMode({ mock: !!data.mock, live: !!data.live }))
-      .catch(() => {})
-      .finally(() => setStripeStatusReady(true));
-  }, []);
 
   useEffect(() => {
     setContactId(prefillContactId);
@@ -222,9 +211,6 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
     if (statusFilter === "all") return payments;
     return payments.filter((p) => p.status === statusFilter);
   }, [payments, statusFilter]);
-
-  const showDemoBanner = stripeStatusReady && paymentMode.mock && !paymentMode.live;
-  const reserveDemoBannerSpace = !stripeStatusReady || showDemoBanner;
 
   function openCreateModal() {
     setCreateError(null);
@@ -351,21 +337,6 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
           Create payment link
         </button>
       </div>
-
-      {reserveDemoBannerSpace ? (
-        <div className="mb-5 shrink-0" style={{ minHeight: DEMO_BANNER_MIN_HEIGHT }}>
-          {showDemoBanner ? (
-            <div className="rounded-xl border border-dashed border-[#C9A84C] bg-[#FFFBF0] px-4 py-3">
-              <p className="font-inter text-[13px] font-semibold text-[#8A6D2C]">Demo payment mode</p>
-              <p className="mt-1 font-inter text-[12px] leading-relaxed text-[#8A6D2C]">
-                Stripe keys are not connected yet. Links open a mock checkout page on your site (no real charge). Add{" "}
-                <code className="text-[11px]">STRIPE_SECRET_KEY</code> and set{" "}
-                <code className="text-[11px]">STRIPE_MOCK_MODE=false</code> when ready for live payments.
-              </p>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
 
       <div className="mb-6 grid shrink-0 grid-cols-2 gap-3 lg:grid-cols-4">
         <SummaryCard label="This month" value={formatMoney(summary.monthCents)} sub="Paid only" />
