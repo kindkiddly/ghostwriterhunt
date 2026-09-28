@@ -166,8 +166,8 @@ function PaymentsContent() {
     setConversationId(prefillConversationId);
   }, [prefillContactId, prefillConversationId]);
 
-  const loadPayments = useCallback(async () => {
-    setLoading(true);
+  const loadPayments = useCallback(async ({ withLoading = false } = {}) => {
+    if (withLoading) setLoading(true);
     const [{ data: paymentRows, error: payErr }, { data: contactRows }] = await Promise.all([
       supabase.from("payments").select("*").order("created_at", { ascending: false }),
       supabase.from("contacts").select("id, name, email").order("created_at", { ascending: false }).limit(200),
@@ -175,14 +175,14 @@ function PaymentsContent() {
     if (payErr) setError(payErr.message);
     else setPayments(paymentRows || []);
     setContacts(contactRows || []);
-    setLoading(false);
+    if (withLoading) setLoading(false);
   }, [supabase]);
 
   useEffect(() => {
-    loadPayments();
+    loadPayments({ withLoading: true });
     const channel = supabase
       .channel("admin-payments")
-      .on("postgres_changes", { event: "*", schema: "public", table: "payments" }, loadPayments)
+      .on("postgres_changes", { event: "*", schema: "public", table: "payments" }, () => loadPayments())
       .subscribe();
 
     return () => {
@@ -338,7 +338,7 @@ function PaymentsContent() {
             Track checkout and payment links. Create new links for fixed packages or custom amounts.
           </p>
         </div>
-        <button type="button" onClick={openCreateModal} className="admin-btn-emerald shrink-0">
+        <button type="button" onClick={openCreateModal} className="admin-btn-emerald-pill shrink-0">
           Create payment link
         </button>
       </div>
@@ -381,7 +381,9 @@ function PaymentsContent() {
         </div>
 
         {loading ? (
-          <p className="font-inter text-[13px] text-[#999999]">Loading payments…</p>
+          <div className="flex min-h-[220px] items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-8">
+            <p className="font-inter text-[13px] text-[#999999]">Loading payments…</p>
+          </div>
         ) : error ? (
           <p className="font-inter text-[13px] text-[#9A2E24]">
             Couldn&apos;t load payments: {error}. Apply migration 007 if the table is missing.
@@ -410,7 +412,7 @@ function PaymentsContent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="create-payment-link-title"
-            className="relative z-[1] max-h-[min(90vh,720px)] w-full max-w-[640px] overflow-y-auto rounded-2xl border border-[rgba(232,213,163,0.9)] bg-[rgba(255,255,255,0.88)] p-5 shadow-[0_24px_60px_rgba(28,28,28,0.18)] backdrop-blur-[16px] sm:p-6 supports-[backdrop-filter]:bg-[rgba(255,255,255,0.82)]"
+            className="relative z-[1] flex max-h-[min(90vh,720px)] w-full max-w-[640px] min-h-[420px] flex-col overflow-y-auto rounded-2xl border border-[rgba(232,213,163,0.9)] bg-[rgba(255,255,255,0.88)] p-5 shadow-[0_24px_60px_rgba(28,28,28,0.18)] backdrop-blur-[16px] sm:min-h-[440px] sm:p-6 supports-[backdrop-filter]:bg-[rgba(255,255,255,0.82)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-4 flex items-start justify-between gap-3">
@@ -491,42 +493,38 @@ function PaymentsContent() {
                 </div>
               </div>
             ) : (
-            <form onSubmit={handleCreateLink}>
-              <div className="mb-4 flex flex-wrap gap-2">
+            <form onSubmit={handleCreateLink} className="flex min-h-0 flex-1 flex-col">
+              <div className="admin-segmented mb-4 shrink-0" role="tablist" aria-label="Payment link type">
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={mode === "custom"}
                   onClick={() => setMode("custom")}
-                  className={`admin-btn-pill ${mode === "custom" ? "is-active" : ""}`}
+                  className={`admin-segmented__option ${mode === "custom" ? "is-active" : ""}`}
                 >
                   Custom amount
                 </button>
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={mode === "fixed"}
                   onClick={() => setMode("fixed")}
-                  className={`admin-btn-pill ${mode === "fixed" ? "is-active" : ""}`}
+                  className={`admin-segmented__option ${mode === "fixed" ? "is-active" : ""}`}
                 >
                   Fixed package
                 </button>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {mode === "fixed" ? (
-                  <label className="block sm:col-span-2">
-                    <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Package</span>
-                    <select
-                      value={packageKey}
-                      onChange={(e) => setPackageKey(e.target.value)}
-                      className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-                    >
-                      {FIXED_PACKAGES.map((p) => (
-                        <option key={p.key} value={p.key}>
-                          {p.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                ) : (
-                  <>
+              <div className="grid shrink-0 gap-4 sm:grid-cols-2">
+                <div className="relative min-h-[168px] sm:col-span-2">
+                  <div
+                    className={`grid gap-4 sm:grid-cols-2 transition-opacity duration-150 ${
+                      mode === "custom"
+                        ? "relative z-[1] opacity-100"
+                        : "pointer-events-none absolute inset-0 opacity-0"
+                    }`}
+                    aria-hidden={mode !== "custom"}
+                  >
                     <label className="block">
                       <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Amount (USD)</span>
                       <input
@@ -536,7 +534,7 @@ function PaymentsContent() {
                         value={amountUsd}
                         onChange={(e) => setAmountUsd(e.target.value)}
                         className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-                        required
+                        required={mode === "custom"}
                       />
                       <span className="mt-1 block font-inter text-[11px] text-[#888888]">
                         Whole dollars only (Stripe minimum applies).
@@ -552,11 +550,34 @@ function PaymentsContent() {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="e.g. Professional + website add-on"
                         className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-                        required
+                        required={mode === "custom"}
                       />
                     </label>
-                  </>
-                )}
+                  </div>
+                  <div
+                    className={`transition-opacity duration-150 ${
+                      mode === "fixed"
+                        ? "relative z-[1] opacity-100"
+                        : "pointer-events-none absolute inset-x-0 top-0 opacity-0"
+                    }`}
+                    aria-hidden={mode !== "fixed"}
+                  >
+                    <label className="block">
+                      <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Package</span>
+                      <select
+                        value={packageKey}
+                        onChange={(e) => setPackageKey(e.target.value)}
+                        className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                      >
+                        {FIXED_PACKAGES.map((p) => (
+                          <option key={p.key} value={p.key}>
+                            {p.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                </div>
 
                 <label className="block">
                   <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Contact (optional)</span>
@@ -589,7 +610,7 @@ function PaymentsContent() {
               </div>
 
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <button type="submit" disabled={creating} className="admin-btn-primary">
+                <button type="submit" disabled={creating} className="admin-btn-primary gwh-gold-btn-fill">
                   {creating ? "Creating…" : "Create link"}
                 </button>
                 {createError && <p className="font-inter text-[13px] text-[#9A2E24]">{createError}</p>}
@@ -605,7 +626,13 @@ function PaymentsContent() {
 
 export default function PaymentsPage() {
   return (
-    <Suspense fallback={<div className="p-6 font-inter text-[13px] text-[#999999]">Loading…</div>}>
+    <Suspense
+      fallback={
+        <div className="flex min-h-0 flex-1 flex-col px-4 py-5 pb-28 lg:px-8 lg:py-8 lg:pb-8">
+          <p className="font-inter text-[13px] text-[#999999]">Loading…</p>
+        </div>
+      }
+    >
       <PaymentsContent />
     </Suspense>
   );

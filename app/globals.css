@@ -87,6 +87,75 @@ body {
   font-size: 12px;
 }
 
+/* Payments header — compact glassy emerald pill */
+.admin-btn-emerald-pill {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(4, 120, 87, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+  transition: filter 0.15s ease;
+}
+
+.admin-btn-emerald-pill:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.admin-btn-emerald-pill:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-btn-primary.gwh-gold-btn-fill {
+  border-width: 1.5px;
+}
+
+.admin-segmented {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 213, 163, 0.9);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.admin-segmented__option {
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #666666;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-segmented__option.is-active {
+  background: rgba(28, 28, 28, 0.92);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(28, 28, 28, 0.12);
+}
+
 .admin-btn-secondary {
   border: 1px solid rgba(232, 213, 163, 0.85);
   background: rgba(255, 255, 255, 0.72);

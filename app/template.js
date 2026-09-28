@@ -47,8 +47,11 @@ function fadeInWhenLoaded(img) {
 export default function Template({ children }) {
   const pathname = usePathname();
   const ref = useRef(null);
+  const isAdminRoute = pathname.startsWith("/admin");
 
   useLayoutEffect(() => {
+    if (isAdminRoute) return undefined;
+
     const root = ref.current;
     const firstMount = isFirstMount;
     isFirstMount = false;
@@ -91,7 +94,11 @@ export default function Template({ children }) {
       released = true;
       clearTimeout(timer);
     };
-  }, [pathname]);
+  }, [pathname, isAdminRoute]);
+
+  if (isAdminRoute) {
+    return children;
+  }
 
   return (
     <div ref={ref} key={pathname} className="gwh-page">
