@@ -39,7 +39,7 @@ const PROJECT_OPTIONS = [
 ];
 
 const TRUST_POINTS = [
-  "Free consultation — no commitment",
+  "Free consultation, no commitment",
   "Full NDA confidentiality guaranteed",
 ];
 
@@ -763,7 +763,7 @@ export default function ContactForm() {
               Book a free consultation with our team. We will understand your
               project in confidence, match you with the right professional
               ghostwriter, and keep all communication securely managed through
-              us — no commitment required.
+              us. No commitment required.
             </p>
 
             <ul className="cf-trust-list">

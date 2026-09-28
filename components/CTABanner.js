@@ -86,7 +86,7 @@ export default function CTABanner() {
           style={{ color: "rgba(255,255,255,0.75)" }}
         >
           Join 5,000+ authors who trusted GhostWriterHunt to bring their book
-          to life. From first word to global publication — we handle everything
+          to life. From first word to global publication, we handle everything
           so you can focus on your story.
         </p>
 

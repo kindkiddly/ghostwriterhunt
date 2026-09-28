@@ -35,12 +35,12 @@ const navServicesByCategory = Object.fromEntries(
 
 const SITE_URL = "https://ghostwriterhunt.lumexforge.com";
 const SITE_DESCRIPTION =
-  "GhostWriterHunt connects authors with professional ghostwriters, editors and publishers to turn your idea into a professionally published book — completely confidential, with 100% of the rights and royalties in your name.";
+  "GhostWriterHunt connects authors with professional ghostwriters, editors and publishers to turn your idea into a professionally published book. Completely confidential, with 100% of the rights and royalties in your name.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "GhostWriterHunt — Professional Ghostwriting Services",
+    default: "GhostWriterHunt | Professional Ghostwriting Services",
     template: "%s | GhostWriterHunt",
   },
   description: SITE_DESCRIPTION,
@@ -48,20 +48,20 @@ export const metadata = {
     type: "website",
     siteName: "GhostWriterHunt",
     url: SITE_URL,
-    title: "GhostWriterHunt — Professional Ghostwriting Services",
+    title: "GhostWriterHunt | Professional Ghostwriting Services",
     description: SITE_DESCRIPTION,
     images: [
       {
         url: "/images/CTA-AUTHOR.webp",
         width: 1920,
         height: 998,
-        alt: "GhostWriterHunt — Professional Ghostwriting Services",
+        alt: "GhostWriterHunt | Professional Ghostwriting Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GhostWriterHunt — Professional Ghostwriting Services",
+    title: "GhostWriterHunt | Professional Ghostwriting Services",
     description: SITE_DESCRIPTION,
     images: ["/images/CTA-AUTHOR.webp"],
   },

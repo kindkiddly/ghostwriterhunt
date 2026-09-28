@@ -63,7 +63,7 @@ const TAB_CONTENT = {
       "Traditional agencies are slow, expensive and built around rigid processes.",
     leftItems: [
       "High costs with long contracts",
-      "Slow turnaround — months of waiting",
+      "Slow turnaround, months of waiting",
       "Generic approach to your story",
       "Limited genre specialization",
       "You lose creative control",
@@ -268,7 +268,7 @@ export default function Comparison() {
         </h2>
 
         <p className="gwh-cmp-sub mx-auto mb-[60px] max-w-[600px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          See how GhostWriterHunt compares to the alternatives — and why
+          See how GhostWriterHunt compares to the alternatives, and why
           thousands of authors choose us to bring their book to life.
         </p>
 

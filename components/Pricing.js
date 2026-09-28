@@ -175,7 +175,7 @@ function PlanCard({ plan, index }) {
             disabled={paying}
             className="gwh-price-pay-btn block w-full px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 disabled:opacity-60"
           >
-            {paying ? "Opening checkout…" : `Pay securely — $${plan.priceAmount}`}
+            {paying ? "Opening checkout…" : `Pay securely · $${plan.priceAmount}`}
           </button>
         )}
         <a
@@ -666,7 +666,7 @@ export default function Pricing() {
         </h2>
 
         <p className="gwh-price-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          Choose the plan that fits your book project — no hidden fees, no
+          Choose the plan that fits your book project. No hidden fees, no
           surprises. You own 100% of your book and all royalties.
         </p>
 

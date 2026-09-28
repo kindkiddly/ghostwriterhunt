@@ -122,7 +122,7 @@ const TEAM = [
 const WHY_BULLETS = [
   "Top 1% of ghostwriter applicants accepted",
   "Every project protected by full NDA",
-  "Your voice captured — not ours",
+  "Your voice captured, not ours",
   "100% of rights and royalties yours",
   "Published on 47+ global platforms",
   "5000+ books successfully delivered",
@@ -935,7 +935,7 @@ export default function AboutPage() {
               <em>deserves to be told.</em>
             </h1>
             <p className="ab-hero-sub">
-              GhostWriterHunt was founded with a single belief — that remarkable
+              GhostWriterHunt was founded with a single belief: that remarkable
               stories should not go untold simply because their authors need a
               professional hand to tell them. We exist to bridge that gap,
               connecting visionary authors with exceptional ghostwriters who
@@ -962,7 +962,7 @@ export default function AboutPage() {
               Born from a passion for <em>storytelling.</em>
             </h2>
             <p className="ab-body">
-              GhostWriterHunt began in the USA with a simple observation —
+              GhostWriterHunt began in the USA with a simple observation:
               thousands of people carry extraordinary stories inside them but
               lack the writing expertise to bring those stories to the page.
               Business leaders with decades of hard-won wisdom. Families with
@@ -971,15 +971,15 @@ export default function AboutPage() {
             </p>
             <p className="ab-body">
               We assembled a team of the finest professional ghostwriters,
-              editors, designers and publishing specialists — each one vetted,
+              editors, designers and publishing specialists, each one vetted,
               proven and passionate about the art of storytelling. We built a
               platform where authors receive not just a writing service but a
-              true creative partnership — one built on trust, confidentiality
+              true creative partnership, one built on trust, confidentiality
               and an unwavering commitment to quality.
             </p>
             <p className="ab-body">
               Today GhostWriterHunt has helped more than 500 authors across
-              every genre and format bring their books to life — from personal
+              every genre and format bring their books to life, from personal
               memoirs treasured by families to business books that have opened
               doors, and novels that have found readers around the world.
             </p>
@@ -1009,7 +1009,7 @@ export default function AboutPage() {
               <p className="ab-vcard-desc">
                 Every project is protected by a comprehensive NDA from day one.
                 Your story, your ideas and your identity are completely safe
-                with us — always and without exception.
+                with us, always and without exception.
               </p>
             </div>
 
@@ -1017,7 +1017,7 @@ export default function AboutPage() {
               <ValueIcon type="star" size={28} color="#C9A84C" />
               <h3 className="ab-vcard-title">Uncompromising Quality</h3>
               <p className="ab-vcard-desc">
-                We accept only the top 1% of ghostwriter applicants — each one
+                We accept only the top 1% of ghostwriter applicants, each one
                 vetted, proven and passionate.
               </p>
             </div>
@@ -1036,7 +1036,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="ab-vcard-title">Global Publishing Reach</h3>
                 <p className="ab-vcard-desc">
-                  We publish your book to 47+ platforms worldwide — and you keep
+                  We publish your book to 47+ platforms worldwide, and you keep
                   100% of your rights and royalties.
                 </p>
               </div>
@@ -1121,7 +1121,7 @@ export default function AboutPage() {
             <p className="ab-body">
               We are not a marketplace where anyone can sign up and start
               writing. GhostWriterHunt is a curated platform of proven publishing
-              professionals — each one selected for their expertise, their craft
+              professionals, each one selected for their expertise, their craft
               and their commitment to client confidentiality. When you work with
               us, you work with the best.
             </p>

@@ -14,21 +14,21 @@ const STEPS = [
     number: "01",
     title: "Share Your Vision",
     description:
-      "Tell us about your book — your idea, your audience, and the story you want to tell. Our dedicated project team listens carefully to your goals, genre, and preferred voice, then personally matches your project with the right professional ghostwriter — with complete confidentiality from the start.",
+      "Tell us about your book: your idea, your audience, and the story you want to tell. Our dedicated project team listens carefully to your goals, genre, and preferred voice, then personally matches your project with the right professional ghostwriter, with complete confidentiality from the start.",
     icon: "chat",
   },
   {
     number: "02",
     title: "We Craft Your Story",
     description:
-      "Your matched professional ghostwriter brings your vision to life — chapter by chapter, in your voice. Regular chapter reviews, clear feedback, and unlimited revisions with our Professional and Complete Publishing packages are handled through our project team, so every word is exactly right while your communication stays securely managed.",
+      "Your matched professional ghostwriter brings your vision to life, chapter by chapter, in your voice. Regular chapter reviews, clear feedback, and unlimited revisions with our Professional and Complete Publishing packages are handled through our project team, so every word is exactly right while your communication stays securely managed.",
     icon: "pen",
   },
   {
     number: "03",
     title: "Publish and Shine",
     description:
-      "From cover design and interior layout to global digital publishing — your book goes live on Amazon KDP, Apple Books, Kobo, Google Play Books and 47+ platforms worldwide. You keep 100% of your rights and royalties.",
+      "From cover design and interior layout to global digital publishing, your book goes live on Amazon KDP, Apple Books, Kobo, Google Play Books and 47+ platforms worldwide. You keep 100% of your rights and royalties.",
     icon: "globe",
   },
 ];
@@ -372,7 +372,7 @@ export default function HowItWorks() {
           </h2>
 
           <p className="gwh-hiw-sub mx-auto max-w-[540px] font-inter text-[15px] font-normal leading-[1.65] text-[#c8c8c8] lg:mx-0 lg:mb-0">
-            From first idea to published masterpiece — we guide every step of the
+            From first idea to published masterpiece, we guide every step of the
             journey.
           </p>
         </div>

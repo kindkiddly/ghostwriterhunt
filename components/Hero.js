@@ -622,7 +622,7 @@ export default function Hero() {
               <span className="gwh-hero-lede-line" />
             </div>
             <p className="gwh-hero-lede-text">
-              Professional ghostwriters, designers and editors — everything your
+              Professional ghostwriters, designers and editors. Everything your
               book needs,{" "}
               <em>under one roof.</em>
             </p>

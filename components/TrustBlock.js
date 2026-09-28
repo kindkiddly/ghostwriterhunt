@@ -303,7 +303,7 @@ export default function TrustBlock() {
 
           <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999] break-words">
             Every ghostwriter on our platform goes through a rigorous vetting
-            process. We accept only the top 1% of applicants — ensuring every
+            process. We accept only the top 1% of applicants, ensuring every
             author receives nothing short of exceptional.
           </p>
         </div>

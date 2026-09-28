@@ -68,7 +68,7 @@ async function sendNewChatAlert({ name, email, country, firstMessage }) {
     const { error } = await resend.emails.send({
       from: "GhostWriterHunt Chat <noreply@lumexforge.com>",
       to: "ghostwriterhunt@lumexforge.com",
-      subject: "New live chat started — GhostWriterHunt",
+      subject: "New live chat started | GhostWriterHunt",
       html,
       text,
     });

@@ -138,7 +138,7 @@ export async function POST(request) {
       from: "GhostWriterHunt <noreply@lumexforge.com>",
       to: "ghostwriterhunt@lumexforge.com",
       replyTo: email,
-      subject: `New inquiry from ${sanitizeHeaderValue(fullName)} — GhostWriterHunt`,
+      subject: `New inquiry from ${sanitizeHeaderValue(fullName)} | GhostWriterHunt`,
       html,
       text,
     });

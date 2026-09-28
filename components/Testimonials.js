@@ -32,7 +32,7 @@ const TESTIMONIALS = [
   {
     id: 3,
     quote:
-      "James Whitmore captured my thriller concept perfectly — the pacing, the tension, the twists. Every chapter was better than I imagined. My book hit the Amazon bestseller list in its first week and I am already working on my second book with GhostWriterHunt.",
+      "James Whitmore captured my thriller concept perfectly: the pacing, the tension, the twists. Every chapter was better than I imagined. My book hit the Amazon bestseller list in its first week and I am already working on my second book with GhostWriterHunt.",
     author: "Kevin O'Brien",
     details: "Author of 'Shadows at Midnight' · Feb 2026",
     photo:
@@ -303,7 +303,7 @@ export default function Testimonials() {
         </h2>
 
         <p className="gwh-tm-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          Real authors. Real books. Real results — hear what our clients say
+          Real authors. Real books. Real results. Hear what our clients say
           about working with GhostWriterHunt.
         </p>
 

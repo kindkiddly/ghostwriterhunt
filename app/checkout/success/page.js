@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Payment received — GhostWriterHunt",
+  title: "Payment received | GhostWriterHunt",
 };
 
 export default function CheckoutSuccessPage({ searchParams }) {
@@ -18,7 +18,7 @@ export default function CheckoutSuccessPage({ searchParams }) {
         </h1>
         {isMock && (
           <p className="mt-3 rounded-lg bg-[#FFFBF0] px-3 py-2 font-inter text-[12px] text-[#8A6D2C]">
-            Demo payment only — no real charge. Connect Stripe keys to accept live payments.
+            Demo payment only. No real charge. Connect Stripe keys to accept live payments.
           </p>
         )}
         <p className="mt-4 font-inter text-[15px] leading-relaxed text-[#666666]">

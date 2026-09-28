@@ -17,7 +17,7 @@ const SERVICES = [
     icon: "pen",
     title: "Professional Ghostwriting",
     description:
-      "Expert ghostwriters craft your complete book in your voice — fiction, non-fiction, memoir, biography, business and more. Any genre, any length.",
+      "Expert ghostwriters craft your complete book in your voice: fiction, non-fiction, memoir, biography, business and more. Any genre, any length.",
   },
   {
     id: "editing",
@@ -25,7 +25,7 @@ const SERVICES = [
     icon: "edit",
     title: "Manuscript Editing",
     description:
-      "Developmental editing, line editing, copy editing and proofreading — your manuscript refined to publication standard by seasoned editors.",
+      "Developmental editing, line editing, copy editing and proofreading. Your manuscript refined to publication standard by seasoned editors.",
   },
   {
     id: "cover",
@@ -33,7 +33,7 @@ const SERVICES = [
     icon: "palette",
     title: "Book Cover Design",
     description:
-      "Custom covers designed to stop readers instantly — crafted for Amazon KDP, Kindle, Apple Books and every major digital platform.",
+      "Custom covers designed to stop readers instantly, crafted for Amazon KDP, Kindle, Apple Books and every major digital platform.",
   },
   {
     id: "layout",
@@ -41,7 +41,7 @@ const SERVICES = [
     icon: "layout",
     title: "Interior Layout and Formatting",
     description:
-      "Every page designed beautifully — chapter headings, typography, spacing, page numbers and full interior layout formatted for digital reading.",
+      "Every page designed beautifully: chapter headings, typography, spacing, page numbers and full interior layout formatted for digital reading.",
   },
   {
     id: "illustration",
@@ -49,7 +49,7 @@ const SERVICES = [
     icon: "brush",
     title: "Illustration and Graphics",
     description:
-      "Custom illustrations, chapter artwork and visual storytelling — from children's book art to non-fiction diagrams and infographics.",
+      "Custom illustrations, chapter artwork and visual storytelling, from children's book art to non-fiction diagrams and infographics.",
   },
   {
     id: "publishing",
@@ -65,7 +65,7 @@ const SERVICES = [
     icon: "star",
     title: "Author Branding",
     description:
-      "Professional author bio, website copy, social media presence and brand identity — establish your voice and authority as a published author.",
+      "Professional author bio, website copy, social media presence and brand identity to establish your voice and authority as a published author.",
   },
   {
     id: "marketing",
@@ -399,7 +399,7 @@ export default function ServicesGrid() {
 
         {/* Subtext */}
         <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
-          From the first word to the final published page — our professionals
+          From the first word to the final published page, our professionals
           handle every detail.
         </p>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Payment cancelled — GhostWriterHunt",
+  title: "Payment cancelled | GhostWriterHunt",
 };
 
 export default function CheckoutCancelPage() {

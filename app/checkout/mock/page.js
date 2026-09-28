@@ -72,7 +72,7 @@ function MockCheckoutContent() {
           </p>
           <h1 className="mt-1 font-playfair text-[24px] font-bold text-white">GhostWriterHunt</h1>
           <p className="mt-1 font-inter text-[13px] text-[#999999]">
-            Mock payment mode — Stripe is not connected yet. No real charge is made.
+            Mock payment mode. Stripe is not connected yet. No real charge is made.
           </p>
         </div>
 

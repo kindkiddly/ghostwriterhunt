@@ -14,17 +14,17 @@ const FEATURES = [
   {
     title: "Handpicked Professional Writers",
     description:
-      "Every writer on our platform is vetted, experienced and proven — selected from the top 1% of applicants.",
+      "Every writer on our platform is vetted, experienced and proven, selected from the top 1% of applicants.",
   },
   {
     title: "Your Voice, Perfectly Captured",
     description:
-      "We study how you speak and write before a single word is drafted — your book sounds like you.",
+      "We study how you speak and write before a single word is drafted, so your book sounds like you.",
   },
   {
     title: "Every Genre Covered",
     description:
-      "From literary fiction to business books, memoir to children's stories — we have specialists for every genre and format.",
+      "From literary fiction to business books, memoir to children's stories, we have specialists for every genre and format.",
   },
   {
     title: "100% Confidential Always",
@@ -189,7 +189,7 @@ export default function NarrativeBlock1() {
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666] break-words">
             Every great book begins with a visionary author and the right
             professional team behind them. At GhostWriterHunt, our dedicated
-            project team learns your genre, voice, and vision — then personally
+            project team learns your genre, voice, and vision, then personally
             matches you with a handpicked ghostwriter while keeping your
             communication securely managed through us. We guide you every step
             of the way from first idea to published masterpiece, with complete

@@ -49,7 +49,7 @@ export async function POST(request) {
     }
     amountCents = pkg.amountCents;
     resolvedPackageKey = packageKey;
-    if (!resolvedDescription) resolvedDescription = `${pkg.name} — GhostWriterHunt`;
+    if (!resolvedDescription) resolvedDescription = `${pkg.name} | GhostWriterHunt`;
   } else {
     amountCents = normalizeCustomAmountCents(amountUsd);
     if (!amountCents) {
@@ -103,7 +103,7 @@ export async function POST(request) {
             <p style="color:#333;">${escapeHtml(resolvedDescription)}</p>
             <p style="color:#333;"><strong>Amount:</strong> ${amountLabel}</p>
             <p style="margin:24px 0;"><a href="${escapeHtml(url)}" style="background:#C9A84C;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">Pay securely</a></p>
-            <p style="color:#666;font-size:13px;">${mock ? "Demo payment link — no real charge until Stripe is connected." : "This link is hosted by Stripe. If you have questions, reply to this email."}</p>
+            <p style="color:#666;font-size:13px;">${mock ? "Demo payment link. No real charge until Stripe is connected." : "This link is hosted by Stripe. If you have questions, reply to this email."}</p>
           </div>`,
           text: `Complete your payment (${amountLabel}): ${url}\n\n${resolvedDescription}`,
         });

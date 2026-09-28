@@ -16,7 +16,7 @@ import { createClient } from "@/lib/supabase/client";
  */
 
 const WELCOME_MESSAGE =
-  "Tell us about your book — we're here to help with your publishing project.";
+  "Tell us about your book. We're here to help with your publishing project.";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TYPING_TIMEOUT_MS = 45000;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
@@ -1354,7 +1354,7 @@ export default function ChatWidget() {
                 </div>
                 {m.status === "failed" ? (
                   <span className="gcw-error-notice">
-                    Not sent —{" "}
+                    Not sent:{" "}
                     <button
                       type="button"
                       className="gcw-retry-btn"

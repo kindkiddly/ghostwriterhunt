@@ -11,7 +11,7 @@ export const services = [
     title: 'Professional Ghostwriting',
     tagline: 'Your story written',
     taglineItalic: 'flawlessly.',
-    heroSubtext: 'You have a story worth telling. We have the professionals to tell it perfectly. Share your vision with us — we craft every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
+    heroSubtext: 'You have a story worth telling. We have the professionals to tell it perfectly. Share your vision with us. We craft every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
     
     heroImages: [
       {
@@ -34,14 +34,14 @@ export const services = [
     overview: {
       headline: 'From your idea to a',
       headlineItalic: 'published masterpiece.',
-      body: 'The world is full of extraordinary stories waiting to be told — business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent — it is having the right professional in your corner. At GhostWriterHunt, our dedicated project team learns your goals, requirements, genre, and preferred voice — then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with our team — through written notes, voice recordings, existing drafts or a simple outline — and we handle everything from the first word to the final page. Your communication stays securely managed through us, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
+      body: 'The world is full of extraordinary stories waiting to be told, business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent. It is having the right professional in your corner. At GhostWriterHunt, our dedicated project team learns your goals, requirements, genre, and preferred voice, then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with our team through written notes, voice recordings, existing drafts or a simple outline, and we handle everything from the first word to the final page. Your communication stays securely managed through us, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
       bullets: [
         'Submit your vision via our secure form, email or voice recording',
         'Handpicked ghostwriter matched by our project team to your genre and style',
         'Full NDA signed and enforced from day one',
-        'Your project manager handles all communication — complete anonymity maintained',
+        'Your project manager handles all communication, complete anonymity maintained',
         'Unlimited revisions with our Professional and Complete Publishing packages',
-        '100% ownership — your name, your rights, your royalties'
+        '100% ownership, your name, your rights, your royalties'
       ],
       images: [
         {
@@ -66,17 +66,17 @@ export const services = [
       {
         icon: 'shield',
         title: 'Secure Idea Submission',
-        description: 'Share your vision through our secure platform — written notes, voice recordings, audio files, existing drafts or a simple outline. Whatever format works for you, we work with it.'
+        description: 'Share your vision through our secure platform, written notes, voice recordings, audio files, existing drafts or a simple outline. Whatever format works for you, we work with it.'
       },
       {
         icon: 'pen',
         title: 'Professional Voice Crafting',
-        description: 'Our project team consolidates every detail of your submission so your matched ghostwriter can capture your unique tone, style and perspective — creating a personal voice guide before writing a single word.'
+        description: 'Our project team consolidates every detail of your submission so your matched ghostwriter can capture your unique tone, style and perspective, creating a personal voice guide before writing a single word.'
       },
       {
         icon: 'users',
         title: 'Managed Excellence',
-        description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress — with revisions included on our Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
+        description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress, with revisions included on our Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
       }
     ],
 
@@ -84,31 +84,31 @@ export const services = [
       {
         number: '01',
         title: 'Share Your Vision',
-        description: 'Tell us about your book through our secure contact form or email. Submit whatever you have — a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, we have the professionals to tell it.',
+        description: 'Tell us about your book through our secure contact form or email. Submit whatever you have, a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, we have the professionals to tell it.',
         image: '/images/collaboration-laptop.webp'
       },
       {
         number: '02',
         title: 'Expert Matching',
-        description: 'Our team reviews your submission with care and precision. We analyze your genre, your audience, your tone and your goals — then handpick the ghostwriter from our vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
+        description: 'Our team reviews your submission with care and precision. We analyze your genre, your audience, your tone and your goals, then handpick the ghostwriter from our vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
         image: '/images/writing-2.webp'
       },
       {
         number: '03',
         title: 'Voice Crafting',
-        description: 'Before a single word of your manuscript is written, our team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide — the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
+        description: 'Before a single word of your manuscript is written, our team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide, the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
         image: '/images/pen-ink-author.webp'
       },
       {
         number: '04',
         title: 'Chapter by Chapter Excellence',
-        description: 'Writing begins — and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before we move on — revisions are included with our Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
+        description: 'Writing begins, and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before we move on, revisions are included with our Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
         image: '/images/author-1.webp'
       },
       {
         number: '05',
         title: 'Your Masterpiece Delivered',
-        description: 'Your completed manuscript arrives within approximately 40 days — a timeline that reflects both our commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by our permanent confidentiality agreement and ready to be published under your name to the world.',
+        description: 'Your completed manuscript arrives within approximately 40 days, a timeline that reflects both our commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by our permanent confidentiality agreement and ready to be published under your name to the world.',
         image: '/images/books-stack-pink.webp'
       }
     ],
@@ -118,11 +118,11 @@ export const services = [
     faqs: [
       {
         question: 'How do you match me with the right ghostwriter?',
-        answer: 'Your project is handled with complete confidentiality. Our dedicated project team carefully reviews your requirements, genre, tone and vision — then personally hand-selects the ghostwriter from our vetted roster whose expertise is the best fit. All communication stays securely managed through our team from start to finish.'
+        answer: 'Your project is handled with complete confidentiality. Our dedicated project team carefully reviews your requirements, genre, tone and vision, then personally hand-selects the ghostwriter from our vetted roster whose expertise is the best fit. All communication stays securely managed through our team from start to finish.'
       },
       {
         question: 'Will my book truly sound like me?',
-        answer: 'Absolutely. Before writing begins, our team captures your voice from everything you submit — your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through our team.'
+        answer: 'Absolutely. Before writing begins, our team captures your voice from everything you submit, your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through our team.'
       },
       {
         question: 'How long does the ghostwriting process take?',
@@ -130,16 +130,16 @@ export const services = [
       },
       {
         question: 'Do I own the manuscript completely?',
-        answer: 'Yes — 100%. Once your project is delivered you own the complete manuscript and all rights. We sign a full NDA and transfer all intellectual property to you. Your name goes on the cover and we remain completely behind the scenes.'
+        answer: 'Yes, 100%. Once your project is delivered you own the complete manuscript and all rights. We sign a full NDA and transfer all intellectual property to you. Your name goes on the cover and we remain completely behind the scenes.'
       },
       {
         question: 'Can I be involved in the writing process?',
-        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward — revisions are included with our Professional and Complete Publishing packages. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
+        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward, revisions are included with our Professional and Complete Publishing packages. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
       }
     ],
 
     testimonial: {
-      quote: 'I had an idea for a book but no writing experience whatsoever. GhostWriterHunt transformed my rough notes and voice recordings into a manuscript that left me speechless. Every word sounded like me — only better. The entire process was handled through my project manager and my identity was protected throughout. My book is now published and I could not be prouder.',
+      quote: 'I had an idea for a book but no writing experience whatsoever. GhostWriterHunt transformed my rough notes and voice recordings into a manuscript that left me speechless. Every word sounded like me, only better. The entire process was handled through my project manager and my identity was protected throughout. My book is now published and I could not be prouder.',
       author: 'Margaret Thompson',
       book: 'Finding My Way Home',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face'
@@ -147,7 +147,7 @@ export const services = [
 
     ctaHeadline: 'Your story deserves',
     ctaHeadlineItalic: 'to be told.',
-    ctaSubtext: 'Share your vision with us today. Our professional ghostwriters are ready to transform your idea into the book you have always imagined — completely confidential, completely yours.',
+    ctaSubtext: 'Share your vision with us today. Our professional ghostwriters are ready to transform your idea into the book you have always imagined, completely confidential, completely yours.',
     ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
@@ -160,7 +160,7 @@ export const services = [
     title: 'Manuscript Editing',
     tagline: 'Your words, refined to',
     taglineItalic: 'perfection.',
-    heroSubtext: 'Our seasoned editors go beyond grammar and spelling — they refine your narrative structure, strengthen your voice and ensure every page reads with clarity, power and purpose.',
+    heroSubtext: 'Our seasoned editors go beyond grammar and spelling, they refine your narrative structure, strengthen your voice and ensure every page reads with clarity, power and purpose.',
 
     heroImages: [
       {
@@ -183,12 +183,12 @@ export const services = [
     overview: {
       headline: 'Every great book deserves',
       headlineItalic: 'a great editor.',
-      body: 'Even the finest writers benefit from a skilled editorial eye. Our editors work contextually — not just correcting errors but understanding your story, your voice and your reader. From developmental structure to final line edits, we refine your manuscript until it shines with the clarity and power it deserves.',
+      body: 'Even the finest writers benefit from a skilled editorial eye. Our editors work contextually, not just correcting errors but understanding your story, your voice and your reader. From developmental structure to final line edits, we refine your manuscript until it shines with the clarity and power it deserves.',
       bullets: [
-        'Developmental editing — structure and story flow',
-        'Line editing — sentence level clarity and style',
-        'Copy editing — grammar, spelling and consistency',
-        'Proofreading — final error-free polish',
+        'Developmental editing, structure and story flow',
+        'Line editing, sentence level clarity and style',
+        'Copy editing, grammar, spelling and consistency',
+        'Proofreading, final error-free polish',
         'Detailed editorial report with every pass',
         'Multiple revision rounds included with our Professional and Complete Publishing packages'
       ],
@@ -210,7 +210,7 @@ export const services = [
       {
         icon: 'edit',
         title: 'Contextual Editing',
-        description: 'We edit within the context of your story and voice — never imposing a generic style on your unique work.'
+        description: 'We edit within the context of your story and voice, never imposing a generic style on your unique work.'
       },
       {
         icon: 'layers',
@@ -266,7 +266,7 @@ export const services = [
       },
       {
         question: 'Will the editor change my writing style?',
-        answer: 'Never. Our editors work to enhance your existing voice — not replace it. Every suggestion is made to serve your story and your style, never to impose a generic standard.'
+        answer: 'Never. Our editors work to enhance your existing voice, not replace it. Every suggestion is made to serve your story and your style, never to impose a generic standard.'
       },
       {
         question: 'How long does editing take?',
@@ -274,7 +274,7 @@ export const services = [
       },
       {
         question: 'Do I get to review the edits before they are finalized?',
-        answer: 'Yes — always. All edits are tracked and explained. You review, accept or reject every change. The final manuscript is always your decision.'
+        answer: 'Yes, always. All edits are tracked and explained. You review, accept or reject every change. The final manuscript is always your decision.'
       },
       {
         question: 'Can you edit a manuscript that someone else ghostwrote?',
@@ -304,7 +304,7 @@ export const services = [
     title: 'Book Cover Design',
     tagline: 'Covers that stop readers',
     taglineItalic: 'in their tracks.',
-    heroSubtext: 'Your cover is the first conversation your book has with a reader. Our designers craft covers that capture the soul of your story and compel readers to look twice — optimized for every digital platform.',
+    heroSubtext: 'Your cover is the first conversation your book has with a reader. Our designers craft covers that capture the soul of your story and compel readers to look twice, optimized for every digital platform.',
 
     heroImages: [
       {
@@ -327,9 +327,9 @@ export const services = [
     overview: {
       headline: 'A great cover sells your book',
       headlineItalic: 'before it is even opened.',
-      body: 'In a world of digital thumbnails and split-second decisions, your book cover must work harder than ever. Our award-winning designers combine deep knowledge of genre conventions with bold creative vision to produce covers that feel both familiar and utterly unique. Every element — typography, imagery, color and composition — is crafted to speak directly to your ideal reader.',
+      body: 'In a world of digital thumbnails and split-second decisions, your book cover must work harder than ever. Our award-winning designers combine deep knowledge of genre conventions with bold creative vision to produce covers that feel both familiar and utterly unique. Every element, typography, imagery, color and composition, is crafted to speak directly to your ideal reader.',
       bullets: [
-        'Custom design — never templated or generic',
+        'Custom design, never templated or generic',
         'Genre-specific expertise for maximum appeal',
         'Front cover, back cover and spine design',
         'Optimized for Amazon KDP and all platforms',
@@ -410,7 +410,7 @@ export const services = [
       },
       {
         question: 'Can I provide reference images or ideas?',
-        answer: 'Absolutely — we encourage it. The more reference material and inspiration you can share, the better we can understand your vision and create a cover that excites you.'
+        answer: 'Absolutely, we encourage it. The more reference material and inspiration you can share, the better we can understand your vision and create a cover that excites you.'
       },
       {
         question: 'What file formats will I receive?',
@@ -418,7 +418,7 @@ export const services = [
       },
       {
         question: 'Do you design covers for all genres?',
-        answer: 'Yes — our design team includes specialists in fiction, non-fiction, memoir, self-help, business, children\'s books, mystery, thriller, romance, fantasy and every other major genre.'
+        answer: 'Yes, our design team includes specialists in fiction, non-fiction, memoir, self-help, business, children\'s books, mystery, thriller, romance, fantasy and every other major genre.'
       },
       {
         question: 'Can I use my own images or photos on the cover?',
@@ -427,7 +427,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'The cover GhostWriterHunt designed for my novel stopped me in my tracks the moment I saw it. It captured the mood of my story perfectly. Three readers have told me they picked up my book purely because of the cover — and that is exactly what it should do.',
+      quote: 'The cover GhostWriterHunt designed for my novel stopped me in my tracks the moment I saw it. It captured the mood of my story perfectly. Three readers have told me they picked up my book purely because of the cover, and that is exactly what it should do.',
       author: 'Isabella Romano',
       book: 'When Hearts Collide',
       image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&crop=face'
@@ -448,7 +448,7 @@ export const services = [
     title: 'Interior Layout and Formatting',
     tagline: 'Every page designed',
     taglineItalic: 'beautifully.',
-    heroSubtext: 'The interior of your book is where your reader lives for hours. Our layout designers craft every page with typographic precision and visual elegance — creating a reading experience that feels effortless and professional.',
+    heroSubtext: 'The interior of your book is where your reader lives for hours. Our layout designers craft every page with typographic precision and visual elegance, creating a reading experience that feels effortless and professional.',
 
     heroImages: [
       {
@@ -471,7 +471,7 @@ export const services = [
     overview: {
       headline: 'Interior design that makes',
       headlineItalic: 'reading a pleasure.',
-      body: 'Great books are not just well written — they are beautifully presented. The way text sits on a page, the choice of typeface, the spacing of lines and the elegance of chapter headings all shape how a reader experiences your words. Our layout designers bring the same care and craft to your interior that premium publishers apply to their finest titles.',
+      body: 'Great books are not just well written, they are beautifully presented. The way text sits on a page, the choice of typeface, the spacing of lines and the elegance of chapter headings all shape how a reader experiences your words. Our layout designers bring the same care and craft to your interior that premium publishers apply to their finest titles.',
       bullets: [
         'Custom typography selection for your genre',
         'Chapter heading design and styling',
@@ -534,7 +534,7 @@ export const services = [
       {
         number: '04',
         title: 'Review and Revision',
-        description: 'You review the complete layout and request refinements — unlimited revisions are included with our Professional and Complete Publishing packages.',
+        description: 'You review the complete layout and request refinements, unlimited revisions are included with our Professional and Complete Publishing packages.',
         image: '/images/interior-layout-process-4.webp'
       },
       {
@@ -571,7 +571,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'The interior layout GhostWriterHunt created for my book looked like something from a major publishing house. Every page felt considered and elegant. My readers have commented on how beautifully presented it is — and that makes me incredibly proud.',
+      quote: 'The interior layout GhostWriterHunt created for my book looked like something from a major publishing house. Every page felt considered and elegant. My readers have commented on how beautifully presented it is, and that makes me incredibly proud.',
       author: 'Dr. Amanda Clarke',
       book: 'Leading With Purpose',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face'
@@ -592,7 +592,7 @@ export const services = [
     title: 'Illustration and Graphics',
     tagline: 'Visuals that bring your',
     taglineItalic: 'story to life.',
-    heroSubtext: 'From children\'s book illustrations to non-fiction diagrams and chapter artwork — our illustrators create visuals that enrich your narrative and leave lasting impressions on every reader.',
+    heroSubtext: 'From children\'s book illustrations to non-fiction diagrams and chapter artwork, our illustrators create visuals that enrich your narrative and leave lasting impressions on every reader.',
 
     heroImages: [
       {
@@ -615,9 +615,9 @@ export const services = [
     overview: {
       headline: 'Illustrations that make readers',
       headlineItalic: 'stop and stare.',
-      body: 'The right illustration can say what a thousand words cannot. Whether you need whimsical artwork for a children\'s picture book, detailed technical diagrams for a non-fiction title or atmospheric chapter headers for your novel — our illustrators bring the same passion and precision to every image they create for you.',
+      body: 'The right illustration can say what a thousand words cannot. Whether you need whimsical artwork for a children\'s picture book, detailed technical diagrams for a non-fiction title or atmospheric chapter headers for your novel, our illustrators bring the same passion and precision to every image they create for you.',
       bullets: [
-        'Children\'s book illustration — all styles',
+        'Children\'s book illustration, all styles',
         'Chapter header and decorative artwork',
         'Non-fiction diagrams and infographics',
         'Character design and development',
@@ -642,12 +642,12 @@ export const services = [
       {
         icon: 'brush',
         title: 'Style Matching',
-        description: 'We match illustration style precisely to your book\'s tone — from playful and colorful to sophisticated and minimal.'
+        description: 'We match illustration style precisely to your book\'s tone, from playful and colorful to sophisticated and minimal.'
       },
       {
         icon: 'users',
         title: 'Specialist Illustrators',
-        description: 'Children\'s books, technical diagrams and decorative artwork each require different expertise — we match you with the right illustrator.'
+        description: 'Children\'s books, technical diagrams and decorative artwork each require different expertise, we match you with the right illustrator.'
       },
       {
         icon: 'repeat',
@@ -694,11 +694,11 @@ export const services = [
     faqs: [
       {
         question: 'What illustration styles do you offer?',
-        answer: 'We work in virtually every illustration style — watercolor, digital painting, flat design, line art, realistic, cartoon, manga-inspired and more. We match the style to your book\'s tone and audience.'
+        answer: 'We work in virtually every illustration style, watercolor, digital painting, flat design, line art, realistic, cartoon, manga-inspired and more. We match the style to your book\'s tone and audience.'
       },
       {
         question: 'Do I own the illustrations?',
-        answer: 'Yes — 100%. All illustrations are created exclusively for your book and full rights are transferred to you upon completion and payment.'
+        answer: 'Yes, 100%. All illustrations are created exclusively for your book and full rights are transferred to you upon completion and payment.'
       },
       {
         question: 'Can you illustrate a children\'s picture book?',
@@ -715,7 +715,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'Priya\'s illustrations for my children\'s book were beyond anything I imagined. The characters felt alive, warm and magical. My daughter — who the book was written for — screamed with joy when she saw herself in the pages. That reaction said everything.',
+      quote: 'Priya\'s illustrations for my children\'s book were beyond anything I imagined. The characters felt alive, warm and magical. My daughter, who the book was written for, screamed with joy when she saw herself in the pages. That reaction said everything.',
       author: 'Linda Chen',
       book: 'The Little Star',
       image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&h=96&fit=crop&crop=face'
@@ -736,7 +736,7 @@ export const services = [
     title: 'eBook Publishing',
     tagline: 'Your book, live on',
     taglineItalic: '47+ platforms worldwide.',
-    heroSubtext: 'We handle every step of the digital publishing process — from file preparation to platform setup and listing optimization, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
+    heroSubtext: 'We handle every step of the digital publishing process, from file preparation to platform setup and listing optimization, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
 
     heroImages: [
       {
@@ -759,12 +759,12 @@ export const services = [
     overview: {
       headline: 'Published globally in',
       headlineItalic: '30 days or less.',
-      body: 'Self-publishing has never been more powerful — or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. Our publishing team handles every technical detail so you can focus entirely on your next book while we launch your current one to readers around the world.',
+      body: 'Self-publishing has never been more powerful, or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. Our publishing team handles every technical detail so you can focus entirely on your next book while we launch your current one to readers around the world.',
       bullets: [
         'Publishing on Amazon KDP, Apple Books, Kobo and 47+ platforms',
         'Metadata and category optimization',
         'Amazon listing optimization for discoverability',
-        'All digital formats — ePub, MOBI, PDF',
+        'All digital formats, ePub, MOBI, PDF',
         'Pricing strategy consultation included',
         'You keep 100% of your rights and royalties'
       ],
@@ -838,11 +838,11 @@ export const services = [
     faqs: [
       {
         question: 'Which platforms will my book be published on?',
-        answer: 'We publish on Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords, Draft2Digital — 47+ platforms worldwide — reaching readers in virtually every country in the world.'
+        answer: 'We publish on Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords, Draft2Digital, 47+ platforms worldwide, reaching readers in virtually every country in the world.'
       },
       {
         question: 'Do I need my own accounts on these platforms?',
-        answer: 'Yes — you publish under your own author accounts so all royalties go directly to you. We guide you through setting up any accounts you do not already have as part of our service.'
+        answer: 'Yes, you publish under your own author accounts so all royalties go directly to you. We guide you through setting up any accounts you do not already have as part of our service.'
       },
       {
         question: 'How long does publishing take?',
@@ -859,7 +859,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'GhostWriterHunt published my book on 47+ platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything — and my book was live globally before I had even fully processed that it was real.',
+      quote: 'GhostWriterHunt published my book on 47+ platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything, and my book was live globally before I had even fully processed that it was real.',
       author: 'Thomas Williams',
       book: 'A Life Remembered',
       image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=96&h=96&fit=crop&crop=face'
@@ -880,7 +880,7 @@ export const services = [
     title: 'Author Branding',
     tagline: 'Build your presence as',
     taglineItalic: 'a published author.',
-    heroSubtext: 'Your book is published — now the world needs to know who you are. We craft your author brand from bio to website copy, social presence to media kit — everything you need to establish yourself as an authority in your field.',
+    heroSubtext: 'Your book is published, now the world needs to know who you are. We craft your author brand from bio to website copy, social presence to media kit, everything you need to establish yourself as an authority in your field.',
 
     heroImages: [
       {
@@ -903,9 +903,9 @@ export const services = [
     overview: {
       headline: 'Every published author needs',
       headlineItalic: 'a powerful presence.',
-      body: 'Being a published author is just the beginning. To build a readership, attract media attention and sell books consistently, you need a strong and cohesive author brand. We craft every element of your public author identity — from the words in your bio to the voice of your social media — ensuring you present yourself with the authority and authenticity your work deserves.',
+      body: 'Being a published author is just the beginning. To build a readership, attract media attention and sell books consistently, you need a strong and cohesive author brand. We craft every element of your public author identity, from the words in your bio to the voice of your social media, ensuring you present yourself with the authority and authenticity your work deserves.',
       bullets: [
-        'Professional author biography — short and long form',
+        'Professional author biography, short and long form',
         'Amazon Author Central profile setup and optimization',
         'Social media bio and profile optimization',
         'Author website content and copy',
@@ -930,7 +930,7 @@ export const services = [
       {
         icon: 'user',
         title: 'Authentic Voice',
-        description: 'Your author brand should sound like the best version of you — authoritative, warm and genuine. We capture that perfectly.'
+        description: 'Your author brand should sound like the best version of you, authoritative, warm and genuine. We capture that perfectly.'
       },
       {
         icon: 'star',
@@ -940,7 +940,7 @@ export const services = [
       {
         icon: 'trending-up',
         title: 'Readership Building',
-        description: 'Every element we create is designed to attract and retain readers — turning casual visitors into devoted fans of your work.'
+        description: 'Every element we create is designed to attract and retain readers, turning casual visitors into devoted fans of your work.'
       }
     ],
 
@@ -954,7 +954,7 @@ export const services = [
       {
         number: '02',
         title: 'Voice Development',
-        description: 'We develop your unique author voice — the tone and style that will define all your public communication.',
+        description: 'We develop your unique author voice, the tone and style that will define all your public communication.',
         image: '/images/author-branding-process-2.webp'
       },
       {
@@ -966,7 +966,7 @@ export const services = [
       {
         number: '04',
         title: 'Platform Setup',
-        description: 'Your brand is applied consistently across all platforms — Amazon, Goodreads, social media and more.',
+        description: 'Your brand is applied consistently across all platforms. Amazon, Goodreads, social media and more.',
         image: '/images/author-branding-process-4.webp'
       },
       {
@@ -982,7 +982,7 @@ export const services = [
     faqs: [
       {
         question: 'What is included in an author bio?',
-        answer: 'We create multiple lengths of your author biography — a short 50-word version for social media, a medium 100-word version for Amazon and a long 250-word version for your website and press materials.'
+        answer: 'We create multiple lengths of your author biography, a short 50-word version for social media, a medium 100-word version for Amazon and a long 250-word version for your website and press materials.'
       },
       {
         question: 'Do you set up my Amazon Author Central page?',
@@ -1003,7 +1003,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'Before GhostWriterHunt created my author brand I felt invisible online. Now I have a professional presence that genuinely reflects who I am as a writer. My Amazon page looks like I belong there — because the brand they created makes me look like the author I actually am.',
+      quote: 'Before GhostWriterHunt created my author brand I felt invisible online. Now I have a professional presence that genuinely reflects who I am as a writer. My Amazon page looks like I belong there, because the brand they created makes me look like the author I actually am.',
       author: 'David Harrison',
       book: 'The Entrepreneur\'s Edge',
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=96&h=96&fit=crop&crop=face'
@@ -1024,7 +1024,7 @@ export const services = [
     title: 'Book Marketing',
     tagline: 'Get your book in front of',
     taglineItalic: 'the right readers.',
-    heroSubtext: 'Publishing your book is just the beginning. Our book marketing specialists create and execute targeted strategies that drive real visibility, real reviews and real sales — across Amazon, social media and beyond.',
+    heroSubtext: 'Publishing your book is just the beginning. Our book marketing specialists create and execute targeted strategies that drive real visibility, real reviews and real sales, across Amazon, social media and beyond.',
 
     heroImages: [
       {
@@ -1047,7 +1047,7 @@ export const services = [
     overview: {
       headline: 'Great books deserve',
       headlineItalic: 'great audiences.',
-      body: 'The most beautifully written book in the world will not sell itself. Readers need to discover it — through search, social media, reviews and word of mouth. Our marketing team designs and executes campaigns that put your book in front of the exact readers who are looking for exactly what you have written. From Amazon optimization to social media campaigns and review generation, we build the visibility your book deserves.',
+      body: 'The most beautifully written book in the world will not sell itself. Readers need to discover it, through search, social media, reviews and word of mouth. Our marketing team designs and executes campaigns that put your book in front of the exact readers who are looking for exactly what you have written. From Amazon optimization to social media campaigns and review generation, we build the visibility your book deserves.',
       bullets: [
         'Amazon KDP listing optimization',
         'Social media promotion campaigns',
@@ -1079,7 +1079,7 @@ export const services = [
       {
         icon: 'bar-chart',
         title: 'Data Driven',
-        description: 'Every campaign decision is informed by data — from Amazon keyword research to social media performance analytics.'
+        description: 'Every campaign decision is informed by data, from Amazon keyword research to social media performance analytics.'
       },
       {
         icon: 'award',
@@ -1130,19 +1130,19 @@ export const services = [
       },
       {
         question: 'Do you run Amazon advertising for my book?',
-        answer: 'Yes — Amazon PPC advertising management is available as part of your book marketing package. We research keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
+        answer: 'Yes, Amazon PPC advertising management is available as part of your book marketing package. We research keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
       },
       {
         question: 'Can you help with a book launch?',
-        answer: 'Absolutely. Book launches are one of our specialties. We create a pre-launch, launch day and post-launch strategy that builds anticipation, drives reviews and maximizes your first-week sales — which are critical for Amazon rankings.'
+        answer: 'Absolutely. Book launches are one of our specialties. We create a pre-launch, launch day and post-launch strategy that builds anticipation, drives reviews and maximizes your first-week sales, which are critical for Amazon rankings.'
       },
       {
         question: 'How do you generate reviews ethically?',
-        answer: 'We use a proven process of reaching out to relevant readers, bloggers and book clubs within your genre who are genuinely interested in reviewing books like yours. All reviews are genuine and voluntary — never purchased or incentivized in violation of platform policies.'
+        answer: 'We use a proven process of reaching out to relevant readers, bloggers and book clubs within your genre who are genuinely interested in reviewing books like yours. All reviews are genuine and voluntary, never purchased or incentivized in violation of platform policies.'
       },
       {
         question: 'Do I need marketing if my book is already published?',
-        answer: 'Yes — it is never too late to market a book. Many authors see significant sales increases from marketing campaigns launched months or even years after publication, particularly with Amazon optimization and a fresh social media strategy.'
+        answer: 'Yes, it is never too late to market a book. Many authors see significant sales increases from marketing campaigns launched months or even years after publication, particularly with Amazon optimization and a fresh social media strategy.'
       }
     ],
 
@@ -1168,7 +1168,7 @@ export const services = [
     title: 'eBook Writing',
     tagline: 'Expert eBooks written',
     taglineItalic: 'in your voice.',
-    heroSubtext: 'Whether you need a lead magnet, a thought leadership piece or a full-length digital book — our professional eBook writers deliver compelling, well-researched content that establishes your authority and engages your readers from first page to last.',
+    heroSubtext: 'Whether you need a lead magnet, a thought leadership piece or a full-length digital book, our professional eBook writers deliver compelling, well-researched content that establishes your authority and engages your readers from first page to last.',
 
     heroImages: [
       {
@@ -1218,17 +1218,17 @@ export const services = [
       {
         icon: 'book-open',
         title: 'Deep Research',
-        description: 'Every eBook we write is grounded in thorough research — ensuring your content is accurate, current and genuinely valuable to your readers.'
+        description: 'Every eBook we write is grounded in thorough research, ensuring your content is accurate, current and genuinely valuable to your readers.'
       },
       {
         icon: 'mic',
         title: 'Voice Capture',
-        description: 'Your eBook sounds like you — whether that means authoritative and professional, warm and conversational or bold and direct.'
+        description: 'Your eBook sounds like you, whether that means authoritative and professional, warm and conversational or bold and direct.'
       },
       {
         icon: 'zap',
         title: 'Reader Focused',
-        description: 'We write with your reader in mind at every turn — creating content that answers their questions, solves their problems and earns their trust.'
+        description: 'We write with your reader in mind at every turn, creating content that answers their questions, solves their problems and earns their trust.'
       }
     ],
 
@@ -1270,7 +1270,7 @@ export const services = [
     faqs: [
       {
         question: 'What topics can you write eBooks about?',
-        answer: 'Our writers cover virtually every non-fiction topic — business, finance, health and wellness, self-help, personal development, technology, marketing, leadership, cooking, parenting and more. If there is an audience for it, we can write it.'
+        answer: 'Our writers cover virtually every non-fiction topic, business, finance, health and wellness, self-help, personal development, technology, marketing, leadership, cooking, parenting and more. If there is an audience for it, we can write it.'
       },
       {
         question: 'How do I provide my ideas and knowledge to the writer?',
@@ -1278,20 +1278,20 @@ export const services = [
       },
       {
         question: 'Is the content original and plagiarism-free?',
-        answer: 'Yes — always. Every eBook we write is 100% original content created exclusively for you. We never use templated, recycled or AI-generated content. Your eBook is written from scratch by a human professional.'
+        answer: 'Yes, always. Every eBook we write is 100% original content created exclusively for you. We never use templated, recycled or AI-generated content. Your eBook is written from scratch by a human professional.'
       },
       {
         question: 'Will my eBook be formatted and ready to publish?',
-        answer: 'Yes. Every eBook we deliver includes formatting in all required digital formats — ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
+        answer: 'Yes. Every eBook we deliver includes formatting in all required digital formats, ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
       },
       {
         question: 'Can I use my eBook as a lead magnet or marketing tool?',
-        answer: 'Absolutely. eBooks make exceptionally powerful lead magnets and marketing tools. We can write with that specific purpose in mind — creating content that builds trust and encourages readers to take the next step with you.'
+        answer: 'Absolutely. eBooks make exceptionally powerful lead magnets and marketing tools. We can write with that specific purpose in mind, creating content that builds trust and encourages readers to take the next step with you.'
       }
     ],
 
     testimonial: {
-      quote: 'My eBook has become the most effective lead generation tool in my business. GhostWriterHunt captured exactly what I wanted to say — clearly, compellingly and in a voice that sounds exactly like me. Every week new clients tell me they decided to work with me after reading it.',
+      quote: 'My eBook has become the most effective lead generation tool in my business. GhostWriterHunt captured exactly what I wanted to say, clearly, compellingly and in a voice that sounds exactly like me. Every week new clients tell me they decided to work with me after reading it.',
       author: 'Dr. Marcus Chen',
       book: 'The Science of Success',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=face'
@@ -1312,7 +1312,7 @@ export const services = [
     title: "Children's Book Writing",
     tagline: 'Stories that spark',
     taglineItalic: "a child's imagination.",
-    heroSubtext: "Children's books are among the most powerful stories ever written. Our specialist children's book writers craft age-appropriate narratives with warmth, rhythm and magic — stories that young readers return to again and again.",
+    heroSubtext: "Children's books are among the most powerful stories ever written. Our specialist children's book writers craft age-appropriate narratives with warmth, rhythm and magic, stories that young readers return to again and again.",
 
     heroImages: [
       {
@@ -1335,7 +1335,7 @@ export const services = [
     overview: {
       headline: "Books that children treasure",
       headlineItalic: 'for a lifetime.',
-      body: "Writing for children is one of the most demanding and rewarding forms of the craft. Every word must earn its place — creating rhythm, wonder and emotional resonance in the fewest possible words. Our children's book specialists understand the unique requirements of each age group — from picture books for toddlers to chapter books for middle grade readers — and bring years of experience to every project.",
+      body: "Writing for children is one of the most demanding and rewarding forms of the craft. Every word must earn its place, creating rhythm, wonder and emotional resonance in the fewest possible words. Our children's book specialists understand the unique requirements of each age group, from picture books for toddlers to chapter books for middle grade readers, and bring years of experience to every project.",
       bullets: [
         'Picture books for ages 2 to 5',
         'Early reader books for ages 5 to 8',
@@ -1367,7 +1367,7 @@ export const services = [
       {
         icon: 'heart',
         title: 'Age Appropriate',
-        description: 'Every word, concept and sentence structure is calibrated for your target age group — creating content that resonates and delights.'
+        description: 'Every word, concept and sentence structure is calibrated for your target age group, creating content that resonates and delights.'
       },
       {
         icon: 'feather',
@@ -1419,19 +1419,19 @@ export const services = [
     faqs: [
       {
         question: 'What age groups do you write for?',
-        answer: 'We write for all children\'s age groups — board books and picture books for ages 2 to 5, early readers for ages 5 to 8, chapter books for ages 7 to 10 and middle grade fiction and non-fiction for ages 8 to 12.'
+        answer: 'We write for all children\'s age groups, board books and picture books for ages 2 to 5, early readers for ages 5 to 8, chapter books for ages 7 to 10 and middle grade fiction and non-fiction for ages 8 to 12.'
       },
       {
         question: 'Can you write a rhyming picture book?',
-        answer: 'Yes — rhyming picture books are one of our specialties. Our writers understand the strict metrical requirements of children\'s rhyme and create verse that flows naturally when read aloud.'
+        answer: 'Yes, rhyming picture books are one of our specialties. Our writers understand the strict metrical requirements of children\'s rhyme and create verse that flows naturally when read aloud.'
       },
       {
         question: 'Do you also provide illustration services?',
-        answer: 'Yes. We offer illustration services separately or as a combined package with the writing. Our illustrators specialize in children\'s book artwork across all styles — from watercolor and gouache to digital and mixed media.'
+        answer: 'Yes. We offer illustration services separately or as a combined package with the writing. Our illustrators specialize in children\'s book artwork across all styles, from watercolor and gouache to digital and mixed media.'
       },
       {
         question: 'Can I base the story on my own child or family?',
-        answer: 'Absolutely — personalized children\'s books are among our most popular projects. Many of our clients want to capture a family story, honor a child\'s personality or create a keepsake that will be treasured for generations.'
+        answer: 'Absolutely, personalized children\'s books are among our most popular projects. Many of our clients want to capture a family story, honor a child\'s personality or create a keepsake that will be treasured for generations.'
       },
       {
         question: 'How do you make sure the story is age appropriate?',
@@ -1440,7 +1440,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'The children\'s book GhostWriterHunt wrote for my daughter is the most precious thing we own. She asks for it every single night and knows every word by heart. The writer captured her spirit so perfectly that she genuinely believes it was written just for her — because it was.',
+      quote: 'The children\'s book GhostWriterHunt wrote for my daughter is the most precious thing we own. She asks for it every single night and knows every word by heart. The writer captured her spirit so perfectly that she genuinely believes it was written just for her, because it was.',
       author: 'Linda Chen',
       book: 'The Little Star',
       image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&h=96&fit=crop&crop=face'
@@ -1461,7 +1461,7 @@ export const services = [
     title: 'Article Writing',
     tagline: 'Articles that inform,',
     taglineItalic: 'engage and convert.',
-    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles — our professional article writers produce content that establishes your authority, drives organic traffic and keeps readers coming back for more.',
+    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles, our professional article writers produce content that establishes your authority, drives organic traffic and keeps readers coming back for more.',
 
     heroImages: [
       {
@@ -1484,7 +1484,7 @@ export const services = [
     overview: {
       headline: 'Content that builds authority',
       headlineItalic: 'and drives results.',
-      body: 'In a world saturated with content, only the best rises to the top. Our professional article writers combine deep research, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. You share your topic, goals and key points through a simple written brief — your dedicated project manager coordinates everything from there while a handpicked writer, matched to your industry, brings it to life. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces, every article is delivered ready to publish under your name.',
+      body: 'In a world saturated with content, only the best rises to the top. Our professional article writers combine deep research, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. You share your topic, goals and key points through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer, matched to your industry, brings it to life. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces, every article is delivered ready to publish under your name.',
       bullets: [
         'SEO-optimized articles for your website and blog',
         'Thought leadership pieces for major publications',
@@ -1511,17 +1511,17 @@ export const services = [
       {
         icon: 'search',
         title: 'SEO Integration',
-        description: 'Every article is researched and written with search engine visibility in mind — naturally incorporating target keywords without compromising quality.'
+        description: 'Every article is researched and written with search engine visibility in mind, naturally incorporating target keywords without compromising quality.'
       },
       {
         icon: 'feather',
         title: 'Expert Research',
-        description: 'Our writers go deep into every topic — reading primary sources, industry reports and expert opinions to produce content that genuinely informs.'
+        description: 'Our writers go deep into every topic, reading primary sources, industry reports and expert opinions to produce content that genuinely informs.'
       },
       {
         icon: 'trending-up',
         title: 'Conversion Focused',
-        description: 'Great articles do not just inform — they guide readers toward action. We write with your conversion goals in mind at every stage.'
+        description: 'Great articles do not just inform, they guide readers toward action. We write with your conversion goals in mind at every stage.'
       }
     ],
 
@@ -1571,7 +1571,7 @@ export const services = [
       },
       {
         question: 'Can you write articles under my name as a ghostwriter?',
-        answer: 'Absolutely. All our article writing is fully ghostwritten — you receive the complete article to publish under your name. We sign full NDAs and our involvement is completely confidential.'
+        answer: 'Absolutely. All our article writing is fully ghostwritten, you receive the complete article to publish under your name. We sign full NDAs and our involvement is completely confidential.'
       },
       {
         question: 'Can I order articles on a regular basis?',
@@ -1579,12 +1579,12 @@ export const services = [
       },
       {
         question: 'Do you write articles for specific publications?',
-        answer: 'Yes. If you have a specific publication in mind — Forbes, Medium, LinkedIn or an industry journal — we research that publication\'s style, tone and submission guidelines and write to their specific requirements.'
+        answer: 'Yes. If you have a specific publication in mind. Forbes, Medium, LinkedIn or an industry journal, we research that publication\'s style, tone and submission guidelines and write to their specific requirements.'
       }
     ],
 
     testimonial: {
-      quote: 'GhostWriterHunt writes all my LinkedIn articles and my website blog. The quality is extraordinary — every piece sounds exactly like me and my engagement has tripled since we started working together. I could not write this well myself even if I had the time.',
+      quote: 'GhostWriterHunt writes all my LinkedIn articles and my website blog. The quality is extraordinary, every piece sounds exactly like me and my engagement has tripled since we started working together. I could not write this well myself even if I had the time.',
       author: 'Dr. Amanda Clarke',
       book: 'Leading With Purpose',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face'
@@ -1592,7 +1592,7 @@ export const services = [
 
     ctaHeadline: 'Build your authority',
     ctaHeadlineItalic: 'one article at a time.',
-    ctaSubtext: 'Book a free consultation and let us create content that establishes you as the trusted expert in your field — professionally researched, expertly written and ready to publish under your name.',
+    ctaSubtext: 'Book a free consultation and let us create content that establishes you as the trusted expert in your field, professionally researched, expertly written and ready to publish under your name.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -1628,7 +1628,7 @@ export const services = [
     overview: {
       headline: 'Your blog, written with',
       headlineItalic: 'consistency and craft.',
-      body: 'The hardest part of blogging is not writing one great post — it is writing fifty great posts while running a business or pursuing a career. Our blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief — your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently — so your audience always has something valuable to read and your search rankings keep climbing.',
+      body: 'The hardest part of blogging is not writing one great post, it is writing fifty great posts while running a business or pursuing a career. Our blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently, so your audience always has something valuable to read and your search rankings keep climbing.',
       bullets: [
         'Flexible post lengths tailored to your content goals',
         'SEO-optimized for organic traffic growth',
@@ -1655,17 +1655,17 @@ export const services = [
       {
         icon: 'calendar',
         title: 'Consistent Schedule',
-        description: 'We maintain your publishing schedule without fail — delivering posts on time, every time, so your audience never waits.'
+        description: 'We maintain your publishing schedule without fail, delivering posts on time, every time, so your audience never waits.'
       },
       {
         icon: 'search',
         title: 'SEO Strategy',
-        description: 'Every post is optimized for search — targeting keywords your ideal readers actually use to find content like yours.'
+        description: 'Every post is optimized for search, targeting keywords your ideal readers actually use to find content like yours.'
       },
       {
         icon: 'users',
         title: 'Audience First',
-        description: 'We write for your specific audience — understanding their questions, concerns and desires and addressing them directly in every post.'
+        description: 'We write for your specific audience, understanding their questions, concerns and desires and addressing them directly in every post.'
       }
     ],
 
@@ -1691,7 +1691,7 @@ export const services = [
       {
         number: '04',
         title: 'Review',
-        description: 'You review each post before publication — providing feedback for any refinements.',
+        description: 'You review each post before publication, providing feedback for any refinements.',
         image: '/images/blog-writing-process-4.webp'
       },
       {
@@ -1707,19 +1707,19 @@ export const services = [
     faqs: [
       {
         question: 'How do you match the writer to my blog\'s voice?',
-        answer: 'We begin every blog writing engagement with a detailed voice and style study — reading your existing posts, reviewing the preferences and material you submit, and creating a style guide that governs every post we write for you.'
+        answer: 'We begin every blog writing engagement with a detailed voice and style study, reading your existing posts, reviewing the preferences and material you submit, and creating a style guide that governs every post we write for you.'
       },
       {
         question: 'Can I review posts before they are published?',
-        answer: 'Yes — always. You receive every post for review before it goes live and approve it before publication — revisions are included with our Professional and Complete Publishing packages. Publication only happens with your explicit approval.'
+        answer: 'Yes, always. You receive every post for review before it goes live and approve it before publication, revisions are included with our Professional and Complete Publishing packages. Publication only happens with your explicit approval.'
       },
       {
         question: 'Do you handle the content calendar and topic planning?',
-        answer: 'Yes. Content calendar management is available as part of your blog writing package — researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
+        answer: 'Yes. Content calendar management is available as part of your blog writing package, researching and proposing topics monthly based on your goals, your audience\'s interests and current search opportunities in your niche.'
       },
       {
         question: 'Will my blog posts be SEO optimized?',
-        answer: 'Yes. All our blog posts are written with SEO best practices — natural keyword integration, optimized headings, meta descriptions and internal linking recommendations. We write to rank without sacrificing readability or quality.'
+        answer: 'Yes. All our blog posts are written with SEO best practices, natural keyword integration, optimized headings, meta descriptions and internal linking recommendations. We write to rank without sacrificing readability or quality.'
       },
       {
         question: 'Can you write technical or specialist blog content?',
@@ -1728,7 +1728,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'My blog has transformed my business. GhostWriterHunt writes four posts a month in my voice and my organic traffic has grown by 340% in eight months. Clients regularly tell me they discovered me through my blog — and that never happened before we started working together.',
+      quote: 'My blog has transformed my business. GhostWriterHunt writes four posts a month in my voice and my organic traffic has grown by 340% in eight months. Clients regularly tell me they discovered me through my blog, and that never happened before we started working together.',
       author: 'James Whitmore',
       book: 'Shadows at Midnight',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face'
@@ -1736,7 +1736,7 @@ export const services = [
 
     ctaHeadline: 'Start the blog that',
     ctaHeadlineItalic: 'builds your readership.',
-    ctaSubtext: 'Book a free consultation and let us build the consistent, compelling blog that turns readers into loyal followers — professionally researched, expertly written and delivered ready to publish.',
+    ctaSubtext: 'Book a free consultation and let us build the consistent, compelling blog that turns readers into loyal followers, professionally researched, expertly written and delivered ready to publish.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -1749,7 +1749,7 @@ export const services = [
     title: 'Proofreading',
     tagline: 'Error free manuscripts,',
     taglineItalic: 'every single time.',
-    heroSubtext: 'The final read before publication is the most critical. Our professional proofreaders catch every error that slipped through — from typos and grammatical mistakes to inconsistencies that would undermine your credibility with readers.',
+    heroSubtext: 'The final read before publication is the most critical. Our professional proofreaders catch every error that slipped through, from typos and grammatical mistakes to inconsistencies that would undermine your credibility with readers.',
 
     heroImages: [
       {
@@ -1772,7 +1772,7 @@ export const services = [
     overview: {
       headline: 'No error reaches your',
       headlineItalic: 'readers on our watch.',
-      body: 'Even the most experienced writers miss errors in their own work — it is simply how the human brain operates when reading familiar text. Our proofreaders bring fresh, expert eyes to your manuscript, catching every typo, grammatical error, punctuation mistake and inconsistency before your book goes to print or publication. The result is a manuscript that reads with the polish and professionalism of a major publishing house.',
+      body: 'Even the most experienced writers miss errors in their own work, it is simply how the human brain operates when reading familiar text. Our proofreaders bring fresh, expert eyes to your manuscript, catching every typo, grammatical error, punctuation mistake and inconsistency before your book goes to print or publication. The result is a manuscript that reads with the polish and professionalism of a major publishing house.',
       bullets: [
         'Spelling, grammar and punctuation correction',
         'Consistency checks throughout the manuscript',
@@ -1799,7 +1799,7 @@ export const services = [
       {
         icon: 'eye',
         title: 'Fresh Eyes',
-        description: 'Our proofreaders come to your manuscript completely fresh — seeing errors that familiarity has made invisible to you.'
+        description: 'Our proofreaders come to your manuscript completely fresh, seeing errors that familiarity has made invisible to you.'
       },
       {
         icon: 'check-circle',
@@ -1851,11 +1851,11 @@ export const services = [
     faqs: [
       {
         question: 'What is the difference between proofreading and editing?',
-        answer: 'Proofreading is the final quality check for surface errors — spelling, grammar, punctuation and consistency. Editing goes deeper — addressing structure, clarity, style and voice. Proofreading always comes after editing, as the last step before publication.'
+        answer: 'Proofreading is the final quality check for surface errors, spelling, grammar, punctuation and consistency. Editing goes deeper, addressing structure, clarity, style and voice. Proofreading always comes after editing, as the last step before publication.'
       },
       {
         question: 'Will you change my writing style?',
-        answer: 'No. Proofreading corrects errors — it does not change your writing style. We correct mistakes while preserving your voice exactly as you have written it.'
+        answer: 'No. Proofreading corrects errors, it does not change your writing style. We correct mistakes while preserving your voice exactly as you have written it.'
       },
       {
         question: 'How fast can you proofread my manuscript?',
@@ -1867,12 +1867,12 @@ export const services = [
       },
       {
         question: 'Will I be able to see what was changed?',
-        answer: 'Yes — always. We deliver your manuscript with all corrections tracked using Microsoft Word track changes or Google Docs suggesting mode. You can review every correction individually before accepting them.'
+        answer: 'Yes, always. We deliver your manuscript with all corrections tracked using Microsoft Word track changes or Google Docs suggesting mode. You can review every correction individually before accepting them.'
       }
     ],
 
     testimonial: {
-      quote: 'I thought I had proofread my manuscript thoroughly. GhostWriterHunt found 340 errors I had completely missed. The corrections were delivered quickly, clearly and professionally. My book launched without a single reader complaint about errors — and that confidence is priceless.',
+      quote: 'I thought I had proofread my manuscript thoroughly. GhostWriterHunt found 340 errors I had completely missed. The corrections were delivered quickly, clearly and professionally. My book launched without a single reader complaint about errors, and that confidence is priceless.',
       author: 'Robert Callahan',
       book: 'My Father\'s Legacy',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=face'
@@ -1893,7 +1893,7 @@ export const services = [
     title: 'Book Formatting',
     tagline: 'Formatted for every platform,',
     taglineItalic: 'perfectly.',
-    heroSubtext: 'Every publishing platform has specific technical requirements for file formatting. Our specialists ensure your manuscript meets every standard — delivering clean, professional files ready to upload on any platform worldwide.',
+    heroSubtext: 'Every publishing platform has specific technical requirements for file formatting. Our specialists ensure your manuscript meets every standard, delivering clean, professional files ready to upload on any platform worldwide.',
 
     heroImages: [
       {
@@ -1916,7 +1916,7 @@ export const services = [
     overview: {
       headline: 'Technical precision meets',
       headlineItalic: 'beautiful presentation.',
-      body: 'Formatting errors can get your book rejected by publishing platforms, create a poor reading experience and undermine your professional reputation. Our formatting specialists have deep technical knowledge of every major platform\'s requirements — from Amazon KDP to Apple Books — and deliver files that pass every quality check first time, every time.',
+      body: 'Formatting errors can get your book rejected by publishing platforms, create a poor reading experience and undermine your professional reputation. Our formatting specialists have deep technical knowledge of every major platform\'s requirements, from Amazon KDP to Apple Books, and deliver files that pass every quality check first time, every time.',
       bullets: [
         'Amazon KDP print and digital formatting',
         'ePub 3.0 and MOBI file creation',
@@ -1943,7 +1943,7 @@ export const services = [
       {
         icon: 'settings',
         title: 'Platform Expertise',
-        description: 'We know the exact technical requirements of every major publishing platform — and stay current as requirements change.'
+        description: 'We know the exact technical requirements of every major publishing platform, and stay current as requirements change.'
       },
       {
         icon: 'smartphone',
@@ -1953,7 +1953,7 @@ export const services = [
       {
         icon: 'check-square',
         title: 'First Time Approval',
-        description: 'Our formatting consistently passes platform quality checks first time — saving you the frustration of repeated rejections and delays.'
+        description: 'Our formatting consistently passes platform quality checks first time, saving you the frustration of repeated rejections and delays.'
       }
     ],
 
@@ -1973,7 +1973,7 @@ export const services = [
       {
         number: '03',
         title: 'Format and Convert',
-        description: 'Files are formatted and converted for each required platform — print PDF, ePub and MOBI.',
+        description: 'Files are formatted and converted for each required platform, print PDF, ePub and MOBI.',
         image: '/images/book-formatting-process-3.webp'
       },
       {
@@ -1998,8 +1998,8 @@ export const services = [
         answer: 'Depending on your plan you receive a combination of print-ready PDF, ePub 3.0 and MOBI files. All files are tested and confirmed compatible with Amazon KDP, Apple Books, Kobo, IngramSpark and other major platforms.'
       },
       {
-        question: 'My book has images and tables — can you format that?',
-        answer: 'Yes. Books with complex elements — images, tables, charts, diagrams and sidebars — require specialist formatting knowledge. Our team has extensive experience with all types of complex content across both print and digital formats.'
+        question: 'My book has images and tables, can you format that?',
+        answer: 'Yes. Books with complex elements, images, tables, charts, diagrams and sidebars, require specialist formatting knowledge. Our team has extensive experience with all types of complex content across both print and digital formats.'
       },
       {
         question: 'Can you format a book I have already uploaded that was rejected?',
@@ -2060,7 +2060,7 @@ export const services = [
     overview: {
       headline: 'A trailer that sells your book',
       headlineItalic: 'in 60 seconds.',
-      body: 'The most powerful book promotion tool you can have is a great video trailer. In the age of social media and short-form video, a compelling 60-second trailer can reach thousands of potential readers in days. Our production team writes, designs and produces book trailers that capture the mood, tension and appeal of your story — compelling viewers to find your book immediately.',
+      body: 'The most powerful book promotion tool you can have is a great video trailer. In the age of social media and short-form video, a compelling 60-second trailer can reach thousands of potential readers in days. Our production team writes, designs and produces book trailers that capture the mood, tension and appeal of your story, compelling viewers to find your book immediately.',
       bullets: [
         'Professional script writing for your trailer',
         'Custom animation and motion design',
@@ -2087,7 +2087,7 @@ export const services = [
       {
         icon: 'film',
         title: 'Story-Led Production',
-        description: 'Every trailer begins with your story — we identify the emotional hook that will make viewers need to read your book immediately.'
+        description: 'Every trailer begins with your story, we identify the emotional hook that will make viewers need to read your book immediately.'
       },
       {
         icon: 'music',
@@ -2097,7 +2097,7 @@ export const services = [
       {
         icon: 'share-2',
         title: 'Platform Optimized',
-        description: 'Your trailer is delivered in multiple formats and aspect ratios — optimized for YouTube, Instagram Stories, TikTok and Amazon video.'
+        description: 'Your trailer is delivered in multiple formats and aspect ratios, optimized for YouTube, Instagram Stories, TikTok and Amazon video.'
       }
     ],
 
@@ -2139,19 +2139,19 @@ export const services = [
     faqs: [
       {
         question: 'What style of trailer do you produce?',
-        answer: 'We produce animated motion graphics trailers — using typography, imagery, color and movement to create a cinematic feel. We do not produce live-action filmed trailers, though we can incorporate author photos or stock footage where appropriate.'
+        answer: 'We produce animated motion graphics trailers, using typography, imagery, color and movement to create a cinematic feel. We do not produce live-action filmed trailers, though we can incorporate author photos or stock footage where appropriate.'
       },
       {
         question: 'Can I provide images to use in my trailer?',
-        answer: 'Yes — we encourage it. Your book cover, author photo and any approved imagery you own can be incorporated into your trailer. We also have access to licensed stock footage and image libraries.'
+        answer: 'Yes, we encourage it. Your book cover, author photo and any approved imagery you own can be incorporated into your trailer. We also have access to licensed stock footage and image libraries.'
       },
       {
         question: 'Where can I use my book trailer?',
-        answer: 'Your trailer can be used everywhere — YouTube, Instagram, Facebook, TikTok, your author website, Amazon Author Central, email newsletters and any other platform. We deliver in multiple formats sized for each platform.'
+        answer: 'Your trailer can be used everywhere. YouTube, Instagram, Facebook, TikTok, your author website, Amazon Author Central, email newsletters and any other platform. We deliver in multiple formats sized for each platform.'
       },
       {
         question: 'Is music included and do I own the rights?',
-        answer: 'Yes — licensed music is included in all plans. The music license covers your trailer for use across all major platforms. You own the complete trailer including all visual elements — only the music requires the continued license which we arrange and maintain.'
+        answer: 'Yes, licensed music is included in all plans. The music license covers your trailer for use across all major platforms. You own the complete trailer including all visual elements, only the music requires the continued license which we arrange and maintain.'
       },
       {
         question: 'How long will my trailer take to produce?',
@@ -2160,7 +2160,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'My book trailer from GhostWriterHunt has been watched over 12,000 times on YouTube and has driven more pre-orders than any other marketing I have done. It perfectly captures the mood of my thriller in 60 seconds. Every author needs one — I only wish I had done it sooner.',
+      quote: 'My book trailer from GhostWriterHunt has been watched over 12,000 times on YouTube and has driven more pre-orders than any other marketing I have done. It perfectly captures the mood of my thriller in 60 seconds. Every author needs one. I only wish I had done it sooner.',
       author: 'James Whitmore',
       book: 'Shadows at Midnight',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face'
@@ -2181,7 +2181,7 @@ export const services = [
     title: 'Audiobook Publishing',
     tagline: 'Your words, heard by',
     taglineItalic: 'the world.',
-    heroSubtext: 'The audiobook market is growing faster than any other format in publishing. Our audiobook production team handles everything — from professional narration and studio recording to distribution on Audible, Apple Podcasts and beyond.',
+    heroSubtext: 'The audiobook market is growing faster than any other format in publishing. Our audiobook production team handles everything, from professional narration and studio recording to distribution on Audible, Apple Podcasts and beyond.',
 
     heroImages: [
       {
@@ -2204,7 +2204,7 @@ export const services = [
     overview: {
       headline: 'Reach readers who prefer',
       headlineItalic: 'to listen.',
-      body: 'Millions of readers today consume books through their ears — commuting, exercising, cooking or simply relaxing. An audiobook version of your title opens your work to this vast and rapidly growing audience. Our audiobook production team manages every aspect of the process — from matching you with the perfect narrator voice to mastering the final audio and distributing across all major platforms.',
+      body: 'Millions of readers today consume books through their ears, commuting, exercising, cooking or simply relaxing. An audiobook version of your title opens your work to this vast and rapidly growing audience. Our audiobook production team manages every aspect of the process, from matching you with the perfect narrator voice to mastering the final audio and distributing across all major platforms.',
       bullets: [
         'Professional narrator selection for your genre',
         'Studio-quality recording and production',
@@ -2236,7 +2236,7 @@ export const services = [
       {
         icon: 'volume-2',
         title: 'Studio Quality',
-        description: 'All recording and production meets ACX and Audible\'s strict quality standards — ensuring your audiobook passes review first time.'
+        description: 'All recording and production meets ACX and Audible\'s strict quality standards, ensuring your audiobook passes review first time.'
       },
       {
         icon: 'headphones',
@@ -2249,7 +2249,7 @@ export const services = [
       {
         number: '01',
         title: 'Narrator Selection',
-        description: 'We present narrator audition samples for your approval — selecting the perfect voice for your book.',
+        description: 'We present narrator audition samples for your approval, selecting the perfect voice for your book.',
         image: '/images/audiobook-publishing-process-1.webp'
       },
       {
@@ -2283,7 +2283,7 @@ export const services = [
     faqs: [
       {
         question: 'Can I narrate my own audiobook?',
-        answer: 'Yes — if you want to narrate your own book, we provide recording guidance, a professional studio session and full post-production editing and mastering. Many authors find narrating their own work creates a powerful personal connection with listeners.'
+        answer: 'Yes, if you want to narrate your own book, we provide recording guidance, a professional studio session and full post-production editing and mastering. Many authors find narrating their own work creates a powerful personal connection with listeners.'
       },
       {
         question: 'How do I choose a narrator?',
@@ -2299,12 +2299,12 @@ export const services = [
       },
       {
         question: 'Do I keep my audiobook rights?',
-        answer: 'Yes — 100%. We produce your audiobook as a work for hire. You retain complete ownership of the finished audiobook, all distribution rights and 100% of your royalties on every platform.'
+        answer: 'Yes, 100%. We produce your audiobook as a work for hire. You retain complete ownership of the finished audiobook, all distribution rights and 100% of your royalties on every platform.'
       }
     ],
 
     testimonial: {
-      quote: 'My audiobook has opened my work to an entirely new audience. The narrator GhostWriterHunt selected was perfect — her voice brought my memoir to life in a way I never imagined. Listeners have told me the audio version moved them even more deeply than reading it. I could not be more proud.',
+      quote: 'My audiobook has opened my work to an entirely new audience. The narrator GhostWriterHunt selected was perfect, her voice brought my memoir to life in a way I never imagined. Listeners have told me the audio version moved them even more deeply than reading it. I could not be more proud.',
       author: 'Margaret Thompson',
       book: 'Finding My Way Home',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face'
@@ -2325,7 +2325,7 @@ export const services = [
     title: 'Author Website Design',
     tagline: 'Your home on the web,',
     taglineItalic: 'beautifully crafted.',
-    heroSubtext: 'Every serious author needs a professional website — the one place online that is entirely yours. We design and build beautiful, fast author websites that showcase your books, build your readership and establish your authority.',
+    heroSubtext: 'Every serious author needs a professional website, the one place online that is entirely yours. We design and build beautiful, fast author websites that showcase your books, build your readership and establish your authority.',
 
     heroImages: [
       {
@@ -2348,9 +2348,9 @@ export const services = [
     overview: {
       headline: 'A website that makes readers',
       headlineItalic: 'want to stay.',
-      body: 'Your author website is your most important marketing asset — the hub that connects everything else you do online. It is where readers discover you, where media goes to learn about you and where fans go to feel connected to your work. We design author websites that are as compelling as the books they showcase — beautiful, fast, easy to navigate and optimized for search engines.',
+      body: 'Your author website is your most important marketing asset, the hub that connects everything else you do online. It is where readers discover you, where media goes to learn about you and where fans go to feel connected to your work. We design author websites that are as compelling as the books they showcase, beautiful, fast, easy to navigate and optimized for search engines.',
       bullets: [
-        'Custom design — built specifically for authors',
+        'Custom design, built specifically for authors',
         'Mobile-responsive and fast loading',
         'SEO optimized from the ground up',
         'Book showcase with buy links',
@@ -2375,12 +2375,12 @@ export const services = [
       {
         icon: 'layout',
         title: 'Author Focused Design',
-        description: 'We design specifically for authors — not generic business websites. Every element serves your books, your readers and your brand.'
+        description: 'We design specifically for authors, not generic business websites. Every element serves your books, your readers and your brand.'
       },
       {
         icon: 'search',
         title: 'SEO Built In',
-        description: 'Your website is optimized for search from day one — helping readers find you when they search for your name, your books or your genre.'
+        description: 'Your website is optimized for search from day one, helping readers find you when they search for your name, your books or your genre.'
       },
       {
         icon: 'smartphone',
@@ -2405,7 +2405,7 @@ export const services = [
       {
         number: '03',
         title: 'Development',
-        description: 'Your website is built to pixel-perfect specification — fast, secure and SEO optimized.',
+        description: 'Your website is built to pixel-perfect specification, fast, secure and SEO optimized.',
         image: '/images/author-website-process-3.webp'
       },
       {
@@ -2435,11 +2435,11 @@ export const services = [
       },
       {
         question: 'Will my website appear in Google search results?',
-        answer: 'Yes. All our websites are built with SEO best practices — optimized headings, fast loading, mobile responsive and properly structured for search engines. We also submit your sitemap to Google and Bing as part of our launch process.'
+        answer: 'Yes. All our websites are built with SEO best practices, optimized headings, fast loading, mobile responsive and properly structured for search engines. We also submit your sitemap to Google and Bing as part of our launch process.'
       },
       {
         question: 'Can you include a shop where I sell books directly?',
-        answer: 'Yes. A direct sales shop can be integrated with your website — allowing readers to purchase signed copies or digital editions directly from you, keeping more of the royalty than through Amazon.'
+        answer: 'Yes. A direct sales shop can be integrated with your website, allowing readers to purchase signed copies or digital editions directly from you, keeping more of the royalty than through Amazon.'
       },
       {
         question: 'What happens after my website is launched?',
@@ -2469,7 +2469,7 @@ export const services = [
     title: 'Website Content Writing',
     tagline: 'Words that make visitors',
     taglineItalic: 'become readers.',
-    heroSubtext: 'Your website is only as powerful as the words on it. Our website content writers craft copy that communicates your value, connects with your audience and compels visitors to take action — whether that means buying your book, signing up to your list or getting in touch.',
+    heroSubtext: 'Your website is only as powerful as the words on it. Our website content writers craft copy that communicates your value, connects with your audience and compels visitors to take action, whether that means buying your book, signing up to your list or getting in touch.',
 
     heroImages: [
       {
@@ -2492,7 +2492,7 @@ export const services = [
     overview: {
       headline: 'Copy that connects, compels',
       headlineItalic: 'and converts.',
-      body: 'Most author websites fail not because of poor design — but because of weak copy. Visitors arrive and leave without taking action because nothing on the page speaks directly to them. Our website content writers specialize in author copy — understanding how readers think, what they need to feel before they buy and how to write every page with purpose and persuasion.',
+      body: 'Most author websites fail not because of poor design, but because of weak copy. Visitors arrive and leave without taking action because nothing on the page speaks directly to them. Our website content writers specialize in author copy, understanding how readers think, what they need to feel before they buy and how to write every page with purpose and persuasion.',
       bullets: [
         'Homepage copy that captures your author brand',
         'About page that creates genuine connection',
@@ -2519,17 +2519,17 @@ export const services = [
       {
         icon: 'user',
         title: 'Reader Psychology',
-        description: 'We understand how book buyers think and feel — and write every page to address their specific questions, concerns and desires.'
+        description: 'We understand how book buyers think and feel, and write every page to address their specific questions, concerns and desires.'
       },
       {
         icon: 'search',
         title: 'SEO Integrated',
-        description: 'Every page is written to rank — naturally incorporating search terms your ideal readers use to find authors like you.'
+        description: 'Every page is written to rank, naturally incorporating search terms your ideal readers use to find authors like you.'
       },
       {
         icon: 'arrow-right',
         title: 'Conversion Driven',
-        description: 'Beautiful copy that does not convert is wasted. Every word we write serves a clear goal — moving visitors toward action.'
+        description: 'Beautiful copy that does not convert is wasted. Every word we write serves a clear goal, moving visitors toward action.'
       }
     ],
 
@@ -2571,15 +2571,15 @@ export const services = [
     faqs: [
       {
         question: 'How do you write in my voice for my website?',
-        answer: 'We begin with a detailed voice discovery process — studying your existing writing and everything you submit about your style and preferences, and creating a voice guide that governs every word we write for your website.'
+        answer: 'We begin with a detailed voice discovery process, studying your existing writing and everything you submit about your style and preferences, and creating a voice guide that governs every word we write for your website.'
       },
       {
         question: 'Will the copy be SEO friendly?',
-        answer: 'Yes. All website copy is naturally optimized for search — incorporating relevant keywords, properly structured headings and meta descriptions for every page. We write for both search engines and human readers simultaneously.'
+        answer: 'Yes. All website copy is naturally optimized for search, incorporating relevant keywords, properly structured headings and meta descriptions for every page. We write for both search engines and human readers simultaneously.'
       },
       {
         question: 'Do you write copy for individual book pages?',
-        answer: 'Yes. Book page copy is one of our specialties — including compelling book descriptions, reader benefits, genre positioning and calls to action that drive visitors to purchase. Strong book page copy is one of the highest-ROI investments an author can make.'
+        answer: 'Yes. Book page copy is one of our specialties, including compelling book descriptions, reader benefits, genre positioning and calls to action that drive visitors to purchase. Strong book page copy is one of the highest-ROI investments an author can make.'
       },
       {
         question: 'Can you rewrite existing website copy that is not working?',
@@ -2587,12 +2587,12 @@ export const services = [
       },
       {
         question: 'Do I need to provide any information about my books?',
-        answer: 'Yes — the more you share the better. We will ask you to complete a detailed brief about each book, your target readers and your goals. The richer the information you provide, the more compelling and accurate the copy we produce.'
+        answer: 'Yes, the more you share the better. We will ask you to complete a detailed brief about each book, your target readers and your goals. The richer the information you provide, the more compelling and accurate the copy we produce.'
       }
     ],
 
     testimonial: {
-      quote: 'Before GhostWriterHunt rewrote my website copy, I was getting traffic but no one was buying. Within a month of launching the new copy my conversion rate tripled. The words finally matched the quality of my books — and readers responded immediately.',
+      quote: 'Before GhostWriterHunt rewrote my website copy, I was getting traffic but no one was buying. Within a month of launching the new copy my conversion rate tripled. The words finally matched the quality of my books, and readers responded immediately.',
       author: 'Charles Bennett',
       book: 'My Father\'s Legacy',
       image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=face'

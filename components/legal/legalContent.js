@@ -64,11 +64,11 @@ export const legalContent = {
 <h2>Text Message Communications</h2>
 <p>By providing your phone number and opting in to SMS communications, you agree to receive text messages from GhostWriterHunt related to:</p>
 <ol>
-  <li><strong>Project Updates</strong> — Notifications regarding your book project status, milestones and deliverables.</li>
-  <li><strong>Client Support</strong> — Assistance with your project and responses to your inquiries.</li>
-  <li><strong>Consultation Reminders</strong> — Reminders about scheduled calls and consultations.</li>
-  <li><strong>Account Alerts</strong> — Important alerts regarding your account or project.</li>
-  <li><strong>Service Updates</strong> — Information about new services and offerings from GhostWriterHunt.</li>
+  <li><strong>Project Updates</strong>: Notifications regarding your book project status, milestones and deliverables.</li>
+  <li><strong>Client Support</strong>: Assistance with your project and responses to your inquiries.</li>
+  <li><strong>Consultation Reminders</strong>: Reminders about scheduled calls and consultations.</li>
+  <li><strong>Account Alerts</strong>: Important alerts regarding your account or project.</li>
+  <li><strong>Service Updates</strong>: Information about new services and offerings from GhostWriterHunt.</li>
 </ol>
 <p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. Message and data rates may apply.</p>
 <hr />
@@ -254,18 +254,18 @@ ${CONTACT_SECTION}
 <h2 id="sms-consent">Text Message Consent Agreement</h2>
 <p>By providing your phone number and opting in to text message communications, you agree to receive SMS messages from GhostWriterHunt related to the following purposes:</p>
 <ol>
-  <li><strong>Project Updates</strong> — Notifications regarding the status of your book project, including milestone completions, draft deliveries and revision updates.</li>
-  <li><strong>Client Support</strong> — Assistance with your project, responses to your inquiries and resolution of any issues related to your ghostwriting or publishing services.</li>
-  <li><strong>Consultation Reminders</strong> — Reminders about upcoming consultation calls, project review meetings and scheduled check-ins with your assigned writer.</li>
-  <li><strong>Account Alerts</strong> — Important notifications regarding your account, payment confirmations, contract updates and project timeline changes.</li>
-  <li><strong>Service Communications</strong> — Information about new services, relevant updates and important announcements from GhostWriterHunt.</li>
+  <li><strong>Project Updates</strong>: Notifications regarding the status of your book project, including milestone completions, draft deliveries and revision updates.</li>
+  <li><strong>Client Support</strong>: Assistance with your project, responses to your inquiries and resolution of any issues related to your ghostwriting or publishing services.</li>
+  <li><strong>Consultation Reminders</strong>: Reminders about upcoming consultation calls, project review meetings and scheduled check-ins with your assigned writer.</li>
+  <li><strong>Account Alerts</strong>: Important notifications regarding your account, payment confirmations, contract updates and project timeline changes.</li>
+  <li><strong>Service Communications</strong>: Information about new services, relevant updates and important announcements from GhostWriterHunt.</li>
 </ol>
 <h3>How to Withdraw Your Consent</h3>
 <p>You have the right to withdraw your consent to receive text messages from GhostWriterHunt at any time using any of the following methods:</p>
 <ol>
-  <li><strong>Reply STOP</strong> — Reply to any text message you receive from us with the word "STOP." This will automatically unsubscribe you from further text communications.</li>
-  <li><strong>Contact Us</strong> — Email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> and request to be unsubscribed from text message communications.</li>
-  <li><strong>Update Preferences</strong> — Contact us directly to update your communication preferences and opt out of receiving text messages.</li>
+  <li><strong>Reply STOP</strong>: Reply to any text message you receive from us with the word "STOP." This will automatically unsubscribe you from further text communications.</li>
+  <li><strong>Contact Us</strong>: Email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> and request to be unsubscribed from text message communications.</li>
+  <li><strong>Update Preferences</strong>: Contact us directly to update your communication preferences and opt out of receiving text messages.</li>
 </ol>
 <p>Please note that even if you opt out of promotional text messages, you may still receive transactional messages directly related to your active book project.</p>
 <p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>

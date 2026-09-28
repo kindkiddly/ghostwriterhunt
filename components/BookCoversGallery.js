@@ -249,7 +249,7 @@ export default function BookCoversGallery() {
 
         <p className="gwh-bcg-sub mx-auto mb-12 max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
           A selection of books written, designed and published by our
-          professional team — across every genre and format.
+          professional team, across every genre and format.
         </p>
 
         {/* Genre filter tabs — Reedsy style */}

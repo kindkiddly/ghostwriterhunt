@@ -19,7 +19,7 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Professional Ghostwriting & Book Publishing Services | GhostWriterHunt",
   description:
-    "Turn your idea into a professionally published book. Our vetted ghostwriters, editors and publishing team handle everything — completely confidential, with 100% of the rights and royalties in your name.",
+    "Turn your idea into a professionally published book. Our vetted ghostwriters, editors and publishing team handle everything. Completely confidential, with 100% of the rights and royalties in your name.",
 };
 
 export default function Home() {

@@ -14,7 +14,7 @@ const STEPS = [
     number: "01",
     title: "Secure Voice Submission",
     description:
-      "We begin by studying everything you share — written notes, voice recordings or existing drafts — to learn how you think, speak and tell stories.",
+      "We begin by studying everything you share (written notes, voice recordings or existing drafts) to learn how you think, speak and tell stories.",
   },
   {
     number: "02",
@@ -185,12 +185,12 @@ export default function NarrativeBlock2() {
           </h2>
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-            Your book should sound like you — only better. Before writing a
+            Your book should sound like you, only better. Before writing a
             single word, our team studies your communication style, personality,
             and vision from everything you share with us. We capture the rhythm
             of how you speak, the words you naturally use, and the tone that is
-            uniquely yours — then your matched ghostwriter brings it to the
-            page. The result is a book that feels completely authentic — because
+            uniquely yours. Then your matched ghostwriter brings it to the
+            page. The result is a book that feels completely authentic, because
             it is.
           </p>
 
