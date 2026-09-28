@@ -14,36 +14,24 @@ const FALLBACK_COVER =
   "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=180&h=220&fit=crop";
 
 const COLUMN_1 = [
-  "/images/carousel-book-H5.webp",
-  "/images/carousel-book-H6.webp",
-  "/images/carousel-book-H8.webp",
-  "/images/carousel-book-H9.webp",
-  "/images/carousel-book-H13.webp",
-  "/images/carousel-book-H14.webp",
-  "/images/carousel-books-3.webp",
-  "/images/carousel-books-7.webp",
+  "/images/carousel-book-g-1.webp",
+  "/images/carousel-book-g-2.webp",
+  "/images/carousel-book-g-3.webp",
+  "/images/carousel-book-g-5.webp",
 ];
 
 const COLUMN_2 = [
-  "/images/carousel-books-9.webp",
-  "/images/carousel-books-11.webp",
-  "/images/carousel-books-14.webp",
-  "/images/carousel-Books-2.webp",
-  "/images/carousel-book-H2.webp",
-  "/images/carousel-books-6.webp",
-  "/images/carousel-books-fairy-lights.webp",
-  "/images/carousel-e-book-publishing.webp",
+  "/images/carousel-book-g-6.webp",
+  "/images/carousel-book-g-7.webp",
+  "/images/carousel-book-g-8.webp",
+  "/images/carousel-book-g-9.webp",
 ];
 
 const COLUMN_3 = [
-  "/images/carousel-books-flatlay.webp",
-  "/images/carousel-books-stack-pink.webp",
-  "/images/carousel-books-reading.webp",
-  "/images/carousel-book-H12.webp",
-  "/images/carousel-books-5.webp",
-  "/images/carousel-books-8.webp",
-  "/images/carousel-books-10.webp",
-  "/images/carousel-flipping-book.webp",
+  "/images/carousel-book-g-10.webp",
+  "/images/carousel-book-g-11.webp",
+  "/images/carousel-book-g-12.webp",
+  "/images/carousel-book-g-13.webp",
 ];
 
 function BookCover({

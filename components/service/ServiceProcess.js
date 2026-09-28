@@ -52,24 +52,19 @@ export default function ServiceProcess({ service }) {
    */
   const compactProcessPortraitSrc = isInteriorLayout
     ? "/images/HERO-M03.webp"
-    : isIllustrationGraphics
-      ? "/images/illustration-package-mobile.webp"
-      : isVideoBookTrailer
-        ? "/images/video-book-trailer-package-mobile.webp"
-        : isEbookPublishing
-          ? "/images/ebook-publishing-package-mobile.webp"
-          : isAudiobookPublishing
-            ? "/images/audiobook-publishing-package-mobile.webp"
-            : isAuthorWebsite
-              ? "/images/author-website-package-mobile.webp"
-              : null;
+    : isVideoBookTrailer
+      ? "/images/video-book-trailer-package-mobile.webp"
+      : isEbookPublishing
+        ? "/images/ebook-publishing-package-mobile.webp"
+        : isAudiobookPublishing
+          ? "/images/audiobook-publishing-package-mobile.webp"
+          : null;
   const usesIllustrationPackageMobile =
-    (isIllustrationGraphics ||
-      isVideoBookTrailer ||
+    (isVideoBookTrailer ||
       isEbookPublishing ||
-      isAudiobookPublishing ||
-      isAuthorWebsite) &&
+      isAudiobookPublishing) &&
     compactProcessPortraitSrc;
+  const usesSplitProcessMobile = isAuthorWebsite || isIllustrationGraphics;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
     : null;
@@ -356,13 +351,110 @@ export default function ServiceProcess({ service }) {
           .sp-illustration-package-mobile {
             display: none;
           }
-          .sp-section--illustration-graphics .sp-illustration-package-mobile,
           .sp-section--video-book-trailer .sp-illustration-package-mobile,
           .sp-section--ebook-publishing .sp-illustration-package-mobile,
-          .sp-section--audiobook-publishing .sp-illustration-package-mobile,
-          .sp-section--author-website .sp-illustration-package-mobile {
+          .sp-section--audiobook-publishing .sp-illustration-package-mobile {
             display: block;
             width: 100%;
+          }
+
+          /* Author website + illustration — mobile: image then copy per step (no overlays) */
+          .sp-author-website-mobile-bundle {
+            display: none;
+          }
+          .sp-section--author-website .sp-author-website-mobile-bundle,
+          .sp-section--illustration-graphics .sp-author-website-mobile-bundle {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 32px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+          }
+          .sp-author-website-mobile-step {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 14px;
+            margin: 0;
+            padding: 0 0 28px;
+            border-bottom: 1px solid rgba(232, 213, 163, 0.45);
+          }
+          .sp-author-website-mobile-step:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+          }
+          .sp-author-website-mobile-step-media {
+            width: 100%;
+            line-height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            background: #fafaf7;
+          }
+          .sp-author-website-mobile-step-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            object-position: center center;
+          }
+          .sp-author-website-mobile-step-copy {
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+            padding: 0 2px;
+          }
+          .sp-author-website-mobile-step-copy .sp-number {
+            font-family: var(--font-playfair), serif;
+            font-weight: 700;
+            font-size: 44px;
+            line-height: 1;
+            color: #e8d5a3;
+            margin: 0 0 6px;
+            text-align: left;
+          }
+          .sp-author-website-mobile-step-copy .sp-title {
+            font-family: var(--font-playfair), serif;
+            font-weight: 700;
+            font-size: clamp(18px, 4.8vw, 21px);
+            line-height: 1.28;
+            color: #1c1c1c;
+            margin: 0 0 8px;
+            text-align: left;
+            white-space: normal;
+          }
+          .sp-author-website-mobile-step-copy .sp-desc {
+            font-family: var(--font-inter), sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 500;
+            color: #555555;
+            margin: 0;
+            max-width: 100%;
+            text-align: left;
+            overflow-wrap: break-word;
+            white-space: normal;
+          }
+          /* Illustration mobile — match Professional Ghostwriting process photo frame */
+          .sp-section--illustration-graphics .sp-author-website-mobile-step-media {
+            display: flex;
+            justify-content: center;
+            background: transparent;
+            box-shadow: none;
+            overflow: visible;
+          }
+          .sp-section--illustration-graphics .sp-author-website-mobile-step-media img {
+            width: min(100%, 360px);
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
           .sp-illustration-package-stack {
             position: relative;
@@ -1435,8 +1527,13 @@ export default function ServiceProcess({ service }) {
           .sp-interior-mobile-bundle,
           .sp-illustration-package-mobile,
           .sp-author-branding-mobile-bundle,
-          .sp-book-marketing-mobile-bundle {
+          .sp-book-marketing-mobile-bundle,
+          .sp-author-website-mobile-bundle {
             display: none !important;
+          }
+          .sp-section--author-website .sp-alternating-desktop-steps,
+          .sp-section--illustration-graphics .sp-alternating-desktop-steps {
+            display: block;
           }
         }
       ` }} />
@@ -1462,9 +1559,7 @@ export default function ServiceProcess({ service }) {
                     ? "eBook publishing process overview"
                     : isAudiobookPublishing
                       ? "Audiobook publishing process overview"
-                      : isAuthorWebsite
-                        ? "Author website process overview"
-                        : "Illustration process overview"
+                      : "Illustration process overview"
               }
             >
               <div className="sp-illustration-package-stack">
@@ -1555,6 +1650,47 @@ export default function ServiceProcess({ service }) {
                   decoding="async"
                 />
               </div>
+            </div>
+          ) : null}
+
+          {usesSplitProcessMobile ? (
+            <div
+              className="sp-author-website-mobile-bundle sp-reveal"
+              data-delay="120"
+              aria-label={
+                isIllustrationGraphics
+                  ? "Illustration process steps"
+                  : "Author website process steps"
+              }
+            >
+              {service.process.map((step, index) => {
+                const { width, height } = getImageDimensions(step.image);
+                return (
+                  <article
+                    key={step.number}
+                    className="sp-author-website-mobile-step sp-reveal"
+                    data-delay={120 + index * 80}
+                    aria-label={`Step ${step.number}: ${step.title}`}
+                  >
+                    <div className="sp-author-website-mobile-step-media">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        width={width}
+                        height={height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="sp-author-website-mobile-step-copy">
+                      <p className="sp-number">{step.number}</p>
+                      <h3 className="sp-title">{step.title}</h3>
+                      <p className="sp-desc">{step.description}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           ) : null}
 

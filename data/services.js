@@ -85,31 +85,31 @@ export const services = [
         number: '01',
         title: 'Share Your Vision',
         description: 'Tell us about your book through our secure contact form or email. Submit whatever you have, a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, we have the professionals to tell it.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/ghostwriting-process-1.webp'
       },
       {
         number: '02',
         title: 'Expert Matching',
         description: 'Our team reviews your submission with care and precision. We analyze your genre, your audience, your tone and your goals, then handpick the ghostwriter from our vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
-        image: '/images/writing-2.webp'
+        image: '/images/ghostwriting-process-2.webp'
       },
       {
         number: '03',
         title: 'Voice Crafting',
         description: 'Before a single word of your manuscript is written, our team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide, the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
-        image: '/images/pen-ink-author.webp'
+        image: '/images/ghostwriting-process-3.webp'
       },
       {
         number: '04',
         title: 'Chapter by Chapter Excellence',
         description: 'Writing begins, and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before we move on, revisions are included with our Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
-        image: '/images/author-1.webp'
+        image: '/images/ghostwriting-process-4.webp'
       },
       {
         number: '05',
         title: 'Your Masterpiece Delivered',
         description: 'Your completed manuscript arrives within approximately 40 days, a timeline that reflects both our commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by our permanent confidentiality agreement and ready to be published under your name to the world.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/ghostwriting-process-5.webp'
       }
     ],
 

@@ -23,102 +23,79 @@ const TABS = [
   "Romance",
 ];
 
+/** Titles and genres match cover art; Book-G4 excluded from gallery. */
 const BOOKS = [
   {
     id: 1,
-    title: "The Last Summer",
-    genre: "Fiction",
-    writer: "Written by Sarah Mitchell",
-    image:
-      "/images/book-H6.webp",
+    title: "Art of Moving Forward",
+    genre: "Self-Help",
+    image: "/images/book-g-1.webp",
   },
   {
     id: 2,
-    title: "Leading With Purpose",
-    genre: "Non-Fiction",
-    writer: "Written by Dr. Amanda Clarke",
-    image:
-      "/images/book-H13.webp",
+    title: "La Ciudad Fortaleza",
+    genre: "Fiction",
+    image: "/images/book-g-2.webp",
   },
   {
     id: 3,
-    title: "A Life Remembered",
-    genre: "Biography",
-    writer: "Written by Robert Callahan",
-    image:
-      "/images/books-9.webp",
+    title: "¡Cuenta Conmigo Pana!",
+    genre: "Children's",
+    image: "/images/book-g-3.webp",
   },
   {
     id: 4,
-    title: "Finding My Way Home",
-    genre: "Memoir",
-    writer: "Written by Sarah Mitchell",
-    image:
-      "/images/Books-2.webp",
+    title: "Encrypted Allyson",
+    genre: "Biography",
+    image: "/images/book-g-5.webp",
   },
   {
     id: 5,
-    title: "The Power Within",
-    genre: "Self-Help",
-    writer: "Written by Dr. Amanda Clarke",
-    image:
-      "/images/books-11.webp",
+    title: "You Can Change Your World By Speaking To It",
+    genre: "Non-Fiction",
+    image: "/images/book-g-6.webp",
   },
   {
     id: 6,
-    title: "The Entrepreneur's Edge",
-    genre: "Business",
-    writer: "Written by Dr. Marcus Chen",
-    image:
-      "/images/book-H14.webp",
+    title: "Southern Slang",
+    genre: "Non-Fiction",
+    image: "/images/book-g-7.webp",
   },
   {
     id: 7,
-    title: "The Little Star",
-    genre: "Children's",
-    writer: "Written by Priya Sharma",
-    image:
-      "/images/books-fairy-lights.webp",
+    title: "The Lost Skills of Independence",
+    genre: "Self-Help",
+    image: "/images/book-g-8.webp",
   },
   {
     id: 8,
-    title: "Shadows at Midnight",
-    genre: "Mystery",
-    writer: "Written by James Whitmore",
-    image:
-      "/images/books-7.webp",
+    title: "The Ultimate Crown of Leadership",
+    genre: "Business",
+    image: "/images/book-g-9.webp",
   },
   {
     id: 9,
-    title: "When Hearts Collide",
-    genre: "Romance",
-    writer: "Written by Isabella Romano",
-    image:
-      "/images/books-3.webp",
+    title: "Trauma: The New Public Health Emergency in Education",
+    genre: "Non-Fiction",
+    image: "/images/book-g-10.webp",
   },
   {
     id: 10,
-    title: "Beyond the Horizon",
-    genre: "Fiction",
-    writer: "Written by James Whitmore",
-    image:
-      "/images/book-H2.webp",
+    title: "The Edible Candle Cookbook",
+    genre: "Non-Fiction",
+    image: "/images/book-g-11.webp",
   },
   {
     id: 11,
-    title: "The Science of Success",
-    genre: "Non-Fiction",
-    writer: "Written by Dr. Marcus Chen",
-    image:
-      "/images/book-H8.webp",
+    title: "Encrypted Allyson",
+    genre: "Biography",
+    image: "/images/book-g-12.webp",
   },
   {
     id: 12,
-    title: "My Father's Legacy",
-    genre: "Biography",
-    writer: "Written by Robert Callahan",
-    image:
-      "/images/books-6.webp",
+    title: "The Everyday Dry Mix Pantry Cookbook",
+    genre: "Non-Fiction",
+    image: "/images/book-g-13.webp",
   },
 ];
 
@@ -284,7 +261,7 @@ export default function BookCoversGallery() {
           {filteredBooks.map((book, index) => (
             <li
               key={`${activeTab}-${book.id}`}
-              className="gwh-bcg-card group relative aspect-[2/3] cursor-pointer overflow-hidden rounded-xl"
+              className="gwh-bcg-card group relative aspect-[2/3] cursor-pointer overflow-hidden rounded-xl focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--color-accent-gold)]"
               style={{ animationDelay: `${0.2 + index * 0.08}s` }}
             >
               <Image
@@ -299,16 +276,13 @@ export default function BookCoversGallery() {
               />
 
               {/* Hover overlay — slides up from bottom */}
-              <div className="absolute inset-0 flex translate-y-full flex-col items-center justify-end bg-[rgba(28,28,28,0.85)] p-5 text-center transition-transform duration-300 ease-in-out group-hover:translate-y-0">
+              <div className="absolute inset-0 flex translate-y-full flex-col items-center justify-end bg-[rgba(28,28,28,0.85)] p-5 text-center transition-transform duration-300 ease-in-out group-hover:translate-y-0 group-focus-within:translate-y-0 max-md:group-active:translate-y-0">
                 <h3 className="mb-3 font-playfair text-[18px] font-bold text-white">
                   {book.title}
                 </h3>
-                <span className="mb-2 inline-block rounded-[20px] bg-[var(--color-accent-gold)] px-3 py-1 font-inter text-[12px] font-medium text-white">
+                <span className="inline-block rounded-[20px] bg-[var(--color-accent-gold)] px-3 py-1 font-inter text-[12px] font-medium text-white">
                   {book.genre}
                 </span>
-                <p className="font-inter text-[13px] font-normal text-[var(--color-border)]">
-                  {book.writer}
-                </p>
               </div>
             </li>
           ))}
