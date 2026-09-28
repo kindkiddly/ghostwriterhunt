@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 
 import Link from "next/link";
@@ -118,6 +119,7 @@ export default function Navbar({ servicesByCategory = {} }) {
   const [mobilePaymentOpen, setMobilePaymentOpen] = useState(false);
   const [paymentCheckoutKey, setPaymentCheckoutKey] = useState(null);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [portalReady, setPortalReady] = useState(false);
 
   const closeTimer = useRef(null);
   const aboutCloseTimer = useRef(null);
@@ -160,6 +162,10 @@ export default function Navbar({ servicesByCategory = {} }) {
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    setPortalReady(true);
   }, []);
 
   // Close mega menus on Escape
@@ -296,6 +302,86 @@ export default function Navbar({ servicesByCategory = {} }) {
   const navTopGradient =
     !navBarSolid && !(isHome && isMobileViewport);
 
+  const desktopGlassMenus =
+    portalReady &&
+    typeof document !== "undefined" &&
+    createPortal(
+      <>
+        <div
+          ref={megaMenuRef}
+          className={`nav-mega nav-mega-services${megaMenuOpen ? " open" : ""}`}
+          onMouseEnter={handleMenuEnter}
+          onMouseLeave={handleMenuLeave}
+          aria-hidden={!megaMenuOpen}
+        >
+          <div className="nav-mega-services-panel">
+            <div className="nav-mega-services-inner">
+              {SERVICES_MEGA_GROUPS.flatMap((group) =>
+                servicesForMegaGroup(servicesByCategory, group).map((service) => (
+                  <MenuLink
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className="nav-svc-link"
+                    onClick={() => setMegaMenuOpen(false)}
+                  >
+                    {service.title}
+                  </MenuLink>
+                ))
+              )}
+            </div>
+
+            <div className="nav-mega-services-footer">
+              <p className="nav-mega-footer-left">
+                Not sure where to start?
+                <MenuLink href="/#start" className="nav-mega-footer-link">
+                  Book a free consultation →
+                </MenuLink>
+              </p>
+              <MenuLink href="/#services" className="nav-mega-footer-right">
+                View all services →
+              </MenuLink>
+            </div>
+          </div>
+        </div>
+
+        <div
+          ref={paymentMenuRef}
+          className={`nav-mega nav-mega-payment${paymentMenuOpen ? " open" : ""}`}
+          onMouseEnter={handlePaymentMenuEnter}
+          onMouseLeave={handlePaymentMenuLeave}
+          aria-hidden={!paymentMenuOpen}
+        >
+          <div className="nav-mega-inner">
+            {PAYMENT_PACKAGES.map((pkg) => (
+              <button
+                key={pkg.packageKey}
+                type="button"
+                className="nav-payment-pkg"
+                disabled={!!paymentCheckoutKey}
+                onClick={() => handleNavPackageCheckout(pkg.packageKey)}
+              >
+                <span className="nav-payment-pkg-name">{pkg.name}</span>
+                <span className="nav-payment-pkg-price">
+                  {paymentCheckoutKey === pkg.packageKey ? "Opening checkout…" : `$${pkg.priceUsd}`}
+                </span>
+              </button>
+            ))}
+            <MenuLink
+              href="/pay"
+              className="nav-payment-custom"
+              onClick={() => setPaymentMenuOpen(false)}
+            >
+              <span className="nav-payment-custom-title">Custom Payment</span>
+              <span className="nav-payment-custom-note">
+                For project amounts agreed with our team after your consultation.
+              </span>
+            </MenuLink>
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[1000] w-full outline-none"
@@ -312,7 +398,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         outline: "none",
         boxShadow: navBarSolid ? "0 1px 20px rgba(0,0,0,0.06)" : "none",
         backdropFilter:
-          navBarSolid && !isLegalPage ? "blur(12px)" : "none",
+          navBarSolid && !isLegalPage && !megaMenuOpen && !paymentMenuOpen ? "blur(12px)" : "none",
         background: navBarSolid || !navTopGradient
           ? "rgba(250,250,247,0.98)"
           : "linear-gradient(to bottom, rgba(250,250,247,0.95) 0%, rgba(250,250,247,0.6) 60%, rgba(250,250,247,0) 100%)",
@@ -428,75 +514,83 @@ export default function Navbar({ servicesByCategory = {} }) {
           color: #C9A84C;
         }
 
-        /* Services mega — compact charcoal glass list */
+        /* Services + Payment — same frosted glass as chat .gcw-messages (portaled to body) */
         @media (min-width: 769px) {
-          .nav-mega.nav-mega-services {
-            padding: 10px 24px 0;
-            background: transparent;
-            border-bottom: none;
-            box-shadow: none;
-            opacity: 0;
+          .nav-mega.nav-mega-services,
+          .nav-mega.nav-mega-payment {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
             transform: none;
-            pointer-events: none;
+            background: rgba(250, 250, 247, 0.55);
+            backdrop-filter: blur(10px) saturate(115%);
+            -webkit-backdrop-filter: blur(10px) saturate(115%);
+            border-bottom: 1px solid rgba(232, 213, 163, 0.45);
+            box-shadow: 0 8px 32px rgba(28, 28, 28, 0.08);
             transition: none;
           }
-          .nav-mega.nav-mega-services.open {
-            opacity: 1;
-            transform: none;
+          @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+            .nav-mega.nav-mega-services,
+            .nav-mega.nav-mega-payment {
+              background: #FAFAF7;
+            }
+          }
+          .nav-mega.nav-mega-services:not(.open),
+          .nav-mega.nav-mega-payment:not(.open) {
+            visibility: hidden;
+            pointer-events: none;
+          }
+          .nav-mega.nav-mega-services.open,
+          .nav-mega.nav-mega-payment.open {
+            visibility: visible;
             pointer-events: auto;
-            transition: none;
+            opacity: 1;
+          }
+          .nav-mega.nav-mega-services {
+            padding: 10px 0 8px;
+          }
+          .nav-mega.nav-mega-payment {
+            padding: 16px 0 14px;
           }
         }
         .nav-mega-services-panel {
-          max-width: 920px;
+          position: relative;
+          z-index: 1;
+          max-width: 1200px;
           margin: 0 auto;
-          padding: 14px 18px 10px;
-          background: rgba(250, 250, 247, 0.55);
-          backdrop-filter: blur(10px) saturate(115%);
-          -webkit-backdrop-filter: blur(10px) saturate(115%);
-          border-radius: 12px;
-        }
-        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .nav-mega-services-panel {
-            background: #FAFAF7;
-          }
+          padding: 0 24px;
+          background: transparent;
         }
         .nav-mega-services-inner {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px 28px;
-        }
-        .nav-svc-col-heading {
-          margin: 0 0 6px;
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 600;
-          font-size: 10px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: rgba(201, 168, 76, 0.85);
-        }
-        .nav-svc-col-links {
-          display: flex;
-          flex-direction: column;
-          gap: 9px;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 22px;
+          row-gap: 6px;
         }
         .nav-svc-link {
           display: block;
           font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 13px;
-          line-height: 1.35;
+          line-height: 1.3;
           text-align: left;
           color: #1C1C1C;
           text-decoration: none;
+          text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
           transition: color 0.15s ease;
         }
         .nav-svc-link:hover {
           color: #C9A84C;
         }
         .nav-mega-services-footer {
-          margin-top: 10px;
-          padding: 10px 2px 4px;
+          position: relative;
+          z-index: 1;
+          max-width: 1200px;
+          margin: 8px auto 0;
+          padding: 8px 24px 0;
           border-top: 1px solid rgba(232, 213, 163, 0.65);
           display: flex;
           align-items: center;
@@ -516,41 +610,30 @@ export default function Navbar({ servicesByCategory = {} }) {
           text-decoration: underline;
         }
 
-        @media (min-width: 769px) {
-          .nav-mega.nav-mega-payment {
-            background: rgba(250, 250, 247, 0.55);
-            backdrop-filter: blur(10px) saturate(115%);
-            -webkit-backdrop-filter: blur(10px) saturate(115%);
-            border-bottom: none;
-            box-shadow: none;
-          }
-          @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-            .nav-mega.nav-mega-payment {
-              background: #FAFAF7;
-            }
-          }
-        }
-        .nav-mega-payment {
-          padding: 28px 0 24px;
-        }
         .nav-mega-payment .nav-mega-inner {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           align-items: stretch;
-          justify-content: center;
           gap: 12px;
           max-width: 1200px;
+          margin: 0 auto;
           padding: 0 24px;
         }
         .nav-payment-pkg {
-          flex: 1 1 200px;
-          max-width: 260px;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 92px;
+          height: 100%;
+          width: 100%;
           text-align: left;
-          padding: 16px 18px;
+          padding: 14px 16px;
           border: 1px solid #F0E8D5;
           border-radius: 10px;
-          background: #FFFCF5;
+          background: rgba(255, 255, 255, 0.82);
           cursor: pointer;
           transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
@@ -569,6 +652,7 @@ export default function Navbar({ servicesByCategory = {} }) {
           font-weight: 700;
           color: #1C1C1C;
           margin-bottom: 4px;
+          line-height: 1.25;
         }
         .nav-payment-pkg-price {
           font-family: var(--font-inter), sans-serif;
@@ -577,32 +661,41 @@ export default function Navbar({ servicesByCategory = {} }) {
           color: #C9A84C;
         }
         .nav-payment-custom {
-          flex: 1 1 240px;
-          max-width: 320px;
+          box-sizing: border-box;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 16px 18px;
-          border: 1px solid #E8D5A3;
+          min-height: 92px;
+          height: 100%;
+          width: 100%;
+          padding: 14px 16px;
+          border: 1.5px solid rgba(201, 168, 76, 0.72);
           border-radius: 10px;
-          background: #FFFFFF;
+          background: linear-gradient(155deg, rgba(255, 252, 245, 0.98) 0%, rgba(255, 255, 255, 0.95) 42%, rgba(245, 240, 227, 0.92) 100%);
+          box-shadow:
+            0 6px 20px rgba(28, 28, 28, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.95);
           text-decoration: none;
-          transition: border-color 0.15s ease;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
         }
         .nav-payment-custom:hover {
           border-color: #C9A84C;
+          box-shadow:
+            0 8px 24px rgba(201, 168, 76, 0.18),
+            inset 0 1px 0 rgba(255, 255, 255, 0.95);
         }
         .nav-payment-custom-title {
-          font-family: var(--font-inter), sans-serif;
-          font-size: 15px;
-          font-weight: 600;
+          font-family: var(--font-playfair), serif;
+          font-size: 17px;
+          font-weight: 700;
           color: #1C1C1C;
-          margin-bottom: 6px;
+          margin-bottom: 4px;
+          line-height: 1.25;
         }
         .nav-payment-custom-note {
           font-family: var(--font-inter), sans-serif;
-          font-size: 13px;
-          line-height: 1.45;
+          font-size: 12px;
+          line-height: 1.4;
           color: #666666;
         }
 
@@ -617,12 +710,6 @@ export default function Navbar({ servicesByCategory = {} }) {
         .nav-mobile-svc-list.open {
           max-height: 1200px;
           opacity: 1;
-          background: rgba(250, 250, 247, 0.55);
-        }
-        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-          .nav-mobile-svc-list.open {
-            background: #FAFAF7;
-          }
         }
         .nav-mobile-cat {
           margin: 6px 0 4px;
@@ -952,84 +1039,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         </button>
       </nav>
 
-      {/* Desktop Services mega menu */}
-      <div
-        ref={megaMenuRef}
-        className={`nav-mega nav-mega-services${megaMenuOpen ? " open" : ""}`}
-        onMouseEnter={handleMenuEnter}
-        onMouseLeave={handleMenuLeave}
-        aria-hidden={!megaMenuOpen}
-      >
-        <div className="nav-mega-services-panel">
-          <div className="nav-mega-services-inner">
-            {SERVICES_MEGA_GROUPS.map((group) => (
-              <div key={group.id}>
-                <p className="nav-svc-col-heading">{group.heading}</p>
-                <div className="nav-svc-col-links">
-                  {servicesForMegaGroup(servicesByCategory, group).map((service) => (
-                    <MenuLink
-                      key={service.slug}
-                      href={`/services/${service.slug}`}
-                      className="nav-svc-link"
-                      onClick={() => setMegaMenuOpen(false)}
-                    >
-                      {service.title}
-                    </MenuLink>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="nav-mega-services-footer">
-            <p className="nav-mega-footer-left">
-              Not sure where to start?
-              <MenuLink href="/#start" className="nav-mega-footer-link">
-                Book a free consultation →
-              </MenuLink>
-            </p>
-            <MenuLink href="/#services" className="nav-mega-footer-right">
-              View all services →
-            </MenuLink>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Payment menu */}
-      <div
-        ref={paymentMenuRef}
-        className={`nav-mega nav-mega-payment${paymentMenuOpen ? " open" : ""}`}
-        onMouseEnter={handlePaymentMenuEnter}
-        onMouseLeave={handlePaymentMenuLeave}
-        aria-hidden={!paymentMenuOpen}
-      >
-        <div className="nav-mega-inner">
-          {PAYMENT_PACKAGES.map((pkg) => (
-            <button
-              key={pkg.packageKey}
-              type="button"
-              className="nav-payment-pkg"
-              disabled={!!paymentCheckoutKey}
-              onClick={() => handleNavPackageCheckout(pkg.packageKey)}
-            >
-              <span className="nav-payment-pkg-name">{pkg.name}</span>
-              <span className="nav-payment-pkg-price">
-                {paymentCheckoutKey === pkg.packageKey ? "Opening checkout…" : `$${pkg.priceUsd}`}
-              </span>
-            </button>
-          ))}
-          <MenuLink
-            href="/pay"
-            className="nav-payment-custom"
-            onClick={() => setPaymentMenuOpen(false)}
-          >
-            <span className="nav-payment-custom-title">Custom Payment</span>
-            <span className="nav-payment-custom-note">
-              For project amounts agreed with our team after your consultation.
-            </span>
-          </MenuLink>
-        </div>
-      </div>
+      {desktopGlassMenus}
 
       {/* Desktop About Us mega menu */}
       <div
