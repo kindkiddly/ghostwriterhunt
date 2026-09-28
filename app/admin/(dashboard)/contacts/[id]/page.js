@@ -270,7 +270,7 @@ export default function ContactDetailPage() {
                   <button
                     type="submit"
                     disabled={emailSending}
-                    className="flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
+                    className="admin-btn-primary flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
                   >
                     {emailSending ? "Sending…" : "Send"}
                   </button>

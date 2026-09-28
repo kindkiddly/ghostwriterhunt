@@ -91,7 +91,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 rounded-lg bg-[var(--color-accent-gold)] px-5 py-3 font-inter text-[14px] font-semibold text-white transition-colors hover:bg-[#B8960C] disabled:cursor-not-allowed disabled:opacity-60"
+            className="admin-btn-primary mt-2 rounded-lg bg-[var(--color-accent-gold)] px-5 py-3 font-inter text-[14px] font-semibold text-white transition-colors hover:bg-[#B8960C] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? "Signing in…" : "Sign in"}
           </button>

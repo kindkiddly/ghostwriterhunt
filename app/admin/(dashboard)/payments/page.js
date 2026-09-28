@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from "react";
+import { useState, useEffect, useMemo, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAdminRealtime } from "@/lib/admin/AdminRealtimeContext";
@@ -143,6 +143,7 @@ function PaymentsContent() {
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState(null);
   const [lastCreatedUrl, setLastCreatedUrl] = useState(null);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
   const [paymentMode, setPaymentMode] = useState({ mock: true, live: false });
 
   useEffect(() => {
@@ -157,33 +158,38 @@ function PaymentsContent() {
     setConversationId(prefillConversationId);
   }, [prefillContactId, prefillConversationId]);
 
+  const loadPayments = useCallback(async () => {
+    setLoading(true);
+    const [{ data: paymentRows, error: payErr }, { data: contactRows }] = await Promise.all([
+      supabase.from("payments").select("*").order("created_at", { ascending: false }),
+      supabase.from("contacts").select("id, name, email").order("created_at", { ascending: false }).limit(200),
+    ]);
+    if (payErr) setError(payErr.message);
+    else setPayments(paymentRows || []);
+    setContacts(contactRows || []);
+    setLoading(false);
+  }, [supabase]);
+
   useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      setLoading(true);
-      const [{ data: paymentRows, error: payErr }, { data: contactRows }] = await Promise.all([
-        supabase.from("payments").select("*").order("created_at", { ascending: false }),
-        supabase.from("contacts").select("id, name, email").order("created_at", { ascending: false }).limit(200),
-      ]);
-      if (cancelled) return;
-      if (payErr) setError(payErr.message);
-      else setPayments(paymentRows || []);
-      setContacts(contactRows || []);
-      setLoading(false);
-    }
-
-    load();
+    loadPayments();
     const channel = supabase
       .channel("admin-payments")
-      .on("postgres_changes", { event: "*", schema: "public", table: "payments" }, load)
+      .on("postgres_changes", { event: "*", schema: "public", table: "payments" }, loadPayments)
       .subscribe();
 
     return () => {
-      cancelled = true;
       supabase.removeChannel(channel);
     };
-  }, [supabase]);
+  }, [supabase, loadPayments]);
+
+  useEffect(() => {
+    if (!createModalOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setCreateModalOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [createModalOpen]);
 
   const summary = useMemo(() => {
     const now = new Date();
@@ -239,6 +245,8 @@ function PaymentsContent() {
       if (!res.ok) throw new Error(data.error || "Could not create link");
       setLastCreatedUrl(data.url);
       if (mode === "custom") setDescription("");
+      setCreateModalOpen(false);
+      await loadPayments();
     } catch (err) {
       setCreateError(err.message);
     } finally {
@@ -256,11 +264,24 @@ function PaymentsContent() {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain px-4 py-5 pb-28 lg:px-8 lg:py-8 lg:pb-8">
-      <div className="mb-5 shrink-0">
-        <h1 className="font-playfair text-[24px] font-bold text-[#1C1C1C]">Payments</h1>
-        <p className="mt-1 font-inter text-[13px] text-[#666666]">
-          Track checkout and payment links. Create new links for fixed packages or custom amounts below.
-        </p>
+      <div className="mb-5 flex shrink-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="font-playfair text-[24px] font-bold text-[#1C1C1C]">Payments</h1>
+          <p className="mt-1 font-inter text-[13px] text-[#666666]">
+            Track checkout and payment links. Create new links for fixed packages or custom amounts.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setCreateError(null);
+            setLastCreatedUrl(null);
+            setCreateModalOpen(true);
+          }}
+          className="admin-btn-emerald shrink-0 rounded-lg px-5 py-2.5 font-inter text-[14px] font-semibold transition-colors disabled:opacity-60"
+        >
+          Create payment link
+        </button>
       </div>
 
       {paymentMode.mock && !paymentMode.live && (
@@ -317,140 +338,168 @@ function PaymentsContent() {
         )}
       </section>
 
-      <form
-        onSubmit={handleCreateLink}
-        className="shrink-0 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 lg:p-6"
-      >
-        <h2 className="mb-4 font-playfair text-[18px] font-bold text-[#1C1C1C]">Create payment link</h2>
-
-        <div className="mb-4 flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setMode("custom")}
-            className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-              mode === "custom" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
-            }`}
+      {createModalOpen && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
+          role="presentation"
+          onClick={() => setCreateModalOpen(false)}
+        >
+          <div className="absolute inset-0 bg-[#1C1C1C]/40 backdrop-blur-[2px]" aria-hidden="true" />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="create-payment-link-title"
+            className="relative z-[1] max-h-[min(90vh,720px)] w-full max-w-[640px] overflow-y-auto rounded-2xl border border-[rgba(232,213,163,0.9)] bg-[rgba(255,255,255,0.88)] p-5 shadow-[0_24px_60px_rgba(28,28,28,0.18)] backdrop-blur-[16px] sm:p-6 supports-[backdrop-filter]:bg-[rgba(255,255,255,0.82)]"
+            onClick={(e) => e.stopPropagation()}
           >
-            Custom amount
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("fixed")}
-            className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-              mode === "fixed" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
-            }`}
-          >
-            Fixed package
-          </button>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {mode === "fixed" ? (
-            <label className="block sm:col-span-2">
-              <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Package</span>
-              <select
-                value={packageKey}
-                onChange={(e) => setPackageKey(e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <h2 id="create-payment-link-title" className="font-playfair text-[20px] font-bold text-[#1C1C1C]">
+                Create payment link
+              </h2>
+              <button
+                type="button"
+                onClick={() => setCreateModalOpen(false)}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] bg-white/80 font-inter text-[18px] leading-none text-[#666666] hover:text-[#1C1C1C]"
+                aria-label="Close"
               >
-                {FIXED_PACKAGES.map((p) => (
-                  <option key={p.key} value={p.key}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-          ) : (
-            <>
-              <label className="block">
-                <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Amount (USD)</span>
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  value={amountUsd}
-                  onChange={(e) => setAmountUsd(e.target.value)}
-                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-                  required
-                />
-                <span className="mt-1 block font-inter text-[11px] text-[#888888]">Whole dollars only (Stripe minimum applies).</span>
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateLink}>
+              <div className="mb-4 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMode("custom")}
+                  className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
+                    mode === "custom" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
+                  }`}
+                >
+                  Custom amount
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMode("fixed")}
+                  className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
+                    mode === "fixed" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
+                  }`}
+                >
+                  Fixed package
+                </button>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {mode === "fixed" ? (
+                  <label className="block sm:col-span-2">
+                    <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Package</span>
+                    <select
+                      value={packageKey}
+                      onChange={(e) => setPackageKey(e.target.value)}
+                      className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                    >
+                      {FIXED_PACKAGES.map((p) => (
+                        <option key={p.key} value={p.key}>
+                          {p.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : (
+                  <>
+                    <label className="block">
+                      <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Amount (USD)</span>
+                      <input
+                        type="number"
+                        min="1"
+                        step="1"
+                        value={amountUsd}
+                        onChange={(e) => setAmountUsd(e.target.value)}
+                        className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                        required
+                      />
+                      <span className="mt-1 block font-inter text-[11px] text-[#888888]">
+                        Whole dollars only (Stripe minimum applies).
+                      </span>
+                    </label>
+                    <label className="block sm:col-span-1">
+                      <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">
+                        Description (shown on Stripe)
+                      </span>
+                      <input
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="e.g. Professional + website add-on"
+                        className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                        required
+                      />
+                    </label>
+                  </>
+                )}
+
+                <label className="block">
+                  <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Contact (optional)</span>
+                  <select
+                    value={contactId}
+                    onChange={(e) => setContactId(e.target.value)}
+                    className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                  >
+                    <option value="">— None —</option>
+                    {contacts.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name || c.email || c.id.slice(0, 8)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="block">
+                  <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">
+                    Conversation ID (optional)
+                  </span>
+                  <input
+                    type="text"
+                    value={conversationId}
+                    onChange={(e) => setConversationId(e.target.value)}
+                    placeholder="From inbox URL ?c=…"
+                    className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
+                  />
+                </label>
+              </div>
+
+              <label className="mt-4 flex items-center gap-2 font-inter text-[13px] text-[#666666]">
+                <input type="checkbox" checked={sendEmail} onChange={(e) => setSendEmail(e.target.checked)} />
+                Email link to contact (if contact has email)
               </label>
-              <label className="block sm:col-span-1">
-                <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">
-                  Description (shown on Stripe)
-                </span>
-                <input
-                  type="text"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="e.g. Professional + website add-on"
-                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-                  required
-                />
-              </label>
-            </>
-          )}
 
-          <label className="block">
-            <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Contact (optional)</span>
-            <select
-              value={contactId}
-              onChange={(e) => setContactId(e.target.value)}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-            >
-              <option value="">— None —</option>
-              {contacts.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name || c.email || c.id.slice(0, 8)}
-                </option>
-              ))}
-            </select>
-          </label>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <button
+                  type="submit"
+                  disabled={creating}
+                  className="admin-btn-primary rounded-lg bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[14px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
+                >
+                  {creating ? "Creating…" : "Create Stripe link"}
+                </button>
+                {createError && <p className="font-inter text-[13px] text-[#9A2E24]">{createError}</p>}
+              </div>
 
-          <label className="block">
-            <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">
-              Conversation ID (optional)
-            </span>
-            <input
-              type="text"
-              value={conversationId}
-              onChange={(e) => setConversationId(e.target.value)}
-              placeholder="From inbox URL ?c=…"
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
-            />
-          </label>
-        </div>
-
-        <label className="mt-4 flex items-center gap-2 font-inter text-[13px] text-[#666666]">
-          <input type="checkbox" checked={sendEmail} onChange={(e) => setSendEmail(e.target.checked)} />
-          Email link to contact (if contact has email)
-        </label>
-
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <button
-            type="submit"
-            disabled={creating}
-            className="rounded-lg bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[14px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
-          >
-            {creating ? "Creating…" : "Create Stripe link"}
-          </button>
-          {createError && <p className="font-inter text-[13px] text-[#9A2E24]">{createError}</p>}
-        </div>
-
-        {lastCreatedUrl && (
-          <div className="mt-4 rounded-lg bg-[var(--color-background)] p-4">
-            <p className="font-inter text-[12px] font-semibold text-[#666666]">Payment link created</p>
-            <p className="mt-1 break-all font-inter text-[13px] text-[#1C1C1C]">{lastCreatedUrl}</p>
-            <button
-              type="button"
-              onClick={() => copyUrl(lastCreatedUrl)}
-              className="mt-2 font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
-            >
-              Copy link
-            </button>
+              {lastCreatedUrl && (
+                <div className="mt-4 rounded-lg bg-[var(--color-background)] p-4">
+                  <p className="font-inter text-[12px] font-semibold text-[#666666]">Payment link created</p>
+                  <p className="mt-1 break-all font-inter text-[13px] text-[#1C1C1C]">{lastCreatedUrl}</p>
+                  <button
+                    type="button"
+                    onClick={() => copyUrl(lastCreatedUrl)}
+                    className="mt-2 font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+                  >
+                    Copy link
+                  </button>
+                </div>
+              )}
+            </form>
           </div>
-        )}
-      </form>
+        </div>
+      )}
     </div>
   );
 }

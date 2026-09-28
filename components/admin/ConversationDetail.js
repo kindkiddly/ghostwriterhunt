@@ -363,7 +363,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
             type="button"
             onClick={sendReply}
             disabled={!replyText.trim() || sending}
-            className="rounded-full bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[13px] font-semibold text-white transition-colors hover:bg-[#B8960C] disabled:cursor-not-allowed disabled:opacity-50"
+            className="admin-btn-primary rounded-full bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[13px] font-semibold text-white transition-colors hover:bg-[#B8960C] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Send
           </button>
@@ -462,7 +462,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
               <button
                 type="submit"
                 disabled={savingContact}
-                className="flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
+                className="admin-btn-primary flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
               >
                 {savingContact ? "Saving…" : "Save"}
               </button>
