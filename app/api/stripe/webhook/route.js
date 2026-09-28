@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
-import { markPaymentPaidByStripeMetadata } from "@/lib/stripe/payments";
+import { markPaymentExpiredByCheckoutSessionId, markPaymentPaidByStripeMetadata } from "@/lib/stripe/payments";
 import { resolveInvoiceFromCheckoutSession } from "@/lib/stripe/invoice";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
- * GhostWriterHunt — Stripe webhook (checkout.session.completed).
+ * GhostWriterHunt — Stripe webhook (checkout.session.completed, checkout.session.expired).
  * Configure in Stripe Dashboard → Webhooks → /api/stripe/webhook
  */
 
@@ -71,6 +71,11 @@ export async function POST(request) {
         .eq("id", paid.contact_id)
         .in("status", ["new", "contacted", "qualified"]);
     }
+  }
+
+  if (event.type === "checkout.session.expired") {
+    const session = event.data.object;
+    await markPaymentExpiredByCheckoutSessionId(session.id);
   }
 
   return NextResponse.json({ received: true });

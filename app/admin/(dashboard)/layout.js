@@ -171,7 +171,7 @@ function AdminShell({ children }) {
         </div>
       </header>
 
-      <main className="min-h-0 flex-1 overflow-hidden pb-16 lg:pb-0">{children}</main>
+      <main className="flex min-h-0 flex-1 flex-col overflow-hidden pb-16 lg:pb-0">{children}</main>
 
       {/* Mobile bottom nav */}
       <nav className="fixed inset-x-0 bottom-0 z-20 flex border-t border-[var(--color-border)] bg-[var(--color-card)] lg:hidden">

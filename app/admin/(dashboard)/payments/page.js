@@ -22,6 +22,105 @@ function formatMoney(cents) {
   return `$${(cents / 100).toFixed(2)}`;
 }
 
+function SummaryCard({ label, value, sub }) {
+  return (
+    <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-4 shadow-sm">
+      <p className="font-inter text-[11px] font-semibold uppercase tracking-wide text-[#999999]">{label}</p>
+      <p className="mt-1 font-playfair text-[22px] font-bold text-[#1C1C1C]">{value}</p>
+      {sub ? <p className="mt-0.5 font-inter text-[11px] text-[#888888]">{sub}</p> : null}
+    </div>
+  );
+}
+
+function PaymentsTable({ filtered, copyUrl }) {
+  return (
+    <div className="overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-sm">
+      <table className="w-full min-w-[880px] border-collapse text-[#1C1C1C]">
+        <thead className="bg-[var(--color-background)]">
+          <tr className="border-b border-[var(--color-border)] text-left">
+            {["Amount", "Description", "Status", "Source", "Created", "Invoice / Links"].map((h) => (
+              <th
+                key={h}
+                className="px-4 py-3 font-inter text-[12px] font-semibold uppercase tracking-wide text-[#666666]"
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.map((p) => (
+            <tr
+              key={p.id}
+              className="border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-background)]"
+            >
+              <td className="px-4 py-3 font-inter text-[13px] font-semibold text-[#1C1C1C]">
+                {formatMoney(p.amount_cents)}
+              </td>
+              <td className="max-w-[240px] px-4 py-3 font-inter text-[13px] text-[#444444]">
+                <p className="line-clamp-2">{p.description}</p>
+                {p.package_key && (
+                  <span className="mt-1 inline-block font-inter text-[11px] text-[#999999]">{p.package_key}</span>
+                )}
+              </td>
+              <td className="px-4 py-3">
+                <span
+                  className={`rounded-full px-2 py-0.5 font-inter text-[11px] font-semibold uppercase ${STATUS_STYLES[p.status] || ""}`}
+                >
+                  {p.status}
+                </span>
+              </td>
+              <td className="px-4 py-3 font-inter text-[13px] capitalize text-[#444444]">{p.created_by}</td>
+              <td className="px-4 py-3 font-inter text-[12px] text-[#666666]">
+                {new Date(p.created_at).toLocaleString()}
+              </td>
+              <td className="px-4 py-3">
+                <div className="flex flex-wrap gap-2">
+                  {p.status === "paid" && p.stripe_invoice_url && (
+                    <a
+                      href={p.stripe_invoice_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+                    >
+                      View invoice
+                    </a>
+                  )}
+                  {p.stripe_payment_link_url && p.status === "pending" && (
+                    <button
+                      type="button"
+                      onClick={() => copyUrl(p.stripe_payment_link_url)}
+                      className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+                    >
+                      Copy link
+                    </button>
+                  )}
+                  {p.conversation_id && (
+                    <Link
+                      href={`/admin?c=${p.conversation_id}`}
+                      className="font-inter text-[12px] text-[#666666] hover:underline"
+                    >
+                      Open chat
+                    </Link>
+                  )}
+                  {p.contact_id && (
+                    <Link
+                      href={`/admin/contacts/${p.contact_id}`}
+                      className="font-inter text-[12px] text-[#666666] hover:underline"
+                    >
+                      Contact
+                    </Link>
+                  )}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function PaymentsContent() {
   const { supabase } = useAdminRealtime();
   const searchParams = useSearchParams();
@@ -86,6 +185,28 @@ function PaymentsContent() {
     };
   }, [supabase]);
 
+  const summary = useMemo(() => {
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    let monthCents = 0;
+    let allTimeCents = 0;
+    let paidCount = 0;
+    let pendingCount = 0;
+
+    for (const p of payments) {
+      if (p.status === "paid") {
+        paidCount += 1;
+        allTimeCents += p.amount_cents || 0;
+        const paidAt = p.paid_at ? new Date(p.paid_at) : new Date(p.created_at);
+        if (paidAt >= monthStart) monthCents += p.amount_cents || 0;
+      } else if (p.status === "pending") {
+        pendingCount += 1;
+      }
+    }
+
+    return { monthCents, allTimeCents, paidCount, pendingCount };
+  }, [payments]);
+
   const filtered = useMemo(() => {
     if (statusFilter === "all") return payments;
     return payments.filter((p) => p.status === statusFilter);
@@ -134,17 +255,16 @@ function PaymentsContent() {
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-y-auto px-4 py-5 lg:px-8 lg:py-8">
-      <div className="mb-6">
-        <h1 className="font-playfair text-[24px] font-bold text-[var(--color-text)]">Payments</h1>
+    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-y-contain px-4 py-5 pb-28 lg:px-8 lg:py-8 lg:pb-8">
+      <div className="mb-5 shrink-0">
+        <h1 className="font-playfair text-[24px] font-bold text-[#1C1C1C]">Payments</h1>
         <p className="mt-1 font-inter text-[13px] text-[#666666]">
-          Create payment links for fixed packages or custom AI-agreed deals. Links are also created
-          automatically when the chat agent uses a payment token (server-side).
+          Track checkout and payment links. Create new links for fixed packages or custom amounts below.
         </p>
       </div>
 
       {paymentMode.mock && !paymentMode.live && (
-        <div className="mb-6 rounded-xl border border-dashed border-[#C9A84C] bg-[#FFFBF0] px-4 py-3">
+        <div className="mb-5 shrink-0 rounded-xl border border-dashed border-[#C9A84C] bg-[#FFFBF0] px-4 py-3">
           <p className="font-inter text-[13px] font-semibold text-[#8A6D2C]">Demo payment mode</p>
           <p className="mt-1 font-inter text-[12px] leading-relaxed text-[#8A6D2C]">
             Stripe keys are not connected yet. Links open a mock checkout page on your site (no real
@@ -154,20 +274,61 @@ function PaymentsContent() {
         </div>
       )}
 
+      <div className="mb-6 grid shrink-0 grid-cols-2 gap-3 lg:grid-cols-4">
+        <SummaryCard label="This month" value={formatMoney(summary.monthCents)} sub="Paid only" />
+        <SummaryCard label="All time" value={formatMoney(summary.allTimeCents)} sub="Paid only" />
+        <SummaryCard label="Paid" value={String(summary.paidCount)} />
+        <SummaryCard label="Pending" value={String(summary.pendingCount)} />
+      </div>
+
+      <section className="mb-8 shrink-0" aria-labelledby="payments-history-heading">
+        <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <h2 id="payments-history-heading" className="font-playfair text-[18px] font-bold text-[#1C1C1C]">
+            Payment history
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {["all", "pending", "paid", "expired", "cancelled"].map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setStatusFilter(s)}
+                className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold capitalize ${
+                  statusFilter === s ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {loading ? (
+          <p className="font-inter text-[13px] text-[#999999]">Loading payments…</p>
+        ) : error ? (
+          <p className="font-inter text-[13px] text-[#9A2E24]">
+            Couldn&apos;t load payments: {error}. Apply migration 007 if the table is missing.
+          </p>
+        ) : filtered.length === 0 ? (
+          <p className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-8 text-center font-inter text-[13px] text-[#999999]">
+            No payments yet.
+          </p>
+        ) : (
+          <PaymentsTable filtered={filtered} copyUrl={copyUrl} />
+        )}
+      </section>
+
       <form
         onSubmit={handleCreateLink}
-        className="mb-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 lg:p-6"
+        className="shrink-0 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 lg:p-6"
       >
-        <h2 className="mb-4 font-playfair text-[18px] font-bold text-[var(--color-text)]">
-          Create payment link
-        </h2>
+        <h2 className="mb-4 font-playfair text-[18px] font-bold text-[#1C1C1C]">Create payment link</h2>
 
         <div className="mb-4 flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setMode("custom")}
             className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-              mode === "custom" ? "bg-[var(--color-text)] text-white" : "bg-[var(--color-background)] text-[#666666]"
+              mode === "custom" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
             }`}
           >
             Custom amount
@@ -176,7 +337,7 @@ function PaymentsContent() {
             type="button"
             onClick={() => setMode("fixed")}
             className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-              mode === "fixed" ? "bg-[var(--color-text)] text-white" : "bg-[var(--color-background)] text-[#666666]"
+              mode === "fixed" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
             }`}
           >
             Fixed package
@@ -190,7 +351,7 @@ function PaymentsContent() {
               <select
                 value={packageKey}
                 onChange={(e) => setPackageKey(e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px]"
+                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
               >
                 {FIXED_PACKAGES.map((p) => (
                   <option key={p.key} value={p.key}>
@@ -205,14 +366,14 @@ function PaymentsContent() {
                 <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">Amount (USD)</span>
                 <input
                   type="number"
-                  min="150"
-                  max="5000"
+                  min="1"
                   step="1"
                   value={amountUsd}
                   onChange={(e) => setAmountUsd(e.target.value)}
-                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px]"
+                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
                   required
                 />
+                <span className="mt-1 block font-inter text-[11px] text-[#888888]">Whole dollars only (Stripe minimum applies).</span>
               </label>
               <label className="block sm:col-span-1">
                 <span className="mb-1 block font-inter text-[12px] font-semibold text-[#666666]">
@@ -223,7 +384,7 @@ function PaymentsContent() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="e.g. Professional + website add-on"
-                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px]"
+                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
                   required
                 />
               </label>
@@ -235,7 +396,7 @@ function PaymentsContent() {
             <select
               value={contactId}
               onChange={(e) => setContactId(e.target.value)}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px]"
+              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
             >
               <option value="">— None —</option>
               {contacts.map((c) => (
@@ -255,7 +416,7 @@ function PaymentsContent() {
               value={conversationId}
               onChange={(e) => setConversationId(e.target.value)}
               placeholder="From inbox URL ?c=…"
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px]"
+              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[#1C1C1C]"
             />
           </label>
         </div>
@@ -279,7 +440,7 @@ function PaymentsContent() {
         {lastCreatedUrl && (
           <div className="mt-4 rounded-lg bg-[var(--color-background)] p-4">
             <p className="font-inter text-[12px] font-semibold text-[#666666]">Payment link created</p>
-            <p className="mt-1 break-all font-inter text-[13px] text-[var(--color-text)]">{lastCreatedUrl}</p>
+            <p className="mt-1 break-all font-inter text-[13px] text-[#1C1C1C]">{lastCreatedUrl}</p>
             <button
               type="button"
               onClick={() => copyUrl(lastCreatedUrl)}
@@ -290,102 +451,6 @@ function PaymentsContent() {
           </div>
         )}
       </form>
-
-      <div className="mb-4 flex flex-wrap gap-2">
-        {["all", "pending", "paid", "expired", "cancelled"].map((s) => (
-          <button
-            key={s}
-            type="button"
-            onClick={() => setStatusFilter(s)}
-            className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold capitalize ${
-              statusFilter === s ? "bg-[var(--color-text)] text-white" : "bg-[var(--color-background)] text-[#666666]"
-            }`}
-          >
-            {s}
-          </button>
-        ))}
-      </div>
-
-      {loading ? (
-        <p className="font-inter text-[13px] text-[#999999]">Loading payments…</p>
-      ) : error ? (
-        <p className="font-inter text-[13px] text-[#9A2E24]">
-          Couldn&apos;t load payments: {error}. Apply migration 007 if the table is missing.
-        </p>
-      ) : filtered.length === 0 ? (
-        <p className="font-inter text-[13px] text-[#999999]">No payments yet.</p>
-      ) : (
-        <div className="overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-card)]">
-          <table className="w-full min-w-[880px] border-collapse">
-            <thead>
-              <tr className="border-b border-[var(--color-border)] text-left">
-                {["Amount", "Description", "Status", "Source", "Created", "Invoice / Links"].map((h) => (
-                  <th key={h} className="px-4 py-3 font-inter text-[12px] font-semibold uppercase tracking-wide text-[#999999]">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((p) => (
-                <tr key={p.id} className="border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-background)]">
-                  <td className="px-4 py-3 font-inter text-[13px] font-semibold text-[var(--color-text)]">
-                    {formatMoney(p.amount_cents)}
-                  </td>
-                  <td className="max-w-[240px] px-4 py-3 font-inter text-[13px] text-[#666666]">
-                    <p className="line-clamp-2">{p.description}</p>
-                    {p.package_key && (
-                      <span className="mt-1 inline-block font-inter text-[11px] text-[#999999]">{p.package_key}</span>
-                    )}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`rounded-full px-2 py-0.5 font-inter text-[11px] font-semibold uppercase ${STATUS_STYLES[p.status] || ""}`}>
-                      {p.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 font-inter text-[13px] capitalize text-[#666666]">{p.created_by}</td>
-                  <td className="px-4 py-3 font-inter text-[12px] text-[#999999]">
-                    {new Date(p.created_at).toLocaleString()}
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-2">
-                      {p.status === "paid" && p.stripe_invoice_url && (
-                        <a
-                          href={p.stripe_invoice_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
-                        >
-                          View invoice
-                        </a>
-                      )}
-                      {p.stripe_payment_link_url && p.status === "pending" && (
-                        <button
-                          type="button"
-                          onClick={() => copyUrl(p.stripe_payment_link_url)}
-                          className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
-                        >
-                          Copy link
-                        </button>
-                      )}
-                      {p.conversation_id && (
-                        <Link href={`/admin?c=${p.conversation_id}`} className="font-inter text-[12px] text-[#666666] hover:underline">
-                          Open chat
-                        </Link>
-                      )}
-                      {p.contact_id && (
-                        <Link href={`/admin/contacts/${p.contact_id}`} className="font-inter text-[12px] text-[#666666] hover:underline">
-                          Contact
-                        </Link>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
     </div>
   );
 }

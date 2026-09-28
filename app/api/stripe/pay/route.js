@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isPaymentsEnabled, isStripeMockMode } from "@/lib/stripe/client";
-import { parseWholeDollarAmountUsd } from "@/lib/stripe/packages";
+import { parsePositiveWholeDollarAmountUsd } from "@/lib/stripe/packages";
 import { findOrCreateContactByEmail } from "@/lib/stripe/contacts";
 import { createCustomPaymentCheckoutRecord } from "@/lib/stripe/payments";
 
@@ -25,7 +25,7 @@ export async function POST(request) {
   const fullName = typeof body?.fullName === "string" ? body.fullName.trim() : "";
   const email = typeof body?.email === "string" ? body.email.trim() : "";
   const paymentNote = typeof body?.paymentNote === "string" ? body.paymentNote.trim() : "";
-  const amountCents = parseWholeDollarAmountUsd(body?.amountUsd);
+  const amountCents = parsePositiveWholeDollarAmountUsd(body?.amountUsd);
 
   if (!fullName || fullName.length > 120) {
     return NextResponse.json({ error: "Please enter your full name" }, { status: 400 });
@@ -35,7 +35,7 @@ export async function POST(request) {
   }
   if (!amountCents) {
     return NextResponse.json(
-      { error: "Amount must be a whole number between $150 and $5,000 USD" },
+      { error: "Amount must be a positive whole number of USD (no cents)" },
       { status: 400 }
     );
   }

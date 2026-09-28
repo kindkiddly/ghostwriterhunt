@@ -104,18 +104,18 @@ export default function PayPage() {
               <input
                 type="number"
                 name="amountUsd"
-                min={150}
-                max={5000}
+                min={1}
                 step={1}
                 required
                 value={amountUsd}
                 onChange={(e) => setAmountUsd(e.target.value)}
                 className={`${INPUT_CLASS} pl-8`}
-                placeholder="150–5000"
+                placeholder="Amount in USD"
               />
             </div>
-            <span className="mt-1.5 block font-inter text-[12px] text-[#888888]">
-              Whole dollars only, between $150 and $5,000.
+            <span className="mt-1.5 block font-inter text-[12px] leading-relaxed text-[#888888]">
+              Enter the amount agreed with your project manager. Your payment is fully secure, and
+              you&apos;ll receive an invoice by email right away.
             </span>
           </label>
 
@@ -152,8 +152,8 @@ export default function PayPage() {
             {submitting ? "Redirecting to Stripe…" : "Continue to secure checkout"}
           </button>
 
-          <p className="mt-5 text-center font-inter text-[12px] text-[#888888]">
-            Secure payment powered by Stripe.
+          <p className="mt-5 text-center font-inter text-[12px] leading-relaxed text-[#888888]">
+            🔒 Secure payment by Stripe · Instant invoice · 100% confidential
           </p>
         </form>
       </div>

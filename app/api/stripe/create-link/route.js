@@ -54,7 +54,7 @@ export async function POST(request) {
     amountCents = normalizeCustomAmountCents(amountUsd);
     if (!amountCents) {
       return NextResponse.json(
-        { error: "Custom amount must be between $150 and $5,000" },
+        { error: "Custom amount must be a positive whole number of USD" },
         { status: 400 }
       );
     }
