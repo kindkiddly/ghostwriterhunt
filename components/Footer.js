@@ -7,7 +7,7 @@ import Link from "next/link";
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Payment", href: "/pay" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact Us", href: "/#start" },
 ];

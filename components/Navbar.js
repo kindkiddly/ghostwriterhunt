@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import Link from "next/link";
+import { SHARED_PRICING } from "@/data/pricing";
+import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
+
 /**
  * GhostWriterHunt — primary site navigation
  * Flex row: logo left · links center · CTAs right.
@@ -18,6 +21,18 @@ const CATEGORY_ORDER = [
   "Publishing",
   "Marketing",
 ];
+
+const PAYMENT_PACKAGE_KEY = {
+  Starter: "starter",
+  Professional: "professional",
+  "Complete Publishing Package": "complete",
+};
+
+const PAYMENT_PACKAGES = SHARED_PRICING.map((tier) => ({
+  packageKey: PAYMENT_PACKAGE_KEY[tier.name],
+  name: tier.name,
+  priceUsd: tier.price.fullBook,
+}));
 
 const ABOUT_LINKS = [
   { label: "About Us", href: "/about" },
@@ -90,16 +105,22 @@ export default function Navbar({ servicesByCategory = {} }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+  const [paymentMenuOpen, setPaymentMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobilePaymentOpen, setMobilePaymentOpen] = useState(false);
+  const [paymentCheckoutKey, setPaymentCheckoutKey] = useState(null);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   const closeTimer = useRef(null);
   const aboutCloseTimer = useRef(null);
+  const paymentCloseTimer = useRef(null);
   const servicesLinkRef = useRef(null);
   const aboutLinkRef = useRef(null);
+  const paymentLinkRef = useRef(null);
   const megaMenuRef = useRef(null);
   const aboutMenuRef = useRef(null);
+  const paymentMenuRef = useRef(null);
 
   useEffect(() => {
     // Smooth in-page jumps for hash nav links
@@ -140,6 +161,7 @@ export default function Navbar({ servicesByCategory = {} }) {
       if (e.key === "Escape") {
         setMegaMenuOpen(false);
         setAboutMenuOpen(false);
+        setPaymentMenuOpen(false);
       }
     };
     document.addEventListener("keydown", handleEscape);
@@ -151,12 +173,25 @@ export default function Navbar({ servicesByCategory = {} }) {
     return () => {
       clearTimeout(closeTimer.current);
       clearTimeout(aboutCloseTimer.current);
+      clearTimeout(paymentCloseTimer.current);
     };
   }, []);
+
+  async function handleNavPackageCheckout(packageKey) {
+    if (!packageKey || paymentCheckoutKey) return;
+    setPaymentCheckoutKey(packageKey);
+    try {
+      await startPackageCheckout(packageKey);
+    } catch (err) {
+      console.error("nav checkout:", err);
+      setPaymentCheckoutKey(null);
+    }
+  }
 
   const handleServicesEnter = () => {
     clearTimeout(closeTimer.current);
     setAboutMenuOpen(false);
+    setPaymentMenuOpen(false);
     setMegaMenuOpen(true);
   };
 
@@ -177,7 +212,29 @@ export default function Navbar({ servicesByCategory = {} }) {
   const handleAboutEnter = () => {
     clearTimeout(aboutCloseTimer.current);
     setMegaMenuOpen(false);
+    setPaymentMenuOpen(false);
     setAboutMenuOpen(true);
+  };
+
+  const handlePaymentEnter = () => {
+    clearTimeout(paymentCloseTimer.current);
+    setMegaMenuOpen(false);
+    setAboutMenuOpen(false);
+    setPaymentMenuOpen(true);
+  };
+
+  const handlePaymentLeave = () => {
+    paymentCloseTimer.current = setTimeout(() => {
+      setPaymentMenuOpen(false);
+    }, 150);
+  };
+
+  const handlePaymentMenuEnter = () => {
+    clearTimeout(paymentCloseTimer.current);
+  };
+
+  const handlePaymentMenuLeave = () => {
+    setPaymentMenuOpen(false);
   };
 
   const handleAboutLeave = () => {
@@ -197,7 +254,7 @@ export default function Navbar({ servicesByCategory = {} }) {
   const navLinks = [
     { label: "How It Works", href: "/#how-it-works" },
     { label: "Services", href: "#services", isServices: true },
-    { label: "Pricing", href: "/#pricing" },
+    { label: "Payment", href: "#payment", isPayment: true },
     { label: "FAQ", href: "/#faq" },
     { label: "About Us", href: "/about", isAbout: true },
     { label: "Contact", href: "/#start" },
@@ -207,6 +264,7 @@ export default function Navbar({ servicesByCategory = {} }) {
     setMobileOpen(false);
     setMobileServicesOpen(false);
     setMobileAboutOpen(false);
+    setMobilePaymentOpen(false);
   };
 
   const linkHover = {
@@ -226,7 +284,8 @@ export default function Navbar({ servicesByCategory = {} }) {
     scrolled ||
     mobileOpen ||
     megaMenuOpen ||
-    aboutMenuOpen;
+    aboutMenuOpen ||
+    paymentMenuOpen;
   const navTopGradient =
     !navBarSolid && !(isHome && isMobileViewport);
 
@@ -372,6 +431,82 @@ export default function Navbar({ servicesByCategory = {} }) {
         /* About Us mega — single column (does not alter Services grid) */
         .nav-mega-about .nav-mega-inner {
           grid-template-columns: minmax(200px, 280px);
+        }
+
+        .nav-mega-payment {
+          padding: 28px 0 24px;
+        }
+        .nav-mega-payment .nav-mega-inner {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: stretch;
+          justify-content: center;
+          gap: 12px;
+          max-width: 1200px;
+          padding: 0 24px;
+        }
+        .nav-payment-pkg {
+          flex: 1 1 200px;
+          max-width: 260px;
+          text-align: left;
+          padding: 16px 18px;
+          border: 1px solid #F0E8D5;
+          border-radius: 10px;
+          background: #FFFCF5;
+          cursor: pointer;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .nav-payment-pkg:hover:not(:disabled) {
+          border-color: #C9A84C;
+          box-shadow: 0 4px 16px rgba(201, 168, 76, 0.15);
+        }
+        .nav-payment-pkg:disabled {
+          opacity: 0.65;
+          cursor: wait;
+        }
+        .nav-payment-pkg-name {
+          display: block;
+          font-family: var(--font-playfair), serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: #1C1C1C;
+          margin-bottom: 4px;
+        }
+        .nav-payment-pkg-price {
+          font-family: var(--font-inter), sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #C9A84C;
+        }
+        .nav-payment-custom {
+          flex: 1 1 240px;
+          max-width: 320px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 16px 18px;
+          border: 1px solid #E8D5A3;
+          border-radius: 10px;
+          background: #FFFFFF;
+          text-decoration: none;
+          transition: border-color 0.15s ease;
+        }
+        .nav-payment-custom:hover {
+          border-color: #C9A84C;
+        }
+        .nav-payment-custom-title {
+          font-family: var(--font-inter), sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          color: #1C1C1C;
+          margin-bottom: 6px;
+        }
+        .nav-payment-custom-note {
+          font-family: var(--font-inter), sans-serif;
+          font-size: 13px;
+          line-height: 1.45;
+          color: #666666;
         }
 
         /* Mobile services accordion */
@@ -554,6 +689,50 @@ export default function Navbar({ servicesByCategory = {} }) {
               );
             }
 
+            if (link.isPayment) {
+              return (
+                <li
+                  key={link.href}
+                  style={{ display: "flex", height: "70px" }}
+                  ref={paymentLinkRef}
+                  onMouseEnter={handlePaymentEnter}
+                  onMouseLeave={handlePaymentLeave}
+                >
+                  <button
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded={paymentMenuOpen}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "70px",
+                      padding: "0 16px",
+                      fontSize: "15px",
+                      fontFamily: "var(--font-inter), sans-serif",
+                      fontWeight: 500,
+                      color: paymentMenuOpen ? "#C9A84C" : "#1C1C1C",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#C9A84C";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!paymentMenuOpen) {
+                        e.currentTarget.style.color = "#1C1C1C";
+                      }
+                    }}
+                  >
+                    {link.label}
+                    <ChevronIcon open={paymentMenuOpen} />
+                  </button>
+                </li>
+              );
+            }
+
             return (
               <li key={link.href} style={{ display: "flex", height: "70px" }}>
                 <Link
@@ -704,6 +883,42 @@ export default function Navbar({ servicesByCategory = {} }) {
         </div>
       </div>
 
+      {/* Desktop Payment menu */}
+      <div
+        ref={paymentMenuRef}
+        className={`nav-mega nav-mega-payment${paymentMenuOpen ? " open" : ""}`}
+        onMouseEnter={handlePaymentMenuEnter}
+        onMouseLeave={handlePaymentMenuLeave}
+        aria-hidden={!paymentMenuOpen}
+      >
+        <div className="nav-mega-inner">
+          {PAYMENT_PACKAGES.map((pkg) => (
+            <button
+              key={pkg.packageKey}
+              type="button"
+              className="nav-payment-pkg"
+              disabled={!!paymentCheckoutKey}
+              onClick={() => handleNavPackageCheckout(pkg.packageKey)}
+            >
+              <span className="nav-payment-pkg-name">{pkg.name}</span>
+              <span className="nav-payment-pkg-price">
+                {paymentCheckoutKey === pkg.packageKey ? "Opening checkout…" : `$${pkg.priceUsd}`}
+              </span>
+            </button>
+          ))}
+          <MenuLink
+            href="/pay"
+            className="nav-payment-custom"
+            onClick={() => setPaymentMenuOpen(false)}
+          >
+            <span className="nav-payment-custom-title">Custom Payment</span>
+            <span className="nav-payment-custom-note">
+              For project amounts agreed with our team after your consultation.
+            </span>
+          </MenuLink>
+        </div>
+      </div>
+
       {/* Desktop About Us mega menu */}
       <div
         ref={aboutMenuRef}
@@ -848,6 +1063,49 @@ export default function Navbar({ servicesByCategory = {} }) {
                         {item.label}
                       </MenuLink>
                     ))}
+                  </div>
+                </li>
+              );
+            }
+
+            if (link.isPayment) {
+              return (
+                <li key={link.href}>
+                  <button
+                    type="button"
+                    aria-expanded={mobilePaymentOpen}
+                    aria-haspopup="true"
+                    onClick={() => setMobilePaymentOpen((open) => !open)}
+                    className="flex w-full items-center justify-between px-4 py-3 font-inter text-[15px] font-medium text-[#1C1C1C] transition-colors duration-200 hover:text-[#C9A84C]"
+                    style={{
+                      color: mobilePaymentOpen ? "#C9A84C" : "#1C1C1C",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronIcon open={mobilePaymentOpen} />
+                  </button>
+
+                  <div className={`nav-mobile-svc-list${mobilePaymentOpen ? " open" : ""}`}>
+                    {PAYMENT_PACKAGES.map((pkg) => (
+                      <button
+                        key={pkg.packageKey}
+                        type="button"
+                        disabled={!!paymentCheckoutKey}
+                        onClick={() => handleNavPackageCheckout(pkg.packageKey)}
+                        className="nav-mobile-svc-link w-full text-left"
+                        style={{ background: "transparent", border: "none", cursor: "pointer" }}
+                      >
+                        {pkg.name} · ${pkg.priceUsd}
+                        {paymentCheckoutKey === pkg.packageKey ? " …" : ""}
+                      </button>
+                    ))}
+                    <MenuLink href="/pay" onClick={closeMobile} className="nav-mobile-svc-link">
+                      Custom Payment — amounts agreed after consultation
+                    </MenuLink>
                   </div>
                 </li>
               );

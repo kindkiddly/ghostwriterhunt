@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
 import { markPaymentPaidByStripeMetadata } from "@/lib/stripe/payments";
+import { resolveInvoiceFromCheckoutSession } from "@/lib/stripe/invoice";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
@@ -34,13 +35,33 @@ export async function POST(request) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
+    const stripe = getStripe();
+    let invoiceFields = {};
+    try {
+      const resolved = await resolveInvoiceFromCheckoutSession(stripe, session);
+      if (resolved) {
+        invoiceFields = {
+          stripeInvoiceId: resolved.stripeInvoiceId,
+          stripeInvoiceUrl: resolved.stripeInvoiceUrl,
+        };
+      }
+    } catch (err) {
+      console.error("stripe/webhook: could not resolve invoice", err.message);
+    }
+
     const paymentLinkId =
       typeof session.payment_link === "string"
         ? session.payment_link
         : session.payment_link?.id || null;
     const paid = paymentLinkId
-      ? await markPaymentPaidByStripeMetadata({ stripePaymentLinkId: paymentLinkId })
-      : await markPaymentPaidByStripeMetadata({ stripeCheckoutSessionId: session.id });
+      ? await markPaymentPaidByStripeMetadata({
+          stripePaymentLinkId: paymentLinkId,
+          ...invoiceFields,
+        })
+      : await markPaymentPaidByStripeMetadata({
+          stripeCheckoutSessionId: session.id,
+          ...invoiceFields,
+        });
 
     if (paid?.contact_id) {
       const admin = createAdminClient();

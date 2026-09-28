@@ -175,7 +175,7 @@ function PlanCard({ plan, index }) {
             disabled={paying}
             className="gwh-price-pay-btn block w-full px-7 py-3.5 text-center font-inter text-[15px] font-semibold transition-all duration-300 disabled:opacity-60"
           >
-            {paying ? "Opening checkout…" : `Pay securely · $${plan.priceAmount}`}
+            {paying ? "Opening checkout…" : plan.cta}
           </button>
         )}
         <a

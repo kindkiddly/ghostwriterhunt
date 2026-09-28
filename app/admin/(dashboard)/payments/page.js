@@ -319,7 +319,7 @@ function PaymentsContent() {
           <table className="w-full min-w-[880px] border-collapse">
             <thead>
               <tr className="border-b border-[var(--color-border)] text-left">
-                {["Amount", "Description", "Status", "Source", "Created", "Link / Chat"].map((h) => (
+                {["Amount", "Description", "Status", "Source", "Created", "Invoice / Links"].map((h) => (
                   <th key={h} className="px-4 py-3 font-inter text-[12px] font-semibold uppercase tracking-wide text-[#999999]">
                     {h}
                   </th>
@@ -349,6 +349,16 @@ function PaymentsContent() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-2">
+                      {p.status === "paid" && p.stripe_invoice_url && (
+                        <a
+                          href={p.stripe_invoice_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+                        >
+                          View invoice
+                        </a>
+                      )}
                       {p.stripe_payment_link_url && p.status === "pending" && (
                         <button
                           type="button"
