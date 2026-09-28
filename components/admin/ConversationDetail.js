@@ -302,17 +302,15 @@ export default function ConversationDetail({ conversationId, onBack }) {
           </div>
           <Link
             href={`/admin/payments?conversationId=${conversationId}${conversation.contact_id ? `&contactId=${conversation.contact_id}` : ""}`}
-            className="hidden rounded-full bg-[#F5F0E3] px-3 py-1.5 font-inter text-[12px] font-semibold text-[#8A6D2C] transition-colors hover:bg-[#EFE7D2] sm:inline-block"
+            className="admin-btn-emerald hidden rounded-full px-3 py-1.5 text-[12px] sm:inline-block"
           >
             Payment link
           </Link>
           <button
             type="button"
             onClick={toggleAi}
-            className={`rounded-full px-3 py-1.5 font-inter text-[12px] font-semibold transition-colors ${
-              conversation.ai_enabled
-                ? "bg-[#EAF2FB] text-[#2C5B8A] hover:bg-[#DCEAFA]"
-                : "bg-[#F5F0E3] text-[#8A6D2C] hover:bg-[#EFE7D2]"
+            className={`rounded-full px-3 py-1.5 text-[12px] ${
+              conversation.ai_enabled ? "admin-btn-success" : "admin-btn-secondary"
             }`}
           >
             AI {conversation.ai_enabled ? "on" : "off"}
@@ -320,10 +318,8 @@ export default function ConversationDetail({ conversationId, onBack }) {
           <button
             type="button"
             onClick={toggleStatus}
-            className={`rounded-full px-3 py-1.5 font-inter text-[12px] font-semibold transition-colors ${
-              conversation.status === "open"
-                ? "bg-[#EAF3E4] text-[#4F7A3A] hover:bg-[#DCEBD2]"
-                : "bg-[#EDEDED] text-[#777777] hover:bg-[#E2E2E2]"
+            className={`rounded-full px-3 py-1.5 text-[12px] ${
+              conversation.status === "open" ? "admin-btn-neutral" : "admin-btn-success"
             }`}
           >
             {conversation.status === "open" ? "Close" : "Reopen"}
@@ -363,7 +359,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
             type="button"
             onClick={sendReply}
             disabled={!replyText.trim() || sending}
-            className="admin-btn-primary rounded-full bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[13px] font-semibold text-white transition-colors hover:bg-[#B8960C] disabled:cursor-not-allowed disabled:opacity-50"
+            className="admin-btn-primary rounded-full disabled:cursor-not-allowed"
           >
             Send
           </button>
@@ -462,14 +458,14 @@ export default function ConversationDetail({ conversationId, onBack }) {
               <button
                 type="submit"
                 disabled={savingContact}
-                className="admin-btn-primary flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
+                className="admin-btn-primary flex-1"
               >
                 {savingContact ? "Saving…" : "Save"}
               </button>
               <button
                 type="button"
                 onClick={() => setShowAddContact(false)}
-                className="rounded-lg border border-[var(--color-border)] px-3 py-2 font-inter text-[13px] font-semibold text-[#666666]"
+                className="admin-btn-neutral"
               >
                 Cancel
               </button>
@@ -481,7 +477,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
             <button
               type="button"
               onClick={() => setShowAddContact(true)}
-              className="rounded-lg border-2 border-[var(--color-accent-gold)] px-4 py-2 font-inter text-[13px] font-semibold text-[var(--color-accent-gold)] hover:bg-[var(--color-accent-gold)] hover:text-white"
+              className="admin-btn-primary"
             >
               Add contact
             </button>

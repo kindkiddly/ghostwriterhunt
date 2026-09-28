@@ -69,11 +69,7 @@ function InboxContent() {
                 key={f.key}
                 type="button"
                 onClick={() => setFilter(f.key)}
-                className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold transition-colors ${
-                  filter === f.key
-                    ? "bg-[var(--color-text)] text-white"
-                    : "bg-[var(--color-background)] text-[#666666] hover:bg-[#EFEAD9]"
-                }`}
+                className={`admin-btn-pill ${filter === f.key ? "is-active" : ""}`}
               >
                 {f.label}
               </button>

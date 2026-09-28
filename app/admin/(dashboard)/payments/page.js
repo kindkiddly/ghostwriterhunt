@@ -32,7 +32,7 @@ function SummaryCard({ label, value, sub }) {
   );
 }
 
-function PaymentsTable({ filtered, copyUrl }) {
+function PaymentsTable({ filtered, onCopyLink, copiedPaymentId }) {
   return (
     <div className="overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] shadow-sm">
       <table className="w-full min-w-[880px] border-collapse text-[#1C1C1C]">
@@ -89,11 +89,16 @@ function PaymentsTable({ filtered, copyUrl }) {
                   {p.stripe_payment_link_url && p.status === "pending" && (
                     <button
                       type="button"
-                      onClick={() => copyUrl(p.stripe_payment_link_url)}
-                      className="font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+                      onClick={() => onCopyLink(p.stripe_payment_link_url, p.id)}
+                      className="admin-btn-secondary px-2 py-1 text-[11px] font-semibold"
                     >
-                      Copy link
+                      {copiedPaymentId === p.id ? "Copied" : "Copy link"}
                     </button>
+                  )}
+                  {p.payment_link_emailed_at && (
+                    <span className="font-inter text-[11px] text-[#666666]">
+                      Emailed {new Date(p.payment_link_emailed_at).toLocaleString()}
+                    </span>
                   )}
                   {p.conversation_id && (
                     <Link
@@ -139,11 +144,14 @@ function PaymentsContent() {
   const [description, setDescription] = useState("");
   const [contactId, setContactId] = useState(prefillContactId);
   const [conversationId, setConversationId] = useState(prefillConversationId);
-  const [sendEmail, setSendEmail] = useState(true);
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState(null);
-  const [lastCreatedUrl, setLastCreatedUrl] = useState(null);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [modalStep, setModalStep] = useState("form");
+  const [createResult, setCreateResult] = useState(null);
+  const [copyFeedback, setCopyFeedback] = useState("idle");
+  const [sendFeedback, setSendFeedback] = useState("idle");
+  const [tableCopiedId, setTableCopiedId] = useState(null);
   const [paymentMode, setPaymentMode] = useState({ mock: true, live: false });
 
   useEffect(() => {
@@ -182,15 +190,6 @@ function PaymentsContent() {
     };
   }, [supabase, loadPayments]);
 
-  useEffect(() => {
-    if (!createModalOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") setCreateModalOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [createModalOpen]);
-
   const summary = useMemo(() => {
     const now = new Date();
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -218,21 +217,46 @@ function PaymentsContent() {
     return payments.filter((p) => p.status === statusFilter);
   }, [payments, statusFilter]);
 
+  function openCreateModal() {
+    setCreateError(null);
+    setCreateResult(null);
+    setModalStep("form");
+    setCopyFeedback("idle");
+    setSendFeedback("idle");
+    setCreateModalOpen(true);
+  }
+
+  const closeCreateModal = useCallback(() => {
+    setCreateModalOpen(false);
+    setModalStep("form");
+    setCreateResult(null);
+    setCopyFeedback("idle");
+    setSendFeedback("idle");
+    setCreateError(null);
+  }, []);
+
+  useEffect(() => {
+    if (!createModalOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") closeCreateModal();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [createModalOpen, closeCreateModal]);
+
   async function handleCreateLink(e) {
     e.preventDefault();
     setCreating(true);
     setCreateError(null);
-    setLastCreatedUrl(null);
 
     const body =
       mode === "fixed"
-        ? { packageKey, contactId: contactId || null, conversationId: conversationId || null, sendEmail }
+        ? { packageKey, contactId: contactId || null, conversationId: conversationId || null }
         : {
             amountUsd: parseFloat(amountUsd),
             description: description.trim(),
             contactId: contactId || null,
             conversationId: conversationId || null,
-            sendEmail,
           };
 
     try {
@@ -243,9 +267,27 @@ function PaymentsContent() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not create link");
-      setLastCreatedUrl(data.url);
+
+      const contactLabel = contactId
+        ? contacts.find((c) => c.id === contactId)?.name ||
+          contacts.find((c) => c.id === contactId)?.email ||
+          data.contactName ||
+          data.contactEmail ||
+          "—"
+        : "—";
+
+      setCreateResult({
+        paymentId: data.paymentId,
+        url: data.url,
+        amountCents: data.amountCents,
+        description: data.description,
+        contactLabel,
+        contactEmail: data.contactEmail || null,
+      });
+      setModalStep("result");
+      setCopyFeedback("idle");
+      setSendFeedback("idle");
       if (mode === "custom") setDescription("");
-      setCreateModalOpen(false);
       await loadPayments();
     } catch (err) {
       setCreateError(err.message);
@@ -254,11 +296,36 @@ function PaymentsContent() {
     }
   }
 
-  async function copyUrl(url) {
+  async function copyLinkUrl(url, { tablePaymentId = null } = {}) {
     try {
       await navigator.clipboard.writeText(url);
+      if (tablePaymentId) {
+        setTableCopiedId(tablePaymentId);
+        window.setTimeout(() => setTableCopiedId(null), 2000);
+      } else {
+        setCopyFeedback("copied");
+      }
     } catch {
       // ignore
+    }
+  }
+
+  async function handleSendLinkEmail() {
+    if (!createResult?.paymentId || !createResult.contactEmail) return;
+    setSendFeedback("sending");
+    try {
+      const res = await fetch("/api/admin/payments/send-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paymentId: createResult.paymentId }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Could not send email");
+      setSendFeedback("sent");
+      await loadPayments();
+    } catch (err) {
+      setCreateError(err.message);
+      setSendFeedback("idle");
     }
   }
 
@@ -271,15 +338,7 @@ function PaymentsContent() {
             Track checkout and payment links. Create new links for fixed packages or custom amounts.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            setCreateError(null);
-            setLastCreatedUrl(null);
-            setCreateModalOpen(true);
-          }}
-          className="admin-btn-emerald shrink-0 rounded-lg px-5 py-2.5 font-inter text-[14px] font-semibold transition-colors disabled:opacity-60"
-        >
+        <button type="button" onClick={openCreateModal} className="admin-btn-emerald shrink-0">
           Create payment link
         </button>
       </div>
@@ -313,9 +372,7 @@ function PaymentsContent() {
                 key={s}
                 type="button"
                 onClick={() => setStatusFilter(s)}
-                className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold capitalize ${
-                  statusFilter === s ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
-                }`}
+                className={`admin-btn-pill capitalize ${statusFilter === s ? "is-active" : ""}`}
               >
                 {s}
               </button>
@@ -334,7 +391,11 @@ function PaymentsContent() {
             No payments yet.
           </p>
         ) : (
-          <PaymentsTable filtered={filtered} copyUrl={copyUrl} />
+          <PaymentsTable
+            filtered={filtered}
+            onCopyLink={(url, id) => copyLinkUrl(url, { tablePaymentId: id })}
+            copiedPaymentId={tableCopiedId}
+          />
         )}
       </section>
 
@@ -342,7 +403,7 @@ function PaymentsContent() {
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
           role="presentation"
-          onClick={() => setCreateModalOpen(false)}
+          onClick={closeCreateModal}
         >
           <div className="absolute inset-0 bg-[#1C1C1C]/40 backdrop-blur-[2px]" aria-hidden="true" />
           <div
@@ -354,35 +415,95 @@ function PaymentsContent() {
           >
             <div className="mb-4 flex items-start justify-between gap-3">
               <h2 id="create-payment-link-title" className="font-playfair text-[20px] font-bold text-[#1C1C1C]">
-                Create payment link
+                {modalStep === "result" ? "Payment link ready" : "Create payment link"}
               </h2>
               <button
                 type="button"
-                onClick={() => setCreateModalOpen(false)}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] bg-white/80 font-inter text-[18px] leading-none text-[#666666] hover:text-[#1C1C1C]"
+                onClick={closeCreateModal}
+                className="admin-btn-secondary flex h-8 w-8 shrink-0 items-center justify-center p-0 text-[16px] leading-none"
                 aria-label="Close"
               >
                 ✕
               </button>
             </div>
 
+            {modalStep === "result" && createResult ? (
+              <div>
+                <dl className="space-y-3 rounded-xl border border-[var(--color-border)] bg-[rgba(255,255,255,0.6)] p-4">
+                  <div>
+                    <dt className="font-inter text-[11px] font-semibold uppercase tracking-wide text-[#999999]">Amount</dt>
+                    <dd className="font-inter text-[15px] font-semibold text-[#1C1C1C]">
+                      {formatMoney(createResult.amountCents)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-inter text-[11px] font-semibold uppercase tracking-wide text-[#999999]">
+                      Description
+                    </dt>
+                    <dd className="font-inter text-[13px] text-[#444444]">{createResult.description}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-inter text-[11px] font-semibold uppercase tracking-wide text-[#999999]">Contact</dt>
+                    <dd className="font-inter text-[13px] text-[#444444]">
+                      {createResult.contactLabel}
+                      {createResult.contactEmail ? (
+                        <span className="block text-[12px] text-[#888888]">{createResult.contactEmail}</span>
+                      ) : null}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-inter text-[11px] font-semibold uppercase tracking-wide text-[#999999]">Link</dt>
+                    <dd className="break-all font-inter text-[12px] text-[#1C1C1C]">{createResult.url}</dd>
+                  </div>
+                </dl>
+
+                {createError && (
+                  <p className="mt-3 font-inter text-[13px] text-[#9A2E24]" role="alert">
+                    {createError}
+                  </p>
+                )}
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => copyLinkUrl(createResult.url)}
+                    className="admin-btn-secondary"
+                  >
+                    {copyFeedback === "copied" ? "Copied" : "Copy link"}
+                  </button>
+                  {createResult.contactEmail ? (
+                    <button
+                      type="button"
+                      onClick={handleSendLinkEmail}
+                      disabled={sendFeedback === "sending" || sendFeedback === "sent"}
+                      className="admin-btn-primary"
+                    >
+                      {sendFeedback === "sent"
+                        ? "Sent"
+                        : sendFeedback === "sending"
+                          ? "Sending…"
+                          : "Send by email"}
+                    </button>
+                  ) : null}
+                  <button type="button" onClick={closeCreateModal} className="admin-btn-neutral">
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
             <form onSubmit={handleCreateLink}>
               <div className="mb-4 flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={() => setMode("custom")}
-                  className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-                    mode === "custom" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
-                  }`}
+                  className={`admin-btn-pill ${mode === "custom" ? "is-active" : ""}`}
                 >
                   Custom amount
                 </button>
                 <button
                   type="button"
                   onClick={() => setMode("fixed")}
-                  className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold ${
-                    mode === "fixed" ? "bg-[#1C1C1C] text-white" : "bg-[var(--color-background)] text-[#666666]"
-                  }`}
+                  className={`admin-btn-pill ${mode === "fixed" ? "is-active" : ""}`}
                 >
                   Fixed package
                 </button>
@@ -467,36 +588,14 @@ function PaymentsContent() {
                 </label>
               </div>
 
-              <label className="mt-4 flex items-center gap-2 font-inter text-[13px] text-[#666666]">
-                <input type="checkbox" checked={sendEmail} onChange={(e) => setSendEmail(e.target.checked)} />
-                Email link to contact (if contact has email)
-              </label>
-
               <div className="mt-5 flex flex-wrap items-center gap-3">
-                <button
-                  type="submit"
-                  disabled={creating}
-                  className="admin-btn-primary rounded-lg bg-[var(--color-accent-gold)] px-5 py-2.5 font-inter text-[14px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
-                >
-                  {creating ? "Creating…" : "Create Stripe link"}
+                <button type="submit" disabled={creating} className="admin-btn-primary">
+                  {creating ? "Creating…" : "Create link"}
                 </button>
                 {createError && <p className="font-inter text-[13px] text-[#9A2E24]">{createError}</p>}
               </div>
-
-              {lastCreatedUrl && (
-                <div className="mt-4 rounded-lg bg-[var(--color-background)] p-4">
-                  <p className="font-inter text-[12px] font-semibold text-[#666666]">Payment link created</p>
-                  <p className="mt-1 break-all font-inter text-[13px] text-[#1C1C1C]">{lastCreatedUrl}</p>
-                  <button
-                    type="button"
-                    onClick={() => copyUrl(lastCreatedUrl)}
-                    className="mt-2 font-inter text-[12px] font-semibold text-[var(--color-accent-gold)] hover:underline"
-                  >
-                    Copy link
-                  </button>
-                </div>
-              )}
             </form>
+            )}
           </div>
         </div>
       )}

@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { requireAdmin } from "@/lib/supabase/requireAdmin";
 import { isPaymentsEnabled, isStripeMockMode } from "@/lib/stripe/client";
 import { getFixedPackage, normalizeCustomAmountCents } from "@/lib/stripe/packages";
@@ -7,17 +6,8 @@ import { createPaymentLinkRecord } from "@/lib/stripe/payments";
 
 /**
  * GhostWriterHunt — Admin: create a Stripe Payment Link (fixed or custom amount).
- * POST { packageKey?, amountUsd?, description, contactId?, conversationId?, sendEmail? }
+ * POST { packageKey?, amountUsd?, description, contactId?, conversationId? }
  */
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 export async function POST(request) {
   if (!isPaymentsEnabled()) {
@@ -36,7 +26,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { packageKey, amountUsd, description, contactId, conversationId, sendEmail } = body || {};
+  const { packageKey, amountUsd, description, contactId, conversationId } = body || {};
 
   let amountCents = null;
   let resolvedPackageKey = null;
@@ -64,6 +54,7 @@ export async function POST(request) {
   }
 
   let customerEmail = null;
+  let contactName = null;
   if (contactId) {
     const { data: contact } = await supabase
       .from("contacts")
@@ -74,6 +65,7 @@ export async function POST(request) {
       return NextResponse.json({ error: "Contact not found" }, { status: 404 });
     }
     customerEmail = contact.email || null;
+    contactName = contact.name || null;
   }
 
   try {
@@ -89,28 +81,16 @@ export async function POST(request) {
       metadata: { admin_created: true },
     });
 
-    if (sendEmail && customerEmail) {
-      const apiKey = process.env.RESEND_API_KEY;
-      if (apiKey) {
-        const amountLabel = `$${(amountCents / 100).toFixed(2)}`;
-        const resend = new Resend(apiKey);
-        await resend.emails.send({
-          from: "GhostWriterHunt <ghostwriterhunt@lumexforge.com>",
-          to: customerEmail,
-          subject: `Your GhostWriterHunt payment link (${amountLabel})`,
-          html: `<div style="font-family:Arial,sans-serif;max-width:560px;">
-            <h2 style="color:#1C1C1C;">Complete your secure payment</h2>
-            <p style="color:#333;">${escapeHtml(resolvedDescription)}</p>
-            <p style="color:#333;"><strong>Amount:</strong> ${amountLabel}</p>
-            <p style="margin:24px 0;"><a href="${escapeHtml(url)}" style="background:#C9A84C;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">Pay securely</a></p>
-            <p style="color:#666;font-size:13px;">${mock ? "Demo payment link. No real charge until Stripe is connected." : "This link is hosted by Stripe. If you have questions, reply to this email."}</p>
-          </div>`,
-          text: `Complete your payment (${amountLabel}): ${url}\n\n${resolvedDescription}`,
-        });
-      }
-    }
-
-    return NextResponse.json({ paymentId, url, mock: mock || isStripeMockMode() });
+    return NextResponse.json({
+      paymentId,
+      url,
+      mock: mock || isStripeMockMode(),
+      amountCents,
+      description: resolvedDescription,
+      contactId: contactId || null,
+      contactEmail: customerEmail,
+      contactName,
+    });
   } catch (err) {
     console.error("stripe/create-link:", err);
     return NextResponse.json({ error: "Could not create payment link" }, { status: 500 });

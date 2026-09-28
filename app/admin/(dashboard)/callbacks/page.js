@@ -128,11 +128,7 @@ export default function CallbacksPage() {
               key={f.key}
               type="button"
               onClick={() => setStatusFilter(f.key)}
-              className={`rounded-full px-3 py-1 font-inter text-[12px] font-semibold transition-colors ${
-                statusFilter === f.key
-                  ? "bg-[var(--color-text)] text-white"
-                  : "bg-[var(--color-background)] text-[#666666] hover:bg-[#EFEAD9]"
-              }`}
+              className={`admin-btn-pill ${statusFilter === f.key ? "is-active" : ""}`}
             >
               {f.label}
             </button>
@@ -210,7 +206,7 @@ export default function CallbacksPage() {
                       <Link
                         href={`/admin?c=${row.conversation_id}`}
                         onClick={() => markSeen(row.conversation_id)}
-                        className="rounded-lg border border-[var(--color-border)] bg-white px-2.5 py-1.5 font-inter text-[12px] font-medium text-[var(--color-text)] hover:bg-[var(--color-background)]"
+                        className="admin-btn-secondary px-2.5 py-1.5 text-[12px] font-medium"
                       >
                         Open chat
                       </Link>
@@ -219,7 +215,7 @@ export default function CallbacksPage() {
                           type="button"
                           disabled={updatingId === row.conversation_id}
                           onClick={() => updateStatus(row.conversation_id, "contacted")}
-                          className="rounded-lg bg-[#F5F0E3] px-2.5 py-1.5 font-inter text-[12px] font-semibold text-[#8A6D2C] hover:bg-[#EFEAD9] disabled:opacity-50"
+                          className="admin-btn-primary px-2.5 py-1.5 text-[12px]"
                         >
                           Mark contacted
                         </button>
@@ -229,7 +225,7 @@ export default function CallbacksPage() {
                           type="button"
                           disabled={updatingId === row.conversation_id}
                           onClick={() => updateStatus(row.conversation_id, "resolved")}
-                          className="rounded-lg bg-[#EAF3E4] px-2.5 py-1.5 font-inter text-[12px] font-semibold text-[#4F7A3A] hover:bg-[#DCEBD4] disabled:opacity-50"
+                          className="admin-btn-success px-2.5 py-1.5 text-[12px]"
                         >
                           Resolved
                         </button>

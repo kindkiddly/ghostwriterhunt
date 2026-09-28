@@ -240,7 +240,7 @@ export default function ContactDetailPage() {
               <button
                 type="button"
                 onClick={() => setEmailOpen(true)}
-                className="w-full rounded-lg border-2 border-[var(--color-accent-gold)] px-4 py-2 font-inter text-[13px] font-semibold text-[var(--color-accent-gold)] hover:bg-[var(--color-accent-gold)] hover:text-white"
+                className="admin-btn-primary w-full"
               >
                 Compose email
               </button>
@@ -270,14 +270,14 @@ export default function ContactDetailPage() {
                   <button
                     type="submit"
                     disabled={emailSending}
-                    className="admin-btn-primary flex-1 rounded-lg bg-[var(--color-accent-gold)] px-3 py-2 font-inter text-[13px] font-semibold text-white hover:bg-[#B8960C] disabled:opacity-60"
+                    className="admin-btn-primary flex-1"
                   >
                     {emailSending ? "Sending…" : "Send"}
                   </button>
                   <button
                     type="button"
                     onClick={() => setEmailOpen(false)}
-                    className="rounded-lg border border-[var(--color-border)] px-3 py-2 font-inter text-[13px] font-semibold text-[#666666]"
+                    className="admin-btn-neutral"
                   >
                     Cancel
                   </button>
