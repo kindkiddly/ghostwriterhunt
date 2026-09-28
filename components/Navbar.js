@@ -14,13 +14,78 @@ import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
  * Services mega menu (desktop hover) + accordion (mobile).
  */
 
-const CATEGORY_ORDER = [
-  "Writing",
-  "Editing",
-  "Design",
-  "Publishing",
-  "Marketing",
+/** Desktop/mobile Services mega menu — 3 columns (sources unchanged: same slugs/URLs). */
+const SERVICES_MEGA_GROUPS = [
+  { id: "writing", heading: "Writing", categories: ["Writing"] },
+  { id: "editing-design", heading: "Editing & Design", categories: ["Editing", "Design"] },
+  {
+    id: "publishing-marketing",
+    heading: "Publishing & Marketing",
+    categories: ["Publishing", "Marketing"],
+  },
 ];
+
+function servicesForMegaGroup(servicesByCategory, group) {
+  return group.categories.flatMap((cat) => servicesByCategory[cat] || []);
+}
+
+function ServiceLineIcon({ category }) {
+  const svgProps = {
+    width: 18,
+    height: 18,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg",
+    "aria-hidden": true,
+    className: "shrink-0",
+  };
+  const stroke = "#C9A84C";
+  const sw = 1.5;
+
+  switch (category) {
+    case "Editing":
+      return (
+        <svg {...svgProps}>
+          <path d="M5 5h14v14H5z" stroke={stroke} strokeWidth={sw} />
+          <path d="M8 9h8M8 13h8M8 17h5" stroke={stroke} strokeWidth={sw} strokeLinecap="round" />
+        </svg>
+      );
+    case "Design":
+      return (
+        <svg {...svgProps}>
+          <rect x="4" y="4" width="16" height="16" rx="2" stroke={stroke} strokeWidth={sw} />
+          <path d="M4 15l4-4 3 3 5-6 4 4" stroke={stroke} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "Publishing":
+      return (
+        <svg {...svgProps}>
+          <path d="M6 4h10a2 2 0 012 2v14H8a2 2 0 00-2 2V4z" stroke={stroke} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M8 4v16" stroke={stroke} strokeWidth={sw} />
+        </svg>
+      );
+    case "Marketing":
+      return (
+        <svg {...svgProps}>
+          <path d="M4 10v4l12-4-12-4z" stroke={stroke} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M16 8v8" stroke={stroke} strokeWidth={sw} strokeLinecap="round" />
+        </svg>
+      );
+    case "Writing":
+    default:
+      return (
+        <svg {...svgProps}>
+          <path d="M12 20h9" stroke={stroke} strokeWidth={sw} strokeLinecap="round" />
+          <path
+            d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"
+            stroke={stroke}
+            strokeWidth={sw}
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+  }
+}
 
 const PAYMENT_PACKAGE_KEY = {
   Starter: "starter",
@@ -348,46 +413,9 @@ export default function Navbar({ servicesByCategory = {} }) {
               transform 0.25s ease-out;
           }
         }
-        .nav-mega-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 24px;
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 0;
-        }
-        .nav-mega-col {
-          padding: 0 28px;
-          border-right: 1px solid #F0E8D5;
-        }
-        .nav-mega-col:last-child {
-          border-right: none;
-        }
-        .nav-mega-heading {
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 600;
-          font-size: 11px;
-          color: #C9A84C;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          margin: 0 0 16px;
-          padding-bottom: 12px;
-          border-bottom: 1px solid #E8D5A3;
-        }
         .nav-mega-link {
-          display: block;
-          padding: 8px 0;
           font-family: var(--font-inter), sans-serif;
-          font-weight: 400;
-          font-size: 14px;
-          color: #444444;
           text-decoration: none;
-          border-radius: 4px;
-          transition: color 0.15s ease, padding-left 0.15s ease;
-        }
-        .nav-mega-link:hover {
-          color: #C9A84C;
-          padding-left: 4px;
         }
         .nav-mega-footer {
           max-width: 1200px;
@@ -428,9 +456,165 @@ export default function Navbar({ servicesByCategory = {} }) {
           text-decoration: underline;
         }
 
-        /* About Us mega — single column (does not alter Services grid) */
+        /* About Us — slim horizontal bar */
+        .nav-mega-about {
+          padding: 0;
+          border-bottom: 1px solid #E8D5A3;
+          box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+        }
         .nav-mega-about .nav-mega-inner {
-          grid-template-columns: minmax(200px, 280px);
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 10px 24px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          gap: 6px 22px;
+        }
+        .nav-about-link {
+          display: inline-block;
+          padding: 4px 0;
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 500;
+          font-size: 14px;
+          color: #444444;
+          white-space: nowrap;
+          transition: color 0.15s ease;
+        }
+        .nav-about-link:hover {
+          color: #C9A84C;
+        }
+
+        /* Services mega — frosted panel + tile grid */
+        .nav-mega-services {
+          padding: 0;
+          background: transparent;
+          border-bottom: none;
+          box-shadow: none;
+          transform: none;
+          transition: opacity 0s;
+        }
+        .nav-mega-services.open {
+          transform: none;
+          transition: opacity 0s;
+        }
+        .nav-mega-services-panel {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 18px 24px 14px;
+          background: rgba(250, 250, 247, 0.92);
+          border: 1px solid rgba(232, 213, 163, 0.9);
+          border-top: none;
+          border-radius: 0 0 14px 14px;
+          box-shadow: 0 14px 44px rgba(28, 28, 28, 0.1);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .nav-mega-services-panel {
+            background: rgba(250, 250, 247, 0.98);
+          }
+        }
+        .nav-mega-services-inner {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px 28px;
+        }
+        .nav-svc-col-heading {
+          margin: 0 0 10px;
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 600;
+          font-size: 10px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #C9A84C;
+        }
+        .nav-svc-col-tiles {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .nav-svc-tile {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          min-height: 76px;
+          height: 100%;
+          padding: 12px 12px 10px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          background: rgba(255, 255, 255, 0.45);
+          text-decoration: none;
+          opacity: 0;
+          transform: translateY(2px);
+          transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+        .nav-mega-services.open .nav-svc-tile {
+          animation: nav-svc-tile-in 0.12s ease forwards;
+          animation-delay: calc(var(--tile-i, 0) * 12ms);
+        }
+        @keyframes nav-svc-tile-in {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .nav-svc-tile:hover {
+          transform: translateY(-2px);
+          border-color: rgba(201, 168, 76, 0.35);
+          background: rgba(255, 255, 255, 0.75);
+        }
+        .nav-svc-tile-name {
+          position: relative;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 1.35;
+          text-align: left;
+          color: #1C1C1C;
+          transition: color 0.2s ease;
+        }
+        .nav-svc-tile-name::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 1px;
+          background: #C9A84C;
+          transition: width 0.2s ease;
+        }
+        .nav-svc-tile:hover .nav-svc-tile-name {
+          color: #C9A84C;
+        }
+        .nav-svc-tile:hover .nav-svc-tile-name::after {
+          width: 100%;
+        }
+        .nav-mega-services-footer {
+          max-width: 1200px;
+          margin: 10px auto 0;
+          padding: 12px 24px 16px;
+          border-top: 1px solid rgba(232, 213, 163, 0.65);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .nav-svc-tile,
+          .nav-mega-services.open .nav-svc-tile {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .nav-svc-tile:hover {
+            transform: none;
+          }
         }
 
         .nav-mega-payment {
@@ -542,6 +726,43 @@ export default function Navbar({ servicesByCategory = {} }) {
           text-decoration: none;
         }
         .nav-mobile-svc-link:hover {
+          color: #C9A84C;
+        }
+        .nav-mobile-svc-tiles {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 8px;
+          padding: 4px 8px 12px 12px;
+        }
+        .nav-mobile-svc-tile {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          min-height: 64px;
+          padding: 10px 12px;
+          border-radius: 10px;
+          border: 1px solid #F0E8D5;
+          background: #FFFCF5;
+          text-decoration: none;
+        }
+        .nav-mobile-svc-tile-name {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 1.35;
+          color: #1C1C1C;
+        }
+        .nav-mobile-svc-tile:active,
+        .nav-mobile-svc-tile:hover {
+          border-color: #E8D5A3;
+          color: #C9A84C;
+        }
+        .nav-mobile-svc-tile:active .nav-mobile-svc-tile-name,
+        .nav-mobile-svc-tile:hover .nav-mobile-svc-tile-name {
           color: #C9A84C;
         }
       ` }} />
@@ -844,42 +1065,51 @@ export default function Navbar({ servicesByCategory = {} }) {
       {/* Desktop Services mega menu */}
       <div
         ref={megaMenuRef}
-        className={`nav-mega${megaMenuOpen ? " open" : ""}`}
+        className={`nav-mega nav-mega-services${megaMenuOpen ? " open" : ""}`}
         onMouseEnter={handleMenuEnter}
         onMouseLeave={handleMenuLeave}
         aria-hidden={!megaMenuOpen}
       >
-        <div className="nav-mega-inner">
-          {CATEGORY_ORDER.map((category) => {
-            const items = servicesByCategory[category] || [];
-            return (
-              <div key={category} className="nav-mega-col">
-                <p className="nav-mega-heading">{category}</p>
-                {items.map((service) => (
-                  <MenuLink
-                    key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className="nav-mega-link"
-                    onClick={() => setMegaMenuOpen(false)}
-                  >
-                    {service.title}
-                  </MenuLink>
-                ))}
-              </div>
-            );
-          })}
-        </div>
+        <div className="nav-mega-services-panel">
+          <div className="nav-mega-services-inner">
+            {(() => {
+              let tileI = 0;
+              return SERVICES_MEGA_GROUPS.map((group) => (
+                <div key={group.id}>
+                  <p className="nav-svc-col-heading">{group.heading}</p>
+                  <div className="nav-svc-col-tiles">
+                    {servicesForMegaGroup(servicesByCategory, group).map((service) => {
+                      tileI += 1;
+                      return (
+                        <MenuLink
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="nav-svc-tile"
+                          style={{ "--tile-i": tileI }}
+                          onClick={() => setMegaMenuOpen(false)}
+                        >
+                          <ServiceLineIcon category={service.category} />
+                          <span className="nav-svc-tile-name">{service.title}</span>
+                        </MenuLink>
+                      );
+                    })}
+                  </div>
+                </div>
+              ));
+            })()}
+          </div>
 
-        <div className="nav-mega-footer">
-          <p className="nav-mega-footer-left">
-            Not sure where to start?
-            <MenuLink href="/#start" className="nav-mega-footer-link">
-              Book a free consultation →
+          <div className="nav-mega-services-footer">
+            <p className="nav-mega-footer-left">
+              Not sure where to start?
+              <MenuLink href="/#start" className="nav-mega-footer-link">
+                Book a free consultation →
+              </MenuLink>
+            </p>
+            <MenuLink href="/#services" className="nav-mega-footer-right">
+              View all services →
             </MenuLink>
-          </p>
-          <MenuLink href="/#services" className="nav-mega-footer-right">
-            View all services →
-          </MenuLink>
+          </div>
         </div>
       </div>
 
@@ -928,39 +1158,16 @@ export default function Navbar({ servicesByCategory = {} }) {
         aria-hidden={!aboutMenuOpen}
       >
         <div className="nav-mega-inner">
-          <div className="nav-mega-col">
-            <p className="nav-mega-heading">COMPANY</p>
-            {ABOUT_LINKS.map((item) => (
-              <MenuLink
-                key={item.href}
-                href={item.href}
-                className="nav-mega-link"
-                onClick={() => setAboutMenuOpen(false)}
-              >
-                {item.label}
-              </MenuLink>
-            ))}
-          </div>
-        </div>
-
-        <div className="nav-mega-footer">
-          <p className="nav-mega-footer-left">
+          {ABOUT_LINKS.map((item) => (
             <MenuLink
-              href="/about"
-              className="nav-mega-footer-link"
-              style={{ marginLeft: 0 }}
+              key={item.href}
+              href={item.href}
+              className="nav-about-link"
               onClick={() => setAboutMenuOpen(false)}
             >
-              Learn more about our team →
+              {item.label}
             </MenuLink>
-          </p>
-          <MenuLink
-            href="/#start"
-            className="nav-mega-footer-right"
-            onClick={() => setAboutMenuOpen(false)}
-          >
-            Contact Us →
-          </MenuLink>
+          ))}
         </div>
       </div>
 
@@ -1006,24 +1213,24 @@ export default function Navbar({ servicesByCategory = {} }) {
                   <div
                     className={`nav-mobile-svc-list${mobileServicesOpen ? " open" : ""}`}
                   >
-                    {CATEGORY_ORDER.map((category) => {
-                      const items = servicesByCategory[category] || [];
-                      return (
-                        <div key={category}>
-                          <p className="nav-mobile-cat">{category}</p>
-                          {items.map((service) => (
+                    {SERVICES_MEGA_GROUPS.map((group) => (
+                      <div key={group.id}>
+                        <p className="nav-mobile-cat">{group.heading}</p>
+                        <div className="nav-mobile-svc-tiles">
+                          {servicesForMegaGroup(servicesByCategory, group).map((service) => (
                             <MenuLink
                               key={service.slug}
                               href={`/services/${service.slug}`}
                               onClick={closeMobile}
-                              className="nav-mobile-svc-link"
+                              className="nav-mobile-svc-tile"
                             >
-                              {service.title}
+                              <ServiceLineIcon category={service.category} />
+                              <span className="nav-mobile-svc-tile-name">{service.title}</span>
                             </MenuLink>
                           ))}
                         </div>
-                      );
-                    })}
+                      </div>
+                    ))}
                   </div>
                 </li>
               );
