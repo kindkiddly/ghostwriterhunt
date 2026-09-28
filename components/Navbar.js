@@ -451,16 +451,14 @@ export default function Navbar({ servicesByCategory = {} }) {
           max-width: 920px;
           margin: 0 auto;
           padding: 14px 18px 10px;
-          background: rgba(28, 28, 28, 0.75);
-          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(250, 250, 247, 0.55);
+          backdrop-filter: blur(10px) saturate(115%);
+          -webkit-backdrop-filter: blur(10px) saturate(115%);
           border-radius: 12px;
-          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
         }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
           .nav-mega-services-panel {
-            background: rgba(28, 28, 28, 0.94);
+            background: #FAFAF7;
           }
         }
         .nav-mega-services-inner {
@@ -489,7 +487,7 @@ export default function Navbar({ servicesByCategory = {} }) {
           font-size: 13px;
           line-height: 1.35;
           text-align: left;
-          color: #FAFAF7;
+          color: #1C1C1C;
           text-decoration: none;
           transition: color 0.15s ease;
         }
@@ -499,7 +497,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         .nav-mega-services-footer {
           margin-top: 10px;
           padding: 10px 2px 4px;
-          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          border-top: 1px solid rgba(232, 213, 163, 0.65);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -507,7 +505,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         }
         .nav-mega-services-footer .nav-mega-footer-left {
           font-size: 12px;
-          color: rgba(250, 250, 247, 0.72);
+          color: #666666;
         }
         .nav-mega-services-footer .nav-mega-footer-link,
         .nav-mega-services-footer .nav-mega-footer-right {
@@ -515,9 +513,23 @@ export default function Navbar({ servicesByCategory = {} }) {
         }
         .nav-mega-services-footer .nav-mega-footer-link:hover,
         .nav-mega-services-footer .nav-mega-footer-right:hover {
-          color: #E8D5A3;
+          text-decoration: underline;
         }
 
+        @media (min-width: 769px) {
+          .nav-mega.nav-mega-payment {
+            background: rgba(250, 250, 247, 0.55);
+            backdrop-filter: blur(10px) saturate(115%);
+            -webkit-backdrop-filter: blur(10px) saturate(115%);
+            border-bottom: none;
+            box-shadow: none;
+          }
+          @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+            .nav-mega.nav-mega-payment {
+              background: #FAFAF7;
+            }
+          }
+        }
         .nav-mega-payment {
           padding: 28px 0 24px;
         }
@@ -605,6 +617,12 @@ export default function Navbar({ servicesByCategory = {} }) {
         .nav-mobile-svc-list.open {
           max-height: 1200px;
           opacity: 1;
+          background: rgba(250, 250, 247, 0.55);
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .nav-mobile-svc-list.open {
+            background: #FAFAF7;
+          }
         }
         .nav-mobile-cat {
           margin: 6px 0 4px;
@@ -629,7 +647,7 @@ export default function Navbar({ servicesByCategory = {} }) {
           font-weight: 500;
           font-size: 13px;
           line-height: 1.35;
-          color: #444444;
+          color: #1C1C1C;
           text-decoration: none;
           transition: color 0.15s ease;
         }
