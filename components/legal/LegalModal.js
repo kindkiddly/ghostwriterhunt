@@ -274,9 +274,11 @@ export default function LegalModal({ isOpen, onClose, type }) {
             <h2 id="legal-modal-title" className="legal-header-title">
               {doc.title}
             </h2>
-            <p className="legal-header-updated">
-              Last updated: {doc.lastUpdated}
-            </p>
+            {doc.lastUpdated ? (
+              <p className="legal-header-updated">
+                Last updated: {doc.lastUpdated}
+              </p>
+            ) : null}
           </div>
           <button
             type="button"

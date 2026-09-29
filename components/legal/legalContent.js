@@ -106,68 +106,54 @@ ${CONTACT_SECTION}
   },
 
   terms: {
-    title: "Terms of Use",
-    lastUpdated: "September 2026",
+    title: "Terms & Conditions",
+    lastUpdated: "",
     content: `
-<h2>Agreement to Terms</h2>
-<p>By accessing or using the GhostWriterHunt website and services, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our website or services.</p>
-<hr />
-<h2>Our Services</h2>
-<p>GhostWriterHunt provides professional ghostwriting, editing, design and publishing services. All services are delivered by our team of vetted professional writers, editors and designers based on individual project agreements.</p>
-<hr />
-<h2>Intellectual Property and Ownership</h2>
-<p>Upon full payment for any completed project, GhostWriterHunt transfers complete intellectual property rights to the client. This includes:</p>
-<ul>
-  <li>Full copyright ownership of the manuscript</li>
-  <li>All publishing rights across all formats</li>
-  <li>The right to publish under your name</li>
-  <li>100% of royalties earned from publication</li>
-</ul>
-<p>GhostWriterHunt retains no rights to any delivered work and will not publish, share or reproduce your content in any form.</p>
-<hr />
-<h2>Confidentiality</h2>
-<p>All projects are protected by a comprehensive Non-Disclosure Agreement signed before work begins. GhostWriterHunt agrees:</p>
-<ul>
-  <li>Never to disclose your project details</li>
-  <li>Never to reveal our professional relationship</li>
-  <li>Never to use your content for any purpose other than your project</li>
-  <li>To maintain complete confidentiality in perpetuity</li>
-</ul>
-<hr />
-<h2>Payment Terms</h2>
-<ul>
-  <li>A deposit is required to commence any project</li>
-  <li>Payment schedules are agreed upon in individual project contracts</li>
-  <li>All payments are non-refundable unless otherwise specified in your project agreement</li>
-  <li>Full payment must be received before final file delivery</li>
-</ul>
-<hr />
-<h2>Revisions and Satisfaction</h2>
-<ul>
-  <li>Revision rounds are specified in individual service packages</li>
-  <li>We work until you are satisfied within the scope of your chosen plan</li>
-  <li>Unlimited revisions are included in Professional and Premium plans</li>
-</ul>
-<hr />
-<h2>Prohibited Uses</h2>
-<p>You agree not to use our website to:</p>
-<ul>
-  <li>Violate any applicable laws or regulations</li>
-  <li>Submit false or misleading information</li>
-  <li>Infringe on intellectual property rights</li>
-  <li>Engage in any fraudulent activity</li>
-</ul>
-<hr />
-<h2>Limitation of Liability</h2>
-<p>GhostWriterHunt shall not be liable for any indirect, incidental or consequential damages arising from your use of our services beyond the amount paid for the specific service in question.</p>
-<hr />
-<h2>Governing Law</h2>
-<p>These Terms of Use shall be governed by the laws of the State of Texas, United States, without regard to conflict of law provisions.</p>
-<hr />
-<h2>Changes to Terms</h2>
-<p>We reserve the right to update these Terms of Use at any time. Continued use of our website constitutes acceptance of updated terms.</p>
-<hr />
-${CONTACT_SECTION}
+<h2>1. Agreement</h2>
+<p>By using this website or placing an order with GhostWriterHunt, you agree to these Terms &amp; Conditions. If you do not agree, please do not use our website or services. You must be of legal age in your location to purchase our services.</p>
+<h2>2. Definitions</h2>
+<p><strong>Website</strong> means all pages and content at ghostwriterhunt.lumexforge.com.</p>
+<p><strong>Client, you, your</strong> means the person placing an order, or anyone ordering on their behalf.</p>
+<p><strong>Company, we, our</strong> means GhostWriterHunt, based in Rosenberg, Texas, USA.</p>
+<p><strong>Services</strong> means all writing, editing, design, publishing and marketing work we provide.</p>
+<p><strong>Order</strong> means any purchase of our services, confirmed by payment through our secure checkout or a payment link we send you.</p>
+<h2>3. Our Services</h2>
+<p>Each order is for your personal or business use. The scope, deliverables and timeline of your project are confirmed in your package details or your custom project plan.</p>
+<h2>4. Ownership and Confidentiality</h2>
+<p>Once your order is paid in full, you own 100% of the rights to the final work. All projects are covered by our confidentiality commitment. We never share your work or identity with anyone.</p>
+<h2>5. Revisions</h2>
+<p>Revisions are included as described in your package. Our Professional and Complete Publishing packages include unlimited revisions. Revision requests must match the original project requirements.</p>
+`,
+  },
+
+  refund: {
+    title: "Refund Policy",
+    lastUpdated: "",
+    content: `
+<p>Please read this policy carefully before placing an order.</p>
+<h2>Change of Mind</h2>
+<p>You may cancel and receive a full refund within 1 hour of placing your order. After that, a 40% processing fee applies to any approved refund.</p>
+<h2>Delivery Not Meeting Requirements</h2>
+<p>If your delivered work does not meet the requirements you documented, we will first:</p>
+<ol>
+  <li>Revise and, if needed, reassign or rewrite the work until it meets your requirements.</li>
+  <li>Offer a credit of equal value toward future services, usable at any time.</li>
+</ol>
+<p>If we still cannot deliver what was agreed, and the work clearly does not meet the documented requirements, a partial refund will be agreed with you.</p>
+<h2>Late Delivery</h2>
+<p>If we miss an agreed deadline through our own fault, and you have contacted us at least three times without resolution, you may request a refund. The delay must be confirmed with written records.</p>
+<h2>Refund Time Frame</h2>
+<p>Refund requests must be made within 30 days of delivery. Requests after this period cannot be accepted.</p>
+<h2>When Refunds Are Not Issued</h2>
+<ol>
+  <li>Minor issues such as small typing or grammar errors, which we correct free of charge.</li>
+  <li>Delays caused by late feedback, approvals or materials from the client.</li>
+  <li>Personal preference about writing style, when the work meets the agreed requirements.</li>
+</ol>
+<h2>Payment Disputes</h2>
+<p>Please contact us before opening a dispute with your bank. We resolve most concerns quickly and directly.</p>
+<h2>Contact</h2>
+<p>Email <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> for any refund request. GhostWriterHunt, Rosenberg, Texas, USA.</p>
 `,
   },
 
@@ -240,8 +226,12 @@ ${CONTACT_SECTION}
     <p class="legal-doc-desc">How we collect, use and protect your personal information when you use our website and services.</p>
   </li>
   <li class="legal-doc-item">
-    <a href="/terms-of-use" class="legal-doc-link">Terms of Use</a>
+    <a href="/terms-of-use" class="legal-doc-link">Terms &amp; Conditions</a>
     <p class="legal-doc-desc">The terms and conditions governing your use of our website and the services we provide.</p>
+  </li>
+  <li class="legal-doc-item">
+    <a href="/refund-policy" class="legal-doc-link">Refund Policy</a>
+    <p class="legal-doc-desc">How refunds, cancellations and payment disputes are handled for GhostWriterHunt orders.</p>
   </li>
   <li class="legal-doc-item">
     <a href="/cookie-policy" class="legal-doc-link">Cookie Policy</a>

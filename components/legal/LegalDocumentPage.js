@@ -288,7 +288,9 @@ export default function LegalDocumentPage({ type }) {
         <div className="legal-page-hero-inner">
           <p className="legal-page-label">LEGAL</p>
           <h1 className="legal-page-title">{doc.title}</h1>
-          <p className="legal-page-updated">Last updated: {doc.lastUpdated}</p>
+          {doc.lastUpdated ? (
+            <p className="legal-page-updated">Last updated: {doc.lastUpdated}</p>
+          ) : null}
         </div>
       </header>
 
