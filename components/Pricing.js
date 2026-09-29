@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
@@ -194,6 +194,15 @@ function PlanCard({ plan, index }) {
 
 export default function Pricing() {
   const { ref: sectionRef, visible } = useSectionReveal();
+  const [showDesktopStageBg, setShowDesktopStageBg] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setShowDesktopStageBg(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   return (
     <section
@@ -610,7 +619,8 @@ export default function Pricing() {
           }
         }
 
-        @media (max-width: 1023px) {
+        /* Tablet only: preserve prior sub-desktop card treatment */
+        @media (min-width: 769px) and (max-width: 1023px) {
           .gwh-price-card {
             backdrop-filter: blur(12px) saturate(1.05);
             -webkit-backdrop-filter: blur(12px) saturate(1.05);
@@ -649,6 +659,55 @@ export default function Pricing() {
             min-height: 188px;
           }
         }
+
+        /* Mobile: lighter cards, no blur, no stage photo, subtle shadow */
+        @media (max-width: 768px) {
+          .gwh-price-visible .gwh-price-card {
+            animation: none;
+            opacity: 1;
+            transform: none;
+          }
+
+          .gwh-price-card {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+          }
+
+          .gwh-price-badge {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.2);
+          }
+
+          .gwh-price-card--starter {
+            background: linear-gradient(
+              155deg,
+              rgba(4, 47, 46, 0.92) 0%,
+              rgba(8, 10, 18, 0.9) 100%
+            );
+          }
+
+          .gwh-price-card--professional {
+            background: linear-gradient(
+              155deg,
+              rgba(46, 16, 72, 0.92) 0%,
+              rgba(8, 10, 18, 0.9) 100%
+            );
+          }
+
+          .gwh-price-card--complete {
+            background: linear-gradient(
+              155deg,
+              rgba(69, 26, 3, 0.92) 0%,
+              rgba(8, 10, 18, 0.9) 100%
+            );
+          }
+
+          .gwh-price-head {
+            min-height: 188px;
+          }
+        }
       ` }} />
 
       <div
@@ -672,18 +731,20 @@ export default function Pricing() {
 
         {/* Plan cards — desktop: background-cards behind cards; mobile: no backdrop */}
         <div className="gwh-price-cards-stage mx-auto max-w-[1140px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/background-cards.webp"
-            alt=""
-            aria-hidden="true"
-            className="gwh-price-cards-bg"
-            width={1920}
-            height={1081}
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
-          />
+          {showDesktopStageBg ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src="/images/background-cards.webp"
+              alt=""
+              aria-hidden="true"
+              className="gwh-price-cards-bg"
+              width={1920}
+              height={1081}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
+          ) : null}
           <div className="gwh-price-cards-grid grid grid-cols-1 items-stretch gap-7 lg:grid-cols-3">
             {PLANS.map((plan, index) => (
               <PlanCard key={plan.id} plan={plan} index={index} />

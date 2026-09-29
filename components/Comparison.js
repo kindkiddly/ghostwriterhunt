@@ -91,7 +91,7 @@ const TAB_CONTENT = {
     leftPositive: true,
     rightItems: [
       "100% rights and royalties yours",
-      "Free sample chapter before you commit",
+      "Free consultation before you commit",
       "Dedicated writer matched to your genre",
       "Regular chapter reviews and feedback",
       "5,000+ books published successfully",
@@ -370,7 +370,7 @@ export default function Comparison() {
               className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
               aria-hidden="true"
             />
-            <span>Free sample chapter</span>
+            <span>Free consultation</span>
             <span
               className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
               aria-hidden="true"

@@ -118,11 +118,11 @@ function Stars() {
 
 function TestimonialCard({ item }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-9 py-10 shadow-[0_4px_24px_rgba(201,168,76,0.08)]">
+    <article className="flex h-full w-full min-w-0 flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-8 shadow-[0_4px_24px_rgba(201,168,76,0.08)] sm:px-9 sm:py-10">
       <Stars />
 
       <span
-        className="mb-2 block font-playfair text-[80px] font-bold leading-none text-[var(--color-border)]"
+        className="mb-2 block font-playfair text-[56px] font-bold leading-none text-[var(--color-border)] sm:text-[80px]"
         aria-hidden="true"
       >
         “
@@ -286,6 +286,24 @@ export default function Testimonials() {
         .gwh-tm-visible .gwh-tm-carousel {
           animation: gwh-tm-fade 0.5s ease-out 0.2s forwards;
         }
+
+        @media (max-width: 639px) {
+          .gwh-tm-carousel-viewport {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
+          .gwh-tm-track {
+            align-items: stretch;
+          }
+          .gwh-tm-page {
+            padding-left: 0;
+            padding-right: 0;
+          }
+          .gwh-tm-page-grid {
+            align-items: stretch;
+          }
+        }
       ` }} />
 
       <div
@@ -302,7 +320,7 @@ export default function Testimonials() {
           </span>
         </h2>
 
-        <p className="gwh-tm-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
+        <p className="gwh-tm-sub mx-auto mb-10 max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666] sm:mb-[70px]">
           Real authors. Real books. Real results. Hear what our clients say
           about working with GhostWriterHunt.
         </p>
@@ -312,12 +330,12 @@ export default function Testimonials() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div className="flex items-center gap-4">
+          <div className="flex w-full items-stretch gap-4">
             <ArrowButton direction="prev" onClick={goPrev} label="Previous testimonials" />
 
-            <div className="relative w-full overflow-hidden">
+            <div className="gwh-tm-carousel-viewport relative min-w-0 flex-1 overflow-hidden">
               <div
-                className="flex transition-transform duration-[400ms] ease-in-out"
+                className="gwh-tm-track flex transition-transform duration-[400ms] ease-in-out"
                 style={{
                   width: `${pageCount * 100}%`,
                   transform: trackTranslate,
@@ -330,15 +348,21 @@ export default function Testimonials() {
                   return (
                     <div
                       key={page}
-                      className="grid gap-6 px-1"
+                      className="gwh-tm-page shrink-0 box-border"
                       style={{
                         width: `${100 / pageCount}%`,
-                        gridTemplateColumns: `repeat(${perView}, minmax(0, 1fr))`,
                       }}
                     >
-                      {pageItems.map((item) => (
-                        <TestimonialCard key={item.id} item={item} />
-                      ))}
+                      <div
+                        className="gwh-tm-page-grid grid h-full w-full gap-6"
+                        style={{
+                          gridTemplateColumns: `repeat(${perView}, minmax(0, 1fr))`,
+                        }}
+                      >
+                        {pageItems.map((item) => (
+                          <TestimonialCard key={item.id} item={item} />
+                        ))}
+                      </div>
                     </div>
                   );
                 })}

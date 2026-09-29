@@ -117,7 +117,7 @@ export default function CTABanner() {
           <span className="mx-1.5 text-[#C9A84C]" aria-hidden="true">
             ·
           </span>
-          Free sample chapter
+          Free consultation
           <span className="mx-1.5 text-[#C9A84C]" aria-hidden="true">
             ·
           </span>

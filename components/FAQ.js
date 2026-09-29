@@ -36,11 +36,6 @@ const FAQ_ITEMS = [
       "Absolutely. Every project begins with a comprehensive Non-Disclosure Agreement. Your ideas, your story and your identity are completely protected. We never disclose client information or project details under any circumstances. Confidentiality is the foundation of everything we do.",
   },
   {
-    question: "Can I see a sample before committing?",
-    answer:
-      "Yes. We offer a free sample chapter with every project before you commit to the full manuscript. This lets you experience the voice we have captured for your project and confirm it is perfect before any significant investment is made.",
-  },
-  {
     question: "Which platforms will my book be published on?",
     answer:
       "We publish your book on 47+ global digital platforms including Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords and Draft2Digital. We handle metadata optimization and platform setup, so your book is published in your name and discoverable worldwide.",

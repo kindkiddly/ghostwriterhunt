@@ -125,8 +125,8 @@ export const services = [
         answer: 'Absolutely. Before writing begins, our team captures your voice from everything you submit, your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through our team.'
       },
       {
-        question: 'How long does the ghostwriting process take?',
-        answer: 'A short book of 20,000 words typically takes 4 to 6 weeks. A full-length book of 60,000 words takes 8 to 16 weeks. We agree on a clear timeline before starting and keep you updated at every milestone.'
+        question: 'How long does it take to write a book?',
+        answer: 'The minimum project timeline is 40 days. Quick approvals from your side on each completed stage help our team keep moving without delays.'
       },
       {
         question: 'Do I own the manuscript completely?',
@@ -1275,10 +1275,6 @@ export const services = [
       {
         question: 'How do I provide my ideas and knowledge to the writer?',
         answer: 'Through an initial briefing call and a questionnaire, we capture your knowledge, opinions, examples and key messages. Your writer then uses this to create content that genuinely reflects your expertise and perspective.'
-      },
-      {
-        question: 'Is the content original and plagiarism-free?',
-        answer: 'Yes, always. Every eBook we write is 100% original content created exclusively for you. We never use templated, recycled or AI-generated content. Your eBook is written from scratch by a human professional.'
       },
       {
         question: 'Will my eBook be formatted and ready to publish?',
