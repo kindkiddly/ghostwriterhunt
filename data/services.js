@@ -1237,13 +1237,13 @@ export const services = [
         number: '01',
         title: 'Topic and Scope',
         description: 'We define your eBook topic, target reader, key messages and desired outcomes.',
-        image: '/images/collaboration-laptop.webp'
+        image: '/images/ebook-writing-process-1.webp'
       },
       {
         number: '02',
         title: 'Research and Outline',
         description: 'Thorough research is conducted and a detailed chapter outline is created for your approval.',
-        image: '/images/writing-desk.webp'
+        image: '/images/ebook-writing-process-2.webp'
       },
       {
         number: '03',
@@ -1261,7 +1261,7 @@ export const services = [
         number: '05',
         title: 'Final Delivery',
         description: 'Your completed eBook is delivered in all required formats ready for publishing or distribution.',
-        image: '/images/books-stack-pink.webp'
+        image: '/images/CTA-07.webp'
       }
     ],
 

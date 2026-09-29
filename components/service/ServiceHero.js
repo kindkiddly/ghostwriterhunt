@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import HeroTitleFrame from "@/components/HeroTitleFrame";
 import FloatingImages from "./FloatingImages";
 import ServiceTrustLine from "./ServiceTrustLine";
@@ -72,6 +72,35 @@ export default function ServiceHero({ service }) {
     return () => mq.removeEventListener("change", sync);
   }, [splitDesktopMobileHeadline]);
 
+  const isEbookWriting = slug === "ebook-writing";
+  const [isEbookDesktop, setIsEbookDesktop] = useState(true);
+
+  useLayoutEffect(() => {
+    if (!isEbookWriting) return undefined;
+
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () => setIsEbookDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [isEbookWriting]);
+
+  const heroFloatImages = useMemo(() => {
+    const heroImages = service?.heroImages ?? [];
+    if (!isEbookWriting || !isEbookDesktop) {
+      return heroImages;
+    }
+    return heroImages.map((img) =>
+      img.url === "/images/books-education.webp"
+        ? {
+            url: "/images/ebook-writing-process-3.webp",
+            alt: "eBook writing in progress",
+            size: "small",
+          }
+        : img
+    );
+  }, [isEbookWriting, isEbookDesktop, service?.heroImages]);
+
   if (!service) return null;
 
   const isChildrensBook = service.slug === "childrens-book";
@@ -100,7 +129,7 @@ export default function ServiceHero({ service }) {
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -302,7 +331,7 @@ export default function ServiceHero({ service }) {
         @media (max-width: 768px) {
           .sh-section {
             min-height: auto;
-            padding: 96px 0 60px;
+            padding: 72px 0 56px;
             overflow-x: clip;
           }
           .sh-inner {
@@ -594,7 +623,7 @@ export default function ServiceHero({ service }) {
 
         <div className="sh-right sh-reveal-img sh-visible" data-delay="200">
           <FloatingImages
-            images={service.heroImages}
+            images={heroFloatImages}
             slug={service.slug}
             layout={isGhostwriting ? "expanded" : "default"}
             className="fi-float--service-hero"

@@ -683,7 +683,7 @@ export default function HeroTitleFrame({
             position: relative;
             display: block;
             overflow: visible;
-            padding: 40px 0 44px;
+            padding: 28px 0 36px;
           }
 
           .gwh-hero-title-frame--home:not(.gwh-hero-title-frame--home-glass)
@@ -726,11 +726,15 @@ export default function HeroTitleFrame({
           }
 
           .gwh-hero-title-rule--top {
-            margin-bottom: 10px;
+            display: none;
           }
 
           .gwh-hero-title-rule--bottom {
             margin-top: 10px;
+          }
+
+          .gwh-hero-title-frame--plain .gwh-hero-title-rule--bottom {
+            margin-top: 12px;
           }
 
           /* Service strip + old home strip — not background-H1 home image */

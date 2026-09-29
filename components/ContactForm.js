@@ -43,14 +43,20 @@ const TRUST_POINTS = [
   "Full NDA confidentiality guaranteed",
 ];
 
-const EMAIL_SUBTITLE_STYLE = {
-  display: "block",
-  marginTop: "2px",
-  fontFamily: "var(--font-inter), sans-serif",
-  fontWeight: 500,
-  fontSize: "11px",
-  color: "#888888",
-};
+const NEXT_STEPS = [
+  {
+    title: "Share your idea",
+    body: "Tell us about your book in the form.",
+  },
+  {
+    title: "Free consultation",
+    body: "Your project manager contacts you to discuss details and a custom quote.",
+  },
+  {
+    title: "We start writing",
+    body: "Your book begins, fully confidential.",
+  },
+];
 
 const INITIAL_FORM = {
   fullName: "",
@@ -380,23 +386,86 @@ export default function ContactForm() {
         .cf-section {
           width: 100%;
           background: #FAFAF7;
-          padding: 80px 0;
+          padding: 72px 0;
         }
         .cf-inner {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 24px;
-          display: flex;
-          align-items: center;
-          gap: 60px;
+          display: grid;
+          grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+          grid-template-areas:
+            "intro form"
+            "next form";
+          column-gap: 52px;
+          row-gap: 26px;
+          align-items: start;
         }
-        .cf-left {
-          flex: 0 0 45%;
-          max-width: 45%;
+        .cf-intro {
+          grid-area: intro;
+          min-width: 0;
+        }
+        .cf-next {
+          grid-area: next;
+          min-width: 0;
+          max-width: 400px;
         }
         .cf-right {
-          flex: 0 0 55%;
-          max-width: 55%;
+          grid-area: form;
+          min-width: 0;
+          align-self: start;
+        }
+        .cf-next-heading {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          color: #6B7C3A;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          margin: 0 0 16px;
+        }
+        .cf-next-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        .cf-next-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .cf-next-num {
+          flex-shrink: 0;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          border: 1px solid #C9A84C;
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          color: #C9A84C;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 1px;
+        }
+        .cf-next-title {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          color: #1C1C1C;
+          margin: 0 0 3px;
+        }
+        .cf-next-body {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 400;
+          font-size: 13px;
+          color: #666666;
+          line-height: 1.55;
+          margin: 0;
         }
         .cf-label {
           font-family: var(--font-inter), sans-serif;
@@ -410,9 +479,9 @@ export default function ContactForm() {
         .cf-headline {
           font-family: var(--font-playfair), serif;
           font-weight: 700;
-          font-size: 48px;
-          line-height: 1.1;
-          margin: 0 0 24px;
+          font-size: 44px;
+          line-height: 1.12;
+          margin: 0 0 18px;
         }
         .cf-headline-line1 {
           display: block;
@@ -428,11 +497,11 @@ export default function ContactForm() {
         .cf-subtext {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: 16px;
+          font-size: 15px;
           color: #666666;
-          line-height: 1.7;
-          max-width: 380px;
-          margin: 0 0 36px;
+          line-height: 1.65;
+          max-width: 400px;
+          margin: 0 0 22px;
         }
         .cf-trust-list {
           list-style: none;
@@ -443,57 +512,14 @@ export default function ContactForm() {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 16px;
+          margin-bottom: 12px;
           font-family: var(--font-inter), sans-serif;
           font-weight: 500;
           font-size: 14px;
           color: #1C1C1C;
         }
-        .cf-divider {
-          border: none;
-          border-top: 1px solid #E8D5A3;
-          margin: 24px 0;
-        }
-        .cf-email-label {
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 400;
-          font-size: 12px;
-          color: #999999;
-          margin: 0 0 6px;
-        }
-        .cf-email-link {
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 500;
-          font-size: 15px;
-          color: #C9A84C;
-          text-decoration: none;
-          transition: text-decoration 0.2s ease;
-        }
-        .cf-email-link:hover {
-          text-decoration: underline;
-        }
-        .cf-contact-detail {
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 500;
-          font-size: 15px;
-          color: #1C1C1C;
-          margin: 0;
-        }
-        .cf-map-wrap {
-          margin-top: 24px;
-          width: 100%;
-          border: 1px solid #E8D5A3;
-          border-radius: 20px;
-          box-shadow: 0 8px 40px rgba(201, 168, 76, 0.10);
-          overflow: hidden;
-          background: #FFFFFF;
-          aspect-ratio: 16 / 10;
-        }
-        .cf-map-wrap iframe {
-          display: block;
-          width: 100%;
-          height: 100%;
-          border: 0;
+        .cf-trust-item:last-child {
+          margin-bottom: 0;
         }
 
         .cf-card {
@@ -501,7 +527,7 @@ export default function ContactForm() {
           background: #FFFFFF;
           border: 1px solid #E8D5A3;
           border-radius: 20px;
-          padding: 40px;
+          padding: 36px 36px 32px;
           box-shadow: 0 8px 40px rgba(201, 168, 76, 0.10);
         }
         .cf-close-btn {
@@ -742,18 +768,26 @@ export default function ContactForm() {
         }
 
         @media (max-width: 768px) {
-          .cf-inner {
-            flex-direction: column;
-            gap: 40px;
-            align-items: stretch;
+          .cf-section {
+            padding: 56px 0;
           }
-          .cf-left,
-          .cf-right {
-            flex: 1 1 100%;
-            max-width: 100%;
+          .cf-inner {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+              "intro"
+              "form"
+              "next";
+            row-gap: 28px;
+            column-gap: 0;
+          }
+          .cf-next {
+            max-width: none;
           }
           .cf-headline {
             font-size: 32px;
+          }
+          .cf-subtext {
+            max-width: none;
           }
           .cf-form-row {
             flex-direction: column;
@@ -773,8 +807,7 @@ export default function ContactForm() {
         <div id="contact" className="sr-only" aria-hidden="true" />
 
         <div className="cf-inner">
-          {/* LEFT — copy & trust */}
-          <div className="cf-left cf-reveal-left" data-delay="0">
+          <div className="cf-intro cf-reveal-left" data-delay="0">
             <p className="cf-label">GET STARTED</p>
 
             <h2 id="cf-heading" className="cf-headline">
@@ -797,43 +830,26 @@ export default function ContactForm() {
                 </li>
               ))}
             </ul>
-
-            <hr className="cf-divider" />
-
-            <p className="cf-email-label">Email us directly</p>
-            <div>
-              <a
-                href="mailto:ghostwriterhunt@lumexforge.com"
-                className="cf-email-link"
-              >
-                ghostwriterhunt@lumexforge.com
-              </a>
-              <span style={EMAIL_SUBTITLE_STYLE}>
-                New projects &amp; consultations
-              </span>
-            </div>
-            <div style={{ marginTop: "12px" }}>
-              <a
-                href="mailto:support.gwh@lumexforge.com"
-                className="cf-email-link"
-              >
-                support.gwh@lumexforge.com
-              </a>
-              <span style={EMAIL_SUBTITLE_STYLE}>
-                Client support &amp; project help
-              </span>
-            </div>
-            <div style={{ marginTop: "12px" }}>
-              <p className="cf-email-label">Location</p>
-              <p className="cf-contact-detail">Rosenberg, Texas, USA</p>
-            </div>
           </div>
 
-          {/* RIGHT — form card */}
-          <div
-            className="cf-right cf-reveal-right"
-            data-delay="150"
-          >
+          <div className="cf-next cf-reveal-left" data-delay="120">
+            <p className="cf-next-heading">What happens next</p>
+            <ol className="cf-next-list">
+              {NEXT_STEPS.map((step, index) => (
+                <li key={step.title} className="cf-next-item">
+                  <span className="cf-next-num" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <p className="cf-next-title">{step.title}</p>
+                    <p className="cf-next-body">{step.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="cf-right cf-reveal-right" data-delay="150">
             <div className="cf-card">
               {success ? (
                 <>
@@ -1013,15 +1029,6 @@ export default function ContactForm() {
                   )}
                 </form>
               )}
-            </div>
-            <div className="cf-map-wrap cf-reveal-right" data-delay="200">
-              <iframe
-                src="https://www.google.com/maps?q=Rosenberg,+TX,+USA&output=embed"
-                title="Map showing Rosenberg, Texas, USA"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
             </div>
           </div>
         </div>

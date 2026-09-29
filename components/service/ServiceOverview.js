@@ -1,7 +1,14 @@
 "use client";
 
+import { useLayoutEffect, useState } from "react";
 import FloatingImages from "./FloatingImages";
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { getImageDimensions } from "@/data/imageDimensions";
+
+const EBOOK_OVERVIEW_LANDSCAPE = "/images/ebook-writing-mobile.webp";
+const EBOOK_OVERVIEW_ACCENT = "/images/HEERO-L18.webp";
+const ILLUSTRATION_ABOUT_PORTRAIT =
+  "/images/illustration-graphics-about-portrait.webp";
 
 import Link from "next/link";
 /**
@@ -37,9 +44,24 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
     service?.slug,
   ]);
 
+  const isEbookWriting = service?.slug === "ebook-writing";
+  const isIllustrationGraphics = service?.slug === "illustration-graphics";
+  const [isDesktopOverview, setIsDesktopOverview] = useState(true);
+
+  useLayoutEffect(() => {
+    if (!isEbookWriting && !isIllustrationGraphics) return undefined;
+
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () => setIsDesktopOverview(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [isEbookWriting, isIllustrationGraphics]);
+
   if (!service?.overview) return null;
   const { overview } = service;
   const isGhostwriting = service.slug === "ghostwriting";
+
   const bodyText =
     overview.body ??
     [overview.bodyLead, overview.bodyContinued].filter(Boolean).join(" ");
@@ -69,21 +91,70 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
     </div>
   );
 
+  const ebookLandscapeDims = getImageDimensions(EBOOK_OVERVIEW_LANDSCAPE);
+  const ebookAccentDims = getImageDimensions(EBOOK_OVERVIEW_ACCENT);
+  const useEbookOverviewStack = isEbookWriting && isDesktopOverview;
+  const useIllustrationAboutPortrait =
+    isIllustrationGraphics && isDesktopOverview;
+  const illustrationPortraitDims = getImageDimensions(ILLUSTRATION_ABOUT_PORTRAIT);
+
   const imageCol = (
     <div
-      className={`so-images ${imagesOnLeft ? "so-reveal-left" : "so-reveal-right"}`}
+      className={`so-images ${imagesOnLeft ? "so-reveal-left" : "so-reveal-right"}${useEbookOverviewStack ? " so-images--ebook-stack" : ""}${useIllustrationAboutPortrait ? " so-images--illustration-portrait" : ""}`}
       data-delay={imagesOnLeft ? "0" : "150"}
     >
-      <FloatingImages
-        images={overview.images}
-        layout={isGhostwriting ? "expanded" : "default"}
-      />
+      {useIllustrationAboutPortrait ? (
+        <div className="so-illustration-about-frame">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={ILLUSTRATION_ABOUT_PORTRAIT}
+            alt="Illustration and graphics for books"
+            className="so-illustration-about-portrait"
+            width={illustrationPortraitDims.width}
+            height={illustrationPortraitDims.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : useEbookOverviewStack ? (
+        <div className="so-ebook-overview-visual">
+          <div className="so-ebook-overview-landscape-slot">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={EBOOK_OVERVIEW_LANDSCAPE}
+              alt="Professional eBook writing"
+              className="so-ebook-overview-landscape"
+              width={ebookLandscapeDims.width}
+              height={ebookLandscapeDims.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div className="so-ebook-overview-accent-slot">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={EBOOK_OVERVIEW_ACCENT}
+              alt="eBook author showcase"
+              className="so-ebook-overview-accent"
+              width={ebookAccentDims.width}
+              height={ebookAccentDims.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      ) : (
+        <FloatingImages
+          images={overview.images}
+          layout={isGhostwriting ? "expanded" : "default"}
+        />
+      )}
     </div>
   );
 
   return (
     <section
-      className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}`}
+      className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}${isEbookWriting ? " so-section--ebook-writing" : ""}${isIllustrationGraphics ? " so-section--illustration-graphics" : ""}`}
       aria-label="About this service"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -110,6 +181,122 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
           .so-images {
             display: flex;
             justify-content: center;
+          }
+          /* eBook Writing — desktop About: text left (wide), images right, no extra image padding */
+          .so-section--ebook-writing .so-inner {
+            align-items: flex-start;
+            gap: 48px;
+          }
+          .so-section--ebook-writing .so-text {
+            flex: 1 1 62%;
+            min-width: 0;
+          }
+          .so-section--ebook-writing .so-body {
+            max-width: 100%;
+          }
+          .so-section--ebook-writing .so-images--ebook-stack {
+            flex: 0 1 38%;
+            max-width: 440px;
+            min-width: 300px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+          }
+          .so-ebook-overview-visual {
+            width: 100%;
+            max-width: 440px;
+            margin: 0;
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0;
+          }
+          .so-ebook-overview-landscape-slot {
+            width: 100%;
+            line-height: 0;
+            z-index: 1;
+          }
+          .so-ebook-overview-landscape {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: right top;
+            border-radius: 16px;
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.12);
+            transform: rotate(-2.5deg);
+            transform-origin: 100% 12%;
+            display: block;
+          }
+          .so-ebook-overview-accent-slot {
+            width: 92%;
+            margin-top: -32px;
+            margin-left: auto;
+            padding: 0;
+            line-height: 0;
+            z-index: 2;
+          }
+          .so-ebook-overview-accent {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: right bottom;
+            border-radius: 14px;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.11);
+            transform: rotate(4.5deg);
+            transform-origin: 88% 88%;
+            display: block;
+          }
+
+          /* Illustration — desktop About: wider copy, larger portrait, tighter column gap */
+          .so-section--illustration-graphics .so-inner {
+            align-items: flex-start;
+            gap: 24px;
+          }
+          .so-section--illustration-graphics .so-text {
+            flex: 1 1 58%;
+            min-width: 0;
+          }
+          .so-section--illustration-graphics .so-body {
+            max-width: 100%;
+          }
+          .so-section--illustration-graphics .so-images.so-images--illustration-portrait {
+            flex: 0 1 42%;
+            min-width: 280px;
+            max-width: 600px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+          .so-illustration-about-frame {
+            width: fit-content;
+            max-width: calc(100% - 48px);
+            margin: 0;
+            margin-left: 20px;
+            padding: 14px 24px;
+            line-height: 0;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            box-shadow:
+              0 26px 64px rgba(0, 0, 0, 0.16),
+              0 10px 28px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+          }
+          .so-illustration-about-portrait {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: min(100%, 580px);
+            max-height: min(780px, 88vh);
+            margin: 0;
+            padding: 0;
+            border-radius: 12px;
           }
         }
 

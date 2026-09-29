@@ -1,16 +1,13 @@
 import Link from "next/link";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_ADDRESS_MAP_EMBED,
+} from "@/lib/siteAddress";
+
 /**
  * GhostWriterHunt — Footer
- * 3 columns (Brand · Company · Contact) + copyright bar.
+ * 3 columns (Brand · Map · Contact) + copyright bar.
  */
-
-const COMPANY_LINKS = [
-  { label: "About Us", href: "/about" },
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "Payment", href: "/pay" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact Us", href: "/#start" },
-];
 
 const EMAIL_SUBTITLE_STYLE = {
   display: "block",
@@ -69,7 +66,6 @@ export default function Footer() {
           overflow-x: hidden;
         }
 
-        /* Main 3 columns */
         .gwh-ft-main {
           padding: 48px 0 40px;
         }
@@ -78,18 +74,52 @@ export default function Footer() {
           margin: 0 auto;
           padding: 0 24px;
           display: grid;
-          grid-template-columns: 1.4fr 1fr 1fr;
-          gap: 48px;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+          gap: 40px;
           align-items: start;
+        }
+        .gwh-ft-map-contact-row {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 40px;
+          align-items: stretch;
+          min-width: 0;
         }
         .gwh-ft-brand {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          min-width: 0;
         }
-        /* Push logo so wordmark bottom aligns with COMPANY/CONTACT headings */
+        .gwh-ft-map-col {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        .gwh-ft-contact {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        .gwh-ft-map {
+          width: 100%;
+          flex: 1 1 auto;
+          min-height: 140px;
+          border: 1px solid #2A2A2A;
+          border-radius: 10px;
+          overflow: hidden;
+          background: #252525;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+        .gwh-ft-map iframe {
+          display: block;
+          width: 100%;
+          height: 100%;
+          min-height: 140px;
+          border: 0;
+          filter: saturate(0.75) brightness(0.92) contrast(0.98);
+        }
         .gwh-ft-logo-wrap {
-          padding-top: 32px;
           line-height: 0;
         }
         .gwh-ft-tagline {
@@ -98,7 +128,6 @@ export default function Footer() {
           font-size: 14px;
           color: #888888;
           line-height: 1.7;
-          max-width: 220px;
           margin: 16px 0 24px;
         }
         .gwh-ft-social {
@@ -133,22 +162,14 @@ export default function Footer() {
           margin: 0 0 20px;
           padding: 0 0 10px;
           border-bottom: 1px solid #2A2A2A;
-        }
-        .gwh-ft-link {
-          display: block;
-          font-family: var(--font-inter), sans-serif;
-          font-weight: 400;
-          font-size: 14px;
-          color: #888888;
-          text-decoration: none;
-          padding: 5px 0;
-          transition: all 0.15s ease;
-        }
-        .gwh-ft-link:hover {
-          color: #FFFFFF;
-          padding-left: 4px;
+          flex-shrink: 0;
         }
 
+        .gwh-ft-contact-body {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+        }
         .gwh-ft-contact-item {
           margin-bottom: 12px;
         }
@@ -163,14 +184,15 @@ export default function Footer() {
         .gwh-ft-contact-text {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 13px;
           color: #888888;
           margin: 0;
+          line-height: 1.55;
         }
         .gwh-ft-cta-btn {
           display: block;
           width: fit-content;
-          margin-top: 20px;
+          margin-top: auto;
           background: transparent;
           border: 1px solid #C9A84C;
           border-radius: 6px;
@@ -187,7 +209,6 @@ export default function Footer() {
           color: #FFFFFF;
         }
 
-        /* Bottom bar */
         .gwh-ft-bottom {
           border-top: 1px solid #2A2A2A;
           padding: 18px 0;
@@ -209,24 +230,70 @@ export default function Footer() {
           margin: 0;
         }
         @media (max-width: 768px) {
+          .gwh-ft-main {
+            padding: 40px 0 36px;
+          }
           .gwh-ft-main-inner {
-            grid-template-columns: 1fr;
-            gap: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            align-items: stretch;
+          }
+          .gwh-ft-map-contact-row {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            width: 100%;
+            min-width: 0;
           }
           .gwh-ft-brand {
             align-items: center;
             text-align: center;
+            order: 1;
           }
-          .gwh-ft-logo-wrap {
-            padding-top: 0;
+          .gwh-ft-map-contact-row {
+            order: 2;
           }
-          .gwh-ft-social {
-            justify-content: center;
+          .gwh-ft-map-col {
+            order: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+          .gwh-ft-contact {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+          .gwh-ft-map {
+            flex: none;
+            width: 100%;
+            height: 160px;
+            max-width: 100%;
+          }
+          .gwh-ft-map iframe {
+            width: 100%;
+            height: 160px;
+            min-height: 160px;
+            max-height: 160px;
+          }
+          .gwh-ft-contact-body {
+            display: block;
           }
           .gwh-ft-cta-btn {
             width: 100%;
             text-align: center;
             box-sizing: border-box;
+            margin-top: 20px;
+          }
+          .gwh-ft-social {
+            justify-content: center;
+          }
+          .gwh-ft-tagline {
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
           }
           .gwh-ft-bottom-inner {
             flex-direction: column;
@@ -235,7 +302,6 @@ export default function Footer() {
         }
       ` }} />
 
-      {/* Main columns: Brand · Company · Contact */}
       <div className="gwh-ft-main">
         <div className="gwh-ft-main-inner">
           <div className="gwh-ft-brand">
@@ -280,52 +346,57 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h3 className="gwh-ft-heading">COMPANY</h3>
-            <nav aria-label="Footer company">
-              {COMPANY_LINKS.map((link) => (
-                <Link key={link.label} href={link.href} className="gwh-ft-link">
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
+          <div className="gwh-ft-map-contact-row">
+            <div className="gwh-ft-map-col">
+              <h3 className="gwh-ft-heading">LOCATION</h3>
+              <div className="gwh-ft-map">
+                <iframe
+                  src={BUSINESS_ADDRESS_MAP_EMBED}
+                  title={`Map showing ${BUSINESS_ADDRESS}`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+            </div>
 
-          <div className="gwh-ft-contact">
-            <h3 className="gwh-ft-heading">CONTACT</h3>
-            <div className="gwh-ft-contact-item">
-              <a
-                href="mailto:ghostwriterhunt@lumexforge.com"
-                className="gwh-ft-contact-email"
-              >
-                ghostwriterhunt@lumexforge.com
-              </a>
-              <span style={EMAIL_SUBTITLE_STYLE}>
-                New projects &amp; consultations
-              </span>
+            <div className="gwh-ft-contact">
+              <h3 className="gwh-ft-heading">CONTACT</h3>
+              <div className="gwh-ft-contact-body">
+                <div className="gwh-ft-contact-item">
+                  <a
+                    href="mailto:ghostwriterhunt@lumexforge.com"
+                    className="gwh-ft-contact-email"
+                  >
+                    ghostwriterhunt@lumexforge.com
+                  </a>
+                  <span style={EMAIL_SUBTITLE_STYLE}>
+                    New projects &amp; consultations
+                  </span>
+                </div>
+                <div className="gwh-ft-contact-item">
+                  <a
+                    href="mailto:support.gwh@lumexforge.com"
+                    className="gwh-ft-contact-email"
+                  >
+                    support.gwh@lumexforge.com
+                  </a>
+                  <span style={EMAIL_SUBTITLE_STYLE}>
+                    Client support &amp; project help
+                  </span>
+                </div>
+                <div className="gwh-ft-contact-item">
+                  <p className="gwh-ft-contact-text">{BUSINESS_ADDRESS}</p>
+                </div>
+                <Link href="/#start" className="gwh-ft-cta-btn">
+                  Book Free Consultation
+                </Link>
+              </div>
             </div>
-            <div className="gwh-ft-contact-item">
-              <a
-                href="mailto:support.gwh@lumexforge.com"
-                className="gwh-ft-contact-email"
-              >
-                support.gwh@lumexforge.com
-              </a>
-              <span style={EMAIL_SUBTITLE_STYLE}>
-                Client support &amp; project help
-              </span>
-            </div>
-            <div className="gwh-ft-contact-item">
-              <p className="gwh-ft-contact-text">Rosenberg, Texas, USA</p>
-            </div>
-            <Link href="/#start" className="gwh-ft-cta-btn">
-              Book Free Consultation
-            </Link>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="gwh-ft-bottom">
         <div className="gwh-ft-bottom-inner">
           <p className="gwh-ft-copy">

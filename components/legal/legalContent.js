@@ -3,6 +3,8 @@
  * Semantic HTML with class hooks styled in LegalDocumentPage.js
  */
 
+import { BUSINESS_ADDRESS } from "@/lib/siteAddress";
+
 const CONTACT_SECTION = `
 <div class="legal-contact-section">
   <h2 class="legal-contact-heading">Contact Us</h2>
@@ -19,7 +21,7 @@ const CONTACT_SECTION = `
       <p class="legal-contact-note">Client support &amp; project help</p>
     </div>
   </div>
-  <p class="legal-contact-location">GhostWriterHunt · Rosenberg, Texas, USA</p>
+  <p class="legal-contact-location">GhostWriterHunt · ${BUSINESS_ADDRESS}</p>
 </div>
 `;
 
