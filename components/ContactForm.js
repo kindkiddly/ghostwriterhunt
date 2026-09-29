@@ -472,6 +472,29 @@ export default function ContactForm() {
         .cf-email-link:hover {
           text-decoration: underline;
         }
+        .cf-contact-detail {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 500;
+          font-size: 15px;
+          color: #1C1C1C;
+          margin: 0;
+        }
+        .cf-map-wrap {
+          margin-top: 24px;
+          width: 100%;
+          border: 1px solid #E8D5A3;
+          border-radius: 20px;
+          box-shadow: 0 8px 40px rgba(201, 168, 76, 0.10);
+          overflow: hidden;
+          background: #FFFFFF;
+          aspect-ratio: 16 / 10;
+        }
+        .cf-map-wrap iframe {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
 
         .cf-card {
           position: relative;
@@ -800,6 +823,10 @@ export default function ContactForm() {
                 Client support &amp; project help
               </span>
             </div>
+            <div style={{ marginTop: "12px" }}>
+              <p className="cf-email-label">Location</p>
+              <p className="cf-contact-detail">Rosenberg, Texas, USA</p>
+            </div>
           </div>
 
           {/* RIGHT — form card */}
@@ -986,6 +1013,15 @@ export default function ContactForm() {
                   )}
                 </form>
               )}
+            </div>
+            <div className="cf-map-wrap cf-reveal-right" data-delay="200">
+              <iframe
+                src="https://www.google.com/maps?q=Rosenberg,+TX,+USA&output=embed"
+                title="Map showing Rosenberg, Texas, USA"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>

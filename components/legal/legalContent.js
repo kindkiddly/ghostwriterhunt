@@ -19,7 +19,7 @@ const CONTACT_SECTION = `
       <p class="legal-contact-note">Client support &amp; project help</p>
     </div>
   </div>
-  <p class="legal-contact-location">GhostWriterHunt · TX, USA</p>
+  <p class="legal-contact-location">GhostWriterHunt · Rosenberg, Texas, USA</p>
 </div>
 `;
 

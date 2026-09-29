@@ -316,10 +316,7 @@ export default function Footer() {
               </span>
             </div>
             <div className="gwh-ft-contact-item">
-              <p className="gwh-ft-contact-text">TX, USA</p>
-            </div>
-            <div className="gwh-ft-contact-item">
-              <p className="gwh-ft-contact-text">Mon–Fri: 9am – 6pm CST</p>
+              <p className="gwh-ft-contact-text">Rosenberg, Texas, USA</p>
             </div>
             <Link href="/#start" className="gwh-ft-cta-btn">
               Book Free Consultation
