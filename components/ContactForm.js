@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 import { createPortal } from "react-dom";
 import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
+import { getClientEmailFeedback } from "@/lib/validation/email";
 
 /**
  * GhostWriterHunt — Contact & Booking Form
@@ -301,6 +302,7 @@ export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
 
   useRevealSelector(
     ".cf-reveal-left, .cf-reveal-right, .cf-reveal-field",
@@ -311,15 +313,31 @@ export default function ContactForm() {
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    if (name === "email") {
+      setEmailHint(getClientEmailFeedback(value));
+    }
+  }
+
+  function applyEmailSuggestion() {
+    if (!emailHint.suggestedEmail) return;
+    setForm((prev) => ({ ...prev, email: emailHint.suggestedEmail }));
+    setEmailHint(getClientEmailFeedback(emailHint.suggestedEmail));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (submitting || success) return;
+    const emailFeedback = getClientEmailFeedback(form.email);
+    setEmailHint(emailFeedback);
+    if (emailFeedback.error) {
+      setError(emailFeedback.error);
+      return;
+    }
     setSubmitting(true);
     setError("");
     const payload = {
       ...form,
+      email: emailFeedback.normalized || form.email.trim(),
       phone: form.phone.trim() ? `${country.dial} ${form.phone.trim()}` : "",
       companyWebsite,
     };
@@ -350,6 +368,7 @@ export default function ContactForm() {
     setCountry(DEFAULT_COUNTRY);
     setError("");
     setSuccess(false);
+    setEmailHint({ error: null, suggestion: null, suggestedEmail: null });
   }
 
   return (
@@ -773,6 +792,29 @@ export default function ContactForm() {
           margin-left: auto;
           margin-right: auto;
         }
+        .cf-field-hint {
+          margin: 6px 0 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 12px;
+          line-height: 1.45;
+          color: #9A2E24;
+        }
+        .cf-field-suggestion {
+          margin: 6px 0 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 12px;
+          line-height: 1.45;
+          color: #666666;
+        }
+        .cf-field-suggestion button {
+          border: none;
+          background: none;
+          padding: 0;
+          font: inherit;
+          color: #C9A84C;
+          cursor: pointer;
+          text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
           .cf-section {
@@ -913,8 +955,21 @@ export default function ContactForm() {
                         placeholder="your@email.com"
                         value={form.email}
                         onChange={handleChange}
+                        onBlur={() => setEmailHint(getClientEmailFeedback(form.email))}
                         required
                       />
+                      {emailHint.error ? (
+                        <p className="cf-field-hint" role="alert">
+                          {emailHint.error}
+                        </p>
+                      ) : null}
+                      {emailHint.suggestion ? (
+                        <p className="cf-field-suggestion">
+                          <button type="button" onClick={applyEmailSuggestion}>
+                            {emailHint.suggestion}
+                          </button>
+                        </p>
+                      ) : null}
                     </div>
                   </div>
 

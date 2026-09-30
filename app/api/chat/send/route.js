@@ -3,6 +3,7 @@ import { waitUntil } from "@vercel/functions";
 import { Resend } from "resend";
 import { generateAndSaveAiReplies } from "@/lib/ai/chatAgent";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Chat: send a message
@@ -18,8 +19,6 @@ import { createAdminClient } from "@/lib/supabase/admin";
 const MAX_NEW_CONVERSATIONS_PER_HOUR = 3;
 const MAX_MESSAGES_PER_CONVERSATION_PER_MINUTE = 20;
 const MAX_MESSAGE_LENGTH = 4000;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -117,12 +116,15 @@ export async function POST(request) {
   if (!trimmedContent) {
     return NextResponse.json({ error: "Message is required" }, { status: 400 });
   }
-  if (email && (typeof email !== "string" || !EMAIL_REGEX.test(email.trim()))) {
-    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
-  }
-
   const trimmedName = typeof name === "string" ? name.trim() : "";
-  const trimmedEmail = typeof email === "string" ? email.trim() : "";
+  let trimmedEmail = typeof email === "string" ? email.trim() : "";
+  if (trimmedEmail) {
+    const emailCheck = await ensureValidEmail(trimmedEmail);
+    if (emailCheck.error) {
+      return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+    }
+    trimmedEmail = emailCheck.normalized;
+  }
 
   const admin = createAdminClient();
 

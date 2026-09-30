@@ -3,8 +3,7 @@ import { isPaymentsEnabled, isStripeMockMode } from "@/lib/stripe/client";
 import { parsePositiveWholeDollarAmountUsd } from "@/lib/stripe/packages";
 import { findOrCreateContactByEmail } from "@/lib/stripe/contacts";
 import { createCustomPaymentCheckoutRecord } from "@/lib/stripe/payments";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Custom payment checkout (/pay).
@@ -23,16 +22,18 @@ export async function POST(request) {
   }
 
   const fullName = typeof body?.fullName === "string" ? body.fullName.trim() : "";
-  const email = typeof body?.email === "string" ? body.email.trim() : "";
+  const emailRaw = typeof body?.email === "string" ? body.email.trim() : "";
   const paymentNote = typeof body?.paymentNote === "string" ? body.paymentNote.trim() : "";
   const amountCents = parsePositiveWholeDollarAmountUsd(body?.amountUsd);
 
   if (!fullName || fullName.length > 120) {
     return NextResponse.json({ error: "Please enter your full name" }, { status: 400 });
   }
-  if (!email || !EMAIL_REGEX.test(email)) {
-    return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
+  const emailCheck = await ensureValidEmail(emailRaw);
+  if (emailCheck.error) {
+    return NextResponse.json({ error: emailCheck.error }, { status: 400 });
   }
+  const email = emailCheck.normalized;
   if (!amountCents) {
     return NextResponse.json(
       { error: "Amount must be a positive whole number of USD (no cents)" },

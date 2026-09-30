@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getClientEmailFeedback } from "@/lib/validation/email";
 
 /**
  * GhostWriterHunt — ChatWidget
@@ -17,7 +18,6 @@ import { createClient } from "@/lib/supabase/client";
 
 const WELCOME_MESSAGE =
   "Tell us about your book. We're here to help with your publishing project.";
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TYPING_TIMEOUT_MS = 45000;
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
 const MAX_MESSAGE_LENGTH = 4000;
@@ -81,11 +81,17 @@ export default function ChatWidget() {
   const [intakeSubmitting, setIntakeSubmitting] = useState(false);
   const [intakePending, setIntakePending] = useState(false);
   const [intakeError, setIntakeError] = useState("");
+  const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
   /** restoring | intro | intake | chat */
   const [sessionPhase, setSessionPhase] = useState("restoring");
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
   const [contactHasEmail, setContactHasEmail] = useState(false);
+  const [customerCodeVerified, setCustomerCodeVerified] = useState(false);
+  const [showCustomerCodeInput, setShowCustomerCodeInput] = useState(false);
+  const [customerCodeInput, setCustomerCodeInput] = useState("");
+  const [customerCodeFeedback, setCustomerCodeFeedback] = useState(null);
+  const [customerCodeSubmitting, setCustomerCodeSubmitting] = useState(false);
   const [restoring, setRestoring] = useState(true);
   const [supabase] = useState(() => createClient());
 
@@ -206,6 +212,7 @@ export default function ChatWidget() {
         conversationIdRef.current = statusData.conversationId;
         setConversationId(statusData.conversationId);
         setContactHasEmail(!!statusData.contactHasEmail);
+        setCustomerCodeVerified(!!statusData.customerCodeVerified);
 
         const { data: history } = await supabase
           .from("messages")
@@ -465,6 +472,62 @@ export default function ChatWidget() {
     });
   }
 
+  async function submitCustomerCode() {
+    const code = customerCodeInput.trim();
+    if (!code || customerCodeSubmitting) return;
+    setCustomerCodeSubmitting(true);
+    setCustomerCodeFeedback(null);
+    try {
+      const token = await warmAnonymousSession();
+      const res = await fetch("/api/chat/verify-customer-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken: token,
+          conversationId: conversationIdRef.current,
+          code,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        setCustomerCodeFeedback({
+          ok: false,
+          text: data.message || data.error || "That code didn't work. Please try again.",
+        });
+        return;
+      }
+      if (data.conversationId) {
+        conversationIdRef.current = data.conversationId;
+        setConversationId(data.conversationId);
+      }
+      setCustomerCodeVerified(true);
+      setContactHasEmail(!!data.contactHasEmail);
+      setShowCustomerCodeInput(false);
+      setCustomerCodeInput("");
+      setCustomerCodeFeedback({ ok: true, text: data.message });
+      setHasOpenedOnce(true);
+      if (sessionPhase !== "chat") {
+        setSessionPhase("chat");
+        setMessages((prev) => {
+          if (prev.some((m) => m.id === "code-linked")) return prev;
+          return [
+            ...prev,
+            {
+              id: "code-linked",
+              sender: "team",
+              text: data.message,
+              timestamp: new Date(),
+            },
+          ];
+        });
+      }
+    } catch {
+      setCustomerCodeFeedback({ ok: false, text: "Something went wrong. Please try again." });
+    } finally {
+      setCustomerCodeSubmitting(false);
+    }
+  }
+
   function handleSend() {
     sendMessage(inputValue);
     const el = inputRef.current;
@@ -491,9 +554,10 @@ export default function ChatWidget() {
 
   function validateIntakeIdentity() {
     const name = visitorName.trim();
-    const email = visitorEmail.trim();
+    const feedback = getClientEmailFeedback(visitorEmail);
+    setEmailHint(feedback);
     if (!name) return "Please enter your name.";
-    if (!email || !EMAIL_REGEX.test(email)) return "Please enter a valid email.";
+    if (feedback.error) return feedback.error;
     return null;
   }
 
@@ -528,7 +592,7 @@ export default function ChatWidget() {
         body: JSON.stringify({
           accessToken,
           name: visitorName.trim(),
-          email: visitorEmail.trim(),
+          email: getClientEmailFeedback(visitorEmail).normalized || visitorEmail.trim(),
           phone: visitorPhone.trim() || null,
           mode: "live",
         }),
@@ -1039,6 +1103,40 @@ export default function ChatWidget() {
         .gcw-textarea::placeholder { color: #AAAAAA; }
         .gcw-textarea:focus { outline: none; }
 
+        .gcw-existing-customer {
+          margin: 8px 8px 0;
+          text-align: center;
+        }
+        .gcw-code-form {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: stretch;
+        }
+        .gcw-code-input {
+          text-align: center;
+          font-family: ui-monospace, monospace;
+          letter-spacing: 0.06em;
+        }
+        .gcw-code-actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+        }
+        .gcw-code-submit {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+        .gcw-code-feedback {
+          margin: 8px 0 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 11px;
+          line-height: 1.4;
+        }
+        .gcw-code-feedback-ok { color: rgba(201, 168, 76, 0.95); }
+        .gcw-code-feedback-err { color: rgba(232, 160, 150, 0.95); }
+
         .gcw-privacy-note {
           margin: 10px 8px 0;
           font-family: var(--font-inter), sans-serif;
@@ -1170,6 +1268,29 @@ export default function ChatWidget() {
           font-weight: 500;
           line-height: 1.4;
           color: #8b2919;
+        }
+        .gcw-email-hint {
+          margin: 4px 0 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 11px;
+          line-height: 1.4;
+          color: #8b2919;
+        }
+        .gcw-email-suggestion {
+          margin: 4px 0 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 11px;
+          line-height: 1.4;
+          color: rgba(28,28,28,0.65);
+        }
+        .gcw-email-suggestion button {
+          border: none;
+          background: none;
+          padding: 0;
+          font: inherit;
+          color: #8A6D2C;
+          cursor: pointer;
+          text-decoration: underline;
         }
         .gcw-intake-actions {
           display: flex;
@@ -1316,9 +1437,32 @@ export default function ChatWidget() {
                   placeholder="you@email.com"
                   aria-label="Your email"
                   value={visitorEmail}
-                  onChange={(e) => setVisitorEmail(e.target.value)}
+                  onChange={(e) => {
+                    setVisitorEmail(e.target.value);
+                    setEmailHint(getClientEmailFeedback(e.target.value));
+                  }}
+                  onBlur={() => setEmailHint(getClientEmailFeedback(visitorEmail))}
                   autoComplete="email"
                 />
+                {emailHint.error ? (
+                  <p className="gcw-email-hint" role="alert">
+                    {emailHint.error}
+                  </p>
+                ) : null}
+                {emailHint.suggestion ? (
+                  <p className="gcw-email-suggestion">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!emailHint.suggestedEmail) return;
+                        setVisitorEmail(emailHint.suggestedEmail);
+                        setEmailHint(getClientEmailFeedback(emailHint.suggestedEmail));
+                      }}
+                    >
+                      {emailHint.suggestion}
+                    </button>
+                  </p>
+                ) : null}
               </label>
               <label className="gcw-field">
                 <span className="gcw-field-label">Phone (optional)</span>
@@ -1417,6 +1561,65 @@ export default function ChatWidget() {
               </button>
             </div>
           )}
+
+          {!customerCodeVerified && !restoring ? (
+            <div className="gcw-existing-customer">
+              {!showCustomerCodeInput ? (
+                <button
+                  type="button"
+                  className="gcw-skip-link"
+                  onClick={() => {
+                    setCustomerCodeFeedback(null);
+                    setShowCustomerCodeInput(true);
+                  }}
+                >
+                  Existing customer? Enter your code
+                </button>
+              ) : (
+                <div className="gcw-code-form">
+                  <input
+                    type="text"
+                    className="gcw-contact-input gcw-code-input"
+                    placeholder="GWH-XXXXXX"
+                    aria-label="Customer code"
+                    value={customerCodeInput}
+                    onChange={(e) => setCustomerCodeInput(e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        submitCustomerCode();
+                      }
+                    }}
+                  />
+                  <div className="gcw-code-actions">
+                    <button
+                      type="button"
+                      className="gcw-intake-btn-primary gcw-code-submit"
+                      disabled={customerCodeSubmitting || !customerCodeInput.trim()}
+                      onClick={submitCustomerCode}
+                    >
+                      {customerCodeSubmitting ? "Checking…" : "Verify"}
+                    </button>
+                    <button
+                      type="button"
+                      className="gcw-skip-link"
+                      onClick={() => {
+                        setShowCustomerCodeInput(false);
+                        setCustomerCodeFeedback(null);
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+              {customerCodeFeedback ? (
+                <p className={`gcw-code-feedback ${customerCodeFeedback.ok ? "gcw-code-feedback-ok" : "gcw-code-feedback-err"}`}>
+                  {customerCodeFeedback.text}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
 
           <p className="gcw-privacy-note">
             Your conversation is private and confidential.

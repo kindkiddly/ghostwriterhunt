@@ -8,6 +8,7 @@ import {
   PROFESSIONAL_MIN_BOOKS,
 } from "@/lib/stripe/packages";
 import { createCheckoutSessionRecord } from "@/lib/stripe/payments";
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Public checkout for fixed packages ($150 / $200 / $299).
@@ -49,6 +50,13 @@ export async function POST(request) {
   let contactId = null;
   let resolvedConversationId = null;
   let customerEmail = typeof email === "string" ? email.trim() : null;
+  if (customerEmail) {
+    const emailCheck = await ensureValidEmail(customerEmail);
+    if (emailCheck.error) {
+      return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+    }
+    customerEmail = emailCheck.normalized;
+  }
 
   if (accessToken) {
     const admin = createAdminClient();

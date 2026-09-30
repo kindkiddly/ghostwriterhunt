@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAdminRealtime } from "@/lib/admin/AdminRealtimeContext";
+import { PROJECT_PROGRESS_OPTIONS } from "@/lib/crm/customerCode";
 
 const CONTACT_STATUSES = ["new", "contacted", "qualified", "client", "closed"];
 const NOTES_SAVE_DELAY_MS = 900;
@@ -35,6 +36,8 @@ export default function ContactDetailPage() {
   const [emailMessage, setEmailMessage] = useState("");
   const [emailSending, setEmailSending] = useState(false);
   const [emailStatus, setEmailStatus] = useState(null);
+  const [progressSaving, setProgressSaving] = useState(false);
+  const [progressError, setProgressError] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -71,6 +74,62 @@ export default function ContactDetailPage() {
     if (!contact) return;
     setContact((prev) => ({ ...prev, [field]: value }));
     await supabase.from("contacts").update({ [field]: value }).eq("id", id);
+  }
+
+  async function updateEmailField(rawValue) {
+    if (!contact) return;
+    const trimmed = rawValue.trim();
+    if (!trimmed) {
+      setContact((prev) => ({ ...prev, email: null }));
+      await supabase.from("contacts").update({ email: null }).eq("id", id);
+      return;
+    }
+    try {
+      const res = await fetch("/api/admin/contacts/validate-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(data.error || "Please check your email address.");
+        setContact((prev) => ({ ...prev, email: contact.email }));
+        return;
+      }
+      setContact((prev) => ({ ...prev, email: data.normalized }));
+      await supabase.from("contacts").update({ email: data.normalized }).eq("id", id);
+    } catch {
+      alert("Could not validate email. Please try again.");
+      setContact((prev) => ({ ...prev, email: contact.email }));
+    }
+  }
+
+  async function handleProjectProgressChange(rawValue) {
+    if (!contact) return;
+    const projectProgress = rawValue === "" ? null : parseInt(rawValue, 10);
+    setProgressError(null);
+    setProgressSaving(true);
+    try {
+      const res = await fetch("/api/admin/contacts/project-progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contactId: id, projectProgress }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setProgressError(data.error || "Could not update project progress");
+        return;
+      }
+      setContact((prev) => ({ ...prev, project_progress: data.projectProgress ?? null }));
+      if (data.emailed) {
+        const { data: refreshed } = await supabase.from("contacts").select("notes").eq("id", id).maybeSingle();
+        if (refreshed) setNotesDraft(refreshed.notes || "");
+      }
+    } catch {
+      setProgressError("Network error — please try again.");
+    } finally {
+      setProgressSaving(false);
+    }
   }
 
   function handleNotesChange(value) {
@@ -154,8 +213,9 @@ export default function ContactDetailPage() {
               <div>
                 <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Email</label>
                 <input
+                  key={contact.email || "no-email"}
                   defaultValue={contact.email || ""}
-                  onBlur={(e) => updateField("email", e.target.value.trim() || null)}
+                  onBlur={(e) => updateEmailField(e.target.value)}
                   className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
                 />
               </div>
@@ -180,6 +240,36 @@ export default function ContactDetailPage() {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Customer code</label>
+                <p className="rounded-lg border border-[var(--color-border)] bg-[#FAFAF7] px-3 py-2 font-mono text-[13px] text-[#444444]">
+                  {contact.customer_code || "—"}
+                </p>
+              </div>
+              <div>
+                <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">
+                  Project progress {progressSaving ? "(saving…)" : ""}
+                </label>
+                <select
+                  value={contact.project_progress ?? ""}
+                  disabled={progressSaving || !contact.email}
+                  onChange={(e) => handleProjectProgressChange(e.target.value)}
+                  className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)] disabled:opacity-60"
+                >
+                  <option value="">Not set</option>
+                  {PROJECT_PROGRESS_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>
+                      {o.value}% — {o.label}
+                    </option>
+                  ))}
+                </select>
+                {!contact.email ? (
+                  <p className="mt-1 font-inter text-[11px] text-[#999999]">Add an email to set progress and notify the client.</p>
+                ) : null}
+                {progressError ? (
+                  <p className="mt-1 font-inter text-[12px] text-[#9A2E24]">{progressError}</p>
+                ) : null}
               </div>
             </div>
 

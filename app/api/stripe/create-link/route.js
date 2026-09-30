@@ -3,6 +3,7 @@ import { requireAdmin } from "@/lib/supabase/requireAdmin";
 import { isPaymentsEnabled, isStripeMockMode } from "@/lib/stripe/client";
 import { getFixedPackage, normalizeCustomAmountCents } from "@/lib/stripe/packages";
 import { createPaymentLinkRecord } from "@/lib/stripe/payments";
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Admin: create a Stripe Payment Link (fixed or custom amount).
@@ -66,6 +67,16 @@ export async function POST(request) {
     }
     customerEmail = contact.email || null;
     contactName = contact.name || null;
+    if (customerEmail) {
+      const emailCheck = await ensureValidEmail(customerEmail);
+      if (emailCheck.error) {
+        return NextResponse.json(
+          { error: `Contact email invalid: ${emailCheck.error}` },
+          { status: 400 }
+        );
+      }
+      customerEmail = emailCheck.normalized;
+    }
   }
 
   try {

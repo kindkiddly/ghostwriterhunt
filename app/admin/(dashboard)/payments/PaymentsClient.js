@@ -37,9 +37,9 @@ function SummaryCard({ label, value, sub }) {
   );
 }
 
-const TABLE_HEADERS = ["Amount", "Description", "Status", "Source", "Created", "Invoice / Links"];
+const TABLE_HEADERS = ["Amount", "Description", "Customer code", "Status", "Source", "Created", "Invoice / Links"];
 
-function PaymentsHistoryBody({ loading, error, filtered, onCopyLink, copiedPaymentId }) {
+function PaymentsHistoryBody({ loading, error, filtered, onCopyLink, copiedPaymentId, contactCodeById }) {
   if (loading) {
     return (
       <tr>
@@ -78,6 +78,9 @@ function PaymentsHistoryBody({ loading, error, filtered, onCopyLink, copiedPayme
         {p.package_key && (
           <span className="mt-1 inline-block font-inter text-[11px] text-[#999999]">{p.package_key}</span>
         )}
+      </td>
+      <td className="px-4 py-3 font-mono text-[12px] text-[#666666]">
+        {(p.contact_id && contactCodeById.get(p.contact_id)) || "—"}
       </td>
       <td className="px-4 py-3">
         <span
@@ -165,7 +168,7 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
     if (withLoading) setLoading(true);
     const [{ data: paymentRows, error: payErr }, { data: contactRows }] = await Promise.all([
       supabase.from("payments").select("*").order("created_at", { ascending: false }),
-      supabase.from("contacts").select("id, name, email").order("created_at", { ascending: false }).limit(200),
+      supabase.from("contacts").select("id, name, email, customer_code").order("created_at", { ascending: false }).limit(200),
     ]);
     if (payErr) setError(payErr.message);
     else setPayments(paymentRows || []);
@@ -184,6 +187,14 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
       supabase.removeChannel(channel);
     };
   }, [supabase, loadPayments]);
+
+  const contactCodeById = useMemo(() => {
+    const map = new Map();
+    for (const c of contacts) {
+      if (c.customer_code) map.set(c.id, c.customer_code);
+    }
+    return map;
+  }, [contacts]);
 
   const summary = useMemo(() => {
     const now = new Date();
@@ -388,6 +399,7 @@ export default function PaymentsClient({ prefillContactId = "", prefillConversat
                 filtered={filtered}
                 onCopyLink={(url, id) => copyLinkUrl(url, { tablePaymentId: id })}
                 copiedPaymentId={tableCopiedId}
+                contactCodeById={contactCodeById}
               />
             </tbody>
           </table>

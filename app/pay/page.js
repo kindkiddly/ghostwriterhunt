@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { getClientEmailFeedback } from "@/lib/validation/email";
 
 const INPUT_CLASS =
   "w-full rounded-lg border border-[#E8D5A3] bg-white px-4 py-3 font-inter text-[15px] text-[#1C1C1C] outline-none transition-shadow focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/25";
@@ -13,17 +14,29 @@ export default function PayPage() {
   const [paymentNote, setPaymentNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (submitting) return;
     setError(null);
+    const emailFeedback = getClientEmailFeedback(email);
+    setEmailHint(emailFeedback);
+    if (emailFeedback.error) {
+      setError(emailFeedback.error);
+      return;
+    }
     setSubmitting(true);
     try {
       const res = await fetch("/api/stripe/pay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, email, amountUsd, paymentNote }),
+        body: JSON.stringify({
+          fullName,
+          email: emailFeedback.normalized || email.trim(),
+          amountUsd,
+          paymentNote,
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -88,9 +101,29 @@ export default function PayPage() {
               autoComplete="email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailHint(getClientEmailFeedback(e.target.value));
+              }}
+              onBlur={() => setEmailHint(getClientEmailFeedback(email))}
               className={INPUT_CLASS}
             />
+            {emailHint.error ? (
+              <span className="mt-1.5 block font-inter text-[12px] text-[#9A2E24]">{emailHint.error}</span>
+            ) : null}
+            {emailHint.suggestion ? (
+              <button
+                type="button"
+                className="mt-1.5 block border-0 bg-transparent p-0 text-left font-inter text-[12px] text-[#666666] underline decoration-[#C9A84C]"
+                onClick={() => {
+                  if (!emailHint.suggestedEmail) return;
+                  setEmail(emailHint.suggestedEmail);
+                  setEmailHint(getClientEmailFeedback(emailHint.suggestedEmail));
+                }}
+              >
+                {emailHint.suggestion}
+              </button>
+            ) : null}
           </label>
 
           <label className="mb-5 block">

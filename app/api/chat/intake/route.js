@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Chat widget intake (before live chat or follow-up-only).
@@ -8,10 +9,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
  */
 
 const MAX_MESSAGE_LENGTH = 4000;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 async function resolveOrCreateContact(admin, name, email, phone) {
-  const trimmedEmail = email.trim();
+  const trimmedEmail = email;
   const trimmedName = name?.trim() || null;
   const trimmedPhone = phone?.trim() || null;
 
@@ -79,7 +78,6 @@ export async function POST(request) {
   }
 
   const trimmedName = typeof name === "string" ? name.trim() : "";
-  const trimmedEmail = typeof email === "string" ? email.trim() : "";
   const trimmedPhone = typeof phone === "string" ? phone.trim() : "";
   const intakeMode = mode === "followup" ? "followup" : "live";
   const trimmedMessage =
@@ -88,9 +86,11 @@ export async function POST(request) {
   if (!trimmedName) {
     return NextResponse.json({ error: "Name is required" }, { status: 400 });
   }
-  if (!trimmedEmail || !EMAIL_REGEX.test(trimmedEmail)) {
-    return NextResponse.json({ error: "A valid email is required" }, { status: 400 });
+  const emailCheck = await ensureValidEmail(email);
+  if (emailCheck.error) {
+    return NextResponse.json({ error: emailCheck.error }, { status: 400 });
   }
+  const trimmedEmail = emailCheck.normalized;
   if (intakeMode === "followup" && !trimmedMessage) {
     return NextResponse.json({ error: "Please enter a message for follow-up" }, { status: 400 });
   }

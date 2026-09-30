@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdmin } from "@/lib/supabase/requireAdmin";
+import { customerCodeEmailLine } from "@/lib/crm/customerCode";
 import { isStripeMockMode } from "@/lib/stripe/client";
 
 function escapeHtml(value) {
@@ -54,7 +55,7 @@ export async function POST(request) {
 
   const { data: contact } = await admin
     .from("contacts")
-    .select("id, email, name")
+    .select("id, email, name, customer_code")
     .eq("id", payment.contact_id)
     .maybeSingle();
 
@@ -71,6 +72,8 @@ export async function POST(request) {
   const url = payment.stripe_payment_link_url;
   const mock = isStripeMockMode();
 
+  const codeLine = customerCodeEmailLine(contact.customer_code);
+
   try {
     const resend = new Resend(apiKey);
     const { error: sendError } = await resend.emails.send({
@@ -83,9 +86,12 @@ export async function POST(request) {
         <p style="color:#333;">${escapeHtml(payment.description)}</p>
         <p style="color:#333;"><strong>Amount:</strong> ${amountLabel}</p>
         <p style="margin:24px 0;"><a href="${escapeHtml(url)}" style="background:#C9A84C;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">Pay securely</a></p>
+        ${codeLine ? `<p style="color:#666;font-size:14px;">${escapeHtml(codeLine)}</p>` : ""}
         <p style="color:#666;font-size:13px;">${mock ? "Demo payment link. No real charge until Stripe is connected." : "This link is hosted by Stripe. If you have questions, reply to this email."}</p>
       </div>`,
-      text: `Complete your payment (${amountLabel}): ${url}\n\n${payment.description}`,
+      text: [`Complete your payment (${amountLabel}): ${url}`, "", payment.description, codeLine]
+        .filter(Boolean)
+        .join("\n"),
     });
 
     if (sendError) {

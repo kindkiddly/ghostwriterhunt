@@ -61,7 +61,8 @@ export default function ContactsPage() {
         (c) =>
           (c.name || "").toLowerCase().includes(q) ||
           (c.email || "").toLowerCase().includes(q) ||
-          (c.phone || "").toLowerCase().includes(q)
+          (c.phone || "").toLowerCase().includes(q) ||
+          (c.customer_code || "").toLowerCase().includes(q)
       );
     }
     return list;
@@ -74,7 +75,7 @@ export default function ContactsPage() {
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
         <input
           type="search"
-          placeholder="Search name, email or phone…"
+          placeholder="Search name, email, phone or code…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           aria-label="Search contacts"
@@ -119,7 +120,7 @@ export default function ContactsPage() {
           <table className="w-full min-w-[640px] border-collapse">
             <thead>
               <tr className="border-b border-[var(--color-border)] text-left">
-                {["Name", "Email", "Phone", "Source", "Status", "Created"].map((h) => (
+                {["Name", "Email", "Code", "Phone", "Source", "Status", "Created"].map((h) => (
                   <th key={h} className="px-4 py-3 font-inter text-[12px] font-semibold uppercase tracking-wide text-[#999999]">
                     {h}
                   </th>
@@ -135,6 +136,7 @@ export default function ContactsPage() {
                     </Link>
                   </td>
                   <td className="px-4 py-3 font-inter text-[13px] text-[#666666]">{c.email || "—"}</td>
+                  <td className="px-4 py-3 font-inter text-[12px] font-mono text-[#666666]">{c.customer_code || "—"}</td>
                   <td className="px-4 py-3 font-inter text-[13px] text-[#666666]">{c.phone || "—"}</td>
                   <td className="px-4 py-3 font-inter text-[13px] text-[#666666]">
                     {c.source === "contact_form" ? "Contact form" : c.source === "chat" ? "Chat" : "—"}

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { ensureValidEmail } from "@/lib/validation/email.server";
 
 /**
  * GhostWriterHunt — Contact form submission handler
@@ -17,7 +18,6 @@ const FIELD_LABELS = {
 };
 
 const REQUIRED_FIELDS = ["fullName", "email", "genre", "projectType", "about"];
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const HONEYPOT_FIELD = "companyWebsite";
 const MAX_SUBMISSIONS_PER_IP_PER_HOUR = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
@@ -144,14 +144,19 @@ export async function POST(request) {
 
   const { fullName, email, phone, genre, projectType, about } = body;
 
-  if (!EMAIL_REGEX.test(String(email).trim())) {
-    return NextResponse.json(
-      { error: "Please provide a valid email address" },
-      { status: 400 }
-    );
+  const emailCheck = await ensureValidEmail(email);
+  if (emailCheck.error) {
+    return NextResponse.json({ error: emailCheck.error }, { status: 400 });
   }
 
-  const fields = { fullName, email, phone, genre, projectType, about };
+  const fields = {
+    fullName,
+    email: emailCheck.normalized,
+    phone,
+    genre,
+    projectType,
+    about,
+  };
 
   await saveContactFromForm(fields);
 

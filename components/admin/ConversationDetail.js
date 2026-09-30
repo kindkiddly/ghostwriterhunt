@@ -216,6 +216,34 @@ export default function ConversationDetail({ conversationId, onBack }) {
     await supabase.from("contacts").update({ [field]: value }).eq("id", contact.id);
   }
 
+  async function updateContactEmail(rawValue) {
+    if (!contact) return;
+    const trimmed = rawValue.trim();
+    if (!trimmed) {
+      setContact((prev) => ({ ...prev, email: null }));
+      await supabase.from("contacts").update({ email: null }).eq("id", contact.id);
+      return;
+    }
+    try {
+      const res = await fetch("/api/admin/contacts/validate-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(data.error || "Please check your email address.");
+        setContact((prev) => ({ ...prev, email: contact.email }));
+        return;
+      }
+      setContact((prev) => ({ ...prev, email: data.normalized }));
+      await supabase.from("contacts").update({ email: data.normalized }).eq("id", contact.id);
+    } catch {
+      alert("Could not validate email. Please try again.");
+      setContact((prev) => ({ ...prev, email: contact.email }));
+    }
+  }
+
   function handleNotesChange(value) {
     setNotesDraft(value);
     if (notesTimeoutRef.current) clearTimeout(notesTimeoutRef.current);
@@ -387,10 +415,17 @@ export default function ConversationDetail({ conversationId, onBack }) {
             <div>
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Email</label>
               <input
+                key={contact.email || "no-email"}
                 defaultValue={contact.email || ""}
-                onBlur={(e) => updateContactField("email", e.target.value.trim() || null)}
+                onBlur={(e) => updateContactEmail(e.target.value)}
                 className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               />
+            </div>
+            <div>
+              <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Customer code</label>
+              <p className="rounded-lg border border-[var(--color-border)] bg-[#FAFAF7] px-3 py-2 font-mono text-[13px] text-[var(--color-text)]">
+                {contact.customer_code || "—"}
+              </p>
             </div>
             <div>
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Phone</label>

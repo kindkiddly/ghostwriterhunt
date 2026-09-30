@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { customerCodeEmailLine } from "@/lib/crm/customerCode";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
@@ -42,7 +43,7 @@ export async function POST(request) {
     .from("messages")
     .select(
       `id, conversation_id, sender, content, created_at,
-       conversations ( id, contacts ( id, name, email ) )`
+       conversations ( id, contacts ( id, name, email, customer_code ) )`
     )
     .in("sender", ["agent", "ai"])
     .lt("created_at", cutoff)
@@ -79,10 +80,17 @@ export async function POST(request) {
       )
       .join("");
 
+    const codeLine = customerCodeEmailLine(contact.customer_code);
+    const codeHtml = codeLine
+      ? `<p style="color:#666666;font-size:14px;margin-top:16px;">${escapeHtml(codeLine)}</p>`
+      : "";
+    const codeText = codeLine ? `\n${codeLine}\n` : "";
+
     const html = `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;">
       <h2 style="color:#1C1C1C;">You have a new reply from GhostWriterHunt</h2>
       <p style="color:#333333;">Hi${contact.name ? " " + escapeHtml(contact.name) : ""}, here's what you may have missed:</p>
       ${rowsHtml}
+      ${codeHtml}
       <p style="color:#666666;font-size:13px;">Reply to this email and our team will respond.</p>
     </div>`;
 
@@ -90,7 +98,7 @@ export async function POST(request) {
       `Hi${contact.name ? " " + contact.name : ""}, here's what you may have missed:`,
       "",
       ...messages.map((m) => `- ${m.content}`),
-      "",
+      codeText,
       "Reply to this email and our team will respond.",
     ].join("\n");
 

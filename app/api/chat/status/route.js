@@ -30,7 +30,7 @@ export async function POST(request) {
 
   const { data: conversation } = await admin
     .from("conversations")
-    .select("id, contact_id")
+    .select("id, contact_id, customer_code_verified_at")
     .eq("visitor_id", userData.user.id)
     .eq("status", "open")
     .order("created_at", { ascending: false })
@@ -50,5 +50,6 @@ export async function POST(request) {
   return NextResponse.json({
     conversationId: conversation?.id || null,
     contactHasEmail,
+    customerCodeVerified: !!conversation?.customer_code_verified_at,
   });
 }
