@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAdminRealtime } from "@/lib/admin/AdminRealtimeContext";
 import { PROJECT_PROGRESS_OPTIONS } from "@/lib/crm/customerCode";
+import { PROJECT_SUMMARY_MAX_LENGTH } from "@/lib/ai/projectSummary";
 
 const CONTACT_STATUSES = ["new", "contacted", "qualified", "client", "closed"];
 const NOTES_SAVE_DELAY_MS = 900;
@@ -30,6 +31,9 @@ export default function ContactDetailPage() {
   const [notesDraft, setNotesDraft] = useState("");
   const [notesSaving, setNotesSaving] = useState(false);
   const notesTimeoutRef = useRef(null);
+  const [summaryDraft, setSummaryDraft] = useState("");
+  const [summarySaving, setSummarySaving] = useState(false);
+  const summaryTimeoutRef = useRef(null);
 
   const [emailOpen, setEmailOpen] = useState(false);
   const [emailSubject, setEmailSubject] = useState("");
@@ -54,6 +58,7 @@ export default function ContactDetailPage() {
       }
       setContact(data);
       setNotesDraft(data.notes || "");
+      setSummaryDraft(data.project_summary || "");
       setLoading(false);
 
       const { data: convs } = await supabase
@@ -142,9 +147,27 @@ export default function ContactDetailPage() {
     }, NOTES_SAVE_DELAY_MS);
   }
 
+  function handleSummaryChange(value) {
+    const trimmed = value.slice(0, PROJECT_SUMMARY_MAX_LENGTH);
+    setSummaryDraft(trimmed);
+    if (summaryTimeoutRef.current) clearTimeout(summaryTimeoutRef.current);
+    setSummarySaving(true);
+    summaryTimeoutRef.current = setTimeout(async () => {
+      const now = new Date().toISOString();
+      const payload = {
+        project_summary: trimmed.trim() || null,
+        project_summary_updated_at: trimmed.trim() ? now : null,
+      };
+      await supabase.from("contacts").update(payload).eq("id", id);
+      setContact((prev) => (prev ? { ...prev, ...payload } : prev));
+      setSummarySaving(false);
+    }, NOTES_SAVE_DELAY_MS);
+  }
+
   useEffect(() => {
     return () => {
       if (notesTimeoutRef.current) clearTimeout(notesTimeoutRef.current);
+      if (summaryTimeoutRef.current) clearTimeout(summaryTimeoutRef.current);
     };
   }, []);
 
@@ -282,6 +305,29 @@ export default function ContactDetailPage() {
               />
               Marketing consent
             </label>
+          </div>
+
+          <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <h2 className="font-playfair text-[16px] font-bold text-[var(--color-text)]">Project summary</h2>
+              <span className="shrink-0 font-inter text-[12px] text-[#999999]">
+                {summarySaving ? "Saving…" : "Saved"}
+              </span>
+            </div>
+            <p className="mb-2 font-inter text-[11px] text-[#999999]">
+              {contact.project_summary_updated_at
+                ? `Last updated ${new Date(contact.project_summary_updated_at).toLocaleString()}`
+                : "Not updated yet"}
+              {" · "}
+              {summaryDraft.length}/{PROJECT_SUMMARY_MAX_LENGTH}
+            </p>
+            <textarea
+              rows={5}
+              value={summaryDraft}
+              onChange={(e) => handleSummaryChange(e.target.value)}
+              placeholder="Genre, manuscript status, plan discussed, next step…"
+              className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+            />
           </div>
 
           <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5">

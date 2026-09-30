@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useAdminRealtime } from "@/lib/admin/AdminRealtimeContext";
+import { PROJECT_SUMMARY_MAX_LENGTH } from "@/lib/ai/projectSummary";
 
 const CONTACT_STATUSES = ["new", "contacted", "qualified", "client", "closed"];
 const NOTES_SAVE_DELAY_MS = 900;
@@ -73,6 +74,9 @@ export default function ConversationDetail({ conversationId, onBack }) {
   const [notesDraft, setNotesDraft] = useState("");
   const [notesSaving, setNotesSaving] = useState(false);
   const notesTimeoutRef = useRef(null);
+  const [summaryDraft, setSummaryDraft] = useState("");
+  const [summarySaving, setSummarySaving] = useState(false);
+  const summaryTimeoutRef = useRef(null);
   const messagesEndRef = useRef(null);
 
   // Load message history + subscribe to live updates for this conversation.
@@ -163,6 +167,28 @@ export default function ConversationDetail({ conversationId, onBack }) {
   useEffect(() => {
     setNotesDraft(contact?.notes || "");
   }, [contact?.id, contact?.notes]);
+
+  useEffect(() => {
+    setSummaryDraft(contact?.project_summary || "");
+  }, [contact?.id, contact?.project_summary]);
+
+  function handleSummaryChange(value) {
+    if (!contact) return;
+    const trimmed = value.slice(0, PROJECT_SUMMARY_MAX_LENGTH);
+    setSummaryDraft(trimmed);
+    if (summaryTimeoutRef.current) clearTimeout(summaryTimeoutRef.current);
+    setSummarySaving(true);
+    summaryTimeoutRef.current = setTimeout(async () => {
+      const now = new Date().toISOString();
+      const payload = {
+        project_summary: trimmed.trim() || null,
+        project_summary_updated_at: trimmed.trim() ? now : null,
+      };
+      await supabase.from("contacts").update(payload).eq("id", contact.id);
+      setContact((prev) => (prev ? { ...prev, ...payload } : prev));
+      setSummarySaving(false);
+    }, NOTES_SAVE_DELAY_MS);
+  }
 
   const sendReply = useCallback(async () => {
     const trimmed = replyText.trim();
@@ -259,6 +285,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
   useEffect(() => {
     return () => {
       if (notesTimeoutRef.current) clearTimeout(notesTimeoutRef.current);
+      if (summaryTimeoutRef.current) clearTimeout(summaryTimeoutRef.current);
     };
   }, []);
 
@@ -300,10 +327,14 @@ export default function ConversationDetail({ conversationId, onBack }) {
     );
   }
 
+  const paymentLinkHref = `/admin/payments?conversationId=${conversationId}${
+    conversation.contact_id ? `&contactId=${conversation.contact_id}` : ""
+  }`;
+
   return (
-    <div className="flex h-full min-h-0 flex-col lg:flex-row">
-      <div className="flex min-h-0 flex-1 flex-col">
-        <header className="flex items-center gap-3 border-b border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3">
+    <div className="flex h-full min-h-0 overflow-hidden flex-col lg:flex-row">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+        <header className="flex min-w-0 items-center gap-2 border-b border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3">
           {onBack && (
             <button
               type="button"
@@ -328,16 +359,10 @@ export default function ConversationDetail({ conversationId, onBack }) {
               {conversation.contact_email || "No email"} {conversation.country ? `· ${conversation.country}` : ""}
             </p>
           </div>
-          <Link
-            href={`/admin/payments?conversationId=${conversationId}${conversation.contact_id ? `&contactId=${conversation.contact_id}` : ""}`}
-            className="admin-btn-emerald hidden rounded-full px-3 py-1.5 text-[12px] sm:inline-block"
-          >
-            Payment link
-          </Link>
           <button
             type="button"
             onClick={toggleAi}
-            className={`rounded-full px-3 py-1.5 text-[12px] ${
+            className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] ${
               conversation.ai_enabled ? "admin-btn-success" : "admin-btn-secondary"
             }`}
           >
@@ -346,7 +371,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
           <button
             type="button"
             onClick={toggleStatus}
-            className={`rounded-full px-3 py-1.5 text-[12px] ${
+            className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] ${
               conversation.status === "open" ? "admin-btn-neutral" : "admin-btn-success"
             }`}
           >
@@ -395,52 +420,76 @@ export default function ConversationDetail({ conversationId, onBack }) {
       </div>
 
       {/* Side panel: contact */}
-      <aside className="w-full shrink-0 overflow-y-auto border-t border-[var(--color-border)] bg-[var(--color-card)] px-5 py-5 lg:w-[300px] lg:border-l lg:border-t-0">
-        <h2 className="mb-4 font-playfair text-[16px] font-bold text-[var(--color-text)]">Contact</h2>
+      <aside className="w-full min-w-0 shrink-0 overflow-x-hidden overflow-y-auto border-t border-[var(--color-border)] bg-[var(--color-card)] px-4 py-4 lg:w-[240px] lg:max-w-[240px] lg:border-l lg:border-t-0 xl:w-[260px] xl:max-w-[260px]">
+        <h2 className="mb-4 truncate font-playfair text-[16px] font-bold text-[var(--color-text)]">Contact</h2>
+
+        <Link
+          href={paymentLinkHref}
+          className="admin-btn-emerald mb-4 block w-full truncate rounded-full px-3 py-2 text-center text-[12px]"
+        >
+          Payment link
+        </Link>
 
         {loadingContact ? (
           <p className="font-inter text-[13px] text-[#999999]">Loading contact…</p>
         ) : contactError ? (
           <p className="font-inter text-[13px] text-[#9A2E24]">Couldn&apos;t load contact: {contactError}</p>
         ) : contact ? (
-          <div className="flex flex-col gap-4">
-            <div>
+          <div className="flex min-w-0 flex-col gap-4">
+            <div className="min-w-0">
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Name</label>
               <input
                 defaultValue={contact.name || ""}
                 onBlur={(e) => updateContactField("name", e.target.value.trim() || null)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+                className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Email</label>
               <input
                 key={contact.email || "no-email"}
                 defaultValue={contact.email || ""}
                 onBlur={(e) => updateContactEmail(e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+                className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Customer code</label>
-              <p className="rounded-lg border border-[var(--color-border)] bg-[#FAFAF7] px-3 py-2 font-mono text-[13px] text-[var(--color-text)]">
+              <p className="truncate rounded-lg border border-[var(--color-border)] bg-[#FAFAF7] px-3 py-2 font-mono text-[13px] text-[var(--color-text)]">
                 {contact.customer_code || "—"}
               </p>
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Phone</label>
               <input
                 defaultValue={contact.phone || ""}
                 onBlur={(e) => updateContactField("phone", e.target.value.trim() || null)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+                className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               />
             </div>
-            <div>
+            <div className="min-w-0">
+              <label className="mb-1 flex items-center justify-between font-inter text-[12px] font-medium text-[#666666]">
+                Project summary
+                <span className="font-normal text-[#999999]">{summarySaving ? "Saving…" : "Saved"}</span>
+              </label>
+              <p className="mb-1 font-inter text-[10px] text-[#999999]">
+                {contact.project_summary_updated_at
+                  ? `Updated ${new Date(contact.project_summary_updated_at).toLocaleString()}`
+                  : "Not updated yet"}
+              </p>
+              <textarea
+                rows={4}
+                value={summaryDraft}
+                onChange={(e) => handleSummaryChange(e.target.value)}
+                className="w-full min-w-0 max-w-full resize-none rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+              />
+            </div>
+            <div className="min-w-0">
               <label className="mb-1 block font-inter text-[12px] font-medium text-[#666666]">Status</label>
               <select
                 value={contact.status}
                 onChange={(e) => updateContactField("status", e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+                className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               >
                 {CONTACT_STATUSES.map((s) => (
                   <option key={s} value={s}>
@@ -449,59 +498,51 @@ export default function ConversationDetail({ conversationId, onBack }) {
                 ))}
               </select>
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 flex items-center justify-between font-inter text-[12px] font-medium text-[#666666]">
                 Notes
                 <span className="font-normal text-[#999999]">{notesSaving ? "Saving…" : "Saved"}</span>
               </label>
               <textarea
-                rows={5}
+                rows={4}
                 value={notesDraft}
                 onChange={(e) => handleNotesChange(e.target.value)}
-                className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
+                className="w-full min-w-0 max-w-full resize-none rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] text-[var(--color-text)] outline-none focus:border-[var(--color-accent-gold)]"
               />
             </div>
             <Link
               href={`/admin/contacts/${contact.id}`}
-              className="text-center font-inter text-[13px] font-semibold text-[var(--color-accent-gold)] hover:underline"
+              className="truncate text-center font-inter text-[13px] font-semibold text-[var(--color-accent-gold)] hover:underline"
             >
               View full contact →
             </Link>
           </div>
         ) : showAddContact ? (
-          <form onSubmit={handleAddContact} className="flex flex-col gap-3">
+          <form onSubmit={handleAddContact} className="flex min-w-0 flex-col gap-3">
             <input
               placeholder="Name"
               value={newContact.name}
               onChange={(e) => setNewContact((p) => ({ ...p, name: e.target.value }))}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
+              className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
             />
             <input
               placeholder="Email"
               type="email"
               value={newContact.email}
               onChange={(e) => setNewContact((p) => ({ ...p, email: e.target.value }))}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
+              className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
             />
             <input
               placeholder="Phone"
               value={newContact.phone}
               onChange={(e) => setNewContact((p) => ({ ...p, phone: e.target.value }))}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
+              className="w-full min-w-0 max-w-full rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 font-inter text-[13px] outline-none focus:border-[var(--color-accent-gold)]"
             />
             <div className="flex gap-2">
-              <button
-                type="submit"
-                disabled={savingContact}
-                className="admin-btn-primary flex-1"
-              >
+              <button type="submit" disabled={savingContact} className="admin-btn-primary flex-1">
                 {savingContact ? "Saving…" : "Save"}
               </button>
-              <button
-                type="button"
-                onClick={() => setShowAddContact(false)}
-                className="admin-btn-neutral"
-              >
+              <button type="button" onClick={() => setShowAddContact(false)} className="admin-btn-neutral">
                 Cancel
               </button>
             </div>
@@ -509,11 +550,7 @@ export default function ConversationDetail({ conversationId, onBack }) {
         ) : (
           <div className="flex flex-col items-start gap-3">
             <p className="font-inter text-[13px] text-[#999999]">No contact linked to this conversation.</p>
-            <button
-              type="button"
-              onClick={() => setShowAddContact(true)}
-              className="admin-btn-primary"
-            >
+            <button type="button" onClick={() => setShowAddContact(true)} className="admin-btn-primary">
               Add contact
             </button>
           </div>

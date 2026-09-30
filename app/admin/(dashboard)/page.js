@@ -47,9 +47,9 @@ function InboxContent() {
   const showListOnMobile = !selectedId;
 
   return (
-    <div className="flex h-full min-h-0">
+    <div className="flex h-full min-h-0 overflow-hidden">
       <div
-        className={`flex h-full min-h-0 w-full flex-col border-r border-[var(--color-border)] bg-[var(--color-card)] lg:w-[360px] lg:shrink-0 ${
+        className={`flex h-full min-h-0 w-full min-w-0 flex-col border-r border-[var(--color-border)] bg-[var(--color-card)] lg:w-[280px] lg:max-w-[280px] lg:shrink-0 xl:w-[300px] xl:max-w-[300px] ${
           showListOnMobile ? "flex" : "hidden lg:flex"
         }`}
       >

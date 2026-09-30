@@ -69,11 +69,11 @@ function formatTime(date) {
   return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 }
 
-export default function ChatWidget() {
+export default function ChatWidget({ initialOpen = false }) {
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(initialOpen);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -85,7 +85,7 @@ export default function ChatWidget() {
   const [intakeError, setIntakeError] = useState("");
   const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
   /** restoring | intro | intake | chat | ended */
-  const [sessionPhase, setSessionPhase] = useState("restoring");
+  const [sessionPhase, setSessionPhase] = useState("intro");
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
   const [contactHasEmail, setContactHasEmail] = useState(false);
@@ -94,7 +94,7 @@ export default function ChatWidget() {
   const [customerCodeInput, setCustomerCodeInput] = useState("");
   const [customerCodeFeedback, setCustomerCodeFeedback] = useState(null);
   const [customerCodeSubmitting, setCustomerCodeSubmitting] = useState(false);
-  const [restoring, setRestoring] = useState(true);
+  const [restoring, setRestoring] = useState(false);
   const [supabase] = useState(() => createClient());
 
   const messagesEndRef = useRef(null);
@@ -107,6 +107,7 @@ export default function ChatWidget() {
   const isOpenRef = useRef(false);
   const authWarmupRef = useRef(null);
   const scrollLockYRef = useRef(0);
+  const hasRestoredRef = useRef(false);
 
   useEffect(() => {
     isOpenRef.current = isOpen;
@@ -171,11 +172,6 @@ export default function ChatWidget() {
   }, [supabase]);
 
   useEffect(() => {
-    if (isAdminRoute) return;
-    warmAnonymousSession().catch(() => {});
-  }, [isAdminRoute, warmAnonymousSession]);
-
-  useEffect(() => {
     if (!isOpen || isAdminRoute) return;
     warmAnonymousSession().catch(() => {});
   }, [isOpen, isAdminRoute, warmAnonymousSession]);
@@ -212,17 +208,12 @@ export default function ChatWidget() {
     };
   }, []);
 
-  // On mount (page refresh): if a session already exists, restore the
-  // visitor's open conversation, whether its contact already has an email
-  // on file (via /api/chat/status — visitors have no RLS access to
-  // `contacts` directly), and its message history.
+  // When the visitor opens chat: restore an existing session if present.
   useEffect(() => {
-    if (isAdminRoute) {
-      setRestoring(false);
-      setSessionPhase("intro");
-      return;
-    }
+    if (isAdminRoute || !isOpen || hasRestoredRef.current) return;
+    hasRestoredRef.current = true;
     let cancelled = false;
+    setRestoring(true);
 
     (async () => {
       try {
@@ -299,7 +290,7 @@ export default function ChatWidget() {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [supabase]);
+  }, [isOpen, isAdminRoute, supabase]);
 
   // Seen marks: debounced so a burst of incoming messages or open/close
   // toggling only triggers one RPC call, and never blocks sending/display.
@@ -326,7 +317,7 @@ export default function ChatWidget() {
   // optimistically at send-time, so they're skipped here. Cleans up on
   // conversation change / unmount.
   useEffect(() => {
-    if (isAdminRoute || !conversationId) return;
+    if (isAdminRoute || !isOpen || !conversationId) return;
 
     const channel = supabase
       .channel(`messages-${conversationId}`)
@@ -366,7 +357,7 @@ export default function ChatWidget() {
       supabase.removeChannel(channel);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [conversationId, supabase]);
+  }, [conversationId, isOpen, supabase]);
 
   // Whenever the panel is opened with an active conversation, mark any
   // already-unseen agent/AI messages as seen (no-op if none).
@@ -381,7 +372,7 @@ export default function ChatWidget() {
   // conversation id) so the admin inbox can show a live online/offline
   // dot. Ends automatically when the tab/connection closes.
   useEffect(() => {
-    if (isAdminRoute || !conversationId) return;
+    if (isAdminRoute || !isOpen || !conversationId) return;
 
     const channel = supabase.channel("chat-presence", {
       config: { presence: { key: conversationId } },
@@ -397,7 +388,7 @@ export default function ChatWidget() {
       channel.untrack();
       supabase.removeChannel(channel);
     };
-  }, [isAdminRoute, conversationId, supabase]);
+  }, [isAdminRoute, isOpen, conversationId, supabase]);
 
   /**
    * persistMessage — saves one visitor message via the single POST
