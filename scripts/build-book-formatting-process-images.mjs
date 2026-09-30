@@ -27,7 +27,7 @@ async function writeWebp(input, outName) {
   const meta = await sharp(input).rotate().metadata();
   await sharp(input)
     .rotate()
-    .webp({ quality: 92, effort: 6, smartSubsample: false })
+    .webp({ quality: 95, effort: 6, smartSubsample: true })
     .toFile(out);
   const outMeta = await sharp(out).metadata();
   console.log(

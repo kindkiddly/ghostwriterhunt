@@ -27,6 +27,7 @@ export default function ServiceProcess({ service }) {
 
   const isGhostwriting = service.slug === "ghostwriting";
   const isManuscriptEditing = service.slug === "manuscript-editing";
+  const isBookFormatting = service.slug === "book-formatting";
   const isInteriorLayout = service.slug === "interior-layout";
   const isIllustrationGraphics = service.slug === "illustration-graphics";
   const isVideoBookTrailer = service.slug === "video-book-trailer";
@@ -74,7 +75,7 @@ export default function ServiceProcess({ service }) {
 
   return (
     <section
-      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}${isAudiobookPublishing ? " sp-section--audiobook-publishing" : ""}${isAuthorBranding ? " sp-section--author-branding" : ""}${isBookMarketing ? " sp-section--book-marketing" : ""}${isAuthorWebsite ? " sp-section--author-website" : ""}`}
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isBookFormatting ? " sp-section--book-formatting" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}${isAudiobookPublishing ? " sp-section--audiobook-publishing" : ""}${isAuthorBranding ? " sp-section--author-branding" : ""}${isBookMarketing ? " sp-section--book-marketing" : ""}${isAuthorWebsite ? " sp-section--author-website" : ""}`}
       aria-label="The process"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -197,6 +198,14 @@ export default function ServiceProcess({ service }) {
           }
           .sp-title-line + .sp-title-line::before {
             content: " ";
+          }
+          /* Book formatting — wide process banners: fit full frame, no cover crop/upscale */
+          .sp-section--book-formatting .sp-img {
+            height: auto;
+            aspect-ratio: 800 / 273;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
           }
         }
         @media (max-width: 768px) {
