@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-
-const STALE_HOURS = 24;
+import { getChatResumeHours, staleCutoffIso } from "@/lib/chat/staleConversation";
 
 /**
- * Closes open conversations with no activity for 24+ hours.
+ * Closes open conversations past CHAT_RESUME_HOURS inactivity (default 24).
  * Called hourly by pg_cron (migration 012).
  */
 export async function POST(request) {
@@ -15,7 +14,8 @@ export async function POST(request) {
   }
 
   const admin = createAdminClient();
-  const cutoff = new Date(Date.now() - STALE_HOURS * 60 * 60 * 1000).toISOString();
+  const cutoff = staleCutoffIso();
+  const resumeHours = getChatResumeHours();
 
   const { data, error } = await admin.rpc("close_stale_open_conversations", {
     p_cutoff: cutoff,
@@ -29,5 +29,6 @@ export async function POST(request) {
   return NextResponse.json({
     ok: true,
     closed: data?.closed ?? 0,
+    resumeHours,
   });
 }

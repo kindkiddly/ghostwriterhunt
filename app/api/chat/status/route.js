@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { isConversationStale } from "@/lib/chat/staleConversation";
+import { getChatResumeHours, isConversationStale } from "@/lib/chat/staleConversation";
 
 /**
  * GhostWriterHunt — Chat: restore status
@@ -38,7 +38,15 @@ export async function POST(request) {
     .limit(1)
     .maybeSingle();
 
-  if (
+  const resumeHours = getChatResumeHours();
+  if (conversation && resumeHours === 0) {
+    await admin
+      .from("conversations")
+      .update({ status: "closed", ai_enabled: false })
+      .eq("id", conversation.id)
+      .eq("status", "open");
+    conversation = null;
+  } else if (
     conversation &&
     isConversationStale(conversation.last_message_at || conversation.created_at)
   ) {

@@ -18,7 +18,8 @@ import { getClientEmailFeedback } from "@/lib/validation/email";
 
 const WELCOME_MESSAGE =
   "Tell us about your book. We're here to help with your publishing project.";
-const TYPING_TIMEOUT_MS = 45000;
+const TYPING_TIMEOUT_MS = 60000;
+const MOBILE_CHAT_MQ = "(max-width: 639px)";
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
 const MAX_MESSAGE_LENGTH = 4000;
 const MARK_SEEN_DEBOUNCE_MS = 500;
@@ -104,10 +105,49 @@ export default function ChatWidget() {
   const markSeenTimeoutRef = useRef(null);
   const isOpenRef = useRef(false);
   const authWarmupRef = useRef(null);
+  const scrollLockYRef = useRef(0);
 
   useEffect(() => {
     isOpenRef.current = isOpen;
   }, [isOpen]);
+
+  /** Mobile full-screen chat: lock page scroll (iOS-safe) while open. */
+  useEffect(() => {
+    if (isAdminRoute || typeof window === "undefined") return undefined;
+
+    const mq = window.matchMedia(MOBILE_CHAT_MQ);
+
+    function lockPageScroll() {
+      if (!mq.matches) return;
+      scrollLockYRef.current = window.scrollY;
+      const y = scrollLockYRef.current;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    function unlockPageScroll() {
+      if (document.body.style.position !== "fixed") return;
+      const y = scrollLockYRef.current;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      window.scrollTo(0, y);
+    }
+
+    if (isOpen) lockPageScroll();
+    else unlockPageScroll();
+
+    return () => unlockPageScroll();
+  }, [isOpen, isAdminRoute]);
 
   const isAdminRoute = pathname?.startsWith("/admin");
 
@@ -942,6 +982,8 @@ export default function ChatWidget() {
         .gcw-messages {
           flex: 1;
           overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
           padding: 22px 18px;
           display: flex;
           flex-direction: column;
@@ -1318,6 +1360,8 @@ export default function ChatWidget() {
         .gcw-intake-wrap {
           flex: 1;
           overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
           padding: 18px 18px 8px;
           display: flex;
           flex-direction: column;

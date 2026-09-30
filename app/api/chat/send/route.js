@@ -5,6 +5,9 @@ import { generateAndSaveAiReplies } from "@/lib/ai/chatAgent";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ensureValidEmail } from "@/lib/validation/email.server";
 
+/** Fluid compute: await AI in-request (within route max duration). */
+export const maxDuration = 60;
+
 /**
  * GhostWriterHunt — Chat: send a message
  * Single-call replacement for the old /api/chat/start + client-side
@@ -269,8 +272,8 @@ export async function POST(request) {
   const aiPending = aiEnabled && !!process.env.ANTHROPIC_API_KEY;
 
   if (aiPending) {
-    waitUntil(
-      generateAndSaveAiReplies({
+    try {
+      await generateAndSaveAiReplies({
         admin,
         conversationId: conversation.id,
         visitorMessage: trimmedContent,
@@ -280,8 +283,16 @@ export async function POST(request) {
         country: conversation.country,
         region: conversation.region || null,
         contactHasEmail,
-      })
-    );
+      });
+    } catch (err) {
+      console.error(
+        "chat/send: generateAndSaveAiReplies threw",
+        JSON.stringify({
+          conversationId: conversation.id,
+          message: err?.message || String(err),
+        })
+      );
+    }
   }
 
   return NextResponse.json(
