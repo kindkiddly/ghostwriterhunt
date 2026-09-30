@@ -207,6 +207,21 @@ export default function ServiceProcess({ service }) {
             object-position: center center;
             background: #fafaf7;
           }
+          /* Video book trailer — process 4 & 5 (800×350 art): desktop only, no upscale crop */
+          .sp-section--video-book-trailer
+            .sp-alternating-desktop-steps
+            > div:nth-child(7)
+            .sp-img,
+          .sp-section--video-book-trailer
+            .sp-alternating-desktop-steps
+            > div:nth-child(9)
+            .sp-img {
+            height: auto;
+            aspect-ratio: 800 / 350;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
+          }
         }
         @media (max-width: 768px) {
           .sp-section {
