@@ -152,7 +152,7 @@ export default function ServiceHero({ service }) {
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}${isBookMarketing ? " sh-section--book-marketing" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -649,7 +649,11 @@ export default function ServiceHero({ service }) {
             images={heroFloatImages}
             slug={service.slug}
             layout={isGhostwriting ? "expanded" : "default"}
-            className="fi-float--service-hero"
+            className={`fi-float--service-hero${
+              isBookMarketing && isDesktopHero
+                ? " fi-float--book-marketing-hero"
+                : ""
+            }`}
             eager
           />
         </div>

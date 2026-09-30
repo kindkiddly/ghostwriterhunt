@@ -279,6 +279,35 @@ export default function FloatingImages({
           transform: rotate(-4deg) scale(1.04);
         }
 
+        /* Book marketing hero — desktop: accent on main image bottom-right, larger */
+        @media (min-width: 769px) {
+          .fi-float.fi-float--service-hero.fi-float--book-marketing-hero {
+            height: 540px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: -8px;
+          }
+          .fi-float.fi-float--book-marketing-hero .fi-float-large {
+            top: 12px;
+            left: 28px;
+          }
+          .fi-float.fi-float--book-marketing-hero .fi-float-small {
+            width: 220px;
+            height: 284px;
+            top: auto;
+            left: auto;
+            right: -4px;
+            bottom: -20px;
+            z-index: 3;
+            transform: rotate(5deg);
+            border-radius: 14px;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.16);
+          }
+          .fi-float.fi-float--book-marketing-hero .fi-float-small:hover {
+            transform: rotate(5deg) scale(1.04);
+          }
+        }
+
         @media (max-width: 768px) {
           .fi-float {
             --fi-m-sm-nudge: 14px;
