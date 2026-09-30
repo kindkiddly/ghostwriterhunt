@@ -18,7 +18,7 @@ const PLATFORMS = [
 ];
 
 const STATS = [
-  { number: "47", suffix: "+", label: "Platforms" },
+  { number: "5", suffix: "", label: "Major global platforms" },
   { number: "100", suffix: "%", label: "Rights Yours" },
   { number: "30", suffix: "", label: "Days to Publish" },
 ];
@@ -156,6 +156,13 @@ export default function NarrativeBlock3() {
             font-size: 11px !important;
             line-height: 1.35;
           }
+          .nb4-cta-btn {
+            display: flex;
+            width: max-content;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
       ` }} />
 
@@ -177,8 +184,7 @@ export default function NarrativeBlock3() {
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
             Once your book is complete we handle everything: formatting for
             every platform, metadata optimization and global distribution. Your
-            book goes live on 47+
-            platforms worldwide. You keep 100% of your rights and every
+            book goes live on 5 major global platforms. You keep 100% of your rights and every
             dollar of royalties.
           </p>
 
@@ -215,7 +221,7 @@ export default function NarrativeBlock3() {
 
           <a
             href="#start"
-            className="gwh-gold-btn-fill mt-9 inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-8 py-3.5 font-inter text-[15px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
+            className="nb4-cta-btn gwh-gold-btn-fill mt-9 inline-flex items-center justify-center rounded-[6px] bg-[#C9A84C] px-8 py-3.5 font-inter text-[15px] font-semibold text-[#FFFFFF] transition-colors duration-300 ease-in-out hover:bg-[#B8960C]"
           >
             Start Publishing Today
           </a>
@@ -251,7 +257,7 @@ export default function NarrativeBlock3() {
                 <WhiteGlobeIcon />
                 <div>
                   <p className="font-playfair text-[20px] font-bold leading-tight text-[#FFFFFF]">
-                    47+ Platforms
+                    5 Major Platforms
                   </p>
                   <p
                     className="mt-1 font-inter text-[12px] font-normal"

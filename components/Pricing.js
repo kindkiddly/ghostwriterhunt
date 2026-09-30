@@ -43,7 +43,7 @@ const PLANS = SHARED_PRICING.map((tier) => ({
         ? HOME_PROFESSIONAL_BEST_FOR
         : tier.bestFor,
   features: tier.features.map((feature) =>
-    feature === "Publishing on 47+ platforms"
+    feature === "Publishing on 5 major global platforms"
       ? HOME_PUBLISHING_PLATFORMS
       : feature
   ),

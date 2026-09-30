@@ -85,7 +85,7 @@ const TAB_CONTENT = {
       "Professional ghostwriting in your voice",
       "Expert editing and proofreading",
       "Stunning cover and interior design",
-      "Global digital publishing on 47+ platforms",
+      "Publishing on 5 major global platforms",
       "Full NDA confidentiality guaranteed",
     ],
     leftPositive: true,

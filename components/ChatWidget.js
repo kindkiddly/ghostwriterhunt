@@ -82,7 +82,7 @@ export default function ChatWidget() {
   const [intakePending, setIntakePending] = useState(false);
   const [intakeError, setIntakeError] = useState("");
   const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
-  /** restoring | intro | intake | chat */
+  /** restoring | intro | intake | chat | ended */
   const [sessionPhase, setSessionPhase] = useState("restoring");
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState(null);
@@ -552,6 +552,50 @@ export default function ChatWidget() {
     el.style.overflowY = el.scrollHeight > TEXTAREA_MAX_HEIGHT_PX ? "auto" : "hidden";
   }
 
+  function clearLocalChatSession() {
+    conversationIdRef.current = null;
+    setConversationId(null);
+    setMessages([]);
+    setContactHasEmail(false);
+    setCustomerCodeVerified(false);
+    setShowCustomerCodeInput(false);
+    setCustomerCodeInput("");
+    setCustomerCodeFeedback(null);
+    setInputValue("");
+    setIsTyping(false);
+    setIntakePending(false);
+  }
+
+  function startNewChatIntake() {
+    clearLocalChatSession();
+    setIntakeError("");
+    setEmailHint({ error: null, suggestion: null, suggestedEmail: null });
+    setVisitorName("");
+    setVisitorEmail("");
+    setVisitorPhone("");
+    setSessionPhase("intake");
+    warmAnonymousSession().catch(() => {});
+  }
+
+  async function handleEndChat() {
+    if (!window.confirm("End this chat?")) return;
+    try {
+      const accessToken = await warmAnonymousSession();
+      await fetch("/api/chat/end", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken,
+          conversationId: conversationIdRef.current,
+        }),
+      });
+    } catch (err) {
+      console.error("ChatWidget: failed to end chat", err);
+    }
+    clearLocalChatSession();
+    setSessionPhase("ended");
+  }
+
   function validateIntakeIdentity() {
     const name = visitorName.trim();
     const feedback = getClientEmailFeedback(visitorEmail);
@@ -620,6 +664,8 @@ export default function ChatWidget() {
   const showComposer = sessionPhase === "chat" && !intakePending;
   const showIntro = sessionPhase === "intro" && !restoring;
   const showIntake = sessionPhase === "intake" && !restoring;
+  const showEnded = sessionPhase === "ended" && !restoring;
+  const showEndChatControl = sessionPhase === "chat" && !intakePending;
 
   return (
     <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
@@ -839,6 +885,58 @@ export default function ChatWidget() {
           color: #FAFAF7;
         }
         .gcw-close-btn:focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
+
+        .gcw-header-actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+        }
+        .gcw-end-chat-btn {
+          border: none;
+          background: transparent;
+          padding: 6px 8px;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 11px;
+          font-weight: 500;
+          color: rgba(232,213,163,0.75);
+          cursor: pointer;
+          border-radius: 8px;
+          transition: color 0.2s ease, background 0.2s ease;
+        }
+        .gcw-end-chat-btn:hover {
+          color: #E8D5A3;
+          background: rgba(250,250,247,0.08);
+        }
+        .gcw-end-chat-btn:focus-visible {
+          outline: 2px solid #C9A84C;
+          outline-offset: 2px;
+        }
+        .gcw-ended-wrap {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          padding: 32px 24px;
+          text-align: center;
+          background: rgba(250,250,247,0.55);
+        }
+        .gcw-ended-title {
+          margin: 0;
+          font-family: var(--font-playfair), serif;
+          font-size: 20px;
+          font-weight: 700;
+          color: #1C1C1C;
+        }
+        .gcw-ended-text {
+          margin: 0;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 13px;
+          line-height: 1.5;
+          color: #666666;
+        }
 
         /* Message wall ONLY — light frosted cream; header/footer stay solid dark glass */
         .gcw-messages {
@@ -1387,17 +1485,32 @@ export default function ChatWidget() {
               <span className="gcw-status-meta">Typically replies in minutes</span>
             </p>
           </div>
-          <button
-            type="button"
-            className="gcw-close-btn"
-            aria-label="Close chat"
-            onClick={() => setIsOpen(false)}
-          >
-            <CloseIcon />
-          </button>
+          <div className="gcw-header-actions">
+            {showEndChatControl ? (
+              <button type="button" className="gcw-end-chat-btn" onClick={handleEndChat}>
+                End chat
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className="gcw-close-btn"
+              aria-label="Close chat"
+              onClick={() => setIsOpen(false)}
+            >
+              <CloseIcon />
+            </button>
+          </div>
         </div>
 
-        {showIntro ? (
+        {showEnded ? (
+          <div className="gcw-ended-wrap">
+            <p className="gcw-ended-title">Chat ended</p>
+            <p className="gcw-ended-text">Thanks for chatting with us. You can start a new conversation anytime.</p>
+            <button type="button" className="gcw-intake-btn-primary" onClick={startNewChatIntake}>
+              Start new chat
+            </button>
+          </div>
+        ) : showIntro ? (
           <div className="gcw-intro-wrap">
             <button
               type="button"
@@ -1538,7 +1651,7 @@ export default function ChatWidget() {
         )}
 
         <div className="gcw-footer">
-          {showComposer && (
+          {!showEnded && showComposer && (
             <div className="gcw-composer">
               <textarea
                 ref={inputRef}
@@ -1562,7 +1675,7 @@ export default function ChatWidget() {
             </div>
           )}
 
-          {!customerCodeVerified && !restoring ? (
+          {!showEnded && !customerCodeVerified && !restoring ? (
             <div className="gcw-existing-customer">
               {!showCustomerCodeInput ? (
                 <button

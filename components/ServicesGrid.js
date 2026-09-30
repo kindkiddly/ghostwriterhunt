@@ -57,7 +57,7 @@ const SERVICES = [
     icon: "ebook",
     title: "eBook Publishing",
     description:
-      "Your finished book converted and published on Amazon KDP, Apple Books, Kobo, Google Play Books and 47+ global platforms worldwide.",
+      "Your finished book converted and published on 5 major global platforms including Amazon KDP, Apple Books, Kobo, Google Play Books, and Barnes and Noble.",
   },
   {
     id: "branding",

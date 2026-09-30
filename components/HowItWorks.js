@@ -28,7 +28,7 @@ const STEPS = [
     number: "03",
     title: "Publish and Shine",
     description:
-      "From cover design and interior layout to global digital publishing, your book goes live on Amazon KDP, Apple Books, Kobo, Google Play Books and 47+ platforms worldwide. You keep 100% of your rights and royalties.",
+      "From cover design and interior layout to global digital publishing, your book goes live on 5 major global platforms including Amazon KDP, Apple Books, Kobo, Google Play Books, and Barnes and Noble. You keep 100% of your rights and royalties.",
     icon: "globe",
   },
 ];

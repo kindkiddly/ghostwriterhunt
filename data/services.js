@@ -728,7 +728,7 @@ export const services = [
     category: 'Publishing',
     title: 'eBook Publishing',
     tagline: 'Your book, live on',
-    taglineItalic: '47+ platforms worldwide.',
+    taglineItalic: '5 major global platforms.',
     heroSubtext: 'We handle every step of the digital publishing process, from file preparation to platform setup and listing optimization, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
 
     heroImages: [
@@ -754,7 +754,7 @@ export const services = [
       headlineItalic: '30 days or less.',
       body: 'Self-publishing has never been more powerful, or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. Our publishing team handles every technical detail so you can focus entirely on your next book while we launch your current one to readers around the world.',
       bullets: [
-        'Publishing on Amazon KDP, Apple Books, Kobo and 47+ platforms',
+        'Publishing on 5 major global platforms including Amazon KDP, Apple Books, and Kobo',
         'Metadata and category optimization',
         'Amazon listing optimization for discoverability',
         'All digital formats, ePub, MOBI, PDF',
@@ -779,7 +779,7 @@ export const services = [
       {
         icon: 'globe',
         title: 'Global Distribution',
-        description: 'Your book is published simultaneously on 47+ platforms reaching readers in every country where digital books are sold.'
+        description: 'Your book is published on 5 major global platforms reaching readers worldwide.'
       },
       {
         icon: 'search',
@@ -815,7 +815,7 @@ export const services = [
       {
         number: '04',
         title: 'Platform Publishing',
-        description: 'Your book is uploaded, configured and published across all 47+ platforms simultaneously.',
+        description: 'Your book is uploaded, configured and published across 5 major global platforms.',
         image: '/images/ebook-publishing-process-4.webp'
       },
       {
@@ -830,7 +830,7 @@ export const services = [
     faqs: [
       {
         question: 'Which platforms will my book be published on?',
-        answer: 'We publish on Amazon KDP, Kindle, Apple Books, Google Play Books, Kobo, Barnes and Noble Press, Smashwords, Draft2Digital, 47+ platforms worldwide, reaching readers in virtually every country in the world.'
+        answer: 'We publish on 5 major global platforms including Amazon KDP, Apple Books, Google Play Books, Kobo, and Barnes and Noble Press, with setup in your name as the author.'
       },
       {
         question: 'Do I need my own accounts on these platforms?',
@@ -838,7 +838,7 @@ export const services = [
       },
       {
         question: 'How long does publishing take?',
-        answer: 'We follow a consistent 30-day publishing process from file receipt to live listings on 47+ platforms. Individual platforms often approve and publish within 24 to 72 hours once we submit your files, but every project is managed to our 30-day publishing timeline.'
+        answer: 'We follow a consistent 30-day publishing process from file receipt to live listings on 5 major global platforms. Individual platforms often approve and publish within 24 to 72 hours once we submit your files, but every project is managed to our 30-day publishing timeline.'
       },
       {
         question: 'What royalties will I earn?',
@@ -851,7 +851,7 @@ export const services = [
     ],
 
     testimonial: {
-      quote: 'GhostWriterHunt published my book on 47+ platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything, and my book was live globally before I had even fully processed that it was real.',
+      quote: 'GhostWriterHunt published my book on 5 major global platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything, and my book was live globally before I had even fully processed that it was real.',
       author: 'Thomas Williams',
       book: 'A Life Remembered',
       image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=96&h=96&fit=crop&crop=face'

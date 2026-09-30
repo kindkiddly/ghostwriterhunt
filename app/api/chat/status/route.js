@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isConversationStale } from "@/lib/chat/staleConversation";
 
 /**
  * GhostWriterHunt — Chat: restore status
@@ -28,14 +29,26 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid session" }, { status: 401 });
   }
 
-  const { data: conversation } = await admin
+  let { data: conversation } = await admin
     .from("conversations")
-    .select("id, contact_id, customer_code_verified_at")
+    .select("id, contact_id, customer_code_verified_at, last_message_at, created_at")
     .eq("visitor_id", userData.user.id)
     .eq("status", "open")
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+
+  if (
+    conversation &&
+    isConversationStale(conversation.last_message_at || conversation.created_at)
+  ) {
+    await admin
+      .from("conversations")
+      .update({ status: "closed", ai_enabled: false })
+      .eq("id", conversation.id)
+      .eq("status", "open");
+    conversation = null;
+  }
 
   let contactHasEmail = false;
   if (conversation?.contact_id) {
