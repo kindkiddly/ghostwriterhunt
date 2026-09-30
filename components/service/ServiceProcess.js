@@ -52,19 +52,15 @@ export default function ServiceProcess({ service }) {
    */
   const compactProcessPortraitSrc = isInteriorLayout
     ? "/images/HERO-M03.webp"
-    : isVideoBookTrailer
-      ? "/images/video-book-trailer-package-mobile.webp"
-      : isEbookPublishing
-        ? "/images/ebook-publishing-package-mobile.webp"
-        : isAudiobookPublishing
-          ? "/images/audiobook-publishing-package-mobile.webp"
-          : null;
+    : isEbookPublishing
+      ? "/images/ebook-publishing-package-mobile.webp"
+      : isAudiobookPublishing
+        ? "/images/audiobook-publishing-package-mobile.webp"
+        : null;
   const usesIllustrationPackageMobile =
-    (isVideoBookTrailer ||
-      isEbookPublishing ||
-      isAudiobookPublishing) &&
-    compactProcessPortraitSrc;
-  const usesSplitProcessMobile = isAuthorWebsite || isIllustrationGraphics;
+    (isEbookPublishing || isAudiobookPublishing) && compactProcessPortraitSrc;
+  const usesSplitProcessMobile =
+    isAuthorWebsite || isIllustrationGraphics || isVideoBookTrailer;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
     : null;
@@ -351,7 +347,6 @@ export default function ServiceProcess({ service }) {
           .sp-illustration-package-mobile {
             display: none;
           }
-          .sp-section--video-book-trailer .sp-illustration-package-mobile,
           .sp-section--ebook-publishing .sp-illustration-package-mobile,
           .sp-section--audiobook-publishing .sp-illustration-package-mobile {
             display: block;
@@ -363,7 +358,8 @@ export default function ServiceProcess({ service }) {
             display: none;
           }
           .sp-section--author-website .sp-author-website-mobile-bundle,
-          .sp-section--illustration-graphics .sp-author-website-mobile-bundle {
+          .sp-section--illustration-graphics .sp-author-website-mobile-bundle,
+          .sp-section--video-book-trailer .sp-author-website-mobile-bundle {
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -446,7 +442,8 @@ export default function ServiceProcess({ service }) {
             box-shadow: none;
             overflow: visible;
           }
-          .sp-section--illustration-graphics .sp-author-website-mobile-step-media img {
+          .sp-section--illustration-graphics .sp-author-website-mobile-step-media img,
+          .sp-section--video-book-trailer .sp-author-website-mobile-step-media img {
             width: min(100%, 360px);
             height: 200px;
             margin-left: auto;
@@ -455,6 +452,13 @@ export default function ServiceProcess({ service }) {
             object-position: center center;
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+          }
+          .sp-section--video-book-trailer .sp-author-website-mobile-step-media {
+            display: flex;
+            justify-content: center;
+            background: transparent;
+            box-shadow: none;
+            overflow: visible;
           }
           .sp-illustration-package-stack {
             position: relative;
@@ -1532,7 +1536,8 @@ export default function ServiceProcess({ service }) {
             display: none !important;
           }
           .sp-section--author-website .sp-alternating-desktop-steps,
-          .sp-section--illustration-graphics .sp-alternating-desktop-steps {
+          .sp-section--illustration-graphics .sp-alternating-desktop-steps,
+          .sp-section--video-book-trailer .sp-alternating-desktop-steps {
             display: block;
           }
         }
@@ -1553,13 +1558,11 @@ export default function ServiceProcess({ service }) {
               className="sp-illustration-package-mobile sp-reveal"
               data-delay="120"
               aria-label={
-                isVideoBookTrailer
-                  ? "Video book trailer process overview"
-                  : isEbookPublishing
-                    ? "eBook publishing process overview"
-                    : isAudiobookPublishing
-                      ? "Audiobook publishing process overview"
-                      : "Illustration process overview"
+                isEbookPublishing
+                  ? "eBook publishing process overview"
+                  : isAudiobookPublishing
+                    ? "Audiobook publishing process overview"
+                    : "Illustration process overview"
               }
             >
               <div className="sp-illustration-package-stack">
@@ -1658,9 +1661,11 @@ export default function ServiceProcess({ service }) {
               className="sp-author-website-mobile-bundle sp-reveal"
               data-delay="120"
               aria-label={
-                isIllustrationGraphics
-                  ? "Illustration process steps"
-                  : "Author website process steps"
+                isVideoBookTrailer
+                  ? "Video book trailer process steps"
+                  : isIllustrationGraphics
+                    ? "Illustration process steps"
+                    : "Author website process steps"
               }
             >
               {service.process.map((step, index) => {

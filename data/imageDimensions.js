@@ -27,7 +27,6 @@ export const IMAGE_DIMENSIONS = {
   "/images/illustration-graphics-about-portrait.webp": { width: 541, height: 960 },
   "/images/HERO-M05.webp": { width: 400, height: 520 },
   "/images/illustration-package-mobile.webp": { width: 1081, height: 1920 },
-  "/images/video-book-trailer-package-mobile.webp": { width: 1081, height: 1920 },
   "/images/ebook-publishing-package-mobile.webp": { width: 1081, height: 1920 },
   "/images/audiobook-publishing-package-mobile.webp": { width: 1081, height: 1920 },
   "/images/author-website-package-mobile.webp": { width: 1081, height: 1920 },
