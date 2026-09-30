@@ -73,7 +73,9 @@ export default function ServiceHero({ service }) {
   }, [splitDesktopMobileHeadline]);
 
   const isEbookWriting = slug === "ebook-writing";
+  const isBookMarketing = slug === "book-marketing";
   const [isEbookDesktop, setIsEbookDesktop] = useState(true);
+  const [isDesktopHero, setIsDesktopHero] = useState(true);
 
   useLayoutEffect(() => {
     if (!isEbookWriting) return undefined;
@@ -85,21 +87,42 @@ export default function ServiceHero({ service }) {
     return () => mq.removeEventListener("change", sync);
   }, [isEbookWriting]);
 
+  useLayoutEffect(() => {
+    if (!isBookMarketing) return undefined;
+
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () => setIsDesktopHero(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [isBookMarketing]);
+
   const heroFloatImages = useMemo(() => {
-    const heroImages = service?.heroImages ?? [];
-    if (!isEbookWriting || !isEbookDesktop) {
-      return heroImages;
+    let heroImages = service?.heroImages ?? [];
+    if (isBookMarketing && isDesktopHero) {
+      heroImages = heroImages.filter(
+        (img) => img.url !== "/images/collaboration-laptop.webp"
+      );
     }
-    return heroImages.map((img) =>
-      img.url === "/images/books-education.webp"
-        ? {
-            url: "/images/ebook-writing-process-3.webp",
-            alt: "eBook writing in progress",
-            size: "small",
-          }
-        : img
-    );
-  }, [isEbookWriting, isEbookDesktop, service?.heroImages]);
+    if (isEbookWriting && isEbookDesktop) {
+      return heroImages.map((img) =>
+        img.url === "/images/books-education.webp"
+          ? {
+              url: "/images/ebook-writing-process-3.webp",
+              alt: "eBook writing in progress",
+              size: "small",
+            }
+          : img
+      );
+    }
+    return heroImages;
+  }, [
+    isBookMarketing,
+    isDesktopHero,
+    isEbookWriting,
+    isEbookDesktop,
+    service?.heroImages,
+  ]);
 
   if (!service) return null;
 

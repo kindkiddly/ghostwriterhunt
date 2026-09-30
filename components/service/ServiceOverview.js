@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import FloatingImages from "./FloatingImages";
 import { useRevealSelector } from "@/lib/useSectionReveal";
 import { getImageDimensions } from "@/data/imageDimensions";
@@ -46,17 +46,30 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
 
   const isEbookWriting = service?.slug === "ebook-writing";
   const isIllustrationGraphics = service?.slug === "illustration-graphics";
+  const isBookMarketing = service?.slug === "book-marketing";
   const [isDesktopOverview, setIsDesktopOverview] = useState(true);
 
   useLayoutEffect(() => {
-    if (!isEbookWriting && !isIllustrationGraphics) return undefined;
+    if (!isEbookWriting && !isIllustrationGraphics && !isBookMarketing) {
+      return undefined;
+    }
 
     const mq = window.matchMedia("(min-width: 769px)");
     const sync = () => setIsDesktopOverview(mq.matches);
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
-  }, [isEbookWriting, isIllustrationGraphics]);
+  }, [isEbookWriting, isIllustrationGraphics, isBookMarketing]);
+
+  const overviewFloatImages = useMemo(() => {
+    const imgs = service?.overview?.images ?? [];
+    if (isBookMarketing && isDesktopOverview) {
+      return imgs.filter(
+        (img) => img.url !== "/images/book-marketing-overview-2.webp"
+      );
+    }
+    return imgs;
+  }, [isBookMarketing, isDesktopOverview, service?.overview?.images]);
 
   if (!service?.overview) return null;
   const { overview } = service;
@@ -145,7 +158,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
         </div>
       ) : (
         <FloatingImages
-          images={overview.images}
+          images={overviewFloatImages}
           layout={isGhostwriting ? "expanded" : "default"}
         />
       )}

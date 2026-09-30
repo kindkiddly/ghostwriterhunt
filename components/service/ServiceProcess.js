@@ -222,6 +222,17 @@ export default function ServiceProcess({ service }) {
             object-position: center center;
             background: #fafaf7;
           }
+          /* Book marketing — process 04 uses interior-layout-mobile (wide art) */
+          .sp-section--book-marketing
+            .sp-alternating-desktop-steps
+            > div:nth-child(7)
+            .sp-img {
+            height: auto;
+            aspect-ratio: 1560 / 878;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
+          }
         }
         @media (max-width: 768px) {
           .sp-section {

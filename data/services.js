@@ -1102,13 +1102,13 @@ export const services = [
         number: '04',
         title: 'Campaign Execution',
         description: 'Social media, email and outreach campaigns are launched and managed by our marketing team.',
-        image: '/images/book-marketing-process-4.webp'
+        image: '/images/interior-layout-mobile.webp'
       },
       {
         number: '05',
         title: 'Monitoring and Reporting',
         description: 'Regular performance reports keep you informed of results, adjustments and sales progress.',
-        image: '/images/book-marketing-process-5.webp'
+        image: '/images/ghostwriting-process-3.webp'
       }
     ],
 
