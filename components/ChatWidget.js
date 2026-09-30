@@ -71,6 +71,7 @@ function formatTime(date) {
 
 export default function ChatWidget() {
   const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith("/admin");
 
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
@@ -148,8 +149,6 @@ export default function ChatWidget() {
 
     return () => unlockPageScroll();
   }, [isOpen, isAdminRoute]);
-
-  const isAdminRoute = pathname?.startsWith("/admin");
 
   /** Anonymous Supabase session — warm early so "Start live chat" is not blocked on first sign-in. */
   const warmAnonymousSession = useCallback(async () => {
