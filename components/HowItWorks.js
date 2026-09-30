@@ -416,6 +416,10 @@ export default function HowItWorks() {
           </ol>
         </div>
 
+        <p className="gwh-hiw-sub mx-auto mt-10 max-w-[640px] text-center font-inter text-[15px] font-normal leading-[1.65] text-[#c8c8c8] lg:mt-12">
+          Our writers and editors combine creative expertise with modern tools, and every page is reviewed by our team.
+        </p>
+
         <ul className="gwh-hiw-checklist mx-auto mt-10 flex max-w-[1100px] flex-wrap items-center justify-center gap-x-5 gap-y-3 px-2 lg:mt-12 lg:flex-nowrap lg:justify-start lg:gap-x-8 xl:gap-x-10">
           {CHECKLIST.map((item) => (
             <li

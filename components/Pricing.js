@@ -571,14 +571,64 @@ export default function Pricing() {
           .gwh-price-card-scroll {
             overflow-y: auto;
             overscroll-behavior: contain;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            scrollbar-gutter: stable;
           }
 
-          .gwh-price-card-scroll::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
+          .gwh-price-card--starter .gwh-price-card-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(45, 212, 191, 0.55) rgba(255, 255, 255, 0.06);
+          }
+          .gwh-price-card--starter .gwh-price-card-scroll::-webkit-scrollbar {
+            width: 4px;
+          }
+          .gwh-price-card--starter .gwh-price-card-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+          }
+          .gwh-price-card--starter .gwh-price-card-scroll::-webkit-scrollbar-thumb {
+            background: rgba(45, 212, 191, 0.55);
+            border-radius: 999px;
+          }
+          .gwh-price-card--starter .gwh-price-card-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(45, 212, 191, 0.75);
+          }
+
+          .gwh-price-card--professional .gwh-price-card-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(192, 132, 252, 0.55) rgba(255, 255, 255, 0.06);
+          }
+          .gwh-price-card--professional .gwh-price-card-scroll::-webkit-scrollbar {
+            width: 4px;
+          }
+          .gwh-price-card--professional .gwh-price-card-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+          }
+          .gwh-price-card--professional .gwh-price-card-scroll::-webkit-scrollbar-thumb {
+            background: rgba(192, 132, 252, 0.55);
+            border-radius: 999px;
+          }
+          .gwh-price-card--professional .gwh-price-card-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(192, 132, 252, 0.75);
+          }
+
+          .gwh-price-card--complete .gwh-price-card-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(245, 158, 11, 0.55) rgba(255, 255, 255, 0.06);
+          }
+          .gwh-price-card--complete .gwh-price-card-scroll::-webkit-scrollbar {
+            width: 4px;
+          }
+          .gwh-price-card--complete .gwh-price-card-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+          }
+          .gwh-price-card--complete .gwh-price-card-scroll::-webkit-scrollbar-thumb {
+            background: rgba(245, 158, 11, 0.55);
+            border-radius: 999px;
+          }
+          .gwh-price-card--complete .gwh-price-card-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(245, 158, 11, 0.75);
           }
 
           .gwh-price-card-scroll::before,

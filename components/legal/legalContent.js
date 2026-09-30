@@ -119,6 +119,7 @@ ${CONTACT_SECTION}
 <p><strong>Order</strong> means any purchase of our services, confirmed by payment through our secure checkout or a payment link we send you.</p>
 <h2>3. Our Services</h2>
 <p>Each order is for your personal or business use. The scope, deliverables and timeline of your project are confirmed in your package details or your custom project plan.</p>
+<p>We use professional software and digital tools in research, drafting and production. All work is directed, reviewed and finalized by our team.</p>
 <h2>4. Ownership and Confidentiality</h2>
 <p>Once your order is paid in full, you own 100% of the rights to the final work. All projects are covered by our confidentiality commitment. We never share your work or identity with anyone.</p>
 <h2>5. Revisions</h2>

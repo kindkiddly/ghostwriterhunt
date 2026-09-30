@@ -1076,6 +1076,9 @@ export default function AboutPage() {
               A passionate team of publishing professionals dedicated to helping
               authors worldwide share their stories with the world.
             </p>
+            <p className="ab-sub-center">
+              Our writers and editors combine creative expertise with modern tools, and every page is reviewed by our team.
+            </p>
           </div>
           <div className="ab-team-grid">
             {TEAM.map((member, i) => (

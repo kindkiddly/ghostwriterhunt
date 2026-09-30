@@ -742,6 +742,21 @@ export default function Navbar({ servicesByCategory = {} }) {
         .nav-mobile-svc-link:active {
           color: #C9A84C;
         }
+
+        /* Mobile About Us submenu — spacing only (matches Services indent) */
+        @media (max-width: 767px) {
+          .nav-mobile-about-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 16px 8px 20px;
+          }
+          .nav-mobile-about-links .nav-mobile-svc-link {
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+          }
+        }
       ` }} />
 
       {/* Inner bar — logo | nav | CTAs */}
@@ -1151,16 +1166,18 @@ export default function Navbar({ servicesByCategory = {} }) {
                   <div
                     className={`nav-mobile-svc-list${mobileAboutOpen ? " open" : ""}`}
                   >
-                    {ABOUT_LINKS.map((item) => (
-                      <MenuLink
-                        key={item.href}
-                        href={item.href}
-                        onClick={closeMobile}
-                        className="nav-mobile-svc-link"
-                      >
-                        {item.label}
-                      </MenuLink>
-                    ))}
+                    <div className="nav-mobile-about-links">
+                      {ABOUT_LINKS.map((item) => (
+                        <MenuLink
+                          key={item.href}
+                          href={item.href}
+                          onClick={closeMobile}
+                          className="nav-mobile-svc-link"
+                        >
+                          {item.label}
+                        </MenuLink>
+                      ))}
+                    </div>
                   </div>
                 </li>
               );

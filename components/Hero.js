@@ -650,7 +650,7 @@ export default function Hero() {
               <span className="gwh-hero-trust-line" aria-hidden="true" />
               <span className="gwh-hero-trust-copy">
                 <HeroTrustPeopleIcon />
-                Trusted by 500+ authors worldwide
+                Turn the story in your head into the book on the shelf.
               </span>
               <span className="gwh-hero-trust-line" aria-hidden="true" />
             </div>
@@ -660,7 +660,7 @@ export default function Hero() {
                 className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
                 aria-hidden="true"
               />
-              Trusted by 500+ authors worldwide
+              Turn the story in your head into the book on the shelf.
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-gold)]"
                 aria-hidden="true"
