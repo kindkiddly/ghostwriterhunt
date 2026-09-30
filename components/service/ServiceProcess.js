@@ -40,11 +40,6 @@ export default function ServiceProcess({ service }) {
     : null;
   const isBookMarketing = service.slug === "book-marketing";
   const isAuthorWebsite = service.slug === "author-website";
-  const bookMarketingMobileProcessImages = [
-    { src: "/images/HERO-S8.webp", maxWidth: 280 },
-    { src: "/images/book-marketing-overview-1.webp", maxWidth: 640 },
-    { src: "/images/HEERO-L07.webp", maxWidth: 800 },
-  ];
   /** Mobile-only alternate layouts; desktop keeps standard alternating rows for both. */
   /**
    * Mobile “5 steps in one portrait” package art + per-band glass text strips.
@@ -61,7 +56,10 @@ export default function ServiceProcess({ service }) {
   const usesIllustrationPackageMobile =
     (isEbookPublishing || isAudiobookPublishing) && compactProcessPortraitSrc;
   const usesSplitProcessMobile =
-    isAuthorWebsite || isIllustrationGraphics || isVideoBookTrailer;
+    isAuthorWebsite ||
+    isIllustrationGraphics ||
+    isVideoBookTrailer ||
+    isBookMarketing;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
     : null;
@@ -394,7 +392,8 @@ export default function ServiceProcess({ service }) {
           }
           .sp-section--author-website .sp-author-website-mobile-bundle,
           .sp-section--illustration-graphics .sp-author-website-mobile-bundle,
-          .sp-section--video-book-trailer .sp-author-website-mobile-bundle {
+          .sp-section--video-book-trailer .sp-author-website-mobile-bundle,
+          .sp-section--book-marketing .sp-author-website-mobile-bundle {
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -478,7 +477,8 @@ export default function ServiceProcess({ service }) {
             overflow: visible;
           }
           .sp-section--illustration-graphics .sp-author-website-mobile-step-media img,
-          .sp-section--video-book-trailer .sp-author-website-mobile-step-media img {
+          .sp-section--video-book-trailer .sp-author-website-mobile-step-media img,
+          .sp-section--book-marketing .sp-author-website-mobile-step-media img {
             width: min(100%, 360px);
             height: 200px;
             margin-left: auto;
@@ -488,12 +488,23 @@ export default function ServiceProcess({ service }) {
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
-          .sp-section--video-book-trailer .sp-author-website-mobile-step-media {
+          .sp-section--video-book-trailer .sp-author-website-mobile-step-media,
+          .sp-section--book-marketing .sp-author-website-mobile-step-media {
             display: flex;
             justify-content: center;
             background: transparent;
             box-shadow: none;
             overflow: visible;
+          }
+          .sp-section--book-marketing
+            .sp-author-website-mobile-step--landscape-wide
+            .sp-author-website-mobile-step-media
+            img {
+            width: min(100%, 360px);
+            height: auto;
+            max-height: 202px;
+            object-fit: contain;
+            background: #fafaf7;
           }
           .sp-illustration-package-stack {
             position: relative;
@@ -1446,7 +1457,7 @@ export default function ServiceProcess({ service }) {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
 
-          /* Book marketing — mobile: stacked steps + aligned gallery */
+          /* Book marketing — mobile: one image + copy per step (same assets as desktop) */
           .sp-section--book-marketing {
             overflow-x: clip;
           }
@@ -1456,109 +1467,8 @@ export default function ServiceProcess({ service }) {
             min-width: 0;
             overflow: visible;
           }
-          .sp-book-marketing-mobile-bundle {
-            display: none;
-          }
-          .sp-section--book-marketing .sp-book-marketing-mobile-bundle {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            box-sizing: border-box;
-          }
           .sp-section--book-marketing .sp-alternating-desktop-steps {
             display: none;
-          }
-          .sp-book-marketing-mobile-steps {
-            width: 100%;
-            max-width: 100%;
-            padding: 2px 0 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-          }
-          .sp-book-marketing-mobile-step {
-            padding: 20px 0;
-            margin: 0;
-            border-bottom: 1px solid rgba(232, 213, 163, 0.55);
-            text-align: left;
-          }
-          .sp-book-marketing-mobile-step:first-child {
-            padding-top: 0;
-          }
-          .sp-book-marketing-mobile-step:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-          }
-          .sp-book-marketing-mobile-step .sp-number {
-            font-family: var(--font-playfair), serif;
-            font-weight: 700;
-            font-size: 44px;
-            line-height: 1;
-            color: #e8d5a3;
-            margin: 0 0 8px;
-            text-align: left;
-          }
-          .sp-book-marketing-mobile-step .sp-title {
-            font-family: var(--font-playfair), serif;
-            font-weight: 700;
-            font-size: clamp(17px, 4.6vw, 19px);
-            line-height: 1.26;
-            color: #1c1c1c;
-            margin: 0 0 8px;
-            text-align: left;
-            white-space: normal;
-          }
-          .sp-book-marketing-mobile-step .sp-desc {
-            font-family: var(--font-inter), sans-serif;
-            font-size: 14px;
-            line-height: 1.55;
-            font-weight: 500;
-            text-align: left;
-            margin: 0;
-            color: #555555;
-            overflow-wrap: break-word;
-            white-space: normal;
-          }
-          .sp-book-marketing-mobile-gallery {
-            width: 100%;
-            max-width: 100%;
-            margin-top: 32px;
-            padding-top: 28px;
-            border-top: 1px solid rgba(232, 213, 163, 0.65);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-          }
-          .sp-book-marketing-mobile-gallery-label {
-            width: 100%;
-            font-family: var(--font-inter), sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #6b7c3a;
-            text-align: center;
-            margin: 0 0 4px;
-          }
-          .sp-book-marketing-mobile-gallery-item {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            line-height: 0;
-          }
-          .sp-book-marketing-mobile-gallery-item img {
-            width: auto;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            object-position: center center;
-            border-radius: 12px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
           }
 
         }
@@ -1566,7 +1476,6 @@ export default function ServiceProcess({ service }) {
           .sp-interior-mobile-bundle,
           .sp-illustration-package-mobile,
           .sp-author-branding-mobile-bundle,
-          .sp-book-marketing-mobile-bundle,
           .sp-author-website-mobile-bundle {
             display: none !important;
           }
@@ -1696,11 +1605,13 @@ export default function ServiceProcess({ service }) {
               className="sp-author-website-mobile-bundle sp-reveal"
               data-delay="120"
               aria-label={
-                isVideoBookTrailer
-                  ? "Video book trailer process steps"
-                  : isIllustrationGraphics
-                    ? "Illustration process steps"
-                    : "Author website process steps"
+                isBookMarketing
+                  ? "Book marketing process steps"
+                  : isVideoBookTrailer
+                    ? "Video book trailer process steps"
+                    : isIllustrationGraphics
+                      ? "Illustration process steps"
+                      : "Author website process steps"
               }
             >
               {service.process.map((step, index) => {
@@ -1708,7 +1619,11 @@ export default function ServiceProcess({ service }) {
                 return (
                   <article
                     key={step.number}
-                    className="sp-author-website-mobile-step sp-reveal"
+                    className={`sp-author-website-mobile-step sp-reveal${
+                      isBookMarketing && step.number === "04"
+                        ? " sp-author-website-mobile-step--landscape-wide"
+                        : ""
+                    }`}
                     data-delay={120 + index * 80}
                     aria-label={`Step ${step.number}: ${step.title}`}
                   >
@@ -1731,52 +1646,6 @@ export default function ServiceProcess({ service }) {
                   </article>
                 );
               })}
-            </div>
-          ) : null}
-
-          {isBookMarketing ? (
-            <div
-              className="sp-book-marketing-mobile-bundle sp-reveal"
-              data-delay="120"
-              aria-label="Book marketing process steps"
-            >
-              <div className="sp-book-marketing-mobile-steps">
-                {service.process.map((step) => (
-                  <article
-                    key={step.number}
-                    className="sp-book-marketing-mobile-step"
-                  >
-                    <p className="sp-number">{step.number}</p>
-                    <h3 className="sp-title">{step.title}</h3>
-                    <p className="sp-desc">{step.description}</p>
-                  </article>
-                ))}
-              </div>
-              <div className="sp-book-marketing-mobile-gallery">
-                <p className="sp-book-marketing-mobile-gallery-label">
-                  Visual highlights
-                </p>
-                {bookMarketingMobileProcessImages.map((item) => {
-                  const { width, height } = getImageDimensions(item.src);
-                  return (
-                    <div
-                      key={item.src}
-                      className="sp-book-marketing-mobile-gallery-item"
-                      style={{ maxWidth: `${item.maxWidth}px` }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={item.src}
-                        alt=""
-                        width={width}
-                        height={height}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           ) : null}
 
