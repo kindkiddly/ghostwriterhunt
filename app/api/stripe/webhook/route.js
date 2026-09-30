@@ -53,6 +53,15 @@ export async function POST(request) {
       typeof session.payment_link === "string"
         ? session.payment_link
         : session.payment_link?.id || null;
+    if (!paymentLinkId && session.amount_total != null) {
+      const admin = createAdminClient();
+      await admin
+        .from("payments")
+        .update({ amount_cents: session.amount_total })
+        .eq("stripe_checkout_session_id", session.id)
+        .eq("status", "pending");
+    }
+
     const paid = paymentLinkId
       ? await markPaymentPaidByStripeMetadata({
           stripePaymentLinkId: paymentLinkId,

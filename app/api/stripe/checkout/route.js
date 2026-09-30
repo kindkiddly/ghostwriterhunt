@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isPaymentsEnabled, isStripeMockMode } from "@/lib/stripe/client";
-import { getFixedPackage } from "@/lib/stripe/packages";
+import {
+  getFixedPackage,
+  isProfessionalPackageKey,
+  normalizeProfessionalBookCount,
+  PROFESSIONAL_MIN_BOOKS,
+} from "@/lib/stripe/packages";
 import { createCheckoutSessionRecord } from "@/lib/stripe/payments";
 
 /**
@@ -20,10 +25,25 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { packageKey, accessToken, conversationId, email } = body || {};
+  const { packageKey, accessToken, conversationId, email, bookCount } = body || {};
   const pkg = getFixedPackage(packageKey);
   if (!pkg) {
     return NextResponse.json({ error: "Invalid package" }, { status: 400 });
+  }
+
+  let resolvedBookCount = null;
+  if (isProfessionalPackageKey(packageKey)) {
+    resolvedBookCount = normalizeProfessionalBookCount(
+      bookCount == null ? PROFESSIONAL_MIN_BOOKS : bookCount
+    );
+    if (!resolvedBookCount) {
+      return NextResponse.json(
+        { error: `Professional checkout requires at least ${PROFESSIONAL_MIN_BOOKS} books` },
+        { status: 400 }
+      );
+    }
+  } else if (bookCount != null) {
+    return NextResponse.json({ error: "bookCount is only valid for Professional" }, { status: 400 });
   }
 
   let contactId = null;
@@ -65,6 +85,7 @@ export async function POST(request) {
       contactId,
       conversationId: resolvedConversationId,
       customerEmail,
+      bookCount: resolvedBookCount,
     });
     if (!result.url) {
       return NextResponse.json({ error: "Could not start checkout" }, { status: 500 });

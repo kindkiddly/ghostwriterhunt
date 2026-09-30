@@ -1,5 +1,3 @@
-import { SHARED_PRICING } from './pricing.js';
-
 export const services = [
 
   // ─────────────────────────────────
@@ -113,7 +111,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -257,7 +254,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -401,7 +397,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -545,7 +540,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -689,7 +683,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -833,7 +826,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -977,7 +969,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1121,7 +1112,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1265,7 +1255,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1410,7 +1399,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1554,7 +1542,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1698,7 +1685,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1842,7 +1828,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -1986,7 +1971,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2130,7 +2114,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2274,7 +2257,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2418,7 +2400,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {
@@ -2562,7 +2543,6 @@ export const services = [
       }
     ],
 
-    pricing: SHARED_PRICING,
 
     faqs: [
       {

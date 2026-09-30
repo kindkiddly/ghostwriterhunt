@@ -6,10 +6,12 @@ export default function sitemap() {
   const staticRoutes = [
     "",
     "/about",
+    "/pay",
     "/privacy-policy",
     "/terms-of-use",
     "/cookie-policy",
     "/legal",
+    "/refund-policy",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
+import ProfessionalBookCounter from "@/components/ProfessionalBookCounter";
+import { PROFESSIONAL_MIN_BOOKS } from "@/lib/stripe/packages";
 
 const PACKAGE_KEY_BY_NAME = {
   Starter: "starter",
@@ -93,6 +95,8 @@ function planTier(plan) {
 function PlanCard({ plan, index }) {
   const featured = plan.featured;
   const tier = planTier(plan);
+  const isProfessional = plan.packageKey === "professional";
+  const [bookCount, setBookCount] = useState(PROFESSIONAL_MIN_BOOKS);
   const [paying, setPaying] = useState(false);
   const [payError, setPayError] = useState(null);
 
@@ -101,7 +105,7 @@ function PlanCard({ plan, index }) {
     setPayError(null);
     setPaying(true);
     try {
-      await startPackageCheckout(plan.packageKey);
+      await startPackageCheckout(plan.packageKey, isProfessional ? { bookCount } : {});
     } catch (err) {
       setPayError(err.message || "Checkout unavailable");
       setPaying(false);
@@ -140,6 +144,13 @@ function PlanCard({ plan, index }) {
             <span className="align-top text-[24px]">$</span>
             <span className="text-[56px]">{plan.price}</span>
           </p>
+          {isProfessional ? (
+            <ProfessionalBookCounter
+              bookCount={bookCount}
+              onBookCountChange={setBookCount}
+              variant="home"
+            />
+          ) : null}
           <p className="gwh-price-term mt-1 font-inter text-[14px] font-normal">
             one-time
           </p>

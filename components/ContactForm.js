@@ -296,6 +296,7 @@ function CountryCodeSelect({ value, onChange }) {
 
 export default function ContactForm() {
   const [form, setForm] = useState(INITIAL_FORM);
+  const [companyWebsite, setCompanyWebsite] = useState("");
   const [country, setCountry] = useState(DEFAULT_COUNTRY);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -320,6 +321,7 @@ export default function ContactForm() {
     const payload = {
       ...form,
       phone: form.phone.trim() ? `${country.dial} ${form.phone.trim()}` : "",
+      companyWebsite,
     };
     try {
       const res = await fetch("/api/contact", {
@@ -327,19 +329,24 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || "Request failed");
+      }
       setSubmitting(false);
       setSuccess(true);
-    } catch {
+    } catch (err) {
       setSubmitting(false);
       setError(
-        "Something went wrong. Please try again or email us at ghostwriterhunt@lumexforge.com."
+        err?.message ||
+          "Something went wrong. Please try again or email us at ghostwriterhunt@lumexforge.com."
       );
     }
   }
 
   function handleReset() {
     setForm(INITIAL_FORM);
+    setCompanyWebsite("");
     setCountry(DEFAULT_COUNTRY);
     setError("");
     setSuccess(false);
@@ -1010,6 +1017,25 @@ export default function ContactForm() {
                       />
                     </div>
                   </div>
+
+                  <input
+                    type="text"
+                    name="companyWebsite"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    value={companyWebsite}
+                    onChange={(e) => setCompanyWebsite(e.target.value)}
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      width: 1,
+                      height: 1,
+                      overflow: "hidden",
+                      opacity: 0,
+                      pointerEvents: "none",
+                    }}
+                  />
 
                   <button
                     type="submit"

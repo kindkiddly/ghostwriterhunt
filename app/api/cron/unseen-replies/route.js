@@ -83,7 +83,7 @@ export async function POST(request) {
       <h2 style="color:#1C1C1C;">You have a new reply from GhostWriterHunt</h2>
       <p style="color:#333333;">Hi${contact.name ? " " + escapeHtml(contact.name) : ""}, here's what you may have missed:</p>
       ${rowsHtml}
-      <p style="color:#666666;font-size:13px;">Simply reply to this email to continue the conversation.</p>
+      <p style="color:#666666;font-size:13px;">Reply to this email and our team will respond.</p>
     </div>`;
 
     const text = [
@@ -91,7 +91,7 @@ export async function POST(request) {
       "",
       ...messages.map((m) => `- ${m.content}`),
       "",
-      "Simply reply to this email to continue the conversation.",
+      "Reply to this email and our team will respond.",
     ].join("\n");
 
     try {

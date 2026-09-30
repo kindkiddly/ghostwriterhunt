@@ -18,6 +18,34 @@ const FIELD_LABELS = {
 
 const REQUIRED_FIELDS = ["fullName", "email", "genre", "projectType", "about"];
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const HONEYPOT_FIELD = "companyWebsite";
+const MAX_SUBMISSIONS_PER_IP_PER_HOUR = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+
+/** @type {Map<string, { count: number; windowStart: number }>} */
+const contactRateByIp = new Map();
+
+function getClientIp(request) {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    return forwarded.split(",")[0]?.trim() || "unknown";
+  }
+  return request.headers.get("x-real-ip")?.trim() || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = contactRateByIp.get(ip);
+  if (!entry || now - entry.windowStart >= RATE_LIMIT_WINDOW_MS) {
+    contactRateByIp.set(ip, { count: 1, windowStart: now });
+    return false;
+  }
+  if (entry.count >= MAX_SUBMISSIONS_PER_IP_PER_HOUR) {
+    return true;
+  }
+  entry.count += 1;
+  return false;
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -86,6 +114,22 @@ export async function POST(request) {
     return NextResponse.json(
       { error: "Invalid request body" },
       { status: 400 }
+    );
+  }
+
+  const honeypot = body?.[HONEYPOT_FIELD];
+  if (honeypot != null && String(honeypot).trim() !== "") {
+    return NextResponse.json({ success: true }, { status: 200 });
+  }
+
+  const clientIp = getClientIp(request);
+  if (isRateLimited(clientIp)) {
+    return NextResponse.json(
+      {
+        error:
+          "You have sent several messages recently. Please try again in a little while or email us at ghostwriterhunt@lumexforge.com.",
+      },
+      { status: 429 }
     );
   }
 

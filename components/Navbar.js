@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { SHARED_PRICING } from "@/data/pricing";
 import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
+import { PACKAGE_KEYS, PROFESSIONAL_MIN_BOOKS } from "@/lib/stripe/packages";
 
 /**
  * GhostWriterHunt — primary site navigation
@@ -194,7 +195,11 @@ export default function Navbar({ servicesByCategory = {} }) {
     if (!packageKey || paymentCheckoutKey) return;
     setPaymentCheckoutKey(packageKey);
     try {
-      await startPackageCheckout(packageKey);
+      const checkoutOptions =
+        packageKey === PACKAGE_KEYS.professional
+          ? { bookCount: PROFESSIONAL_MIN_BOOKS }
+          : {};
+      await startPackageCheckout(packageKey, checkoutOptions);
     } catch (err) {
       console.error("nav checkout:", err);
       setPaymentCheckoutKey(null);
@@ -361,9 +366,27 @@ export default function Navbar({ servicesByCategory = {} }) {
                 onClick={() => handleNavPackageCheckout(pkg.packageKey)}
               >
                 <span className="nav-payment-pkg-name">{pkg.name}</span>
-                <span className="nav-payment-pkg-price">
-                  {paymentCheckoutKey === pkg.packageKey ? "Opening checkout…" : `$${pkg.priceUsd}`}
-                </span>
+                {pkg.packageKey === PACKAGE_KEYS.professional ? (
+                  <>
+                    <span className="nav-payment-pkg-price">
+                      {paymentCheckoutKey === pkg.packageKey ? (
+                        "Opening checkout…"
+                      ) : (
+                        <>
+                          ${pkg.priceUsd}
+                          <span className="nav-payment-pkg-per"> per book</span>
+                        </>
+                      )}
+                    </span>
+                    {paymentCheckoutKey !== pkg.packageKey ? (
+                      <span className="nav-payment-pkg-minimum">Minimum 4 books</span>
+                    ) : null}
+                  </>
+                ) : (
+                  <span className="nav-payment-pkg-price">
+                    {paymentCheckoutKey === pkg.packageKey ? "Opening checkout…" : `$${pkg.priceUsd}`}
+                  </span>
+                )}
               </button>
             ))}
             <MenuLink
@@ -660,6 +683,20 @@ export default function Navbar({ servicesByCategory = {} }) {
           font-weight: 600;
           color: #C9A84C;
         }
+        .nav-payment-pkg-per {
+          font-size: 12px;
+          font-weight: 500;
+          color: #666666;
+        }
+        .nav-payment-pkg-minimum {
+          display: block;
+          font-family: var(--font-inter), sans-serif;
+          font-size: 12px;
+          line-height: 1.35;
+          font-weight: 400;
+          color: #666666;
+          margin-top: 2px;
+        }
         .nav-payment-custom {
           box-sizing: border-box;
           display: flex;
@@ -745,13 +782,16 @@ export default function Navbar({ servicesByCategory = {} }) {
 
         /* Mobile About Us submenu — spacing only (matches Services indent) */
         @media (max-width: 767px) {
-          .nav-mobile-about-links {
+          .nav-mobile-about-links,
+          .nav-mobile-payment-links {
             display: flex;
             flex-direction: column;
             gap: 12px;
             padding: 0 16px 8px 20px;
           }
-          .nav-mobile-about-links .nav-mobile-svc-link {
+          .nav-mobile-about-links .nav-mobile-svc-link,
+          .nav-mobile-payment-links .nav-mobile-svc-link,
+          .nav-mobile-payment-links button.nav-mobile-svc-link {
             display: flex;
             align-items: center;
             min-height: 40px;
@@ -1205,22 +1245,35 @@ export default function Navbar({ servicesByCategory = {} }) {
                   </button>
 
                   <div className={`nav-mobile-svc-list${mobilePaymentOpen ? " open" : ""}`}>
-                    {PAYMENT_PACKAGES.map((pkg) => (
-                      <button
-                        key={pkg.packageKey}
-                        type="button"
-                        disabled={!!paymentCheckoutKey}
-                        onClick={() => handleNavPackageCheckout(pkg.packageKey)}
-                        className="nav-mobile-svc-link w-full text-left"
-                        style={{ background: "transparent", border: "none", cursor: "pointer" }}
-                      >
-                        {pkg.name} · ${pkg.priceUsd}
-                        {paymentCheckoutKey === pkg.packageKey ? " …" : ""}
-                      </button>
-                    ))}
-                    <MenuLink href="/pay" onClick={closeMobile} className="nav-mobile-svc-link">
-                      Custom Payment — amounts agreed after consultation
-                    </MenuLink>
+                    <div className="nav-mobile-payment-links">
+                      {PAYMENT_PACKAGES.map((pkg) => (
+                        <button
+                          key={pkg.packageKey}
+                          type="button"
+                          disabled={!!paymentCheckoutKey}
+                          onClick={() => handleNavPackageCheckout(pkg.packageKey)}
+                          className="nav-mobile-svc-link w-full text-left"
+                          style={{ background: "transparent", border: "none", cursor: "pointer" }}
+                        >
+                          {pkg.packageKey === PACKAGE_KEYS.professional ? (
+                            <>
+                              {pkg.name} · ${pkg.priceUsd} per book
+                              <span className="block text-[12px] font-normal text-[#666666]">
+                                Minimum 4 books
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              {pkg.name} · ${pkg.priceUsd}
+                            </>
+                          )}
+                          {paymentCheckoutKey === pkg.packageKey ? " …" : ""}
+                        </button>
+                      ))}
+                      <MenuLink href="/pay" onClick={closeMobile} className="nav-mobile-svc-link">
+                        Custom Payment — amounts agreed after consultation
+                      </MenuLink>
+                    </div>
                   </div>
                 </li>
               );
