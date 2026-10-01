@@ -65,6 +65,10 @@ export const metadata = {
     description: SITE_DESCRIPTION,
     images: ["/images/CTA-AUTHOR.webp"],
   },
+  other: {
+    "trustpilot-one-time-domain-verification-id":
+      "59371f65-fc72-4e47-9e02-ad27aa8ba836",
+  },
 };
 
 export default function RootLayout({ children }) {
