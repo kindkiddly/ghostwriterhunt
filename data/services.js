@@ -2539,7 +2539,7 @@ export const services = [
         number: '05',
         title: 'Delivery',
         description: 'Final copy delivered in your preferred format ready for your web designer or directly into your website.',
-        image: '/images/HERO-M06.webp'
+        image: '/images/website-content-process-5.webp'
       }
     ],
 

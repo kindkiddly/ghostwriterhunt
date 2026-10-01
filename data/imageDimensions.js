@@ -131,7 +131,7 @@ export const IMAGE_DIMENSIONS = {
   "/images/website-content-process-2.webp": { width: 940, height: 560 },
   "/images/website-content-process-3.webp": { width: 940, height: 560 },
   "/images/website-content-process-4.webp": { width: 940, height: 560 },
-  "/images/website-content-process-5.webp": { width: 940, height: 560 },
+  "/images/website-content-process-5.webp": { width: 800, height: 615 },
   "/images/author-website-overview-1.webp": { width: 640, height: 800 },
   "/images/author-website-overview-2.webp": { width: 400, height: 520 },
   "/images/author-website-process-1.webp": { width: 940, height: 560 },

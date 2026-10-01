@@ -258,12 +258,11 @@ export default function ServiceProcess({ service }) {
             .sp-alternating-desktop-steps
             > div:nth-child(9)
             .sp-img {
-            width: min(100%, 320px);
-            height: 420px;
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: cover;
-            object-position: center top;
+            height: auto;
+            aspect-ratio: 800 / 615;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
           }
         }
         @media (max-width: 768px) {
@@ -1708,10 +1707,6 @@ export default function ServiceProcess({ service }) {
                     }${
                       isWebsiteContent && step.number === "02"
                         ? " sp-author-website-mobile-step--landscape-wide"
-                        : ""
-                    }${
-                      isWebsiteContent && step.number === "05"
-                        ? " sp-author-website-mobile-step--portrait"
                         : ""
                     }`}
                     data-delay={120 + index * 80}
