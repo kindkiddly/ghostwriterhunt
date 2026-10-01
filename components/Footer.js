@@ -2,6 +2,8 @@ import Link from "next/link";
 import {
   BUSINESS_ADDRESS,
   BUSINESS_ADDRESS_MAP_EMBED,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_TEL,
 } from "@/lib/siteAddress";
 
 /**
@@ -384,6 +386,14 @@ export default function Footer() {
                   <span style={EMAIL_SUBTITLE_STYLE}>
                     Client support &amp; project help
                   </span>
+                </div>
+                <div className="gwh-ft-contact-item">
+                  <a
+                    href={BUSINESS_PHONE_TEL}
+                    className="gwh-ft-contact-email"
+                  >
+                    {BUSINESS_PHONE_DISPLAY}
+                  </a>
                 </div>
                 <div className="gwh-ft-contact-item">
                   <p className="gwh-ft-contact-text">{BUSINESS_ADDRESS}</p>

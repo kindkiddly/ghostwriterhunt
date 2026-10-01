@@ -3,7 +3,11 @@
  * Semantic HTML with class hooks styled in LegalDocumentPage.js
  */
 
-import { BUSINESS_ADDRESS } from "@/lib/siteAddress";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_TEL,
+} from "@/lib/siteAddress";
 
 const CONTACT_SECTION = `
 <div class="legal-contact-section">
@@ -21,7 +25,7 @@ const CONTACT_SECTION = `
       <p class="legal-contact-note">Client support &amp; project help</p>
     </div>
   </div>
-  <p class="legal-contact-location">GhostWriterHunt · ${BUSINESS_ADDRESS}</p>
+  <p class="legal-contact-location">GhostWriterHunt · ${BUSINESS_ADDRESS} · <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY}</a></p>
 </div>
 `;
 
@@ -114,7 +118,7 @@ ${CONTACT_SECTION}
 <h2>2. Definitions</h2>
 <p><strong>Website</strong> means all pages and content at ghostwriterhunt.lumexforge.com.</p>
 <p><strong>Client, you, your</strong> means the person placing an order, or anyone ordering on their behalf.</p>
-<p><strong>Company, we, our</strong> means GhostWriterHunt, based in Rosenberg, Texas, USA.</p>
+<p><strong>Company, we, our</strong> means GhostWriterHunt, based in ${BUSINESS_ADDRESS}.</p>
 <p><strong>Services</strong> means all writing, editing, design, publishing and marketing work we provide.</p>
 <p><strong>Order</strong> means any purchase of our services, confirmed by payment through our secure checkout or a payment link we send you.</p>
 <h2>3. Our Services</h2>
@@ -154,7 +158,7 @@ ${CONTACT_SECTION}
 <h2>Payment Disputes</h2>
 <p>Please contact us before opening a dispute with your bank. We resolve most concerns quickly and directly.</p>
 <h2>Contact</h2>
-<p>Email <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> for any refund request. GhostWriterHunt, Rosenberg, Texas, USA.</p>
+<p>Email <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> for any refund request. GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
 `,
   },
 

@@ -5,6 +5,7 @@ import { useRevealSelector } from "@/lib/useSectionReveal";
 import { createPortal } from "react-dom";
 import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
 import { getClientEmailFeedback } from "@/lib/validation/email";
+import { BUSINESS_PHONE_DISPLAY, BUSINESS_PHONE_TEL } from "@/lib/siteAddress";
 
 /**
  * GhostWriterHunt — Contact & Booking Form
@@ -879,6 +880,10 @@ export default function ContactForm() {
                 </li>
               ))}
             </ul>
+
+            <p className="cf-subtext">
+              <a href={BUSINESS_PHONE_TEL}>{BUSINESS_PHONE_DISPLAY}</a>
+            </p>
           </div>
 
           <div className="cf-next cf-reveal-left" data-delay="120">
