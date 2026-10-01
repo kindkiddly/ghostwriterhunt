@@ -9,6 +9,7 @@ import {
   getWebsiteCardsFromPricing,
   resolvePaymentLinkFloorUsd,
   formatCatalogForPrompt,
+  CATALOG_PLANS,
   PROFESSIONAL_SERIES_MIN_BOOKS,
   PROFESSIONAL_SERIES_UNIT_USD,
 } from "../data/agentCatalog.js";
@@ -34,6 +35,13 @@ assert(
 
 const launch = getPlanById("author_launch");
 assert(launch && launch.price === 549 && launch.floor >= Math.ceil(549 * 0.85), "author_launch floor");
+
+for (const plan of CATALOG_PLANS) {
+  assert(
+    plan.floor <= plan.price,
+    `plan floor <= price (${plan.id}: floor ${plan.floor}, price ${plan.price})`
+  );
+}
 
 assert(validateAiPaymentAmount(800, "series_4").ok, "series_4 at $800 accepted");
 assert(!validateAiPaymentAmount(600, "series_4").ok, "series_4 below $800 rejected");

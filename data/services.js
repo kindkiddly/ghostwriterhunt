@@ -2515,13 +2515,13 @@ export const services = [
         number: '01',
         title: 'Discovery',
         description: 'We learn about your books, your audience, your goals and the action you want visitors to take.',
-        image: '/images/website-content-process-1.webp'
+        image: '/images/HEERO-L12.webp'
       },
       {
         number: '02',
         title: 'Research',
         description: 'We research your genre, your ideal readers and the language that resonates most with your audience.',
-        image: '/images/website-content-process-2.webp'
+        image: '/images/author-websitedesigning.webp'
       },
       {
         number: '03',
@@ -2539,7 +2539,7 @@ export const services = [
         number: '05',
         title: 'Delivery',
         description: 'Final copy delivered in your preferred format ready for your web designer or directly into your website.',
-        image: '/images/website-content-process-5.webp'
+        image: '/images/HERO-M06.webp'
       }
     ],
 

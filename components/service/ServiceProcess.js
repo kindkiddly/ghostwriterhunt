@@ -40,6 +40,7 @@ export default function ServiceProcess({ service }) {
     : null;
   const isBookMarketing = service.slug === "book-marketing";
   const isAuthorWebsite = service.slug === "author-website";
+  const isWebsiteContent = service.slug === "website-content";
   /** Mobile-only alternate layouts; desktop keeps standard alternating rows for both. */
   /**
    * Mobile “5 steps in one portrait” package art + per-band glass text strips.
@@ -59,7 +60,8 @@ export default function ServiceProcess({ service }) {
     isAuthorWebsite ||
     isIllustrationGraphics ||
     isVideoBookTrailer ||
-    isBookMarketing;
+    isBookMarketing ||
+    isWebsiteContent;
   const compactProcessPortrait = compactProcessPortraitSrc
     ? getImageDimensions(compactProcessPortraitSrc)
     : null;
@@ -73,7 +75,7 @@ export default function ServiceProcess({ service }) {
 
   return (
     <section
-      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isBookFormatting ? " sp-section--book-formatting" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}${isAudiobookPublishing ? " sp-section--audiobook-publishing" : ""}${isAuthorBranding ? " sp-section--author-branding" : ""}${isBookMarketing ? " sp-section--book-marketing" : ""}${isAuthorWebsite ? " sp-section--author-website" : ""}`}
+      className={`sp-section${isGhostwriting ? " sp-section--ghostwriting" : ""}${isManuscriptEditing ? " sp-section--manuscript-editing" : ""}${isBookFormatting ? " sp-section--book-formatting" : ""}${isInteriorLayout ? " sp-section--interior-layout" : ""}${isIllustrationGraphics ? " sp-section--illustration-graphics" : ""}${isVideoBookTrailer ? " sp-section--video-book-trailer" : ""}${isEbookPublishing ? " sp-section--ebook-publishing" : ""}${isAudiobookPublishing ? " sp-section--audiobook-publishing" : ""}${isAuthorBranding ? " sp-section--author-branding" : ""}${isBookMarketing ? " sp-section--book-marketing" : ""}${isAuthorWebsite ? " sp-section--author-website" : ""}${isWebsiteContent ? " sp-section--website-content" : ""}`}
       aria-label="The process"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -230,6 +232,38 @@ export default function ServiceProcess({ service }) {
             object-fit: contain;
             object-position: center center;
             background: #fafaf7;
+          }
+          /* Website content — discovery (square), research (wide), delivery (portrait) */
+          .sp-section--website-content
+            .sp-alternating-desktop-steps
+            > div:nth-child(1)
+            .sp-img {
+            width: min(100%, 380px);
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center center;
+          }
+          .sp-section--website-content
+            .sp-alternating-desktop-steps
+            > div:nth-child(3)
+            .sp-img {
+            height: auto;
+            aspect-ratio: 1920 / 1280;
+            object-fit: contain;
+            object-position: center center;
+            background: #fafaf7;
+          }
+          .sp-section--website-content
+            .sp-alternating-desktop-steps
+            > div:nth-child(9)
+            .sp-img {
+            width: min(100%, 320px);
+            height: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+            object-position: center top;
           }
         }
         @media (max-width: 768px) {
@@ -393,7 +427,8 @@ export default function ServiceProcess({ service }) {
           .sp-section--author-website .sp-author-website-mobile-bundle,
           .sp-section--illustration-graphics .sp-author-website-mobile-bundle,
           .sp-section--video-book-trailer .sp-author-website-mobile-bundle,
-          .sp-section--book-marketing .sp-author-website-mobile-bundle {
+          .sp-section--book-marketing .sp-author-website-mobile-bundle,
+          .sp-section--website-content .sp-author-website-mobile-bundle {
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -478,7 +513,8 @@ export default function ServiceProcess({ service }) {
           }
           .sp-section--illustration-graphics .sp-author-website-mobile-step-media img,
           .sp-section--video-book-trailer .sp-author-website-mobile-step-media img,
-          .sp-section--book-marketing .sp-author-website-mobile-step-media img {
+          .sp-section--book-marketing .sp-author-website-mobile-step-media img,
+          .sp-section--website-content .sp-author-website-mobile-step-media img {
             width: min(100%, 360px);
             height: 200px;
             margin-left: auto;
@@ -489,7 +525,8 @@ export default function ServiceProcess({ service }) {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
           }
           .sp-section--video-book-trailer .sp-author-website-mobile-step-media,
-          .sp-section--book-marketing .sp-author-website-mobile-step-media {
+          .sp-section--book-marketing .sp-author-website-mobile-step-media,
+          .sp-section--website-content .sp-author-website-mobile-step-media {
             display: flex;
             justify-content: center;
             background: transparent;
@@ -499,12 +536,36 @@ export default function ServiceProcess({ service }) {
           .sp-section--book-marketing
             .sp-author-website-mobile-step--landscape-wide
             .sp-author-website-mobile-step-media
+            img,
+          .sp-section--website-content
+            .sp-author-website-mobile-step--landscape-wide
+            .sp-author-website-mobile-step-media
             img {
             width: min(100%, 360px);
             height: auto;
             max-height: 202px;
             object-fit: contain;
             background: #fafaf7;
+          }
+          .sp-section--website-content
+            .sp-author-website-mobile-step--square
+            .sp-author-website-mobile-step-media
+            img {
+            width: min(100%, 340px);
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center center;
+          }
+          .sp-section--website-content
+            .sp-author-website-mobile-step--portrait
+            .sp-author-website-mobile-step-media
+            img {
+            width: min(100%, 300px);
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            object-position: center top;
           }
           .sp-illustration-package-stack {
             position: relative;
@@ -1471,6 +1532,19 @@ export default function ServiceProcess({ service }) {
             display: none;
           }
 
+          .sp-section--website-content {
+            overflow-x: clip;
+          }
+          .sp-section--website-content .sp-steps {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: visible;
+          }
+          .sp-section--website-content .sp-alternating-desktop-steps {
+            display: none;
+          }
+
         }
         @media (min-width: 769px) {
           .sp-interior-mobile-bundle,
@@ -1481,7 +1555,9 @@ export default function ServiceProcess({ service }) {
           }
           .sp-section--author-website .sp-alternating-desktop-steps,
           .sp-section--illustration-graphics .sp-alternating-desktop-steps,
-          .sp-section--video-book-trailer .sp-alternating-desktop-steps {
+          .sp-section--video-book-trailer .sp-alternating-desktop-steps,
+          .sp-section--website-content .sp-alternating-desktop-steps,
+          .sp-section--book-marketing .sp-alternating-desktop-steps {
             display: block;
           }
         }
@@ -1605,13 +1681,15 @@ export default function ServiceProcess({ service }) {
               className="sp-author-website-mobile-bundle sp-reveal"
               data-delay="120"
               aria-label={
-                isBookMarketing
-                  ? "Book marketing process steps"
-                  : isVideoBookTrailer
-                    ? "Video book trailer process steps"
-                    : isIllustrationGraphics
-                      ? "Illustration process steps"
-                      : "Author website process steps"
+                isWebsiteContent
+                  ? "Website content process steps"
+                  : isBookMarketing
+                    ? "Book marketing process steps"
+                    : isVideoBookTrailer
+                      ? "Video book trailer process steps"
+                      : isIllustrationGraphics
+                        ? "Illustration process steps"
+                        : "Author website process steps"
               }
             >
               {service.process.map((step, index) => {
@@ -1622,6 +1700,18 @@ export default function ServiceProcess({ service }) {
                     className={`sp-author-website-mobile-step sp-reveal${
                       isBookMarketing && step.number === "04"
                         ? " sp-author-website-mobile-step--landscape-wide"
+                        : ""
+                    }${
+                      isWebsiteContent && step.number === "01"
+                        ? " sp-author-website-mobile-step--square"
+                        : ""
+                    }${
+                      isWebsiteContent && step.number === "02"
+                        ? " sp-author-website-mobile-step--landscape-wide"
+                        : ""
+                    }${
+                      isWebsiteContent && step.number === "05"
+                        ? " sp-author-website-mobile-step--portrait"
                         : ""
                     }`}
                     data-delay={120 + index * 80}
@@ -1658,7 +1748,8 @@ export default function ServiceProcess({ service }) {
               isAudiobookPublishing ||
               isAuthorBranding ||
               isBookMarketing ||
-              isAuthorWebsite
+              isAuthorWebsite ||
+              isWebsiteContent
                 ? "sp-alternating-desktop-steps"
                 : undefined
             }

@@ -49,7 +49,8 @@ function planFloor(price, includedServiceIds) {
     (sum, id) => sum + (SERVICE_BY_ID[id]?.floor ?? 0),
     0
   );
-  return Math.max(Math.ceil(price * 0.85), serviceFloorSum);
+  const maxDiscountFloor = Math.ceil(price * 0.85);
+  return Math.min(price, Math.max(maxDiscountFloor, serviceFloorSum));
 }
 
 function definePlan(id, name, price, includedServiceIds, notes) {
@@ -231,10 +232,17 @@ ${features}`;
       `- ${p.id}: ${p.name} - $${p.price} (floor $${p.floor}) includes: ${p.includedServiceIds.join(", ")}${p.notes ? ` | ${p.notes}` : ""}`
   );
 
-  return `WEBSITE PRICING CARDS (from site - authoritative)
+  return `WEBSITE PRICING CARDS (authoritative public offers — never contradict these prices or meanings)
+- Starter $150 per book: customer ALREADY HAS a finished manuscript. We edit, format, design cover, publish on 5 major global platforms, Author Central setup.
+- Professional $200 per book, MINIMUM 4 books ($800 total): SERIES only — team writes each book from idea/notes. Never offer Professional for a single book.
+- Complete Publishing Package $299 per book: ONE book from idea — full premium package (writing, editing, cover, formatting, author website, publishing, all formats).
+- One book wanting the full premium package → quote Complete at $299 (website_complete). Never quote an agent catalog plan that costs MORE than the matching website card for the same scope.
+- If they ask about a price shown on the website, confirm that exact price.
+
+Card details:
 ${cardLines.join("\n\n")}
 
-STANDALONE SERVICES (internal floors; never quote per-word; over scope -> handover)
+STANDALONE SERVICES (standalone and add-on prices below — use to build custom plans; internal floors for server only; never quote per-word; over scope -> handover)
 ${serviceLines.join("\n")}
 
 AGENT PLAN LADDERS (offer ONE at a time; max 15% discount, never below floor)
