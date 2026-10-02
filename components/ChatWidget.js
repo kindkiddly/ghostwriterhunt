@@ -706,6 +706,10 @@ export default function ChatWidget({ initialOpen = false }) {
   const showIntake = sessionPhase === "intake" && !restoring;
   const showEnded = sessionPhase === "ended" && !restoring;
   const showEndChatControl = sessionPhase === "chat" && !intakePending;
+  const showFooterExistingCustomer =
+    !showEnded && !customerCodeVerified && !restoring && !contactHasEmail;
+  const showFooterPrivacy = !showEnded && contactHasEmail && sessionPhase === "chat";
+  const showFooterBar = showComposer || showFooterExistingCustomer || showFooterPrivacy;
 
   return (
     <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
@@ -1084,6 +1088,10 @@ export default function ChatWidget({ initialOpen = false }) {
           border-top: 1px solid rgba(201,168,76,0.2);
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
         }
+        .gcw-footer-slim {
+          padding: 8px 14px 10px;
+          padding-bottom: max(8px, env(safe-area-inset-bottom));
+        }
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
           .gcw-header { background: #1C1C1C; }
           .gcw-footer { background: #1C1C1C; }
@@ -1227,7 +1235,7 @@ export default function ChatWidget({ initialOpen = false }) {
         .gcw-textarea:focus { outline: none; }
 
         .gcw-existing-customer {
-          margin: 8px 8px 0;
+          margin: 0;
           text-align: center;
         }
         .gcw-code-form {
@@ -1261,13 +1269,19 @@ export default function ChatWidget({ initialOpen = false }) {
         .gcw-code-feedback-err { color: rgba(232, 160, 150, 0.95); }
 
         .gcw-privacy-note {
-          margin: 10px 8px 0;
+          margin: 6px 0 0;
           font-family: var(--font-inter), sans-serif;
           font-size: 9px;
-          line-height: 1.45;
-          letter-spacing: 0.04em;
-          color: rgba(250,250,247,0.38);
+          line-height: 1.35;
+          letter-spacing: 0.03em;
+          color: rgba(250,250,247,0.36);
           text-align: center;
+        }
+        .gcw-footer-slim .gcw-privacy-note {
+          margin: 0;
+        }
+        .gcw-composer + .gcw-privacy-note {
+          margin-top: 8px;
         }
         .gcw-send-btn {
           width: 44px;
@@ -1705,8 +1719,9 @@ export default function ChatWidget({ initialOpen = false }) {
           </div>
         )}
 
-        <div className="gcw-footer">
-          {!showEnded && showComposer && (
+        {showFooterBar ? (
+        <div className={`gcw-footer${showComposer ? "" : " gcw-footer-slim"}`}>
+          {showComposer && (
             <div className="gcw-composer">
               <textarea
                 ref={inputRef}
@@ -1730,7 +1745,7 @@ export default function ChatWidget({ initialOpen = false }) {
             </div>
           )}
 
-          {!showEnded && !customerCodeVerified && !restoring ? (
+          {showFooterExistingCustomer ? (
             <div className="gcw-existing-customer">
               {!showCustomerCodeInput ? (
                 <button
@@ -1789,10 +1804,13 @@ export default function ChatWidget({ initialOpen = false }) {
             </div>
           ) : null}
 
-          <p className="gcw-privacy-note">
-            Your conversation is private and confidential.
-          </p>
+          {showFooterPrivacy ? (
+            <p className="gcw-privacy-note">
+              Your conversation is private and confidential.
+            </p>
+          ) : null}
         </div>
+        ) : null}
       </div>
     </div>
   );
