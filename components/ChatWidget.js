@@ -815,9 +815,9 @@ export default function ChatWidget({ initialOpen = false }) {
           position: relative;
           display: flex;
           align-items: center;
-          gap: 12px;
-          padding: 17px 18px 16px;
-          min-height: 72px;
+          gap: 8px;
+          padding: 9px 12px 8px;
+          min-height: 0;
           background: rgba(28,28,28,0.88);
           backdrop-filter: blur(20px) saturate(160%);
           -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -843,28 +843,24 @@ export default function ChatWidget({ initialOpen = false }) {
           align-items: center;
         }
         .gcw-header-logo img {
-          width: 172px;
-          height: auto;
-          max-height: 48px;
+          width: auto;
+          height: 34px;
+          max-width: 136px;
           object-fit: contain;
           display: block;
-        }
-        .gcw-header-text {
-          flex: 1;
-          min-width: 0;
-          overflow: visible;
-          padding: 2px 0 1px;
         }
         .gcw-header-status {
           display: flex;
           align-items: center;
-          flex-wrap: wrap;
-          gap: 6px;
-          margin: 0;
+          flex-shrink: 0;
+          gap: 0;
+          margin: 0 0 0 auto;
+          padding-right: 2px;
           font-family: var(--font-inter), sans-serif;
           font-size: 10px;
           font-weight: 400;
-          line-height: 1.2;
+          line-height: 1;
+          white-space: nowrap;
         }
         .gcw-status-online {
           display: inline-flex;
@@ -881,19 +877,10 @@ export default function ChatWidget({ initialOpen = false }) {
           box-shadow: 0 0 8px rgba(107,124,58,0.55);
           flex-shrink: 0;
         }
-        .gcw-status-sep {
-          color: rgba(201,168,76,0.35);
-          font-weight: 400;
-          user-select: none;
-        }
-        .gcw-status-meta {
-          color: rgba(250,250,247,0.42);
-          font-weight: 400;
-        }
         .gcw-close-btn {
-          width: 36px;
-          height: 36px;
-          border-radius: 12px;
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
           border: 1px solid rgba(250,250,247,0.12);
           background: rgba(250,250,247,0.06);
           backdrop-filter: blur(8px);
@@ -916,8 +903,9 @@ export default function ChatWidget({ initialOpen = false }) {
         .gcw-header-actions {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           flex-shrink: 0;
+          margin-left: 4px;
         }
         .gcw-end-chat-btn {
           border: none;
@@ -1548,16 +1536,12 @@ export default function ChatWidget({ initialOpen = false }) {
               height={160}
             />
           </div>
-          <div className="gcw-header-text">
-            <p className="gcw-header-status">
-              <span className="gcw-status-online">
-                <span className="gcw-status-dot" aria-hidden="true" />
-                Online
-              </span>
-              <span className="gcw-status-sep" aria-hidden="true">·</span>
-              <span className="gcw-status-meta">Typically replies in minutes</span>
-            </p>
-          </div>
+          <p className="gcw-header-status">
+            <span className="gcw-status-online">
+              <span className="gcw-status-dot" aria-hidden="true" />
+              Online
+            </span>
+          </p>
           <div className="gcw-header-actions">
             {showEndChatControl ? (
               <button type="button" className="gcw-end-chat-btn" onClick={handleEndChat}>
