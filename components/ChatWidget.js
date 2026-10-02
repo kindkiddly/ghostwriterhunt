@@ -734,7 +734,7 @@ export default function ChatWidget({ initialOpen = false }) {
           justify-content: center;
           cursor: pointer;
           pointer-events: auto;
-          box-shadow: 0 2px 6px rgba(28, 28, 28, 0.18);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
           transition:
             opacity 0.25s ease,
             visibility 0.25s ease,
@@ -755,9 +755,9 @@ export default function ChatWidget({ initialOpen = false }) {
         }
         .gcw-launcher:hover {
           transform: translateY(-1px);
-          border-color: rgba(201, 168, 76, 0.85);
+          border-color: rgba(201, 168, 76, 0.72);
           background: #252525;
-          box-shadow: 0 3px 8px rgba(28, 28, 28, 0.22);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
         }
         .gcw-launcher:focus-visible {
           outline: 2px solid #C9A84C;
@@ -839,9 +839,9 @@ export default function ChatWidget({ initialOpen = false }) {
           align-items: center;
         }
         .gcw-header-logo img {
-          width: 148px;
+          width: 172px;
           height: auto;
-          max-height: 40px;
+          max-height: 48px;
           object-fit: contain;
           display: block;
         }
@@ -1380,9 +1380,9 @@ export default function ChatWidget({ initialOpen = false }) {
         .gcw-intake-wrap .gcw-field-label {
           color: rgba(60,60,67,0.58);
           text-transform: none;
-          letter-spacing: -0.01em;
-          font-size: 12px;
-          font-weight: 400;
+          letter-spacing: 0.01em;
+          font-size: 11px;
+          font-weight: 500;
           padding-left: 0;
         }
         .gcw-intake-wrap .gcw-field:focus-within .gcw-field-label {
@@ -1394,9 +1394,9 @@ export default function ChatWidget({ initialOpen = false }) {
           border: none;
           border-radius: 0;
           padding: 0;
-          font-size: 17px;
-          line-height: 1.29;
-          letter-spacing: -0.022em;
+          font-size: 14px;
+          line-height: 1.45;
+          letter-spacing: 0;
           box-shadow: none;
         }
         .gcw-intake-wrap .gcw-contact-input::placeholder {
@@ -1459,13 +1459,6 @@ export default function ChatWidget({ initialOpen = false }) {
           font-size: 13px;
           font-weight: 600;
           cursor: pointer;
-        }
-        .gcw-intake-wrap .gcw-intake-btn-primary {
-          border-radius: 12px;
-          padding: 14px 16px;
-          font-size: 17px;
-          font-weight: 600;
-          letter-spacing: -0.022em;
         }
         .gcw-intake-btn-primary:disabled {
           opacity: 0.55;

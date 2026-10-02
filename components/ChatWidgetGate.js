@@ -44,7 +44,7 @@ export default function ChatWidgetGate() {
         type="button"
         aria-label="Open chat"
         onClick={activate}
-        className="fixed z-[9999] flex h-14 w-14 items-center justify-center rounded-full border border-[rgba(201,168,76,0.55)] bg-[#1c1c1c] shadow-md"
+        className="fixed z-[9999] flex h-14 w-14 items-center justify-center rounded-full border border-[rgba(201,168,76,0.55)] bg-[#1c1c1c] shadow-[0_1px_2px_rgba(0,0,0,0.14)]"
         style={{ right: "max(24px, env(safe-area-inset-right))", bottom: "max(20px, env(safe-area-inset-bottom))" }}
       >
         <span className="sr-only">Open chat</span>
