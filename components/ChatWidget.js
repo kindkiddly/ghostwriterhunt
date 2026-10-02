@@ -16,8 +16,18 @@ import { getClientEmailFeedback } from "@/lib/validation/email";
  * Prefix: gcw-
  */
 
-const WELCOME_MESSAGE =
-  "Tell us about your book. We're here to help with your publishing project.";
+const WELCOME_MESSAGE_BODY =
+  "Every great book starts with a single idea, and we'd love to hear yours. Tell us a little about the book you dream of writing.";
+
+function formatWelcomeMessage(fullName) {
+  const firstWord = (fullName ?? "").trim().split(/\s+/).filter(Boolean)[0] ?? "";
+  if (!firstWord) {
+    return `Welcome! ✨ ${WELCOME_MESSAGE_BODY}`;
+  }
+  const firstName = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
+  return `Welcome, ${firstName}! ✨ ${WELCOME_MESSAGE_BODY}`;
+}
+
 const TYPING_TIMEOUT_MS = 60000;
 const MOBILE_CHAT_MQ = "(max-width: 639px)";
 const TEXTAREA_MAX_HEIGHT_PX = 100; // ~4 lines
@@ -270,7 +280,7 @@ export default function ChatWidget({ initialOpen = false }) {
             {
               id: "welcome",
               sender: "team",
-              text: WELCOME_MESSAGE,
+              text: formatWelcomeMessage(visitorName),
               timestamp: new Date(),
             },
           ]);
@@ -651,7 +661,7 @@ export default function ChatWidget({ initialOpen = false }) {
       {
         id: "welcome",
         sender: "team",
-        text: WELCOME_MESSAGE,
+        text: formatWelcomeMessage(visitorName.trim()),
         timestamp: new Date(),
       },
     ]);
@@ -776,7 +786,7 @@ export default function ChatWidget({ initialOpen = false }) {
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          background: transparent;
+          background: #1C1C1C;
           border: 1px solid rgba(201,168,76,0.28);
           box-shadow:
             0 32px 80px rgba(28,28,28,0.45),
@@ -792,6 +802,9 @@ export default function ChatWidget({ initialOpen = false }) {
           transform: translateY(0) scale(1);
           visibility: visible;
           pointer-events: auto;
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+          .gcw-panel { background: #1C1C1C; }
         }
 
         .gcw-header {
@@ -951,7 +964,7 @@ export default function ChatWidget({ initialOpen = false }) {
           gap: 16px;
           padding: 32px 24px;
           text-align: center;
-          background: rgba(250,250,247,0.55);
+          background: #FAFAF7;
         }
         .gcw-ended-title {
           margin: 0;
@@ -978,7 +991,7 @@ export default function ChatWidget({ initialOpen = false }) {
           display: flex;
           flex-direction: column;
           gap: 18px;
-          background: rgba(250,250,247,0.55);
+          background: #FAFAF7;
           backdrop-filter: blur(10px) saturate(115%);
           -webkit-backdrop-filter: blur(10px) saturate(115%);
           scrollbar-width: thin;
@@ -1314,6 +1327,7 @@ export default function ChatWidget({ initialOpen = false }) {
           align-items: center;
           justify-content: center;
           padding: 28px 20px;
+          background: #FAFAF7;
         }
         .gcw-start-chat-btn {
           width: 100%;
@@ -1356,7 +1370,7 @@ export default function ChatWidget({ initialOpen = false }) {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          background: rgba(250,250,247,0.55);
+          background: #FAFAF7;
           backdrop-filter: blur(10px) saturate(115%);
           -webkit-backdrop-filter: blur(10px) saturate(115%);
         }
