@@ -832,26 +832,20 @@ export default function ChatWidget({ initialOpen = false }) {
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
           .gcw-header { background: #1C1C1C; }
         }
-        .gcw-avatar {
-          width: 42px;
+        .gcw-header-logo {
+          flex-shrink: 0;
           height: 42px;
-          border-radius: 50%;
-          background: linear-gradient(165deg, #F2E6C8 0%, #D4B85A 28%, #C9A84C 52%, #9A7A18 100%);
-          color: #1C1C1C;
-          font-family: var(--font-playfair), serif;
-          font-weight: 700;
-          font-size: 18px;
-          line-height: 1;
+          width: auto;
+          max-width: 118px;
           display: flex;
           align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          border: 1px solid #8B7010;
-          box-shadow:
-            inset 0 3px 5px rgba(255,255,255,0.55),
-            inset 0 -4px 7px rgba(0,0,0,0.28),
-            0 2px 4px rgba(0,0,0,0.35);
-          text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+        }
+        .gcw-header-logo img {
+          height: 100%;
+          width: auto;
+          max-width: 100%;
+          object-fit: contain;
+          display: block;
         }
         .gcw-header-text {
           flex: 1;
@@ -1377,14 +1371,6 @@ export default function ChatWidget({ initialOpen = false }) {
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
           .gcw-intake-wrap { background: #FAFAF7; }
         }
-        .gcw-intake-title {
-          margin: 0;
-          font-family: var(--font-inter), sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          color: #1c1c1c;
-          line-height: 1.5;
-        }
         .gcw-intake-fields {
           display: flex;
           flex-direction: column;
@@ -1521,7 +1507,16 @@ export default function ChatWidget({ initialOpen = false }) {
         aria-hidden={!isOpen}
       >
         <div className="gcw-header">
-          <div className="gcw-avatar" aria-hidden="true">G</div>
+          <div className="gcw-header-logo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/GhostWriterHunt-LOGO-Transparent.webp"
+              alt=""
+              width={400}
+              height={160}
+              aria-hidden="true"
+            />
+          </div>
           <div className="gcw-header-text">
             <p className="gcw-header-title">GhostWriterHunt</p>
             <p className="gcw-header-status">
@@ -1574,9 +1569,6 @@ export default function ChatWidget({ initialOpen = false }) {
           </div>
         ) : showIntake ? (
           <div className="gcw-intake-wrap">
-            <p className="gcw-intake-title">
-              Share your details to start a live chat with our team.
-            </p>
             <div className="gcw-intake-fields">
               <label className="gcw-field">
                 <span className="gcw-field-label">Name</span>
@@ -1626,7 +1618,6 @@ export default function ChatWidget({ initialOpen = false }) {
                 ) : null}
               </label>
               <label className="gcw-field">
-                <span className="gcw-field-label">Phone (optional)</span>
                 <input
                   type="tel"
                   className="gcw-contact-input"
