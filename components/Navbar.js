@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 import Link from "next/link";
 import { SHARED_PRICING } from "@/data/pricing";
-import { startPackageCheckout } from "@/lib/stripe/checkoutButton";
 import { PACKAGE_KEYS, PROFESSIONAL_MIN_BOOKS } from "@/lib/stripe/packages";
 
 /**
@@ -199,6 +198,7 @@ export default function Navbar({ servicesByCategory = {} }) {
         packageKey === PACKAGE_KEYS.professional
           ? { bookCount: PROFESSIONAL_MIN_BOOKS }
           : {};
+      const { startPackageCheckout } = await import("@/lib/stripe/checkoutButton");
       await startPackageCheckout(packageKey, checkoutOptions);
     } catch (err) {
       console.error("nav checkout:", err);

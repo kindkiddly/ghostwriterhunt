@@ -10,7 +10,7 @@ const playfair = Playfair_Display({
   weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
-  display: "block",
+  display: "swap",
   preload: true,
   adjustFontFallback: true,
 });
@@ -19,7 +19,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
-  display: "block",
+  display: "swap",
   preload: true,
   adjustFontFallback: true,
 });

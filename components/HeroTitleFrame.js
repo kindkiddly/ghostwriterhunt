@@ -199,8 +199,14 @@ export default function HeroTitleFrame({
     }
 
     let cancelled = false;
+    let rafId = 0;
     const run = () => {
-      if (!cancelled) recomputeHeadlineSplit();
+      if (cancelled) return;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        if (!cancelled) recomputeHeadlineSplit();
+      });
     };
 
     run();
@@ -215,6 +221,7 @@ export default function HeroTitleFrame({
 
     return () => {
       cancelled = true;
+      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
       window.removeEventListener("resize", run);
     };

@@ -1,20 +1,22 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
-import LogoTicker from "@/components/LogoTicker";
-import StatsCounter from "@/components/StatsCounter";
-import NarrativeBlock1 from "@/components/NarrativeBlock1";
-import HowItWorks from "@/components/HowItWorks";
-import NarrativeBlock2 from "@/components/NarrativeBlock2";
-import ServicesGrid from "@/components/ServicesGrid";
-import TrustBlock from "@/components/TrustBlock";
-import BookCoversGallery from "@/components/BookCoversGallery";
-import Testimonials from "@/components/Testimonials";
-import Comparison from "@/components/Comparison";
-import Pricing from "@/components/Pricing";
-import NarrativeBlock3 from "@/components/NarrativeBlock3";
-import FAQ from "@/components/FAQ";
-import ContactForm from "@/components/ContactForm";
-import CTABanner from "@/components/CTABanner";
-import Footer from "@/components/Footer";
+
+const LogoTicker = dynamic(() => import("@/components/LogoTicker"));
+const StatsCounter = dynamic(() => import("@/components/StatsCounter"));
+const NarrativeBlock1 = dynamic(() => import("@/components/NarrativeBlock1"));
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
+const NarrativeBlock2 = dynamic(() => import("@/components/NarrativeBlock2"));
+const ServicesGrid = dynamic(() => import("@/components/ServicesGrid"));
+const TrustBlock = dynamic(() => import("@/components/TrustBlock"));
+const BookCoversGallery = dynamic(() => import("@/components/BookCoversGallery"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const Comparison = dynamic(() => import("@/components/Comparison"));
+const Pricing = dynamic(() => import("@/components/Pricing"));
+const NarrativeBlock3 = dynamic(() => import("@/components/NarrativeBlock3"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const ContactForm = dynamic(() => import("@/components/ContactForm"));
+const CTABanner = dynamic(() => import("@/components/CTABanner"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export const metadata = {
   title: "Professional Ghostwriting & Book Publishing Services | GhostWriterHunt",

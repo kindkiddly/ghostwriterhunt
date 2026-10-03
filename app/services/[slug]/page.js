@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import {
   getServiceBySlug,
@@ -5,12 +6,13 @@ import {
 } from "@/data/services";
 import ServiceHero from "@/components/service/ServiceHero";
 import ServiceOverview from "@/components/service/ServiceOverview";
-import ServiceApproach from "@/components/service/ServiceApproach";
-import ServiceProcess from "@/components/service/ServiceProcess";
-import ServiceTestimonial from "@/components/service/ServiceTestimonial";
-import ServiceFAQ from "@/components/service/ServiceFAQ";
-import ServiceCTA from "@/components/service/ServiceCTA";
-import Footer from "@/components/Footer";
+
+const ServiceApproach = dynamic(() => import("@/components/service/ServiceApproach"));
+const ServiceProcess = dynamic(() => import("@/components/service/ServiceProcess"));
+const ServiceTestimonial = dynamic(() => import("@/components/service/ServiceTestimonial"));
+const ServiceFAQ = dynamic(() => import("@/components/service/ServiceFAQ"));
+const ServiceCTA = dynamic(() => import("@/components/service/ServiceCTA"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 /**
  * GhostWriterHunt — Dynamic service page

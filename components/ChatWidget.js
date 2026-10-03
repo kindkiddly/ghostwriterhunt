@@ -79,641 +79,7 @@ function formatTime(date) {
   return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 }
 
-export default function ChatWidget({ initialOpen = false }) {
-  const pathname = usePathname();
-  const isAdminRoute = pathname?.startsWith("/admin");
-
-  const [isOpen, setIsOpen] = useState(initialOpen);
-  const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [visitorName, setVisitorName] = useState("");
-  const [visitorEmail, setVisitorEmail] = useState("");
-  const [visitorPhone, setVisitorPhone] = useState("");
-  const [intakeSubmitting, setIntakeSubmitting] = useState(false);
-  const [intakePending, setIntakePending] = useState(false);
-  const [intakeError, setIntakeError] = useState("");
-  const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
-  /** restoring | intro | intake | chat | ended */
-  const [sessionPhase, setSessionPhase] = useState("intro");
-  const [isTyping, setIsTyping] = useState(false);
-  const [conversationId, setConversationId] = useState(null);
-  const [contactHasEmail, setContactHasEmail] = useState(false);
-  const [customerCodeVerified, setCustomerCodeVerified] = useState(false);
-  const [showCustomerCodeInput, setShowCustomerCodeInput] = useState(false);
-  const [customerCodeInput, setCustomerCodeInput] = useState("");
-  const [customerCodeFeedback, setCustomerCodeFeedback] = useState(null);
-  const [customerCodeSubmitting, setCustomerCodeSubmitting] = useState(false);
-  const [restoring, setRestoring] = useState(false);
-  const [supabase] = useState(() => createClient());
-
-  const messagesEndRef = useRef(null);
-  const inputRef = useRef(null);
-  const launcherRef = useRef(null);
-  const typingTimeoutRef = useRef(null);
-  const conversationIdRef = useRef(null);
-  const sendLockRef = useRef(false);
-  const markSeenTimeoutRef = useRef(null);
-  const isOpenRef = useRef(false);
-  const authWarmupRef = useRef(null);
-  const scrollLockYRef = useRef(0);
-  const hasRestoredRef = useRef(false);
-
-  useEffect(() => {
-    isOpenRef.current = isOpen;
-  }, [isOpen]);
-
-  /** Mobile full-screen chat: lock page scroll (iOS-safe) while open. */
-  useEffect(() => {
-    if (isAdminRoute || typeof window === "undefined") return undefined;
-
-    const mq = window.matchMedia(MOBILE_CHAT_MQ);
-
-    function lockPageScroll() {
-      if (!mq.matches) return;
-      scrollLockYRef.current = window.scrollY;
-      const y = scrollLockYRef.current;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${y}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    }
-
-    function unlockPageScroll() {
-      if (document.body.style.position !== "fixed") return;
-      const y = scrollLockYRef.current;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      window.scrollTo(0, y);
-    }
-
-    if (isOpen) lockPageScroll();
-    else unlockPageScroll();
-
-    return () => unlockPageScroll();
-  }, [isOpen, isAdminRoute]);
-
-  /** Anonymous Supabase session — warm early so "Start live chat" is not blocked on first sign-in. */
-  const warmAnonymousSession = useCallback(async () => {
-    if (authWarmupRef.current) return authWarmupRef.current;
-    authWarmupRef.current = (async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session?.access_token) return session.access_token;
-      const { data, error } = await supabase.auth.signInAnonymously();
-      if (error) throw error;
-      return data.session.access_token;
-    })();
-    try {
-      return await authWarmupRef.current;
-    } catch (err) {
-      authWarmupRef.current = null;
-      throw err;
-    }
-  }, [supabase]);
-
-  useEffect(() => {
-    if (!isOpen || isAdminRoute) return;
-    warmAnonymousSession().catch(() => {});
-  }, [isOpen, isAdminRoute, warmAnonymousSession]);
-
-  // Move focus to the composer when live chat is active.
-  useEffect(() => {
-    if (isOpen && sessionPhase === "chat") {
-      const t = setTimeout(() => inputRef.current?.focus(), 150);
-      return () => clearTimeout(t);
-    }
-  }, [isOpen, sessionPhase]);
-
-  // Escape closes the panel and returns focus to the launcher.
-  useEffect(() => {
-    if (!isOpen) return;
-    function onKeyDown(e) {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-        launcherRef.current?.focus();
-      }
-    }
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [isOpen]);
-
-  // Auto-scroll to the newest message / typing indicator.
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages, isTyping]);
-
-  useEffect(() => {
-    return () => {
-      if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-    };
-  }, []);
-
-  // When the visitor opens chat: restore an existing session if present.
-  useEffect(() => {
-    if (isAdminRoute || !isOpen || hasRestoredRef.current) return;
-    hasRestoredRef.current = true;
-    let cancelled = false;
-    setRestoring(true);
-
-    (async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session || cancelled) {
-          if (!cancelled) setSessionPhase("intro");
-          return;
-        }
-
-        const res = await fetch("/api/chat/status", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ accessToken: session.access_token }),
-        });
-        if (!res.ok || cancelled) {
-          if (!cancelled) setSessionPhase("intro");
-          return;
-        }
-        const statusData = await res.json();
-
-        if (!statusData.conversationId || cancelled) {
-          if (!cancelled) setSessionPhase("intro");
-          return;
-        }
-
-        conversationIdRef.current = statusData.conversationId;
-        setConversationId(statusData.conversationId);
-        setContactHasEmail(!!statusData.contactHasEmail);
-        setCustomerCodeVerified(!!statusData.customerCodeVerified);
-
-        const { data: history } = await supabase
-          .from("messages")
-          .select("id, sender, content, created_at")
-          .eq("conversation_id", statusData.conversationId)
-          .order("created_at", { ascending: true });
-
-        if (cancelled) return;
-
-        if (history && history.length > 0) {
-          setHasOpenedOnce(true);
-          setMessages(
-            history.map((row) => ({
-              id: row.id,
-              sender: row.sender === "visitor" ? "visitor" : "team",
-              text: row.content,
-              timestamp: new Date(row.created_at),
-              status: "sent",
-            }))
-          );
-          setSessionPhase("chat");
-        } else if (statusData.contactHasEmail) {
-          setHasOpenedOnce(true);
-          setMessages([
-            {
-              id: "welcome",
-              sender: "team",
-              text: formatWelcomeMessage(visitorName),
-              timestamp: new Date(),
-            },
-          ]);
-          setSessionPhase("chat");
-        } else {
-          setSessionPhase("intro");
-        }
-      } catch (err) {
-        console.error("ChatWidget: failed to restore conversation", err);
-        setSessionPhase("intro");
-      } finally {
-        if (!cancelled) setRestoring(false);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, isAdminRoute, supabase]);
-
-  // Seen marks: debounced so a burst of incoming messages or open/close
-  // toggling only triggers one RPC call, and never blocks sending/display.
-  const scheduleMarkSeen = useCallback(() => {
-    if (!conversationIdRef.current) return;
-    if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
-    markSeenTimeoutRef.current = setTimeout(() => {
-      supabase
-        .rpc("mark_messages_seen", { p_conversation_id: conversationIdRef.current })
-        .then(({ error }) => {
-          if (error) console.error("ChatWidget: failed to mark messages seen", error);
-        });
-    }, MARK_SEEN_DEBOUNCE_MS);
-  }, [supabase]);
-
-  useEffect(() => {
-    return () => {
-      if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
-    };
-  }, []);
-
-  // Realtime: live-append agent/AI messages that arrive on this
-  // conversation. The visitor's own messages are already shown
-  // optimistically at send-time, so they're skipped here. Cleans up on
-  // conversation change / unmount.
-  useEffect(() => {
-    if (isAdminRoute || !isOpen || !conversationId) return;
-
-    const channel = supabase
-      .channel(`messages-${conversationId}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "messages",
-          filter: `conversation_id=eq.${conversationId}`,
-        },
-        (payload) => {
-          const row = payload.new;
-          if (row.sender === "visitor") return;
-          setIsTyping(false);
-          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-          setMessages((prev) => {
-            if (prev.some((m) => m.id === row.id)) return prev;
-            return [
-              ...prev,
-              {
-                id: row.id,
-                sender: "team",
-                text: row.content,
-                timestamp: new Date(row.created_at),
-                status: "sent",
-              },
-            ];
-          });
-          // It just arrived while the panel is open, so it's being seen now.
-          if (isOpenRef.current) scheduleMarkSeen();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [conversationId, isOpen, supabase]);
-
-  // Whenever the panel is opened with an active conversation, mark any
-  // already-unseen agent/AI messages as seen (no-op if none).
-  useEffect(() => {
-    if (isAdminRoute || !isOpen || !conversationIdRef.current) return;
-    scheduleMarkSeen();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, conversationId, isAdminRoute]);
-
-  // Online presence: as long as a conversation exists and this tab stays
-  // open, track it on the shared "chat-presence" channel (keyed by
-  // conversation id) so the admin inbox can show a live online/offline
-  // dot. Ends automatically when the tab/connection closes.
-  useEffect(() => {
-    if (isAdminRoute || !isOpen || !conversationId) return;
-
-    const channel = supabase.channel("chat-presence", {
-      config: { presence: { key: conversationId } },
-    });
-
-    channel.subscribe(async (status) => {
-      if (status === "SUBSCRIBED") {
-        await channel.track({ online: true });
-      }
-    });
-
-    return () => {
-      channel.untrack();
-      supabase.removeChannel(channel);
-    };
-  }, [isAdminRoute, isOpen, conversationId, supabase]);
-
-  /**
-   * persistMessage — saves one visitor message via the single POST
-   * /api/chat/send call: ensures an anonymous session, then in one
-   * server-side step creates the conversation if needed, links/creates
-   * the contact, and saves the message. Called by sendMessage and by the
-   * retry button on a failed message.
-   */
-  const persistMessage = useCallback(
-    async (localId, text) => {
-      try {
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-        let activeSession = session;
-        if (!activeSession) {
-          const { data, error } = await supabase.auth.signInAnonymously();
-          if (error) throw error;
-          activeSession = data.session;
-        }
-
-        const res = await fetch("/api/chat/send", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            accessToken: activeSession.access_token,
-            conversationId: conversationIdRef.current,
-            // Once a contact with an email is on file, there's nothing
-            // left to resolve — skip resending these on every message.
-            name: contactHasEmail ? null : visitorName.trim() || null,
-            email: contactHasEmail ? null : visitorEmail.trim() || null,
-            content: text,
-          }),
-        });
-        if (!res.ok) {
-          const errBody = await res.json().catch(() => ({}));
-          throw new Error(errBody.error || "Could not send message");
-        }
-        const data = await res.json();
-
-        if (!conversationIdRef.current) {
-          conversationIdRef.current = data.conversationId;
-          setConversationId(data.conversationId);
-        }
-        setContactHasEmail(!!data.contactHasEmail);
-
-        setMessages((prev) =>
-          prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
-        );
-
-        if (data.aiPending) {
-          setIsTyping(true);
-          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-          typingTimeoutRef.current = setTimeout(() => setIsTyping(false), TYPING_TIMEOUT_MS);
-        }
-      } catch (err) {
-        console.error("ChatWidget: failed to save message", err);
-        setIsTyping(false);
-        setMessages((prev) =>
-          prev.map((m) => (m.id === localId ? { ...m, status: "failed" } : m))
-        );
-      }
-    },
-    [supabase, visitorName, visitorEmail, contactHasEmail]
-  );
-
-  /**
-   * sendMessage — single entry point for outgoing visitor messages.
-   * Appends the message locally (optimistic, instant) then hands it to
-   * persistMessage. A simple in-flight lock (not a time-based throttle)
-   * blocks double-clicking send; it's released once persistMessage
-   * settles either way. Keep all message/send logic funneled through
-   * this pair of functions so a future AI/agent pipeline can hook in
-   * cleanly.
-   */
-  const sendMessage = useCallback(
-    (text) => {
-      if (sendLockRef.current || intakePending) return;
-      const trimmed = text.trim().slice(0, MAX_MESSAGE_LENGTH);
-      if (!trimmed) return;
-
-      sendLockRef.current = true;
-      const localId = `visitor-${Date.now()}`;
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: localId,
-          sender: "visitor",
-          text: trimmed,
-          timestamp: new Date(),
-          status: "sent",
-        },
-      ]);
-      setInputValue("");
-
-      persistMessage(localId, trimmed).finally(() => {
-        sendLockRef.current = false;
-      });
-    },
-    [persistMessage, intakePending]
-  );
-
-  function retryMessage(localId, text) {
-    if (sendLockRef.current) return;
-    sendLockRef.current = true;
-    setMessages((prev) =>
-      prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
-    );
-    persistMessage(localId, text).finally(() => {
-      sendLockRef.current = false;
-    });
-  }
-
-  async function submitCustomerCode() {
-    const code = customerCodeInput.trim();
-    if (!code || customerCodeSubmitting) return;
-    setCustomerCodeSubmitting(true);
-    setCustomerCodeFeedback(null);
-    try {
-      const token = await warmAnonymousSession();
-      const res = await fetch("/api/chat/verify-customer-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          accessToken: token,
-          conversationId: conversationIdRef.current,
-          code,
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) {
-        setCustomerCodeFeedback({
-          ok: false,
-          text: data.message || data.error || "That code didn't work. Please try again.",
-        });
-        return;
-      }
-      if (data.conversationId) {
-        conversationIdRef.current = data.conversationId;
-        setConversationId(data.conversationId);
-      }
-      setCustomerCodeVerified(true);
-      setContactHasEmail(!!data.contactHasEmail);
-      setShowCustomerCodeInput(false);
-      setCustomerCodeInput("");
-      setCustomerCodeFeedback({ ok: true, text: data.message });
-      setHasOpenedOnce(true);
-      if (sessionPhase !== "chat") {
-        setSessionPhase("chat");
-        setMessages((prev) => {
-          if (prev.some((m) => m.id === "code-linked")) return prev;
-          return [
-            ...prev,
-            {
-              id: "code-linked",
-              sender: "team",
-              text: data.message,
-              timestamp: new Date(),
-            },
-          ];
-        });
-      }
-    } catch {
-      setCustomerCodeFeedback({ ok: false, text: "Something went wrong. Please try again." });
-    } finally {
-      setCustomerCodeSubmitting(false);
-    }
-  }
-
-  function handleSend() {
-    sendMessage(inputValue);
-    const el = inputRef.current;
-    if (el) {
-      el.style.height = "auto";
-      el.style.overflowY = "hidden";
-    }
-  }
-
-  function handleTextareaKeyDown(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  }
-
-  function handleTextareaInput(e) {
-    const el = e.target;
-    setInputValue(el.value);
-    el.style.height = "auto";
-    el.style.height = Math.min(el.scrollHeight, TEXTAREA_MAX_HEIGHT_PX) + "px";
-    el.style.overflowY = el.scrollHeight > TEXTAREA_MAX_HEIGHT_PX ? "auto" : "hidden";
-  }
-
-  function clearLocalChatSession() {
-    conversationIdRef.current = null;
-    setConversationId(null);
-    setMessages([]);
-    setContactHasEmail(false);
-    setCustomerCodeVerified(false);
-    setShowCustomerCodeInput(false);
-    setCustomerCodeInput("");
-    setCustomerCodeFeedback(null);
-    setInputValue("");
-    setIsTyping(false);
-    setIntakePending(false);
-  }
-
-  function startNewChatIntake() {
-    clearLocalChatSession();
-    setIntakeError("");
-    setEmailHint({ error: null, suggestion: null, suggestedEmail: null });
-    setVisitorName("");
-    setVisitorEmail("");
-    setVisitorPhone("");
-    setSessionPhase("intake");
-    warmAnonymousSession().catch(() => {});
-  }
-
-  async function handleEndChat() {
-    if (!window.confirm("End this chat?")) return;
-    try {
-      const accessToken = await warmAnonymousSession();
-      await fetch("/api/chat/end", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          accessToken,
-          conversationId: conversationIdRef.current,
-        }),
-      });
-    } catch (err) {
-      console.error("ChatWidget: failed to end chat", err);
-    }
-    clearLocalChatSession();
-    setSessionPhase("ended");
-  }
-
-  function validateIntakeIdentity() {
-    const name = visitorName.trim();
-    const feedback = getClientEmailFeedback(visitorEmail);
-    setEmailHint(feedback);
-    if (!name) return "Please enter your name.";
-    if (feedback.error) return feedback.error;
-    return null;
-  }
-
-  async function submitLiveIntake() {
-    setIntakeError("");
-    const identityError = validateIntakeIdentity();
-    if (identityError) {
-      setIntakeError(identityError);
-      return;
-    }
-
-    setIntakeSubmitting(true);
-    setIntakeError("");
-    setHasOpenedOnce(true);
-    setContactHasEmail(true);
-    setMessages([
-      {
-        id: "welcome",
-        sender: "team",
-        text: formatWelcomeMessage(visitorName.trim()),
-        timestamp: new Date(),
-      },
-    ]);
-    setSessionPhase("chat");
-    setIntakePending(true);
-
-    try {
-      const accessToken = await warmAnonymousSession();
-      const res = await fetch("/api/chat/intake", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          accessToken,
-          name: visitorName.trim(),
-          email: getClientEmailFeedback(visitorEmail).normalized || visitorEmail.trim(),
-          phone: visitorPhone.trim() || null,
-          mode: "live",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Something went wrong. Please try again.");
-
-      if (data.conversationId) {
-        conversationIdRef.current = data.conversationId;
-        setConversationId(data.conversationId);
-      }
-    } catch (err) {
-      setSessionPhase("intake");
-      setMessages([]);
-      setContactHasEmail(false);
-      setIntakeError(err.message || "Something went wrong. Please try again.");
-    } finally {
-      setIntakeSubmitting(false);
-      setIntakePending(false);
-    }
-  }
-
-  if (isAdminRoute) return null;
-
-  const showComposer = sessionPhase === "chat" && !intakePending;
-  const showIntro = sessionPhase === "intro" && !restoring;
-  const showIntake = sessionPhase === "intake" && !restoring;
-  const showEnded = sessionPhase === "ended" && !restoring;
-  const showEndChatControl = sessionPhase === "chat" && !intakePending;
-  const showFooterExistingCustomer =
-    !showEnded && !customerCodeVerified && !restoring && !contactHasEmail;
-  const showFooterPrivacy = !showEnded && contactHasEmail && sessionPhase === "chat";
-  const showFooterBar = showComposer || showFooterExistingCustomer || showFooterPrivacy;
-
-  return (
-    <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
-      <style dangerouslySetInnerHTML={{ __html: `
+const GCW_WIDGET_STYLES = `
         .gcw-root {
           position: fixed;
           inset: 0;
@@ -1501,7 +867,643 @@ export default function ChatWidget({ initialOpen = false }) {
           }
           .gcw-panel-open { transform: translateY(0); }
         }
-      ` }} />
+      `;
+
+export default function ChatWidget({ initialOpen = false }) {
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith("/admin");
+
+  const [isOpen, setIsOpen] = useState(initialOpen);
+  const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [visitorName, setVisitorName] = useState("");
+  const [visitorEmail, setVisitorEmail] = useState("");
+  const [visitorPhone, setVisitorPhone] = useState("");
+  const [intakeSubmitting, setIntakeSubmitting] = useState(false);
+  const [intakePending, setIntakePending] = useState(false);
+  const [intakeError, setIntakeError] = useState("");
+  const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
+  /** restoring | intro | intake | chat | ended */
+  const [sessionPhase, setSessionPhase] = useState("intro");
+  const [isTyping, setIsTyping] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
+  const [contactHasEmail, setContactHasEmail] = useState(false);
+  const [customerCodeVerified, setCustomerCodeVerified] = useState(false);
+  const [showCustomerCodeInput, setShowCustomerCodeInput] = useState(false);
+  const [customerCodeInput, setCustomerCodeInput] = useState("");
+  const [customerCodeFeedback, setCustomerCodeFeedback] = useState(null);
+  const [customerCodeSubmitting, setCustomerCodeSubmitting] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+  const [supabase] = useState(() => createClient());
+
+  const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
+  const launcherRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
+  const conversationIdRef = useRef(null);
+  const sendLockRef = useRef(false);
+  const markSeenTimeoutRef = useRef(null);
+  const isOpenRef = useRef(false);
+  const authWarmupRef = useRef(null);
+  const scrollLockYRef = useRef(0);
+  const hasRestoredRef = useRef(false);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
+
+  /** Mobile full-screen chat: lock page scroll (iOS-safe) while open. */
+  useEffect(() => {
+    if (isAdminRoute || typeof window === "undefined") return undefined;
+
+    const mq = window.matchMedia(MOBILE_CHAT_MQ);
+
+    function lockPageScroll() {
+      if (!mq.matches) return;
+      scrollLockYRef.current = window.scrollY;
+      const y = scrollLockYRef.current;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    function unlockPageScroll() {
+      if (document.body.style.position !== "fixed") return;
+      const y = scrollLockYRef.current;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      window.scrollTo(0, y);
+    }
+
+    if (isOpen) lockPageScroll();
+    else unlockPageScroll();
+
+    return () => unlockPageScroll();
+  }, [isOpen, isAdminRoute]);
+
+  /** Anonymous Supabase session — warm early so "Start live chat" is not blocked on first sign-in. */
+  const warmAnonymousSession = useCallback(async () => {
+    if (authWarmupRef.current) return authWarmupRef.current;
+    authWarmupRef.current = (async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session?.access_token) return session.access_token;
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) throw error;
+      return data.session.access_token;
+    })();
+    try {
+      return await authWarmupRef.current;
+    } catch (err) {
+      authWarmupRef.current = null;
+      throw err;
+    }
+  }, [supabase]);
+
+  useEffect(() => {
+    if (!isOpen || isAdminRoute) return;
+    warmAnonymousSession().catch(() => {});
+  }, [isOpen, isAdminRoute, warmAnonymousSession]);
+
+  // Move focus to the composer when live chat is active.
+  useEffect(() => {
+    if (isOpen && sessionPhase === "chat") {
+      const t = setTimeout(() => inputRef.current?.focus(), 150);
+      return () => clearTimeout(t);
+    }
+  }, [isOpen, sessionPhase]);
+
+  // Escape closes the panel and returns focus to the launcher.
+  useEffect(() => {
+    if (!isOpen) return;
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        launcherRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
+  // Auto-scroll to the newest message / typing indicator.
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, isTyping]);
+
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+    };
+  }, []);
+
+  // When the visitor opens chat: restore an existing session if present.
+  useEffect(() => {
+    if (isAdminRoute || !isOpen || hasRestoredRef.current) return;
+    hasRestoredRef.current = true;
+    let cancelled = false;
+    setRestoring(true);
+
+    (async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
+
+        const res = await fetch("/api/chat/status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken: session.access_token }),
+        });
+        if (!res.ok || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
+        const statusData = await res.json();
+
+        if (!statusData.conversationId || cancelled) {
+          if (!cancelled) setSessionPhase("intro");
+          return;
+        }
+
+        conversationIdRef.current = statusData.conversationId;
+        setConversationId(statusData.conversationId);
+        setContactHasEmail(!!statusData.contactHasEmail);
+        setCustomerCodeVerified(!!statusData.customerCodeVerified);
+
+        const { data: history } = await supabase
+          .from("messages")
+          .select("id, sender, content, created_at")
+          .eq("conversation_id", statusData.conversationId)
+          .order("created_at", { ascending: true });
+
+        if (cancelled) return;
+
+        if (history && history.length > 0) {
+          setHasOpenedOnce(true);
+          setMessages(
+            history.map((row) => ({
+              id: row.id,
+              sender: row.sender === "visitor" ? "visitor" : "team",
+              text: row.content,
+              timestamp: new Date(row.created_at),
+              status: "sent",
+            }))
+          );
+          setSessionPhase("chat");
+        } else if (statusData.contactHasEmail) {
+          setHasOpenedOnce(true);
+          setMessages([
+            {
+              id: "welcome",
+              sender: "team",
+              text: formatWelcomeMessage(visitorName),
+              timestamp: new Date(),
+            },
+          ]);
+          setSessionPhase("chat");
+        } else {
+          setSessionPhase("intro");
+        }
+      } catch (err) {
+        console.error("ChatWidget: failed to restore conversation", err);
+        setSessionPhase("intro");
+      } finally {
+        if (!cancelled) setRestoring(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, isAdminRoute, supabase]);
+
+  // Seen marks: debounced so a burst of incoming messages or open/close
+  // toggling only triggers one RPC call, and never blocks sending/display.
+  const scheduleMarkSeen = useCallback(() => {
+    if (!conversationIdRef.current) return;
+    if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
+    markSeenTimeoutRef.current = setTimeout(() => {
+      supabase
+        .rpc("mark_messages_seen", { p_conversation_id: conversationIdRef.current })
+        .then(({ error }) => {
+          if (error) console.error("ChatWidget: failed to mark messages seen", error);
+        });
+    }, MARK_SEEN_DEBOUNCE_MS);
+  }, [supabase]);
+
+  useEffect(() => {
+    return () => {
+      if (markSeenTimeoutRef.current) clearTimeout(markSeenTimeoutRef.current);
+    };
+  }, []);
+
+  // Realtime: live-append agent/AI messages that arrive on this
+  // conversation. The visitor's own messages are already shown
+  // optimistically at send-time, so they're skipped here. Cleans up on
+  // conversation change / unmount.
+  useEffect(() => {
+    if (isAdminRoute || !isOpen || !conversationId) return;
+
+    const channel = supabase
+      .channel(`messages-${conversationId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "messages",
+          filter: `conversation_id=eq.${conversationId}`,
+        },
+        (payload) => {
+          const row = payload.new;
+          if (row.sender === "visitor") return;
+          setIsTyping(false);
+          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+          setMessages((prev) => {
+            if (prev.some((m) => m.id === row.id)) return prev;
+            return [
+              ...prev,
+              {
+                id: row.id,
+                sender: "team",
+                text: row.content,
+                timestamp: new Date(row.created_at),
+                status: "sent",
+              },
+            ];
+          });
+          // It just arrived while the panel is open, so it's being seen now.
+          if (isOpenRef.current) scheduleMarkSeen();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversationId, isOpen, supabase]);
+
+  // Whenever the panel is opened with an active conversation, mark any
+  // already-unseen agent/AI messages as seen (no-op if none).
+  useEffect(() => {
+    if (isAdminRoute || !isOpen || !conversationIdRef.current) return;
+    scheduleMarkSeen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, conversationId, isAdminRoute]);
+
+  // Online presence: as long as a conversation exists and this tab stays
+  // open, track it on the shared "chat-presence" channel (keyed by
+  // conversation id) so the admin inbox can show a live online/offline
+  // dot. Ends automatically when the tab/connection closes.
+  useEffect(() => {
+    if (isAdminRoute || !isOpen || !conversationId) return;
+
+    const channel = supabase.channel("chat-presence", {
+      config: { presence: { key: conversationId } },
+    });
+
+    channel.subscribe(async (status) => {
+      if (status === "SUBSCRIBED") {
+        await channel.track({ online: true });
+      }
+    });
+
+    return () => {
+      channel.untrack();
+      supabase.removeChannel(channel);
+    };
+  }, [isAdminRoute, isOpen, conversationId, supabase]);
+
+  /**
+   * persistMessage — saves one visitor message via the single POST
+   * /api/chat/send call: ensures an anonymous session, then in one
+   * server-side step creates the conversation if needed, links/creates
+   * the contact, and saves the message. Called by sendMessage and by the
+   * retry button on a failed message.
+   */
+  const persistMessage = useCallback(
+    async (localId, text) => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        let activeSession = session;
+        if (!activeSession) {
+          const { data, error } = await supabase.auth.signInAnonymously();
+          if (error) throw error;
+          activeSession = data.session;
+        }
+
+        const res = await fetch("/api/chat/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            accessToken: activeSession.access_token,
+            conversationId: conversationIdRef.current,
+            // Once a contact with an email is on file, there's nothing
+            // left to resolve — skip resending these on every message.
+            name: contactHasEmail ? null : visitorName.trim() || null,
+            email: contactHasEmail ? null : visitorEmail.trim() || null,
+            content: text,
+          }),
+        });
+        if (!res.ok) {
+          const errBody = await res.json().catch(() => ({}));
+          throw new Error(errBody.error || "Could not send message");
+        }
+        const data = await res.json();
+
+        if (!conversationIdRef.current) {
+          conversationIdRef.current = data.conversationId;
+          setConversationId(data.conversationId);
+        }
+        setContactHasEmail(!!data.contactHasEmail);
+
+        setMessages((prev) =>
+          prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
+        );
+
+        if (data.aiPending) {
+          setIsTyping(true);
+          if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+          typingTimeoutRef.current = setTimeout(() => setIsTyping(false), TYPING_TIMEOUT_MS);
+        }
+      } catch (err) {
+        console.error("ChatWidget: failed to save message", err);
+        setIsTyping(false);
+        setMessages((prev) =>
+          prev.map((m) => (m.id === localId ? { ...m, status: "failed" } : m))
+        );
+      }
+    },
+    [supabase, visitorName, visitorEmail, contactHasEmail]
+  );
+
+  /**
+   * sendMessage — single entry point for outgoing visitor messages.
+   * Appends the message locally (optimistic, instant) then hands it to
+   * persistMessage. A simple in-flight lock (not a time-based throttle)
+   * blocks double-clicking send; it's released once persistMessage
+   * settles either way. Keep all message/send logic funneled through
+   * this pair of functions so a future AI/agent pipeline can hook in
+   * cleanly.
+   */
+  const sendMessage = useCallback(
+    (text) => {
+      if (sendLockRef.current || intakePending) return;
+      const trimmed = text.trim().slice(0, MAX_MESSAGE_LENGTH);
+      if (!trimmed) return;
+
+      sendLockRef.current = true;
+      const localId = `visitor-${Date.now()}`;
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: localId,
+          sender: "visitor",
+          text: trimmed,
+          timestamp: new Date(),
+          status: "sent",
+        },
+      ]);
+      setInputValue("");
+
+      persistMessage(localId, trimmed).finally(() => {
+        sendLockRef.current = false;
+      });
+    },
+    [persistMessage, intakePending]
+  );
+
+  function retryMessage(localId, text) {
+    if (sendLockRef.current) return;
+    sendLockRef.current = true;
+    setMessages((prev) =>
+      prev.map((m) => (m.id === localId ? { ...m, status: "sent" } : m))
+    );
+    persistMessage(localId, text).finally(() => {
+      sendLockRef.current = false;
+    });
+  }
+
+  async function submitCustomerCode() {
+    const code = customerCodeInput.trim();
+    if (!code || customerCodeSubmitting) return;
+    setCustomerCodeSubmitting(true);
+    setCustomerCodeFeedback(null);
+    try {
+      const token = await warmAnonymousSession();
+      const res = await fetch("/api/chat/verify-customer-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken: token,
+          conversationId: conversationIdRef.current,
+          code,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        setCustomerCodeFeedback({
+          ok: false,
+          text: data.message || data.error || "That code didn't work. Please try again.",
+        });
+        return;
+      }
+      if (data.conversationId) {
+        conversationIdRef.current = data.conversationId;
+        setConversationId(data.conversationId);
+      }
+      setCustomerCodeVerified(true);
+      setContactHasEmail(!!data.contactHasEmail);
+      setShowCustomerCodeInput(false);
+      setCustomerCodeInput("");
+      setCustomerCodeFeedback({ ok: true, text: data.message });
+      setHasOpenedOnce(true);
+      if (sessionPhase !== "chat") {
+        setSessionPhase("chat");
+        setMessages((prev) => {
+          if (prev.some((m) => m.id === "code-linked")) return prev;
+          return [
+            ...prev,
+            {
+              id: "code-linked",
+              sender: "team",
+              text: data.message,
+              timestamp: new Date(),
+            },
+          ];
+        });
+      }
+    } catch {
+      setCustomerCodeFeedback({ ok: false, text: "Something went wrong. Please try again." });
+    } finally {
+      setCustomerCodeSubmitting(false);
+    }
+  }
+
+  function handleSend() {
+    sendMessage(inputValue);
+    const el = inputRef.current;
+    if (el) {
+      el.style.height = "auto";
+      el.style.overflowY = "hidden";
+    }
+  }
+
+  function handleTextareaKeyDown(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  }
+
+  function handleTextareaInput(e) {
+    const el = e.target;
+    setInputValue(el.value);
+    el.style.height = "auto";
+    el.style.height = Math.min(el.scrollHeight, TEXTAREA_MAX_HEIGHT_PX) + "px";
+    el.style.overflowY = el.scrollHeight > TEXTAREA_MAX_HEIGHT_PX ? "auto" : "hidden";
+  }
+
+  function clearLocalChatSession() {
+    conversationIdRef.current = null;
+    setConversationId(null);
+    setMessages([]);
+    setContactHasEmail(false);
+    setCustomerCodeVerified(false);
+    setShowCustomerCodeInput(false);
+    setCustomerCodeInput("");
+    setCustomerCodeFeedback(null);
+    setInputValue("");
+    setIsTyping(false);
+    setIntakePending(false);
+  }
+
+  function startNewChatIntake() {
+    clearLocalChatSession();
+    setIntakeError("");
+    setEmailHint({ error: null, suggestion: null, suggestedEmail: null });
+    setVisitorName("");
+    setVisitorEmail("");
+    setVisitorPhone("");
+    setSessionPhase("intake");
+    warmAnonymousSession().catch(() => {});
+  }
+
+  async function handleEndChat() {
+    if (!window.confirm("End this chat?")) return;
+    try {
+      const accessToken = await warmAnonymousSession();
+      await fetch("/api/chat/end", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken,
+          conversationId: conversationIdRef.current,
+        }),
+      });
+    } catch (err) {
+      console.error("ChatWidget: failed to end chat", err);
+    }
+    clearLocalChatSession();
+    setSessionPhase("ended");
+  }
+
+  function validateIntakeIdentity() {
+    const name = visitorName.trim();
+    const feedback = getClientEmailFeedback(visitorEmail);
+    setEmailHint(feedback);
+    if (!name) return "Please enter your name.";
+    if (feedback.error) return feedback.error;
+    return null;
+  }
+
+  async function submitLiveIntake() {
+    setIntakeError("");
+    const identityError = validateIntakeIdentity();
+    if (identityError) {
+      setIntakeError(identityError);
+      return;
+    }
+
+    setIntakeSubmitting(true);
+    setIntakeError("");
+    setHasOpenedOnce(true);
+    setContactHasEmail(true);
+    setMessages([
+      {
+        id: "welcome",
+        sender: "team",
+        text: formatWelcomeMessage(visitorName.trim()),
+        timestamp: new Date(),
+      },
+    ]);
+    setSessionPhase("chat");
+    setIntakePending(true);
+
+    try {
+      const accessToken = await warmAnonymousSession();
+      const res = await fetch("/api/chat/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessToken,
+          name: visitorName.trim(),
+          email: getClientEmailFeedback(visitorEmail).normalized || visitorEmail.trim(),
+          phone: visitorPhone.trim() || null,
+          mode: "live",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+
+      if (data.conversationId) {
+        conversationIdRef.current = data.conversationId;
+        setConversationId(data.conversationId);
+      }
+    } catch (err) {
+      setSessionPhase("intake");
+      setMessages([]);
+      setContactHasEmail(false);
+      setIntakeError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setIntakeSubmitting(false);
+      setIntakePending(false);
+    }
+  }
+
+  if (isAdminRoute) return null;
+
+  const showComposer = sessionPhase === "chat" && !intakePending;
+  const showIntro = sessionPhase === "intro" && !restoring;
+  const showIntake = sessionPhase === "intake" && !restoring;
+  const showEnded = sessionPhase === "ended" && !restoring;
+  const showEndChatControl = sessionPhase === "chat" && !intakePending;
+  const showFooterExistingCustomer =
+    !showEnded && !customerCodeVerified && !restoring && !contactHasEmail;
+  const showFooterPrivacy = !showEnded && contactHasEmail && sessionPhase === "chat";
+  const showFooterBar = showComposer || showFooterExistingCustomer || showFooterPrivacy;
+
+  return (
+    <div className={`gcw-root${isOpen ? " gcw-is-open" : ""}`}>
+      <style dangerouslySetInnerHTML={{ __html: GCW_WIDGET_STYLES }} />
 
       <button
         ref={launcherRef}
