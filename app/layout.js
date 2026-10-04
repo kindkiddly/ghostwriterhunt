@@ -44,6 +44,22 @@ export const metadata = {
     template: "%s | GhostWriterHunt",
   },
   description: SITE_DESCRIPTION,
+  icons: {
+    icon: [
+      {
+        url: "/images/gwh-icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/images/gwh-apple-180.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
   openGraph: {
     type: "website",
     siteName: "GhostWriterHunt",
