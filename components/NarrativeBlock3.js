@@ -89,6 +89,57 @@ export default function NarrativeBlock3() {
           transform: translateX(0) scale(1);
         }
 
+        .nb4-platform-list {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: stretch;
+          gap: 10px;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .nb4-platform-list > li {
+          display: flex;
+          min-width: 0;
+        }
+        .nb4-platform-chip {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 42px;
+          box-sizing: border-box;
+          text-align: center;
+          line-height: 1.25;
+        }
+
+        .nb4-mini-stats {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          column-gap: 28px;
+          row-gap: 0;
+          align-items: start;
+          width: 100%;
+          max-width: 440px;
+        }
+        .nb4-mini-stats > div {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          min-width: 0;
+        }
+        .nb4-mini-stats > div p:first-child {
+          min-height: 1.75rem;
+          display: flex;
+          align-items: flex-end;
+        }
+        .nb4-mini-stats > div p:last-child {
+          margin-top: 6px;
+          min-height: 2.75em;
+          line-height: 1.35;
+          max-width: 9.5rem;
+        }
+
         @media (max-width: 768px) {
           .nb4-reveal-left { transform: translateX(-20px); }
           .nb4-reveal-right { transform: translateX(20px); }
@@ -141,20 +192,27 @@ export default function NarrativeBlock3() {
           .nb4-mini-stats {
             display: grid !important;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 12px;
+            column-gap: 12px;
+            row-gap: 0;
             align-items: start;
             width: 100%;
+            max-width: none;
           }
           .nb4-mini-stats > div {
+            align-items: center;
             text-align: center;
             min-width: 0;
           }
-          .nb4-mini-stats p:first-child {
+          .nb4-mini-stats > div p:first-child {
             font-size: 26px !important;
+            justify-content: center;
+            min-height: 1.85rem;
           }
-          .nb4-mini-stats p:last-child {
+          .nb4-mini-stats > div p:last-child {
             font-size: 11px !important;
             line-height: 1.35;
+            max-width: none;
+            min-height: 2.6em;
           }
           .nb4-cta-btn {
             display: flex;
@@ -189,7 +247,7 @@ export default function NarrativeBlock3() {
           </p>
 
           {/* Platform chips */}
-          <ul className="nb4-platform-list mb-9 flex flex-wrap gap-2.5">
+          <ul className="nb4-platform-list mb-9">
             {PLATFORMS.map((platform) => (
               <li key={platform}>
                 <span
@@ -203,7 +261,7 @@ export default function NarrativeBlock3() {
           </ul>
 
           {/* Mini stats */}
-          <div className="nb4-mini-stats mb-0 flex flex-wrap items-start gap-8">
+          <div className="nb4-mini-stats mb-0">
             {STATS.map((stat) => (
               <div key={stat.label}>
                 <p className="font-playfair text-[28px] font-bold leading-none text-[#FFFFFF]">

@@ -265,3 +265,73 @@ body {
     animation: none;
   }
 }
+
+/* Home only — flat white page; no cream side washes or headline glow */
+.gwh-home-page {
+  --color-background: #ffffff;
+  background-color: #ffffff;
+}
+
+.gwh-home-page .gwh-hero-root {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.gwh-home-page .gwh-hero-title-backdrop-feather {
+  display: none !important;
+}
+
+.gwh-home-page .gwh-hero-title-backdrop-scrim {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 48%,
+    rgba(8, 6, 4, 0.08) 58%,
+    rgba(4, 3, 2, 0.2) 100%
+  ) !important;
+}
+
+.gwh-home-page .gwh-hero-title-frame .gwh-hero-h1-line1,
+.gwh-home-page .gwh-hero-title-frame .gwh-hero-h1-line2,
+.gwh-home-page .gwh-hero-title-frame .gwh-hero-h1-line1-center {
+  text-shadow: none !important;
+}
+
+.gwh-home-page .nb1-section-mobile,
+.gwh-home-page .nb2-section-mobile,
+.gwh-home-page .gwh-stats-section {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.gwh-home-page #faq {
+  background-color: #ffffff !important;
+}
+
+.gwh-home-page .cf-section {
+  background: #ffffff !important;
+}
+
+.gwh-home-page .gwh-logo-ticker-fade--left {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.55) 55%,
+    transparent 100%
+  ) !important;
+}
+
+.gwh-home-page .gwh-logo-ticker-fade--right {
+  background: linear-gradient(
+    270deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.55) 55%,
+    transparent 100%
+  ) !important;
+}
+
+.gwh-home-page .gwh-logo-ticker-glass {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+    0 10px 32px rgba(28, 28, 28, 0.06) !important;
+}
