@@ -18,9 +18,9 @@ const PLATFORMS = [
 ];
 
 const STATS = [
-  { number: "5", suffix: "", label: "Major global platforms" },
-  { number: "100", suffix: "%", label: "Rights Yours" },
-  { number: "30", suffix: "", label: "Days to Publish" },
+  { number: "100", suffix: "%", label: "Rights & royalties yours" },
+  { number: "5", suffix: "", label: "Global publishing platforms" },
+  { number: "30", suffix: "", label: "Days to publish" },
 ];
 
 function WhiteGlobeIcon() {

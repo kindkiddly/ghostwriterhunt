@@ -135,13 +135,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'I had an idea for a book but no writing experience whatsoever. GhostWriterHunt transformed my rough notes and voice recordings into a manuscript that left me speechless. Every word sounded like me, only better. The entire process was handled through my project manager and my identity was protected throughout. My book is now published and I could not be prouder.',
-      author: 'Margaret Thompson',
-      book: 'Finding My Way Home',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Your story deserves',
     ctaHeadlineItalic: 'to be told.',
     ctaSubtext: 'Share your vision with us today. Our professional ghostwriters are ready to transform your idea into the book you have always imagined, completely confidential, completely yours.',
@@ -278,13 +271,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'The editing team at GhostWriterHunt transformed my manuscript. They understood exactly what I was trying to say and helped me say it better than I ever could alone. The editorial notes were clear, respectful and genuinely improved every page.',
-      author: 'Prof. Rachel Adams',
-      book: 'The Science of Success',
-      image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Your manuscript deserves',
     ctaHeadlineItalic: 'its finest form.',
     ctaSubtext: 'Book a free consultation and let our editors show you what your manuscript can become.',
@@ -410,13 +396,6 @@ export const services = [
         answer: 'Yes. If you have specific images you want to incorporate we can work with them. We also have access to premium licensed image libraries to source the perfect visual for your cover.'
       }
     ],
-
-    testimonial: {
-      quote: 'The cover GhostWriterHunt designed for my novel stopped me in my tracks the moment I saw it. It captured the mood of my story perfectly. Three readers have told me they picked up my book purely because of the cover, and that is exactly what it should do.',
-      author: 'Isabella Romano',
-      book: 'When Hearts Collide',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
@@ -554,13 +533,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'The interior layout GhostWriterHunt created for my book looked like something from a major publishing house. Every page felt considered and elegant. My readers have commented on how beautifully presented it is, and that makes me incredibly proud.',
-      author: 'Dr. Amanda Clarke',
-      book: 'Leading With Purpose',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Give your readers a book',
     ctaHeadlineItalic: 'they love to hold.',
     ctaSubtext: 'Book a free consultation and let our designers show you what premium interior design looks like.',
@@ -696,13 +668,6 @@ export const services = [
         answer: 'Yes. If you have existing illustrations from another artist or a specific style you want to replicate, our illustrators can analyze and match that style for consistency across your entire book.'
       }
     ],
-
-    testimonial: {
-      quote: 'Priya\'s illustrations for my children\'s book were beyond anything I imagined. The characters felt alive, warm and magical. My daughter, who the book was written for, screamed with joy when she saw herself in the pages. That reaction said everything.',
-      author: 'Linda Chen',
-      book: 'The Little Star',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
@@ -840,13 +805,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'GhostWriterHunt published my book on 5 major global platforms through their 30-day publishing process. I had tried to navigate Amazon KDP myself and spent weeks confused. Their team handled everything, and my book was live globally before I had even fully processed that it was real.',
-      author: 'Thomas Williams',
-      book: 'A Life Remembered',
-      image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Your book belongs',
     ctaHeadlineItalic: 'in the hands of readers.',
     ctaSubtext: 'Book a free publishing consultation and let us take your book to the world.',
@@ -982,13 +940,6 @@ export const services = [
         answer: 'Yes. Our Professional and Complete Publishing Package plans include a professional author website. Exact pages and scope are confirmed in your custom project plan.'
       }
     ],
-
-    testimonial: {
-      quote: 'Before GhostWriterHunt created my author brand I felt invisible online. Now I have a professional presence that genuinely reflects who I am as a writer. My Amazon page looks like I belong there, because the brand they created makes me look like the author I actually am.',
-      author: 'David Harrison',
-      book: 'The Entrepreneur\'s Edge',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Step into your identity',
     ctaHeadlineItalic: 'as a published author.',
@@ -1126,13 +1077,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'Within 6 weeks of GhostWriterHunt running my book marketing campaign, my Amazon ranking jumped from nowhere to the top 10 in my category. The reviews started coming in and the momentum just built and built. My book hit the bestseller list in its first month of proper marketing.',
-      author: 'Kevin O\'Brien',
-      book: 'Shadows at Midnight',
-      image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
     ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
@@ -1264,13 +1208,6 @@ export const services = [
         answer: 'Absolutely. eBooks make exceptionally powerful lead magnets and marketing tools. We can write with that specific purpose in mind, creating content that builds trust and encourages readers to take the next step with you.'
       }
     ],
-
-    testimonial: {
-      quote: 'My eBook has become the most effective lead generation tool in my business. GhostWriterHunt captured exactly what I wanted to say, clearly, compellingly and in a voice that sounds exactly like me. Every week new clients tell me they decided to work with me after reading it.',
-      author: 'Dr. Marcus Chen',
-      book: 'The Science of Success',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Share your expertise with',
     ctaHeadlineItalic: 'the world.',
@@ -1413,13 +1350,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'The children\'s book GhostWriterHunt wrote for my daughter is the most precious thing we own. She asks for it every single night and knows every word by heart. The writer captured her spirit so perfectly that she genuinely believes it was written just for her, because it was.',
-      author: 'Linda Chen',
-      book: 'The Little Star',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Create a story your child',
     ctaHeadlineItalic: 'will never forget.',
     ctaSubtext: 'Book a free consultation and let us write the children\'s book that becomes a family treasure.',
@@ -1556,13 +1486,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'GhostWriterHunt writes all my LinkedIn articles and my website blog. The quality is extraordinary, every piece sounds exactly like me and my engagement has tripled since we started working together. I could not write this well myself even if I had the time.',
-      author: 'Dr. Amanda Clarke',
-      book: 'Leading With Purpose',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Build your authority',
     ctaHeadlineItalic: 'one article at a time.',
     ctaSubtext: 'Book a free consultation and let us create content that establishes you as the trusted expert in your field, professionally researched, expertly written and ready to publish under your name.',
@@ -1693,13 +1616,6 @@ export const services = [
         answer: 'Yes. We have writers who specialize in technical, medical, legal, financial and other specialist fields. You are always matched with a writer who has genuine knowledge of your subject area.'
       }
     ],
-
-    testimonial: {
-      quote: 'My blog has transformed my business. GhostWriterHunt writes four posts a month in my voice and my organic traffic has grown by 340% in eight months. Clients regularly tell me they discovered me through my blog, and that never happened before we started working together.',
-      author: 'James Whitmore',
-      book: 'Shadows at Midnight',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Start the blog that',
     ctaHeadlineItalic: 'builds your readership.',
@@ -1837,13 +1753,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'I thought I had proofread my manuscript thoroughly. GhostWriterHunt found 340 errors I had completely missed. The corrections were delivered quickly, clearly and professionally. My book launched without a single reader complaint about errors, and that confidence is priceless.',
-      author: 'Robert Callahan',
-      book: 'My Father\'s Legacy',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Publish with complete',
     ctaHeadlineItalic: 'confidence.',
     ctaSubtext: 'Book a free consultation and let our proofreaders ensure your manuscript is flawless.',
@@ -1979,13 +1888,6 @@ export const services = [
         answer: 'Digital-only formatting typically takes 5 days. Full print and digital formatting takes 7 days. Rush formatting in 3 days is available for urgent publishing deadlines.'
       }
     ],
-
-    testimonial: {
-      quote: 'I had tried to format my book myself and it was rejected by Amazon three times. GhostWriterHunt formatted it professionally and it was approved first time. They also delivered a beautiful ePub that looked perfect on every device I tested. I wish I had come to them first.',
-      author: 'Jennifer Walsh',
-      book: 'The Power Within',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Get your book formatted',
     ctaHeadlineItalic: 'right the first time.',
@@ -2123,13 +2025,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'My book trailer from GhostWriterHunt has been watched over 12,000 times on YouTube and has driven more pre-orders than any other marketing I have done. It perfectly captures the mood of my thriller in 60 seconds. Every author needs one. I only wish I had done it sooner.',
-      author: 'James Whitmore',
-      book: 'Shadows at Midnight',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Give your book the trailer',
     ctaHeadlineItalic: 'it deserves.',
     ctaSubtext: 'Book a free creative consultation and let us produce a trailer that makes readers want your book immediately.',
@@ -2265,13 +2160,6 @@ export const services = [
         answer: 'Yes, 100%. We produce your audiobook as a work for hire. You retain complete ownership of the finished audiobook, all distribution rights and 100% of your royalties on every platform.'
       }
     ],
-
-    testimonial: {
-      quote: 'My audiobook has opened my work to an entirely new audience. The narrator GhostWriterHunt selected was perfect, her voice brought my memoir to life in a way I never imagined. Listeners have told me the audio version moved them even more deeply than reading it. I could not be more proud.',
-      author: 'Margaret Thompson',
-      book: 'Finding My Way Home',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Let your book be',
     ctaHeadlineItalic: 'heard as well as read.',
@@ -2409,13 +2297,6 @@ export const services = [
       }
     ],
 
-    testimonial: {
-      quote: 'My author website from GhostWriterHunt is the most professional thing I have ever had in my name. It looks like I have a full publishing team behind me. My speaking enquiries have doubled and readers tell me they feel like they know me before they even read the book.',
-      author: 'Sofia Martinez',
-      book: 'When Hearts Collide',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=96&h=96&fit=crop&crop=face'
-    },
-
     ctaHeadline: 'Claim your space on',
     ctaHeadlineItalic: 'the web.',
     ctaSubtext: 'Book a free consultation and let us design the author website your readers deserve.',
@@ -2551,13 +2432,6 @@ export const services = [
         answer: 'Yes, the more you share the better. We will ask you to complete a detailed brief about each book, your target readers and your goals. The richer the information you provide, the more compelling and accurate the copy we produce.'
       }
     ],
-
-    testimonial: {
-      quote: 'Before GhostWriterHunt rewrote my website copy, I was getting traffic but no one was buying. Within a month of launching the new copy my conversion rate tripled. The words finally matched the quality of my books, and readers responded immediately.',
-      author: 'Charles Bennett',
-      book: 'My Father\'s Legacy',
-      image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=face'
-    },
 
     ctaHeadline: 'Make every word on your site',
     ctaHeadlineItalic: 'work for you.',

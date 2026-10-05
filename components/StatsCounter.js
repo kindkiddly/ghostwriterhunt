@@ -9,10 +9,10 @@ import { useEffect } from "react";
  */
 
 const STATS = [
-  { target: 5000, suffix: "+", label: "Books Written" },
-  { target: 50, suffix: "+", label: "Genres Covered" },
-  { target: 98, suffix: "%", label: "Client Satisfaction" },
-  { target: 200, suffix: "+", label: "Professional Writers" },
+  { target: 100, suffix: "%", label: "Rights & royalties yours" },
+  { target: 5, suffix: "", label: "Global publishing platforms" },
+  { target: 30, suffix: "", label: "Days to publish" },
+  { target: 50, suffix: "+", label: "Genres covered" },
 ];
 
 /** Animate a DOM node from 0 → target over `duration` ms (~60fps) */

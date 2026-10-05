@@ -94,7 +94,7 @@ const TAB_CONTENT = {
       "Free consultation before you commit",
       "Dedicated writer matched to your genre",
       "Regular chapter reviews and feedback",
-      "5,000+ books published successfully",
+      "From first draft to published book, all under one roof.",
     ],
   },
 };
@@ -268,8 +268,8 @@ export default function Comparison() {
         </h2>
 
         <p className="gwh-cmp-sub mx-auto mb-[60px] max-w-[600px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          See how GhostWriterHunt compares to the alternatives, and why
-          thousands of authors choose us to bring their book to life.
+          See how GhostWriterHunt compares to the alternatives — your story
+          deserves to be told. Let&apos;s write it together.
         </p>
 
         {/* Comparison tabs */}

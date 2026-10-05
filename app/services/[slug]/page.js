@@ -9,7 +9,6 @@ import ServiceOverview from "@/components/service/ServiceOverview";
 
 const ServiceApproach = dynamic(() => import("@/components/service/ServiceApproach"));
 const ServiceProcess = dynamic(() => import("@/components/service/ServiceProcess"));
-const ServiceTestimonial = dynamic(() => import("@/components/service/ServiceTestimonial"));
 const ServiceFAQ = dynamic(() => import("@/components/service/ServiceFAQ"));
 const ServiceCTA = dynamic(() => import("@/components/service/ServiceCTA"));
 const Footer = dynamic(() => import("@/components/Footer"));
@@ -48,7 +47,6 @@ export default function ServicePage({ params }) {
       <ServiceOverview service={service} imagesOnLeft={imagesOnLeft} />
       <ServiceApproach service={service} />
       <ServiceProcess service={service} />
-      <ServiceTestimonial service={service} />
       <ServiceFAQ service={service} />
       <ServiceCTA service={service} />
       <Footer />

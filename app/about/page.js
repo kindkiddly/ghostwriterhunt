@@ -25,107 +25,25 @@ const STORY_IMAGES = [
 ];
 
 const HERO_PILLS = [
-  "5000+ Books Published",
-  "98% Client Satisfaction",
-  "50+ Professional Writers",
+  "100% Rights & royalties yours",
+  "5 Global publishing platforms",
+  "30 Days to publish",
 ];
 
 const STATS = [
-  { number: "5000", suffix: "+", label: "Books Published" },
-  { number: "50", suffix: "+", label: "Professional Writers" },
-  { number: "98", suffix: "%", label: "Client Satisfaction" },
-  { number: "5", suffix: "", label: "Major global platforms" },
-];
-
-const TEAM = [
-  {
-    name: "A.R",
-    role: "Founder",
-    bio: "Visionary founder with a passion for connecting authors with the perfect words to tell their story.",
-    chip: "Leadership",
-    initials: true,
-  },
-  {
-    name: "Elizabeth Jones",
-    role: "Co-Founder",
-    bio: "Co-founder driving the strategic vision and day-to-day excellence that defines the GhostWriterHunt experience.",
-    chip: "Strategy",
-    photo:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Rachel Thompson",
-    role: "Head of Editorial",
-    bio: "Editorial leader ensuring every manuscript meets the highest standards of craft and quality.",
-    chip: "Editorial",
-    photo:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "James Harrison",
-    role: "Head of Publishing",
-    bio: "Publishing veteran managing our distribution across 5 major global platforms.",
-    chip: "Publishing",
-    photo:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Amanda Foster",
-    role: "Client Success Lead",
-    bio: "Dedicated to ensuring every author has an exceptional experience from first consultation to published book.",
-    chip: "Client Success",
-    photo:
-      "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Thomas Reed",
-    role: "Head of Technology",
-    bio: "Technology architect building the platform that powers seamless author and writer collaboration.",
-    chip: "Technology",
-    photo:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Michael Carter",
-    role: "Creative Director",
-    bio: "Creative director overseeing book cover design, interior layout and illustration across all projects.",
-    chip: "Creative",
-    photo:
-      "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Jennifer Hayes",
-    role: "Marketing Strategist",
-    bio: "Marketing strategist helping authors build their brand and reach the readers they deserve.",
-    chip: "Marketing",
-    photo:
-      "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "Caroline Brooks",
-    role: "Publishing Manager",
-    bio: "Publishing manager coordinating projects from manuscript to global launch with precision and care.",
-    chip: "Operations",
-    photo:
-      "https://images.unsplash.com/photo-1548142813-c348350df52b?w=200&h=200&fit=crop&crop=face",
-  },
-  {
-    name: "David Williams",
-    role: "Senior Project Manager",
-    bio: "Senior project manager ensuring every book project is delivered on time, on brief and beyond expectations.",
-    chip: "Project Management",
-    photo:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
-  },
+  { number: "100", suffix: "%", label: "Rights & royalties yours" },
+  { number: "5", suffix: "", label: "Global publishing platforms" },
+  { number: "30", suffix: "", label: "Days to publish" },
+  { number: "50", suffix: "+", label: "Genres covered" },
 ];
 
 const WHY_BULLETS = [
-  "Top 1% of ghostwriter applicants accepted",
+  "Carefully selected writers who match your voice",
   "Every project protected by full NDA",
   "Your voice captured, not ours",
   "100% of rights and royalties yours",
   "Published on 5 major global platforms",
-  "5000+ books successfully delivered",
+  "From first draft to published book, all under one roof.",
 ];
 
 function ValueIcon({ type, size = 28, color = "#C9A84C" }) {
@@ -556,97 +474,6 @@ const styles = `
     margin: 0;
   }
 
-  /* —— Team (writer-card style) —— */
-  .ab-team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .ab-team-card {
-    background: #FFFFFF;
-    border: 1px solid #E8D5A3;
-    border-radius: 20px;
-    padding: 36px 28px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 24px rgba(201, 168, 76, 0.08);
-    transition: all 0.3s ease;
-  }
-  .ab-team-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 48px rgba(201, 168, 76, 0.16);
-    border-color: #C9A84C;
-  }
-  .ab-team-card:nth-child(9) {
-    grid-column: 2;
-  }
-  .ab-team-card:nth-child(10) {
-    grid-column: 3;
-  }
-  .ab-avatar-ar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #1C1C1C;
-    border: 3px solid #C9A84C;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #C9A84C;
-  }
-  .ab-avatar-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #E8D5A3;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    margin: 0 auto 20px;
-  }
-  .ab-team-name {
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: #1C1C1C;
-    margin: 0 0 4px;
-  }
-  .ab-team-role {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    color: #C9A84C;
-    margin: 0 0 16px;
-  }
-  .ab-team-bio {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: #666666;
-    line-height: 1.7;
-    margin: 0 0 16px;
-  }
-  .ab-team-chip {
-    display: inline-flex;
-    align-items: center;
-    background: #FDF6E3;
-    border: 1px solid #E8D5A3;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    color: #6B7C3A;
-  }
-
   /* —— Why us —— */
   .ab-bullets {
     list-style: none;
@@ -789,13 +616,6 @@ const styles = `
       grid-column: 1 / span 2;
       grid-row: auto;
     }
-    .ab-team-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .ab-team-card:nth-child(9),
-    .ab-team-card:nth-child(10) {
-      grid-column: auto;
-    }
   }
 
   @media (max-width: 768px) {
@@ -870,9 +690,6 @@ const styles = `
     }
     .ab-stat-num {
       font-size: 40px;
-    }
-    .ab-team-grid {
-      grid-template-columns: 1fr;
     }
     .ab-why-img {
       height: 320px;
@@ -978,10 +795,9 @@ export default function AboutPage() {
               and an unwavering commitment to quality.
             </p>
             <p className="ab-body">
-              Today GhostWriterHunt has helped more than 500 authors across
-              every genre and format bring their books to life, from personal
-              memoirs treasured by families to business books that have opened
-              doors, and novels that have found readers around the world.
+              Today GhostWriterHunt helps authors across every genre and format
+              bring their books to life — your story deserves to be told.
+              Let&apos;s write it together.
             </p>
           </div>
           <div className="ab-slide-right">
@@ -1017,8 +833,8 @@ export default function AboutPage() {
               <ValueIcon type="star" size={28} color="#C9A84C" />
               <h3 className="ab-vcard-title">Uncompromising Quality</h3>
               <p className="ab-vcard-desc">
-                We accept only the top 1% of ghostwriter applicants, each one
-                vetted, proven and passionate.
+                Carefully selected writers who match your voice, each one vetted,
+                proven and passionate.
               </p>
             </div>
 
@@ -1064,56 +880,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* —— Section 5: Team —— */}
-      <section className="ab-section-white" id="team">
-        <div className="ab-wrap">
-          <div className="ab-center">
-            <p className="ab-label-olive">THE PEOPLE BEHIND THE PLATFORM</p>
-            <h2 className="ab-h2-center">
-              Meet the team behind <em>GhostWriterHunt.</em>
-            </h2>
-            <p className="ab-sub-center">
-              A passionate team of publishing professionals dedicated to helping
-              authors worldwide share their stories with the world.
-            </p>
-            <p className="ab-sub-center">
-              Our writers and editors combine creative expertise with modern tools, and every page is reviewed by our team.
-            </p>
-          </div>
-          <div className="ab-team-grid">
-            {TEAM.map((member, i) => (
-              <div
-                key={member.name}
-                className="ab-team-card ab-scale-up"
-                data-delay={String(i * 80)}
-              >
-                {member.initials ? (
-                  <div className="ab-avatar-ar" aria-hidden="true">
-                    A.R
-                  </div>
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="ab-avatar-photo"
-                    width={100}
-                    height={100}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )}
-                <h3 className="ab-team-name">{member.name}</h3>
-                <p className="ab-team-role">{member.role}</p>
-                <p className="ab-team-bio">{member.bio}</p>
-                <span className="ab-team-chip">{member.chip}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* —— Section 6: Why Choose Us —— */}
+      {/* —— Section 5: Why Choose Us —— */}
       <section className="ab-section-cream">
         <div className="ab-wrap ab-two-col">
           <div className="ab-slide-left">
@@ -1168,8 +935,7 @@ export default function AboutPage() {
             <em>to be written.</em>
           </h2>
           <p className="ab-cta-sub">
-            Join thousands of authors who trusted GhostWriterHunt to bring their
-            book to life.
+            Your story deserves to be told. Let&apos;s write it together.
           </p>
           <div className="ab-cta-btns">
             <Link href="/#start" className="ab-btn-gold">

@@ -1,7 +1,7 @@
 export const metadata = {
   title: "About Us",
   description:
-    "GhostWriterHunt connects visionary authors with exceptional ghostwriters, editors and publishing professionals, 5000+ books published, 98% client satisfaction and complete confidentiality guaranteed.",
+    "GhostWriterHunt turns your ideas into professionally written, designed and published books, with 100% of the rights and royalties yours.",
 };
 
 export default function AboutLayout({ children }) {

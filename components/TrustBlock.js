@@ -11,10 +11,10 @@ import { useRevealSelector } from "@/lib/useSectionReveal";
  */
 
 const STATS = [
-  { number: "1", suffix: "%", label: "of applicants accepted" },
-  { number: "5,000", suffix: "+", label: "books written" },
-  { number: "98", suffix: "%", label: "client satisfaction rate" },
-  { number: "200", suffix: "+", label: "professional writers" },
+  { number: "100", suffix: "%", label: "Rights & royalties yours" },
+  { number: "5", suffix: "", label: "Global publishing platforms" },
+  { number: "30", suffix: "", label: "Days to publish" },
+  { number: "50", suffix: "+", label: "Genres covered" },
 ];
 
 const CHIPS = [
@@ -303,8 +303,8 @@ export default function TrustBlock() {
 
           <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999] break-words">
             Every ghostwriter on our platform goes through a rigorous vetting
-            process. We accept only the top 1% of applicants, ensuring every
-            author receives nothing short of exceptional.
+            process. Carefully selected writers who match your voice, ensuring
+            every author receives nothing short of exceptional.
           </p>
         </div>
 

@@ -9,7 +9,6 @@ const NarrativeBlock2 = dynamic(() => import("@/components/NarrativeBlock2"));
 const ServicesGrid = dynamic(() => import("@/components/ServicesGrid"));
 const TrustBlock = dynamic(() => import("@/components/TrustBlock"));
 const BookCoversGallery = dynamic(() => import("@/components/BookCoversGallery"));
-const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const Comparison = dynamic(() => import("@/components/Comparison"));
 const Pricing = dynamic(() => import("@/components/Pricing"));
 const NarrativeBlock3 = dynamic(() => import("@/components/NarrativeBlock3"));
@@ -36,7 +35,6 @@ export default function Home() {
       <ServicesGrid />
       <TrustBlock />
       <BookCoversGallery />
-      <Testimonials />
       <Comparison />
       <Pricing />
       <NarrativeBlock3 />

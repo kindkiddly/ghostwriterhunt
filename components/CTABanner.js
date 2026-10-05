@@ -85,9 +85,9 @@ export default function CTABanner() {
           className="cta-reveal mx-auto mb-12 max-w-[560px] font-inter text-[18px] font-normal leading-[1.7] break-words"
           style={{ color: "rgba(255,255,255,0.75)" }}
         >
-          Join 5,000+ authors who trusted GhostWriterHunt to bring their book
-          to life. From first word to global publication, we handle everything
-          so you can focus on your story.
+          Your story deserves to be told. Let&apos;s write it together. From
+          first word to global publication, we handle everything so you can
+          focus on your story.
         </p>
 
         <div

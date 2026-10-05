@@ -14,7 +14,7 @@ const FEATURES = [
   {
     title: "Handpicked Professional Writers",
     description:
-      "Every writer on our platform is vetted, experienced and proven, selected from the top 1% of applicants.",
+      "Every writer on our platform is vetted, experienced and proven — carefully selected writers who match your voice.",
   },
   {
     title: "Your Voice, Perfectly Captured",
@@ -211,13 +211,6 @@ export default function NarrativeBlock1() {
               </li>
             ))}
           </ul>
-
-          <a
-            href="#writers"
-            className="mt-2 inline-block font-inter text-[15px] font-semibold text-[#C9A84C] transition-colors duration-200 hover:text-[#B8960C] hover:underline"
-          >
-            Meet our writers →
-          </a>
         </div>
 
         {/* ——— Right: floating images + stats card ——— */}
@@ -244,10 +237,10 @@ export default function NarrativeBlock1() {
                 </span>
                 <div>
                   <p className="font-playfair text-[16px] font-bold leading-tight text-[#1C1C1C]">
-                    5,000+ Books Written
+                    100% Rights & royalties yours
                   </p>
                   <p className="mt-1 font-inter text-[12px] font-normal text-[#666666]">
-                    by professional ghostwriters
+                    on every published project
                   </p>
                 </div>
               </div>
