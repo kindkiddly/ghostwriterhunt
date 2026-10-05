@@ -694,7 +694,7 @@ export default function AboutPage() {
 
       {/* 1 — Hero */}
       <section className="ab-hero" data-hero>
-        <div className="ab-wrap ab-hero-copy ab-fade-up">
+        <div className="ab-wrap ab-hero-copy ab-fade-up ab-visible">
           <p className="ab-label-gold">OUR STORY</p>
           <h1 className="ab-hero-title">
             Every story deserves to be <em>told beautifully.</em>
@@ -713,7 +713,7 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-        <div className="ab-hero-media ab-scale-up" data-delay="120">
+        <div className="ab-hero-media ab-scale-up ab-visible" data-delay="120">
           <AboutImage
             src="/images/about-us-h1.webp"
             alt="GhostWriterHunt about us — books, writing and publishing"
