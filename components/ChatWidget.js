@@ -4,6 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getClientEmailFeedback } from "@/lib/validation/email";
+import { buildSmsCallConsentFields } from "@/lib/smsCallConsent";
+import SmsCallConsentField from "@/components/SmsCallConsentField";
 
 /**
  * GhostWriterHunt — ChatWidget
@@ -779,6 +781,35 @@ const GCW_WIDGET_STYLES = `
         .gcw-intake-wrap .gcw-email-suggestion {
           margin-top: 6px;
         }
+        .gcw-consent-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 0 2px;
+        }
+        .gcw-consent-checkbox {
+          margin-top: 2px;
+          flex-shrink: 0;
+          width: 16px;
+          height: 16px;
+          accent-color: #C9A84C;
+          cursor: pointer;
+        }
+        .gcw-consent-label {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 1.45;
+          color: #666666;
+          cursor: pointer;
+        }
+        .gcw-consent-link {
+          color: #C9A84C;
+          text-decoration: underline;
+        }
+        .gcw-consent-link:hover {
+          color: #1C1C1C;
+        }
         .gcw-intake-error {
           margin: 0;
           font-family: var(--font-inter), sans-serif;
@@ -880,6 +911,7 @@ export default function ChatWidget({ initialOpen = false }) {
   const [visitorName, setVisitorName] = useState("");
   const [visitorEmail, setVisitorEmail] = useState("");
   const [visitorPhone, setVisitorPhone] = useState("");
+  const [smsCallConsent, setSmsCallConsent] = useState(false);
   const [intakeSubmitting, setIntakeSubmitting] = useState(false);
   const [intakePending, setIntakePending] = useState(false);
   const [intakeError, setIntakeError] = useState("");
@@ -1403,6 +1435,7 @@ export default function ChatWidget({ initialOpen = false }) {
     setVisitorName("");
     setVisitorEmail("");
     setVisitorPhone("");
+    setSmsCallConsent(false);
     setSessionPhase("intake");
     warmAnonymousSession().catch(() => {});
   }
@@ -1469,6 +1502,7 @@ export default function ChatWidget({ initialOpen = false }) {
           email: getClientEmailFeedback(visitorEmail).normalized || visitorEmail.trim(),
           phone: visitorPhone.trim() || null,
           mode: "live",
+          ...buildSmsCallConsentFields(smsCallConsent),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -1646,6 +1680,12 @@ export default function ChatWidget({ initialOpen = false }) {
               </label>
             </div>
             {intakeError ? <p className="gcw-intake-error">{intakeError}</p> : null}
+            <SmsCallConsentField
+              id="gcw-sms-call-consent"
+              checked={smsCallConsent}
+              onChange={setSmsCallConsent}
+              variant="chat"
+            />
             <div className="gcw-intake-actions">
               <button
                 type="button"

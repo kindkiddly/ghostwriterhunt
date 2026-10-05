@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ensureValidEmail } from "@/lib/validation/email.server";
+import {
+  formatSmsCallConsentEmailFields,
+  formatSmsCallConsentNote,
+  parseSmsCallConsentFromBody,
+} from "@/lib/smsCallConsent";
 
 /**
  * GhostWriterHunt — Contact form submission handler
@@ -15,6 +20,8 @@ const FIELD_LABELS = {
   genre: "Book Genre",
   projectType: "Project Type",
   about: "Tell us about your book",
+  smsCallConsent: "Call/SMS consent",
+  consentTimestamp: "Call/SMS consent timestamp",
 };
 
 const REQUIRED_FIELDS = ["fullName", "email", "genre", "projectType", "about"];
@@ -65,7 +72,17 @@ function sanitizeHeaderValue(value) {
  * append this submission to their notes. Never throws — a DB hiccup here
  * must never affect the contact form's existing email-sending response.
  */
-async function saveContactFromForm({ fullName, email, phone, genre, projectType, about }) {
+async function saveContactFromForm({
+  fullName,
+  email,
+  phone,
+  genre,
+  projectType,
+  about,
+  smsCallConsent,
+  consentTimestamp,
+  consentVersion,
+}) {
   try {
     const admin = createAdminClient();
     const trimmedEmail = String(email).trim();
@@ -76,7 +93,12 @@ async function saveContactFromForm({ fullName, email, phone, genre, projectType,
       .eq("email", trimmedEmail)
       .maybeSingle();
 
-    const noteEntry = `[${new Date().toISOString()}] Contact form submission\nGenre: ${genre}\nProject type: ${projectType}\nMessage: ${about}`;
+    const consentNote = formatSmsCallConsentNote({
+      smsCallConsent,
+      consentTimestamp,
+      consentVersion,
+    });
+    const noteEntry = `[${new Date().toISOString()}] Contact form submission\nGenre: ${genre}\nProject type: ${projectType}\nMessage: ${about}\n${consentNote}`;
 
     if (existing) {
       const updatedNotes = existing.notes ? `${existing.notes}\n\n${noteEntry}` : noteEntry;
@@ -143,6 +165,7 @@ export async function POST(request) {
   }
 
   const { fullName, email, phone, genre, projectType, about } = body;
+  const consent = parseSmsCallConsentFromBody(body);
 
   const emailCheck = await ensureValidEmail(email);
   if (emailCheck.error) {
@@ -156,12 +179,13 @@ export async function POST(request) {
     genre,
     projectType,
     about,
+    ...formatSmsCallConsentEmailFields(consent),
   };
 
-  await saveContactFromForm(fields);
+  await saveContactFromForm({ ...fields, ...consent });
 
   const rowsHtml = Object.entries(fields)
-    .filter(([, value]) => value)
+    .filter(([, value]) => value != null && String(value).trim() !== "")
     .map(([key, value]) => {
       const safeValue = escapeHtml(value).replace(/\n/g, "<br />");
       return `<tr>

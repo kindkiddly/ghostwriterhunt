@@ -5,6 +5,8 @@ import { useRevealSelector } from "@/lib/useSectionReveal";
 import { createPortal } from "react-dom";
 import { COUNTRY_CODES, getFlagEmoji } from "@/data/countryCodes";
 import { getClientEmailFeedback } from "@/lib/validation/email";
+import { buildSmsCallConsentFields } from "@/lib/smsCallConsent";
+import SmsCallConsentField from "@/components/SmsCallConsentField";
 
 /**
  * GhostWriterHunt — Contact & Booking Form
@@ -303,6 +305,7 @@ export default function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [emailHint, setEmailHint] = useState({ error: null, suggestion: null, suggestedEmail: null });
+  const [smsCallConsent, setSmsCallConsent] = useState(false);
 
   useRevealSelector(
     ".cf-reveal-left, .cf-reveal-right, .cf-reveal-field",
@@ -340,6 +343,7 @@ export default function ContactForm() {
       email: emailFeedback.normalized || form.email.trim(),
       phone: form.phone.trim() ? `${country.dial} ${form.phone.trim()}` : "",
       companyWebsite,
+      ...buildSmsCallConsentFields(smsCallConsent),
     };
     try {
       const res = await fetch("/api/contact", {
@@ -369,6 +373,7 @@ export default function ContactForm() {
     setError("");
     setSuccess(false);
     setEmailHint({ error: null, suggestion: null, suggestedEmail: null });
+    setSmsCallConsent(false);
   }
 
   return (
@@ -743,6 +748,35 @@ export default function ContactForm() {
           color: #999999;
           text-align: center;
         }
+        .cf-consent-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          margin-bottom: 16px;
+        }
+        .cf-consent-checkbox {
+          margin-top: 3px;
+          flex-shrink: 0;
+          width: 16px;
+          height: 16px;
+          accent-color: #C9A84C;
+          cursor: pointer;
+        }
+        .cf-consent-label {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 1.45;
+          color: #666666;
+          cursor: pointer;
+        }
+        .cf-consent-link {
+          color: #C9A84C;
+          text-decoration: underline;
+        }
+        .cf-consent-link:hover {
+          color: #1C1C1C;
+        }
         .cf-submit {
           width: 100%;
           background: #C9A84C;
@@ -1090,6 +1124,13 @@ export default function ContactForm() {
                       opacity: 0,
                       pointerEvents: "none",
                     }}
+                  />
+
+                  <SmsCallConsentField
+                    id="cf-sms-call-consent"
+                    checked={smsCallConsent}
+                    onChange={setSmsCallConsent}
+                    variant="contact"
                   />
 
                   <button

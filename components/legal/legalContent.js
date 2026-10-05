@@ -28,7 +28,7 @@ const CONTACT_SECTION = `
 export const legalContent = {
   privacy: {
     title: "Privacy Policy",
-    lastUpdated: "September 2026",
+    lastUpdated: "October 2026",
     content: `
 <h2>Introduction</h2>
 <p>GhostWriterHunt ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose and safeguard your information when you visit our website ghostwriterhunt.lumexforge.com and use our professional ghostwriting services. Please read this policy carefully. If you disagree with its terms, please discontinue use of our site.</p>
@@ -63,16 +63,17 @@ export const legalContent = {
   <li>Comply with legal obligations</li>
 </ul>
 <hr />
-<h2>Text Message Communications</h2>
-<p>By providing your phone number and opting in to SMS communications, you agree to receive text messages from GhostWriterHunt related to:</p>
+<h2>Call and Text Message Communications</h2>
+<p>By providing your phone number and checking the consent box on our forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, related to:</p>
 <ol>
+  <li><strong>Inquiry Follow-up</strong>: Information about book-related packages, quotes and follow-up regarding your request.</li>
   <li><strong>Project Updates</strong>: Notifications regarding your book project status, milestones and deliverables.</li>
   <li><strong>Client Support</strong>: Assistance with your project and responses to your inquiries.</li>
   <li><strong>Consultation Reminders</strong>: Reminders about scheduled calls and consultations.</li>
   <li><strong>Account Alerts</strong>: Important alerts regarding your account or project.</li>
   <li><strong>Service Updates</strong>: Information about new services and offerings from GhostWriterHunt.</li>
 </ol>
-<p><strong>To opt out of SMS messages:</strong> Reply STOP to any text message from us, or email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. Message and data rates may apply.</p>
+<p><strong>To opt out:</strong> Reply STOP to any text message to stop all text messages from us, reply HELP for help, or email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. You can also ask us not to call you at any time. Message frequency may vary. Message and data rates may apply. Consent is not a condition of purchase.</p>
 <hr />
 <h2>Information Sharing</h2>
 <p>We do not sell, trade or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
@@ -81,6 +82,7 @@ export const legalContent = {
   <li>When required by law or to protect our legal rights</li>
   <li>With your explicit consent</li>
 </ul>
+<p>Mobile numbers and SMS/call consent collected through our forms are not shared with third parties or affiliates for marketing or promotional purposes.</p>
 <hr />
 <h2>NDA and Confidentiality</h2>
 <p>All client projects are protected by a Non-Disclosure Agreement (NDA). Your book ideas, manuscript content, personal story and project details are completely confidential and will never be disclosed to third parties under any circumstances.</p>
@@ -107,7 +109,7 @@ ${CONTACT_SECTION}
 
   terms: {
     title: "Terms & Conditions",
-    lastUpdated: "",
+    lastUpdated: "October 2026",
     content: `
 <h2>1. Agreement</h2>
 <p>By using this website or placing an order with GhostWriterHunt, you agree to these Terms &amp; Conditions. If you do not agree, please do not use our website or services. You must be of legal age in your location to purchase our services.</p>
@@ -124,6 +126,24 @@ ${CONTACT_SECTION}
 <p>Once your order is paid in full, you own 100% of the rights to the final work. All projects are covered by our confidentiality commitment. We never share your work or identity with anyone.</p>
 <h2>5. Revisions</h2>
 <p>Revisions are included as described in your package. Our Professional and Complete Publishing packages include unlimited revisions. Revision requests must match the original project requirements.</p>
+<h2>6. Payments</h2>
+<p>All prices are shown in US dollars. Orders are confirmed by payment through our secure checkout or a payment link we send you. Custom project amounts are agreed after consultation.</p>
+<h2>7. Refunds and Cancellations</h2>
+<p>Refunds and cancellations are handled according to our <a href="/refund-policy">Refund Policy</a>.</p>
+<h2>8. Timelines and Client Cooperation</h2>
+<p>Project timelines depend on the package and on timely feedback and materials from you. Delays in client feedback may extend delivery dates.</p>
+<h2>9. Calls and Text Messages</h2>
+<p>If you check the consent box on our forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, about your inquiry and project. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/legal">Legal page</a> for details.</p>
+<h2>10. Website Content</h2>
+<p>The GhostWriterHunt name, logo, website design and content belong to GhostWriterHunt and may not be used without written permission.</p>
+<h2>11. Limitation of Liability</h2>
+<p>To the maximum extent permitted by law, GhostWriterHunt is not liable for indirect, incidental or consequential damages. Our total liability for any claim is limited to the amount you paid for the specific order.</p>
+<h2>12. Changes to These Terms</h2>
+<p>We may update these Terms from time to time. The &quot;Last updated&quot; date shows the latest version.</p>
+<h2>13. Governing Law</h2>
+<p>These Terms are governed by the laws of the State of Texas, USA. Disputes will be resolved in the state or federal courts located in Dallas County, Texas.</p>
+<h2>14. Contact</h2>
+<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
 `,
   },
 
@@ -215,7 +235,7 @@ ${CONTACT_SECTION}
 
   legal: {
     title: "Legal",
-    lastUpdated: "September 2026",
+    lastUpdated: "October 2026",
     content: `
 <h2>Legal Information</h2>
 <p>This page provides access to all legal documents governing your use of GhostWriterHunt's website and professional ghostwriting services.</p>
@@ -239,14 +259,15 @@ ${CONTACT_SECTION}
     <p class="legal-doc-desc">How we use cookies and similar tracking technologies on our website.</p>
   </li>
   <li class="legal-doc-item">
-    <a href="/legal#sms-consent" class="legal-doc-link">Text Message Consent Agreement</a>
-    <p class="legal-doc-desc">Your rights and our obligations regarding SMS and text message communications.</p>
+    <a href="/legal#sms-consent" class="legal-doc-link">Call and Text Message Consent Agreement</a>
+    <p class="legal-doc-desc">Your rights and our obligations regarding calls, SMS and text message communications.</p>
   </li>
 </ul>
 <hr />
-<h2 id="sms-consent">Text Message Consent Agreement</h2>
-<p>By providing your phone number and opting in to text message communications, you agree to receive SMS messages from GhostWriterHunt related to the following purposes:</p>
+<h2 id="sms-consent">Call and Text Message Consent Agreement</h2>
+<p>By providing your phone number and checking the consent box on our forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, for the following purposes:</p>
 <ol>
+  <li><strong>Inquiry Follow-up</strong>: Information about book-related packages, quotes, updates and follow-up regarding your request.</li>
   <li><strong>Project Updates</strong>: Notifications regarding the status of your book project, including milestone completions, draft deliveries and revision updates.</li>
   <li><strong>Client Support</strong>: Assistance with your project, responses to your inquiries and resolution of any issues related to your ghostwriting or publishing services.</li>
   <li><strong>Consultation Reminders</strong>: Reminders about upcoming consultation calls, project review meetings and scheduled check-ins with your assigned writer.</li>
@@ -260,9 +281,10 @@ ${CONTACT_SECTION}
   <li><strong>Contact Us</strong>: Email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> and request to be unsubscribed from text message communications.</li>
   <li><strong>Update Preferences</strong>: Contact us directly to update your communication preferences and opt out of receiving text messages.</li>
 </ol>
-<p>Please note that even if you opt out of promotional text messages, you may still receive transactional messages directly related to your active book project.</p>
+<p>Replying STOP stops all text messages from GhostWriterHunt. You will receive one final message confirming your opt-out.</p>
 <p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>
 <p>Message and data rates may apply. Message frequency varies based on your project status and activity.</p>
+<p>Reply HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. Mobile numbers and SMS/call consent are not shared with third parties or affiliates for marketing or promotional purposes.</p>
 <hr />
 ${CONTACT_SECTION}
 `,

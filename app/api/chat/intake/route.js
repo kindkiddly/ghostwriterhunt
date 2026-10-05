@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ensureValidEmail } from "@/lib/validation/email.server";
+import { formatSmsCallConsentNote, parseSmsCallConsentFromBody } from "@/lib/smsCallConsent";
 
 /**
  * GhostWriterHunt — Chat widget intake (before live chat or follow-up-only).
@@ -9,23 +10,33 @@ import { ensureValidEmail } from "@/lib/validation/email.server";
  */
 
 const MAX_MESSAGE_LENGTH = 4000;
-async function resolveOrCreateContact(admin, name, email, phone) {
+async function resolveOrCreateContact(admin, name, email, phone, consentNote) {
   const trimmedEmail = email;
   const trimmedName = name?.trim() || null;
   const trimmedPhone = phone?.trim() || null;
 
   const { data: existing } = await admin
     .from("contacts")
-    .select("id")
+    .select("id, notes")
     .eq("email", trimmedEmail)
     .maybeSingle();
 
+  const notesAppend = consentNote
+    ? `[${new Date().toISOString()}] Chat intake\n${consentNote}`
+    : null;
+
   if (existing?.id) {
+    const updatedNotes = notesAppend
+      ? existing.notes
+        ? `${existing.notes}\n\n${notesAppend}`
+        : notesAppend
+      : existing.notes;
     await admin
       .from("contacts")
       .update({
         name: trimmedName,
         phone: trimmedPhone,
+        ...(notesAppend ? { notes: updatedNotes } : {}),
       })
       .eq("id", existing.id);
     return existing.id;
@@ -38,6 +49,7 @@ async function resolveOrCreateContact(admin, name, email, phone) {
       email: trimmedEmail,
       phone: trimmedPhone,
       source: "chat",
+      notes: notesAppend,
     })
     .select("id")
     .single();
@@ -51,9 +63,23 @@ async function resolveOrCreateContact(admin, name, email, phone) {
       .eq("email", trimmedEmail)
       .maybeSingle();
     if (race?.id) {
+      const { data: raceContact } = await admin
+        .from("contacts")
+        .select("notes")
+        .eq("id", race.id)
+        .maybeSingle();
+      const updatedNotes = notesAppend
+        ? raceContact?.notes
+          ? `${raceContact.notes}\n\n${notesAppend}`
+          : notesAppend
+        : raceContact?.notes;
       await admin
         .from("contacts")
-        .update({ name: trimmedName, phone: trimmedPhone })
+        .update({
+          name: trimmedName,
+          phone: trimmedPhone,
+          ...(notesAppend ? { notes: updatedNotes } : {}),
+        })
         .eq("id", race.id);
       return race.id;
     }
@@ -91,6 +117,8 @@ export async function POST(request) {
     return NextResponse.json({ error: emailCheck.error }, { status: 400 });
   }
   const trimmedEmail = emailCheck.normalized;
+  const consent = parseSmsCallConsentFromBody(body);
+  const consentNote = formatSmsCallConsentNote(consent);
   if (intakeMode === "followup" && !trimmedMessage) {
     return NextResponse.json({ error: "Please enter a message for follow-up" }, { status: 400 });
   }
@@ -106,7 +134,8 @@ export async function POST(request) {
     admin,
     trimmedName,
     trimmedEmail,
-    trimmedPhone || null
+    trimmedPhone || null,
+    consentNote
   );
   if (!contactId) {
     return NextResponse.json({ error: "Could not save contact details" }, { status: 500 });
