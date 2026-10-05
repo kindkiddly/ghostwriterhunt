@@ -231,6 +231,11 @@ export const IMAGE_DIMENSIONS = {
   "/images/manuscript-editing-process-3.webp": { width: 940, height: 560 },
   "/images/manuscript-editing-process-4.webp": { width: 940, height: 560 },
   "/images/manuscript-editing-process-5.webp": { width: 940, height: 560 },
+  "/images/pghostwriter-p1.webp": { width: 1080, height: 480 },
+  "/images/pghostwriter-p2.webp": { width: 801, height: 340 },
+  "/images/pghostwriter-p3.webp": { width: 801, height: 340 },
+  "/images/pghostwriter-p4.webp": { width: 801, height: 340 },
+  "/images/pghostwriter-p5.webp": { width: 801, height: 340 },
 };
 
 const FALLBACK_DIMENSIONS = { width: 800, height: 600 };
