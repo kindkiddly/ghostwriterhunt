@@ -799,8 +799,8 @@ export default function Pricing() {
               alt=""
               aria-hidden="true"
               className="gwh-price-cards-bg"
-              width={1920}
-              height={1081}
+              width={1600}
+              height={901}
               loading="lazy"
               decoding="async"
               fetchPriority="low"

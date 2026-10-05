@@ -4,7 +4,7 @@
  */
 
 export const IMAGE_DIMENSIONS = {
-  "/images/background-cards.webp": { width: 1920, height: 1081 },
+  "/images/background-cards.webp": { width: 1600, height: 901 },
   "/images/background-header.webp": { width: 1920, height: 1081 },
   "/images/childrens-book-hero-bg.webp": { width: 1920, height: 720 },
   "/images/childrens-book-hero-bg-mobile.webp": { width: 1536, height: 576 },
@@ -98,7 +98,6 @@ export const IMAGE_DIMENSIONS = {
   "/images/GhostWriterHunt-logo-white.webp": { width: 400, height: 160 },
   "/images/library-books.webp": { width: 300, height: 350 },
   "/images/modern-office.webp": { width: 800, height: 533 },
-  "/images/office-meeting.webp": { width: 1350, height: 900 },
   "/images/team-collaboration.webp": { width: 467, height: 700 },
   "/images/writing-desk.webp": { width: 400, height: 300 },
   "/images/ghost-writer-2.webp": { width: 1920, height: 1280 },

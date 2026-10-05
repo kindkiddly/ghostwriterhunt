@@ -1,6 +1,7 @@
 "use client";
 
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useMinWidth } from "@/lib/useMinWidth";
 import { getImageDimensions } from "@/data/imageDimensions";
 
 /**
@@ -22,6 +23,7 @@ function splitProcessTitle(title) {
 
 export default function ServiceProcess({ service }) {
   useRevealSelector(".sp-reveal", "sp-visible", [service?.slug]);
+  const isWideViewport = useMinWidth(769);
 
   if (!service?.process?.length) return null;
 
@@ -72,6 +74,19 @@ export default function ServiceProcess({ service }) {
     }
     return "";
   }
+
+  const showMobileIllustrationPackage =
+    usesIllustrationPackageMobile && !isWideViewport;
+  const showInteriorMobileBundle =
+    isInteriorLayout && compactProcessPortraitSrc && !isWideViewport;
+  const showAuthorBrandingMobile = isAuthorBranding && !isWideViewport;
+  const showSplitProcessMobile = usesSplitProcessMobile && !isWideViewport;
+  const showAlternatingDesktop =
+    isWideViewport ||
+    (!usesIllustrationPackageMobile &&
+      !usesSplitProcessMobile &&
+      !(isInteriorLayout && compactProcessPortraitSrc) &&
+      !isAuthorBranding);
 
   return (
     <section
@@ -1572,7 +1587,7 @@ export default function ServiceProcess({ service }) {
         </h2>
 
         <div className="sp-steps">
-          {usesIllustrationPackageMobile ? (
+          {showMobileIllustrationPackage ? (
             <div
               className="sp-illustration-package-mobile sp-reveal"
               data-delay="120"
@@ -1611,7 +1626,7 @@ export default function ServiceProcess({ service }) {
             </div>
           ) : null}
 
-          {isInteriorLayout && compactProcessPortraitSrc ? (
+          {showInteriorMobileBundle ? (
             <div className="sp-interior-mobile-bundle sp-reveal" data-delay="120">
               <div className="sp-interior-mobile-steps">
                 {service.process.map((step) => (
@@ -1643,7 +1658,7 @@ export default function ServiceProcess({ service }) {
             </div>
           ) : null}
 
-          {isAuthorBranding ? (
+          {showAuthorBrandingMobile ? (
             <div
               className="sp-author-branding-mobile-bundle sp-reveal"
               data-delay="120"
@@ -1675,7 +1690,7 @@ export default function ServiceProcess({ service }) {
             </div>
           ) : null}
 
-          {usesSplitProcessMobile ? (
+          {showSplitProcessMobile ? (
             <div
               className="sp-author-website-mobile-bundle sp-reveal"
               data-delay="120"
@@ -1734,6 +1749,7 @@ export default function ServiceProcess({ service }) {
             </div>
           ) : null}
 
+          {showAlternatingDesktop ? (
           <div
             className={
               isInteriorLayout ||
@@ -1797,6 +1813,7 @@ export default function ServiceProcess({ service }) {
             );
           })}
           </div>
+          ) : null}
         </div>
       </div>
     </section>

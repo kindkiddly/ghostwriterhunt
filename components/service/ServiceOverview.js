@@ -1,8 +1,9 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import FloatingImages from "./FloatingImages";
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useMinWidth } from "@/lib/useMinWidth";
 import { getImageDimensions } from "@/data/imageDimensions";
 
 const EBOOK_OVERVIEW_LANDSCAPE = "/images/ebook-writing-mobile.webp";
@@ -47,29 +48,17 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
   const isEbookWriting = service?.slug === "ebook-writing";
   const isIllustrationGraphics = service?.slug === "illustration-graphics";
   const isBookMarketing = service?.slug === "book-marketing";
-  const [isDesktopOverview, setIsDesktopOverview] = useState(true);
-
-  useLayoutEffect(() => {
-    if (!isEbookWriting && !isIllustrationGraphics && !isBookMarketing) {
-      return undefined;
-    }
-
-    const mq = window.matchMedia("(min-width: 769px)");
-    const sync = () => setIsDesktopOverview(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [isEbookWriting, isIllustrationGraphics, isBookMarketing]);
+  const isWideViewport = useMinWidth(769);
 
   const overviewFloatImages = useMemo(() => {
     const imgs = service?.overview?.images ?? [];
-    if (isBookMarketing && isDesktopOverview) {
+    if (isBookMarketing && isWideViewport) {
       return imgs.filter(
         (img) => img.url !== "/images/book-marketing-overview-2.webp"
       );
     }
     return imgs;
-  }, [isBookMarketing, isDesktopOverview, service?.overview?.images]);
+  }, [isBookMarketing, isWideViewport, service?.overview?.images]);
 
   if (!service?.overview) return null;
   const { overview } = service;
@@ -106,9 +95,9 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
 
   const ebookLandscapeDims = getImageDimensions(EBOOK_OVERVIEW_LANDSCAPE);
   const ebookAccentDims = getImageDimensions(EBOOK_OVERVIEW_ACCENT);
-  const useEbookOverviewStack = isEbookWriting && isDesktopOverview;
+  const useEbookOverviewStack = isEbookWriting && isWideViewport;
   const useIllustrationAboutPortrait =
-    isIllustrationGraphics && isDesktopOverview;
+    isIllustrationGraphics && isWideViewport;
   const illustrationPortraitDims = getImageDimensions(ILLUSTRATION_ABOUT_PORTRAIT);
 
   const imageCol = (

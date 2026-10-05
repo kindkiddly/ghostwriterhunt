@@ -8,6 +8,7 @@ import ServiceMobileDualCtaStyles from "./ServiceMobileDualCtaStyles";
 import ServiceDesktopDualCtaStyles from "./ServiceDesktopDualCtaStyles";
 import ServiceHeroLede from "./ServiceHeroLede";
 import { useRevealSelector } from "@/lib/useSectionReveal";
+import { useMinWidth } from "@/lib/useMinWidth";
 import { getImageDimensions } from "@/data/imageDimensions";
 
 import Link from "next/link";
@@ -56,6 +57,7 @@ export default function ServiceHero({ service }) {
     "sh-visible",
     [slug]
   );
+  const isWideViewport = useMinWidth(769);
 
   const [splitHeadlineMode, setSplitHeadlineMode] = useState(
     splitDesktopMobileHeadline ? "unknown" : "desktop"
@@ -144,10 +146,10 @@ export default function ServiceHero({ service }) {
   const isBakedHeroImage = isBlogWriting || isGhostwriting;
   const ghostDesktopTextHero = isGhostwriting;
 
-  const showSplitDesktopHeadline =
-    splitHeadlineMode === "desktop" || splitHeadlineMode === "unknown";
+  const showSplitDesktopHeadline = splitHeadlineMode === "desktop";
   const showSplitMobileHeadline =
     splitHeadlineMode === "mobile" || splitHeadlineMode === "unknown";
+  const floatEager = isWideViewport || !mobilePlainHeroArt;
 
   return (
     <section
@@ -654,7 +656,7 @@ export default function ServiceHero({ service }) {
                 ? " fi-float--book-marketing-hero"
                 : ""
             }`}
-            eager
+            eager={floatEager}
           />
         </div>
       </div>
