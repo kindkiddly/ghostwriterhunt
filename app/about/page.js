@@ -1,34 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Footer from "@/components/Footer";
-import FloatingImages from "@/components/service/FloatingImages";
-
 import Link from "next/link";
 import { useNearViewport } from "@/lib/useNearViewport";
+
 /**
- * GhostWriterHunt — About Us page
- * Navbar comes from root layout (do not duplicate).
+ * GhostWriterHunt — About Us (editorial layout, About-only styles).
  */
-
-const STORY_IMAGES = [
-  {
-    url: "/images/team-collaboration.webp",
-    alt: "Team collaboration",
-    size: "large",
-  },
-  {
-    url: "/images/writing-desk.webp",
-    alt: "Professional writing",
-    size: "medium",
-  },
-];
-
-const HERO_PILLS = [
-  "100% Rights & royalties yours",
-  "5 Global publishing platforms",
-  "30 Days to publish",
-];
 
 const STATS = [
   { number: "100", suffix: "%", label: "Rights & royalties yours" },
@@ -37,128 +17,123 @@ const STATS = [
   { number: "50", suffix: "+", label: "Genres covered" },
 ];
 
-const WHY_BULLETS = [
-  "Carefully selected writers who match your voice",
-  "Every project protected by full NDA",
-  "Your voice captured, not ours",
-  "100% of rights and royalties yours",
-  "Published on 5 major global platforms",
-  "From first draft to published book, all under one roof.",
+const SERVICE_CARDS = [
+  {
+    title: "Writing",
+    description:
+      "Ghostwriting, eBooks, children's books, articles, blogs and website content.",
+    href: "/services/ghostwriting",
+  },
+  {
+    title: "Editing",
+    description: "Manuscript editing and proofreading that sharpen every page.",
+    href: "/services/manuscript-editing",
+  },
+  {
+    title: "Design",
+    description:
+      "Book covers, interior layout, formatting, illustrations and graphics.",
+    href: "/services/book-cover-design",
+  },
+  {
+    title: "Publishing",
+    description: "eBook and audiobook publishing across 5 major global platforms.",
+    href: "/services/ebook-publishing",
+  },
+  {
+    title: "Author Growth",
+    description:
+      "Author branding, book marketing, author websites and video book trailers.",
+    href: "/services/author-branding",
+  },
 ];
 
-function ValueIcon({ type, size = 28, color = "#C9A84C" }) {
-  const common = {
-    width: size,
-    height: size,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: color,
-    strokeWidth: 1.75,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    "aria-hidden": true,
-  };
+const PROCESS_STEPS = [
+  {
+    title: "Consult",
+    description: "We listen to your idea, goals and voice.",
+  },
+  {
+    title: "Write",
+    description: "Your writer brings your story to the page.",
+  },
+  {
+    title: "Edit",
+    description: "Every chapter is refined and polished.",
+  },
+  {
+    title: "Design",
+    description: "Your cover and interior come to life.",
+  },
+  {
+    title: "Publish",
+    description: "Your book goes live on major global platforms.",
+  },
+  {
+    title: "Promote",
+    description: "We help your book find its readers.",
+  },
+];
 
-  switch (type) {
-    case "shield":
-      return (
-        <svg {...common}>
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      );
-    case "star":
-      return (
-        <svg {...common}>
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-      );
-    case "heart":
-      return (
-        <svg {...common}>
-          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-        </svg>
-      );
-    case "globe":
-    default:
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-        </svg>
-      );
-  }
-}
+const VALUES = [
+  {
+    title: "Absolute Confidentiality",
+    description:
+      "Every project is protected by a comprehensive NDA from day one. Your story, ideas and identity stay completely safe with us.",
+  },
+  {
+    title: "Uncompromising Quality",
+    description:
+      "Carefully selected writers who match your voice and genre, and editors who polish every page.",
+  },
+  {
+    title: "Author First, Always",
+    description:
+      "Your vision guides everything. We write in your voice and deliver a book that feels completely and authentically yours.",
+  },
+  {
+    title: "Global Publishing Reach",
+    description:
+      "We publish your book on 5 major global platforms, and you keep 100% of your rights and royalties.",
+  },
+];
 
 const styles = `
   .ab-page {
     width: 100%;
     overflow-x: hidden;
+    background: #FFFFFF;
   }
 
-  /* —— Animations —— */
   .ab-fade-up {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(36px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
   .ab-slide-left {
     opacity: 0;
-    transform: translateX(-60px);
+    transform: translateX(-48px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
   .ab-slide-right {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(48px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    transition-delay: 0.15s;
+    transition-delay: 0.12s;
   }
   .ab-scale-up {
     opacity: 0;
-    transform: scale(0.88);
-    transition: opacity 0.6s ease-out,
-      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .ab-rotate-in {
-    opacity: 0;
-    transform: translateY(30px) rotate(-2deg);
+    transform: scale(0.94);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
   .ab-fade-up.ab-visible,
   .ab-slide-left.ab-visible,
   .ab-slide-right.ab-visible,
-  .ab-scale-up.ab-visible,
-  .ab-rotate-in.ab-visible {
+  .ab-scale-up.ab-visible {
     opacity: 1;
     transform: none;
   }
 
-  /* —— Hero —— */
-  .ab-hero {
-    position: relative;
-    overflow: hidden;
-    background: #1C1C1C;
-    padding: 160px 24px 100px;
-    text-align: center;
-  }
-  .ab-hero-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-      ellipse at 50% 0%,
-      rgba(201, 168, 76, 0.08) 0%,
-      transparent 60%
-    );
-    pointer-events: none;
-  }
-  .ab-hero-inner {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-  }
   .ab-label-gold {
     font-family: var(--font-inter), sans-serif;
     font-weight: 500;
@@ -177,77 +152,132 @@ const styles = `
     text-transform: uppercase;
     margin: 0 0 20px;
   }
+
+  .ab-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .ab-wrap-narrow {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* —— Hero —— */
+  .ab-hero {
+    background: #FAFAF7;
+    padding: 140px 0 0;
+    text-align: center;
+  }
+  .ab-hero-copy {
+    padding-bottom: 56px;
+  }
   .ab-hero-title {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
-    font-size: 64px;
-    color: #FFFFFF;
-    line-height: 1.1;
-    margin: 0 0 24px;
+    font-size: clamp(36px, 5.5vw, 64px);
+    color: #1C1C1C;
+    line-height: 1.08;
+    margin: 0 0 28px;
+    letter-spacing: -0.02em;
   }
   .ab-hero-title em {
     font-style: italic;
     color: #C9A84C;
     font-weight: 700;
   }
-  .ab-hero-sub {
+  .ab-hero-lead {
     font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.75);
-    max-width: 680px;
-    margin: 0 auto 0;
-    line-height: 1.7;
+    color: #666666;
+    line-height: 1.75;
+    max-width: 720px;
+    margin: 0 auto 36px;
   }
-  .ab-pills {
+  .ab-hero-btns {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
+    gap: 14px;
   }
-  .ab-pill {
+  .ab-hero-media {
+    width: 100%;
+    background: #FAFAF7;
+    line-height: 0;
+  }
+  .ab-hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  .ab-btn-gold {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 6px;
     background: #C9A84C;
-    border: 1px solid #C9A84C;
-    border-radius: 100px;
-    padding: 10px 28px;
-    margin: 0 8px;
+    color: #FFFFFF;
     font-family: var(--font-inter), sans-serif;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s ease;
+  }
+  .ab-btn-gold:hover {
+    background: #B8960C;
+  }
+  .ab-btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 6px;
+    background: transparent;
     color: #1C1C1C;
-    letter-spacing: 0.05em;
+    font-family: var(--font-inter), sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid #1C1C1C;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .ab-btn-outline-dark:hover {
+    background: #1C1C1C;
+    color: #FFFFFF;
   }
 
-  /* —— Shared —— */
-  .ab-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  .ab-section-white {
-    background: #FFFFFF;
+  /* —— Editorial split —— */
+  .ab-section {
     padding: 100px 0;
   }
   .ab-section-cream {
     background: #FAFAF7;
-    padding: 100px 0;
   }
-  .ab-two-col {
+  .ab-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 72px;
     align-items: center;
+  }
+  .ab-split-reverse .ab-split-media {
+    order: 2;
+  }
+  .ab-split-reverse .ab-split-copy {
+    order: 1;
   }
   .ab-h2 {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
-    font-size: 44px;
+    font-size: clamp(32px, 4vw, 48px);
     color: #1C1C1C;
-    line-height: 1.15;
-    margin: 0 0 24px;
+    line-height: 1.12;
+    margin: 0 0 28px;
+    letter-spacing: -0.02em;
   }
   .ab-h2 em {
     font-style: italic;
@@ -255,186 +285,158 @@ const styles = `
     font-weight: 700;
   }
   .ab-h2-center {
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 48px;
-    color: #1C1C1C;
-    line-height: 1.15;
     text-align: center;
-    margin: 0 0 16px;
-  }
-  .ab-h2-center em {
-    font-style: italic;
-    color: #C9A84C;
-    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 820px;
   }
   .ab-body {
     font-family: var(--font-inter), sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #666666;
-    line-height: 1.8;
+    line-height: 1.85;
     margin: 0 0 20px;
   }
-  .ab-sub-center {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #666666;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto 60px;
-    line-height: 1.7;
+  .ab-body:last-child {
+    margin-bottom: 0;
   }
-  .ab-center {
-    text-align: center;
+  .ab-media-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #E8D5A3;
   }
-
-  /* —— Values (asymmetric dark) —— */
-  .ab-values {
-    background: #1C1C1C;
-    padding: 100px 0;
-  }
-  .ab-values .ab-label-gold {
-    text-align: center;
-  }
-  .ab-values-title {
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 48px;
-    color: #FFFFFF;
-    line-height: 1.15;
-    text-align: center;
-    margin: 0 0 16px;
-  }
-  .ab-values-title em {
-    font-style: italic;
-    color: #C9A84C;
-    font-weight: 700;
-  }
-  .ab-values-sub {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #999999;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto 60px;
-    line-height: 1.7;
-  }
-  .ab-values-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 0.9fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-    max-width: 1100px;
+  .ab-media-frame-tall {
+    aspect-ratio: 3 / 4;
+    max-width: 480px;
     margin: 0 auto;
   }
-  .ab-vcard-1 {
-    grid-column: 1;
-    grid-row: span 2;
-    background: #C9A84C;
-    border-radius: 24px;
-    padding: 48px 40px;
-    transition: transform 0.3s ease;
+  /* —— Services grid —— */
+  .ab-services-intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
   }
-  .ab-vcard-1:hover {
-    transform: scale(1.02);
+  .ab-services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
   }
-  .ab-vcard-1 .ab-vcard-title {
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: #FFFFFF;
-    margin: 16px 0 12px;
-  }
-  .ab-vcard-1 .ab-vcard-desc {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.8;
-    margin: 0;
-  }
-  .ab-vcard-2 {
-    grid-column: 2;
-    grid-row: 1;
-    background: #2A2A2A;
-    border-radius: 20px;
-    padding: 36px 32px;
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    transition: border-color 0.3s ease;
-  }
-  .ab-vcard-2:hover {
-    border-color: rgba(201, 168, 76, 0.6);
-  }
-  .ab-vcard-3 {
-    grid-column: 3;
-    grid-row: 1;
+  .ab-service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px 22px;
     background: #FFFFFF;
-    border-radius: 20px;
-    padding: 36px 32px;
     border: 1px solid #E8D5A3;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    min-height: 100%;
   }
-  .ab-vcard-3:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  .ab-service-card:hover {
+    border-color: #C9A84C;
+    box-shadow: 0 12px 40px rgba(201, 168, 76, 0.12);
+    transform: translateY(-4px);
   }
-  .ab-vcard-2 .ab-vcard-title,
-  .ab-vcard-4 .ab-vcard-title {
-    font-family: var(--font-playfair), serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    margin: 14px 0 10px;
+  .ab-service-card:focus-visible {
+    outline: 2px solid #C9A84C;
+    outline-offset: 3px;
   }
-  .ab-vcard-2 .ab-vcard-desc,
-  .ab-vcard-4 .ab-vcard-desc {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: #999999;
-    line-height: 1.7;
-    margin: 0;
-  }
-  .ab-vcard-3 .ab-vcard-title {
+  .ab-service-title {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
     font-size: 22px;
     color: #1C1C1C;
-    margin: 14px 0 10px;
-  }
-  .ab-vcard-3 .ab-vcard-desc {
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: #666666;
-    line-height: 1.7;
     margin: 0;
   }
-  .ab-vcard-4 {
-    grid-column: 2 / span 2;
-    grid-row: 2;
-    background: rgba(201, 168, 76, 0.08);
-    border: 1px solid rgba(201, 168, 76, 0.25);
-    border-radius: 20px;
-    padding: 36px 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 32px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  .ab-service-desc {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #666666;
+    margin: 0;
+    flex: 1;
   }
-  .ab-vcard-4:hover {
-    border-color: rgba(201, 168, 76, 0.55);
-    box-shadow: 0 0 24px rgba(201, 168, 76, 0.12);
-  }
-  .ab-vcard-4 .ab-vcard-title {
-    margin-top: 0;
+  .ab-service-link {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #C9A84C;
+    margin-top: auto;
   }
 
-  /* —— Stats —— */
+  /* —— Process —— */
+  .ab-process-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .ab-process-step {
+    padding: 24px 16px 0;
+    border-top: 2px solid #E8D5A3;
+  }
+  .ab-process-step-title {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1C1C1C;
+    margin: 0 0 10px;
+  }
+  .ab-process-step-desc {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #666666;
+    margin: 0;
+  }
+  .ab-process-media {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 10;
+    margin: 64px auto 0;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #E8D5A3;
+  }
+  .ab-process-media img,
+  .ab-media-frame img {
+    object-fit: cover;
+  }
+
+  /* —— Values —— */
+  .ab-values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 48px;
+    margin-top: 56px;
+  }
+  .ab-value-item {
+    padding-top: 24px;
+    border-top: 1px solid #E8D5A3;
+  }
+  .ab-value-title {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1C1C1C;
+    margin: 0 0 12px;
+  }
+  .ab-value-desc {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #666666;
+    margin: 0;
+  }
+
+  /* —— Stats (unchanged band styling) —— */
   .ab-stats {
     background: #1C1C1C;
     padding: 80px 0;
@@ -474,34 +476,14 @@ const styles = `
     margin: 0;
   }
 
-  /* —— Why us —— */
-  .ab-bullets {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .ab-bullet {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    color: #1C1C1C;
-    margin-bottom: 14px;
-  }
-  .ab-check {
+  /* —— Privacy —— */
+  .ab-inline-link {
     color: #C9A84C;
-    font-size: 16px;
-    flex-shrink: 0;
+    text-decoration: underline;
+    font-weight: 500;
   }
-  .ab-why-img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    display: block;
+  .ab-inline-link:hover {
+    color: #1C1C1C;
   }
 
   /* —— CTA —— */
@@ -517,9 +499,9 @@ const styles = `
     background-size: cover;
     background-position: center;
   }
-  /* Photo is requested only once the section nears the viewport */
   .ab-cta:not(.ab-cta--bg-ready) {
     background-image: none;
+    background-color: #1C1C1C;
   }
   .ab-cta-overlay {
     position: absolute;
@@ -534,7 +516,7 @@ const styles = `
   .ab-cta-title {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
-    font-size: 56px;
+    font-size: clamp(32px, 4.5vw, 56px);
     color: #FFFFFF;
     line-height: 1.1;
     margin: 0 0 20px;
@@ -558,24 +540,6 @@ const styles = `
     justify-content: center;
     gap: 16px;
   }
-  .ab-btn-gold {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 40px;
-    border-radius: 6px;
-    background: #C9A84C;
-    color: #FFFFFF;
-    font-family: var(--font-inter), sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    border: none;
-    transition: background 0.2s ease;
-  }
-  .ab-btn-gold:hover {
-    background: #B8960C;
-  }
   .ab-btn-outline {
     display: inline-flex;
     align-items: center;
@@ -596,84 +560,41 @@ const styles = `
     color: #1C1C1C;
   }
 
-  @media (max-width: 1024px) {
-    .ab-values-grid {
-      grid-template-columns: 1fr 1fr;
+  @media (max-width: 1100px) {
+    .ab-services-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .ab-vcard-1 {
-      grid-column: 1 / span 2;
-      grid-row: auto;
-    }
-    .ab-vcard-2 {
-      grid-column: 1;
-      grid-row: auto;
-    }
-    .ab-vcard-3 {
-      grid-column: 2;
-      grid-row: auto;
-    }
-    .ab-vcard-4 {
-      grid-column: 1 / span 2;
-      grid-row: auto;
+    .ab-process-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (max-width: 768px) {
-    .ab-slide-left,
-    .ab-slide-right {
-      transform: translateY(30px);
-    }
     .ab-hero {
-      padding: 120px 20px 72px;
+      padding-top: 120px;
     }
-    .ab-hero-title {
-      font-size: 36px;
-    }
-    .ab-hero-sub {
-      font-size: 16px;
-    }
-    .ab-pill {
-      margin: 0;
-    }
-    .ab-section-white,
-    .ab-section-cream,
-    .ab-values {
+    .ab-section {
       padding: 72px 0;
     }
-    .ab-wrap {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    .ab-two-col {
+    .ab-split,
+    .ab-split-reverse .ab-split-media,
+    .ab-split-reverse .ab-split-copy {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 36px;
+      order: unset;
     }
-    .ab-slide-right {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      overflow: visible;
+    .ab-split-reverse .ab-split-media {
+      order: -1;
     }
-    .ab-h2 {
-      font-size: 32px;
+    .ab-services-grid {
+      grid-template-columns: 1fr;
     }
-    .ab-h2-center,
-    .ab-values-title {
-      font-size: 32px;
+    .ab-process-grid {
+      grid-template-columns: 1fr;
     }
     .ab-values-grid {
       grid-template-columns: 1fr;
-    }
-    .ab-vcard-1,
-    .ab-vcard-2,
-    .ab-vcard-3,
-    .ab-vcard-4 {
-      grid-column: 1;
-    }
-    .ab-vcard-4 {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
+      gap: 28px;
     }
     .ab-stats-row {
       grid-template-columns: 1fr 1fr;
@@ -691,25 +612,61 @@ const styles = `
     .ab-stat-num {
       font-size: 40px;
     }
-    .ab-why-img {
-      height: 320px;
+    .ab-slide-left,
+    .ab-slide-right {
+      transform: translateY(28px);
     }
-    .ab-cta-title {
-      font-size: 36px;
-    }
-    .ab-cta-btns {
+    .ab-cta-btns,
+    .ab-hero-btns {
       flex-direction: column;
       align-items: stretch;
     }
   }
 `;
 
+function AboutImage({
+  src,
+  alt,
+  width,
+  height,
+  fill = false,
+  className = "",
+  priority = false,
+  sizes,
+}) {
+  if (fill) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={className}
+        priority={priority}
+        sizes={sizes}
+        quality={85}
+      />
+    );
+  }
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+      sizes={sizes}
+      quality={85}
+    />
+  );
+}
+
 export default function AboutPage() {
   const [ctaBgRef, ctaBgReady] = useNearViewport();
 
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".ab-fade-up, .ab-slide-left, .ab-slide-right, .ab-scale-up, .ab-rotate-in"
+      ".ab-fade-up, .ab-slide-left, .ab-slide-right, .ab-scale-up"
     );
     const observer = new IntersectionObserver(
       (entries) => {
@@ -723,15 +680,10 @@ export default function AboutPage() {
           }
         });
       },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -50px 0px",
-      }
+      { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
     );
     requestAnimationFrame(() => {
-      elements.forEach((el) => {
-        observer.observe(el);
-      });
+      elements.forEach((el) => observer.observe(el));
     });
     return () => observer.disconnect();
   }, []);
@@ -740,129 +692,180 @@ export default function AboutPage() {
     <main className="ab-page">
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
-      {/* —— Section 1: Hero —— */}
-      <section data-hero className="ab-hero">
-        <div className="ab-hero-glow" aria-hidden="true" />
-        <div className="ab-hero-inner">
-          <div>
-            <p className="ab-label-gold">OUR STORY</p>
-            <h1 className="ab-hero-title">
-              We believe every story
-              <br />
-              <em>deserves to be told.</em>
-            </h1>
-            <p className="ab-hero-sub">
-              GhostWriterHunt was founded with a single belief: that remarkable
-              stories should not go untold simply because their authors need a
-              professional hand to tell them. We exist to bridge that gap,
-              connecting visionary authors with exceptional ghostwriters who
-              bring their stories to life with craft, care and complete
-              confidentiality.
-            </p>
+      {/* 1 — Hero */}
+      <section className="ab-hero" data-hero>
+        <div className="ab-wrap ab-hero-copy ab-fade-up">
+          <p className="ab-label-gold">OUR STORY</p>
+          <h1 className="ab-hero-title">
+            Every story deserves to be <em>told beautifully.</em>
+          </h1>
+          <p className="ab-hero-lead">
+            GhostWriterHunt helps authors, experts and dreamers turn their ideas into
+            professionally written, designed and published books, with complete
+            confidentiality and 100% of the rights and royalties in your name.
+          </p>
+          <div className="ab-hero-btns">
+            <Link href="/#start" className="ab-btn-gold">
+              Start Your Book
+            </Link>
+            <Link href="/#start" className="ab-btn-outline-dark">
+              Book Free Consultation
+            </Link>
           </div>
-          <div className="ab-pills ab-scale-up" data-delay="200">
-            {HERO_PILLS.map((pill) => (
-              <span key={pill} className="ab-pill">
-                {pill}
-              </span>
-            ))}
-          </div>
+        </div>
+        <div className="ab-hero-media ab-scale-up" data-delay="120">
+          <AboutImage
+            src="/images/about-us-h1.webp"
+            alt="GhostWriterHunt about us — books, writing and publishing"
+            width={1942}
+            height={809}
+            className="ab-hero-img"
+            sizes="100vw"
+            priority
+          />
         </div>
       </section>
 
-      {/* —— Section 2: Our Story —— */}
-      <section className="ab-section-white">
-        <div className="ab-wrap ab-two-col">
-          <div className="ab-slide-left">
+      {/* 2 — How we began */}
+      <section className="ab-section">
+        <div className="ab-wrap ab-split">
+          <div className="ab-split-copy ab-slide-left">
             <p className="ab-label-olive">HOW WE BEGAN</p>
             <h2 className="ab-h2">
               Born from a passion for <em>storytelling.</em>
             </h2>
             <p className="ab-body">
-              GhostWriterHunt began in the USA with a simple observation:
-              thousands of people carry extraordinary stories inside them but
-              lack the writing expertise to bring those stories to the page.
-              Business leaders with decades of hard-won wisdom. Families with
-              histories that deserve to be preserved. Visionaries with ideas that
-              could change how people think about the world.
+              GhostWriterHunt began in the USA with a simple observation: countless people
+              carry extraordinary stories inside them but lack the time or writing
+              expertise to bring them to the page. Business leaders with hard-won wisdom.
+              Families with histories worth preserving. Visionaries with ideas that could
+              change how people think.
             </p>
             <p className="ab-body">
-              We assembled a team of the finest professional ghostwriters,
-              editors, designers and publishing specialists, each one vetted,
-              proven and passionate about the art of storytelling. We built a
-              platform where authors receive not just a writing service but a
-              true creative partnership, one built on trust, confidentiality
-              and an unwavering commitment to quality.
+              We built GhostWriterHunt to be more than a writing service: a true creative
+              partnership, built on trust, confidentiality and an unwavering commitment to
+              quality. From your first idea to your published book, every step happens
+              under one roof.
             </p>
             <p className="ab-body">
-              Today GhostWriterHunt helps authors across every genre and format
-              bring their books to life — your story deserves to be told.
-              Let&apos;s write it together.
+              GhostWriterHunt is part of the LumexForge family of products.
             </p>
           </div>
-          <div className="ab-slide-right">
-            <FloatingImages images={STORY_IMAGES} />
+          <div className="ab-split-media ab-slide-right">
+            <div className="ab-media-frame">
+              <AboutImage
+                src="/images/pen-book2.webp"
+                alt="Pen resting on an open notebook manuscript"
+                width={800}
+                height={600}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* —— Section 3: Mission & Values —— */}
-      <section className="ab-values">
+      {/* 3 — What we do */}
+      <section className="ab-section ab-section-cream">
         <div className="ab-wrap">
-          <p className="ab-label-gold">WHAT WE STAND FOR</p>
-          <h2 className="ab-values-title">
-            Our mission and <em>core values.</em>
-          </h2>
-          <p className="ab-values-sub">
-            Everything we do is guided by four principles that have defined
-            GhostWriterHunt from day one.
-          </p>
+          <div className="ab-services-intro ab-fade-up">
+            <p className="ab-label-gold">WHAT WE DO</p>
+            <h2 className="ab-h2 ab-h2-center">
+              Everything your book needs, <em>in one place.</em>
+            </h2>
+          </div>
+          <div className="ab-services-grid">
+            {SERVICE_CARDS.map((card, i) => (
+              <Link
+                key={card.title}
+                href={card.href}
+                className="ab-service-card ab-fade-up"
+                data-delay={String(i * 80)}
+              >
+                <h3 className="ab-service-title">{card.title}</h3>
+                <p className="ab-service-desc">{card.description}</p>
+                <span className="ab-service-link">Explore service →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="ab-values-grid">
-            <div className="ab-vcard-1 ab-rotate-in" data-delay="0">
-              <ValueIcon type="shield" size={32} color="#FFFFFF" />
-              <h3 className="ab-vcard-title">Absolute Confidentiality</h3>
-              <p className="ab-vcard-desc">
-                Every project is protected by a comprehensive NDA from day one.
-                Your story, your ideas and your identity are completely safe
-                with us, always and without exception.
-              </p>
+      {/* 4 — Process */}
+      <section className="ab-section">
+        <div className="ab-wrap">
+          <div className="ab-fade-up ab-wrap-narrow" style={{ padding: 0 }}>
+            <p className="ab-label-olive">HOW IT WORKS</p>
+            <h2 className="ab-h2 ab-h2-center">
+              From idea to <em>published book.</em>
+            </h2>
+          </div>
+          <div className="ab-process-grid">
+            {PROCESS_STEPS.map((step, i) => (
+              <div
+                key={step.title}
+                className="ab-process-step ab-fade-up"
+                data-delay={String(i * 70)}
+              >
+                <h3 className="ab-process-step-title">{step.title}</h3>
+                <p className="ab-process-step-desc">{step.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="ab-process-media ab-scale-up" data-delay="200">
+            <AboutImage
+              src="/images/flipping-book.webp"
+              alt="Pages of a book turning as if being read"
+              width={900}
+              height={900}
+              fill
+              sizes="(max-width: 900px) 100vw, 900px"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 5 — Values */}
+      <section className="ab-section ab-section-cream">
+        <div className="ab-wrap">
+          <div className="ab-split ab-split-reverse">
+            <div className="ab-split-copy ab-slide-left">
+              <p className="ab-label-gold">WHAT WE STAND FOR</p>
+              <h2 className="ab-h2">
+                Our mission and <em>core values.</em>
+              </h2>
+              <div className="ab-values-grid">
+                {VALUES.map((item, i) => (
+                  <div
+                    key={item.title}
+                    className="ab-value-item ab-fade-up"
+                    data-delay={String(i * 90)}
+                  >
+                    <h3 className="ab-value-title">{item.title}</h3>
+                    <p className="ab-value-desc">{item.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <div className="ab-vcard-2 ab-rotate-in" data-delay="100">
-              <ValueIcon type="star" size={28} color="#C9A84C" />
-              <h3 className="ab-vcard-title">Uncompromising Quality</h3>
-              <p className="ab-vcard-desc">
-                Carefully selected writers who match your voice, each one vetted,
-                proven and passionate.
-              </p>
-            </div>
-
-            <div className="ab-vcard-3 ab-rotate-in" data-delay="200">
-              <ValueIcon type="heart" size={28} color="#C9A84C" />
-              <h3 className="ab-vcard-title">Author First Always</h3>
-              <p className="ab-vcard-desc">
-                Your vision guides everything. We write in your voice and
-                deliver a book that feels completely and authentically yours.
-              </p>
-            </div>
-
-            <div className="ab-vcard-4 ab-fade-up" data-delay="300">
-              <ValueIcon type="globe" size={36} color="#C9A84C" />
-              <div>
-                <h3 className="ab-vcard-title">Global Publishing Reach</h3>
-                <p className="ab-vcard-desc">
-                  We publish your book to 5 major global platforms, and you keep
-                  100% of your rights and royalties.
-                </p>
+            <div className="ab-split-media ab-slide-right">
+              <div className="ab-media-frame ab-media-frame-tall">
+                <AboutImage
+                  src="/images/books-fairy-lights.webp"
+                  alt="Stack of books with warm ambient light"
+                  width={600}
+                  height={900}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 480px"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* —— Section 4: Stats —— */}
-      <section className="ab-stats">
+      {/* 6 — Stats promise */}
+      <section className="ab-stats" aria-label="Our promise">
         <div className="ab-stats-row">
           {STATS.map((stat, i) => (
             <div
@@ -880,59 +883,54 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* —— Section 5: Why Choose Us —— */}
-      <section className="ab-section-cream">
-        <div className="ab-wrap ab-two-col">
-          <div className="ab-slide-left">
-            <p className="ab-label-olive">WHY GHOSTWRITERHUNT</p>
+      {/* 7 — Privacy / communication */}
+      <section className="ab-section">
+        <div className="ab-wrap ab-split">
+          <div className="ab-split-copy ab-slide-left">
+            <p className="ab-label-olive">YOUR PRIVACY</p>
             <h2 className="ab-h2">
-              The professional choice for <em>serious authors.</em>
+              Respectful communication, <em>always.</em>
             </h2>
             <p className="ab-body">
-              We are not a marketplace where anyone can sign up and start
-              writing. GhostWriterHunt is a curated platform of proven publishing
-              professionals, each one selected for their expertise, their craft
-              and their commitment to client confidentiality. When you work with
-              us, you work with the best.
+              We only call or text you about your inquiry if you&apos;ve given us permission
+              on our forms, and you can opt out at any time by replying STOP. Your mobile
+              number and consent are never shared with third parties for marketing. Learn
+              more in our{" "}
+              <Link href="/privacy-policy" className="ab-inline-link">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/terms-of-use" className="ab-inline-link">
+                Terms of Use
+              </Link>
+              .
             </p>
-            <ul className="ab-bullets">
-              {WHY_BULLETS.map((item) => (
-                <li key={item} className="ab-bullet">
-                  <span className="ab-check" aria-hidden="true">
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
-          <div className="ab-slide-right">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/modern-office.webp"
-              alt="Professional team"
-              className="ab-why-img"
-              width="800"
-              height="533"
-              loading="lazy"
-              decoding="async"
-            />
+          <div className="ab-split-media ab-slide-right">
+            <div className="ab-media-frame">
+              <AboutImage
+                src="/images/CTA-LIBRARY.webp"
+                alt="Library shelves filled with books"
+                width={1920}
+                height={998}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* —— Section 7: CTA —— */}
+      {/* 8 — CTA */}
       <section
         ref={ctaBgRef}
         className={`ab-cta${ctaBgReady ? " ab-cta--bg-ready" : ""}`}
       >
         <div className="ab-cta-overlay" aria-hidden="true" />
-        <div className="ab-cta-inner ab-fade-up" data-delay="0">
+        <div className="ab-cta-inner ab-fade-up">
           <p className="ab-label-gold">START YOUR JOURNEY</p>
           <h2 className="ab-cta-title">
-            Your story is waiting
-            <br />
-            <em>to be written.</em>
+            Your story is waiting <em>to be written.</em>
           </h2>
           <p className="ab-cta-sub">
             Your story deserves to be told. Let&apos;s write it together.
