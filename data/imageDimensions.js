@@ -227,6 +227,7 @@ export const IMAGE_DIMENSIONS = {
   "/images/HEERO-L12.webp": { width: 900, height: 900 },
   "/images/author-websitedesigning.webp": { width: 1920, height: 1280 },
   "/images/HERO-M06.webp": { width: 400, height: 520 },
+  "/images/HERO-M07.webp": { width: 400, height: 520 },
   "/images/manuscript-editing-process-3.webp": { width: 940, height: 560 },
   "/images/manuscript-editing-process-4.webp": { width: 940, height: 560 },
   "/images/manuscript-editing-process-5.webp": { width: 940, height: 560 },

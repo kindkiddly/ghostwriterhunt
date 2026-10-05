@@ -369,7 +369,7 @@ export const services = [
         number: '01',
         title: 'Brief and Discovery',
         description: 'We learn about your book, genre, target reader and design preferences.',
-        image: '/images/book-cover-design-process-1.webp'
+        image: '/images/author-website-process-1.webp'
       },
       {
         number: '02',
@@ -1622,14 +1622,9 @@ export const services = [
       ],
       images: [
         {
-          url: '/images/blog-writing-overview-1b.webp',
-          alt: 'Writer crafting a post by hand at her desk',
+          url: '/images/HERO-M07.webp',
+          alt: 'Professional blog writing',
           size: 'large'
-        },
-        {
-          url: '/images/blog-writing-overview-2b.webp',
-          alt: 'Writer typing consistently at her laptop',
-          size: 'medium'
         }
       ]
     },
