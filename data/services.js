@@ -307,16 +307,6 @@ export const services = [
         url: '/images/Heero-L03.webp',
         alt: 'Book cover designer at work',
         size: 'large'
-      },
-      {
-        url: '/images/HERO-M03.webp',
-        alt: 'Book cover design detail',
-        size: 'medium'
-      },
-      {
-        url: '/images/library-books.webp',
-        alt: 'Creative design',
-        size: 'small'
       }
     ],
 
@@ -375,13 +365,13 @@ export const services = [
         number: '02',
         title: 'Concept Development',
         description: 'Our designers develop multiple distinct cover concepts for your review.',
-        image: '/images/book-cover-design-process-2.webp'
+        image: '/images/HERO-M03.webp'
       },
       {
         number: '03',
         title: 'Refinement',
         description: 'You select your preferred direction and we refine every detail to perfection.',
-        image: '/images/book-cover-design-process-3.webp'
+        image: '/images/book-cover-design-process-03.webp'
       },
       {
         number: '04',

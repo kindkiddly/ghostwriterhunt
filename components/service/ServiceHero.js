@@ -52,12 +52,12 @@ export default function ServiceHero({ service }) {
   const splitDesktopMobileHeadline =
     slug === "blog-writing" || slug === "childrens-book";
 
+  const isWideViewport = useMinWidth(769);
   useRevealSelector(
     ".sh-reveal-left, .sh-reveal-img",
     "sh-visible",
-    [slug]
+    [slug, isWideViewport]
   );
-  const isWideViewport = useMinWidth(769);
 
   const [splitHeadlineMode, setSplitHeadlineMode] = useState(
     splitDesktopMobileHeadline ? "unknown" : "desktop"
@@ -75,6 +75,7 @@ export default function ServiceHero({ service }) {
   }, [splitDesktopMobileHeadline]);
 
   const isEbookWriting = slug === "ebook-writing";
+  const isBookCoverDesign = slug === "book-cover-design";
   const isBookMarketing = slug === "book-marketing";
   const [isEbookDesktop, setIsEbookDesktop] = useState(true);
   const [isDesktopHero, setIsDesktopHero] = useState(true);
@@ -154,7 +155,7 @@ export default function ServiceHero({ service }) {
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}${isBookMarketing ? " sh-section--book-marketing" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}${isBookMarketing ? " sh-section--book-marketing" : ""}${isBookCoverDesign ? " sh-section--book-cover-design" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -216,6 +217,25 @@ export default function ServiceHero({ service }) {
           }
           .sh-section--plain-headline .sh-hero-lede {
             margin-top: 0;
+          }
+          /* Book cover — line 1 black on one row, line 2 gold below */
+          .sh-section--book-cover-design
+            .gwh-hero-title-frame--plain
+            .gwh-hero-title-frame-h1 {
+            font-size: clamp(34px, 2.85vw, 42px);
+            line-height: 1.1;
+          }
+          .sh-section--book-cover-design
+            .gwh-hero-title-frame--plain
+            .gwh-hero-h1-line1 {
+            display: block;
+            white-space: nowrap;
+          }
+          .sh-section--book-cover-design
+            .gwh-hero-title-frame--plain
+            .gwh-hero-h1-line2 {
+            display: block;
+            margin-top: 4px;
           }
         }
         .sh-ctas {

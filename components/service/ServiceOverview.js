@@ -10,6 +10,8 @@ const EBOOK_OVERVIEW_LANDSCAPE = "/images/ebook-writing-mobile.webp";
 const EBOOK_OVERVIEW_ACCENT = "/images/HEERO-L18.webp";
 const ILLUSTRATION_ABOUT_PORTRAIT =
   "/images/illustration-graphics-about-portrait.webp";
+const AUDIOBOOK_OVERVIEW_DESKTOP =
+  "/images/audiobook-publishing-overview-desktop.webp";
 
 import Link from "next/link";
 /**
@@ -41,14 +43,15 @@ function CheckMark() {
 }
 
 export default function ServiceOverview({ service, imagesOnLeft = false }) {
-  useRevealSelector(".so-reveal-left, .so-reveal-right", "so-visible", [
-    service?.slug,
-  ]);
-
   const isEbookWriting = service?.slug === "ebook-writing";
   const isIllustrationGraphics = service?.slug === "illustration-graphics";
   const isBookMarketing = service?.slug === "book-marketing";
+  const isAudiobookPublishing = service?.slug === "audiobook-publishing";
   const isWideViewport = useMinWidth(769);
+  useRevealSelector(".so-reveal-left, .so-reveal-right", "so-visible", [
+    service?.slug,
+    isWideViewport,
+  ]);
 
   const overviewFloatImages = useMemo(() => {
     const imgs = service?.overview?.images ?? [];
@@ -98,11 +101,14 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
   const useEbookOverviewStack = isEbookWriting && isWideViewport;
   const useIllustrationAboutPortrait =
     isIllustrationGraphics && isWideViewport;
+  const useAudiobookOverviewSingle =
+    isAudiobookPublishing && isWideViewport;
   const illustrationPortraitDims = getImageDimensions(ILLUSTRATION_ABOUT_PORTRAIT);
+  const audiobookOverviewDims = getImageDimensions(AUDIOBOOK_OVERVIEW_DESKTOP);
 
   const imageCol = (
     <div
-      className={`so-images ${imagesOnLeft ? "so-reveal-left" : "so-reveal-right"}${useEbookOverviewStack ? " so-images--ebook-stack" : ""}${useIllustrationAboutPortrait ? " so-images--illustration-portrait" : ""}`}
+      className={`so-images ${imagesOnLeft ? "so-reveal-left" : "so-reveal-right"}${useEbookOverviewStack ? " so-images--ebook-stack" : ""}${useIllustrationAboutPortrait ? " so-images--illustration-portrait" : ""}${useAudiobookOverviewSingle ? " so-images--audiobook-single" : ""}`}
       data-delay={imagesOnLeft ? "0" : "150"}
     >
       {useIllustrationAboutPortrait ? (
@@ -114,6 +120,19 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
             className="so-illustration-about-portrait"
             width={illustrationPortraitDims.width}
             height={illustrationPortraitDims.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : useAudiobookOverviewSingle ? (
+        <div className="so-audiobook-overview-frame">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={AUDIOBOOK_OVERVIEW_DESKTOP}
+            alt="Audiobook publishing and listening"
+            className="so-audiobook-overview-img"
+            width={audiobookOverviewDims.width}
+            height={audiobookOverviewDims.height}
             loading="lazy"
             decoding="async"
           />
@@ -156,7 +175,7 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
 
   return (
     <section
-      className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}${isEbookWriting ? " so-section--ebook-writing" : ""}${isIllustrationGraphics ? " so-section--illustration-graphics" : ""}`}
+      className={`so-section${isGhostwriting ? " so-section--ghostwriting" : ""}${isEbookWriting ? " so-section--ebook-writing" : ""}${isIllustrationGraphics ? " so-section--illustration-graphics" : ""}${isAudiobookPublishing ? " so-section--audiobook-publishing" : ""}`}
       aria-label="About this service"
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -290,6 +309,42 @@ export default function ServiceOverview({ service, imagesOnLeft = false }) {
               0 10px 28px rgba(0, 0, 0, 0.08);
             overflow: hidden;
           }
+          /* Audiobook — desktop About: single landscape image */
+          .so-section--audiobook-publishing .so-inner {
+            align-items: flex-start;
+            gap: 48px;
+          }
+          .so-section--audiobook-publishing .so-text {
+            flex: 1 1 58%;
+            min-width: 0;
+          }
+          .so-section--audiobook-publishing .so-body {
+            max-width: 100%;
+          }
+          .so-section--audiobook-publishing .so-images.so-images--audiobook-single {
+            flex: 0 1 42%;
+            max-width: 520px;
+            min-width: 280px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+          }
+          .so-audiobook-overview-frame {
+            width: 100%;
+            line-height: 0;
+          }
+          .so-audiobook-overview-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            display: block;
+          }
+
           .so-illustration-about-portrait {
             display: block;
             width: auto;
