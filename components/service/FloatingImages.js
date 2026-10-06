@@ -127,8 +127,9 @@ export default function FloatingImages({
 
   // 1 image → centered large
   if (count === 1) {
+    const isGhostHero = slug === "ghostwriting";
     return (
-      <div className={`fi-single ${className}`}>
+      <div className={`fi-single${isGhostHero ? " fi-single--ghostwriting" : ""} ${className}`}>
         <style dangerouslySetInnerHTML={{ __html: `
           .fi-single {
             position: relative;
@@ -146,9 +147,19 @@ export default function FloatingImages({
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
+          .fi-single--ghostwriting .fi-single-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            object-fit: contain;
+            object-position: center top;
+          }
           .fi-single-img:hover {
             transform: scale(1.04);
             box-shadow: 0 24px 70px rgba(0,0,0,0.2);
+          }
+          .fi-single--ghostwriting .fi-single-img:hover {
+            transform: none;
           }
           @media (max-width: 768px) {
             .fi-single-img {
@@ -156,6 +167,11 @@ export default function FloatingImages({
               height: 408px;
               object-fit: cover;
               object-position: center center;
+            }
+            .fi-single--ghostwriting .fi-single-img {
+              width: min(340px, calc(100vw - 64px));
+              height: auto;
+              object-fit: contain;
             }
             .fi-single-img:hover {
               transform: none;

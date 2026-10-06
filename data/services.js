@@ -16,16 +16,6 @@ export const services = [
         url: '/images/Heero-L01.webp',
         alt: 'Professional ghostwriter at desk',
         size: 'large'
-      },
-      {
-        url: '/images/books-stack-pink.webp',
-        alt: 'Open manuscript',
-        size: 'medium'
-      },
-      {
-        url: '/images/HERO-S01.webp',
-        alt: 'Ghostwriting detail',
-        size: 'small'
       }
     ],
 

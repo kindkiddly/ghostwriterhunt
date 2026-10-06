@@ -155,7 +155,7 @@ export default function ServiceHero({ service }) {
   return (
     <section
       data-hero
-      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}${isBookMarketing ? " sh-section--book-marketing" : ""}${isBookCoverDesign ? " sh-section--book-cover-design" : ""}`}
+      className={`sh-section${isBakedHeroImage ? " sh-section--baked-headline" : ""}${isBlogWriting ? " sh-section--blog-baked" : ""}${splitDesktopMobileHeadline ? " sh-section--split-headline" : ""}${isPlainTextHeadline || isGhostwriting ? " sh-section--plain-headline" : ""}${isGhostwriting ? " sh-section--ghostwriting" : ""}${mobilePlainHeroArt ? " sh-section--mobile-plain-art" : ""}${isEbookWriting ? " sh-section--ebook-writing" : ""}${isBookMarketing ? " sh-section--book-marketing" : ""}${isBookCoverDesign ? " sh-section--book-cover-design" : ""}`}
       aria-label={`${service.title} hero`}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -321,6 +321,12 @@ export default function ServiceHero({ service }) {
         @media (min-width: 1024px) {
           .sh-left {
             padding-left: 20px;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .sh-section--ghostwriting .sh-right {
+            padding-top: 0;
           }
         }
 
@@ -670,7 +676,7 @@ export default function ServiceHero({ service }) {
           <FloatingImages
             images={heroFloatImages}
             slug={service.slug}
-            layout={isGhostwriting ? "expanded" : "default"}
+            layout="default"
             className={`fi-float--service-hero${
               isBookMarketing && isDesktopHero
                 ? " fi-float--book-marketing-hero"
