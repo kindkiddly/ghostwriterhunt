@@ -1,14 +1,13 @@
 import Link from "next/link";
 import {
   BUSINESS_ADDRESS,
-  BUSINESS_ADDRESS_MAP_EMBED,
   BUSINESS_PHONE_DISPLAY,
   BUSINESS_PHONE_TEL,
 } from "@/lib/siteAddress";
 
 /**
  * GhostWriterHunt — Footer
- * 3 columns (Brand · Map · Contact) + copyright bar.
+ * Brand + contact + copyright bar.
  */
 
 const EMAIL_SUBTITLE_STYLE = {
@@ -93,33 +92,10 @@ export default function Footer() {
           align-items: flex-start;
           min-width: 0;
         }
-        .gwh-ft-map-col {
-          min-width: 0;
-          display: flex;
-          flex-direction: column;
-        }
         .gwh-ft-contact {
           min-width: 0;
           display: flex;
           flex-direction: column;
-        }
-        .gwh-ft-map {
-          width: 100%;
-          flex: 1 1 auto;
-          min-height: 140px;
-          border: 1px solid #2A2A2A;
-          border-radius: 10px;
-          overflow: hidden;
-          background: #252525;
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-        }
-        .gwh-ft-map iframe {
-          display: block;
-          width: 100%;
-          height: 100%;
-          min-height: 140px;
-          border: 0;
-          filter: saturate(0.75) brightness(0.92) contrast(0.98);
         }
         .gwh-ft-logo-wrap {
           line-height: 0;
@@ -256,29 +232,11 @@ export default function Footer() {
           .gwh-ft-map-contact-row {
             order: 2;
           }
-          .gwh-ft-map-col {
-            order: 1;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-          }
           .gwh-ft-contact {
             order: 2;
             display: flex;
             flex-direction: column;
             width: 100%;
-          }
-          .gwh-ft-map {
-            flex: none;
-            width: 100%;
-            height: 160px;
-            max-width: 100%;
-          }
-          .gwh-ft-map iframe {
-            width: 100%;
-            height: 160px;
-            min-height: 160px;
-            max-height: 160px;
           }
           .gwh-ft-contact-body {
             display: block;
@@ -349,19 +307,6 @@ export default function Footer() {
           </div>
 
           <div className="gwh-ft-map-contact-row">
-            <div className="gwh-ft-map-col">
-              <h3 className="gwh-ft-heading">LOCATION</h3>
-              <div className="gwh-ft-map">
-                <iframe
-                  src={BUSINESS_ADDRESS_MAP_EMBED}
-                  title={`Map showing ${BUSINESS_ADDRESS}`}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-
             <div className="gwh-ft-contact">
               <h3 className="gwh-ft-heading">CONTACT</h3>
               <div className="gwh-ft-contact-body">
