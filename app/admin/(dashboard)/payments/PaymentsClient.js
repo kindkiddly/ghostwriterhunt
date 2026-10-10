@@ -12,9 +12,9 @@ const STATUS_STYLES = {
 };
 
 const FIXED_PACKAGES = [
-  { key: "starter", label: "Starter — $150" },
-  { key: "professional", label: "Professional — $200" },
-  { key: "complete", label: "Complete — $299" },
+  { key: "starter", label: "Starter ($150)" },
+  { key: "professional", label: "Professional ($200)" },
+  { key: "complete", label: "Complete ($299)" },
 ];
 
 const HISTORY_MIN_HEIGHT = 280;

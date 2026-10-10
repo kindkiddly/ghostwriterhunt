@@ -163,7 +163,7 @@ export default function PayPage() {
               rows={4}
               value={paymentNote}
               onChange={(e) => setPaymentNote(e.target.value)}
-              placeholder='e.g. "Editing chapters 1–5 as agreed"'
+              placeholder='e.g. "Editing chapters 1-5 as agreed"'
               className={`${INPUT_CLASS} resize-y min-h-[100px]`}
             />
             <span className="mt-1.5 block text-right font-inter text-[11px] text-[#999999]">

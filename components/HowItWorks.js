@@ -373,7 +373,7 @@ export default function HowItWorks() {
 
           <p className="gwh-hiw-sub mx-auto max-w-[540px] font-inter text-[15px] font-normal leading-[1.65] text-[#c8c8c8] lg:mx-0 lg:mb-0">
             From first idea to published book, GhostWriterHunt guides every step
-            of the journey.
+            of the process.
           </p>
         </div>
 

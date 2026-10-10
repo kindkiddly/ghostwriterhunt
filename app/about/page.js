@@ -716,7 +716,7 @@ export default function AboutPage() {
         <div className="ab-hero-media ab-scale-up ab-visible" data-delay="120">
           <AboutImage
             src="/images/about-us-h1.webp"
-            alt="GhostWriterHunt — books, writing and publishing"
+            alt="GhostWriterHunt: books, writing and publishing"
             width={1942}
             height={809}
             className="ab-hero-img"
@@ -736,7 +736,7 @@ export default function AboutPage() {
             </h2>
             <p className="ab-body">
               GhostWriterHunt began in the USA with a simple observation: countless people
-              carry extraordinary stories inside them but lack the time or writing
+              carry strong stories inside them but lack the time or writing
               expertise to bring them to the page. Business leaders with hard-won wisdom.
               Families with histories worth preserving. Visionaries with ideas that could
               change how people think.
@@ -927,12 +927,13 @@ export default function AboutPage() {
       >
         <div className="ab-cta-overlay" aria-hidden="true" />
         <div className="ab-cta-inner ab-fade-up">
-          <p className="ab-label-gold">START YOUR JOURNEY</p>
+          <p className="ab-label-gold">GET STARTED</p>
           <h2 className="ab-cta-title">
             Your story is waiting <em>to be written.</em>
           </h2>
           <p className="ab-cta-sub">
-            Your story deserves to be told. Let&apos;s write it together.
+            Book a free consultation and the GhostWriterHunt team will help you
+            plan your book.
           </p>
           <div className="ab-cta-btns">
             <Link href="/#start" className="ab-btn-gold">

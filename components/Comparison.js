@@ -268,8 +268,8 @@ export default function Comparison() {
         </h2>
 
         <p className="gwh-cmp-sub mx-auto mb-[60px] max-w-[600px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          See how GhostWriterHunt compares to the alternatives — your story
-          deserves to be told. Let&apos;s write it together.
+          See how GhostWriterHunt compares to the alternatives. Your story
+          deserves a professional team behind it.
         </p>
 
         {/* Comparison tabs */}

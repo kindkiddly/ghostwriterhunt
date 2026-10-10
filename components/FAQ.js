@@ -18,7 +18,7 @@ const FAQ_ITEMS = [
   {
     question: "How long does it take to write a book?",
     answer:
-      "Timelines vary depending on the length and complexity of your book. A short book of 20,000 words typically takes 4-6 weeks. A full length novel or non-fiction book of 60,000+ words takes 8-16 weeks. GhostWriterHunt agrees on a clear timeline before starting and keeps you updated at every milestone.",
+      "Most ghostwriting and publishing projects target about 30 days from kickoff to delivery, depending on book length, scope and how quickly you review each stage. GhostWriterHunt agrees on a clear timeline before starting and keeps you updated at every milestone.",
   },
   {
     question: "Will the book sound like me?",

@@ -65,7 +65,7 @@ const SERVICES = [
     icon: "star",
     title: "Author Branding",
     description:
-      "Professional author bio, website copy, social media presence and brand identity to establish your voice and authority as a published author.",
+      "Professional author bio, website copy, social media presence and brand identity so readers recognize you as a published author.",
   },
   {
     id: "marketing",

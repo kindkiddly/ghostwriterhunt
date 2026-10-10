@@ -8,8 +8,8 @@ export const services = [
     category: 'Writing',
     title: 'Professional Ghostwriting',
     tagline: 'Your story written',
-    taglineItalic: 'flawlessly.',
-    heroSubtext: 'You have a story worth telling. GhostWriterHunt has the professionals to tell it perfectly. Share your vision with GhostWriterHunt. GhostWriterHunt crafts every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
+    taglineItalic: 'in your voice.',
+    heroSubtext: 'You have a story worth telling. Share your vision with GhostWriterHunt and the team will shape it into a publish-ready manuscript in your name, with full ownership of the work.',
     
     heroImages: [
       {
@@ -21,8 +21,8 @@ export const services = [
 
     overview: {
       headline: 'From your idea to a',
-      headlineItalic: 'published masterpiece.',
-      body: 'The world is full of extraordinary stories waiting to be told, business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent. It is having the right professional in your corner. The GhostWriterHunt project team learns your goals, requirements, genre, and preferred voice, then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with the GhostWriterHunt team through written notes, voice recordings, existing drafts or a simple outline, and GhostWriterHunt handles everything from the first word to the final page. Your communication stays securely managed through GhostWriterHunt, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know GhostWriterHunt was involved.',
+      headlineItalic: 'published book.',
+      body: 'Many people have a book in them but not the time or writing background to finish it. The GhostWriterHunt project team learns your goals, genre and preferred voice, then matches you with a professional ghostwriter. You share notes, voice recordings, drafts or an outline, and GhostWriterHunt handles drafting through delivery. Your project manager keeps communication confidential and managed in one place. The finished work is published under your name. GhostWriterHunt stays behind the scenes.',
       bullets: [
         'Submit your vision via GhostWriterHunt\'s secure form, email or voice recording',
         'Handpicked ghostwriter matched by the GhostWriterHunt project team to your genre and style',
@@ -63,7 +63,7 @@ export const services = [
       },
       {
         icon: 'users',
-        title: 'Managed Excellence',
+        title: 'Managed Project Support',
         description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress, with revisions included on GhostWriterHunt\'s Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
       }
     ],
@@ -89,14 +89,14 @@ export const services = [
       },
       {
         number: '04',
-        title: 'Chapter by Chapter Excellence',
+        title: 'Chapter by Chapter Drafts',
         description: 'Writing begins, and so does GhostWriterHunt\'s review process. Every chapter is drafted, internally reviewed by GhostWriterHunt\'s editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before the team moves on, revisions are included with GhostWriterHunt\'s Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
         image: '/images/pghostwriter-p4.webp'
       },
       {
         number: '05',
-        title: 'Your Masterpiece Delivered',
-        description: 'Your completed manuscript arrives within approximately 40 days, a timeline that reflects both GhostWriterHunt\'s commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by GhostWriterHunt\'s permanent confidentiality agreement and ready to be published under your name to the world.',
+        title: 'Manuscript Delivered',
+        description: 'Your completed manuscript typically arrives within about 30 days, depending on scope and how quickly you review each stage. You receive a professionally written manuscript that you own fully, covered by GhostWriterHunt\'s confidentiality agreement and ready to publish under your name.',
         image: '/images/pghostwriter-p5.webp'
       }
     ],
@@ -113,7 +113,7 @@ export const services = [
       },
       {
         question: 'How long does it take to write a book?',
-        answer: 'The minimum project timeline is 40 days. Quick approvals from your side on each completed stage help the GhostWriterHunt team keep moving without delays.'
+        answer: 'The minimum project timeline is 30 days. Quick approvals from your side on each completed stage help the GhostWriterHunt team keep moving without delays.'
       },
       {
         question: 'Do I own the manuscript completely?',
@@ -163,7 +163,7 @@ export const services = [
     overview: {
       headline: 'Every great book deserves',
       headlineItalic: 'a great editor.',
-      body: 'Even the finest writers benefit from a skilled editorial eye. GhostWriterHunt\'s editors work contextually, not just correcting errors but understanding your story, your voice and your reader. From developmental structure to final line edits, the team refines your manuscript until it shines with the clarity and power it deserves.',
+      body: 'Even strong writers benefit from a skilled editorial eye. GhostWriterHunt\'s editors look at structure, voice and clarity, not only grammar. From developmental structure to final line edits, the team refines your manuscript until it reads the way you want.',
       bullets: [
         'Developmental editing, structure and story flow',
         'Line editing, sentence level clarity and style',
@@ -425,7 +425,7 @@ export const services = [
     overview: {
       headline: 'Interior design that makes',
       headlineItalic: 'reading a pleasure.',
-      body: 'Great books are not just well written, they are beautifully presented. The way text sits on a page, the choice of typeface, the spacing of lines and the elegance of chapter headings all shape how a reader experiences your words. GhostWriterHunt\'s layout designers bring the same care and craft to your interior that premium publishers apply to their finest titles.',
+      body: 'Great books read well and look good on the page. Typeface, line spacing and chapter headings all affect how a reader experiences your words. GhostWriterHunt\'s layout designers apply the same care to your interior that premium publishers use on their titles.',
       bullets: [
         'Custom typography selection for your genre',
         'Chapter heading design and styling',
@@ -456,7 +456,7 @@ export const services = [
       },
       {
         icon: 'type',
-        title: 'Typographic Excellence',
+        title: 'Typographic Detail',
         description: 'Font selection, line spacing, margins and hierarchy are all calibrated for maximum readability and visual elegance.'
       },
       {
@@ -1415,7 +1415,7 @@ export const services = [
       {
         icon: 'trending-up',
         title: 'Conversion Focused',
-        description: 'Great articles do not just inform, they guide readers toward action. GhostWriterHunt writes with your conversion goals in mind at every stage.'
+        description: 'Strong articles inform readers and point them toward a next step. GhostWriterHunt writes with your conversion goals in mind at every stage.'
       }
     ],
 
@@ -1516,7 +1516,7 @@ export const services = [
       headlineItalic: 'consistency and craft.',
       body: 'The hardest part of blogging is not writing one great post, it is writing fifty great posts while running a business or pursuing a career. GhostWriterHunt\'s blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently, so your audience always has something valuable to read and your search rankings keep climbing.',
       bullets: [
-        'Flexible post lengths tailored to your content goals',
+        'Flexible post lengths matched to your content goals',
         'SEO-optimized for organic traffic growth',
         'Written in your unique voice and style',
         'Consistent publishing schedule maintained',
@@ -2143,7 +2143,7 @@ export const services = [
       },
       {
         question: 'How long does audiobook production take?',
-        answer: 'Production typically takes 30 to 60 days depending on book length and narrator availability. This includes recording, editing, mastering, your review and platform submission. The team communicates clearly throughout the entire process.'
+        answer: 'Production typically takes about 30 days depending on book length and narrator availability. This includes recording, editing, mastering, your review and platform submission. The team communicates clearly throughout the entire process.'
       },
       {
         question: 'Do I keep my audiobook rights?',
@@ -2226,7 +2226,7 @@ export const services = [
       {
         icon: 'smartphone',
         title: 'Mobile Perfect',
-        description: 'Most readers will discover you on mobile. Your website looks and works flawlessly on every device and screen size.'
+        description: 'Most readers will discover you on mobile. Your website looks and works well on every device and screen size.'
       }
     ],
 
@@ -2267,7 +2267,7 @@ export const services = [
     faqs: [
       {
         question: 'Do I need technical knowledge to manage my website?',
-        answer: 'No. GhostWriterHunt builds your website on a user-friendly platform and provide comprehensive training so you can update your content, add new books and publish blog posts without any technical knowledge.'
+        answer: 'No. GhostWriterHunt builds your website on a user-friendly platform and provides training so you can update your content, add new books and publish blog posts without technical knowledge.'
       },
       {
         question: 'Can I use my existing domain name?',

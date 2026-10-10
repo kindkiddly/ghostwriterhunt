@@ -1271,7 +1271,7 @@ export default function Navbar({ servicesByCategory = {} }) {
                         </button>
                       ))}
                       <MenuLink href="/pay" onClick={closeMobile} className="nav-mobile-svc-link">
-                        Custom Payment — amounts agreed after consultation
+                        Custom Payment: amounts agreed after consultation
                       </MenuLink>
                     </div>
                   </div>

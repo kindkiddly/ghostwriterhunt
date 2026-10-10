@@ -9,7 +9,7 @@ function LoginForm() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(accessDenied ? "Access denied — that account is not an admin." : "");
+  const [error, setError] = useState(accessDenied ? "Access denied. That account is not an admin." : "");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
@@ -33,7 +33,7 @@ function LoginForm() {
 
       window.location.href = "/admin";
     } catch {
-      setError("Network error — please try again.");
+      setError("Network error. Please try again.");
       setLoading(false);
     }
   }

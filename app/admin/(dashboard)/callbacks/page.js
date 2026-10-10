@@ -103,7 +103,7 @@ export default function CallbacksPage() {
         <div>
           <h1 className="font-playfair text-[24px] font-bold text-[var(--color-text)]">Callbacks</h1>
           <p className="mt-1 font-inter text-[13px] text-[#666666]">
-            Visitors who asked to speak with a human representative — call or email them from here.
+            Visitors who asked to speak with a human representative. Call or email them from here.
           </p>
         </div>
         {callbackPendingCount > 0 && (

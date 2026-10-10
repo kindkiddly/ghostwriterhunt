@@ -895,7 +895,7 @@ export default function ContactForm() {
 
             <h2 id="cf-heading" className="cf-headline">
               <span className="cf-headline-line1">Start your book</span>
-              <span className="cf-headline-line2">journey today.</span>
+              <span className="cf-headline-line2">today.</span>
             </h2>
 
             <p className="cf-subtext">

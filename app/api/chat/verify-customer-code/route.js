@@ -153,7 +153,7 @@ export async function POST(request) {
     contactHasEmail: !!contact.email,
     firstName,
     message: firstName
-      ? `Thanks, ${firstName} — your account is linked. You can ask about your project status here.`
-      : "Thanks — your account is linked. You can ask about your project status here.",
+      ? `Thanks, ${firstName}. Your account is linked. You can ask about your project status here.`
+      : "Thanks. Your account is linked. You can ask about your project status here.",
   });
 }

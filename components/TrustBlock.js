@@ -297,14 +297,14 @@ export default function TrustBlock() {
           </p>
 
           <h2 className="mb-5 font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] lg:text-[56px]">
-            <span className="block text-[#FFFFFF]">Only the best writers</span>
-            <span className="block italic text-[#C9A84C]">join the team.</span>
+            <span className="block text-[#FFFFFF]">Experienced writers matched</span>
+            <span className="block italic text-[#C9A84C]">to your genre and voice.</span>
           </h2>
 
           <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999] break-words">
-            Every ghostwriter on the platform goes through a rigorous vetting
-            process. Carefully selected writers who match your voice, so every
-            author receives exceptional work.
+            Every ghostwriter on the platform is vetted before joining. Writers
+            are matched to your voice and genre so you get work that fits your
+            book.
           </p>
         </div>
 

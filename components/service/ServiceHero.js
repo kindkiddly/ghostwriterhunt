@@ -496,14 +496,14 @@ export default function ServiceHero({ service }) {
                 <h1 className="sh-ghost-desktop-h1">
                   <span className="sh-ghost-desktop-h1-line">Your Story,</span>
                   <span className="sh-ghost-desktop-h1-italic">
-                    Written Flawlessly.
+                    Written in Your Voice.
                   </span>
                 </h1>
               </div>
               <div className="sh-headline-wrap sh-ghost-mobile-only sh-mobile-plain-head">
                 <HeroTitleFrame
                   line1="Your story written"
-                  line2="flawlessly."
+                  line2="in your voice."
                   variant="service"
                   titleStyle="plain"
                 />

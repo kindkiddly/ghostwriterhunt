@@ -131,7 +131,7 @@ export default function ContactDetailPage() {
         if (refreshed) setNotesDraft(refreshed.notes || "");
       }
     } catch {
-      setProgressError("Network error — please try again.");
+      setProgressError("Network error. Please try again.");
     } finally {
       setProgressSaving(false);
     }
@@ -194,7 +194,7 @@ export default function ContactDetailPage() {
         if (refreshed) setNotesDraft(refreshed.notes || "");
       }
     } catch {
-      setEmailStatus({ ok: false, message: "Network error — please try again." });
+      setEmailStatus({ ok: false, message: "Network error. Please try again." });
     }
     setEmailSending(false);
   }
@@ -283,7 +283,7 @@ export default function ContactDetailPage() {
                   <option value="">Not set</option>
                   {PROJECT_PROGRESS_OPTIONS.map((o) => (
                     <option key={o.value} value={o.value}>
-                      {o.value}% — {o.label}
+                      {o.value}%: {o.label}
                     </option>
                   ))}
                 </select>
