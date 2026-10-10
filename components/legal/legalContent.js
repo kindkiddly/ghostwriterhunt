@@ -3,7 +3,11 @@
  * Semantic HTML with class hooks styled in LegalDocumentPage.js
  */
 
-import { BUSINESS_ADDRESS } from "@/lib/siteAddress";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE_DISPLAY_LABELED,
+  BUSINESS_PHONE_TEL,
+} from "@/lib/siteAddress";
 
 const CONTACT_SECTION = `
 <div class="legal-contact-section">
@@ -20,6 +24,11 @@ const CONTACT_SECTION = `
       <a href="mailto:support.gwh@lumexforge.com" class="legal-contact-email">support.gwh@lumexforge.com</a>
       <p class="legal-contact-note">Client support &amp; project help</p>
     </div>
+    <div class="legal-contact-card">
+      <p class="legal-contact-label">Phone</p>
+      <a href="${BUSINESS_PHONE_TEL}" class="legal-contact-email">${BUSINESS_PHONE_DISPLAY_LABELED}</a>
+      <p class="legal-contact-note">Customer support line</p>
+    </div>
   </div>
   <p class="legal-contact-location">GhostWriterHunt · ${BUSINESS_ADDRESS}</p>
 </div>
@@ -32,6 +41,7 @@ export const legalContent = {
     content: `
 <h2>Introduction</h2>
 <p>This Privacy Policy explains how GhostWriterHunt collects, uses, shares and protects the information you provide when you visit ghostwriterhunt.lumexforge.com or use GhostWriterHunt's ghostwriting and publishing services. Please read it carefully. If you do not agree with this policy, please do not use the website.</p>
+<p>GhostWriterHunt is a brand owned and operated by LumexForge.</p>
 <hr />
 <h2>Information GhostWriterHunt Collects</h2>
 <h3>Information You Provide Directly</h3>
@@ -116,7 +126,7 @@ ${CONTACT_SECTION}
 <h2>2. Definitions</h2>
 <p><strong>Website</strong> means all pages and content at ghostwriterhunt.lumexforge.com.</p>
 <p><strong>Client, you, your</strong> means the person placing an order, or anyone ordering on their behalf.</p>
-<p><strong>Company</strong> means GhostWriterHunt, based in ${BUSINESS_ADDRESS}.</p>
+<p><strong>Company</strong> means GhostWriterHunt, based in ${BUSINESS_ADDRESS}. GhostWriterHunt is a brand owned and operated by LumexForge.</p>
 <p><strong>Services</strong> means all writing, editing, design, publishing and marketing work GhostWriterHunt provides.</p>
 <p><strong>Order</strong> means any purchase of services, confirmed by payment through secure checkout or a payment link GhostWriterHunt sends you.</p>
 <h2>3. Services</h2>
@@ -143,7 +153,9 @@ ${CONTACT_SECTION}
 <h2>13. Governing Law</h2>
 <p>These Terms are governed by the laws of the State of Texas, USA. Disputes will be resolved in the state or federal courts located in Fort Bend County, Texas.</p>
 <h2>14. Contact</h2>
-<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
+<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a> (customer support line), GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
+<hr />
+${CONTACT_SECTION}
 `,
   },
 
@@ -173,8 +185,7 @@ ${CONTACT_SECTION}
 </ol>
 <h2>Payment Disputes</h2>
 <p>Please contact GhostWriterHunt before opening a dispute with your bank. Most concerns are resolved quickly and directly.</p>
-<h2>Contact</h2>
-<p>Email <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> for any refund request. GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
+${CONTACT_SECTION}
 `,
   },
 
@@ -239,6 +250,8 @@ ${CONTACT_SECTION}
     content: `
 <h2>Legal Information</h2>
 <p>This page provides access to all legal documents governing your use of GhostWriterHunt's website and professional ghostwriting services.</p>
+<h2>About GhostWriterHunt</h2>
+<p>GhostWriterHunt is a brand of LumexForge, an independent technology and creative studio. LumexForge builds and operates a growing family of digital products and services, and GhostWriterHunt is its ghostwriting and book publishing service. The GhostWriterHunt website and services are owned and operated by LumexForge. Learn more at <a href="https://lumexforge.com" target="_blank" rel="noopener noreferrer">lumexforge.com</a>.</p>
 <hr />
 <h2>Legal Documents</h2>
 <ul class="legal-doc-list">

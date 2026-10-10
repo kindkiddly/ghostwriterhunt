@@ -19,44 +19,6 @@ const EMAIL_SUBTITLE_STYLE = {
   color: "#888888",
 };
 
-function SocialIcon({ type }) {
-  const common = {
-    width: 15,
-    height: 15,
-    viewBox: "0 0 24 24",
-    fill: "currentColor",
-    "aria-hidden": true,
-  };
-
-  switch (type) {
-    case "facebook":
-      return (
-        <svg {...common}>
-          <path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9z" />
-        </svg>
-      );
-    case "twitter":
-      return (
-        <svg {...common}>
-          <path d="M18.2 7.1c.7-.4 1.2-1 1.4-1.7-.6.4-1.3.6-2 .8A3.1 3.1 0 0013.5 8c0 .2 0 .5.1.7-2.6-.1-4.9-1.4-6.5-3.3-.3.5-.4 1-.4 1.6 0 1.1.6 2.1 1.4 2.6-.5 0-1-.2-1.4-.4v.1c0 1.5 1.1 2.8 2.5 3.1-.3.1-.5.1-.8.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.2 3 2.3A6.3 6.3 0 015 17.5c1.4.9 3.1 1.4 4.9 1.4 5.9 0 9.1-4.9 9.1-9.1v-.4c.6-.5 1.2-1 1.6-1.7-.6.3-1.2.4-1.8.5z" />
-        </svg>
-      );
-    case "instagram":
-      return (
-        <svg {...common}>
-          <path d="M12 7.2A4.8 4.8 0 1016.8 12 4.8 4.8 0 0012 7.2zm0 7.9A3.1 3.1 0 1115.1 12 3.1 3.1 0 0112 15.1zm6.1-8A1.1 1.1 0 1119.2 6a1.1 1.1 0 01-1.1 1.1zM21.9 8.1a6.4 6.4 0 00-1.7-4.5 6.4 6.4 0 00-4.5-1.7H8.3A6.4 6.4 0 003.8 3.6 6.4 6.4 0 002.1 8.1v7.8a6.4 6.4 0 001.7 4.5 6.4 6.4 0 004.5 1.7h7.4a6.4 6.4 0 004.5-1.7 6.4 6.4 0 001.7-4.5V8.1zm-1.8 7.8a4.6 4.6 0 01-1.2 3.2 4.6 4.6 0 01-3.2 1.2H8.3a4.6 4.6 0 01-3.2-1.2 4.6 4.6 0 01-1.2-3.2V8.1A4.6 4.6 0 015.1 4.9a4.6 4.6 0 013.2-1.2h7.4a4.6 4.6 0 013.2 1.2 4.6 4.6 0 011.2 3.2z" />
-        </svg>
-      );
-    case "linkedin":
-    default:
-      return (
-        <svg {...common}>
-          <path d="M6.5 9.5H3.7V20h2.8V9.5zM5.1 4A1.6 1.6 0 103.5 5.6 1.6 1.6 0 005.1 4zM20.3 13.3c0-2.7-1.4-4-3.4-4a3.1 3.1 0 00-2.8 1.5V9.5h-2.8c0 1.2 0 10.5 0 10.5h2.8v-5.9c0-.3 0-.6.1-.9.3-.6.9-1.3 1.9-1.3 1.3 0 1.9 1 1.9 2.5V20h2.8v-6.7z" />
-        </svg>
-      );
-  }
-}
-
 export default function Footer() {
   return (
     <footer className="gwh-footer" aria-label="Site footer">
@@ -104,28 +66,23 @@ export default function Footer() {
           font-size: 14px;
           color: #888888;
           line-height: 1.7;
-          margin: 16px 0 24px;
+          margin: 16px 0 8px;
         }
-        .gwh-ft-social {
-          display: flex;
-          flex-direction: row;
-          gap: 12px;
-        }
-        .gwh-ft-social-btn {
-          width: 34px;
-          height: 34px;
-          border-radius: 50%;
-          background: #2A2A2A;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .gwh-ft-brand-line {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 400;
+          font-size: 13px;
           color: #888888;
-          text-decoration: none;
-          transition: background 0.2s ease, color 0.2s ease;
+          line-height: 1.6;
+          margin: 0 0 0;
         }
-        .gwh-ft-social-btn:hover {
-          background: #C9A84C;
-          color: #FFFFFF;
+        .gwh-ft-brand-line a {
+          color: #888888;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+        .gwh-ft-brand-line a:hover {
+          color: #C9A84C;
         }
 
         .gwh-ft-heading {
@@ -236,13 +193,14 @@ export default function Footer() {
             box-sizing: border-box;
             margin-top: 20px;
           }
-          .gwh-ft-social {
-            justify-content: center;
-          }
-          .gwh-ft-tagline {
+          .gwh-ft-tagline,
+          .gwh-ft-brand-line {
             max-width: 320px;
             margin-left: auto;
             margin-right: auto;
+          }
+          .gwh-ft-tagline {
+            margin-bottom: 6px;
           }
           .gwh-ft-bottom-inner {
             flex-direction: column;
@@ -276,23 +234,17 @@ export default function Footer() {
               Professional ghostwriting services for authors worldwide. Your
               story. Your voice. Perfectly told.
             </p>
-            <div className="gwh-ft-social">
-              {[
-                { type: "facebook", label: "Facebook", href: "#facebook" },
-                { type: "twitter", label: "Twitter", href: "#twitter" },
-                { type: "instagram", label: "Instagram", href: "#instagram" },
-                { type: "linkedin", label: "LinkedIn", href: "#linkedin" },
-              ].map((social) => (
-                <a
-                  key={social.type}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="gwh-ft-social-btn"
-                >
-                  <SocialIcon type={social.type} />
-                </a>
-              ))}
-            </div>
+            <p className="gwh-ft-brand-line">
+              GhostWriterHunt is a{" "}
+              <a
+                href="https://lumexforge.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LumexForge
+              </a>{" "}
+              brand.
+            </p>
           </div>
 
           <div className="gwh-ft-contact">
