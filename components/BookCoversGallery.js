@@ -220,7 +220,7 @@ export default function BookCoversGallery() {
         <h2 className="gwh-bcg-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
           <span className="block font-normal">Books brought</span>
           <span className="block italic text-[var(--color-accent-gold)]">
-            brought to life.
+            to life.
           </span>
         </h2>
 
