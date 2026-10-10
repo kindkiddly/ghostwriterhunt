@@ -34,6 +34,7 @@ const navServicesByCategory = Object.fromEntries(
 );
 
 const SITE_URL = "https://ghostwriterhunt.lumexforge.com";
+const OG_IMAGE_URL = `${SITE_URL}/images/og-gwh.jpg`;
 const SITE_DESCRIPTION =
   "GhostWriterHunt connects authors with professional ghostwriters, editors and publishers to turn your idea into a professionally published book. Completely confidential, with 100% of the rights and royalties in your name.";
 
@@ -68,10 +69,10 @@ export const metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/images/CTA-AUTHOR.webp",
-        width: 1920,
-        height: 998,
-        alt: "GhostWriterHunt | Professional Ghostwriting Services",
+        url: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: "GhostWriterHunt",
       },
     ],
   },
@@ -79,7 +80,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "GhostWriterHunt | Professional Ghostwriting Services",
     description: SITE_DESCRIPTION,
-    images: ["/images/CTA-AUTHOR.webp"],
+    images: [OG_IMAGE_URL],
   },
   other: {
     "trustpilot-one-time-domain-verification-id":
