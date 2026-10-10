@@ -131,7 +131,7 @@ export default function StatsCounter() {
         <div className="mx-auto max-w-[1100px] px-5 sm:px-6">
           {/* Section label */}
           <p className="mb-3 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)] max-lg:mb-2">
-            Our Impact in Numbers
+            Impact in Numbers
           </p>
 
           {/* Headline — second line italic gold */}

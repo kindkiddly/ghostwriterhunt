@@ -9,7 +9,7 @@ export const services = [
     title: 'Professional Ghostwriting',
     tagline: 'Your story written',
     taglineItalic: 'flawlessly.',
-    heroSubtext: 'You have a story worth telling. We have the professionals to tell it perfectly. Share your vision with us. We craft every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
+    heroSubtext: 'You have a story worth telling. GhostWriterHunt has the professionals to tell it perfectly. Share your vision with GhostWriterHunt. GhostWriterHunt crafts every word, every chapter and every page into a publish-ready masterpiece that carries your name and belongs entirely to you.',
     
     heroImages: [
       {
@@ -22,13 +22,13 @@ export const services = [
     overview: {
       headline: 'From your idea to a',
       headlineItalic: 'published masterpiece.',
-      body: 'The world is full of extraordinary stories waiting to be told, business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent. It is having the right professional in your corner. At GhostWriterHunt, our dedicated project team learns your goals, requirements, genre, and preferred voice, then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with our team through written notes, voice recordings, existing drafts or a simple outline, and we handle everything from the first word to the final page. Your communication stays securely managed through us, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know we were involved.',
+      body: 'The world is full of extraordinary stories waiting to be told, business wisdom earned through decades of hard work, life experiences that could inspire thousands, ideas that deserve to reach a global audience. What separates the stories that get told from the ones that never make it is not talent. It is having the right professional in your corner. The GhostWriterHunt project team learns your goals, requirements, genre, and preferred voice, then personally matches you with a professional ghostwriter who becomes the invisible architect of your book. You share your vision with the GhostWriterHunt team through written notes, voice recordings, existing drafts or a simple outline, and GhostWriterHunt handles everything from the first word to the final page. Your communication stays securely managed through GhostWriterHunt, so you receive a seamless, confidential experience from start to finish. Professionally written, expertly crafted and delivered entirely under your name. Nobody will ever know GhostWriterHunt was involved.',
       bullets: [
-        'Submit your vision via our secure form, email or voice recording',
-        'Handpicked ghostwriter matched by our project team to your genre and style',
+        'Submit your vision via GhostWriterHunt\'s secure form, email or voice recording',
+        'Handpicked ghostwriter matched by the GhostWriterHunt project team to your genre and style',
         'Full NDA signed and enforced from day one',
         'Your project manager handles all communication, complete anonymity maintained',
-        'Unlimited revisions with our Professional and Complete Publishing packages',
+        'Unlimited revisions with GhostWriterHunt\'s Professional and Complete Publishing packages',
         '100% ownership, your name, your rights, your royalties'
       ],
       images: [
@@ -54,17 +54,17 @@ export const services = [
       {
         icon: 'shield',
         title: 'Secure Idea Submission',
-        description: 'Share your vision through our secure platform, written notes, voice recordings, audio files, existing drafts or a simple outline. Whatever format works for you, we work with it.'
+        description: 'Share your vision through GhostWriterHunt\'s secure platform, written notes, voice recordings, audio files, existing drafts or a simple outline. Whatever format works for you, GhostWriterHunt works with it.'
       },
       {
         icon: 'pen',
         title: 'Professional Voice Crafting',
-        description: 'Our project team consolidates every detail of your submission so your matched ghostwriter can capture your unique tone, style and perspective, creating a personal voice guide before writing a single word.'
+        description: 'The GhostWriterHunt project team consolidates every detail of your submission so your matched ghostwriter can capture your unique tone, style and perspective, creating a personal voice guide before writing a single word.'
       },
       {
         icon: 'users',
         title: 'Managed Excellence',
-        description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress, with revisions included on our Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
+        description: 'Your dedicated project manager handles all communication and coordination. You review chapters and approve progress, with revisions included on GhostWriterHunt\'s Professional and Complete Publishing packages and complete confidentiality maintained throughout.'
       }
     ],
 
@@ -72,31 +72,31 @@ export const services = [
       {
         number: '01',
         title: 'Share Your Vision',
-        description: 'Tell us about your book through our secure contact form or email. Submit whatever you have, a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, we have the professionals to tell it.',
+        description: 'Tell the GhostWriterHunt team about your book through GhostWriterHunt\'s secure contact form or email. Submit whatever you have, a detailed outline, rough notes, voice recordings, audio files or simply a powerful idea. There are no prerequisites. If you have a story worth telling, GhostWriterHunt has the professionals to tell it.',
         image: '/images/pghostwriter-p1.webp'
       },
       {
         number: '02',
         title: 'Expert Matching',
-        description: 'Our team reviews your submission with care and precision. We analyze your genre, your audience, your tone and your goals, then handpick the ghostwriter from our vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
+        description: 'The GhostWriterHunt team reviews your submission with care and precision. The team analyzes your genre, your audience, your tone and your goals, then handpick the ghostwriter from GhostWriterHunt\'s vetted roster whose expertise and style are the perfect fit for your project. You never interact with your writer directly. Your dedicated project manager is your single point of contact throughout.',
         image: '/images/pghostwriter-p2.webp'
       },
       {
         number: '03',
         title: 'Voice Crafting',
-        description: 'Before a single word of your manuscript is written, our team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide, the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
+        description: 'Before a single word of your manuscript is written, the GhostWriterHunt team distills everything you have shared into a detailed voice brief for your matched ghostwriter. Your natural communication style, personality, perspective and vision become a personal voice guide, the blueprint that ensures your book sounds unmistakably like you, not like a ghostwriter.',
         image: '/images/pghostwriter-p3.webp'
       },
       {
         number: '04',
         title: 'Chapter by Chapter Excellence',
-        description: 'Writing begins, and so does our review process. Every chapter is drafted, internally reviewed by our editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before we move on, revisions are included with our Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
+        description: 'Writing begins, and so does GhostWriterHunt\'s review process. Every chapter is drafted, internally reviewed by GhostWriterHunt\'s editorial team and then delivered to you for approval through your project manager. You review and approve each chapter before the team moves on, revisions are included with GhostWriterHunt\'s Professional and Complete Publishing packages. No chapter progresses without your sign-off.',
         image: '/images/pghostwriter-p4.webp'
       },
       {
         number: '05',
         title: 'Your Masterpiece Delivered',
-        description: 'Your completed manuscript arrives within approximately 40 days, a timeline that reflects both our commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by our permanent confidentiality agreement and ready to be published under your name to the world.',
+        description: 'Your completed manuscript arrives within approximately 40 days, a timeline that reflects both GhostWriterHunt\'s commitment to quality and your responsiveness during the review process. What you receive is not just a manuscript. It is your story, professionally told, completely owned by you, protected by GhostWriterHunt\'s permanent confidentiality agreement and ready to be published under your name to the world.',
         image: '/images/pghostwriter-p5.webp'
       }
     ],
@@ -105,29 +105,29 @@ export const services = [
     faqs: [
       {
         question: 'How do you match me with the right ghostwriter?',
-        answer: 'Your project is handled with complete confidentiality. Our dedicated project team carefully reviews your requirements, genre, tone and vision, then personally hand-selects the ghostwriter from our vetted roster whose expertise is the best fit. All communication stays securely managed through our team from start to finish.'
+        answer: 'Your project is handled with complete confidentiality. The GhostWriterHunt project team carefully reviews your requirements, genre, tone and vision, then personally hand-selects the ghostwriter from GhostWriterHunt\'s vetted roster whose expertise is the best fit. All communication stays securely managed through the GhostWriterHunt team from start to finish.'
       },
       {
         question: 'Will my book truly sound like me?',
-        answer: 'Absolutely. Before writing begins, our team captures your voice from everything you submit, your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through our team.'
+        answer: 'Absolutely. Before writing begins, the GhostWriterHunt team captures your voice from everything you submit, your written notes, voice recordings, existing drafts and any other material you share. A personal voice guide is created for your matched ghostwriter to ensure every word of your manuscript reflects your unique tone, style and personality, while your communication remains securely managed through the GhostWriterHunt team.'
       },
       {
         question: 'How long does it take to write a book?',
-        answer: 'The minimum project timeline is 40 days. Quick approvals from your side on each completed stage help our team keep moving without delays.'
+        answer: 'The minimum project timeline is 40 days. Quick approvals from your side on each completed stage help the GhostWriterHunt team keep moving without delays.'
       },
       {
         question: 'Do I own the manuscript completely?',
-        answer: 'Yes, 100%. Once your project is delivered you own the complete manuscript and all rights. We sign a full NDA and transfer all intellectual property to you. Your name goes on the cover and we remain completely behind the scenes.'
+        answer: 'Yes, 100%. Once your project is delivered you own the complete manuscript and all rights. GhostWriterHunt signs a full NDA and transfers all intellectual property to you. Your name goes on the cover and GhostWriterHunt remains completely behind the scenes.'
       },
       {
         question: 'Can I be involved in the writing process?',
-        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before we move forward, revisions are included with our Professional and Complete Publishing packages. All of this happens through our secure managed process with your complete confidentiality maintained throughout.'
+        answer: 'Absolutely. Your involvement is essential to the process. Through your dedicated project manager you review and approve each chapter before the team moves forward, revisions are included with GhostWriterHunt\'s Professional and Complete Publishing packages. All of this happens through GhostWriterHunt\'s secure managed process with your complete confidentiality maintained throughout.'
       }
     ],
 
     ctaHeadline: 'Your story deserves',
     ctaHeadlineItalic: 'to be told.',
-    ctaSubtext: 'Share your vision with us today. Our professional ghostwriters are ready to transform your idea into the book you have always imagined, completely confidential, completely yours.',
+    ctaSubtext: 'Share your vision with GhostWriterHunt today. GhostWriterHunt\'s professional ghostwriters are ready to transform your idea into the book you have always imagined, completely confidential, completely yours.',
     ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
@@ -140,7 +140,7 @@ export const services = [
     title: 'Manuscript Editing',
     tagline: 'Your words, refined to',
     taglineItalic: 'perfection.',
-    heroSubtext: 'Our seasoned editors go beyond grammar and spelling, they refine your narrative structure, strengthen your voice and ensure every page reads with clarity, power and purpose.',
+    heroSubtext: 'GhostWriterHunt\'s seasoned editors go beyond grammar and spelling, they refine your narrative structure, strengthen your voice and ensure every page reads with clarity, power and purpose.',
 
     heroImages: [
       {
@@ -163,14 +163,14 @@ export const services = [
     overview: {
       headline: 'Every great book deserves',
       headlineItalic: 'a great editor.',
-      body: 'Even the finest writers benefit from a skilled editorial eye. Our editors work contextually, not just correcting errors but understanding your story, your voice and your reader. From developmental structure to final line edits, we refine your manuscript until it shines with the clarity and power it deserves.',
+      body: 'Even the finest writers benefit from a skilled editorial eye. GhostWriterHunt\'s editors work contextually, not just correcting errors but understanding your story, your voice and your reader. From developmental structure to final line edits, the team refines your manuscript until it shines with the clarity and power it deserves.',
       bullets: [
         'Developmental editing, structure and story flow',
         'Line editing, sentence level clarity and style',
         'Copy editing, grammar, spelling and consistency',
         'Proofreading, final error-free polish',
         'Detailed editorial report with every pass',
-        'Multiple revision rounds included with our Professional and Complete Publishing packages'
+        'Multiple revision rounds included with GhostWriterHunt\'s Professional and Complete Publishing packages'
       ],
       images: [
         {
@@ -190,7 +190,7 @@ export const services = [
       {
         icon: 'edit',
         title: 'Contextual Editing',
-        description: 'We edit within the context of your story and voice, never imposing a generic style on your unique work.'
+        description: 'GhostWriterHunt edits within the context of your story and voice, never imposing a generic style on your unique work.'
       },
       {
         icon: 'layers',
@@ -208,7 +208,7 @@ export const services = [
       {
         number: '01',
         title: 'Manuscript Assessment',
-        description: 'We review your complete manuscript and provide an initial assessment report.',
+        description: 'GhostWriterHunt reviews your complete manuscript and provide an initial assessment report.',
         image: '/images/manuscript-editing-process-1.webp'
       },
       {
@@ -245,7 +245,7 @@ export const services = [
       },
       {
         question: 'Will the editor change my writing style?',
-        answer: 'Never. Our editors work to enhance your existing voice, not replace it. Every suggestion is made to serve your story and your style, never to impose a generic standard.'
+        answer: 'Never. GhostWriterHunt\'s editors work to enhance your existing voice, not replace it. Every suggestion is made to serve your story and your style, never to impose a generic standard.'
       },
       {
         question: 'How long does editing take?',
@@ -257,13 +257,13 @@ export const services = [
       },
       {
         question: 'Can you edit a manuscript that someone else ghostwrote?',
-        answer: 'Absolutely. We edit manuscripts regardless of origin. Whether you wrote it yourself or worked with another writer, our editors will refine it to publication standard.'
+        answer: 'Absolutely. GhostWriterHunt edits manuscripts regardless of origin. Whether you wrote it yourself or worked with another writer, GhostWriterHunt\'s editors will refine it to publication standard.'
       }
     ],
 
     ctaHeadline: 'Your manuscript deserves',
     ctaHeadlineItalic: 'its finest form.',
-    ctaSubtext: 'Book a free consultation and let our editors show you what your manuscript can become.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt\'s editors show you what your manuscript can become.',
     ctaImage: '/images/CTA-MIX.webp'
   },
 
@@ -276,7 +276,7 @@ export const services = [
     title: 'Book Cover Design',
     tagline: 'Covers that stop readers',
     taglineItalic: 'in their tracks.',
-    heroSubtext: 'Your cover is the first conversation your book has with a reader. Our designers craft covers that capture the soul of your story and compel readers to look twice, optimized for every digital platform.',
+    heroSubtext: 'Your cover is the first conversation your book has with a reader. GhostWriterHunt\'s designers craft covers that capture the soul of your story and compel readers to look twice, optimized for every digital platform.',
 
     heroImages: [
       {
@@ -289,14 +289,14 @@ export const services = [
     overview: {
       headline: 'A great cover sells your book',
       headlineItalic: 'before it is even opened.',
-      body: 'In a world of digital thumbnails and split-second decisions, your book cover must work harder than ever. Our award-winning designers combine deep knowledge of genre conventions with bold creative vision to produce covers that feel both familiar and utterly unique. Every element, typography, imagery, color and composition, is crafted to speak directly to your ideal reader.',
+      body: 'In a world of digital thumbnails and split-second decisions, your book cover must work harder than ever. GhostWriterHunt\'s award-winning designers combine deep knowledge of genre conventions with bold creative vision to produce covers that feel both familiar and utterly unique. Every element, typography, imagery, color and composition, is crafted to speak directly to your ideal reader.',
       bullets: [
         'Custom design, never templated or generic',
         'Genre-specific expertise for maximum appeal',
         'Front cover, back cover and spine design',
         'Optimized for Amazon KDP and all platforms',
         'Multiple initial concepts to choose from',
-        'Unlimited revisions with our Professional and Complete Publishing packages'
+        'Unlimited revisions with GhostWriterHunt\'s Professional and Complete Publishing packages'
       ],
       images: [
         {
@@ -316,7 +316,7 @@ export const services = [
       {
         icon: 'palette',
         title: 'Genre Knowledge',
-        description: 'Every genre has visual conventions readers expect. We design within those conventions while making your cover stand out.'
+        description: 'Every genre has visual conventions readers expect. GhostWriterHunt designs within those conventions while making your cover stand out.'
       },
       {
         icon: 'image',
@@ -326,7 +326,7 @@ export const services = [
       {
         icon: 'refresh',
         title: 'Unlimited Concepts',
-        description: 'We present multiple distinct design directions so you can choose the vision that resonates most with your story.'
+        description: 'The team presents multiple distinct design directions so you can choose the vision that resonates most with your story.'
       }
     ],
 
@@ -334,19 +334,19 @@ export const services = [
       {
         number: '01',
         title: 'Brief and Discovery',
-        description: 'We learn about your book, genre, target reader and design preferences.',
+        description: 'The team learns about your book, genre, target reader and design preferences.',
         image: '/images/author-website-process-1.webp'
       },
       {
         number: '02',
         title: 'Concept Development',
-        description: 'Our designers develop multiple distinct cover concepts for your review.',
+        description: 'GhostWriterHunt\'s designers develop multiple distinct cover concepts for your review.',
         image: '/images/HERO-M03.webp'
       },
       {
         number: '03',
         title: 'Refinement',
-        description: 'You select your preferred direction and we refine every detail to perfection.',
+        description: 'You select your preferred direction and the team refines every detail to perfection.',
         image: '/images/book-cover-design-process-03.webp'
       },
       {
@@ -371,7 +371,7 @@ export const services = [
       },
       {
         question: 'Can I provide reference images or ideas?',
-        answer: 'Absolutely, we encourage it. The more reference material and inspiration you can share, the better we can understand your vision and create a cover that excites you.'
+        answer: 'Absolutely, GhostWriterHunt encourages it. The more reference material and inspiration you can share, the better GhostWriterHunt can understand your vision and create a cover that excites you.'
       },
       {
         question: 'What file formats will I receive?',
@@ -379,17 +379,17 @@ export const services = [
       },
       {
         question: 'Do you design covers for all genres?',
-        answer: 'Yes, our design team includes specialists in fiction, non-fiction, memoir, self-help, business, children\'s books, mystery, thriller, romance, fantasy and every other major genre.'
+        answer: 'Yes, GhostWriterHunt\'s design team includes specialists in fiction, non-fiction, memoir, self-help, business, children\'s books, mystery, thriller, romance, fantasy and every other major genre.'
       },
       {
         question: 'Can I use my own images or photos on the cover?',
-        answer: 'Yes. If you have specific images you want to incorporate we can work with them. We also have access to premium licensed image libraries to source the perfect visual for your cover.'
+        answer: 'Yes. If you have specific images you want to incorporate GhostWriterHunt can work with them. GhostWriterHunt also has access to premium licensed image libraries to source the perfect visual for your cover.'
       }
     ],
 
     ctaHeadline: 'Your story deserves a cover',
     ctaHeadlineItalic: 'as powerful as its words.',
-    ctaSubtext: 'Book a free design consultation and see what our designers can create for your book.',
+    ctaSubtext: 'Book a free design consultation and see what GhostWriterHunt\'s designers can create for your book.',
     ctaImage: '/images/CTA-MIX.webp'
   },
 
@@ -402,7 +402,7 @@ export const services = [
     title: 'Interior Layout and Formatting',
     tagline: 'Every page designed',
     taglineItalic: 'beautifully.',
-    heroSubtext: 'The interior of your book is where your reader lives for hours. Our layout designers craft every page with typographic precision and visual elegance, creating a reading experience that feels effortless and professional.',
+    heroSubtext: 'The interior of your book is where your reader lives for hours. GhostWriterHunt\'s layout designers craft every page with typographic precision and visual elegance, creating a reading experience that feels effortless and professional.',
 
     heroImages: [
       {
@@ -425,7 +425,7 @@ export const services = [
     overview: {
       headline: 'Interior design that makes',
       headlineItalic: 'reading a pleasure.',
-      body: 'Great books are not just well written, they are beautifully presented. The way text sits on a page, the choice of typeface, the spacing of lines and the elegance of chapter headings all shape how a reader experiences your words. Our layout designers bring the same care and craft to your interior that premium publishers apply to their finest titles.',
+      body: 'Great books are not just well written, they are beautifully presented. The way text sits on a page, the choice of typeface, the spacing of lines and the elegance of chapter headings all shape how a reader experiences your words. GhostWriterHunt\'s layout designers bring the same care and craft to your interior that premium publishers apply to their finest titles.',
       bullets: [
         'Custom typography selection for your genre',
         'Chapter heading design and styling',
@@ -452,7 +452,7 @@ export const services = [
       {
         icon: 'layout',
         title: 'Genre-Appropriate Design',
-        description: 'Fiction, non-fiction, children\'s and academic books each have distinct interior conventions we follow with expertise.'
+        description: 'Fiction, non-fiction, children\'s and academic books each have distinct interior conventions the layout team follows with expertise.'
       },
       {
         icon: 'type',
@@ -470,13 +470,13 @@ export const services = [
       {
         number: '01',
         title: 'Style Consultation',
-        description: 'We discuss your genre, aesthetic preferences and platform requirements.',
+        description: 'The team discusses your genre, aesthetic preferences and platform requirements.',
         image: '/images/interior-layout-process-1.webp'
       },
       {
         number: '02',
         title: 'Sample Pages',
-        description: 'We design sample pages for your approval before formatting the full manuscript.',
+        description: 'GhostWriterHunt designs sample pages for your approval before formatting the full manuscript.',
         image: '/images/interior-layout-process-2.webp'
       },
       {
@@ -488,7 +488,7 @@ export const services = [
       {
         number: '04',
         title: 'Review and Revision',
-        description: 'You review the complete layout and request refinements, unlimited revisions are included with our Professional and Complete Publishing packages.',
+        description: 'You review the complete layout and request refinements, unlimited revisions are included with GhostWriterHunt\'s Professional and Complete Publishing packages.',
         image: '/images/interior-layout-process-4.webp'
       },
       {
@@ -507,11 +507,11 @@ export const services = [
       },
       {
         question: 'Can you format books with images and diagrams?',
-        answer: 'Yes. We format books of all types including those with images, charts, diagrams, tables and illustrations. Non-fiction and children\'s books with complex layouts are a specialty of our design team.'
+        answer: 'Yes. GhostWriterHunt formats books of all types including those with images, charts, diagrams, tables and illustrations. Non-fiction and children\'s books with complex layouts are a specialty of GhostWriterHunt\'s design team.'
       },
       {
         question: 'Do you format children\'s books?',
-        answer: 'Absolutely. Children\'s book formatting requires special expertise in illustration placement, text sizing and visual flow. Our designers have extensive experience with picture books and early reader formats.'
+        answer: 'Absolutely. Children\'s book formatting requires special expertise in illustration placement, text sizing and visual flow. GhostWriterHunt\'s designers have extensive experience with picture books and early reader formats.'
       },
       {
         question: 'How long does interior formatting take?',
@@ -519,13 +519,13 @@ export const services = [
       },
       {
         question: 'Can you reformat a book I have already published?',
-        answer: 'Yes. If your existing book needs reformatting for new platforms, a new edition or simply an improved layout, our team can take your existing files and create a fresh professional layout.'
+        answer: 'Yes. If your existing book needs reformatting for new platforms, a new edition or simply an improved layout, the GhostWriterHunt team can take your existing files and create a fresh professional layout.'
       }
     ],
 
     ctaHeadline: 'Give your readers a book',
     ctaHeadlineItalic: 'they love to hold.',
-    ctaSubtext: 'Book a free consultation and let our designers show you what premium interior design looks like.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt\'s designers show you what premium interior design looks like.',
     ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
@@ -538,7 +538,7 @@ export const services = [
     title: 'Illustration and Graphics',
     tagline: 'Visuals that bring your',
     taglineItalic: 'story to life.',
-    heroSubtext: 'From children\'s book illustrations to non-fiction diagrams and chapter artwork, our illustrators create visuals that enrich your narrative and leave lasting impressions on every reader.',
+    heroSubtext: 'From children\'s book illustrations to non-fiction diagrams and chapter artwork, GhostWriterHunt\'s illustrators create visuals that enrich your narrative and leave lasting impressions on every reader.',
 
     heroImages: [
       {
@@ -561,7 +561,7 @@ export const services = [
     overview: {
       headline: 'Illustrations that make readers',
       headlineItalic: 'stop and stare.',
-      body: 'The right illustration can say what a thousand words cannot. Whether you need whimsical artwork for a children\'s picture book, detailed technical diagrams for a non-fiction title or atmospheric chapter headers for your novel, our illustrators bring the same passion and precision to every image they create for you.',
+      body: 'The right illustration can say what a thousand words cannot. Whether you need whimsical artwork for a children\'s picture book, detailed technical diagrams for a non-fiction title or atmospheric chapter headers for your novel, GhostWriterHunt\'s illustrators bring the same passion and precision to every image they create for you.',
       bullets: [
         'Children\'s book illustration, all styles',
         'Chapter header and decorative artwork',
@@ -588,17 +588,17 @@ export const services = [
       {
         icon: 'brush',
         title: 'Style Matching',
-        description: 'We match illustration style precisely to your book\'s tone, from playful and colorful to sophisticated and minimal.'
+        description: 'GhostWriterHunt matches illustration style precisely to your book\'s tone, from playful and colorful to sophisticated and minimal.'
       },
       {
         icon: 'users',
         title: 'Specialist Illustrators',
-        description: 'Children\'s books, technical diagrams and decorative artwork each require different expertise, we match you with the right illustrator.'
+        description: 'Children\'s books, technical diagrams and decorative artwork each require different expertise, GhostWriterHunt matches you with the right illustrator.'
       },
       {
         icon: 'repeat',
         title: 'Revision Friendly',
-        description: 'Illustrations evolve through feedback, with unlimited revisions included on our Professional and Complete Publishing packages.'
+        description: 'Illustrations evolve through feedback, with unlimited revisions included on GhostWriterHunt\'s Professional and Complete Publishing packages.'
       }
     ],
 
@@ -606,7 +606,7 @@ export const services = [
       {
         number: '01',
         title: 'Style Brief',
-        description: 'We discuss your vision, reference styles and the emotional tone you want your illustrations to convey.',
+        description: 'The team discusses your vision, reference styles and the emotional tone you want your illustrations to convey.',
         image: '/images/illustration-graphics-process-1.webp'
       },
       {
@@ -639,7 +639,7 @@ export const services = [
     faqs: [
       {
         question: 'What illustration styles do you offer?',
-        answer: 'We work in virtually every illustration style, watercolor, digital painting, flat design, line art, realistic, cartoon, manga-inspired and more. We match the style to your book\'s tone and audience.'
+        answer: 'GhostWriterHunt works in virtually every illustration style, watercolor, digital painting, flat design, line art, realistic, cartoon, manga-inspired and more. The team matches the style to your book\'s tone and audience.'
       },
       {
         question: 'Do I own the illustrations?',
@@ -647,21 +647,21 @@ export const services = [
       },
       {
         question: 'Can you illustrate a children\'s picture book?',
-        answer: 'Absolutely. Children\'s book illustration is one of our most popular services. We have illustrators who specialize in creating magical, age-appropriate artwork that young readers love.'
+        answer: 'Absolutely. Children\'s book illustration is one of GhostWriterHunt\'s most popular services. GhostWriterHunt has illustrators who specialize in creating magical, age-appropriate artwork that young readers love.'
       },
       {
         question: 'How many revisions are included?',
-        answer: 'Our Professional and Complete Publishing Package plans include unlimited revisions. Exact revision terms for other packages are confirmed in your custom project plan.'
+        answer: 'GhostWriterHunt\'s Professional and Complete Publishing Package plans include unlimited revisions. Exact revision terms for other packages are confirmed in your custom project plan.'
       },
       {
         question: 'Can you match an existing illustration style?',
-        answer: 'Yes. If you have existing illustrations from another artist or a specific style you want to replicate, our illustrators can analyze and match that style for consistency across your entire book.'
+        answer: 'Yes. If you have existing illustrations from another artist or a specific style you want to replicate, GhostWriterHunt\'s illustrators can analyze and match that style for consistency across your entire book.'
       }
     ],
 
     ctaHeadline: 'Let your story be',
     ctaHeadlineItalic: 'seen as well as read.',
-    ctaSubtext: 'Book a free illustration consultation and discover what our artists can create for your book.',
+    ctaSubtext: 'Book a free illustration consultation and discover what GhostWriterHunt\'s artists can create for your book.',
     ctaImage: '/images/CTA-MIX.webp'
   },
 
@@ -674,7 +674,7 @@ export const services = [
     title: 'eBook Publishing',
     tagline: 'Your book, live on',
     taglineItalic: '5 major global platforms.',
-    heroSubtext: 'We handle every step of the digital publishing process, from file preparation to platform setup and listing optimization, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
+    heroSubtext: 'GhostWriterHunt handles every step of the digital publishing process, from file preparation to platform setup and listing optimization, so your book goes live globally under your name while you keep 100% of your rights and royalties.',
 
     heroImages: [
       {
@@ -697,7 +697,7 @@ export const services = [
     overview: {
       headline: 'Published globally in',
       headlineItalic: '30 days or less.',
-      body: 'Self-publishing has never been more powerful, or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. Our publishing team handles every technical detail so you can focus entirely on your next book while we launch your current one to readers around the world.',
+      body: 'Self-publishing has never been more powerful, or more complex. Between file formats, platform requirements and metadata optimization, the process can overwhelm even experienced authors. The GhostWriterHunt publishing team handles every technical detail so you can focus entirely on your next book while GhostWriterHunt launches your current one to readers around the world.',
       bullets: [
         'Publishing on 5 major global platforms including Amazon KDP, Apple Books, and Kobo',
         'Metadata and category optimization',
@@ -742,7 +742,7 @@ export const services = [
       {
         number: '01',
         title: 'File Review',
-        description: 'We review your manuscript and cover files to ensure they meet all platform requirements.',
+        description: 'GhostWriterHunt reviews your manuscript and cover files to ensure they meet all platform requirements.',
         image: '/images/ebook-publishing-process-1.webp'
       },
       {
@@ -766,7 +766,7 @@ export const services = [
       {
         number: '05',
         title: 'Launch Confirmation',
-        description: 'We confirm your book is live on all platforms and provide direct links to every listing.',
+        description: 'GhostWriterHunt confirms your book is live on all platforms and provide direct links to every listing.',
         image: '/images/ebook-publishing-process-5.webp'
       }
     ],
@@ -775,29 +775,29 @@ export const services = [
     faqs: [
       {
         question: 'Which platforms will my book be published on?',
-        answer: 'We publish on 5 major global platforms including Amazon KDP, Apple Books, Google Play Books, Kobo, and Barnes and Noble Press, with setup in your name as the author.'
+        answer: 'GhostWriterHunt publishes on 5 major global platforms including Amazon KDP, Apple Books, Google Play Books, Kobo, and Barnes and Noble Press, with setup in your name as the author.'
       },
       {
         question: 'Do I need my own accounts on these platforms?',
-        answer: 'Yes, you publish under your own author accounts so all royalties go directly to you. We guide you through setting up any accounts you do not already have as part of our service.'
+        answer: 'Yes, you publish under your own author accounts so all royalties go directly to you. GhostWriterHunt guides you through setting up any accounts you do not already have as part of the service.'
       },
       {
         question: 'How long does publishing take?',
-        answer: 'We follow a consistent 30-day publishing process from file receipt to live listings on 5 major global platforms. Individual platforms often approve and publish within 24 to 72 hours once we submit your files, but every project is managed to our 30-day publishing timeline.'
+        answer: 'GhostWriterHunt follows a consistent 30-day publishing process from file receipt to live listings on 5 major global platforms. Individual platforms often approve and publish within 24 to 72 hours once GhostWriterHunt submits your files, but every project is managed to GhostWriterHunt\'s 30-day publishing timeline.'
       },
       {
         question: 'What royalties will I earn?',
-        answer: 'Royalty rates vary by platform and pricing. Amazon KDP pays 35% to 70% depending on price. Most other platforms pay 60% to 80%. We help you set prices to maximize your royalty income on every platform.'
+        answer: 'Royalty rates vary by platform and pricing. Amazon KDP pays 35% to 70% depending on price. Most other platforms pay 60% to 80%. GhostWriterHunt helps you set prices to maximize your royalty income on every platform.'
       },
       {
         question: 'Can you publish a book I have already written and formatted?',
-        answer: 'Yes. If your manuscript is already written and formatted, we can take it straight to publishing. We review your files, convert to required formats if needed and publish across all platforms.'
+        answer: 'Yes. If your manuscript is already written and formatted, GhostWriterHunt can take it straight to publishing. GhostWriterHunt reviews your files, convert to required formats if needed and publish across all platforms.'
       }
     ],
 
     ctaHeadline: 'Your book belongs',
     ctaHeadlineItalic: 'in the hands of readers.',
-    ctaSubtext: 'Book a free publishing consultation and let us take your book to the world.',
+    ctaSubtext: 'Book a free publishing consultation and let GhostWriterHunt take your book to the world.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -810,7 +810,7 @@ export const services = [
     title: 'Author Branding',
     tagline: 'Build your presence as',
     taglineItalic: 'a published author.',
-    heroSubtext: 'Your book is published, now the world needs to know who you are. We craft your author brand from bio to website copy, social presence to media kit, everything you need to establish yourself as an authority in your field.',
+    heroSubtext: 'Your book is published, now the world needs to know who you are. GhostWriterHunt crafts your author brand from bio to website copy, social presence to media kit, everything you need to establish yourself as an authority in your field.',
 
     heroImages: [
       {
@@ -833,7 +833,7 @@ export const services = [
     overview: {
       headline: 'Every published author needs',
       headlineItalic: 'a powerful presence.',
-      body: 'Being a published author is just the beginning. To build a readership, attract media attention and sell books consistently, you need a strong and cohesive author brand. We craft every element of your public author identity, from the words in your bio to the voice of your social media, ensuring you present yourself with the authority and authenticity your work deserves.',
+      body: 'Being a published author is just the beginning. To build a readership, attract media attention and sell books consistently, you need a strong and cohesive author brand. GhostWriterHunt crafts every element of your public author identity, from the words in your bio to the voice of your social media, ensuring you present yourself with the authority and authenticity your work deserves.',
       bullets: [
         'Professional author biography, short and long form',
         'Amazon Author Central profile setup and optimization',
@@ -860,17 +860,17 @@ export const services = [
       {
         icon: 'user',
         title: 'Authentic Voice',
-        description: 'Your author brand should sound like the best version of you, authoritative, warm and genuine. We capture that perfectly.'
+        description: 'Your author brand should sound like the best version of you, authoritative, warm and genuine. The team captures that perfectly.'
       },
       {
         icon: 'star',
         title: 'Platform Specific',
-        description: 'Different platforms require different approaches. We tailor your presence for Amazon, Goodreads, Instagram, LinkedIn and beyond.'
+        description: 'Different platforms require different approaches. The team tailors your presence for Amazon, Goodreads, Instagram, LinkedIn and beyond.'
       },
       {
         icon: 'trending-up',
         title: 'Readership Building',
-        description: 'Every element we create is designed to attract and retain readers, turning casual visitors into devoted fans of your work.'
+        description: 'Every element the team creates is designed to attract and retain readers, turning casual visitors into devoted fans of your work.'
       }
     ],
 
@@ -878,13 +878,13 @@ export const services = [
       {
         number: '01',
         title: 'Brand Discovery',
-        description: 'We learn about your book, your audience, your values and the impression you want to make on readers.',
+        description: 'The team learns about your book, your audience, your values and the impression you want to make on readers.',
         image: '/images/author-branding-process-1.webp'
       },
       {
         number: '02',
         title: 'Voice Development',
-        description: 'We develop your unique author voice, the tone and style that will define all your public communication.',
+        description: 'The team develops your unique author voice, the tone and style that will define all your public communication.',
         image: '/images/author-branding-process-2.webp'
       },
       {
@@ -911,15 +911,15 @@ export const services = [
     faqs: [
       {
         question: 'What is included in an author bio?',
-        answer: 'We create multiple lengths of your author biography, a short 50-word version for social media, a medium 100-word version for Amazon and a long 250-word version for your website and press materials.'
+        answer: 'GhostWriterHunt creates multiple lengths of your author biography, a short 50-word version for social media, a medium 100-word version for Amazon and a long 250-word version for your website and press materials.'
       },
       {
         question: 'Do you set up my Amazon Author Central page?',
-        answer: 'Yes. We write and optimize your Amazon Author Central profile including your biography, author photo guidance, blog feed setup and linking all your books to your author page.'
+        answer: 'Yes. GhostWriterHunt writes and optimize your Amazon Author Central profile including your biography, author photo guidance, blog feed setup and linking all your books to your author page.'
       },
       {
         question: 'Can you help with social media for authors?',
-        answer: 'Yes. We create optimized bios for Instagram, Twitter/X, Facebook, LinkedIn and TikTok as part of your author branding package.'
+        answer: 'Yes. GhostWriterHunt creates optimized bios for Instagram, Twitter/X, Facebook, LinkedIn and TikTok as part of your author branding package.'
       },
       {
         question: 'What is a press kit and do I need one?',
@@ -927,7 +927,7 @@ export const services = [
       },
       {
         question: 'Can you write the copy for my author website?',
-        answer: 'Yes. Our Professional and Complete Publishing Package plans include a professional author website. Exact pages and scope are confirmed in your custom project plan.'
+        answer: 'Yes. GhostWriterHunt\'s Professional and Complete Publishing Package plans include a professional author website. Exact pages and scope are confirmed in your custom project plan.'
       }
     ],
 
@@ -946,7 +946,7 @@ export const services = [
     title: 'Book Marketing',
     tagline: 'Get your book in front of',
     taglineItalic: 'the right readers.',
-    heroSubtext: 'Publishing your book is just the beginning. Our book marketing specialists create and execute targeted strategies that drive real visibility, real reviews and real sales, across Amazon, social media and beyond.',
+    heroSubtext: 'Publishing your book is just the beginning. GhostWriterHunt\'s book marketing specialists create and execute targeted strategies that drive real visibility, real reviews and real sales, across Amazon, social media and beyond.',
 
     heroImages: [
       {
@@ -969,7 +969,7 @@ export const services = [
     overview: {
       headline: 'Great books deserve',
       headlineItalic: 'great audiences.',
-      body: 'The most beautifully written book in the world will not sell itself. Readers need to discover it, through search, social media, reviews and word of mouth. Our marketing team designs and executes campaigns that put your book in front of the exact readers who are looking for exactly what you have written. From Amazon optimization to social media campaigns and review generation, we build the visibility your book deserves.',
+      body: 'The most beautifully written book in the world will not sell itself. Readers need to discover it, through search, social media, reviews and word of mouth. The GhostWriterHunt marketing team designs and executes campaigns that put your book in front of the exact readers who are looking for exactly what you have written. From Amazon optimization to social media campaigns and review generation, GhostWriterHunt builds the visibility your book deserves.',
       bullets: [
         'Amazon KDP listing optimization',
         'Social media promotion campaigns',
@@ -996,7 +996,7 @@ export const services = [
       {
         icon: 'target',
         title: 'Reader Targeting',
-        description: 'We identify exactly who your ideal readers are and build campaigns designed to reach them wherever they spend time online.'
+        description: 'The team identifies exactly who your ideal readers are and build campaigns designed to reach them wherever they spend time online.'
       },
       {
         icon: 'bar-chart',
@@ -1006,7 +1006,7 @@ export const services = [
       {
         icon: 'award',
         title: 'Review Strategy',
-        description: 'Reviews are the lifeblood of book sales. We implement ethical, effective strategies to generate genuine reader reviews.'
+        description: 'Reviews are the lifeblood of book sales. The team implements ethical, effective strategies to generate genuine reader reviews.'
       }
     ],
 
@@ -1014,7 +1014,7 @@ export const services = [
       {
         number: '01',
         title: 'Market Research',
-        description: 'We research your genre, competition and target readers to build a strategy that works.',
+        description: 'The team researches your genre, competition and target readers to build a strategy that works.',
         image: '/images/book-marketing-process-1.webp'
       },
       {
@@ -1032,7 +1032,7 @@ export const services = [
       {
         number: '04',
         title: 'Campaign Execution',
-        description: 'Social media, email and outreach campaigns are launched and managed by our marketing team.',
+        description: 'Social media, email and outreach campaigns are launched and managed by the GhostWriterHunt marketing team.',
         image: '/images/interior-layout-mobile.webp'
       },
       {
@@ -1051,15 +1051,15 @@ export const services = [
       },
       {
         question: 'Do you run Amazon advertising for my book?',
-        answer: 'Yes, Amazon PPC advertising management is available as part of your book marketing package. We research keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
+        answer: 'Yes, Amazon PPC advertising management is available as part of your book marketing package. The team researches keywords, create campaigns, manage bids and optimize for maximum return on your advertising investment.'
       },
       {
         question: 'Can you help with a book launch?',
-        answer: 'Absolutely. Book launches are one of our specialties. We create a pre-launch, launch day and post-launch strategy that builds anticipation, drives reviews and maximizes your first-week sales, which are critical for Amazon rankings.'
+        answer: 'Absolutely. Book launches are one of GhostWriterHunt\'s specialties. GhostWriterHunt creates a pre-launch, launch day and post-launch strategy that builds anticipation, drives reviews and maximizes your first-week sales, which are critical for Amazon rankings.'
       },
       {
         question: 'How do you generate reviews ethically?',
-        answer: 'We use a proven process of reaching out to relevant readers, bloggers and book clubs within your genre who are genuinely interested in reviewing books like yours. All reviews are genuine and voluntary, never purchased or incentivized in violation of platform policies.'
+        answer: 'GhostWriterHunt uses a proven process of reaching out to relevant readers, bloggers and book clubs within your genre who are genuinely interested in reviewing books like yours. All reviews are genuine and voluntary, never purchased or incentivized in violation of platform policies.'
       },
       {
         question: 'Do I need marketing if my book is already published?',
@@ -1069,7 +1069,7 @@ export const services = [
 
     ctaHeadline: 'Your readers are out there',
     ctaHeadlineItalic: 'waiting to find you.',
-    ctaSubtext: 'Book a free marketing consultation and discover how we can get your book in front of the right audience.',
+    ctaSubtext: 'Book a free marketing consultation and discover how GhostWriterHunt can get your book in front of the right audience.',
     ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
@@ -1082,7 +1082,7 @@ export const services = [
     title: 'eBook Writing',
     tagline: 'Expert eBooks written',
     taglineItalic: 'in your voice.',
-    heroSubtext: 'Whether you need a lead magnet, a thought leadership piece or a full-length digital book, our professional eBook writers deliver compelling, well-researched content that establishes your authority and engages your readers from first page to last.',
+    heroSubtext: 'Whether you need a lead magnet, a thought leadership piece or a full-length digital book, GhostWriterHunt\'s professional eBook writers deliver compelling, well-researched content that establishes your authority and engages your readers from first page to last.',
 
     heroImages: [
       {
@@ -1105,7 +1105,7 @@ export const services = [
     overview: {
       headline: 'eBooks that establish your',
       headlineItalic: 'expertise and authority.',
-      body: 'A well-written eBook is one of the most powerful tools in any author or business owner\'s arsenal. It builds trust, demonstrates expertise and creates a lasting impression on every reader. Our eBook writers combine deep research skills with compelling storytelling to produce digital books that your readers will value, share and remember.',
+      body: 'A well-written eBook is one of the most powerful tools in any author or business owner\'s arsenal. It builds trust, demonstrates expertise and creates a lasting impression on every reader. GhostWriterHunt\'s eBook writers combine deep research skills with compelling storytelling to produce digital books that your readers will value, share and remember.',
       bullets: [
         'Thoroughly researched, expertly written content',
         'Non-fiction, self-help, business and how-to eBooks',
@@ -1132,7 +1132,7 @@ export const services = [
       {
         icon: 'book-open',
         title: 'Deep Research',
-        description: 'Every eBook we write is grounded in thorough research, ensuring your content is accurate, current and genuinely valuable to your readers.'
+        description: 'Every eBook GhostWriterHunt writes is grounded in thorough research, ensuring your content is accurate, current and genuinely valuable to your readers.'
       },
       {
         icon: 'mic',
@@ -1142,7 +1142,7 @@ export const services = [
       {
         icon: 'zap',
         title: 'Reader Focused',
-        description: 'We write with your reader in mind at every turn, creating content that answers their questions, solves their problems and earns their trust.'
+        description: 'GhostWriterHunt writes with your reader in mind at every turn, creating content that answers their questions, solves their problems and earns their trust.'
       }
     ],
 
@@ -1150,7 +1150,7 @@ export const services = [
       {
         number: '01',
         title: 'Topic and Scope',
-        description: 'We define your eBook topic, target reader, key messages and desired outcomes.',
+        description: 'The team defines your eBook topic, target reader, key messages and desired outcomes.',
         image: '/images/ebook-writing-process-1.webp'
       },
       {
@@ -1183,25 +1183,25 @@ export const services = [
     faqs: [
       {
         question: 'What topics can you write eBooks about?',
-        answer: 'Our writers cover virtually every non-fiction topic, business, finance, health and wellness, self-help, personal development, technology, marketing, leadership, cooking, parenting and more. If there is an audience for it, we can write it.'
+        answer: 'GhostWriterHunt\'s writers cover virtually every non-fiction topic, business, finance, health and wellness, self-help, personal development, technology, marketing, leadership, cooking, parenting and more. If there is an audience for it, GhostWriterHunt can write it.'
       },
       {
         question: 'How do I provide my ideas and knowledge to the writer?',
-        answer: 'Through an initial briefing call and a questionnaire, we capture your knowledge, opinions, examples and key messages. Your writer then uses this to create content that genuinely reflects your expertise and perspective.'
+        answer: 'Through an initial briefing call and a questionnaire, the team captures your knowledge, opinions, examples and key messages. Your writer then uses this to create content that genuinely reflects your expertise and perspective.'
       },
       {
         question: 'Will my eBook be formatted and ready to publish?',
-        answer: 'Yes. Every eBook we deliver includes formatting in all required digital formats, ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
+        answer: 'Yes. Every eBook delivered includes formatting in all required digital formats, ready to upload directly to Amazon KDP, Apple Books or any other platform as soon as you receive it.'
       },
       {
         question: 'Can I use my eBook as a lead magnet or marketing tool?',
-        answer: 'Absolutely. eBooks make exceptionally powerful lead magnets and marketing tools. We can write with that specific purpose in mind, creating content that builds trust and encourages readers to take the next step with you.'
+        answer: 'Absolutely. eBooks make exceptionally powerful lead magnets and marketing tools. GhostWriterHunt can write with that specific purpose in mind, creating content that builds trust and encourages readers to take the next step with you.'
       }
     ],
 
     ctaHeadline: 'Share your expertise with',
     ctaHeadlineItalic: 'the world.',
-    ctaSubtext: 'Book a free consultation and let us write the eBook that establishes your authority.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt write the eBook that establishes your authority.',
     ctaImage: '/images/CTA-AUTHOR.webp'
   },
 
@@ -1214,7 +1214,7 @@ export const services = [
     title: "Children's Book Writing",
     tagline: 'Stories that spark',
     taglineItalic: "a child's imagination.",
-    heroSubtext: "Children's books are among the most powerful stories ever written. Our specialist children's book writers craft age-appropriate narratives with warmth, rhythm and magic, stories that young readers return to again and again.",
+    heroSubtext: "Children's books are among the most powerful stories ever written. GhostWriterHunt\'s specialist children's book writers craft age-appropriate narratives with warmth, rhythm and magic, stories that young readers return to again and again.",
 
     heroImages: [
       {
@@ -1237,7 +1237,7 @@ export const services = [
     overview: {
       headline: "Books that children treasure",
       headlineItalic: 'for a lifetime.',
-      body: "Writing for children is one of the most demanding and rewarding forms of the craft. Every word must earn its place, creating rhythm, wonder and emotional resonance in the fewest possible words. Our children's book specialists understand the unique requirements of each age group, from picture books for toddlers to chapter books for middle grade readers, and bring years of experience to every project.",
+      body: "Writing for children is one of the most demanding and rewarding forms of the craft. Every word must earn its place, creating rhythm, wonder and emotional resonance in the fewest possible words. GhostWriterHunt\'s children's book specialists understand the unique requirements of each age group, from picture books for toddlers to chapter books for middle grade readers, and bring years of experience to every project.",
       bullets: [
         'Picture books for ages 2 to 5',
         'Early reader books for ages 5 to 8',
@@ -1274,12 +1274,12 @@ export const services = [
       {
         icon: 'feather',
         title: 'Rhythm and Flow',
-        description: "Children's books are meant to be read aloud. We craft every line with the cadence, rhythm and flow that makes reading together a joy."
+        description: "Children's books are meant to be read aloud. GhostWriterHunt crafts every line with the cadence, rhythm and flow that makes reading together a joy."
       },
       {
         icon: 'sun',
         title: 'Character Magic',
-        description: 'Memorable characters are the heart of every great children\'s book. We develop characters that children connect with, root for and love.'
+        description: 'Memorable characters are the heart of every great children\'s book. The team develops characters that children connect with, root for and love.'
       }
     ],
 
@@ -1287,7 +1287,7 @@ export const services = [
       {
         number: '01',
         title: 'Story Discovery',
-        description: 'We discuss your story idea, target age group, themes, characters and the message you want to share.',
+        description: 'The team discusses your story idea, target age group, themes, characters and the message you want to share.',
         image: '/images/children-stories-9.webp'
       },
       {
@@ -1305,7 +1305,7 @@ export const services = [
       {
         number: '04',
         title: 'Review and Refine',
-        description: 'You read the draft aloud and share feedback. We refine until every word feels perfect.',
+        description: 'You read the draft aloud and share feedback. The team refines until every word feels perfect.',
         image: '/images/children-stories-8.webp'
       },
       {
@@ -1320,29 +1320,29 @@ export const services = [
     faqs: [
       {
         question: 'What age groups do you write for?',
-        answer: 'We write for all children\'s age groups, board books and picture books for ages 2 to 5, early readers for ages 5 to 8, chapter books for ages 7 to 10 and middle grade fiction and non-fiction for ages 8 to 12.'
+        answer: 'GhostWriterHunt writes for all children\'s age groups, board books and picture books for ages 2 to 5, early readers for ages 5 to 8, chapter books for ages 7 to 10 and middle grade fiction and non-fiction for ages 8 to 12.'
       },
       {
         question: 'Can you write a rhyming picture book?',
-        answer: 'Yes, rhyming picture books are one of our specialties. Our writers understand the strict metrical requirements of children\'s rhyme and create verse that flows naturally when read aloud.'
+        answer: 'Yes, rhyming picture books are one of GhostWriterHunt\'s specialties. GhostWriterHunt\'s writers understand the strict metrical requirements of children\'s rhyme and create verse that flows naturally when read aloud.'
       },
       {
         question: 'Do you also provide illustration services?',
-        answer: 'Yes. We offer illustration services separately or as a combined package with the writing. Our illustrators specialize in children\'s book artwork across all styles, from watercolor and gouache to digital and mixed media.'
+        answer: 'Yes. GhostWriterHunt offers illustration services separately or as a combined package with the writing. GhostWriterHunt\'s illustrators specialize in children\'s book artwork across all styles, from watercolor and gouache to digital and mixed media.'
       },
       {
         question: 'Can I base the story on my own child or family?',
-        answer: 'Absolutely, personalized children\'s books are among our most popular projects. Many of our clients want to capture a family story, honor a child\'s personality or create a keepsake that will be treasured for generations.'
+        answer: 'Absolutely, personalized children\'s books are among GhostWriterHunt\'s most popular projects. Many GhostWriterHunt clients want to capture a family story, honor a child\'s personality or create a keepsake that will be treasured for generations.'
       },
       {
         question: 'How do you make sure the story is age appropriate?',
-        answer: 'Our children\'s book specialists have extensive knowledge of child development and age-appropriate content for each group. We calibrate vocabulary, sentence length, themes and concepts specifically for your target age group.'
+        answer: 'GhostWriterHunt\'s children\'s book specialists have extensive knowledge of child development and age-appropriate content for each group. The team calibrates vocabulary, sentence length, themes and concepts specifically for your target age group.'
       }
     ],
 
     ctaHeadline: 'Create a story your child',
     ctaHeadlineItalic: 'will never forget.',
-    ctaSubtext: 'Book a free consultation and let us write the children\'s book that becomes a family treasure.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt write the children\'s book that becomes a family treasure.',
     ctaImage: '/images/CTA-LIBRARY.webp'
   },
 
@@ -1355,7 +1355,7 @@ export const services = [
     title: 'Article Writing',
     tagline: 'Articles that inform,',
     taglineItalic: 'engage and convert.',
-    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles, our professional article writers produce content that establishes your authority, drives organic traffic and keeps readers coming back for more.',
+    heroSubtext: 'From thought leadership pieces to SEO-optimized web articles, GhostWriterHunt\'s professional article writers produce content that establishes your authority, drives organic traffic and keeps readers coming back for more.',
 
     heroImages: [
       {
@@ -1378,7 +1378,7 @@ export const services = [
     overview: {
       headline: 'Content that builds authority',
       headlineItalic: 'and drives results.',
-      body: 'In a world saturated with content, only the best rises to the top. Our professional article writers combine deep research, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. You share your topic, goals and key points through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer, matched to your industry, brings it to life. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces, every article is delivered ready to publish under your name.',
+      body: 'In a world saturated with content, only the best rises to the top. GhostWriterHunt\'s professional article writers combine deep research, compelling storytelling and SEO expertise to produce articles that rank, engage and convert. You share your topic, goals and key points through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer, matched to your industry, brings it to life. Whether you need regular website content, guest posts for major publications or in-depth thought leadership pieces, every article is delivered ready to publish under your name.',
       bullets: [
         'SEO-optimized articles for your website and blog',
         'Thought leadership pieces for major publications',
@@ -1410,12 +1410,12 @@ export const services = [
       {
         icon: 'feather',
         title: 'Expert Research',
-        description: 'Our writers go deep into every topic, reading primary sources, industry reports and expert opinions to produce content that genuinely informs.'
+        description: 'GhostWriterHunt\'s writers go deep into every topic, reading primary sources, industry reports and expert opinions to produce content that genuinely informs.'
       },
       {
         icon: 'trending-up',
         title: 'Conversion Focused',
-        description: 'Great articles do not just inform, they guide readers toward action. We write with your conversion goals in mind at every stage.'
+        description: 'Great articles do not just inform, they guide readers toward action. GhostWriterHunt writes with your conversion goals in mind at every stage.'
       }
     ],
 
@@ -1456,15 +1456,15 @@ export const services = [
     faqs: [
       {
         question: 'Do you write articles for specific industries?',
-        answer: 'Yes. We have writers who specialize in technology, finance, healthcare, legal, marketing, real estate, travel, food, lifestyle and many other industries. You are always matched with a writer who understands your field.'
+        answer: 'Yes. GhostWriterHunt has writers who specialize in technology, finance, healthcare, legal, marketing, real estate, travel, food, lifestyle and many other industries. You are always matched with a writer who understands your field.'
       },
       {
         question: 'Will the articles be SEO optimized?',
-        answer: 'Yes. All our articles naturally incorporate your target keywords, follow SEO best practices for headings and structure and include meta description copy. We write for both search engines and human readers simultaneously.'
+        answer: 'Yes. All GhostWriterHunt articles naturally incorporate your target keywords, follow SEO best practices for headings and structure and include meta description copy. GhostWriterHunt writes for both search engines and human readers simultaneously.'
       },
       {
         question: 'Can you write articles under my name as a ghostwriter?',
-        answer: 'Absolutely. All our article writing is fully ghostwritten, you receive the complete article to publish under your name. We sign full NDAs and our involvement is completely confidential.'
+        answer: 'Absolutely. All GhostWriterHunt article writing is fully ghostwritten, you receive the complete article to publish under your name. GhostWriterHunt signs full NDAs and stays completely confidential.'
       },
       {
         question: 'Can I order articles on a regular basis?',
@@ -1472,13 +1472,13 @@ export const services = [
       },
       {
         question: 'Do you write articles for specific publications?',
-        answer: 'Yes. If you have a specific publication in mind. Forbes, Medium, LinkedIn or an industry journal, we research that publication\'s style, tone and submission guidelines and write to their specific requirements.'
+        answer: 'Yes. If you have a specific publication in mind. Forbes, Medium, LinkedIn or an industry journal, the team researches that publication\'s style, tone and submission guidelines and write to their specific requirements.'
       }
     ],
 
     ctaHeadline: 'Build your authority',
     ctaHeadlineItalic: 'one article at a time.',
-    ctaSubtext: 'Book a free consultation and let us create content that establishes you as the trusted expert in your field, professionally researched, expertly written and ready to publish under your name.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt create content that establishes you as the trusted expert in your field, professionally researched, expertly written and ready to publish under your name.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -1491,7 +1491,7 @@ export const services = [
     title: 'Blog Writing',
     tagline: 'Consistent, compelling blogs',
     taglineItalic: 'that grow your audience.',
-    heroSubtext: 'A great blog builds trust, drives organic traffic and keeps your audience coming back month after month. Our professional blog writers deliver consistent, high-quality posts that sound like you, rank in search and turn readers into loyal followers.',
+    heroSubtext: 'A great blog builds trust, drives organic traffic and keeps your audience coming back month after month. GhostWriterHunt\'s professional blog writers deliver consistent, high-quality posts that sound like you, rank in search and turn readers into loyal followers.',
 
     heroImages: [
       {
@@ -1514,7 +1514,7 @@ export const services = [
     overview: {
       headline: 'Your blog, written with',
       headlineItalic: 'consistency and craft.',
-      body: 'The hardest part of blogging is not writing one great post, it is writing fifty great posts while running a business or pursuing a career. Our blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently, so your audience always has something valuable to read and your search rankings keep climbing.',
+      body: 'The hardest part of blogging is not writing one great post, it is writing fifty great posts while running a business or pursuing a career. GhostWriterHunt\'s blog writers take that burden completely off your shoulders. You share your voice, topics and goals through a simple written brief, your dedicated project manager coordinates everything from there while a handpicked writer researches, writes and delivers publication-ready blog posts in your voice, on your schedule, consistently, so your audience always has something valuable to read and your search rankings keep climbing.',
       bullets: [
         'Flexible post lengths tailored to your content goals',
         'SEO-optimized for organic traffic growth',
@@ -1536,7 +1536,7 @@ export const services = [
       {
         icon: 'calendar',
         title: 'Consistent Schedule',
-        description: 'We maintain your publishing schedule without fail, delivering posts on time, every time, so your audience never waits.'
+        description: 'The team maintains your publishing schedule without fail, delivering posts on time, every time, so your audience never waits.'
       },
       {
         icon: 'search',
@@ -1546,7 +1546,7 @@ export const services = [
       {
         icon: 'users',
         title: 'Audience First',
-        description: 'We write for your specific audience, understanding their questions, concerns and desires and addressing them directly in every post.'
+        description: 'GhostWriterHunt writes for your specific audience, understanding their questions, concerns and desires and addressing them directly in every post.'
       }
     ],
 
@@ -1554,7 +1554,7 @@ export const services = [
       {
         number: '01',
         title: 'Voice and Style',
-        description: 'We study your existing content and everything you submit to capture your unique voice and style.',
+        description: 'The team studies your existing content and everything you submit to capture your unique voice and style.',
         image: '/images/blog-writing-process-1.webp'
       },
       {
@@ -1578,7 +1578,7 @@ export const services = [
       {
         number: '05',
         title: 'Publish and Monitor',
-        description: 'Posts are delivered publication-ready and we track performance to continually improve.',
+        description: 'Posts are delivered publication-ready and the team tracks performance to continually improve.',
         image: '/images/blog-writing-process-5.webp'
       }
     ],
@@ -1587,11 +1587,11 @@ export const services = [
     faqs: [
       {
         question: 'How do you match the writer to my blog\'s voice?',
-        answer: 'We begin every blog writing engagement with a detailed voice and style study, reading your existing posts, reviewing the preferences and material you submit, and creating a style guide that governs every post we write for you.'
+        answer: 'Every blog writing engagement begins with a detailed voice and style study, reading your existing posts, reviewing the preferences and material you submit, and creating a style guide that governs every post written for you.'
       },
       {
         question: 'Can I review posts before they are published?',
-        answer: 'Yes, always. You receive every post for review before it goes live and approve it before publication, revisions are included with our Professional and Complete Publishing packages. Publication only happens with your explicit approval.'
+        answer: 'Yes, always. You receive every post for review before it goes live and approve it before publication, revisions are included with GhostWriterHunt\'s Professional and Complete Publishing packages. Publication only happens with your explicit approval.'
       },
       {
         question: 'Do you handle the content calendar and topic planning?',
@@ -1599,17 +1599,17 @@ export const services = [
       },
       {
         question: 'Will my blog posts be SEO optimized?',
-        answer: 'Yes. All our blog posts are written with SEO best practices, natural keyword integration, optimized headings, meta descriptions and internal linking recommendations. We write to rank without sacrificing readability or quality.'
+        answer: 'Yes. All GhostWriterHunt blog posts are written with SEO best practices, natural keyword integration, optimized headings, meta descriptions and internal linking recommendations. GhostWriterHunt writes to rank without sacrificing readability or quality.'
       },
       {
         question: 'Can you write technical or specialist blog content?',
-        answer: 'Yes. We have writers who specialize in technical, medical, legal, financial and other specialist fields. You are always matched with a writer who has genuine knowledge of your subject area.'
+        answer: 'Yes. GhostWriterHunt has writers who specialize in technical, medical, legal, financial and other specialist fields. You are always matched with a writer who has genuine knowledge of your subject area.'
       }
     ],
 
     ctaHeadline: 'Start the blog that',
     ctaHeadlineItalic: 'builds your readership.',
-    ctaSubtext: 'Book a free consultation and let us build the consistent, compelling blog that turns readers into loyal followers, professionally researched, expertly written and delivered ready to publish.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt build the consistent, compelling blog that turns readers into loyal followers, professionally researched, expertly written and delivered ready to publish.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -1622,7 +1622,7 @@ export const services = [
     title: 'Proofreading',
     tagline: 'Error free manuscripts,',
     taglineItalic: 'every single time.',
-    heroSubtext: 'The final read before publication is the most critical. Our professional proofreaders catch every error that slipped through, from typos and grammatical mistakes to inconsistencies that would undermine your credibility with readers.',
+    heroSubtext: 'The final read before publication is the most critical. GhostWriterHunt\'s professional proofreaders catch every error that slipped through, from typos and grammatical mistakes to inconsistencies that would undermine your credibility with readers.',
 
     heroImages: [
       {
@@ -1644,8 +1644,8 @@ export const services = [
 
     overview: {
       headline: 'No error reaches your',
-      headlineItalic: 'readers on our watch.',
-      body: 'Even the most experienced writers miss errors in their own work, it is simply how the human brain operates when reading familiar text. Our proofreaders bring fresh, expert eyes to your manuscript, catching every typo, grammatical error, punctuation mistake and inconsistency before your book goes to print or publication. The result is a manuscript that reads with the polish and professionalism of a major publishing house.',
+      headlineItalic: 'readers on GhostWriterHunt\'s watch.',
+      body: 'Even the most experienced writers miss errors in their own work, it is simply how the human brain operates when reading familiar text. GhostWriterHunt\'s proofreaders bring fresh, expert eyes to your manuscript, catching every typo, grammatical error, punctuation mistake and inconsistency before your book goes to print or publication. The result is a manuscript that reads with the polish and professionalism of a major publishing house.',
       bullets: [
         'Spelling, grammar and punctuation correction',
         'Consistency checks throughout the manuscript',
@@ -1672,17 +1672,17 @@ export const services = [
       {
         icon: 'eye',
         title: 'Fresh Eyes',
-        description: 'Our proofreaders come to your manuscript completely fresh, seeing errors that familiarity has made invisible to you.'
+        description: 'GhostWriterHunt\'s proofreaders come to your manuscript completely fresh, seeing errors that familiarity has made invisible to you.'
       },
       {
         icon: 'check-circle',
         title: 'Systematic Process',
-        description: 'We use a structured multi-pass proofreading process that ensures no error category is overlooked.'
+        description: 'GhostWriterHunt uses a structured multi-pass proofreading process that ensures no error category is overlooked.'
       },
       {
         icon: 'clock',
         title: 'Fast Turnaround',
-        description: 'We understand publication deadlines. Our proofreaders work efficiently without ever sacrificing thoroughness.'
+        description: 'The team understands publication deadlines. GhostWriterHunt\'s proofreaders work efficiently without ever sacrificing thoroughness.'
       }
     ],
 
@@ -1690,7 +1690,7 @@ export const services = [
       {
         number: '01',
         title: 'Manuscript Receipt',
-        description: 'We receive your manuscript and confirm scope, style guide requirements and turnaround time.',
+        description: 'GhostWriterHunt receives your manuscript and confirm scope, style guide requirements and turnaround time.',
         image: '/images/pghostwriter-p1.webp'
       },
       {
@@ -1727,7 +1727,7 @@ export const services = [
       },
       {
         question: 'Will you change my writing style?',
-        answer: 'No. Proofreading corrects errors, it does not change your writing style. We correct mistakes while preserving your voice exactly as you have written it.'
+        answer: 'No. Proofreading corrects errors, it does not change your writing style. Proofreaders correct mistakes while preserving your voice exactly as you have written it.'
       },
       {
         question: 'How fast can you proofread my manuscript?',
@@ -1735,17 +1735,17 @@ export const services = [
       },
       {
         question: 'Do you proofread non-English manuscripts?',
-        answer: 'We currently proofread in English only. If you are writing in a language other than English and need translation or proofreading support, please contact us and we will recommend appropriate specialists.'
+        answer: 'GhostWriterHunt currently proofreads in English only. If you are writing in a language other than English and need translation or proofreading support, please contact GhostWriterHunt and the team will recommend appropriate specialists.'
       },
       {
         question: 'Will I be able to see what was changed?',
-        answer: 'Yes, always. We deliver your manuscript with all corrections tracked using Microsoft Word track changes or Google Docs suggesting mode. You can review every correction individually before accepting them.'
+        answer: 'Yes, always. GhostWriterHunt delivers your manuscript with all corrections tracked using Microsoft Word track changes or Google Docs suggesting mode. You can review every correction individually before accepting them.'
       }
     ],
 
     ctaHeadline: 'Publish with complete',
     ctaHeadlineItalic: 'confidence.',
-    ctaSubtext: 'Book a free consultation and let our proofreaders ensure your manuscript is flawless.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt\'s proofreaders ensure your manuscript is flawless.',
     ctaImage: '/images/CTA-MIX.webp'
   },
 
@@ -1758,7 +1758,7 @@ export const services = [
     title: 'Book Formatting',
     tagline: 'Formatted for every platform,',
     taglineItalic: 'perfectly.',
-    heroSubtext: 'Every publishing platform has specific technical requirements for file formatting. Our specialists ensure your manuscript meets every standard, delivering clean, professional files ready to upload on any platform worldwide.',
+    heroSubtext: 'Every publishing platform has specific technical requirements for file formatting. GhostWriterHunt\'s specialists ensure your manuscript meets every standard, delivering clean, professional files ready to upload on any platform worldwide.',
 
     heroImages: [
       {
@@ -1781,7 +1781,7 @@ export const services = [
     overview: {
       headline: 'Technical precision meets',
       headlineItalic: 'beautiful presentation.',
-      body: 'Formatting errors can get your book rejected by publishing platforms, create a poor reading experience and undermine your professional reputation. Our formatting specialists have deep technical knowledge of every major platform\'s requirements, from Amazon KDP to Apple Books, and deliver files that pass every quality check first time, every time.',
+      body: 'Formatting errors can get your book rejected by publishing platforms, create a poor reading experience and undermine your professional reputation. GhostWriterHunt\'s formatting specialists have deep technical knowledge of every major platform\'s requirements, from Amazon KDP to Apple Books, and deliver files that pass every quality check first time, every time.',
       bullets: [
         'Amazon KDP print and digital formatting',
         'ePub 3.0 and MOBI file creation',
@@ -1808,7 +1808,7 @@ export const services = [
       {
         icon: 'settings',
         title: 'Platform Expertise',
-        description: 'We know the exact technical requirements of every major publishing platform, and stay current as requirements change.'
+        description: 'GhostWriterHunt knows the exact technical requirements of every major publishing platform, and stay current as requirements change.'
       },
       {
         icon: 'smartphone',
@@ -1818,7 +1818,7 @@ export const services = [
       {
         icon: 'check-square',
         title: 'First Time Approval',
-        description: 'Our formatting consistently passes platform quality checks first time, saving you the frustration of repeated rejections and delays.'
+        description: 'GhostWriterHunt\'s formatting consistently passes platform quality checks first time, saving you the frustration of repeated rejections and delays.'
       }
     ],
 
@@ -1826,7 +1826,7 @@ export const services = [
       {
         number: '01',
         title: 'File Review',
-        description: 'We assess your manuscript file and identify all formatting requirements for your chosen platforms.',
+        description: 'The team assesses your manuscript file and identify all formatting requirements for your chosen platforms.',
         image: '/images/book-formatting-process-1.webp'
       },
       {
@@ -1863,15 +1863,15 @@ export const services = [
       },
       {
         question: 'My book has images and tables, can you format that?',
-        answer: 'Yes. Books with complex elements, images, tables, charts, diagrams and sidebars, require specialist formatting knowledge. Our team has extensive experience with all types of complex content across both print and digital formats.'
+        answer: 'Yes. Books with complex elements, images, tables, charts, diagrams and sidebars, require specialist formatting knowledge. The GhostWriterHunt team has extensive experience with all types of complex content across both print and digital formats.'
       },
       {
         question: 'Can you format a book I have already uploaded that was rejected?',
-        answer: 'Yes. If your book was rejected by a publishing platform due to formatting issues, we diagnose the problem and reformat correctly. We have a strong track record of resolving persistent formatting rejections quickly.'
+        answer: 'Yes. If your book was rejected by a publishing platform due to formatting issues, GhostWriterHunt diagnoses the problem and reformat correctly. GhostWriterHunt has a strong track record of resolving persistent formatting rejections quickly.'
       },
       {
         question: 'Do you provide upload assistance?',
-        answer: 'Yes. We provide step-by-step instructions for uploading your files to each platform and are available to answer questions during the upload process.'
+        answer: 'Yes. GhostWriterHunt provides step-by-step instructions for uploading your files to each platform and are available to answer questions during the upload process.'
       },
       {
         question: 'How long does formatting take?',
@@ -1881,7 +1881,7 @@ export const services = [
 
     ctaHeadline: 'Get your book formatted',
     ctaHeadlineItalic: 'right the first time.',
-    ctaSubtext: 'Book a free consultation and let our formatting specialists prepare your book for every platform.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt\'s formatting specialists prepare your book for every platform.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -1894,7 +1894,7 @@ export const services = [
     title: 'Video Book Trailer',
     tagline: 'Give your book a cinematic',
     taglineItalic: 'introduction.',
-    heroSubtext: 'A compelling video trailer creates excitement, drives pre-orders and gives your book a presence on social media and YouTube that static images simply cannot match. Our production team creates book trailers that make readers want to read immediately.',
+    heroSubtext: 'A compelling video trailer creates excitement, drives pre-orders and gives your book a presence on social media and YouTube that static images simply cannot match. The GhostWriterHunt production team creates book trailers that make readers want to read immediately.',
 
     heroImages: [
       {
@@ -1917,7 +1917,7 @@ export const services = [
     overview: {
       headline: 'A trailer that sells your book',
       headlineItalic: 'in 60 seconds.',
-      body: 'The most powerful book promotion tool you can have is a great video trailer. In the age of social media and short-form video, a compelling 60-second trailer can reach thousands of potential readers in days. Our production team writes, designs and produces book trailers that capture the mood, tension and appeal of your story, compelling viewers to find your book immediately.',
+      body: 'The most powerful book promotion tool you can have is a great video trailer. In the age of social media and short-form video, a compelling 60-second trailer can reach thousands of potential readers in days. The GhostWriterHunt production team writes, designs and produces book trailers that capture the mood, tension and appeal of your story, compelling viewers to find your book immediately.',
       bullets: [
         'Professional script writing for your trailer',
         'Custom animation and motion design',
@@ -1944,12 +1944,12 @@ export const services = [
       {
         icon: 'film',
         title: 'Story-Led Production',
-        description: 'Every trailer begins with your story, we identify the emotional hook that will make viewers need to read your book immediately.'
+        description: 'Every trailer begins with your story, the team identifies the emotional hook that will make viewers need to read your book immediately.'
       },
       {
         icon: 'music',
         title: 'Cinematic Score',
-        description: 'Licensed music transforms a good trailer into a great one. We select or compose a score that perfectly matches your book\'s tone.'
+        description: 'Licensed music transforms a good trailer into a great one. The team selects or compose a score that perfectly matches your book\'s tone.'
       },
       {
         icon: 'share-2',
@@ -1962,7 +1962,7 @@ export const services = [
       {
         number: '01',
         title: 'Creative Brief',
-        description: 'We discuss your book, its tone, target audience and the emotional response you want the trailer to create.',
+        description: 'The team discusses your book, its tone, target audience and the emotional response you want the trailer to create.',
         image: '/images/video-book-trailer-process-1.webp'
       },
       {
@@ -1974,7 +1974,7 @@ export const services = [
       {
         number: '03',
         title: 'Production',
-        description: 'Animation, motion graphics, typography and visual elements are produced by our creative team.',
+        description: 'Animation, motion graphics, typography and visual elements are produced by the GhostWriterHunt creative team.',
         image: '/images/video-book-trailer-process-3.webp'
       },
       {
@@ -1995,19 +1995,19 @@ export const services = [
     faqs: [
       {
         question: 'What style of trailer do you produce?',
-        answer: 'We produce animated motion graphics trailers, using typography, imagery, color and movement to create a cinematic feel. We do not produce live-action filmed trailers, though we can incorporate author photos or stock footage where appropriate.'
+        answer: 'GhostWriterHunt produces animated motion graphics trailers, using typography, imagery, color and movement to create a cinematic feel. GhostWriterHunt does not produce live-action filmed trailers, though GhostWriterHunt can incorporate author photos or stock footage where appropriate.'
       },
       {
         question: 'Can I provide images to use in my trailer?',
-        answer: 'Yes, we encourage it. Your book cover, author photo and any approved imagery you own can be incorporated into your trailer. We also have access to licensed stock footage and image libraries.'
+        answer: 'Yes, GhostWriterHunt encourages it. Your book cover, author photo and any approved imagery you own can be incorporated into your trailer. GhostWriterHunt also have access to licensed stock footage and image libraries.'
       },
       {
         question: 'Where can I use my book trailer?',
-        answer: 'Your trailer can be used everywhere. YouTube, Instagram, Facebook, TikTok, your author website, Amazon Author Central, email newsletters and any other platform. We deliver in multiple formats sized for each platform.'
+        answer: 'Your trailer can be used everywhere. YouTube, Instagram, Facebook, TikTok, your author website, Amazon Author Central, email newsletters and any other platform. GhostWriterHunt delivers in multiple formats sized for each platform.'
       },
       {
         question: 'Is music included and do I own the rights?',
-        answer: 'Yes, licensed music is included in all plans. The music license covers your trailer for use across all major platforms. You own the complete trailer including all visual elements, only the music requires the continued license which we arrange and maintain.'
+        answer: 'Yes, licensed music is included in all plans. The music license covers your trailer for use across all major platforms. You own the complete trailer including all visual elements, only the music requires the continued license which GhostWriterHunt arranges and maintain.'
       },
       {
         question: 'How long will my trailer take to produce?',
@@ -2017,7 +2017,7 @@ export const services = [
 
     ctaHeadline: 'Give your book the trailer',
     ctaHeadlineItalic: 'it deserves.',
-    ctaSubtext: 'Book a free creative consultation and let us produce a trailer that makes readers want your book immediately.',
+    ctaSubtext: 'Book a free creative consultation and let GhostWriterHunt produce a trailer that makes readers want your book immediately.',
     ctaImage: '/images/CTA-MIX.webp'
   },
 
@@ -2030,7 +2030,7 @@ export const services = [
     title: 'Audiobook Publishing',
     tagline: 'Your words, heard by',
     taglineItalic: 'the world.',
-    heroSubtext: 'The audiobook market is growing faster than any other format in publishing. Our audiobook production team handles everything, from professional narration and studio recording to distribution on Audible, Apple Podcasts and beyond.',
+    heroSubtext: 'The audiobook market is growing faster than any other format in publishing. The GhostWriterHunt audiobook production team handles everything, from professional narration and studio recording to distribution on Audible, Apple Podcasts and beyond.',
 
     heroImages: [
       {
@@ -2053,7 +2053,7 @@ export const services = [
     overview: {
       headline: 'Reach readers who prefer',
       headlineItalic: 'to listen.',
-      body: 'Millions of readers today consume books through their ears, commuting, exercising, cooking or simply relaxing. An audiobook version of your title opens your work to this vast and rapidly growing audience. Our audiobook production team manages every aspect of the process, from matching you with the perfect narrator voice to mastering the final audio and distributing across all major platforms.',
+      body: 'Millions of readers today consume books through their ears, commuting, exercising, cooking or simply relaxing. An audiobook version of your title opens your work to this vast and rapidly growing audience. The GhostWriterHunt audiobook production team manages every aspect of the process, from matching you with the perfect narrator voice to mastering the final audio and distributing across all major platforms.',
       bullets: [
         'Professional narrator selection for your genre',
         'Studio-quality recording and production',
@@ -2080,7 +2080,7 @@ export const services = [
       {
         icon: 'mic',
         title: 'Perfect Voice Match',
-        description: 'We match your book with a narrator whose voice, tone and style perfectly complement your genre and target audience.'
+        description: 'GhostWriterHunt matches your book with a narrator whose voice, tone and style perfectly complement your genre and target audience.'
       },
       {
         icon: 'volume-2',
@@ -2098,7 +2098,7 @@ export const services = [
       {
         number: '01',
         title: 'Narrator Selection',
-        description: 'We present narrator audition samples for your approval, selecting the perfect voice for your book.',
+        description: 'The team presents narrator audition samples for your approval, selecting the perfect voice for your book.',
         image: '/images/audiobook-publishing-process-1.webp'
       },
       {
@@ -2131,29 +2131,29 @@ export const services = [
     faqs: [
       {
         question: 'Can I narrate my own audiobook?',
-        answer: 'Yes, if you want to narrate your own book, we provide recording guidance, a professional studio session and full post-production editing and mastering. Many authors find narrating their own work creates a powerful personal connection with listeners.'
+        answer: 'Yes, if you want to narrate your own book, GhostWriterHunt provides recording guidance, a professional studio session and full post-production editing and mastering. Many authors find narrating their own work creates a powerful personal connection with listeners.'
       },
       {
         question: 'How do I choose a narrator?',
-        answer: 'We present you with audition samples from narrators who specialize in your genre. You listen and select the voice that feels right for your book. We handle all narrator contracts, scheduling and direction.'
+        answer: 'The team presents you with audition samples from narrators who specialize in your genre. You listen and select the voice that feels right for your book. GhostWriterHunt handles all narrator contracts, scheduling and direction.'
       },
       {
         question: 'Which platforms will my audiobook be on?',
-        answer: 'We distribute to Audible, ACX, Apple Books Audiobooks, Google Play Audiobooks, Libro.fm, OverDrive and other major audio platforms. Your audiobook will be available wherever listeners prefer to consume audio content.'
+        answer: 'GhostWriterHunt distributes to Audible, ACX, Apple Books Audiobooks, Google Play Audiobooks, Libro.fm, OverDrive and other major audio platforms. Your audiobook will be available wherever listeners prefer to consume audio content.'
       },
       {
         question: 'How long does audiobook production take?',
-        answer: 'Production typically takes 30 to 60 days depending on book length and narrator availability. This includes recording, editing, mastering, your review and platform submission. We communicate clearly throughout the entire process.'
+        answer: 'Production typically takes 30 to 60 days depending on book length and narrator availability. This includes recording, editing, mastering, your review and platform submission. The team communicates clearly throughout the entire process.'
       },
       {
         question: 'Do I keep my audiobook rights?',
-        answer: 'Yes, 100%. We produce your audiobook as a work for hire. You retain complete ownership of the finished audiobook, all distribution rights and 100% of your royalties on every platform.'
+        answer: 'Yes, 100%. GhostWriterHunt produces your audiobook as a work for hire. You retain complete ownership of the finished audiobook, all distribution rights and 100% of your royalties on every platform.'
       }
     ],
 
     ctaHeadline: 'Let your book be',
     ctaHeadlineItalic: 'heard as well as read.',
-    ctaSubtext: 'Book a free consultation and discover how we can bring your book to life in audio.',
+    ctaSubtext: 'Book a free consultation and discover how GhostWriterHunt can bring your book to life in audio.',
     ctaImage: '/images/CTA-07.webp'
   },
 
@@ -2166,7 +2166,7 @@ export const services = [
     title: 'Author Website Design',
     tagline: 'Your home on the web,',
     taglineItalic: 'beautifully crafted.',
-    heroSubtext: 'Every serious author needs a professional website, the one place online that is entirely yours. We design and build beautiful, fast author websites that showcase your books, build your readership and establish your authority.',
+    heroSubtext: 'Every serious author needs a professional website, the one place online that is entirely yours. GhostWriterHunt designs and build beautiful, fast author websites that showcase your books, build your readership and establish your authority.',
 
     heroImages: [
       {
@@ -2189,7 +2189,7 @@ export const services = [
     overview: {
       headline: 'A website that makes readers',
       headlineItalic: 'want to stay.',
-      body: 'Your author website is your most important marketing asset, the hub that connects everything else you do online. It is where readers discover you, where media goes to learn about you and where fans go to feel connected to your work. We design author websites that are as compelling as the books they showcase, beautiful, fast, easy to navigate and optimized for search engines.',
+      body: 'Your author website is your most important marketing asset, the hub that connects everything else you do online. It is where readers discover you, where media goes to learn about you and where fans go to feel connected to your work. GhostWriterHunt designs author websites that are as compelling as the books they showcase, beautiful, fast, easy to navigate and optimized for search engines.',
       bullets: [
         'Custom design, built specifically for authors',
         'Mobile-responsive and fast loading',
@@ -2216,7 +2216,7 @@ export const services = [
       {
         icon: 'layout',
         title: 'Author Focused Design',
-        description: 'We design specifically for authors, not generic business websites. Every element serves your books, your readers and your brand.'
+        description: 'GhostWriterHunt designs specifically for authors, not generic business websites. Every element serves your books, your readers and your brand.'
       },
       {
         icon: 'search',
@@ -2234,7 +2234,7 @@ export const services = [
       {
         number: '01',
         title: 'Discovery and Brief',
-        description: 'We discuss your books, your brand, your audience and the goals of your website.',
+        description: 'The team discusses your books, your brand, your audience and the goals of your website.',
         image: '/images/author-website-process-1.webp'
       },
       {
@@ -2258,7 +2258,7 @@ export const services = [
       {
         number: '05',
         title: 'Launch',
-        description: 'Your website goes live and we provide training so you can manage it confidently yourself.',
+        description: 'Your website goes live and GhostWriterHunt provides training so you can manage it confidently yourself.',
         image: '/images/author-website-process-5.webp'
       }
     ],
@@ -2267,15 +2267,15 @@ export const services = [
     faqs: [
       {
         question: 'Do I need technical knowledge to manage my website?',
-        answer: 'No. We build your website on a user-friendly platform and provide comprehensive training so you can update your content, add new books and publish blog posts without any technical knowledge.'
+        answer: 'No. GhostWriterHunt builds your website on a user-friendly platform and provide comprehensive training so you can update your content, add new books and publish blog posts without any technical knowledge.'
       },
       {
         question: 'Can I use my existing domain name?',
-        answer: 'Yes. If you already have a domain name registered, we connect it to your new website at no extra cost. If you need a domain, we help you choose and register the perfect one for your author brand.'
+        answer: 'Yes. If you already have a domain name registered, GhostWriterHunt connects it to your new website at no extra cost. If you need a domain, GhostWriterHunt helps you choose and register the perfect one for your author brand.'
       },
       {
         question: 'Will my website appear in Google search results?',
-        answer: 'Yes. All our websites are built with SEO best practices, optimized headings, fast loading, mobile responsive and properly structured for search engines. We also submit your sitemap to Google and Bing as part of our launch process.'
+        answer: 'Yes. All GhostWriterHunt websites are built with SEO best practices, optimized headings, fast loading, mobile responsive and properly structured for search engines. GhostWriterHunt also submits your sitemap to Google and Bing as part of the launch process.'
       },
       {
         question: 'Can you include a shop where I sell books directly?',
@@ -2283,13 +2283,13 @@ export const services = [
       },
       {
         question: 'What happens after my website is launched?',
-        answer: 'We provide full training for managing your website and remain available for questions. Ongoing maintenance and support packages are available for updates, new pages and technical assistance.'
+        answer: 'GhostWriterHunt provides full training for managing your website and remains available for questions. Ongoing maintenance and support packages are available for updates, new pages and technical assistance.'
       }
     ],
 
     ctaHeadline: 'Claim your space on',
     ctaHeadlineItalic: 'the web.',
-    ctaSubtext: 'Book a free consultation and let us design the author website your readers deserve.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt design the author website your readers deserve.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   },
 
@@ -2302,7 +2302,7 @@ export const services = [
     title: 'Website Content Writing',
     tagline: 'Words that make visitors',
     taglineItalic: 'become readers.',
-    heroSubtext: 'Your website is only as powerful as the words on it. Our website content writers craft copy that communicates your value, connects with your audience and compels visitors to take action, whether that means buying your book, signing up to your list or getting in touch.',
+    heroSubtext: 'Your website is only as powerful as the words on it. GhostWriterHunt\'s website content writers craft copy that communicates your value, connects with your audience and compels visitors to take action, whether that means buying your book, signing up to your list or getting in touch.',
 
     heroImages: [
       {
@@ -2325,7 +2325,7 @@ export const services = [
     overview: {
       headline: 'Copy that connects, compels',
       headlineItalic: 'and converts.',
-      body: 'Most author websites fail not because of poor design, but because of weak copy. Visitors arrive and leave without taking action because nothing on the page speaks directly to them. Our website content writers specialize in author copy, understanding how readers think, what they need to feel before they buy and how to write every page with purpose and persuasion.',
+      body: 'Most author websites fail not because of poor design, but because of weak copy. Visitors arrive and leave without taking action because nothing on the page speaks directly to them. GhostWriterHunt\'s website content writers specialize in author copy, understanding how readers think, what they need to feel before they buy and how to write every page with purpose and persuasion.',
       bullets: [
         'Homepage copy that captures your author brand',
         'About page that creates genuine connection',
@@ -2352,7 +2352,7 @@ export const services = [
       {
         icon: 'user',
         title: 'Reader Psychology',
-        description: 'We understand how book buyers think and feel, and write every page to address their specific questions, concerns and desires.'
+        description: 'The team understands how book buyers think and feel, and write every page to address their specific questions, concerns and desires.'
       },
       {
         icon: 'search',
@@ -2362,7 +2362,7 @@ export const services = [
       {
         icon: 'arrow-right',
         title: 'Conversion Driven',
-        description: 'Beautiful copy that does not convert is wasted. Every word we write serves a clear goal, moving visitors toward action.'
+        description: 'Beautiful copy that does not convert is wasted. Every word in your site copy serves a clear goal, moving visitors toward action.'
       }
     ],
 
@@ -2370,13 +2370,13 @@ export const services = [
       {
         number: '01',
         title: 'Discovery',
-        description: 'We learn about your books, your audience, your goals and the action you want visitors to take.',
+        description: 'The team learns about your books, your audience, your goals and the action you want visitors to take.',
         image: '/images/HEERO-L12.webp'
       },
       {
         number: '02',
         title: 'Research',
-        description: 'We research your genre, your ideal readers and the language that resonates most with your audience.',
+        description: 'The team researches your genre, your ideal readers and the language that resonates most with your audience.',
         image: '/images/author-websitedesigning.webp'
       },
       {
@@ -2388,7 +2388,7 @@ export const services = [
       {
         number: '04',
         title: 'Review and Refine',
-        description: 'You review all copy and we refine until every word reflects your voice and achieves your goals.',
+        description: 'You review all copy and the team refines until every word reflects your voice and achieves your goals.',
         image: '/images/website-content-process-4.webp'
       },
       {
@@ -2403,29 +2403,29 @@ export const services = [
     faqs: [
       {
         question: 'How do you write in my voice for my website?',
-        answer: 'We begin with a detailed voice discovery process, studying your existing writing and everything you submit about your style and preferences, and creating a voice guide that governs every word we write for your website.'
+        answer: 'The process begins with a detailed voice discovery, studying your existing writing and everything you submit about your style and preferences, and creating a voice guide that governs every word written for your website.'
       },
       {
         question: 'Will the copy be SEO friendly?',
-        answer: 'Yes. All website copy is naturally optimized for search, incorporating relevant keywords, properly structured headings and meta descriptions for every page. We write for both search engines and human readers simultaneously.'
+        answer: 'Yes. All website copy is naturally optimized for search, incorporating relevant keywords, properly structured headings and meta descriptions for every page. GhostWriterHunt writes for both search engines and human readers simultaneously.'
       },
       {
         question: 'Do you write copy for individual book pages?',
-        answer: 'Yes. Book page copy is one of our specialties, including compelling book descriptions, reader benefits, genre positioning and calls to action that drive visitors to purchase. Strong book page copy is one of the highest-ROI investments an author can make.'
+        answer: 'Yes. Book page copy is one of GhostWriterHunt\'s specialties, including compelling book descriptions, reader benefits, genre positioning and calls to action that drive visitors to purchase. Strong book page copy is one of the highest-ROI investments an author can make.'
       },
       {
         question: 'Can you rewrite existing website copy that is not working?',
-        answer: 'Absolutely. Many authors come to us with websites that look good but do not convert. We analyze your existing copy, identify what is not working and rewrite with a focus on engagement and conversion.'
+        answer: 'Absolutely. Many authors come to GhostWriterHunt with websites that look good but do not convert. The team analyzes your existing copy, identify what is not working and rewrite with a focus on engagement and conversion.'
       },
       {
         question: 'Do I need to provide any information about my books?',
-        answer: 'Yes, the more you share the better. We will ask you to complete a detailed brief about each book, your target readers and your goals. The richer the information you provide, the more compelling and accurate the copy we produce.'
+        answer: 'Yes, the more you share the better. The team will ask you to complete a detailed brief about each book, your target readers and your goals. The richer the information you provide, the more compelling and accurate the copy GhostWriterHunt produces.'
       }
     ],
 
     ctaHeadline: 'Make every word on your site',
     ctaHeadlineItalic: 'work for you.',
-    ctaSubtext: 'Book a free consultation and let us write the copy that turns your website visitors into readers.',
+    ctaSubtext: 'Book a free consultation and let GhostWriterHunt write the copy that turns your website visitors into readers.',
     ctaImage: '/images/CTA-LAPTOP.webp'
   }
 

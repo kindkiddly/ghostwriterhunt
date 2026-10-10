@@ -12,7 +12,7 @@ export default function CheckoutCancelPage() {
           Payment cancelled
         </h1>
         <p className="mt-4 font-inter text-[15px] leading-relaxed text-[#666666]">
-          No charge was made. You can try again from our pricing page or chat with us if you need
+          No charge was made. You can try again from the pricing page or open live chat if you need
           help choosing a package.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">

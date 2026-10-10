@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   BUSINESS_ADDRESS,
-  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_DISPLAY_LABELED,
   BUSINESS_PHONE_TEL,
 } from "@/lib/siteAddress";
 
@@ -75,16 +75,14 @@ export default function Footer() {
           margin: 0 auto;
           padding: 0 24px;
           display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-          gap: 40px;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 48px;
           align-items: start;
         }
-        .gwh-ft-map-contact-row {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-          gap: 40px;
-          align-items: stretch;
-          min-width: 0;
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .gwh-ft-main-inner {
+            gap: 40px;
+          }
         }
         .gwh-ft-brand {
           display: flex;
@@ -217,26 +215,17 @@ export default function Footer() {
             gap: 28px;
             align-items: stretch;
           }
-          .gwh-ft-map-contact-row {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            width: 100%;
-            min-width: 0;
-          }
           .gwh-ft-brand {
             align-items: center;
             text-align: center;
-            order: 1;
-          }
-          .gwh-ft-map-contact-row {
-            order: 2;
           }
           .gwh-ft-contact {
-            order: 2;
             display: flex;
             flex-direction: column;
             width: 100%;
+          }
+          .gwh-ft-heading {
+            text-align: center;
           }
           .gwh-ft-contact-body {
             display: block;
@@ -306,8 +295,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="gwh-ft-map-contact-row">
-            <div className="gwh-ft-contact">
+          <div className="gwh-ft-contact">
               <h3 className="gwh-ft-heading">CONTACT</h3>
               <div className="gwh-ft-contact-body">
                 <div className="gwh-ft-contact-item">
@@ -337,7 +325,7 @@ export default function Footer() {
                     href={BUSINESS_PHONE_TEL}
                     className="gwh-ft-contact-email"
                   >
-                    {BUSINESS_PHONE_DISPLAY}
+                    {BUSINESS_PHONE_DISPLAY_LABELED}
                   </a>
                 </div>
                 <div className="gwh-ft-contact-item">
@@ -347,7 +335,6 @@ export default function Footer() {
                   Book Free Consultation
                 </Link>
               </div>
-            </div>
           </div>
         </div>
       </div>

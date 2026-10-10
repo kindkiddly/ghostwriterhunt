@@ -386,7 +386,7 @@ export default function ServicesGrid() {
       >
         {/* Section label */}
         <p className="gwh-svc-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
-          What We Do
+          Services
         </p>
 
         {/* Headline */}
@@ -399,8 +399,8 @@ export default function ServicesGrid() {
 
         {/* Subtext */}
         <p className="gwh-svc-sub mx-auto mb-[70px] max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
-          From the first word to the final published page, our professionals
-          handle every detail.
+          From the first word to the final published page, GhostWriterHunt
+          professionals handle every detail.
         </p>
 
         {/* Services grid: 1 → 2 → 4 columns */}
@@ -442,7 +442,7 @@ export default function ServicesGrid() {
         {/* Genre chips — panel on desktop; clean horizontal scroll on mobile */}
         <div className="gwh-svc-genres mx-auto mt-12 max-w-[900px] rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] px-6 py-8">
           <p className="gwh-svc-genres-label mb-4 w-full text-center font-inter text-[14px] font-medium text-[#999999]">
-            Genres we cover:
+            Genres covered:
           </p>
           <div className="gwh-svc-genre-scroll">
             {GENRES.map((genre) => (

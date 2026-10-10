@@ -257,7 +257,7 @@ export default function Comparison() {
         className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-cmp-visible" : ""}`}
       >
         <p className="gwh-cmp-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
-          Why Choose Us
+          Why Choose GhostWriterHunt
         </p>
 
         <h2 className="gwh-cmp-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">

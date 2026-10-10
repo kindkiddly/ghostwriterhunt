@@ -63,8 +63,8 @@ export default function PayPage() {
           Custom payment
         </h1>
         <p className="mb-8 font-inter text-[15px] leading-relaxed text-[#555555]">
-          Use this page for amounts agreed with our team after discussing your project in a
-          consultation. If you have not confirmed the amount with us yet, please{" "}
+          Use this page for amounts agreed with the GhostWriterHunt team after discussing
+          your project in a consultation. If you have not confirmed the amount yet, please{" "}
           <Link href="/#start" className="font-medium text-[#C9A84C] hover:underline">
             book a free consultation
           </Link>{" "}

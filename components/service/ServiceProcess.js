@@ -1644,7 +1644,7 @@ export default function ServiceProcess({ service }) {
           THE PROCESS
         </p>
         <h2 className="sp-headline sp-reveal" data-delay="80">
-          <span className="block">How we bring your</span>
+          <span className="block">How GhostWriterHunt brings your</span>
           <span className="sp-headline-italic">project to life.</span>
         </h2>
 

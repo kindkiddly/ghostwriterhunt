@@ -233,7 +233,7 @@ ${features}`;
   );
 
   return `WEBSITE PRICING CARDS (authoritative public offers — never contradict these prices or meanings)
-- Starter $150 per book: customer ALREADY HAS a finished manuscript. We edit, format, design cover, publish on 5 major global platforms, Author Central setup.
+- Starter $150 per book: customer ALREADY HAS a finished manuscript. Includes editing, formatting, cover design, publishing on 5 major global platforms, Author Central setup.
 - Professional $200 per book, MINIMUM 4 books ($800 total): SERIES only — team writes each book from idea/notes. Never offer Professional for a single book.
 - Complete Publishing Package $299 per book: ONE book from idea — full premium package (writing, editing, cover, formatting, author website, publishing, all formats).
 - One book wanting the full premium package → quote Complete at $299 (website_complete). Never quote an agent catalog plan that costs MORE than the matching website card for the same scope.

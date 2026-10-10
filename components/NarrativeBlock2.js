@@ -14,13 +14,13 @@ const STEPS = [
     number: "01",
     title: "Secure Voice Submission",
     description:
-      "We begin by studying everything you share (written notes, voice recordings or existing drafts) to learn how you think, speak and tell stories.",
+      "The process starts by studying everything you share (written notes, voice recordings or existing drafts) to learn how you think, speak and tell stories.",
   },
   {
     number: "02",
     title: "Voice Style Guide Created",
     description:
-      "We document your unique tone, vocabulary and style into a personal guide that governs every word written.",
+      "Your unique tone, vocabulary and style are documented in a personal guide that governs every word written.",
   },
   {
     number: "03",
@@ -57,7 +57,7 @@ export default function NarrativeBlock2() {
   return (
     <section
       className="nb2-section-mobile relative w-full overflow-hidden bg-[#FAFAF7] py-[80px]"
-      aria-label="Our Approach"
+      aria-label="Voice matching approach"
     >
       <style dangerouslySetInnerHTML={{ __html: `
         .nb2-reveal-left {
@@ -176,18 +176,18 @@ export default function NarrativeBlock2() {
         {/* ——— Right: label, headline, body, process steps, CTA ——— */}
         <div className="nb2-reveal-right w-full lg:w-1/2" data-delay="150">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#6B7C3A]">
-            OUR APPROACH
+            THE APPROACH
           </p>
 
           <h2 className="mb-6 font-playfair text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1C1C1C] lg:text-[56px]">
-            <span className="block font-normal">We write in</span>
+            <span className="block font-normal">Written in</span>
             <span className="block italic text-[#C9A84C]">your voice.</span>
           </h2>
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
             Your book should sound like you, only better. Before writing a
-            single word, our team studies your communication style, personality,
-            and vision from everything you share with us. We capture the rhythm
+            single word, the team studies your communication style, personality,
+            and vision from everything you share. Writers capture the rhythm
             of how you speak, the words you naturally use, and the tone that is
             uniquely yours. Then your matched ghostwriter brings it to the
             page. The result is a book that feels completely authentic, because

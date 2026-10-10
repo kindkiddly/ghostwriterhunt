@@ -214,19 +214,19 @@ export default function BookCoversGallery() {
         className={`mx-auto max-w-[1200px] overflow-x-hidden px-5 sm:px-6 ${visible ? "gwh-bcg-visible" : ""}`}
       >
         <p className="gwh-bcg-label mb-4 text-center font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent-olive)]">
-          Our Work
+          Published Work
         </p>
 
         <h2 className="gwh-bcg-headline mb-4 text-center font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] lg:text-[56px]">
-          <span className="block font-normal">Books we have</span>
+          <span className="block font-normal">Books brought</span>
           <span className="block italic text-[var(--color-accent-gold)]">
             brought to life.
           </span>
         </h2>
 
         <p className="gwh-bcg-sub mx-auto mb-12 max-w-[560px] text-center font-inter text-[16px] font-normal leading-[1.7] text-[#666666]">
-          A selection of books written, designed and published by our
-          professional team, across every genre and format.
+          A selection of books written, designed and published by the
+          GhostWriterHunt team, across every genre and format.
         </p>
 
         {/* Genre filter tabs — Reedsy style */}
@@ -293,7 +293,7 @@ export default function BookCoversGallery() {
             href="#our-work"
             className="inline-block rounded-[6px] border-2 border-[var(--color-accent-gold)] bg-transparent px-9 py-3.5 font-inter text-[15px] font-semibold text-[var(--color-accent-gold)] transition-all duration-300 hover:bg-[var(--color-accent-gold)] hover:text-white"
           >
-            View All Our Work
+            View All Work
           </a>
         </div>
       </div>

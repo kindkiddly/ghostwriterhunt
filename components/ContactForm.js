@@ -49,14 +49,14 @@ const TRUST_POINTS = [
 const NEXT_STEPS = [
   {
     title: "Share your idea",
-    body: "Tell us about your book in the form.",
+    body: "Share details about your book in the form.",
   },
   {
     title: "Free consultation",
     body: "Your project manager contacts you to discuss details and a custom quote.",
   },
   {
-    title: "We start writing",
+    title: "Writing begins",
     body: "Your book begins, fully confidential.",
   },
 ];
@@ -361,7 +361,7 @@ export default function ContactForm() {
       setSubmitting(false);
       setError(
         err?.message ||
-          "Something went wrong. Please try again or email us at ghostwriterhunt@lumexforge.com."
+          "Something went wrong. Please try again or email ghostwriterhunt@lumexforge.com."
       );
     }
   }
@@ -899,10 +899,10 @@ export default function ContactForm() {
             </h2>
 
             <p className="cf-subtext">
-              Book a free consultation with our team. We will understand your
-              project in confidence, match you with the right professional
-              ghostwriter, and keep all communication securely managed through
-              us. No commitment required.
+              Book a free consultation with the GhostWriterHunt team. A project
+              manager will understand your project in confidence, match you with
+              the right professional ghostwriter, and keep all communication
+              securely managed through your project manager. No commitment required.
             </p>
 
             <ul className="cf-trust-list">
@@ -950,7 +950,7 @@ export default function ContactForm() {
                     </div>
                     <h3 className="cf-success-heading">Thank you!</h3>
                     <p className="cf-success-text">
-                      We have received your request and will be in touch within 24
+                      Your request has been received. The team will be in touch within 24
                       hours.
                     </p>
                   </div>
@@ -1092,7 +1092,7 @@ export default function ContactForm() {
                   >
                     <div className="cf-field">
                       <label className="cf-field-label" htmlFor="cf-about">
-                        Tell us about your book*
+                        About your book*
                       </label>
                       <textarea
                         id="cf-about"

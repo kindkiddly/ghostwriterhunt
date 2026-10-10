@@ -32,7 +32,7 @@ export default function SmsCallConsentField({ id, checked, onChange, variant = "
         technology, regarding my inquiry, including information about book-related packages, quotes,
         updates, and follow-up regarding my request. Message frequency may vary. Message and data
         rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of
-        purchase. See our{" "}
+        purchase. See the{" "}
         <a
           href={PRIVACY_HREF}
           className={linkClass}

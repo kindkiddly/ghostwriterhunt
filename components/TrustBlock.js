@@ -143,7 +143,7 @@ export default function TrustBlock() {
           radial-gradient(ellipse at 0% 100%, rgba(201,168,76,0.08) 0%, transparent 60%)
         `,
       }}
-      aria-label="Our Standard"
+      aria-label="GhostWriterHunt standard"
     >
       <style dangerouslySetInnerHTML={{ __html: `
         .tb-reveal {
@@ -293,18 +293,18 @@ export default function TrustBlock() {
         {/* ——— Part 1: centered statement ——— */}
         <div className="tb-reveal flex flex-col items-center text-center" data-delay="0">
           <p className="mb-5 font-inter text-[11px] font-medium uppercase tracking-[0.2em] text-[#C9A84C]">
-            OUR STANDARD
+            THE STANDARD
           </p>
 
           <h2 className="mb-5 font-playfair text-[36px] font-bold leading-[1.1] tracking-[-0.02em] lg:text-[56px]">
             <span className="block text-[#FFFFFF]">Only the best writers</span>
-            <span className="block italic text-[#C9A84C]">make our team.</span>
+            <span className="block italic text-[#C9A84C]">join the team.</span>
           </h2>
 
           <p className="mb-[60px] max-w-[600px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999] break-words">
-            Every ghostwriter on our platform goes through a rigorous vetting
-            process. Carefully selected writers who match your voice, ensuring
-            every author receives nothing short of exceptional.
+            Every ghostwriter on the platform goes through a rigorous vetting
+            process. Carefully selected writers who match your voice, so every
+            author receives exceptional work.
           </p>
         </div>
 

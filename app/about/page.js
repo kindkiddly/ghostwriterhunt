@@ -51,7 +51,7 @@ const SERVICE_CARDS = [
 const PROCESS_STEPS = [
   {
     title: "Consult",
-    description: "We listen to your idea, goals and voice.",
+    description: "The team listens to your idea, goals and voice.",
   },
   {
     title: "Write",
@@ -71,7 +71,7 @@ const PROCESS_STEPS = [
   },
   {
     title: "Promote",
-    description: "We help your book find its readers.",
+    description: "Marketing support helps your book find its readers.",
   },
 ];
 
@@ -79,7 +79,7 @@ const VALUES = [
   {
     title: "Absolute Confidentiality",
     description:
-      "Every project is protected by a comprehensive NDA from day one. Your story, ideas and identity stay completely safe with us.",
+      "Every project is protected by an NDA from day one. Your story, ideas and identity stay confidential with GhostWriterHunt.",
   },
   {
     title: "Uncompromising Quality",
@@ -89,12 +89,12 @@ const VALUES = [
   {
     title: "Author First, Always",
     description:
-      "Your vision guides everything. We write in your voice and deliver a book that feels completely and authentically yours.",
+      "Your vision guides everything. Writers work in your voice and deliver a book that feels authentically yours.",
   },
   {
     title: "Global Publishing Reach",
     description:
-      "We publish your book on 5 major global platforms, and you keep 100% of your rights and royalties.",
+      "Books go live on 5 major global platforms, and you keep 100% of your rights and royalties.",
   },
 ];
 
@@ -695,7 +695,7 @@ export default function AboutPage() {
       {/* 1 — Hero */}
       <section className="ab-hero" data-hero>
         <div className="ab-wrap ab-hero-copy ab-fade-up ab-visible">
-          <p className="ab-label-gold">OUR STORY</p>
+          <p className="ab-label-gold">THE STORY</p>
           <h1 className="ab-hero-title">
             Every story deserves to be <em>told beautifully.</em>
           </h1>
@@ -716,7 +716,7 @@ export default function AboutPage() {
         <div className="ab-hero-media ab-scale-up ab-visible" data-delay="120">
           <AboutImage
             src="/images/about-us-h1.webp"
-            alt="GhostWriterHunt about us — books, writing and publishing"
+            alt="GhostWriterHunt — books, writing and publishing"
             width={1942}
             height={809}
             className="ab-hero-img"
@@ -730,7 +730,7 @@ export default function AboutPage() {
       <section className="ab-section">
         <div className="ab-wrap ab-split">
           <div className="ab-split-copy ab-slide-left">
-            <p className="ab-label-olive">HOW WE BEGAN</p>
+            <p className="ab-label-olive">HOW IT BEGAN</p>
             <h2 className="ab-h2">
               Born from a passion for <em>storytelling.</em>
             </h2>
@@ -742,10 +742,9 @@ export default function AboutPage() {
               change how people think.
             </p>
             <p className="ab-body">
-              We built GhostWriterHunt to be more than a writing service: a true creative
-              partnership, built on trust, confidentiality and an unwavering commitment to
-              quality. From your first idea to your published book, every step happens
-              under one roof.
+              GhostWriterHunt was built to be more than a writing service: a creative
+              partnership based on trust, confidentiality and quality. From your first idea
+              to your published book, every step happens under one roof.
             </p>
             <p className="ab-body">
               GhostWriterHunt is part of the LumexForge family of products.
@@ -770,7 +769,7 @@ export default function AboutPage() {
       <section className="ab-section ab-section-cream">
         <div className="ab-wrap">
           <div className="ab-services-intro ab-fade-up">
-            <p className="ab-label-gold">WHAT WE DO</p>
+            <p className="ab-label-gold">WHAT GHOSTWRITERHUNT DOES</p>
             <h2 className="ab-h2 ab-h2-center">
               Everything your book needs, <em>in one place.</em>
             </h2>
@@ -831,9 +830,9 @@ export default function AboutPage() {
         <div className="ab-wrap">
           <div className="ab-split ab-split-reverse">
             <div className="ab-split-copy ab-slide-left">
-              <p className="ab-label-gold">WHAT WE STAND FOR</p>
+              <p className="ab-label-gold">CORE VALUES</p>
               <h2 className="ab-h2">
-                Our mission and <em>core values.</em>
+                Mission and <em>values.</em>
               </h2>
               <div className="ab-values-grid">
                 {VALUES.map((item, i) => (
@@ -865,7 +864,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6 — Stats promise */}
-      <section className="ab-stats" aria-label="Our promise">
+      <section className="ab-stats" aria-label="GhostWriterHunt promise">
         <div className="ab-stats-row">
           {STATS.map((stat, i) => (
             <div
@@ -892,10 +891,10 @@ export default function AboutPage() {
               Respectful communication, <em>always.</em>
             </h2>
             <p className="ab-body">
-              We only call or text you about your inquiry if you&apos;ve given us permission
-              on our forms, and you can opt out at any time by replying STOP. Your mobile
-              number and consent are never shared with third parties for marketing. Learn
-              more in our{" "}
+              GhostWriterHunt only calls or texts you about your inquiry if you opt in on a
+              form, and you can opt out at any time by replying STOP. Your mobile number
+              and consent are never shared with third parties for marketing. Learn more in
+              the{" "}
               <Link href="/privacy-policy" className="ab-inline-link">
                 Privacy Policy
               </Link>{" "}

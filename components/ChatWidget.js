@@ -19,7 +19,7 @@ import SmsCallConsentField from "@/components/SmsCallConsentField";
  */
 
 const WELCOME_MESSAGE_BODY =
-  "Every great book starts with a single idea, and we'd love to hear yours. Tell us a little about the book you dream of writing.";
+  "Every great book starts with a single idea. Share a little about the book you dream of writing.";
 
 function formatWelcomeMessage(fullName) {
   const firstWord = (fullName ?? "").trim().split(/\s+/).filter(Boolean)[0] ?? "";
@@ -1598,7 +1598,7 @@ export default function ChatWidget({ initialOpen = false }) {
         {showEnded ? (
           <div className="gcw-ended-wrap">
             <p className="gcw-ended-title">Chat ended</p>
-            <p className="gcw-ended-text">Thanks for chatting with us. You can start a new conversation anytime.</p>
+            <p className="gcw-ended-text">Thanks for chatting with GhostWriterHunt. You can start a new conversation anytime.</p>
             <button type="button" className="gcw-intake-btn-primary" onClick={startNewChatIntake}>
               Start new chat
             </button>

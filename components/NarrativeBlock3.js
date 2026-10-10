@@ -240,7 +240,7 @@ export default function NarrativeBlock3() {
           </h2>
 
           <p className="mb-9 max-w-[480px] font-inter text-[16px] font-normal leading-[1.7] text-[#999999]">
-            Once your book is complete we handle everything: formatting for
+            Once your book is complete, GhostWriterHunt handles formatting for
             every platform, metadata optimization and global distribution. Your
             book goes live on 5 major global platforms. You keep 100% of your rights and every
             dollar of royalties.

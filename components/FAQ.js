@@ -13,47 +13,47 @@ const FAQ_ITEMS = [
   {
     question: "How does the ghostwriting process work?",
     answer:
-      "We begin with a free consultation where you share your book idea, goals, and vision with our team. With complete confidentiality, our dedicated project team understands your requirements, genre, and preferred voice, then personally matches you with the right professional ghostwriter. Writing begins chapter by chapter; you review and approve each stage through your project manager with regular feedback rounds until every word is exactly right.",
+      "GhostWriterHunt starts with a free consultation where you share your book idea, goals, and vision. With complete confidentiality, the project team learns your requirements, genre, and preferred voice, then matches you with the right professional ghostwriter. Writing moves chapter by chapter; you review and approve each stage through your project manager with regular feedback until every word is right.",
   },
   {
     question: "How long does it take to write a book?",
     answer:
-      "Timelines vary depending on the length and complexity of your book. A short book of 20,000 words typically takes 4-6 weeks. A full length novel or non-fiction book of 60,000+ words takes 8-16 weeks. We always agree on a clear timeline before starting and keep you updated at every milestone.",
+      "Timelines vary depending on the length and complexity of your book. A short book of 20,000 words typically takes 4-6 weeks. A full length novel or non-fiction book of 60,000+ words takes 8-16 weeks. GhostWriterHunt agrees on a clear timeline before starting and keeps you updated at every milestone.",
   },
   {
     question: "Will the book sound like me?",
     answer:
-      "Absolutely. Before writing a single word, our team captures your communication style from everything you submit: written notes, voice recordings, and any existing writing you share. We create a personal voice guide and deliver a sample chapter for your approval before the full manuscript begins. Our clients consistently tell us the finished book sounds more like them than anything they could have written themselves.",
+      "Yes. Before writing a single word, the team captures your communication style from everything you submit: written notes, voice recordings, and any existing writing you share. A personal voice guide is created and a sample chapter is delivered for your approval before the full manuscript begins. Clients often say the finished book sounds more like them than anything they could have written themselves.",
   },
   {
     question: "Do I own the book and all the royalties?",
     answer:
-      "Yes, 100%. Once your project is delivered you own the complete manuscript, all publishing rights and every dollar of royalties. We sign a full NDA and transfer all intellectual property rights to you. Your name goes on the cover and GhostWriterHunt remains completely behind the scenes.",
+      "Yes, 100%. Once your project is delivered you own the complete manuscript, all publishing rights and every dollar of royalties. GhostWriterHunt signs a full NDA and transfers all intellectual property rights to you. Your name goes on the cover and GhostWriterHunt stays completely behind the scenes.",
   },
   {
     question: "Is my project completely confidential?",
     answer:
-      "Absolutely. Every project begins with a comprehensive Non-Disclosure Agreement. Your ideas, your story and your identity are completely protected. We never disclose client information or project details under any circumstances. Confidentiality is the foundation of everything we do.",
+      "Yes. Every project begins with a Non-Disclosure Agreement. Your ideas, your story and your identity stay protected. GhostWriterHunt never discloses client information or project details under any circumstances. Confidentiality is central to every project.",
   },
   {
     question: "Which platforms will my book be published on?",
     answer:
-      "We publish your book on 5 major global platforms including Amazon KDP, Apple Books, Google Play Books, Kobo, and Barnes and Noble Press. We handle metadata optimization and platform setup, so your book is published in your name and discoverable worldwide.",
+      "GhostWriterHunt publishes your book on 5 major global platforms including Amazon KDP, Apple Books, Google Play Books, Kobo, and Barnes and Noble Press. The team handles metadata optimization and platform setup, so your book is published in your name and discoverable worldwide.",
   },
   {
     question: "What genres do you cover?",
     answer:
-      "We cover every major genre including fiction, non-fiction, biography, memoir, self-help, business, children's books, mystery, thriller, romance, fantasy, horror, poetry and more. Every writer on our platform specializes in specific genres so you are always matched with someone who truly understands your category.",
+      "GhostWriterHunt covers every major genre including fiction, non-fiction, biography, memoir, self-help, business, children's books, mystery, thriller, romance, fantasy, horror, poetry and more. Each writer on the platform specializes in specific genres so you are matched with someone who understands your category.",
   },
   {
     question: "How much does it cost?",
     answer:
-      "Our packages start at $150 with the Starter plan for authors who already have a finished manuscript, $200 for our most popular Professional package, and $299 for the Complete Publishing Package, our full white-glove experience. Book a free consultation and we will help you choose the right package for your project.",
+      "Packages start at $150 with the Starter plan for authors who already have a finished manuscript, $200 for the Professional package, and $299 for the Complete Publishing Package. Book a free consultation and the team will help you choose the right package for your project.",
   },
   {
     question: "What if I am not happy with the writing?",
     answer:
-      "Your satisfaction is our priority. Our Professional and Complete Publishing Package plans include unlimited revisions, and we work with you until the manuscript meets your expectations. If at any point you are not satisfied we will reassign your project to a different writer at no extra cost.",
+      "Client satisfaction comes first. Professional and Complete Publishing Package plans include unlimited revisions, and the team works with you until the manuscript meets your expectations. If at any point you are not satisfied, GhostWriterHunt will reassign your project to a different writer at no extra cost.",
   },
 ];
 

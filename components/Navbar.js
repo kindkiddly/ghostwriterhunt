@@ -43,7 +43,7 @@ const PAYMENT_PACKAGES = SHARED_PRICING.map((tier) => ({
 }));
 
 const ABOUT_LINKS = [
-  { label: "About Us", href: "/about" },
+  { label: "About", href: "/about" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Use", href: "/terms-of-use" },
   { label: "Cookie Policy", href: "/cookie-policy" },
@@ -274,7 +274,7 @@ export default function Navbar({ servicesByCategory = {} }) {
     { label: "Services", href: "#services", isServices: true },
     { label: "Payment", href: "#payment", isPayment: true },
     { label: "FAQ", href: "/#faq" },
-    { label: "About Us", href: "/about", isAbout: true },
+    { label: "About", href: "/about", isAbout: true },
     { label: "Contact", href: "/#start" },
   ];
 
@@ -396,7 +396,7 @@ export default function Navbar({ servicesByCategory = {} }) {
             >
               <span className="nav-payment-custom-title">Custom Payment</span>
               <span className="nav-payment-custom-note">
-                For project amounts agreed with our team after your consultation.
+                For project amounts agreed with the GhostWriterHunt team after your consultation.
               </span>
             </MenuLink>
           </div>

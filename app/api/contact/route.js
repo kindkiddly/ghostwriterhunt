@@ -19,7 +19,7 @@ const FIELD_LABELS = {
   phone: "Phone Number",
   genre: "Book Genre",
   projectType: "Project Type",
-  about: "Tell us about your book",
+  about: "About your book",
   smsCallConsent: "Call/SMS consent",
   consentTimestamp: "Call/SMS consent timestamp",
 };
@@ -149,7 +149,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         error:
-          "You have sent several messages recently. Please try again in a little while or email us at ghostwriterhunt@lumexforge.com.",
+          "You have sent several messages recently. Please try again in a little while or email ghostwriterhunt@lumexforge.com.",
       },
       { status: 429 }
     );

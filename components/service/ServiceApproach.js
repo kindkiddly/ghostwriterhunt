@@ -366,7 +366,7 @@ export default function ServiceApproach({ service }) {
     <section
       ref={bgRef}
       className={`sa-section sa-section--glass-mobile${isGhostwriting ? " sa-section--ghostwriting" : ""}${hasGlassDesktop ? " sa-section--glass-desktop" : ""}${glassDesktopBgClass}${bgReady ? " sa-bg-ready" : ""}`}
-      aria-label="Our approach"
+      aria-label="Service approach"
     >
       <style dangerouslySetInnerHTML={{ __html: `
         .sa-section {
@@ -802,10 +802,10 @@ export default function ServiceApproach({ service }) {
 
       <div className="sa-inner">
         <p className="sa-label sa-reveal" data-delay="0">
-          OUR APPROACH
+          THE APPROACH
         </p>
         <h2 className="sa-headline sa-reveal" data-delay="80">
-          <span className="block">What makes our</span>
+          <span className="block">What makes this</span>
           <span className="sa-headline-italic">approach different.</span>
         </h2>
 

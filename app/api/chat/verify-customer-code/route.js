@@ -122,7 +122,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         ok: false,
-        message: "We couldn't find that code. Please check the code on your invoice or receipt email and try again.",
+        message: "That code was not found. Please check the code on your invoice or receipt email and try again.",
       },
       { status: 404 }
     );
@@ -153,7 +153,7 @@ export async function POST(request) {
     contactHasEmail: !!contact.email,
     firstName,
     message: firstName
-      ? `Thanks, ${firstName} — we've linked your account. You can ask about your project status here.`
-      : "Thanks — we've linked your account. You can ask about your project status here.",
+      ? `Thanks, ${firstName} — your account is linked. You can ask about your project status here.`
+      : "Thanks — your account is linked. You can ask about your project status here.",
   });
 }
