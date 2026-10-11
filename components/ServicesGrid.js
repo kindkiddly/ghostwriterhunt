@@ -408,7 +408,9 @@ export default function ServicesGrid() {
           {SERVICES.map((service) => (
             <li
               key={service.id}
-              className="gwh-svc-card group relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] p-7 shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[rgba(201,168,76,0.6)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
+              className={`gwh-svc-card group relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#2A2A2A] p-7 shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:border-[rgba(201,168,76,0.6)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]${
+                service.id === "branding" ? " flex h-full flex-col" : ""
+              }`}
             >
               {/* Top gold accent */}
               <div
@@ -431,7 +433,9 @@ export default function ServicesGrid() {
 
               <Link
                 href={service.href}
-                className="mt-4 inline-block font-inter text-[14px] font-medium text-[#C9A84C] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline"
+                className={`inline-block font-inter text-[14px] font-medium text-[#C9A84C] no-underline transition-colors duration-300 hover:text-[#B8960C] hover:underline${
+                  service.id === "branding" ? " mt-auto" : " mt-4"
+                }`}
               >
                 Learn more →
               </Link>
