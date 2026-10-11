@@ -71,6 +71,23 @@ export default function Footer() {
           margin: 12px 0 0;
           max-width: 280px;
         }
+        .gwh-ft-brand-line {
+          font-family: var(--font-inter), sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          color: #888888;
+          line-height: 1.5;
+          margin: 8px 0 0;
+        }
+        .gwh-ft-brand-line a {
+          color: #888888;
+          text-decoration: none;
+        }
+        .gwh-ft-brand-line a:hover {
+          color: #C9A84C;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
 
         .gwh-ft-heading {
           font-family: var(--font-inter), sans-serif;
@@ -159,8 +176,7 @@ export default function Footer() {
         }
 
         .gwh-ft-bottom {
-          border-top: 1px solid #2A2A2A;
-          padding: 16px 0;
+          padding: 12px 0;
         }
         .gwh-ft-bottom-inner {
           max-width: 1200px;
@@ -168,25 +184,16 @@ export default function Footer() {
           padding: 0 24px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          gap: 12px;
+          justify-content: center;
+          text-align: center;
         }
-        .gwh-ft-copy,
-        .gwh-ft-bottom-brand {
+        .gwh-ft-copy {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
           font-size: 12px;
           color: #555555;
           margin: 0;
           line-height: 1.5;
-        }
-        .gwh-ft-bottom-brand a {
-          color: #555555;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-        }
-        .gwh-ft-bottom-brand a:hover {
-          color: #C9A84C;
         }
 
         @media (max-width: 768px) {
@@ -212,10 +219,6 @@ export default function Footer() {
             max-width: 280px;
             text-align: center;
             box-sizing: border-box;
-          }
-          .gwh-ft-bottom-inner {
-            flex-direction: column;
-            text-align: center;
           }
         }
       ` }} />
@@ -244,6 +247,17 @@ export default function Footer() {
             <p className="gwh-ft-tagline">
               Professional ghostwriting services for authors worldwide. Your
               story. Your voice. Perfectly told.
+            </p>
+            <p className="gwh-ft-brand-line">
+              A{" "}
+              <a
+                href="https://lumexforge.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LumexForge
+              </a>{" "}
+              brand
             </p>
           </div>
 
@@ -302,17 +316,6 @@ export default function Footer() {
         <div className="gwh-ft-bottom-inner">
           <p className="gwh-ft-copy">
             © 2026 GhostWriterHunt. All rights reserved.
-          </p>
-          <p className="gwh-ft-bottom-brand">
-            GhostWriterHunt is a{" "}
-            <a
-              href="https://lumexforge.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LumexForge
-            </a>{" "}
-            brand.
           </p>
         </div>
       </div>
