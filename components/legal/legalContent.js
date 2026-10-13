@@ -54,13 +54,14 @@ export const legalContent = {
 </ul>
 <p>This information may include your name, email address, phone number, book project details and any other information you choose to provide.</p>
 <h3>Information Collected Automatically</h3>
-<p>When you visit the website, certain information about your device and browsing behavior is collected automatically, including:</p>
+<p>When you visit the website, certain information about your device and browsing behavior may be collected automatically by GhostWriterHunt and its hosting and analytics providers, including:</p>
 <ul>
   <li>IP address and browser type</li>
   <li>Pages visited and time spent on each page</li>
   <li>Referring website addresses</li>
   <li>Device type and operating system</li>
 </ul>
+<p>See the <a href="/cookie-policy">Cookie Policy</a> for how Vercel Web Analytics and similar tools are used on this site.</p>
 <hr />
 <h2>How GhostWriterHunt Uses Your Information</h2>
 <p>Information collected through contact, inquiry and project forms is used to:</p>
@@ -93,11 +94,11 @@ export const legalContent = {
   <li>With your explicit consent</li>
 </ul>
 <hr />
-<h2>NDA and Confidentiality</h2>
-<p>All client projects are protected by a Non-Disclosure Agreement (NDA). Your book ideas, manuscript content, personal story and project details are confidential and will not be disclosed to third parties under any circumstances.</p>
+<h2>Project Confidentiality</h2>
+<p>Client projects are handled under confidentiality commitments, including a Non-Disclosure Agreement (NDA) where applicable. GhostWriterHunt treats your book ideas, manuscript content, personal story and project details as confidential. Access is limited to GhostWriterHunt team members and service providers who need that information to deliver your project, operate the website, or process payments. GhostWriterHunt may also disclose information when required by law, to protect legal rights and safety, or with your permission.</p>
 <hr />
 <h2>Data Security</h2>
-<p>GhostWriterHunt uses appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure or destruction. All data is transmitted using SSL encryption.</p>
+<p>GhostWriterHunt uses appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure or destruction. The website uses HTTPS to help protect data in transit.</p>
 <hr />
 <h2>Your Rights</h2>
 <p>You have the right to:</p>
@@ -132,9 +133,9 @@ ${CONTACT_SECTION}
 <p>Each order is for your personal or business use. The scope, deliverables and timeline of your project are confirmed in your package details or your custom project plan.</p>
 <p>Professional software and digital tools are used in research, drafting and production. All work is directed, reviewed and finalized by the GhostWriterHunt team.</p>
 <h2>4. Ownership and Confidentiality</h2>
-<p>Once your order is paid in full, you own 100% of the rights to the final work. All projects are covered by a confidentiality commitment. GhostWriterHunt does not share your work or identity with anyone.</p>
+<p>Once your order is paid in full, you receive the rights to the final deliverables described in your package or written project agreement. GhostWriterHunt applies confidentiality commitments to client projects. GhostWriterHunt does not sell, publish, or identify clients or their manuscripts without permission, except as needed to deliver the Services, with service providers bound by confidentiality obligations, or as required by law.</p>
 <h2>5. Revisions</h2>
-<p>Revisions are included as described in your package. Professional and Complete Publishing packages include unlimited revisions. Revision requests must match the original project requirements.</p>
+<p>Revisions are included as described in your package or project plan. Where your package states unlimited revisions, those apply within the scope of the original project requirements. Additional scope may require a separate agreement.</p>
 <h2>6. Payments</h2>
 <p>All prices are shown in US dollars. Orders are confirmed by payment through secure checkout or a payment link GhostWriterHunt sends you. Custom project amounts are agreed after consultation.</p>
 <h2>7. Refunds and Cancellations</h2>
@@ -272,12 +273,12 @@ ${CONTACT_SECTION}
     <p class="legal-doc-desc">How GhostWriterHunt uses cookies and similar tracking technologies on the website.</p>
   </li>
   <li class="legal-doc-item">
-    <a href="/legal#sms-consent" class="legal-doc-link">Call and Text Message Consent Agreement</a>
-    <p class="legal-doc-desc">Your rights and GhostWriterHunt's obligations regarding calls, SMS and text message communications.</p>
+    <a href="/legal#sms-consent" class="legal-doc-link">SMS Text Message Consent Agreement</a>
+    <p class="legal-doc-desc">Your rights and GhostWriterHunt's obligations regarding optional SMS text message communications.</p>
   </li>
 </ul>
 <hr />
-<h2 id="sms-consent">Call and Text Message Consent Agreement</h2>
+<h2 id="sms-consent">SMS Text Message Consent Agreement</h2>
 <p>Text messages are sent by <strong>GhostWriterHunt</strong> as the messaging brand. By providing a phone number and checking the separate, optional SMS consent checkbox on a GhostWriterHunt form, you agree to receive text messages related to your submitted inquiry, requested service information, quotes, consultation scheduling, and related project communications, consistent with the consent provided.</p>
 <p>Providing a phone number alone does not constitute SMS consent. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.</p>
 <p>Mobile opt-in data and SMS consent records are not shared with third parties or affiliates for their marketing or promotional purposes. Service providers may process information only as needed to deliver and support the communications service, subject to applicable requirements.</p>

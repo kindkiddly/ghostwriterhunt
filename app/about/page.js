@@ -11,9 +11,9 @@ import { useNearViewport } from "@/lib/useNearViewport";
  */
 
 const STATS = [
-  { number: "100", suffix: "%", label: "Rights & royalties yours" },
-  { number: "5", suffix: "", label: "Global publishing platforms" },
-  { number: "30", suffix: "", label: "Days to publish" },
+  { number: "100", suffix: "%", label: "Rights & royalties yours*" },
+  { number: "5", suffix: "", label: "Retail platforms (typical)*" },
+  { number: "30", suffix: "", label: "Typical days to publish*" },
   { number: "50", suffix: "+", label: "Genres covered" },
 ];
 
@@ -67,7 +67,8 @@ const PROCESS_STEPS = [
   },
   {
     title: "Publish",
-    description: "Your book goes live on major global platforms.",
+    description:
+      "When publishing is in your package, your book can go live on major retail platforms.",
   },
   {
     title: "Promote",
@@ -77,9 +78,9 @@ const PROCESS_STEPS = [
 
 const VALUES = [
   {
-    title: "Absolute Confidentiality",
+    title: "Confidentiality",
     description:
-      "Every project is protected by an NDA from day one. Your story, ideas and identity stay confidential with GhostWriterHunt.",
+      "Projects are handled under NDA and confidentiality commitments. Your story, ideas and identity are shared only as needed to deliver your book.",
   },
   {
     title: "Uncompromising Quality",
@@ -92,9 +93,9 @@ const VALUES = [
       "Your vision guides everything. Writers work in your voice and deliver a book that feels authentically yours.",
   },
   {
-    title: "Global Publishing Reach",
+    title: "Publishing Reach",
     description:
-      "Books go live on 5 major global platforms, and you keep 100% of your rights and royalties.",
+      "When publishing is included in your package, setup can cover up to 5 major retail platforms. You keep the rights and royalties described in your agreement.",
   },
 ];
 
@@ -457,6 +458,16 @@ const styles = `
   .ab-stat:last-child {
     border-right: none;
   }
+  .ab-stats-note {
+    max-width: 720px;
+    margin: 28px auto 0;
+    padding: 0 24px;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+  }
   .ab-stat-num {
     font-family: var(--font-playfair), serif;
     font-weight: 700;
@@ -701,8 +712,9 @@ export default function AboutPage() {
           </h1>
           <p className="ab-hero-lead">
             GhostWriterHunt helps authors, experts and dreamers turn their ideas into
-            professionally written, designed and published books, with complete
-            confidentiality and 100% of the rights and royalties in your name.
+            professionally written, designed and published books, with strong
+            confidentiality commitments and rights and royalties in your name as
+            set out in your project agreement.
           </p>
           <div className="ab-hero-btns">
             <Link href="/#start" className="ab-btn-gold">
@@ -896,6 +908,12 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+        <p className="ab-stats-note">
+          *Figures are typical or package-based examples, not guarantees. Publish
+          timelines depend on scope, package, and how quickly you provide
+          feedback. Platform count and rights terms follow your written project
+          or package agreement.
+        </p>
       </section>
 
       {/* 7 — Privacy / communication */}
@@ -908,18 +926,15 @@ export default function AboutPage() {
             </h2>
             <p className="ab-body">
               GhostWriterHunt only texts you about your inquiry if you separately opt in on a
-              form, and you can opt out at any time by replying STOP. Mobile opt-in data
-              and SMS consent records are not shared with third parties or affiliates for
-              their marketing or promotional purposes. Learn more in
-              the{" "}
+              form, and you can opt out at any time by replying STOP. See the{" "}
               <Link href="/privacy-policy" className="ab-inline-link">
                 Privacy Policy
               </Link>{" "}
               and{" "}
               <Link href="/terms-of-use" className="ab-inline-link">
                 Terms of Use
-              </Link>
-              .
+              </Link>{" "}
+              for how GhostWriterHunt handles SMS consent and personal information.
             </p>
           </div>
           <div className="ab-split-media ab-slide-right">

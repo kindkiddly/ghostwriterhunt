@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
-  BUSINESS_ADDRESS,
   BUSINESS_PHONE_DISPLAY_LABELED,
   BUSINESS_PHONE_TEL,
+  BUSINESS_STREET_ADDRESS,
   SITE_URL,
 } from "@/lib/siteAddress";
 
@@ -284,7 +284,7 @@ export default function Footer() {
               <a href={BUSINESS_PHONE_TEL} className="gwh-ft-link">
                 {BUSINESS_PHONE_DISPLAY_LABELED}
               </a>
-              <p className="gwh-ft-address">{BUSINESS_ADDRESS}</p>
+              <p className="gwh-ft-address">{BUSINESS_STREET_ADDRESS}</p>
             </div>
           </div>
 
