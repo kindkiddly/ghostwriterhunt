@@ -83,7 +83,7 @@ export default function Footer() {
         }
 
         .gwh-ft-lux-main {
-          padding: clamp(36px, 4vw, 52px) 0 clamp(28px, 3vw, 40px);
+          padding: clamp(24px, 2.8vw, 36px) 0 clamp(18px, 2.2vw, 28px);
         }
 
         .gwh-ft-lux-inner {
@@ -95,7 +95,7 @@ export default function Footer() {
         .gwh-ft-lux-grid {
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: 26px;
           align-items: stretch;
         }
 
@@ -103,7 +103,7 @@ export default function Footer() {
           display: none;
           width: 1px;
           align-self: stretch;
-          min-height: 120px;
+          min-height: 100px;
           background: linear-gradient(
             180deg,
             rgba(232, 188, 79, 0) 0%,
@@ -122,14 +122,20 @@ export default function Footer() {
           justify-content: center;
         }
 
+        .gwh-ft-lux-logo-wrap {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: clamp(10px, 1.2vw, 16px);
+        }
+
         .gwh-ft-lux-logo-link {
           display: inline-block;
           line-height: 0;
-          margin-bottom: clamp(14px, 1.5vw, 22px);
         }
 
         .gwh-ft-lux-logo {
-          width: min(100%, 280px);
+          width: min(100%, 248px);
           height: auto;
           display: block;
         }
@@ -137,7 +143,7 @@ export default function Footer() {
         .gwh-ft-lux-tagline {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: clamp(14px, 1.15vw, 17px);
+          font-size: clamp(12px, 1vw, 15px);
           color: #d9dde3;
           line-height: 1.65;
           margin: 0;
@@ -163,44 +169,44 @@ export default function Footer() {
         .gwh-ft-lux-heading {
           font-family: var(--font-inter), sans-serif;
           font-weight: 600;
-          font-size: clamp(13px, 1.05vw, 15px);
+          font-size: clamp(12px, 0.95vw, 14px);
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: #e8bc4f;
-          margin: 0 0 clamp(16px, 1.8vw, 22px);
+          margin: 0 0 clamp(12px, 1.4vw, 18px);
           display: flex;
           align-items: center;
           gap: 10px;
         }
 
         .gwh-ft-lux-icon {
-          width: clamp(22px, 1.65vw, 30px);
-          height: clamp(22px, 1.65vw, 30px);
+          width: clamp(20px, 1.45vw, 26px);
+          height: clamp(20px, 1.45vw, 26px);
           color: #e8bc4f;
           flex-shrink: 0;
         }
 
         .gwh-ft-lux-icon--heading {
-          width: clamp(20px, 1.5vw, 26px);
-          height: clamp(20px, 1.5vw, 26px);
+          width: clamp(18px, 1.35vw, 22px);
+          height: clamp(18px, 1.35vw, 22px);
         }
 
         .gwh-ft-lux-rows {
           display: flex;
           flex-direction: column;
-          gap: clamp(10px, 1.1vw, 14px);
+          gap: clamp(8px, 0.95vw, 12px);
         }
 
         .gwh-ft-lux-row {
           display: flex;
           align-items: flex-start;
-          gap: clamp(12px, 1.2vw, 16px);
+          gap: clamp(10px, 1vw, 14px);
         }
 
         .gwh-ft-lux-row-text {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: clamp(14px, 1.1vw, 16px);
+          font-size: clamp(12px, 0.98vw, 14px);
           line-height: 1.5;
           color: #f0f0f0;
           text-decoration: none;
@@ -213,37 +219,37 @@ export default function Footer() {
 
         .gwh-ft-lux-row-note {
           font-family: var(--font-inter), sans-serif;
-          font-size: clamp(12px, 0.95vw, 14px);
+          font-size: clamp(11px, 0.85vw, 12px);
           color: #a8adb5;
-          margin: 4px 0 0 calc(clamp(22px, 1.65vw, 30px) + clamp(12px, 1.2vw, 16px));
+          margin: 3px 0 0 calc(clamp(20px, 1.45vw, 26px) + clamp(10px, 1vw, 14px));
           line-height: 1.4;
         }
 
         .gwh-ft-lux-cta-copy {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: clamp(15px, 1.2vw, 17px);
+          font-size: clamp(13px, 1.05vw, 15px);
           color: #d9dde3;
           line-height: 1.6;
-          margin: 0 0 clamp(18px, 2vw, 24px);
+          margin: 0 0 clamp(14px, 1.6vw, 20px);
         }
 
         .gwh-ft-lux-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: clamp(10px, 1vw, 14px);
+          gap: clamp(8px, 0.9vw, 12px);
           width: 100%;
-          max-width: min(100%, 420px);
-          min-height: clamp(52px, 4.5vw, 64px);
-          padding: clamp(12px, 1.2vw, 16px) clamp(20px, 2vw, 28px);
+          max-width: min(100%, 380px);
+          min-height: clamp(46px, 4vw, 56px);
+          padding: clamp(10px, 1vw, 14px) clamp(18px, 1.8vw, 24px);
           border-radius: 999px;
           border: 1px solid rgba(255, 224, 128, 0.45);
           background: linear-gradient(180deg, #ffe080 0%, #e8bc4f 45%, #d9a93b 100%);
           box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
           font-family: var(--font-inter), sans-serif;
           font-weight: 600;
-          font-size: clamp(15px, 1.15vw, 17px);
+          font-size: clamp(13px, 1.02vw, 15px);
           color: #111111;
           text-decoration: none;
           transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
@@ -265,8 +271,8 @@ export default function Footer() {
         }
 
         .gwh-ft-lux-btn-icon {
-          width: clamp(22px, 1.6vw, 28px);
-          height: clamp(22px, 1.6vw, 28px);
+          width: clamp(20px, 1.45vw, 24px);
+          height: clamp(20px, 1.45vw, 24px);
           color: #111111;
           flex-shrink: 0;
         }
@@ -292,7 +298,7 @@ export default function Footer() {
         }
 
         .gwh-ft-lux-bottom {
-          padding: clamp(20px, 2.5vw, 28px) 0 clamp(22px, 2.8vw, 32px);
+          padding: clamp(12px, 1.5vw, 16px) 0 clamp(12px, 1.5vw, 18px);
         }
 
         .gwh-ft-lux-bottom-inner {
@@ -308,10 +314,10 @@ export default function Footer() {
         .gwh-ft-lux-copy {
           font-family: var(--font-inter), sans-serif;
           font-weight: 400;
-          font-size: clamp(12px, 0.95vw, 14px);
+          font-size: clamp(10px, 0.78vw, 11px);
           color: #a8adb5;
           margin: 0;
-          line-height: 1.5;
+          line-height: 1.45;
         }
 
         @media (min-width: 900px) {
@@ -343,8 +349,12 @@ export default function Footer() {
             text-align: left;
           }
 
+          .gwh-ft-lux-logo-wrap {
+            justify-content: center;
+          }
+
           .gwh-ft-lux-logo {
-            width: min(100%, 240px);
+            width: min(100%, 220px);
           }
 
           .gwh-ft-lux-btn {
@@ -361,18 +371,20 @@ export default function Footer() {
         <div className="gwh-ft-lux-inner">
           <div className="gwh-ft-lux-grid">
             <div className="gwh-ft-lux-brand">
-              <Link href="/" className="gwh-ft-lux-logo-link">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/GhostWriterHunt-logo-white.webp"
-                  alt="GhostWriterHunt"
-                  width={400}
-                  height={160}
-                  className="gwh-ft-lux-logo"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </Link>
+              <div className="gwh-ft-lux-logo-wrap">
+                <Link href="/" className="gwh-ft-lux-logo-link">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/GhostWriterHunt-logo-white.webp"
+                    alt="GhostWriterHunt"
+                    width={400}
+                    height={160}
+                    className="gwh-ft-lux-logo"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
+              </div>
               <p className="gwh-ft-lux-tagline">
                 Professional ghostwriting services for authors worldwide. Your
                 story. Your voice. Perfectly told.
