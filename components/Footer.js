@@ -1,5 +1,7 @@
 import Link from "next/link";
 import {
+  BUSINESS_PHONE_ALT_DISPLAY,
+  BUSINESS_PHONE_ALT_TEL,
   BUSINESS_PHONE_DISPLAY,
   BUSINESS_PHONE_TEL,
   BUSINESS_STREET_ADDRESS,
@@ -217,6 +219,24 @@ export default function Footer() {
           color: #f5ce69;
         }
 
+        .gwh-ft-lux-row--phones {
+          align-items: center;
+        }
+
+        .gwh-ft-lux-phones {
+          display: inline-flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          gap: clamp(6px, 0.55vw, 10px);
+          min-width: 0;
+        }
+
+        .gwh-ft-lux-phone-sep {
+          color: #a8adb5;
+          flex-shrink: 0;
+          user-select: none;
+        }
+
         .gwh-ft-lux-row-note {
           font-family: var(--font-inter), sans-serif;
           font-size: clamp(11px, 0.85vw, 12px);
@@ -417,11 +437,19 @@ export default function Footer() {
                   </div>
                   <p className="gwh-ft-lux-row-note">Client support</p>
                 </div>
-                <div className="gwh-ft-lux-row">
+                <div className="gwh-ft-lux-row gwh-ft-lux-row--phones">
                   <IconPhone />
-                  <a href={BUSINESS_PHONE_TEL} className="gwh-ft-lux-row-text">
-                    {BUSINESS_PHONE_DISPLAY}
-                  </a>
+                  <span className="gwh-ft-lux-phones">
+                    <a href={BUSINESS_PHONE_TEL} className="gwh-ft-lux-row-text">
+                      {BUSINESS_PHONE_DISPLAY}
+                    </a>
+                    <span className="gwh-ft-lux-phone-sep" aria-hidden="true">
+                      ·
+                    </span>
+                    <a href={BUSINESS_PHONE_ALT_TEL} className="gwh-ft-lux-row-text">
+                      {BUSINESS_PHONE_ALT_DISPLAY}
+                    </a>
+                  </span>
                 </div>
                 <div className="gwh-ft-lux-row">
                   <IconPin />

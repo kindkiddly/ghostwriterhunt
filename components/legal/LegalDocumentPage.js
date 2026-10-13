@@ -230,6 +230,24 @@ const styles = `
     margin: 0 0 8px;
     line-height: 1.4;
   }
+  .legal-contact-phones {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.35em;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+  .legal-contact-phones .legal-contact-email {
+    display: inline;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .legal-contact-phone-sep {
+    color: #888888;
+    flex-shrink: 0;
+    user-select: none;
+  }
   .legal-contact-email:hover {
     color: #B8960C !important;
   }

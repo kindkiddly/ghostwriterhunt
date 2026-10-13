@@ -5,8 +5,8 @@
 
 import {
   BUSINESS_ADDRESS,
-  BUSINESS_PHONE_DISPLAY_LABELED,
-  BUSINESS_PHONE_TEL,
+  BUSINESS_PHONES_LEGAL_CARD_HTML,
+  BUSINESS_PHONES_LEGAL_HTML,
   SITE_URL,
 } from "@/lib/siteAddress";
 
@@ -27,7 +27,7 @@ const CONTACT_SECTION = `
     </div>
     <div class="legal-contact-card">
       <p class="legal-contact-label">Phone</p>
-      <a href="${BUSINESS_PHONE_TEL}" class="legal-contact-email">${BUSINESS_PHONE_DISPLAY_LABELED}</a>
+      <div class="legal-contact-phones">${BUSINESS_PHONES_LEGAL_CARD_HTML}</div>
       <p class="legal-contact-note">Customer support line</p>
     </div>
   </div>
@@ -146,7 +146,7 @@ ${CONTACT_SECTION}
 <p>GhostWriterHunt is the messaging brand for SMS sent from this service. GhostWriterHunt sends SMS text messages only to individuals who have separately and expressly opted in through the optional SMS consent checkbox on a GhostWriterHunt form. Messages relate to the recipient's inquiry, requested service details, quotes, consultation scheduling, or related project communications.</p>
 <p>Providing a phone number alone is not consent to receive text messages. Consent is not required to purchase services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for assistance.</p>
 <p>Mobile opt-in data and SMS consent records are not shared with third parties or affiliates for their marketing or promotional purposes, as further described in the <a href="/privacy-policy">Privacy Policy</a>.</p>
-<p>The Privacy Policy governs how GhostWriterHunt handles personal information and SMS consent records. Questions: <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a>, <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>, or <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a>.</p>
+<p>The Privacy Policy governs how GhostWriterHunt handles personal information and SMS consent records. Questions: <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a>, <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>, or ${BUSINESS_PHONES_LEGAL_HTML}.</p>
 <h2>10. Website Content</h2>
 <p>The GhostWriterHunt name, logo, website design and content belong to GhostWriterHunt and may not be used without written permission.</p>
 <h2>11. Limitation of Liability</h2>
@@ -156,7 +156,7 @@ ${CONTACT_SECTION}
 <h2>13. Governing Law</h2>
 <p>These Terms are governed by the laws of the State of Texas, USA. Disputes will be resolved in the state or federal courts located in Fort Bend County, Texas.</p>
 <h2>14. Contact</h2>
-<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a>, GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
+<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), ${BUSINESS_PHONES_LEGAL_HTML}, GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
 <hr />
 ${CONTACT_SECTION}
 `,
@@ -236,7 +236,7 @@ ${CONTACT_SECTION}
 <p>Questions about cookies, privacy, or your personal information? Contact GhostWriterHunt Customer Support:</p>
 <ul>
   <li>Email: <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a></li>
-  <li>Phone: <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a></li>
+  <li>Phone: ${BUSINESS_PHONES_LEGAL_HTML}</li>
   <li>Location: ${BUSINESS_ADDRESS}</li>
 </ul>
 <hr />
