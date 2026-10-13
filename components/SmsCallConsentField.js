@@ -32,7 +32,8 @@ export default function SmsCallConsentField({ id, checked, onChange, variant = "
         requested service information, quotes, consultation scheduling, and related project
         communications. Providing my phone number alone is not consent. Message frequency varies.
         Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is
-        not a condition of purchase. See the{" "}
+        not a condition of purchase. Mobile opt-in data and SMS consent records are not shared with
+        third parties or affiliates for their marketing or promotional purposes. See the{" "}
         <a
           href={PRIVACY_HREF}
           className={linkClass}

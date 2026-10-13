@@ -752,7 +752,6 @@ export default function AboutPage() {
               published books.
             </p>
             <p className="ab-body">
-              Owned and operated by Naeem Mirani as a sole proprietor,
               GhostWriterHunt provides ghostwriting, ebook writing, manuscript
               editing, proofreading, formatting, cover design, publishing
               assistance, and related author services.

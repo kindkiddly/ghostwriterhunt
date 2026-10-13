@@ -3,6 +3,7 @@ import {
   BUSINESS_ADDRESS,
   BUSINESS_PHONE_DISPLAY_LABELED,
   BUSINESS_PHONE_TEL,
+  SITE_URL,
 } from "@/lib/siteAddress";
 
 /**
@@ -15,6 +16,7 @@ const QUICK_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Use", href: "/terms-of-use" },
   { label: "Legal", href: "/legal" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
 ];
 
 export default function Footer() {
@@ -239,7 +241,9 @@ export default function Footer() {
               story. Your voice. Perfectly told.
             </p>
             <p className="gwh-ft-brand-line">
-              Owned and operated by Naeem Mirani
+              <a href={SITE_URL} className="gwh-ft-link">
+                ghostwriterhunt.lumexforge.com
+              </a>
             </p>
           </div>
 
