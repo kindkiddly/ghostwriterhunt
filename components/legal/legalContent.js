@@ -5,6 +5,7 @@
 
 import {
   BUSINESS_ADDRESS,
+  BUSINESS_OWNER,
   BUSINESS_PHONE_DISPLAY_LABELED,
   BUSINESS_PHONE_TEL,
 } from "@/lib/siteAddress";
@@ -30,7 +31,7 @@ const CONTACT_SECTION = `
       <p class="legal-contact-note">Customer support line</p>
     </div>
   </div>
-  <p class="legal-contact-location">GhostWriterHunt · ${BUSINESS_ADDRESS}</p>
+  <p class="legal-contact-location">GhostWriterHunt · Owner: ${BUSINESS_OWNER} · ${BUSINESS_ADDRESS}</p>
 </div>
 `;
 
@@ -41,7 +42,7 @@ export const legalContent = {
     content: `
 <h2>Introduction</h2>
 <p>This Privacy Policy explains how GhostWriterHunt collects, uses, shares and protects the information you provide when you visit ghostwriterhunt.lumexforge.com or use GhostWriterHunt's ghostwriting and publishing services. Please read it carefully. If you do not agree with this policy, please do not use the website.</p>
-<p>GhostWriterHunt is a brand owned and operated by LumexForge.</p>
+<p>GhostWriterHunt is owned and operated by ${BUSINESS_OWNER} as a sole proprietor. The website is hosted and available at ghostwriterhunt.lumexforge.com. Use of that domain address does not mean that any other company owns or operates GhostWriterHunt.</p>
 <hr />
 <h2>Information GhostWriterHunt Collects</h2>
 <h3>Information You Provide Directly</h3>
@@ -63,36 +64,35 @@ export const legalContent = {
 </ul>
 <hr />
 <h2>How GhostWriterHunt Uses Your Information</h2>
-<p>Information is used to:</p>
+<p>Information collected through contact, inquiry and project forms is used to:</p>
 <ul>
-  <li>Respond to your consultation requests and service inquiries</li>
-  <li>Provide, manage and improve ghostwriting services</li>
-  <li>Send project updates and communications related to your book project</li>
-  <li>Send marketing communications (only with your consent)</li>
-  <li>Analyze website usage to improve user experience</li>
+  <li>Respond to consultation requests and service inquiries</li>
+  <li>Provide quotes and information about requested services</li>
+  <li>Communicate with you about book projects, timelines and deliverables</li>
+  <li>Process payments and deliver ghostwriting, editing, design and publishing services</li>
+  <li>Send project-related calls or text messages when you have separately opted in</li>
+  <li>Send other marketing communications only when you have given consent</li>
+  <li>Operate, secure and improve the website</li>
   <li>Comply with legal obligations</li>
 </ul>
+<p>Service providers may process information when necessary to host the website, operate payment systems, deliver communications and support other business operations. They are expected to handle information only as needed to provide those services and subject to applicable requirements.</p>
 <hr />
-<h2>Call and Text Message Communications</h2>
-<p>By providing your phone number and checking the consent box on GhostWriterHunt forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, related to:</p>
-<ol>
-  <li><strong>Inquiry Follow-up</strong>: Information about book-related packages, quotes and follow-up regarding your request.</li>
-  <li><strong>Project Updates</strong>: Notifications regarding your book project status, milestones and deliverables.</li>
-  <li><strong>Client Support</strong>: Assistance with your project and responses to your inquiries.</li>
-  <li><strong>Consultation Reminders</strong>: Reminders about scheduled calls and consultations.</li>
-  <li><strong>Account Alerts</strong>: Important alerts regarding your account or project.</li>
-  <li><strong>Service Updates</strong>: Information about new services and offerings from GhostWriterHunt.</li>
-</ol>
-<p><strong>To opt out:</strong> Reply STOP to any text message to stop all text messages from GhostWriterHunt, reply HELP for help, or email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. You can also ask GhostWriterHunt not to call you at any time. Message frequency may vary. Message and data rates may apply. Consent is not a condition of purchase.</p>
+<h2>SMS Communications</h2>
+<p>Customers who voluntarily provide their phone number and separately opt in through a GhostWriterHunt form may receive text messages related to their submitted inquiries, requested service information, quotes, consultation scheduling, and related project communications, consistent with the consent provided.</p>
+<p>Providing a phone number alone does not constitute consent to receive text messages. SMS consent is optional and is not a condition of purchasing services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.</p>
+<p>You may also contact GhostWriterHunt at <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> or <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> about SMS preferences, opt-out requests or privacy questions.</p>
+<hr />
+<h2>Mobile Information and SMS Consent</h2>
+<p>Mobile phone numbers collected through our SMS opt-in process and SMS consent records will not be sold, rented, shared, or disclosed to third parties or affiliates for their marketing or promotional purposes. Service providers may process information as necessary to deliver and support requested communications, subject to applicable requirements. Such providers may not use this information for their own marketing.</p>
 <hr />
 <h2>Information Sharing</h2>
-<p>GhostWriterHunt does not sell, trade or rent your personal information to third parties. Information may be shared only in the following circumstances:</p>
+<p>GhostWriterHunt does not sell, trade or rent your personal information to third parties for their marketing. Information may be shared in the following circumstances:</p>
 <ul>
-  <li>With service providers who assist in operating the website and delivering services</li>
-  <li>When required by law or to protect legal rights</li>
+  <li>With service providers who assist in operating the website, processing payments, delivering communications and providing services</li>
+  <li>When required by law, regulation or legal process, or to protect legal rights and safety</li>
+  <li>In connection with necessary business operations, such as professional advisers, subject to confidentiality obligations</li>
   <li>With your explicit consent</li>
 </ul>
-<p>Mobile numbers and SMS/call consent collected through GhostWriterHunt forms are not shared with third parties or affiliates for marketing or promotional purposes.</p>
 <hr />
 <h2>NDA and Confidentiality</h2>
 <p>All client projects are protected by a Non-Disclosure Agreement (NDA). Your book ideas, manuscript content, personal story and project details are confidential and will not be disclosed to third parties under any circumstances.</p>
@@ -126,8 +126,8 @@ ${CONTACT_SECTION}
 <h2>2. Definitions</h2>
 <p><strong>Website</strong> means all pages and content at ghostwriterhunt.lumexforge.com.</p>
 <p><strong>Client, you, your</strong> means the person placing an order, or anyone ordering on their behalf.</p>
-<p><strong>Company</strong> means GhostWriterHunt, based in ${BUSINESS_ADDRESS}. GhostWriterHunt is a brand owned and operated by LumexForge.</p>
-<p><strong>Services</strong> means all writing, editing, design, publishing and marketing work GhostWriterHunt provides.</p>
+<p><strong>Company</strong> means GhostWriterHunt, a book-writing, editing, formatting, and publishing service owned and operated by ${BUSINESS_OWNER} as a sole proprietor, located in ${BUSINESS_ADDRESS}. The website is available at ghostwriterhunt.lumexforge.com.</p>
+<p><strong>Services</strong> means ghostwriting, ebook writing, manuscript editing, proofreading, formatting, cover design, publishing assistance, book marketing and related author services GhostWriterHunt provides.</p>
 <p><strong>Order</strong> means any purchase of services, confirmed by payment through secure checkout or a payment link GhostWriterHunt sends you.</p>
 <h2>3. Services</h2>
 <p>Each order is for your personal or business use. The scope, deliverables and timeline of your project are confirmed in your package details or your custom project plan.</p>
@@ -142,8 +142,10 @@ ${CONTACT_SECTION}
 <p>Refunds and cancellations are handled according to the <a href="/refund-policy">Refund Policy</a>.</p>
 <h2>8. Timelines and Client Cooperation</h2>
 <p>Project timelines depend on the package and on timely feedback and materials from you. Delays in client feedback may extend delivery dates.</p>
-<h2>9. Calls and Text Messages</h2>
-<p>If you check the consent box on GhostWriterHunt forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, about your inquiry and project. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. See the <a href="/privacy-policy">Privacy Policy</a> and <a href="/legal">Legal page</a> for details.</p>
+<h2>9. Text Messages (SMS)</h2>
+<p>GhostWriterHunt sends SMS text messages only to individuals who have separately and expressly opted in through the optional SMS consent checkbox on a GhostWriterHunt form. Messages relate to the recipient's inquiry, requested service details, quotes, consultation scheduling, or related project communications.</p>
+<p>Providing a phone number alone is not consent to receive text messages. Consent is not required to purchase services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for assistance.</p>
+<p>The <a href="/privacy-policy">Privacy Policy</a> governs how GhostWriterHunt handles personal information and SMS consent records. Questions: <a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a>, <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>, or <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a>.</p>
 <h2>10. Website Content</h2>
 <p>The GhostWriterHunt name, logo, website design and content belong to GhostWriterHunt and may not be used without written permission.</p>
 <h2>11. Limitation of Liability</h2>
@@ -153,7 +155,7 @@ ${CONTACT_SECTION}
 <h2>13. Governing Law</h2>
 <p>These Terms are governed by the laws of the State of Texas, USA. Disputes will be resolved in the state or federal courts located in Fort Bend County, Texas.</p>
 <h2>14. Contact</h2>
-<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a> (customer support line), GhostWriterHunt, ${BUSINESS_ADDRESS}.</p>
+<p><a href="mailto:ghostwriterhunt@lumexforge.com">ghostwriterhunt@lumexforge.com</a> (new projects), <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> (client support), <a href="${BUSINESS_PHONE_TEL}">${BUSINESS_PHONE_DISPLAY_LABELED}</a>, GhostWriterHunt (${BUSINESS_OWNER}), ${BUSINESS_ADDRESS}.</p>
 <hr />
 ${CONTACT_SECTION}
 `,
@@ -251,7 +253,8 @@ ${CONTACT_SECTION}
 <h2>Legal Information</h2>
 <p>This page provides access to all legal documents governing your use of GhostWriterHunt's website and professional ghostwriting services.</p>
 <h2>About GhostWriterHunt</h2>
-<p>GhostWriterHunt is a brand of LumexForge, an independent technology and creative studio. LumexForge builds and operates a growing family of digital products and services, and GhostWriterHunt is its ghostwriting and book publishing service. The GhostWriterHunt website and services are owned and operated by LumexForge. Learn more at <a href="https://lumexforge.com" target="_blank" rel="noopener noreferrer">lumexforge.com</a>.</p>
+<p>GhostWriterHunt is an independently operated book-writing, editing, formatting, and publishing service owned by ${BUSINESS_OWNER} as a sole proprietor. GhostWriterHunt provides ghostwriting, ebook writing, manuscript editing, proofreading, formatting, cover design, publishing assistance, and related author services.</p>
+<p>The website is available at ghostwriterhunt.lumexforge.com. That domain is used for hosting and access to the GhostWriterHunt website and does not mean that GhostWriterHunt is owned or operated by the domain registrar or any unrelated company.</p>
 <hr />
 <h2>Legal Documents</h2>
 <ul class="legal-doc-list">
@@ -278,26 +281,13 @@ ${CONTACT_SECTION}
 </ul>
 <hr />
 <h2 id="sms-consent">Call and Text Message Consent Agreement</h2>
-<p>By providing your phone number and checking the consent box on GhostWriterHunt forms, you agree to receive calls and SMS text messages from GhostWriterHunt, including by automated technology, for the following purposes:</p>
-<ol>
-  <li><strong>Inquiry Follow-up</strong>: Information about book-related packages, quotes, updates and follow-up regarding your request.</li>
-  <li><strong>Project Updates</strong>: Notifications regarding the status of your book project, including milestone completions, draft deliveries and revision updates.</li>
-  <li><strong>Client Support</strong>: Assistance with your project, responses to your inquiries and resolution of any issues related to your ghostwriting or publishing services.</li>
-  <li><strong>Consultation Reminders</strong>: Reminders about upcoming consultation calls, project review meetings and scheduled check-ins with your assigned writer.</li>
-  <li><strong>Account Alerts</strong>: Important notifications regarding your account, payment confirmations, contract updates and project timeline changes.</li>
-  <li><strong>Service Communications</strong>: Information about new services, relevant updates and important announcements from GhostWriterHunt.</li>
-</ol>
+<p>By providing a phone number and checking the separate, optional SMS consent checkbox on a GhostWriterHunt form, you agree to receive text messages related to your submitted inquiry, requested service information, quotes, consultation scheduling, and related project communications, consistent with the consent provided.</p>
+<p>Providing a phone number alone does not constitute SMS consent. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.</p>
+<p>Mobile opt-in data and SMS consent records are not shared with third parties or affiliates for their marketing or promotional purposes. Service providers may process information only as needed to deliver and support the communications service, subject to applicable requirements.</p>
+<p>Carriers are not liable for delayed or undelivered messages.</p>
 <h3>How to Withdraw Your Consent</h3>
-<p>You have the right to withdraw your consent to receive text messages from GhostWriterHunt at any time using any of the following methods:</p>
-<ol>
-  <li><strong>Reply STOP</strong>: Reply to any text message from GhostWriterHunt with the word "STOP." This will automatically unsubscribe you from further text communications.</li>
-  <li><strong>Contact</strong>: Email <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a> and request to be unsubscribed from text message communications.</li>
-  <li><strong>Update Preferences</strong>: Contact GhostWriterHunt directly to update your communication preferences and opt out of receiving text messages.</li>
-</ol>
-<p>Replying STOP stops all text messages from GhostWriterHunt. You will receive one final message confirming your opt-out.</p>
-<p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above.</p>
-<p>Message and data rates may apply. Message frequency varies based on your project status and activity.</p>
-<p>Reply HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. Mobile numbers and SMS/call consent are not shared with third parties or affiliates for marketing or promotional purposes.</p>
+<p>You may withdraw SMS consent at any time by replying STOP to a message, replying HELP for assistance, or emailing <a href="mailto:support.gwh@lumexforge.com">support.gwh@lumexforge.com</a>. You may receive one final message confirming your opt-out.</p>
+<p>By opting in, you confirm that you are the owner or authorized user of the phone number provided and that you understand and agree to the terms outlined above and in the <a href="/privacy-policy">Privacy Policy</a>.</p>
 <hr />
 ${CONTACT_SECTION}
 `,

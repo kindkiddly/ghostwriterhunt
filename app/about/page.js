@@ -747,7 +747,24 @@ export default function AboutPage() {
               to your published book, every step happens under one roof.
             </p>
             <p className="ab-body">
-              GhostWriterHunt is part of the LumexForge family of products.
+              GhostWriterHunt helps authors turn their ideas, experiences, and
+              expertise into professionally written, edited, formatted, and
+              published books.
+            </p>
+            <p className="ab-body">
+              Owned and operated by Naeem Mirani as a sole proprietor,
+              GhostWriterHunt provides ghostwriting, ebook writing, manuscript
+              editing, proofreading, formatting, cover design, publishing
+              assistance, and related author services.
+            </p>
+            <p className="ab-body">
+              We work with authors to understand their goals, develop their
+              manuscripts, refine their content, and prepare their books for
+              publication. We value confidentiality, clear communication, and
+              service plans tailored to each author&apos;s needs.
+            </p>
+            <p className="ab-body">
+              Our website is available at ghostwriterhunt.lumexforge.com.
             </p>
           </div>
           <div className="ab-split-media ab-slide-right">
@@ -891,9 +908,10 @@ export default function AboutPage() {
               Respectful communication, <em>always.</em>
             </h2>
             <p className="ab-body">
-              GhostWriterHunt only calls or texts you about your inquiry if you opt in on a
-              form, and you can opt out at any time by replying STOP. Your mobile number
-              and consent are never shared with third parties for marketing. Learn more in
+              GhostWriterHunt only texts you about your inquiry if you separately opt in on a
+              form, and you can opt out at any time by replying STOP. Mobile opt-in data
+              and SMS consent records are not shared with third parties or affiliates for
+              their marketing or promotional purposes. Learn more in
               the{" "}
               <Link href="/privacy-policy" className="ab-inline-link">
                 Privacy Policy

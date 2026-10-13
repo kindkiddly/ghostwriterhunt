@@ -79,16 +79,6 @@ export default function Footer() {
           line-height: 1.5;
           margin: 8px 0 0;
         }
-        .gwh-ft-brand-line a {
-          color: #888888;
-          text-decoration: none;
-        }
-        .gwh-ft-brand-line a:hover {
-          color: #C9A84C;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-        }
-
         .gwh-ft-heading {
           font-family: var(--font-inter), sans-serif;
           font-weight: 600;
@@ -249,15 +239,7 @@ export default function Footer() {
               story. Your voice. Perfectly told.
             </p>
             <p className="gwh-ft-brand-line">
-              A{" "}
-              <a
-                href="https://lumexforge.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LumexForge
-              </a>{" "}
-              brand
+              Owned and operated by Naeem Mirani
             </p>
           </div>
 

@@ -28,11 +28,11 @@ export default function SmsCallConsentField({ id, checked, onChange, variant = "
         onChange={(e) => onChange(e.target.checked)}
       />
       <label className={labelClass} htmlFor={id}>
-        I agree to receive calls and SMS text messages from GhostWriterHunt, including by automated
-        technology, regarding my inquiry, including information about book-related packages, quotes,
-        updates, and follow-up regarding my request. Message frequency may vary. Message and data
-        rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of
-        purchase. See the{" "}
+        I agree to receive SMS text messages from GhostWriterHunt related to my submitted inquiry,
+        requested service information, quotes, consultation scheduling, and related project
+        communications. Providing my phone number alone is not consent. Message frequency varies.
+        Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is
+        not a condition of purchase. See the{" "}
         <a
           href={PRIVACY_HREF}
           className={linkClass}
